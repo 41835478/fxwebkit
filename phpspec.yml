@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Fxweb
+        psr4_prefix: Fxweb
+        src_path: app
