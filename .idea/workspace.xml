@@ -1,35 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="291ef9ef-ee8a-4d06-862c-66147a2097f8" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\app\Http\Controllers\Agent\.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\app\Http\Controllers\Controller.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\app\Http\Middleware\Agent\.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\app\Http\Requests\Agent\.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\app\Models\Permission.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\app\Models\Role.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\app\Models\User.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\app\Repositories\Agent\.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\app\Services\Registrar.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\database\migrations\2014_10_12_000000_create_users_table.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\database\migrations\2014_10_12_100000_create_password_resets_table.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\database\migrations\2015_05_17_155523_entrust_setup_tables.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\public\css\app.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\public\fonts\glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\public\fonts\glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\public\fonts\glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\public\fonts\glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\public\fonts\glyphicons-halflings-regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\resources\views\agent\errors\.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\fxwebkit\resources\views\agent\layouts\.gitkeep" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="291ef9ef-ee8a-4d06-862c-66147a2097f8" name="Default" comment="" />
     <ignored path="fxwebkit.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
