@@ -24,9 +24,17 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
-		'auth' => 'Fxweb\Http\Middleware\Authenticate',
-		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
-		'guest' => 'Fxweb\Http\Middleware\RedirectIfAuthenticated',
+		/*
+		 * Admin Middlewares
+		 */
+		'authenticate.admin' => 'Fxweb\Http\Middleware\Admin\Authenticate',
+		'authorize.admin' => 'Fxweb\Http\Middleware\Admin\Authorize',
+
+		/*
+		 * Client Middlewares
+		 */
+		'authenticate.client' => 'Fxweb\Http\Middleware\Client\Authenticate',
+		'authorize.client' => 'Fxweb\Http\Middleware\Client\Authorize',
 	];
 
 }
