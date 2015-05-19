@@ -59,6 +59,8 @@ Route::group(['prefix' => env('CLIENT_NAME')], function()
 	 */
 	Route::get('login', ['as' => 'client.login', 'uses' => 'Client\UserController@getLogin']);
 	Route::get('logout', ['as' => 'client.logout', 'uses' => 'Client\UserController@getLogout']);
+	Route::get('register', ['as' => 'client.register', 'uses' => 'Client\UserController@getRegister']);
+	Route::get('recover', ['as' => 'client.recover', 'uses' => 'Client\UserController@getRecover']);
 });
 
 /*

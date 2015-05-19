@@ -135,6 +135,7 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
+		'Illuminate\Html\HtmlServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -200,6 +201,8 @@ return [
 		'Activation' => 'Cartalyst\Sentinel\Laravel\Facades\Activation',
 		'Reminder' => 'Cartalyst\Sentinel\Laravel\Facades\Reminder',
 		'Sentinel' => 'Cartalyst\Sentinel\Laravel\Facades\Sentinel',
+		'Form' => 'Illuminate\Html\FormFacade',
+		'HTML' => 'Illuminate\Html\HtmlFacade',
 	],
 
 ];
