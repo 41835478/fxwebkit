@@ -12,7 +12,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="_token" content="{{ csrf_token() }}" />
-	<title>@yield('title') - {{ Config::get('fxweb.app_name') }}</title>
+	<title>@yield('title') - {{ app_name() }}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
 	{!! HTML::style('assets/css/bootstrap.min.css') !!}
@@ -25,12 +25,11 @@
 	<![endif]-->
 </head>
 <body class="theme-default page-signin">
-	<!-- Page background -->
 	<div id="page-signin-bg">
 		<div class="overlay"></div>
 		{!! HTML::image('assets/img/backgrounds/signin-bg-'.$random.'.jpg') !!}
 	</div>
-	<!-- / Page background -->
+
 	@yield('content')
 
 	<!--[if !IE]> -->
@@ -44,7 +43,6 @@
 	{!! HTML::script('assets/js/pixel-admin.min.js') !!}
 
 	<script type="text/javascript">
-		// Resize BG
 		var init = [];
 		init.push(function () {
 			var $ph  = $('#page-signin-bg'), $img = $ph.find('> img');

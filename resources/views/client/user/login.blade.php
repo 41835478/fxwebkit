@@ -20,6 +20,7 @@
 		</div>
 
 		<div class="signin-form">
+			@include('client.partials.messages')
 			{!! Form::open(['id'=>'signin-form_id']) !!}
 				<div class="signin-text">
 					<span>{{ Lang::get('user.SignInText') }}</span>
@@ -29,7 +30,7 @@
 					<span class="fa fa-user signin-form-icon"></span>
 				</div>
 				<div class="form-group w-icon">
-					{!! Form::text('password', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.Password')]) !!}
+					{!! Form::password('password', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.Password')]) !!}
 					<span class="fa fa-lock signin-form-icon"></span>
 				</div>
 				<div class="form-actions">
@@ -37,6 +38,7 @@
 					<a href="{{ route('client.auth.recover') }}" class="forgot-password">{{ Lang::get('user.ForgotYourPassword') }}?</a>
 				</div>
 			{!! Form::close() !!}
+
 			<div class="signin-with">
 				<a href="{{ route('client.auth.register') }}" class="signin-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">
 					{{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.Facebook') }}</span>

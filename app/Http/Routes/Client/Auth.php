@@ -23,6 +23,10 @@ Route::get('login', [
 	'as' => 'client.auth.login',
 	'uses' => 'AuthController@getLogin'
 ]);
+Route::post('login', [
+	'uses' => 'AuthController@postLogin'
+]);
+
 Route::get('logout', [
 	'as' => 'client.auth.logout',
 	'uses' => 'AuthController@getLogout'

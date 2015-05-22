@@ -30,3 +30,5 @@ Route::get('/', function ()
 {
 	return Redirect::to(env('CLIENT_NAME'));
 });
+
+//Route::get('/', 'TestController@index');

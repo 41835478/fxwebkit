@@ -24,21 +24,21 @@ class TestController extends Controller
 			'permissions' => ['super' => 1]
 		]);
 
-		$adminU = Sentinel::create([
+		$adminU = Sentinel::registerAndActivate([
 			'email'    => 'husni.admin@gmail.com',
 			'password' => '123456',
 			'first_name' => 'Husni',
 			'last_name' => 'Admin',
 		]);
 
-		$managerU = Sentinel::create([
+		$managerU = Sentinel::registerAndActivate([
 			'email'    => 'husni.manager@gmail.com',
 			'password' => '123456',
 			'first_name' => 'Husni',
 			'last_name' => 'Manager',
 		]);
 
-		$clientU = Sentinel::create([
+		$clientU = Sentinel::registerAndActivate([
 			'email'    => 'husni.client@gmail.com',
 			'password' => '123456',
 			'first_name' => 'Husni',
