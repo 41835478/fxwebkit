@@ -2,7 +2,7 @@
 
 use Fxweb\Http\Controllers\Controller;
 
-class UserController extends Controller
+class AuthController extends Controller
 {
 	public function getLogin()
 	{

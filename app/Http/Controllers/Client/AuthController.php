@@ -2,11 +2,16 @@
 
 use Fxweb\Http\Controllers\Controller;
 
-class UserController extends Controller
+class AuthController extends Controller
 {
 	public function getLogin()
 	{
 		return view('client.user.login')
 			->with('random', rand(1, 8));
+	}
+
+	public function postLogin()
+	{
+		dd('AAA');
 	}
 }

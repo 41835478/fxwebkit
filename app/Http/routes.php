@@ -11,60 +11,22 @@
 |
 */
 
-Route::group(['prefix' => env('ADMIN_NAME')], function()
+Route::group(['prefix' => env('ADMIN_NAME'), 'namespace' => 'Admin'], function()
 {
-	/*
-	 * Admin Routes that needs login
-	 */
-	Route::group(['middleware' => ['authenticate.admin']], function()
-	{
-		//
-	});
-
-	/*
-	 * Admin Routes that needs authorization
-	 */
-	Route::group(['middleware' => ['authorize.admin']], function()
-	{
-		//
-	});
-
-	/*
-	 * Unprotected Admin Routes
-	 */
-	Route::get('login', ['as' => 'admin.login', 'uses' => 'Admin\UserController@getLogin']);
-	Route::get('logout', ['as' => 'admin.logout', 'uses' => 'Admin\UserController@getLogout']);
+	require_once __DIR__ . "/Routes/Admin/Dashboard.php";
+	require_once __DIR__ . "/Routes/Admin/Auth.php";
 });
 
-Route::group(['prefix' => env('CLIENT_NAME')], function()
+Route::group(['prefix' => env('CLIENT_NAME'), 'namespace' => 'Client'], function()
 {
-	/*
-	 * Client Routes that needs login
-	 */
-	Route::group(['middleware' => ['authenticate.client']], function()
-	{
-		Route::get('/', 'Client\DashboardController@index');
-	});
-
-	/*
-	 * Client Routes that needs authorization
-	 */
-	Route::group(['middleware' => ['authorize.client']], function()
-	{
-		//
-	});
-
-	/*
-	 * Unprotected Client Routes
-	 */
-	Route::get('login', ['as' => 'client.login', 'uses' => 'Client\UserController@getLogin']);
-	Route::get('logout', ['as' => 'client.logout', 'uses' => 'Client\UserController@getLogout']);
-	Route::get('register', ['as' => 'client.register', 'uses' => 'Client\UserController@getRegister']);
-	Route::get('recover', ['as' => 'client.recover', 'uses' => 'Client\UserController@getRecover']);
+	require_once __DIR__ . "/Routes/Client/Dashboard.php";
+	require_once __DIR__ . "/Routes/Client/Auth.php";
 });
 
 /*
  * Redirect root routes to clients area
  */
-Route::get('/', function () {return Redirect::to(env('CLIENT_NAME'));});
-//Route::get('/', 'TestController@index');
+Route::get('/', function ()
+{
+	return Redirect::to(env('CLIENT_NAME'));
+});

@@ -15,7 +15,7 @@ class Authenticate
 			if ($oRequest->ajax()) {
 				return response('Needs Login', 401);
 			} else {
-				return Redirect::route('client.login');
+				return Redirect::route('client.auth.login');
 			}
 		}
 		return $fNext($oRequest);

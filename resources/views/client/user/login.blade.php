@@ -34,11 +34,11 @@
 				</div>
 				<div class="form-actions">
 					{!! Form::submit(Lang::get('user.SignIn'), ['class'=>'signin-btn bg-primary']) !!}
-					<a href="{{ route('client.recover') }}" class="forgot-password">{{ Lang::get('user.ForgotYourPassword') }}?</a>
+					<a href="{{ route('client.auth.recover') }}" class="forgot-password">{{ Lang::get('user.ForgotYourPassword') }}?</a>
 				</div>
 			{!! Form::close() !!}
 			<div class="signin-with">
-				<a href="{{ route('client.register') }}" class="signin-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">
+				<a href="{{ route('client.auth.register') }}" class="signin-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">
 					{{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.Facebook') }}</span>
 				</a>
 			</div>
@@ -46,6 +46,6 @@
 	</div>
 
 	<div class="not-a-member">
-		Not a member? <a href="{{ route('client.register') }}">Sign up now</a>
+		Not a member? <a href="{{ route('client.auth.register') }}">Sign up now</a>
 	</div>
 @stop
