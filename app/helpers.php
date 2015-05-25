@@ -1,4 +1,5 @@
 <?php
+use Fxweb\Helpers\User;
 /*
  * Global helpers file with misc functions
  */
@@ -8,7 +9,8 @@ if (! function_exists('app_name')) {
 	 *
 	 * @return string
 	 */
-	function app_name() {
+	function app_name()
+	{
 		return config('fxweb.app_name');
 	}
 }
@@ -31,7 +33,7 @@ if (!function_exists('theme_attr')) {
 	 *
 	 * @return string
 	 */
-	function theme_attr()
+	function theme_attr($bAttrcheck=true)
 	{
 		$str = '';
 
@@ -45,21 +47,31 @@ if (!function_exists('theme_attr')) {
 		}
 		*/
 
-		/* Is Fixed Navbar */
-		if (config('fxweb.theme.navbarFixed', false)) {
-			$str .= ' main-navbar-fixed';
-		}
+		if ($bAttrcheck) {
+			/* Is Fixed Navbar */
+			if (config('fxweb.theme.navbarFixed', false)) {
+				$str .= ' main-navbar-fixed';
+			}
 
-		/* Is Fixed Menu */
-		if (config('fxweb.theme.menuFixed', false)) {
-			$str .= ' main-menu-fixed';
-		}
+			/* Is Fixed Menu */
+			if (config('fxweb.theme.menuFixed', false)) {
+				$str .= ' main-menu-fixed';
+			}
 
-		/* Is Animated Menu */
-		if (config('fxweb.theme.menuAnimated', false)) {
-			$str .= ' main-menu-animated';
+			/* Is Animated Menu */
+			if (config('fxweb.theme.menuAnimated', false)) {
+				$str .= ' main-menu-animated';
+			}
 		}
 
 		return $str;
+	}
+}
+
+if (!function_exists('current_user')) {
+	function current_user()
+	{
+		$oUser = new User();
+		return $oUser;
 	}
 }

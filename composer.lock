@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "98ebe0f488a92ea48c3972a9222cdc1b",
+    "hash": "b22b5b39c380c1f1e29f455a8cdd00cf",
     "packages": [
         {
             "name": "cartalyst/sentinel",
-            "version": "v2.0.1",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:cartalyst/sentinel.git",
-                "reference": "d56d34e0cb4949830c37fad544cce53850eb2dd0"
+                "reference": "3805ef0cbc0ac85f4502200c380ce9d7a51edc98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/sentinel/zipball/d56d34e0cb4949830c37fad544cce53850eb2dd0",
-                "reference": "d56d34e0cb4949830c37fad544cce53850eb2dd0",
+                "url": "https://api.github.com/repos/cartalyst/sentinel/zipball/3805ef0cbc0ac85f4502200c380ce9d7a51edc98",
+                "reference": "3805ef0cbc0ac85f4502200c380ce9d7a51edc98",
                 "shasum": ""
             },
             "require": {
@@ -94,7 +94,11 @@
                 "php",
                 "security"
             ],
-            "time": "2015-03-13 19:59:11"
+            "support": {
+                "source": "https://github.com/cartalyst/sentinel/tree/v2.0.2",
+                "issues": "https://github.com/cartalyst/sentinel/issues"
+            },
+            "time": "2015-05-22 17:07:07"
         },
         {
             "name": "cartalyst/support",

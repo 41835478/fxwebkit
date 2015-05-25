@@ -25,6 +25,30 @@
 	<![endif]-->
 </head>
 <body class="{{ theme_attr() }}">
+	<script>var init = [];</script>
 
+	<div id="main-wrapper">
+		@include('client.partials.header')
+		@include('client.partials.menu')
+		<div id="content-wrapper">
+			@yield('content')
+		</div>
+		<div id="main-menu-bg"></div>
+	</div>
+
+
+	<!--[if !IE]> -->
+	{!! HTML::script('assets/js/jquery.2.0.3.min.js') !!}
+	<!-- <![endif]-->
+	<!--[if lte IE 9]>
+	{!! HTML::script('assets/js/jquery.1.8.3.min.js') !!}
+	<![endif]-->
+
+	{!! HTML::script('assets/js/bootstrap.min.js') !!}
+	{!! HTML::script('assets/js/pixel-admin.min.js') !!}
+
+	<script type="text/javascript">
+		window.PixelAdmin.start(init);
+	</script>
 </body>
 </html>

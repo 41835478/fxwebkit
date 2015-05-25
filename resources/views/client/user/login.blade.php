@@ -1,12 +1,12 @@
-@extends('client.layouts.login')
-@section('title', Lang::get('user.SignIn'))
+@extends('client.layouts.login', array('class' => 'page-signin'))
+@section('title', Lang::get('user.PageTitleSignIn'))
 @section('content')
 	<div class="signin-container">
 
 		<div class="signin-info">
 			<a href="" class="logo">
 				{!! HTML::image('assets/img/logo.png', '', ['style' => 'margin-top: -5px']) !!}&nbsp;
-				{{ Config::get('fxweb.app_name') }}
+				{{ app_name() }}
 			</a>
 			<div class="slogan">
 				{{ Lang::get('user.Slogan') }}

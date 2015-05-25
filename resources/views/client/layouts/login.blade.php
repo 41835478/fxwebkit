@@ -24,7 +24,7 @@
 	{!! HTML::script('assets/js/ie.min.js') !!}
 	<![endif]-->
 </head>
-<body class="theme-default page-signin">
+<body class="{{ theme_attr(false) }} {{$class}}">
 	<div id="page-signin-bg">
 		<div class="overlay"></div>
 		{!! HTML::image('assets/img/backgrounds/signin-bg-'.$random.'.jpg') !!}

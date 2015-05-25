@@ -1,6 +1,7 @@
 <?php namespace Fxweb\Http\Controllers\Client;
 
 use Fxweb\Http\Controllers\Controller;
+use Sentinel;
 
 class DashboardController extends Controller
 {

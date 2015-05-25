@@ -21,6 +21,7 @@ Route::group(['prefix' => env('CLIENT_NAME'), 'namespace' => 'Client'], function
 {
 	require_once __DIR__ . "/Routes/Client/Dashboard.php";
 	require_once __DIR__ . "/Routes/Client/Auth.php";
+	require_once __DIR__ . "/Routes/Client/User.php";
 });
 
 /*

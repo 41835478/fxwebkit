@@ -1,6 +1,9 @@
 <?php
 
 return [
+	'PageTitleSignIn' => 'Sign In',
+	'PageTitleSignUp' => 'Sign Up',
+
 	'SignIn' => 'Sign In',
 	'Slogan' => 'Simple. Flexible. Powerful.',
 	'Feature1' => 'Flexible modular structure',
@@ -15,6 +18,14 @@ return [
 	'Facebook' => 'Facebook',
 	'InvalidLogin' => 'Invalid Email or Password',
 	'LoginSuspended' => 'Login Suspended For This IP Address',
-	'LoginNotActive' => 'User Not Activated Yet'
+	'LoginNotActive' => 'User Not Activated Yet',
 
+	'SignUpText' => 'Create an account',
+	'FirstName' => 'First Name',
+	'LastName' => 'Last Name',
+	'TermsAndConditions' => 'Terms and Conditions',
+	'IAgreeWithThe' => 'I agree with the',
+	'SignUpWith' => 'Sign up with',
+	'AlreadyHaveAnAccount' => 'Already have an account',
+	'SignUp' => 'Sign Up',
 ];

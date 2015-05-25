@@ -31,10 +31,15 @@ Route::get('logout', [
 	'as' => 'client.auth.logout',
 	'uses' => 'AuthController@getLogout'
 ]);
+
 Route::get('register', [
 	'as' => 'client.auth.register',
 	'uses' => 'AuthController@getRegister'
 ]);
+Route::post('register', [
+	'uses' => 'AuthController@postRegister'
+]);
+
 Route::get('recover', [
 	'as' => 'client.auth.recover',
 	'uses' => 'AuthController@getRecover'

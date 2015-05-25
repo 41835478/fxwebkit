@@ -4,8 +4,8 @@ use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Fxweb\Http\Controllers\Controller;
 use Fxweb\Http\Requests\Client\LoginRequest;
-use Illuminate\Support\Facades\Log;
-use Exception, Sentinel, Lang, Redirect;
+use Fxweb\Http\Requests\Client\RegisterRequest;
+use Exception, Sentinel, Lang, Redirect, Config, Log, Activation;
 
 class AuthController extends Controller
 {
@@ -46,9 +46,40 @@ class AuthController extends Controller
 		}
 	}
 
+	public function getLogout()
+	{
+		Sentinel::logout(null, true);
+		return redirect()->route('client.auth.login');
+	}
+
 	public function getRegister()
 	{
-		//
+		return view('client.user.register')
+			->with('random', rand(1, 8));
+	}
+
+	public function postRegister(RegisterRequest $oRequest)
+	{
+		$oClientRole	= Sentinel::findRoleBySlug(Config::get('fxweb.client_default_role'));
+		$bAutoActivate	= Config::get('fxweb.auto_activate_client');
+		$aCredentials	= [
+			'first_name'	=> $oRequest->first_name,
+			'last_name'		=> $oRequest->last_name,
+			'email'			=> $oRequest->email,
+			'password'		=> $oRequest->password,
+		];
+
+		if ($bAutoActivate) {
+			$oUser = Sentinel::registerAndActivate($aCredentials);
+			$oClientRole->users()->attach($oUser);
+			return redirect()->route('client.index');
+		} else {
+			$oUser = Sentinel::register($aCredentials);
+			$oClientRole->users()->attach($oUser);
+			$oActivation = Activation::create($oUser);
+			dd($oActivation);
+			return redirect()->route('client.auth.login');
+		}
 	}
 
 	public function getRecover()
