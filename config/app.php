@@ -136,6 +136,7 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider',
+		'Pingpong\Modules\ModulesServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -203,6 +204,7 @@ return [
 		'Sentinel' => 'Cartalyst\Sentinel\Laravel\Facades\Sentinel',
 		'Form' => 'Illuminate\Html\FormFacade',
 		'HTML' => 'Illuminate\Html\HtmlFacade',
+		'Module' => 'Pingpong\Modules\Facades\Module',
 	],
 
 ];
