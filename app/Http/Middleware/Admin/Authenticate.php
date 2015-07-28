@@ -1,7 +1,13 @@
 <?php namespace Fxweb\Http\Middleware\Admin;
 
-use Closure;
+use Closure, Sentinel, Redirect;
 
+/**
+ * Class Authenticate
+ * @package Fxweb\Http\Middleware\Admin
+ *
+ * Checks if the user logged in and is in admin group
+ */
 class Authenticate
 {
 	public function handle($oRequest, Closure $fNext)
@@ -15,7 +21,7 @@ class Authenticate
 			if ($oRequest->ajax()) {
 				return response('Needs Login', 401);
 			} else {
-				return Redirect::route('client.auth.login');
+				return Redirect::route('admin.auth.login');
 			}
 		}
 		return $fNext($oRequest);

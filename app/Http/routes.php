@@ -17,12 +17,14 @@ Route::group(['prefix' => env('ADMIN_NAME'), 'namespace' => 'Admin'], function()
 	require_once __DIR__ . "/Routes/Admin/Auth.php";
 });
 
+/*
 Route::group(['prefix' => env('CLIENT_NAME'), 'namespace' => 'Client'], function()
 {
 	require_once __DIR__ . "/Routes/Client/Dashboard.php";
 	require_once __DIR__ . "/Routes/Client/Auth.php";
 	require_once __DIR__ . "/Routes/Client/User.php";
 });
+*/
 
 /*
  * Redirect root routes to clients area

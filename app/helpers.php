@@ -1,5 +1,6 @@
 <?php
 use Fxweb\Helpers\User;
+use Fxweb\Helpers\Menu;
 /*
  * Global helpers file with misc functions
  */
@@ -33,7 +34,7 @@ if (!function_exists('theme_attr')) {
 	 *
 	 * @return string
 	 */
-	function theme_attr($bAttrcheck=true)
+	function theme_attr($bAttrCheck=true)
 	{
 		$str = '';
 
@@ -47,7 +48,7 @@ if (!function_exists('theme_attr')) {
 		}
 		*/
 
-		if ($bAttrcheck) {
+		if ($bAttrCheck) {
 			/* Is Fixed Navbar */
 			if (config('fxweb.theme.navbarFixed', false)) {
 				$str .= ' main-navbar-fixed';
@@ -73,5 +74,13 @@ if (!function_exists('current_user')) {
 	{
 		$oUser = new User();
 		return $oUser;
+	}
+}
+
+if (!function_exists('get_admin_menu')) {
+	function get_admin_menu()
+	{
+		$oMenu = new Menu(env('ADMIN_NAME'));
+		return $oMenu->getAdminMenu();
 	}
 }
