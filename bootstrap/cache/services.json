@@ -29,7 +29,8 @@
         "Fxweb\\Providers\\ConfigServiceProvider",
         "Fxweb\\Providers\\EventServiceProvider",
         "Fxweb\\Providers\\RouteServiceProvider",
-        "Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider"
+        "Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider",
+        "Fxweb\\Providers\\FxWebKitServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -49,7 +50,8 @@
         "Fxweb\\Providers\\ConfigServiceProvider",
         "Fxweb\\Providers\\EventServiceProvider",
         "Fxweb\\Providers\\RouteServiceProvider",
-        "Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider"
+        "Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider",
+        "Fxweb\\Providers\\FxWebKitServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",

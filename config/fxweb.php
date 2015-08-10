@@ -16,6 +16,7 @@ return [
 	'admin_roles' => env('ADMIN_ROLES', 'admin'),
 	'client_default_role' => env('CLIENT_DEFAULT_ROLE'),
 	'auto_activate_client' => env('CLIENT_AUTO_ACTIVATE', false),
+	'pagination_size' =>  env('PAGINATION_SIZE', 25),
 
 	'theme' => [
 		'color' => env('THEME_COLOR', 'default'),

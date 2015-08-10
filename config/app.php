@@ -151,6 +151,7 @@ return [
 		 * Third Party Service Providers...
 		 */
 		'Cartalyst\Sentinel\Laravel\SentinelServiceProvider',
+		'Fxweb\Providers\FxWebKitServiceProvider',
 
 	],
 

@@ -23,7 +23,7 @@ class Menu
 					$aSubMenus = Config::get($sLowerName.'.admin_menu', []);
 					if (count($aSubMenus)) {
 						foreach ($aSubMenus as &$aSubMenu) {
-							$aSubMenu['title'] = Lang::get($sLowerName.'::'.$sLowerName.'.'.$aSubMenu['title']);
+							$aSubMenu['title'] = trans($sLowerName.'::'.$sLowerName.'.'.$aSubMenu['title']);
 							if (empty($aSubMenu['route'])) {
 								$aSubMenu['route'] = '#';
 							} else {
@@ -41,7 +41,7 @@ class Menu
 					$aModule = [
 						'route' => $sRoute,
 						'icon' => Config::get($sLowerName.'.icon'),
-						'title' => Lang::get($sLowerName.'::'.$sLowerName.'.ModuleTitle'),
+						'title' => trans($sLowerName.'::'.$sLowerName.'.ModuleTitle'),
 						'menu' => $aSubMenus,
 					];
 					$aModules[] = $aModule;

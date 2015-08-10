@@ -9,13 +9,13 @@
 				{{ app_name() }}
 			</a>
 			<div class="slogan">
-				{{ Lang::get('user.Slogan') }}
+				{{ trans('user.Slogan') }}
 			</div>
 			<ul>
-				<li><i class="fa fa-sitemap signin-icon"></i> {{ Lang::get('user.Feature1') }}</li>
-				<li><i class="fa fa-file-text-o signin-icon"></i> {{ Lang::get('user.Feature2') }}</li>
-				<li><i class="fa fa-outdent signin-icon"></i> {{ Lang::get('user.Feature3') }}</li>
-				<li><i class="fa fa-heart signin-icon"></i> {{ Lang::get('user.Feature4') }}</li>
+				<li><i class="fa fa-sitemap signin-icon"></i> {{ trans('user.Feature1') }}</li>
+				<li><i class="fa fa-file-text-o signin-icon"></i> {{ trans('user.Feature2') }}</li>
+				<li><i class="fa fa-outdent signin-icon"></i> {{ trans('user.Feature3') }}</li>
+				<li><i class="fa fa-heart signin-icon"></i> {{ trans('user.Feature4') }}</li>
 			</ul>
 		</div>
 
@@ -23,18 +23,18 @@
 			@include('admin.partials.messages')
 			{!! Form::open(['id'=>'signin-form_id']) !!}
 				<div class="signin-text">
-					<span>{{ Lang::get('user.SignInText') }}</span>
+					<span>{{ trans('user.SignInText') }}</span>
 				</div>
 				<div class="form-group w-icon">
-					{!! Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.Email')]) !!}
+					{!! Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>trans('user.Email')]) !!}
 					<span class="fa fa-user signin-form-icon"></span>
 				</div>
 				<div class="form-group w-icon">
-					{!! Form::password('password', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.Password')]) !!}
+					{!! Form::password('password', ['class'=>'form-control input-lg','placeholder'=>trans('user.Password')]) !!}
 					<span class="fa fa-lock signin-form-icon"></span>
 				</div>
 				<div class="form-actions">
-					{!! Form::submit(Lang::get('user.SignIn'), ['class'=>'signin-btn bg-primary']) !!}
+					{!! Form::submit(trans('user.SignIn'), ['class'=>'signin-btn bg-primary']) !!}
 				</div>
 			{!! Form::close() !!}
 		</div>

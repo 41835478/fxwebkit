@@ -30,20 +30,20 @@
 								<li>
 									<a href="#">
 										<i class="dropdown-icon fa fa-user"></i>&nbsp;&nbsp;
-										{{ Lang::get('general.Profile') }}
+										{{ trans('general.Profile') }}
 									</a>
 								</li>
 								<li>
 									<a href="#">
 										<i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;
-										{{ Lang::get('general.Settings') }}
+										{{ trans('general.Settings') }}
 									</a>
 								</li>
 								<li class="divider"></li>
 								<li>
 									<a href="{{ route('admin.auth.logout') }}">
 										<i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;
-										{{ Lang::get('general.Logout') }}
+										{{ trans('general.Logout') }}
 									</a>
 								</li>
 							</ul>

@@ -26,16 +26,16 @@ class AuthController extends Controller
 		} catch (ThrottlingException $e) {
 			return redirect()
 				->route('client.auth.login')
-				->withErrors([Lang::get('user.LoginSuspended')]);
+				->withErrors([trans('user.LoginSuspended')]);
 		} catch (NotActivatedException $e) {
 			return redirect()
 				->route('client.auth.login')
-				->withErrors([Lang::get('user.LoginNotActive')]);
+				->withErrors([trans('user.LoginNotActive')]);
 		} catch (Exception $e) {
 			Log::error('Login', ['context' => __FILE__.' : '.__LINE__.' : '.$e->getMessage()]);
 			return redirect()
 				->route('client.auth.login')
-				->withErrors([Lang::get('user.InvalidLogin')]);
+				->withErrors([trans('user.InvalidLogin')]);
 		}
 
 		if ($oUser) {
@@ -43,7 +43,7 @@ class AuthController extends Controller
 		} else {
 			return redirect()
 				->route('client.auth.login')
-				->withErrors([Lang::get('user.InvalidLogin')]);
+				->withErrors([trans('user.InvalidLogin')]);
 		}
 	}
 
