@@ -86,7 +86,7 @@
 					</div>
 					<div class="pull-right">
 						@if (count($oResults))
-							<a href="#" class="btn btn-xs btn-labeled btn-success">
+							<a href="{{ Request::fullUrl() }}&export=xls" class="btn btn-xs btn-labeled btn-success">
 								<span class="btn-label icon fa fa-camera-retro"></span>
 								{{ trans('general.Export') }}
 							</a>

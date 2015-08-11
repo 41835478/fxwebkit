@@ -1,5 +1,6 @@
 <?php namespace Modules\Reports\Http\Controllers\Admin;
 
+use Fxweb\Helpers\Export;
 use Pingpong\Modules\Routing\Controller;
 use Fxweb\Repositories\Admin\Mt4Group\Mt4GroupContract as Mt4Group;
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
@@ -64,9 +65,48 @@ class ReportsController extends Controller
 			$aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
 			$aFilterParams['symbol'] = $oRequest->symbol;
 			$aFilterParams['type'] = $oRequest->type;
-
-			$oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams);
 		}
+
+		if ($oRequest->has('export')) {
+			$oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams, true);
+			$sOutput = $oRequest->export;
+			$aData = [];
+			$aHeaders = [
+				trans('general.Order#'),
+				trans('general.Login'),
+				trans('general.Symbol'),
+				trans('general.Type'),
+				trans('general.Lots'),
+				trans('general.OpenPrice'),
+				trans('general.SL'),
+				trans('general.TP'),
+				trans('general.Commission'),
+				trans('general.Swaps'),
+				trans('general.Price'),
+				trans('general.Profit'),
+			];
+			
+			foreach ($oResults as $oResult) {
+				$aData[] = [
+					$oResult->TICKET,
+					$oResult->LOGIN,
+					$oResult->SYMBOL,
+					$oResult->TYPE,
+					$oResult->VOLUME,
+					$oResult->OPEN_PRICE,
+					$oResult->SL,
+					$oResult->TP,
+					$oResult->COMMISSION,
+					$oResult->SWAPS,
+					$oResult->CLOSE_PRICE,
+					$oResult->PROFIT,
+				];
+			}
+			$oExport = new Export($aHeaders, $aData);
+			return $oExport->export($sOutput);
+		}
+
+		$oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams);
 
 		return view('reports::closedOrders')
 			->with('aGroups', $aGroups)

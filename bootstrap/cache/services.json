@@ -23,14 +23,15 @@
         "Illuminate\\Validation\\ValidationServiceProvider",
         "Illuminate\\View\\ViewServiceProvider",
         "Illuminate\\Html\\HtmlServiceProvider",
-        "Pingpong\\Modules\\ModulesServiceProvider",
         "Fxweb\\Providers\\AppServiceProvider",
         "Fxweb\\Providers\\BusServiceProvider",
         "Fxweb\\Providers\\ConfigServiceProvider",
         "Fxweb\\Providers\\EventServiceProvider",
         "Fxweb\\Providers\\RouteServiceProvider",
+        "Fxweb\\Providers\\FxWebKitServiceProvider",
         "Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider",
-        "Fxweb\\Providers\\FxWebKitServiceProvider"
+        "Maatwebsite\\Excel\\ExcelServiceProvider",
+        "Pingpong\\Modules\\ModulesServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -44,14 +45,15 @@
         "Illuminate\\Session\\SessionServiceProvider",
         "Illuminate\\Validation\\ValidationServiceProvider",
         "Illuminate\\View\\ViewServiceProvider",
-        "Pingpong\\Modules\\ModulesServiceProvider",
         "Fxweb\\Providers\\AppServiceProvider",
         "Fxweb\\Providers\\BusServiceProvider",
         "Fxweb\\Providers\\ConfigServiceProvider",
         "Fxweb\\Providers\\EventServiceProvider",
         "Fxweb\\Providers\\RouteServiceProvider",
+        "Fxweb\\Providers\\FxWebKitServiceProvider",
         "Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider",
-        "Fxweb\\Providers\\FxWebKitServiceProvider"
+        "Maatwebsite\\Excel\\ExcelServiceProvider",
+        "Pingpong\\Modules\\ModulesServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",

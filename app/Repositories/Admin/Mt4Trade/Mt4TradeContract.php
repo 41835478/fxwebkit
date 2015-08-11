@@ -25,9 +25,10 @@ interface Mt4TradeContract
 	 * Gets the closed orders by filters
 	 *
 	 * @param array $aFilters
+	 * @param bool $bFullSet
 	 * @param string $sOrderBy
 	 * @param string $sSort
 	 * @return object
 	 */
-	public function getClosedTradesByFilters($aFilters, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC');
+	public function getClosedTradesByFilters($aFilters, $bFullSet=false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC');
 }

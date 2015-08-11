@@ -136,7 +136,6 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider',
-		'Pingpong\Modules\ModulesServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -146,12 +145,14 @@ return [
 		'Fxweb\Providers\ConfigServiceProvider',
 		'Fxweb\Providers\EventServiceProvider',
 		'Fxweb\Providers\RouteServiceProvider',
+		'Fxweb\Providers\FxWebKitServiceProvider',
 
 		/*
 		 * Third Party Service Providers...
 		 */
 		'Cartalyst\Sentinel\Laravel\SentinelServiceProvider',
-		'Fxweb\Providers\FxWebKitServiceProvider',
+		'Maatwebsite\Excel\ExcelServiceProvider',
+		'Pingpong\Modules\ModulesServiceProvider',
 
 	],
 
@@ -200,12 +201,17 @@ return [
 		'URL' => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View' => 'Illuminate\Support\Facades\View',
+		'Form' => 'Illuminate\Html\FormFacade',
+		'HTML' => 'Illuminate\Html\HtmlFacade',
+
+		/*
+		 * Third Party Aliases...
+		 */
 		'Activation' => 'Cartalyst\Sentinel\Laravel\Facades\Activation',
 		'Reminder' => 'Cartalyst\Sentinel\Laravel\Facades\Reminder',
 		'Sentinel' => 'Cartalyst\Sentinel\Laravel\Facades\Sentinel',
-		'Form' => 'Illuminate\Html\FormFacade',
-		'HTML' => 'Illuminate\Html\HtmlFacade',
 		'Module' => 'Pingpong\Modules\Facades\Module',
+		'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 	],
 
 ];
