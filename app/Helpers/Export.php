@@ -5,10 +5,12 @@ use Excel;
 class Export
 {
 	private $aHeaders;
-
 	private $aData;
-
 	private $sFilename;
+	private $aLetters = [
+				'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L','M',
+				'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+			];
 
 	public function __construct($aHeaders, $aData, $sFilename='')
 	{
@@ -36,11 +38,7 @@ class Export
 	{
 		$aHeaders = $this->aHeaders;
 		$aData = $this->aData;
-		$aLetters = [
-			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
-			'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
-			'Y', 'Z'
-		];
+		$aLetters = $this->aLetters;
 
 		Excel::create($this->sFilename, function($oExcel) use ($aLetters, $aHeaders, $aData)
 		{
@@ -54,26 +52,8 @@ class Export
 					$dRowKey += 2;
 					foreach ($aRow as $dKey => $_aRow) {
 						$oSheet->setCellValue($aLetters[$dKey].($dRowKey), $_aRow);
-
 					}
 				}
-/*
-				foreach ($aData as $dKey => $aData) {
-					$oSheet->setCellValue($aLetters[$dKey].$dKey, $sHeader);
-				}
-
-				foreach ($oProjects as $dKey => $oProject) {
-					$dKey += 2;
-					$oSheet->setCellValue('A' . $dKey, $oProject->id_project);
-					$oSheet->setCellValue('B' . $dKey, $oProject->id_client);
-					$oSheet->setCellValue('C' . $dKey, $oProject->service);
-					$oSheet->setCellValue('D' . $dKey, $oProject->price);
-					$oSheet->setCellValue('E' . $dKey, $oProject->finishing_date);
-					$oSheet->setCellValue('F' . $dKey, $oProject->status);
-					$oSheet->setCellValue('G' . $dKey, $oProject->created_at);
-					$oSheet->setCellValue('H' . $dKey, $oProject->updated_at);
-				}
-*/
 			});
 		})->export('xls');
 	}

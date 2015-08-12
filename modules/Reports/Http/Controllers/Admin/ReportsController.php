@@ -5,6 +5,7 @@ use Pingpong\Modules\Routing\Controller;
 use Fxweb\Repositories\Admin\Mt4Group\Mt4GroupContract as Mt4Group;
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
 use Modules\Reports\Http\Requests\Admin\ClosedTradesRequest;
+use Modules\Reports\Http\Requests\Admin\OpenTradesRequest;
 
 class ReportsController extends Controller
 {
@@ -27,7 +28,7 @@ class ReportsController extends Controller
 	{
 		$oGroups = $this->oMt4Group->getAllGroups();
 		$oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
-		$aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getClosedTradesTypes();
+		$aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
 		$aGroups = [];
 		$aSymbols = [];
 		$oResults = null;
@@ -106,7 +107,9 @@ class ReportsController extends Controller
 			return $oExport->export($sOutput);
 		}
 
-		$oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams);
+		if ($oRequest->has('search')) {
+			$oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams);
+		}
 
 		return view('reports::closedOrders')
 			->with('aGroups', $aGroups)
@@ -116,9 +119,95 @@ class ReportsController extends Controller
 			->with('aFilterParams', $aFilterParams);
 	}
 
-	public function getOpenOrders()
+	public function getOpenOrders(OpenTradesRequest $oRequest)
 	{
+		$oGroups = $this->oMt4Group->getAllGroups();
+		$oSymbols = $this->oMt4Trade->getOpenTradesSymbols();
+		$aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
+		$aGroups = [];
+		$aSymbols = [];
+		$oResults = null;
+		$aFilterParams = [
+			'from_login' => '',
+			'to_login' => '',
+			'all_groups' => true,
+			'group' => '',
+			'all_symbols' => true,
+			'symbol' => '',
+			'type' => '',
+		];
 
+		foreach ($oGroups as $oGroup) {
+			$aGroups[$oGroup->group] = $oGroup->group;
+		}
+
+		foreach ($oSymbols as $oSymbol) {
+			$aSymbols[$oSymbol->SYMBOL] = $oSymbol->SYMBOL;
+		}
+
+		foreach ($aTradeTypes as $sKey => $sValue) {
+			$aTradeTypes[$sKey] = trans('general.' . $sValue);
+		}
+
+		if ($oRequest->has('search')) {
+			$aFilterParams['from_login'] = $oRequest->from_login;
+			$aFilterParams['to_login'] = $oRequest->to_login;
+			$aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+			$aFilterParams['group'] = $oRequest->group;
+			$aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
+			$aFilterParams['symbol'] = $oRequest->symbol;
+			$aFilterParams['type'] = $oRequest->type;
+		}
+
+		if ($oRequest->has('export')) {
+			$oResults = $this->oMt4Trade->getOpenTradesByFilters($aFilterParams, true);
+			$sOutput = $oRequest->export;
+			$aData = [];
+			$aHeaders = [
+				trans('general.Order#'),
+				trans('general.Login'),
+				trans('general.Symbol'),
+				trans('general.Type'),
+				trans('general.Lots'),
+				trans('general.OpenPrice'),
+				trans('general.SL'),
+				trans('general.TP'),
+				trans('general.Commission'),
+				trans('general.Swaps'),
+				trans('general.Price'),
+				trans('general.Profit'),
+			];
+
+			foreach ($oResults as $oResult) {
+				$aData[] = [
+					$oResult->TICKET,
+					$oResult->LOGIN,
+					$oResult->SYMBOL,
+					$oResult->TYPE,
+					$oResult->VOLUME,
+					$oResult->OPEN_PRICE,
+					$oResult->SL,
+					$oResult->TP,
+					$oResult->COMMISSION,
+					$oResult->SWAPS,
+					$oResult->CLOSE_PRICE,
+					$oResult->PROFIT,
+				];
+			}
+			$oExport = new Export($aHeaders, $aData);
+			return $oExport->export($sOutput);
+		}
+
+		if ($oRequest->has('search')) {
+			$oResults = $this->oMt4Trade->getOpenTradesByFilters($aFilterParams);
+		}
+
+		return view('reports::openOrders')
+			->with('aGroups', $aGroups)
+			->with('aSymbols', $aSymbols)
+			->with('aTradeTypes', $aTradeTypes)
+			->with('oResults', $oResults)
+			->with('aFilterParams', $aFilterParams);
 	}
 
 }

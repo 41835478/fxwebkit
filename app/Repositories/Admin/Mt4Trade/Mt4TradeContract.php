@@ -15,11 +15,20 @@ interface Mt4TradeContract
 	public function getClosedTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC');
 
 	/**
-	 * Gets the closed orders types
+	 * Gets the open orders symbols
+	 *
+	 * @param string $sOrderBy
+	 * @param string $sSort
+	 * @return object
+	 */
+	public function getOpenTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC');
+
+	/**
+	 * Gets the orders types
 	 *
 	 * @return array
 	 */
-	public function getClosedTradesTypes();
+	public function getTradesTypes();
 
 	/**
 	 * Gets the closed orders by filters
@@ -31,4 +40,15 @@ interface Mt4TradeContract
 	 * @return object
 	 */
 	public function getClosedTradesByFilters($aFilters, $bFullSet=false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC');
+
+	/**
+	 * Gets the open orders by filters
+	 *
+	 * @param array $aFilters
+	 * @param bool $bFullSet
+	 * @param string $sOrderBy
+	 * @param string $sSort
+	 * @return object
+	 */
+	public function getOpenTradesByFilters($aFilters, $bFullSet=false, $sOrderBy = 'TICKET', $sSort = 'ASC');
 }

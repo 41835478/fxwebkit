@@ -5,7 +5,10 @@
  */
 Route::group(['middleware' => ['authenticate.admin']], function()
 {
-	Route::get('/', ['as' => 'admin.index', 'uses' => 'DashboardController@index']);
+	Route::get('/', [
+		'as' => 'admin.index',
+		'uses' => 'DashboardController@index'
+	]);
 });
 
 /*
