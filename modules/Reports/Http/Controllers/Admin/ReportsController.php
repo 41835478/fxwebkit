@@ -29,6 +29,8 @@ class ReportsController extends Controller
 		$oGroups = $this->oMt4Group->getAllGroups();
 		$oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
 		$aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
+		$sSort = $oRequest->sort;
+		$sOrder = $oRequest->order;
 		$aGroups = [];
 		$aSymbols = [];
 		$oResults = null;
@@ -42,6 +44,8 @@ class ReportsController extends Controller
 			'all_symbols' => true,
 			'symbol' => '',
 			'type' => '',
+			'sort' => 'ASC',
+			'order' => 'TICKET',
 		];
 
 		foreach ($oGroups as $oGroup) {
@@ -69,7 +73,7 @@ class ReportsController extends Controller
 		}
 
 		if ($oRequest->has('export')) {
-			$oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams, true);
+			$oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams, true, $sOrder, $sSort);
 			$sOutput = $oRequest->export;
 			$aData = [];
 			$aHeaders = [
@@ -108,7 +112,9 @@ class ReportsController extends Controller
 		}
 
 		if ($oRequest->has('search')) {
-			$oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams);
+			$oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams, false, $sOrder, $sSort);
+			$oResults->order = $aFilterParams['order'];
+			$oResults->sorts = $aFilterParams['sort'];
 		}
 
 		return view('reports::closedOrders')
@@ -127,6 +133,8 @@ class ReportsController extends Controller
 		$aGroups = [];
 		$aSymbols = [];
 		$oResults = null;
+		$sSort = $oRequest->sort;
+		$sOrder = $oRequest->order;
 		$aFilterParams = [
 			'from_login' => '',
 			'to_login' => '',
@@ -135,6 +143,8 @@ class ReportsController extends Controller
 			'all_symbols' => true,
 			'symbol' => '',
 			'type' => '',
+			'sort' => 'ASC',
+			'order' => 'TICKET'
 		];
 
 		foreach ($oGroups as $oGroup) {
@@ -160,7 +170,7 @@ class ReportsController extends Controller
 		}
 
 		if ($oRequest->has('export')) {
-			$oResults = $this->oMt4Trade->getOpenTradesByFilters($aFilterParams, true);
+			$oResults = $this->oMt4Trade->getOpenTradesByFilters($aFilterParams, true, $sOrder, $sSort);
 			$sOutput = $oRequest->export;
 			$aData = [];
 			$aHeaders = [
@@ -199,7 +209,7 @@ class ReportsController extends Controller
 		}
 
 		if ($oRequest->has('search')) {
-			$oResults = $this->oMt4Trade->getOpenTradesByFilters($aFilterParams);
+			$oResults = $this->oMt4Trade->getOpenTradesByFilters($aFilterParams, false, $sOrder, $sSort);
 		}
 
 		return view('reports::openOrders')
