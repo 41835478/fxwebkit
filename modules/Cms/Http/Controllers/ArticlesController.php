@@ -78,7 +78,7 @@ class ArticlesController extends Controller {
 
         if (in_array($fileExt, $allowed_ext)) {
             $imageName = rand() . '_' . rand() . $file->getClientOriginalName();
-            if ($file->move(public_path() . '/files/', $imageName)) {
+            if ($file->move(Config::get('cms.asset_folder'). '/files/', $imageName)) {
                 return 'the image was uploaded successfully .';
             }//uploaded successfully
             else {
