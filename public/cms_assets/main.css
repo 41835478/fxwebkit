@@ -1,0 +1,81 @@
+/*_______________________________classes*/
+/*__________________________________form*/
+.form{
+    
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #555;
+    box-sizing: border-box;
+    
+}
+.form_head_div{
+        background: #fafafa;
+    border-bottom: 2px solid #ececec;
+    padding-bottom: 9px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 11px;
+    position: relative;
+        padding: 10px 15px;
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+}
+.form_body_div{
+        background: #fff;
+    margin: 0;
+    padding: 20px;
+
+    clear: both;
+}
+.form_lable{
+    float: left;
+    text-align: right;
+    width: 20%;
+    margin: 0px;
+    padding:0px 5px;
+  
+    
+}
+
+.from_row_div{clear:both;
+margin: 3px 0px;
+padding: 5px;
+border-bottom: 1px solid #eee;
+}
+
+
+input{
+    color:#000;
+}
+input[type="text"]{ height: 30px; padding: 2px; margin: 2px !important; width: 200px ;}
+input[type="button"],input[type="submit"],button{ height: 30px; border:none;padding: 2px; margin: 2px; border-radius: 5px; width: 150px;}
+select{ margin: 0px; margin: 2px !important; height: 30px; width: 200px !important;}
+/*___________________________end__form_*/
+
+/*______________________________table*/
+.primary_table{ width: 100%;
+border:none;
+
+}
+.primary_table thead th{ padding: 5px;
+                         font-size: 18px;
+                         text-align: center;
+                         background-color: #eee;
+    
+}
+.primary_table tbody td{ padding: 2px;
+                         font-size: 14px;
+                         text-align: center;
+    
+}
+.primary_table tbody tr:nth-child(even) { 
+    border-top: 1px solid  #eee;
+    
+                         background-color: #eee;
+    
+}
+
+/*__________________________END____table*/
+
+/*_______________________END________classes*/

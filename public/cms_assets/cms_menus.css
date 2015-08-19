@@ -1,0 +1,45 @@
+#add_menu_item_form_all_div{
+    background-color: #444;
+    color:#fff;
+    padding: 10px;
+    
+}
+
+#add_menu_item_form_all_div{
+    display: none;
+    position: fixed;
+    top: 0px;
+    left:0px;
+    width: 100%;
+    z-index: 99999;
+    background-color: rgba(0,0,0,0.7);
+    height: 100vh;
+    text-align: center;
+    padding-top:10%;
+}
+.close_pupup_div{
+    color:#fff;
+    float: right;
+    padding: 10px;
+    font-size: 28px;
+    margin: 3px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.close_pupup_div:hover{
+    background-color: #000;
+}
+#add_menu_item_form_all_div form{
+    margin-top: 10%;
+    display: inline;
+    text-align: left;
+    
+}
+
+#create_menu_form{
+    margin-bottom: 100px;
+}
+
