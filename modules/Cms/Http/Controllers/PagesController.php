@@ -18,27 +18,24 @@ use Illuminate\Support\Facades\Redirect;
 
 class PagesController extends Controller {
 
-    public function pages($page_id = 0) {
-        $pages = cms_pages::all();
+    public function getPages($page_id = 0) {
+        $pages = cms_pages::lists('title','id');
 
-
-        if (Input::get('page_id') !== null) {
+        if (   Input::get('page_id') !== null) {
             $page_id = Input::get('page_id');
-        } else {
-            foreach ($pages as $page) {
-                $page_id = $page->id;
+        } else if ( $page_id ==0 ){
+            foreach ($pages as $key=>$page) {
+                $page_id = $key;
                 break;
             }
         }
+     
         //$page_id=(Input::get('page_id')!==null)? Input::get('page_id'):1;
 
 
         $modules_list_controller = new ModulesListController;
         $modules_list = $modules_list_controller->modules_list();
-        $page_modules = cms_pages_contents::where('page_id', $page_id)
-                ->orderBy('order')
-                ->get();
-
+        
 // $page_modules=cms_pages_contents::with('Modules\Cms\Entities\cms_pages_contents\cms_pages_contents_pages')->get();
 // var_dump($page_modules);
 //            
@@ -85,7 +82,7 @@ or
 //            $module = Module::find('cms');
 //            var_dump($module->getExtraPath('Assets'));
 
-        $menus = CmsMenus::all();
+        $menus = CmsMenus::lists('title','id');
       $asset_folder=Config::get('cms.asset_folder'); 
         
         return view('cms::pages', ['modules_list' => $modules_list,
@@ -101,8 +98,28 @@ or
         );
     }
 
-    public function pages_php() {
+    public function getPagesList() {
+        $pages = cms_pages::lists('title','id');
 
+
+
+      $asset_folder=Config::get('cms.asset_folder'); 
+        
+        return view('cms::pagesList', [
+            'pages' => $pages,
+            'asset_folder'=>$asset_folder,
+            ]
+             
+        );
+    }
+
+    public function postPages() {
+
+        if (null !== Input::get('go_to_page')){
+            
+            return $this->getPages(Input::get('go_to_page'));
+        }
+        
         if (null !== Input::get('add_module_submit')) {
             $type = Input::get('type');
             $all_pages = Input::get('all_pages');
@@ -161,7 +178,13 @@ or
 
             $page_module->delete();
         }
-        return $this->pages(Input::get('page_id'));
+        if(null !== Input::get('remove_page_submit')){
+            
+            $page_module = cms_pages::find(Input::get('remove_page_submit'));
+            $page_module->delete();
+            return Redirect::to('cms/pages');
+        }
+        return $this->getPages(Input::get('page_id'));
     }
 
     public function website($page_id = 1, $article_html = '') {

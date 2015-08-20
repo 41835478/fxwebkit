@@ -8,12 +8,14 @@ Route::get('asset', function() {
 });
 Route::group(['prefix' => 'cms', 'namespace' => 'Modules\Cms\Http\Controllers'], function() {
     Route::get('/', 'CmsController@index');
-    Route::get('pages', ['as' => 'cms.pages', 'uses' => 'PagesController@pages']);
-    Route::get('menus', ['as' => 'cms.menus', 'uses' => 'MenusController@menus']);
+   // Route::get('pages', ['as' => 'cms.pages', 'uses' => 'PagesController@getPages']);
+    Route::get('pages', ['as' => 'cms.pages', 'uses' => 'PagesController@getPagesList']);
+    //Route::controller('pages','PagesController', ['as' => 'cms.pages']);
+    Route::get('menus', ['as' => 'cms.menus', 'uses' => 'MenusController@getMenusList']);
     Route::get('articles', ['as' => 'cms.articles', 'uses' => 'ArticlesController@articles']);
 
-    Route::post('pages', 'PagesController@pages_php');
-    Route::post('menus', 'MenusController@menus_php');
+    Route::post('pages', 'PagesController@postPages');
+    Route::post('menus', 'MenusController@postMenus');
     Route::post('articles', 'ArticlesController@articles_php');
 
     Route::post('upload', 'ArticlesController@upload_image');

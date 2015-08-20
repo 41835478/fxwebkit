@@ -15,17 +15,15 @@ class ArticlesController extends Controller {
 
     public function articles() {
 
-        $pages = cms_pages::all();
-        $articles = cms_articles::all(['id', 'title']);
+        $pages = cms_pages::lists('title','id');
+        $articles = cms_articles::lists( 'title','id');
 
 
 
         $article_id = (Input::get('article_id') !== null) ? Input::get('article_id') : 0;
 
         $edit_article = '';
-        if ($article_id > 0) {
-            $edit_article = cms_articles::find($article_id);
-        }
+        if ($article_id > 0) { $edit_article = cms_articles::find($article_id); }
 
         $asset_folder=Config::get('cms.asset_folder'); 
         return view('cms::articles', [

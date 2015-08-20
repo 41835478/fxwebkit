@@ -45,15 +45,19 @@ border-bottom: 1px solid #eee;
 }
 
 
+form{color:#000;}
+
 input{
     color:#000;
 }
-input[type="text"]{ height: 30px; padding: 2px; margin: 2px !important; width: 200px ;}
-input[type="button"],input[type="submit"],button{ height: 30px; border:none;padding: 2px; margin: 2px; border-radius: 5px; width: 150px;}
-select{ margin: 0px; margin: 2px !important; height: 30px; width: 200px !important;}
+input[type="text"]{ height: 30px; padding: 2px; margin: 2px !important; width: 200px ; display: inline;}
+input[type="button"],input[type="submit"],button{ height: 30px; border:none;padding: 2px; margin: 2px; border-radius: 5px; width: 150px; display: inline;}
+select{ margin: 0px; margin: 2px !important; height: 30px; width: 200px !important; display: inline;}
+
+
 /*___________________________end__form_*/
 
-/*______________________________table*/
+/*______________________________table*
 .primary_table{ width: 100%;
 border:none;
 
@@ -79,3 +83,11 @@ border:none;
 /*__________________________END____table*/
 
 /*_______________________END________classes*/
+
+/*_______icons*/
+.icon_button{ border:none; background-color: transparent;
+width: auto;}
+.red_icon{ color:#f00 ;}
+.blue_icon{ color:#00f ;}
+
+/*_____END__icons*/

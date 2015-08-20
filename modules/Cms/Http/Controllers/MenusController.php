@@ -14,28 +14,28 @@ use Illuminate\Support\Facades\Redirect;
 class MenusController extends Controller {
     /* __________________________________________________menus */
 
-    public function menus($selected_id = 0) {
+    public function getMenus($selected_id = 0) {
         //  $selected_id = (Input::get('selected_id') !== null) ? Input::get('selected_id') : 1;
-        $menus = CmsMenus::all();
-
+        $menus = CmsMenus::lists('title','id');
 
         if (Input::get('selected_id') !== null) {
             $selected_id = Input::get('selected_id');
         } else {
-            foreach ($menus as $menu) {
-                $selected_id = $menu->id;
+            foreach ($menus as $key=>$menu) {
+                $selected_id = $key;
                 break;
             }
         }
 
         $menu_items = cms_menus_items::with('cms_menus_items', 'page', 'article')->where('menu_id', $selected_id)->get();
-        $pages = cms_pages::all();
+        
+        $pages = cms_pages::lists('title','id');
         $disable_array = ['0' => 'enable', '1' => 'disable'];
         $hide_array = ['0' => 'show', '1' => 'hide'];
-
-        $articles = cms_articles::all();
+        $articles = cms_articles::lists('title','id');
         $asset_folder = Config::get('cms.asset_folder');
         
+       
        
         return view("cms::menus", ['menus' => $menus,
             'selected_id' => $selected_id,
@@ -49,8 +49,24 @@ class MenusController extends Controller {
                 ]
         );
     }
+public function getMenusList(){
+          //  $selected_id = (Input::get('selected_id') !== null) ? Input::get('selected_id') : 1;
+        $menus = CmsMenus::lists('title','id');
 
-    public function menus_php() {
+
+
+        $asset_folder = Config::get('cms.asset_folder');
+        
+       
+        
+        return view("cms::menusList", ['menus' => $menus,
+            
+            'asset_folder' => $asset_folder
+                ]
+        );
+    
+}
+    public function postMenus() {
         
         if (null !== Input::get('select_menu_submit')) {
             return $this->menus(Input::get('selected_id'));
@@ -60,13 +76,13 @@ class MenusController extends Controller {
             $menu->title = Input::get('new_menu_name_input');
             $menu->save();
           
-            return $this->menus($menu->id);
+            return $this->getMenus($menu->id);
         }
         if (null !== Input::get('remove_menu_item_submit')) {
             $removed_item = cms_menus_items::find(Input::get('remove_menu_item_submit'));
 
             $removed_item->delete();
-            return Redirect::to("cms/menus");
+            return $this->getMenus(Input::get('selected_id'));
         }
         if (null !== Input::get('add_menu_item_submit')) {
             $type = Input::get('type');
@@ -79,7 +95,7 @@ class MenusController extends Controller {
             $item->parent_item_id = Input::get('parent_item_id');
             $item->name = Input::get('item_name_input');
             $item->save();
-            return $this->menus(Input::get('selected_id'));
+            return $this->getMenus(Input::get('selected_id'));
         }
 
         if (null !== Input::get('delete_menu_submit')) {
@@ -89,7 +105,7 @@ class MenusController extends Controller {
             $removed_item->delete();
             return Redirect::to("cms/menus");
         }
-        return $this->menus(Input::get('selected_id'));
+        return $this->getMenus(Input::get('selected_id'));
     }
 
     /* _________________________________________________________________________________render_menu_html( order menu each link with his parent and get it's html) */
