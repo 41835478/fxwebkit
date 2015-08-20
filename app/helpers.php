@@ -1,6 +1,7 @@
 <?php
 use Fxweb\Helpers\User;
 use Fxweb\Helpers\Menu;
+use Illuminate\Routing\UrlGenerator;
 /*
  * Global helpers file with misc functions
  */
@@ -82,5 +83,46 @@ if (!function_exists('get_admin_menu')) {
 	{
 		$oMenu = new Menu(env('ADMIN_NAME'));
 		return $oMenu->getAdminMenu();
+	}
+}
+
+if (!function_exists('th_sort')) {
+	function th_sort($sText, $sCol, $oResult)
+	{
+		if (is_null($oResult) || $oResult->isEmpty()) {
+			return '<a href="#">'.$sText.'</a>';
+		}
+
+		$sRouteName = Route::currentRouteName();
+		$aParams = Input::get();
+		$sUrl = route($sRouteName);
+		$aArrow = '';
+
+		if (count($aParams)) {
+			$sUrl .= '?';
+			foreach ($aParams as $sKey => $sValue) {
+				if (!in_array($sKey, ['order', 'sort'])) {
+					$sUrl .= $sKey.'='.$sValue.'&';
+				}
+			}
+
+			$sUrl .= 'order='.$sCol;
+
+			if ($aParams['order'] == $sCol) {
+				if ($aParams['sort'] == 'ASC') {
+					$sSort = 'DESC';
+					$aArrow = ' <i class="fa fa-chevron-down"></i>';
+				} else {
+					$sSort = 'ASC';
+					$aArrow = ' <i class="fa fa-chevron-up"></i>';
+				}
+			} else {
+				$sSort = $aParams['sort'];
+			}
+
+			$sUrl .= '&sort='.$sSort;
+		}
+
+		return '<a href="'.$sUrl.'">'.$sText.$aArrow.'</a>';
 	}
 }

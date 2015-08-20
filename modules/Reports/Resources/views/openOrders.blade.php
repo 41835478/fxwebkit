@@ -57,40 +57,73 @@
 				<div class="panel-footer text-right">
 					{!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
 				</div>
+				{!! Form::hidden('sort', $aFilterParams['sort']) !!}
+				{!! Form::hidden('order', $aFilterParams['order']) !!}
 				{!! Form::close() !!}
 			</div>
 		</div>
 		<div class="col-sm-10">
 			@include('admin.partials.messages')
-			<div class="table-info">
-				<div class="table-header overflow-a">
-					<div class="table-caption pull-left">
-						{{ trans('reports::reports.OpenOrders') }}
+
+			@if (count($oResults))
+				<div class="stat-panel no-margin-b">
+					<div class="stat-row">
+						<div class="stat-counters bg-info no-padding text-center">
+							<div class="stat-cell col-xs-4 padding-xs-vr">
+								<span class="text-xs">Total Results {{ $oResults->total() }}</span>
+							</div>
+							<div class="stat-cell col-xs-4 padding-xs-vr">
+								<span class="text-xs">Results From {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }}</span>
+							</div>
+							<div class="stat-cell col-xs-4 padding-xs-vr">
+								<span class="text-xs">Page {{ $oResults->currentPage() }} of {{ $oResults->lastPage() }}</span>
+							</div>
+						</div>
 					</div>
-					<div class="pull-right">
+				</div>
+				<div class="padding-xs-vr"></div>
+			@endif
+
+			<div class="table-info">
+				<div class="table-header">
+					<div class="table-caption">
+						{{ trans('reports::reports.OpenOrders') }}
+
 						@if (count($oResults))
-							<a href="{{ Request::fullUrl() }}&export=xls" class="btn btn-xs btn-labeled btn-success">
-								<span class="btn-label icon fa fa-camera-retro"></span>
-								{{ trans('general.Export') }}
-							</a>
+							<div class="panel-heading-controls">
+								<div class="btn-group btn-group-xs">
+									<button data-toggle="dropdown" type="button" class="btn btn-success dropdown-toggle">
+										<span class="fa fa-cog"></span>&nbsp;
+										<span class="fa fa-caret-down"></span>
+									</button>
+									<ul class="dropdown-menu dropdown-menu-right">
+										<li>
+											<a href="{{ Request::fullUrl() }}&export=xls">
+												<i class="dropdown-icon fa fa-camera-retro"></i>
+												{{ trans('general.Export') }}
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
 						@endif
 					</div>
 				</div>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th>{{ trans('general.Order#') }}</th>
-							<th>{{ trans('general.Login') }}</th>
-							<th>{{ trans('general.Symbol') }}</th>
-							<th>{{ trans('general.Type') }}</th>
-							<th>{{ trans('general.Lots') }}</th>
-							<th>{{ trans('general.OpenPrice') }}</th>
-							<th>{{ trans('general.SL') }}</th>
-							<th>{{ trans('general.TP') }}</th>
-							<th>{{ trans('general.Commission') }}</th>
-							<th>{{ trans('general.Swaps') }}</th>
-							<th>{{ trans('general.Price') }}</th>
-							<th>{{ trans('general.Profit') }}</th>
+							<th class="no-warp">{!! th_sort(trans('general.Order#'), 'TICKET', $oResults) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.Login'), 'LOGIN', $oResults) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.Symbol'), 'SYMBOL', $oResults) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.Type'), 'CMD', $oResults) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.Lots'), 'VOLUME', $oResults) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.OpenPrice'), 'OPEN_PRICE', $oResults) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.SL'), 'SL', $oResults) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.TP'), 'TP', $oResults) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.Commission'), 'COMMISSION', $oResults) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.Swaps'), 'SWAPS', $oResults) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.Price'), 'CLOSE_PRICE', $oResults) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.Profit'), 'PROFIT', $oResults) !!}</th>
 						</tr>
 					</thead>
 					<tbody>
