@@ -114,7 +114,7 @@ class ModulesListController extends Controller {
                 'class_name' => '$this',
                 'class_method' => 'footer_line',
             ],
-            ['name' => 'purshase',
+            ['name' => 'purshasef',
                 'class_name' => '$this',
                 'class_method' => 'purshase',
             ],
