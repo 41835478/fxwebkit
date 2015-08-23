@@ -11,17 +11,17 @@ return [
         'theme_folder'=>'theme1',//this folder should contain (theme.blade.php & theme_menu.blade.php)
 	'admin_menu' => [
 		[
-			'route' => 'cms.pages',
+			'route' => 'cms.pagesList',
 			'title' => 'pages',
 			'icon' => 'fa fa-file-o',
 		],
 		[
-			'route' => 'cms.menus',
+			'route' => 'cms.menusList',
 			'title' => 'menus',
 			'icon' => 'fa fa-list',
 		],
 		[
-			'route' => 'cms.articles',
+			'route' => 'cms.articlesList',
 			'title' => 'articles',
 			'icon' => 'fa fa-file-text-o',
 		]

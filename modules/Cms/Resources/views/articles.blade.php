@@ -2,12 +2,12 @@
 
 @section('content') 
 
-{!! Form::open(['name'=>'articles_select_from','method'=>'get','class'=>'panel form-horizontal']) !!}
+{!! Form::open(['name'=>'articles_select_from','class'=>'panel form-horizontal']) !!}
                 <div class="panel-heading">
                     <span class="panel-title">new menu </span>
                 </div>
                 <div class="panel-body">
-                    {!! Form::select('article_id',$articles,$selected_id,['onchange'=>'$(this).parent().submit();']) !!}
+                    {!! Form::select('edit_article_page',$articles,$selected_id,['onchange'=>'$("form[name=articles_select_from]").submit();']) !!}
                     {!! Form::button('<i class="fa fa-cog"></i>',["name"=>'select_article_submit','type'=>'submit','class'=>'icon_button blue_icon' ]) !!}
                 </div>
 {!! Form::close() !!}
@@ -26,7 +26,7 @@
                     @if($selected_id > 0) 
                     {!! Form::hidden('edit_article_id',$selected_id) !!}
                     {!! Form::submit('save edits',["name"=>'edit_article_submit','id'=>'edit_article_submit','class'=>'btn btn-primary' ]) !!}
-                    {!! Form::button('<i class="fa fa-trash-o"></i>',["name"=>'delete_article_submit', 'type'=>'submit','class'=>'icon_button red_icon' ]) !!}
+                    
                     @endif
 
                 </div>
@@ -42,8 +42,8 @@
 <script>
 //CKEDITOR.replace( textarea );
 CKEDITOR.replace('editor1', {
-    filebrowserBrowseUrl: '/cms/file_browser',
-    filebrowserUploadUrl: "/cms/upload?_token={{{ csrf_token() }}}"
+    filebrowserBrowseUrl:" {{ asset('/cms/articles/file-browser') }}",
+    filebrowserUploadUrl: "{{ asset('/cms/articles/upload-image' ).'?_token='. csrf_token() }}"
 });
 
 </script>

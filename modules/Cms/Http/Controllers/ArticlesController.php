@@ -13,22 +13,24 @@ use Illuminate\Support\Facades\Config;
 class ArticlesController extends Controller {
     /* ________________________________________________articles */
 
-    public function articles() {
+    public function getArticle($artilce_id=0) {
 
         $pages = cms_pages::lists('title','id');
         $articles = cms_articles::lists( 'title','id');
 
 
 
-        $article_id = (Input::get('article_id') !== null) ? Input::get('article_id') : 0;
+        if($artilce_id==0){$artilce_id = (Input::get('article_id') !== null)? Input::get('article_id'):0;}
+
+
 
         $edit_article = '';
-        if ($article_id > 0) { $edit_article = cms_articles::find($article_id); }
+        if ($artilce_id > 0) { $edit_article = cms_articles::find($artilce_id); }
 
         $asset_folder=Config::get('cms.asset_folder'); 
         return view('cms::articles', [
             'pages' => $pages,
-            'selected_id' => $article_id,
+            'selected_id' => $artilce_id,
             'articles' => $articles,
             'edit_article' => $edit_article,
             'asset_folder'=>$asset_folder,
@@ -37,8 +39,30 @@ class ArticlesController extends Controller {
                 
         );
     }
+public function getArticlesList(){
+          //  $selected_id = (Input::get('selected_id') !== null) ? Input::get('selected_id') : 1;
+        $articles = cms_articles::lists('title','id');
 
-    public function articles_php() {
+
+
+        $asset_folder = Config::get('cms.asset_folder');
+        
+       
+        
+        return view("cms::articlesList", ['articles' => $articles,
+            
+            'asset_folder' => $asset_folder
+                ]
+        );
+    
+}
+    public function postArticles() {
+if(null !== Input::get('new_article_submit')){
+    return $this->getArticle();
+}
+if(null !== Input::get('edit_article_page')){
+    return $this->getArticle(Input::get('edit_article_page'));
+}
 
         if (null !== Input::get('insert_article_submit')) {
             $articles = new cms_articles;
@@ -46,6 +70,8 @@ class ArticlesController extends Controller {
             $articles->body = Input::get('editor1');
             $articles->page_id = Input::get('page_id');
             $articles->save();
+            
+        return $this->getArticle($articles->id);
         }
 
         if (null !== Input::get('edit_article_submit')) {
@@ -54,22 +80,24 @@ class ArticlesController extends Controller {
             $articles->body = Input::get('editor1');
             $articles->page_id = Input::get('page_id');
             $articles->save();
+            
+        return $this->getArticle(Input::get('edit_article_id'));
         }
 
 
         if (null !== Input::get('delete_article_submit')) {
-            $articles = cms_articles::find(Input::get('edit_article_id'));
+            $articles = cms_articles::find(Input::get('delete_article_submit'));
             $articles->delete();
 
-            return Redirect::to('cms/articles');
+            return Redirect::route('cms.articlesList');
         }
-        return $this->articles();
+        return $this->getArticle();
     }
     /* ______________________________________________END__articles */
 
     /* _________________________________________upload_image */
 
-    public function upload_image() {
+    public function postUploadImage() {
         $file = Input::file('upload');
         $allowed_ext = ["png", "jpg", "jpeg", "gif", "bmp", "svg"];
         $fileExt = strtolower($file->getClientOriginalExtension());
@@ -90,7 +118,7 @@ class ArticlesController extends Controller {
 
 //function upload_image() 
 
-    public function file_browser() {
+    public function getFileBrowser() {
         $funnum = Input::get('CKEditorFuncNum');
         $asset_folder=Config::get('cms.asset_folder');
         $files = File::allFiles($asset_folder. '/files/');

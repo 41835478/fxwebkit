@@ -37,7 +37,7 @@ function remove_module(module_div){
     */
 }
 
-function get_module_options(select_node){
+function get_module_options(select_node,target_url){
         $("#module_variable").html('');
         $("#module_variable").hide();
         var id=0;
@@ -49,9 +49,8 @@ function get_module_options(select_node){
     }
     
     $.ajax({
-        
+        url:target_url,
         type:'get',
-        url:'get_module_options',
         data:{
             '_token':$('input[name="_token"]').val(),
             'module_id':id

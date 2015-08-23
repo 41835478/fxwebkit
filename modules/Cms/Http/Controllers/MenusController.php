@@ -16,27 +16,27 @@ class MenusController extends Controller {
 
     public function getMenus($selected_id = 0) {
         //  $selected_id = (Input::get('selected_id') !== null) ? Input::get('selected_id') : 1;
-        $menus = CmsMenus::lists('title','id');
+        $menus = CmsMenus::lists('title', 'id');
 
         if (Input::get('selected_id') !== null) {
             $selected_id = Input::get('selected_id');
-        } else {
-            foreach ($menus as $key=>$menu) {
+        } else if ($selected_id == 0) {
+            foreach ($menus as $key => $menu) {
                 $selected_id = $key;
                 break;
             }
         }
 
         $menu_items = cms_menus_items::with('cms_menus_items', 'page', 'article')->where('menu_id', $selected_id)->get();
-        
-        $pages = cms_pages::lists('title','id');
+
+        $pages = cms_pages::lists('title', 'id');
         $disable_array = ['0' => 'enable', '1' => 'disable'];
         $hide_array = ['0' => 'show', '1' => 'hide'];
-        $articles = cms_articles::lists('title','id');
+        $articles = cms_articles::lists('title', 'id');
         $asset_folder = Config::get('cms.asset_folder');
-        
-       
-       
+
+
+
         return view("cms::menus", ['menus' => $menus,
             'selected_id' => $selected_id,
             'disable_array' => $disable_array,
@@ -49,41 +49,28 @@ class MenusController extends Controller {
                 ]
         );
     }
-public function getMenusList(){
-          //  $selected_id = (Input::get('selected_id') !== null) ? Input::get('selected_id') : 1;
-        $menus = CmsMenus::lists('title','id');
 
-
-
+    public function getMenusList() {
+        $menus = CmsMenus::lists('title', 'id');
         $asset_folder = Config::get('cms.asset_folder');
-        
-       
-        
         return view("cms::menusList", ['menus' => $menus,
-            
             'asset_folder' => $asset_folder
                 ]
         );
-    
-}
+    }
+
     public function postMenus() {
-        
+
         if (null !== Input::get('select_menu_submit')) {
-            return $this->menus(Input::get('selected_id'));
+            return $this->getMenus(Input::get('selected_id'));
         }
-        if (null !== Input::get('new_menu_submit')) {
-            $menu = new CmsMenus;
-            $menu->title = Input::get('new_menu_name_input');
-            $menu->save();
-          
-            return $this->getMenus($menu->id);
-        }
+
         if (null !== Input::get('remove_menu_item_submit')) {
             $removed_item = cms_menus_items::find(Input::get('remove_menu_item_submit'));
-
             $removed_item->delete();
             return $this->getMenus(Input::get('selected_id'));
         }
+        
         if (null !== Input::get('add_menu_item_submit')) {
             $type = Input::get('type');
             $item = new cms_menus_items;
@@ -100,12 +87,19 @@ public function getMenusList(){
 
         if (null !== Input::get('delete_menu_submit')) {
 
-            $removed_item = CmsMenus::find(Input::get('selected_id'));
+            $removed_item = CmsMenus::find(Input::get('delete_menu_submit'));
 
             $removed_item->delete();
-            return Redirect::to("cms/menus");
+            return Redirect::route("cms.menusList");
         }
         return $this->getMenus(Input::get('selected_id'));
+    }
+
+    public function postInsertNewMenu() {
+        $menu = new CmsMenus;
+        $menu->title = Input::get('new_menu_name_input');
+        $menu->save();
+        return Redirect::route('cms.menusList');
     }
 
     /* _________________________________________________________________________________render_menu_html( order menu each link with his parent and get it's html) */

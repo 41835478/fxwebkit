@@ -3,7 +3,7 @@
 @section('content')
 
 
-    {!! Form::open(['class'=>'panel form-horizontal']) !!}
+    {!! Form::open(['url'=>asset('cms/pages/insert-new-page'),'class'=>'panel form-horizontal']) !!}
                     <div class="panel-heading">
                         <span class="panel-title">create page </span>
                     </div>
@@ -17,11 +17,11 @@
 <div class="table-info">
     <div class="table-header">
         <div class="table-caption">
-
+            
            web site pages list
         </div>
     </div>
-    {!! Form::open() !!}
+    {!! Form::open(['url'=>asset('cms/pages/pages')]) !!}
         <table border="0" class="table table-bordered">
             <thead>
             <th>id</th>

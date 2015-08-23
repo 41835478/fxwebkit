@@ -3,22 +3,6 @@
 @section('content')
 
 
-{!! Form::open(['id'=>'create_menu_form','class'=>'panel form-horizontal']) !!}
-<div class="panel-heading">
-    <span class="panel-title">new menu </span>
-</div>
-<div class="panel-body">
-    {!! Form::text('new_menu_name_input','',['placeholder'=>'new menu name','class'=>'form-control ']) !!}
-    {!! Form::hidden('selected_id',$selected_id) !!}
-    {!! Form::submit('create new menu',["name"=>'new_menu_submit','class'=>'btn btn-primary' ]) !!}
-</div>
-{!! Form::close() !!}
-
-
-
-
-
-
 @if(count($menus))
 {!! Form::open(['name'=>'menu_select_from','class'=>'panel form-horizontal']) !!}
 <div class="panel-heading">
@@ -27,7 +11,6 @@
 <div class="panel-body">
     {!! Form::select('selected_id',$menus,$selected_id,['onchange'=>'$("form[name=menu_select_from]").submit();','class'=>'form-control '] ) !!}
     {!! Form::button('<i class="fa fa-cog"></i>',["name"=>'select_menu_submit','type'=>'submit','class'=>'icon_button blue_icon' ]) !!}
-    {!! Form::button('<i class="fa fa-trash-o"></i>',["name"=>'delete_menu_submit', 'type'=>'submit','class'=>'icon_button red_icon' ]) !!}
 </div >
 </form>
 @endif
@@ -66,8 +49,7 @@
         </div>
         
         <div class="from_row_div">
-            {!!  Form::label('parent_item_id','the parent link',['class'=>'form_lable']) .Form::select('parent_item_id',$menu_items->lists('name','id'),0,['class'=>'form-control ']) !!}
-            <select
+            {!!  Form::label('parent_item_id','the parent link',['class'=>'form_lable']) .Form::select('parent_item_id',array_add($menu_items->lists('name','id'),'0','select parent'),0,['class'=>'form-control ']) !!}
         </div>
 
         <div class="from_row_div">
@@ -120,7 +102,6 @@
                         page  ({{ $item->page['title'] }})
                         @else
                         article ({{ $item->article['title'] }})
-
                         @endif
                     </td>
                     <td>

@@ -2,9 +2,7 @@
 
 @section('content')
 
-
-
-{!! Form::open(['id'=>'create_menu_form','class'=>'panel form-horizontal']) !!}
+{!! Form::open(['url'=>asset('cms/menus/insert-new-menu') ,'id'=>'create_menu_form','class'=>'panel form-horizontal']) !!}
 <div class="panel-heading">
     <span class="panel-title">new menu </span>
 </div>
@@ -23,7 +21,7 @@
            web site pages list
         </div>
     </div>
-    {!! Form::open() !!}
+    {!! Form::open(['url'=>asset('cms/menus/menus')]) !!}
         <table border="0" class="table table-bordered">
             <thead>
             <th>id</th>
@@ -38,8 +36,8 @@
                 
                     </td>
                     <td>
-                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'remove_menu_submit' ,'class'=>'icon_button red_icon','type'=>'submit','value'=>$key ]) !!}
-                        {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'menu_id' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$key ]) !!}
+                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_menu_submit' ,'class'=>'icon_button red_icon','type'=>'submit','value'=>$key ]) !!}
+                        {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'selected_id' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$key ]) !!}
                     </td>
                 <tr>
                     @endforeach

@@ -29,7 +29,9 @@ class ModulesListController extends Controller {
             return $results[0]->$module_info['html_field'];
             }else{return '';}
         } else {
-            return eval('$module1 = new ' . $module_info['class_name'] . ';RETURN $module1->' . $module_info['class_method'] . '(' . $variable . ');');
+            
+            return eval('try{$module1 = new ' . $module_info['class_name'] . ';RETURN $module1->' . $module_info['class_method'] . '(' . $variable . ');}  catch (Exception $e){return "";}');
+            
         }
     }
 
@@ -173,7 +175,7 @@ class ModulesListController extends Controller {
         return view('cms::modules_view/purshase');
     }
 
-    public function get_module_options($id = 0) {
+    public function getModuleOptions($id = 0) {
 
 
         $id = Input::get('module_id');

@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="cms_add_page_all_div">
-    {!! Form::open(['name'=>'pages_select_form','class'=>'panel form-horizontal']) !!}
+    {!! Form::open(['url'=>asset('cms/pages/pages'),'name'=>'pages_select_form','class'=>'panel form-horizontal']) !!}
                     <div class="panel-heading">
                         <span class="panel-title">select page </span>
                     </div>
@@ -11,8 +11,6 @@
                         {!! Form::submit('display page',["name"=>'display_page_submit','class'=>'btn btn-primary' ]) !!}
                     </div>
     {!! Form::close()!!}
-
-
 </div>
 
 
@@ -24,7 +22,7 @@
 
 <div id="add_module_form_all_div">
     <div class="close_pupup_div" >X</div>   
-    {!! Form::open(['class'=>'panel form-horizontal']) !!}
+    {!! Form::open(['url'=>asset('cms/pages/add-module'),'class'=>'panel form-horizontal']) !!}
                 <div class="panel-heading">
                     <span class="panel-title">add module to the page </span>
                 </div>
@@ -36,7 +34,7 @@
                     {!! Form::radio('type', 0, true, ['class' => 'module_type_radio','id'=>'module_type_0']) !!}
                 </label>
 
-                <select name="module_id" onchange="get_module_options($(this))" 'class'='form-control input-sm' onload="$(this).change();">
+                <select name="module_id" onchange="get_module_options($(this),'{{ asset('cms/modules/module-options') }}')" 'class'='form-control input-sm' onload="$(this).change();">
                         @foreach($modules_list as $key=>$module)
                         <option value="{{ $key }}" data-type="{{ $module['type'] or 0 }}">{{ $module['name'] }}</option>
                     @endforeach
@@ -118,7 +116,7 @@
 
     </div>
 
-    {!! Form::open(['id'=>'remove_module_form','class'=>'form-control input-sm']) !!}
+    {!! Form::open(['url'=>asset('cms/pages/pages'),'id'=>'remove_module_form','class'=>'form-control input-sm']) !!}
     {!! Form::hidden('page_id',$page_id ) !!}
     {!! Form::hidden('remove_module_id','',['id'=>'remove_module_id'] ) !!}
     {!! Form::close() !!}
