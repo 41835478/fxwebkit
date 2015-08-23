@@ -24,6 +24,11 @@ return [
 			'route' => 'cms.articlesList',
 			'title' => 'articles',
 			'icon' => 'fa fa-file-text-o',
+		],
+		[
+			'route' => 'cms.customHtmlList',
+			'title' => 'customHtml',
+			'icon' => 'fa fa-file-text-o',
 		]
 	]
 ];

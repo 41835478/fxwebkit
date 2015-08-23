@@ -127,6 +127,12 @@ class ModulesListController extends Controller {
                 "table" => 'cms_articles',
                 "title_field" => 'title',
                 "html_field" => 'body'
+            ],
+            ['name' => 'customHtml',
+                "type" => 'database',
+                "table" => 'cms_customHtml',
+                "title_field" => 'title',
+                "html_field" => 'body'
             ]
         ];
     }

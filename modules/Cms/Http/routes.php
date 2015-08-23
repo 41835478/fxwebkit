@@ -8,6 +8,7 @@ Route::group(['prefix' => 'cms', 'namespace' => 'Modules\Cms\Http\Controllers'],
         Route::controller('pages','PagesController',['getPagesList'=>'cms.pagesList']);
         Route::controller('menus','MenusController',['getMenusList'=>'cms.menusList']);
         Route::controller('articles','ArticlesController',['getArticlesList'=>'cms.articlesList']);
+        Route::controller('customHtml','CustomHtmlController',['getCustomHtmlList'=>'cms.customHtmlList']);
 
         Route::controller('modules', 'ModulesListController');
 });
