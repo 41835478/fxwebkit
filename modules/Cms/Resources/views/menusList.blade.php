@@ -6,13 +6,15 @@
 		<h1>{{ trans('cms::cms.menusList') }}</h1>
 	</div>
 
-{!! Form::open(['url'=>asset('cms/menus/insert-new-menu') ,'id'=>'create_menu_form','class'=>'panel form-horizontal']) !!}
-<div class="panel-heading">
-    <span class="panel-title">new menu </span>
-</div>
-<div class="panel-body">
+
+
+<div class="table-info">
+    <div class="table-header">
+        <div class="table-caption">
+{!! Form::open(['url'=>asset('cms/menus/insert-new-menu') ,'id'=>'create_menu_form','class'=>'']) !!}
+
     {!! Form::text('new_menu_name_input','',['placeholder'=>'new menu name','class'=>'form-control ']) !!}
-    {!! Form::submit('create new menu',["name"=>'new_menu_submit','class'=>'btn btn-primary' ]) !!}
+    {!! Form::submit('create new menu',["name"=>'new_menu_submit','class'=>'btn btn-primary btn-flat' ]) !!}
     
                             
                         @if($errors->any())
@@ -22,16 +24,9 @@
                             @endforeach
                         </div>
                         @endif
-</div>
+                        
 {!! Form::close() !!}
 
-
-
-<div class="table-info">
-    <div class="table-header">
-        <div class="table-caption">
-
-           Menus List
         </div>
     </div>
     {!! Form::open(['url'=>asset('cms/menus/menus')]) !!}

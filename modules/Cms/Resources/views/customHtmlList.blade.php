@@ -5,13 +5,10 @@
 	<div class="page-header">
 		<h1>{{ trans('cms::cms.customHTMLList') }}</h1>
 	</div>
-{!! Form::open(['url'=>asset('cms/customHtml/custom-html'),'method'=>'get','class'=>'panel form-horizontal']) !!}
-<div class="panel-heading">
-    <span class="panel-title">new custom HTML </span>
-</div>
-<div class="panel-body">
+{!! Form::open(['url'=>asset('cms/customHtml/custom-html'),'method'=>'get', 'style'=>'margin-bottom:30px']) !!}
+
     {!! Form::submit('create new HTML',["name"=>'new_article_submit','class'=>'btn btn-primary' ]) !!}
-</div>
+
 {!! Form::close() !!}
 
 

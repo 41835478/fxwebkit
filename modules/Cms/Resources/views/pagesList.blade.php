@@ -7,15 +7,18 @@
 		<h1>{{ trans('cms::cms.pagesList') }}</h1>
 	</div>
 
-    {!! Form::open(['url'=>asset('cms/pages/insert-new-page'),'class'=>'panel form-horizontal']) !!}
-                    <div class="panel-heading">
-                        <span class="panel-title">create page </span>
-                    </div>
-                    <div class="panel-body">
-                        {!! Form::text('new_page_name_input' ,'',['placeholder'=>"new page name",'class'=>'form-control input-sm']) !!}
-                        {!! Form::submit('create new page',["name"=>'new_page_submit','class'=>'btn btn-primary' ]) !!}
 
-                        {!! Form::close() !!}
+
+<div class="table-info">
+    <div class="table-header">
+        <div class="table-caption">
+            
+                   {!! Form::open(['url'=>asset('cms/pages/insert-new-page'),'class'=>'']) !!}
+                
+                        {!! Form::text('new_page_name_input' ,'',['placeholder'=>"new page name",'class'=>'form-control input-sm']) !!}
+                        {!! Form::submit('create new page',["name"=>'new_page_submit','class'=>'btn btn-primary btn-flat' ]) !!}
+
+                        
                         
                         @if($errors->any())
                         <div class="alert alert-danger alert-dark">
@@ -24,15 +27,11 @@
                             @endforeach
                         </div>
                         @endif
-                    </div>
-    {!! Form::close()!!}
+    {!! Form::close() !!}
 
-
-<div class="table-info">
-    <div class="table-header">
-        <div class="table-caption">
             
-           Pages List
+            
+           
         </div>
     </div>
     {!! Form::open(['url'=>asset('cms/pages/pages')]) !!}

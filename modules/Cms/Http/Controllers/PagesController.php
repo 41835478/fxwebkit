@@ -190,14 +190,7 @@ class PagesController extends Controller {
         
         if(empty($menu_item)){
             
-        $menu_item=cms_menus_items::where(['name'=>'index'])->first();
-            
-            if(!empty($menu_item)){
-            return Redirect::to('/index');
-            }else{
-                $menu_item=cms_menus_items::first();
-                return Redirect::to('/'.$menu_item->name);
-            }
+            return view('errors/404');
         }
         $page_type=$menu_item->type;
         if($page_type==0){
