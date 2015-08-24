@@ -29,8 +29,8 @@ class ModulesListController extends Controller {
             return $results[0]->$module_info['html_field'];
             }else{return '';}
         } else {
-            
-            return eval('try{$module1 = new ' . $module_info['class_name'] . ';RETURN $module1->' . $module_info['class_method'] . '(' . $variable . ');}  catch (Exception $e){return "";}');
+            if(!isset($module_info['class_name'])) return false;
+            return eval('$module1 = @new ' . $module_info['class_name'] . ';RETURN @$module1->' . $module_info['class_method'] . '(' . $variable . ');');
             
         }
     }
@@ -63,8 +63,6 @@ class ModulesListController extends Controller {
     public function modules_list() {
         return [
             ['name' => 'module1',
-                'class_name' => 'Modules\Module1\Http\Controllers\Module1Controller',
-                'class_method' => 'index'
             ],
             ['name' => 'blog',
                 'class_name' => 'Modules\Blog\Http\Controllers\BlogController',
@@ -114,7 +112,7 @@ class ModulesListController extends Controller {
                 'class_name' => '$this',
                 'class_method' => 'footer_line',
             ],
-            ['name' => 'purshasef',
+            ['name' => 'purshase',
                 'class_name' => '$this',
                 'class_method' => 'purshase',
             ],

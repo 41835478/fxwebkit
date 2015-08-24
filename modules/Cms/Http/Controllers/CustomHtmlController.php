@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Config;
 
+use Modules\Cms\Http\Requests\CreateCustomHtmlRequest;
 class CustomHtmlController extends Controller {
     /* ________________________________________________articles */
 
@@ -63,24 +64,6 @@ if(null !== Input::get('edit_customHtml_page')){
     return $this->getCustomHtml(Input::get('edit_customHtml_page'));
 }
 
-        if (null !== Input::get('insert_customHtml_submit')) {
-            $articles = new cms_customHtml;
-            $articles->title = Input::get('title');
-            $articles->body = Input::get('editor1');
-            $articles->save();
-            
-        return $this->getCustomHtml($articles->id);
-        }
-
-        if (null !== Input::get('edit_customHtml_submit')) {
-            $articles = cms_customHtml::find(Input::get('edit_customHtml_id'));
-            $articles->title = Input::get('title');
-            $articles->body = Input::get('editor1');
-            $articles->save();
-            
-        return $this->getCustomHtml(Input::get('edit_customHtml_id'));
-        }
-
 
         if (null !== Input::get('delete_customHtml_submit')) {
             $articles = cms_customHtml::find(Input::get('delete_customHtml_submit'));
@@ -89,6 +72,25 @@ if(null !== Input::get('edit_customHtml_page')){
             return Redirect::route('cms.customHtmlList');
         }
         return $this->getCustomHtml();
+    }
+      public function postInsertEditCustomHtml(CreateCustomHtmlRequest $request){
+        
+        
+        if (null !== Input::get('insert_customHtml_submit')) {
+             $html = new cms_customHtml;
+        } else if (null !== Input::get('edit_customHtml_submit')) {
+           $html = cms_customHtml::find(Input::get('edit_customHtml_id'));
+        }
+
+        $html->title = Input::get('title');
+            $html->body = Input::get('editor1');
+            $html->save();
+            
+        return Redirect::to('/cms/customHtml/custom-html/'.$html->id);
+       
+
+        
+        
     }
     /* ______________________________________________END__articles */
 

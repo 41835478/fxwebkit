@@ -2,17 +2,12 @@
 
 @section('content') 
 
-{!! Form::open(['url'=>asset('cms/customHtml/custom-html'),'name'=>'customHtml_select_from','class'=>'panel form-horizontal']) !!}
-                <div class="panel-heading">
-                    <span class="panel-title">new custom HTML </span>
-                </div>
-                <div class="panel-body">
-                    {!! Form::select('edit_customHtml_page',$customHtmls,$selected_id,['onchange'=>'$("form[name=customHtml_select_from]").submit();']) !!}
-                    {!! Form::button('<i class="fa fa-cog"></i>',["name"=>'select_customHtml_submit','type'=>'submit','class'=>'icon_button blue_icon' ]) !!}
-                </div>
-{!! Form::close() !!}
+	<div class="page-header">
+		<h1>{{ trans('cms::cms.newCustomHTML') }}</h1>
+	</div>
 
-{!! Form::open(['url'=>asset('cms/customHtml/custom-html'),'class'=>'panel form-horizontal']) !!}
+
+{!! Form::open(['url'=>asset('cms/customHtml/insert-edit-custom-html'),'class'=>'panel form-horizontal']) !!}
                 <div class="panel-heading">
                     <span class="panel-title">custom HTML </span>
                 </div>
@@ -28,7 +23,14 @@
                     {!! Form::submit('save edits',["name"=>'edit_customHtml_submit','id'=>'edit_customHtml_submit','class'=>'btn btn-primary' ]) !!}
                     
                     @endif
-
+                    
+             @if($errors->any())
+                        <div class="alert alert-danger alert-dark">
+                            @foreach($errors->all() as $key=>$error)
+                            <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
+                            @endforeach
+                        </div>
+                        @endif
                 </div>
 {!! Form::close() !!}
 

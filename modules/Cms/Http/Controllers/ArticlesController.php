@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Config;
 
+use Modules\Cms\Http\Requests\CreateEditArticle;
 class ArticlesController extends Controller {
     /* ________________________________________________articles */
 
@@ -64,25 +65,6 @@ if(null !== Input::get('edit_article_page')){
     return $this->getArticle(Input::get('edit_article_page'));
 }
 
-        if (null !== Input::get('insert_article_submit')) {
-            $articles = new cms_articles;
-            $articles->title = Input::get('title');
-            $articles->body = Input::get('editor1');
-            $articles->page_id = Input::get('page_id');
-            $articles->save();
-            
-        return $this->getArticle($articles->id);
-        }
-
-        if (null !== Input::get('edit_article_submit')) {
-            $articles = cms_articles::find(Input::get('edit_article_id'));
-            $articles->title = Input::get('title');
-            $articles->body = Input::get('editor1');
-            $articles->page_id = Input::get('page_id');
-            $articles->save();
-            
-        return $this->getArticle(Input::get('edit_article_id'));
-        }
 
 
         if (null !== Input::get('delete_article_submit')) {
@@ -92,6 +74,27 @@ if(null !== Input::get('edit_article_page')){
             return Redirect::route('cms.articlesList');
         }
         return $this->getArticle();
+    }
+    
+    public function postInsertEditArticle(CreateEditArticle $request){
+        
+        
+        if (null !== Input::get('insert_article_submit')) {
+            $articles = new cms_articles;
+        } else if (null !== Input::get('edit_article_submit')) {
+            $articles = cms_articles::find(Input::get('edit_article_id'));
+        }
+
+        $articles->title = Input::get('title');
+            $articles->body = Input::get('editor1');
+            $articles->page_id = Input::get('page_id');
+            $articles->save();
+            
+        return Redirect::to('/cms/articles/article/'.$articles->id);
+       
+
+        
+        
     }
     /* ______________________________________________END__articles */
 

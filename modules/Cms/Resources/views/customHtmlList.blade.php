@@ -2,12 +2,15 @@
 
 @section('content')
 
+	<div class="page-header">
+		<h1>{{ trans('cms::cms.customHTMLList') }}</h1>
+	</div>
 {!! Form::open(['url'=>asset('cms/customHtml/custom-html'),'method'=>'get','class'=>'panel form-horizontal']) !!}
 <div class="panel-heading">
-    <span class="panel-title">new article </span>
+    <span class="panel-title">new custom HTML </span>
 </div>
 <div class="panel-body">
-    {!! Form::submit('create new article',["name"=>'new_article_submit','class'=>'btn btn-primary' ]) !!}
+    {!! Form::submit('create new HTML',["name"=>'new_article_submit','class'=>'btn btn-primary' ]) !!}
 </div>
 {!! Form::close() !!}
 
@@ -17,7 +20,7 @@
     <div class="table-header">
         <div class="table-caption">
 
-           web site pages list
+            Custom HTML List
         </div>
     </div>
     {!! Form::open(['url'=>asset('cms/customHtml/custom-html')]) !!}

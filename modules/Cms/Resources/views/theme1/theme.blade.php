@@ -30,6 +30,8 @@
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset($asset_folder.'pluton/images/apple-touch-icon-72.png') }}">
         <link rel="apple-touch-icon-precomposed" href="{{ asset($asset_folder.'pluton/images/ico/apple-touch-icon-57.png') }}">
         <link rel="shortcut icon" href="{{ asset($asset_folder.'pluton/images/ico/favicon.ico') }}">
+        @yield('header')
+        
     </head>
     
     <body>

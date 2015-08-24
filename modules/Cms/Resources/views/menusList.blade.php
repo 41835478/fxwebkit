@@ -2,6 +2,10 @@
 
 @section('content')
 
+	<div class="page-header">
+		<h1>{{ trans('cms::cms.menusList') }}</h1>
+	</div>
+
 {!! Form::open(['url'=>asset('cms/menus/insert-new-menu') ,'id'=>'create_menu_form','class'=>'panel form-horizontal']) !!}
 <div class="panel-heading">
     <span class="panel-title">new menu </span>
@@ -9,6 +13,15 @@
 <div class="panel-body">
     {!! Form::text('new_menu_name_input','',['placeholder'=>'new menu name','class'=>'form-control ']) !!}
     {!! Form::submit('create new menu',["name"=>'new_menu_submit','class'=>'btn btn-primary' ]) !!}
+    
+                            
+                        @if($errors->any())
+                        <div class="alert alert-danger alert-dark">
+                            @foreach($errors->all() as $key=>$error)
+                            <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
+                            @endforeach
+                        </div>
+                        @endif
 </div>
 {!! Form::close() !!}
 
@@ -18,7 +31,7 @@
     <div class="table-header">
         <div class="table-caption">
 
-           web site pages list
+           Menus List
         </div>
     </div>
     {!! Form::open(['url'=>asset('cms/menus/menus')]) !!}

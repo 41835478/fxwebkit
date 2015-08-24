@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
 
+use Modules\Cms\Http\Requests\CreateMenusRequest;
+use Modules\Cms\Http\Requests\CreateMenuItemRequest;
 class MenusController extends Controller {
     /* __________________________________________________menus */
 
@@ -72,17 +74,7 @@ class MenusController extends Controller {
         }
         
         if (null !== Input::get('add_menu_item_submit')) {
-            $type = Input::get('type');
-            $item = new cms_menus_items;
-            $item->menu_id = Input::get('selected_id');
-            $item->disable = Input::get('disable');
-            $item->hide = Input::get('hide');
-            $item->page_id = ($type == 0) ? Input::get('page_id') : Input::get('article_id');
-            $item->type = $type;
-            $item->parent_item_id = Input::get('parent_item_id');
-            $item->name = Input::get('item_name_input');
-            $item->save();
-            return $this->getMenus(Input::get('selected_id'));
+
         }
 
         if (null !== Input::get('delete_menu_submit')) {
@@ -95,13 +87,26 @@ class MenusController extends Controller {
         return $this->getMenus(Input::get('selected_id'));
     }
 
-    public function postInsertNewMenu() {
+    public function postInsertNewMenu(CreateMenusRequest $request) {
         $menu = new CmsMenus;
         $menu->title = Input::get('new_menu_name_input');
         $menu->save();
-        return Redirect::route('cms.menusList');
+        return Redirect::to('cms/menus/menus/'.$menu->id);
     }
 
+    public function postInsertNewMenuItem(CreateMenuItemRequest $request){
+                    $type = Input::get('type');
+            $item = new cms_menus_items;
+            $item->menu_id = Input::get('selected_id');
+            $item->disable = Input::get('disable');
+            $item->hide = Input::get('hide');
+            $item->page_id = ($type == 0) ? Input::get('page_id') : Input::get('article_id');
+            $item->type = $type;
+            $item->parent_item_id = Input::get('parent_item_id');
+            $item->name = Input::get('item_name_input');
+            $item->save();
+            return Redirect::to('/cms/menus/menus/'.Input::get('selected_id'));
+    }
     /* _________________________________________________________________________________render_menu_html( order menu each link with his parent and get it's html) */
     /*
       private function order_menu_get_html($root, $links) {

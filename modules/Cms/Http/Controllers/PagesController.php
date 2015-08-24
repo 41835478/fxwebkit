@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
 
+use Modules\Cms\Http\Requests\CreatePagesRequest;
 class PagesController extends Controller {
 
     public function getPages($page_id = 0) {
@@ -29,22 +30,14 @@ class PagesController extends Controller {
                 break;
             }
         }
+  
 
-        $modules_list_controller = new ModulesListController;
-        $modules_list = $modules_list_controller->modules_list();    
-        $float_array = [0 => 'float', 1 => 'left', 2 => 'right'];
-        $display_array = [0 => 'display', 1 => 'inline', 2 => 'block'];
-
-        $menus = CmsMenus::lists('title','id');
       $asset_folder=Config::get('cms.asset_folder'); 
         
-        return view('cms::pages', ['modules_list' => $modules_list,
-            'display_array' => $display_array,
-            'float_array' => $float_array,
+        return view('cms::pages', [
             'page_id' => $page_id,
             'pages' => $pages,
             'positions' => $this->getPageMoudules($page_id, 'article place and it should be one place in page'),
-            'menus' => $menus,
             'asset_folder'=>$asset_folder,
             ]
              
@@ -74,6 +67,8 @@ class PagesController extends Controller {
             $page_module = cms_pages_contents::find(Input::get('remove_module_id'));
 
             $page_module->delete();
+            
+            return Redirect::to('cms/pages/develop-theme-view/'.Input::get('page_id'));
         }
         if(null !== Input::get('remove_page_submit')){
             
@@ -96,12 +91,11 @@ class PagesController extends Controller {
     }
 
     
-   public function postInsertNewPage(){
+   public function postInsertNewPage(CreatePagesRequest $request){
                    $page = new cms_pages;
             $page->title = Input::get('new_page_name_input');
             $page->save();
-            
-            return Redirect::route('cms.pagesList');
+            return Redirect::to('cms/pages/pages/'. $page->id);
    }
    
    public function postAddModule(){
@@ -147,9 +141,42 @@ class PagesController extends Controller {
                     $module_pages->save();
                 }
             }   
-            return $this->getPages($page_id);
+            return Redirect::to('cms/pages/develop-theme-view/'.$page_id);
        
    }
+   
+   public function getDevelopThemeView($page_id=0){
+       
+        $modules_list_controller = new ModulesListController;
+        $modules_list = $modules_list_controller->modules_list();
+        $pages = cms_pages::lists('title', 'id');
+
+        if (Input::get('page_id') !== null) {
+            $page_id = Input::get('page_id');
+        } else if ($page_id == 0) {
+            foreach ($pages as $key => $page) {
+                $page_id = $key;
+                break;
+            }
+        }
+
+        $float_array = [0 => 'float', 1 => 'left', 2 => 'right'];
+        $display_array = [0 => 'display', 1 => 'inline', 2 => 'block'];
+
+        $menus = CmsMenus::lists('title', 'id');
+        $asset_folder = Config::get('cms.asset_folder');
+
+        return view('cms::develop_theme_iframe', [
+            'asset_folder' => Config::get('cms.asset_folder'),
+            'modules_list' => $modules_list,
+            'positions' => $this->getPageMoudules($page_id, 'article place and it should be one place in page'),
+            'pages' => $pages,
+            'display_array' => $display_array,
+            'float_array' => $float_array,
+            'page_id' => $page_id,
+            'menus' => $menus,
+        ]);
+    }//develop_theme_view
     /* _________________________________________End______pages */
     
     /*________________________________________________________________render_page*/
@@ -158,8 +185,20 @@ class PagesController extends Controller {
         $article_id=0;
         $article_html='';
         
+        
         $menu_item=cms_menus_items::where(['name'=>$menu_item])->first();
         
+        if(empty($menu_item)){
+            
+        $menu_item=cms_menus_items::where(['name'=>'index'])->first();
+            
+            if(!empty($menu_item)){
+            return Redirect::to('/index');
+            }else{
+                $menu_item=cms_menus_items::first();
+                return Redirect::to('/'.$menu_item->name);
+            }
+        }
         $page_type=$menu_item->type;
         if($page_type==0){
              $page_id=$menu_item->page_id;

@@ -2,28 +2,16 @@
 
 @section('content')
 
-
-@if(count($menus))
-{!! Form::open(['name'=>'menu_select_from','class'=>'panel form-horizontal']) !!}
-<div class="panel-heading">
-    <span class="panel-title">select menu to edit </span>
-</div>
-<div class="panel-body">
-    {!! Form::select('selected_id',$menus,$selected_id,['onchange'=>'$("form[name=menu_select_from]").submit();','class'=>'form-control '] ) !!}
-    {!! Form::button('<i class="fa fa-cog"></i>',["name"=>'select_menu_submit','type'=>'submit','class'=>'icon_button blue_icon' ]) !!}
-</div >
-</form>
-@endif
-
-
-
+	<div class="page-header">
+		<h1>{{ trans('cms::cms.menuBuilder') }}</h1>
+	</div>
 
 
 @if($selected_id != 0)
 <div id="add_menu_item_form_all_div">
     
     <div class="close_pupup_div" >X</div>   
-    {!! Form::open(['class'=>'form']) !!}
+    {!! Form::open(['url'=>asset('cms/menus/insert-new-menu-item'),'class'=>'form']) !!}
     <div class="form_head_div">
         add link to this menu
     </div>
@@ -73,6 +61,14 @@
         <div class="table-caption">
 
             {!! Form::button('add link',["id"=>'show_add_menu_item_button','onclick'=>'show_add_menu_item();','class'=>'btn btn-primary btn-flat' ]) !!}
+                  
+                        @if($errors->any())
+                        <div class="alert alert-danger alert-dark">
+                            @foreach($errors->all() as $key=>$error)
+                            <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
+                            @endforeach
+                        </div>
+                        @endif
         </div>
     </div>
     {!! Form::open() !!}

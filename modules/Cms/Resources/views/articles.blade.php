@@ -2,17 +2,13 @@
 
 @section('content') 
 
-{!! Form::open(['name'=>'articles_select_from','class'=>'panel form-horizontal']) !!}
-                <div class="panel-heading">
-                    <span class="panel-title">new menu </span>
-                </div>
-                <div class="panel-body">
-                    {!! Form::select('edit_article_page',$articles,$selected_id,['onchange'=>'$("form[name=articles_select_from]").submit();']) !!}
-                    {!! Form::button('<i class="fa fa-cog"></i>',["name"=>'select_article_submit','type'=>'submit','class'=>'icon_button blue_icon' ]) !!}
-                </div>
-{!! Form::close() !!}
+	<div class="page-header">
+		<h1>{{ trans('cms::cms.newArticle') }}</h1>
+	</div>
 
-{!! Form::open(['class'=>'panel form-horizontal']) !!}
+
+
+{!! Form::open(['url'=>asset('/cms/articles/insert-edit-article'),'class'=>'panel form-horizontal']) !!}
                 <div class="panel-heading">
                     <span class="panel-title">article </span>
                 </div>
@@ -28,7 +24,14 @@
                     {!! Form::submit('save edits',["name"=>'edit_article_submit','id'=>'edit_article_submit','class'=>'btn btn-primary' ]) !!}
                     
                     @endif
-
+                    
+             @if($errors->any())
+                        <div class="alert alert-danger alert-dark">
+                            @foreach($errors->all() as $key=>$error)
+                            <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
+                            @endforeach
+                        </div>
+                        @endif
                 </div>
 {!! Form::close() !!}
 

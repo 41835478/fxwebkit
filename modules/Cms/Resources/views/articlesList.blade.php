@@ -2,6 +2,10 @@
 
 @section('content')
 
+	<div class="page-header">
+		<h1>{{ trans('cms::cms.articlesList') }}</h1>
+	</div>
+
 {!! Form::open(['url'=>asset('cms/articles/article'),'method'=>'get','class'=>'panel form-horizontal']) !!}
 <div class="panel-heading">
     <span class="panel-title">new article </span>
@@ -17,7 +21,7 @@
     <div class="table-header">
         <div class="table-caption">
 
-           web site pages list
+           Articles List
         </div>
     </div>
     {!! Form::open(['url'=>asset('cms/articles/articles')]) !!}
