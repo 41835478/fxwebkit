@@ -16,10 +16,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
 
+
+
 use Modules\Cms\Http\Requests\CreatePagesRequest;
+
+use Pingpong\Modules\Facades\Module;
+use \SimpleXMLElement;
 class PagesController extends Controller {
 
-    public function getPages($page_id = 0) {
+    public function getPages2($page_id = 0) {
         $pages = cms_pages::lists('title','id');
 
         if (   Input::get('page_id') !== null) {
@@ -43,7 +48,38 @@ class PagesController extends Controller {
              
         );
     }
+public function getPages($page_id=0){
+           
+$pages = cms_pages::lists('title','id');
+$menus=CmsMenus::lists('title','id');
+         $page_id =(Input::get('page_id') !== null)? Input::get('page_id'):$page_id; 
+         
+        $module = Module::find('cms');
+      
+$positions=$this->getPageMoudulesName($page_id, 'article place and it should be one place in page');
 
+      $asset_folder=Config::get('cms.asset_folder'); 
+     
+$xmlFile=file_get_contents($module->getPath().'/Resources/Views/'.Config::get('cms.theme_folder').'/theme_setting.xml');
+$xmlElements = new SimpleXMLElement($xmlFile);
+
+        $modules_list_controller = new ModulesListController;
+        $modules_list = $modules_list_controller->modules_list();
+        
+        return view('cms::themePositions', [
+            'pages'=>$pages,
+            'menus'=>$menus,
+            'page_id' => $page_id,
+            'modules_list'=>$modules_list,
+            'themeRows' => $xmlElements->rows[0],
+            'positions' => $positions,
+            'asset_folder'=>$asset_folder,
+            ]
+             
+        );
+
+    }
+    
     public function getPagesList() {
       $pages = cms_pages::lists('title','id');
       $asset_folder=Config::get('cms.asset_folder'); 
@@ -92,7 +128,7 @@ class PagesController extends Controller {
 
     
    public function postInsertNewPage(CreatePagesRequest $request){
-                   $page = new cms_pages;
+            $page = new cms_pages;
             $page->title = Input::get('new_page_name_input');
             $page->save();
             return Redirect::to('cms/pages/pages/'. $page->id);
@@ -208,8 +244,8 @@ class PagesController extends Controller {
         return $this->website($page_id,$article_html);
         
     }
-    /*________________________________________________________END________render_page*/
-    
+/*________________________________________________________END________render_page*/
+     
     private function getPageMoudules($page_id,$article_html=''){
         $modules_list_controller = new ModulesListController;
         $modules_list = $modules_list_controller->modules_list();
@@ -250,6 +286,55 @@ class PagesController extends Controller {
                 default:
 
                     $module_html.= $modules_list_controller->index($modules_list[$page_module->type], $page_module->module_id);
+            }
+            $module_html.='</div>';
+            array_push($positions[$page_module->position], $module_html);
+        }
+        return  $positions ;
+    }//getPageMoudules($page_id){
+    
+    private function getPageMoudulesName($page_id,$article_html=''){
+        $modules_list_controller = new ModulesListController;
+        $modules_list = $modules_list_controller->modules_list();
+
+        $query_string = "select *,id  from  cms_pages_contents as first_table   where
+       (all_pages=0)
+       or
+       (all_pages=1 and '$page_id'=(select pages_id from cms_pages_contents_pages where pages_contents_id=first_table.id and pages_id='$page_id') )
+       or
+      (all_pages=2 and not '$page_id' in (select pages_id from cms_pages_contents_pages where pages_contents_id=first_table.id and pages_id=$page_id) ) ";
+
+        $page_modules = DB::select($query_string);
+
+        $float_array = [0 => 'float', 1 => 'left', 2 => 'right'];
+        $display_array = [0 => 'display', 1 => 'inline', 2 => 'block'];
+        $positions = [];
+        foreach ($page_modules as $page_module) {
+
+            $positions[$page_module->position] = [];
+        }
+        foreach ($page_modules as $page_module) {
+            $float = ($page_module->float != 0) ? 'float:' . $float_array[$page_module->float] . ';' : '';
+            $display = ($page_module->display != 0) ? 'display:' . $display_array[$page_module->display] . ';' : '';
+
+            $module_html = '<div id="' . $page_module->id . ' "class="module_list_button reorderable" draggable="true" style="' . $float . $display . '">';
+
+
+            switch ($page_module->type) {
+
+                case -1:
+                    $menu= CmsMenus::find($page_module->module_id);
+                    if($menu){
+                        $module_html .='menu ( '.$menu->name.' ) ';
+                    }
+                    break;
+
+                case -2:
+                    $module_html.= 'main article place';
+                    break;
+                default:
+
+                    $module_html.= $modules_list_controller->getPageModulesName($modules_list[$page_module->type], $page_module->module_id);
             }
             $module_html.='</div>';
             array_push($positions[$page_module->position], $module_html);

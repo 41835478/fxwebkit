@@ -35,6 +35,26 @@ class ModulesListController extends Controller {
         }
     }
 
+    
+    public function getPageModulesName($module_info, $variable = '') {
+
+
+
+        if (isset($module_info['type']) && $module_info['type'] == 'files') {
+            return $module_info['name'].' ( '. $variable.' ) ';
+            
+        } else if (isset($module_info['type']) && $module_info['type'] == 'database') {
+            
+            $results = DB::select('select ' . $module_info['title_field'] . ' from ' . $module_info['table'] . ' where id = ?', [$variable]);
+            
+            if(count($results)){
+            return $module_info['name'].' ( '.$results[0]->$module_info['title_field'].' ) ';
+            }else{return '';}
+        } else {
+            return (!isset($module_info['class_name']))?  '':$module_info['name'];    
+        }
+    }
+
 //    public function index2($method_name) {
 //        switch ($method_name) {
 //            case 0://module1
@@ -202,6 +222,33 @@ class ModulesListController extends Controller {
             $options_html = '';
             foreach ($results as $result) {
                 $options_html.='<option value="' . $result->id . '">' . $result->title . '</option>';
+            }
+            return $options_html;
+        }
+    }
+  public function getModuleOptionsList($id = 0) {
+
+
+        $id = Input::get('module_id');
+
+
+        $module_list = $this->modules_list();
+        $module = $module_list[$id];
+        if (isset($module['type']) && $module['type'] == 'files') {
+            $files = File::allFiles(Config::get('cms.asset_folder') . $module['folder']);
+            $options_html = '';
+            foreach ($files as $file) {
+                $base_name = basename($file);
+                $name_array = explode('.', $base_name);
+                $options_html.='<div id="'.$id.'" class="dragable sub_module_list_button " value="' . $name_array[0] . '" draggable="true">' . $name_array[0] . '</div>';
+            }
+            return $options_html;
+        } else if (isset($module['type']) && $module['type'] == 'database') {
+
+            $results = DB::select('select id,' . $module['title_field'] . ' from ' . $module['table'] . ' ', []);
+            $options_html = '';
+            foreach ($results as $result) {
+                $options_html.='<div id="'.$id.'" class="dragable sub_module_list_button" value="' . $result->id . '" draggable="true">' . $result->title . '</div>';
             }
             return $options_html;
         }

@@ -18,7 +18,6 @@
 
     @endif
 
-
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'cms_pages.css') }}">
     <script src="{{ asset($asset_folder.'jquery-2.1.1.min.js') }}"></script>
