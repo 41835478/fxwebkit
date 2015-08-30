@@ -2,6 +2,7 @@
    
 use Illuminate\Database\Eloquent\Model;
 
+use Modules\Cms\Entities\cms_pages_contents;
 class cms_pages_contents_pages extends Model {
 
     protected $fillable = [];

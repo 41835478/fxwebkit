@@ -5,14 +5,35 @@
 
 	<div class="page-header">
 		<h1>{{ trans('cms::cms.pageBuilder') }}</h1>
-                <input class="btn btn-primary btn-flat" type="submit" value="save page">
-	</div>
+        </div>
 
 
 <aside id="modules_list"> 
-   
+    <div 
+        id="-2" 
+        content_id="0" 
+        float="0"
+        selected_pages="{{ $page_id }}" 
+        all_pages="1"
+        value="0" 
+        class="reorderable module_list_button"
+        draggable="true" 
+        onclick="show_module_config_form($(this));" 
+        onblur="hide_module_config_form($(this));"
+        ondrop="show_module_config_form($(this));alert(4);"
+        >main article place</div>
+    
+    <div id="-1" data-type="database"
+         onclick="get_module_options($(this),'http://localhost:8000/cms/modules/module-options-list')"
+         class=" module_list_button">
+        menus
+    </div>
+         
+         <div class="sub_module_all_div"></div>    
+         
+         
     @foreach($modules_list as $key=>$module)
-    <div id="{{ $key }}" 
+    <div id="{{ $key }}" content_id="0" 
          @if(isset($module['type']))
           data-type="{{ $module['type'] }}"
           onclick="get_module_options($(this),'{{ asset('cms/modules/module-options-list') }}')"
@@ -24,7 +45,7 @@
         
          @else
          
-         class="dragable module_list_button" >{{ $module['name'] }}
+         class="dragable module_list_button" float="0" all_pages='1' selected_pages="{{ $page_id }}"  >{{ $module['name'] }}
          @endif
          
          
@@ -34,10 +55,12 @@
          
     
     @endforeach
-    
+ <div id="trash_div" class="dropable" ><i class="fa fa-trash-o"></i></div>
+     
 </aside>
 
 <section id="theme_section">
+
 @foreach($themeRows as $row)
 
 
@@ -60,41 +83,43 @@
 @endforeach
 </section>
 
-
-
-  
     {!! Form::open(['url'=>asset('cms/pages/add-module'),'id'=>'module_config_form']) !!}
 
-
-
-        <div class="form-group from_row_div">
-            <label for="module_type_0" >
-                <label class="col-sm-4 control-label">
-                    {!! Form::radio('type', 0, true, ['class' => 'module_type_radio ','id'=>'module_type_0']) !!}
-                </label>
-
-                <select name="module_id" onchange="get_module_options($(this),'{{ asset('cms/modules/module-options') }}')" 'class'='form-control input-sm' onload="$(this).change();">
-                        @foreach($modules_list as $key=>$module)
-                        <option value="{{ $key }}" data-type="{{ $module['type'] or 0 }}">{{ $module['name'] }}</option>
-                    @endforeach
-                </select>
-
-            </label>
-        </div>
-
+    <div class="form_row">
+    <div class="radio_select_all_div">
+        <input type="hidden" name="float" value="0" >
+        <label value="1"> left </label>
+        <label value="0">no float</label>
+        <label value="2">right</label>
+    </div>
+    </div>
     
-<div class="switcher switcher-colorGeneratorDemo checked"><input type="checkbox" data-class="switcher-colorGeneratorDemo" checked="checked" id="switchers-demo-default"><div class="switcher-toggler"></div><div class="switcher-inner"><div class="switcher-state-on">ON</div><div class="switcher-state-off">OFF</div></div></div>
-         {!! Form::label('type','menus').Form::radio('type', -1, '', ['class' => 'module_type_radio','id'=>'module_type_1']) !!}
-         {!! Form::label('type','articles place').Form::radio('type', -2,'', ['class' => 'module_type_radio','id'=>'module_type_2'])  !!}
-         {!! Form::label('float','left').Form::radio('float',1,'',['class'=>'float_radio']) !!}
-         {!! Form::label('float','right').Form::radio('float',2,'',['class'=>'float_radio']) !!}
-         {!! Form::label('all_pages','all pages').Form::radio('all_pages', 0,['id'=>'all_pages_0'])  !!}
-         {!! Form::label('all_pages','just selected pages').Form::radio('all_pages', 1,true,['id'=>'all_pages_1'])  !!}
-         {!! Form::label('all_pages','except pages').Form::radio('all_pages', 2,false,['id'=>'all_pages_2'])  !!}    
-         {!! Form::label('selected_pages','select pages',['class'=>'col-sm-4 control-label']) .Form::select('selected_pages[]',$pages,$page_id,['id'=>'multi_pages_select',"multiple"=>"true",'class'=>'form-control input-sm']) !!}     
-         {!! Form::hidden('position',$page_id ,['id'=>'add_module_position_name_input']) !!}
+    
+    <div class="form_row">
+    <div class="radio_select_all_div">
+        <input type="hidden" name="all_pages" value="0" >
+        <label value="0"> all_pages </label>
+        <label value="1">selected pages</label>
+        <label value="2">except pages </label>
+    </div>
+       
+        
+    <div class="multi_select_all_div">
+        <input type="hidden" name="selected_pages" value="1,3" >
+        @foreach($pages as $key=>$page)
+        
+        <label value="{{ $key }}"> {{ $page }} </label>
+        @endforeach
+    </div>
+        
+    </div>
+    
+         {!! Form::hidden('position',$page_id ,['id'=>'position_name_input' ,]) !!}
+         {!! Form::hidden('module_value','' ) !!}
+         {!! Form::hidden('type','' ) !!}
+         {!! Form::hidden('content_id','' ) !!}
+        
          {!! Form::hidden('page_id',$page_id ) !!}
-         {!! Form::submit('add module',["name"=>'add_module_submit','class'=>'btn btn-primary' ]) !!}
          {!! Form::close() !!}
 
   
@@ -111,4 +136,5 @@
     
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'/myDragDrop/css/dragDrop.css') }}">
     <script src="{{ asset($asset_folder.'/myDragDrop/js/dragDropClass.js') }}"></script>
+    
 @stop

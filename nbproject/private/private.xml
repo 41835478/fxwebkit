@@ -3,11 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/wamp/www/fxwebkit/app/Http/routes.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Requests/CreatePagesRequest.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/myDragDrop/css/dragDrop.css</file>
+            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/cms_themePostions.css</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/themePositions.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/cms_themePostions.js</file>
             <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/routes.php</file>
             <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Config/config.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/myDragDrop/js/dragDropClass.js</file>
+            <file>file:/F:/wamp/www/fxwebkit/app/Http/routes.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/pages.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Requests/CreatePagesRequest.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/develop_theme_iframe.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/theme1/theme.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/theme1/theme_setting.xml</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Controllers/ModulesListController.php</file>
             <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Controllers/PagesController.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/develop_theme_iframe.js</file>
         </group>
     </open-files>
 </project-private>

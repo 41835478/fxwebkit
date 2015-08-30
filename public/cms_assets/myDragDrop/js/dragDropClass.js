@@ -57,10 +57,14 @@ function handleDragLeave(e) {
 
  //3. Completing a Drag
 function handleDrop(e) {
-  // this/e.target is current target element.
+  // this/e.target is current target element. 
+ if(this.getAttribute('id')=='trash_div'){ delete_module(reorderElement); reorderElement=null; return false;}
   if(reorderElement!=null){
+      
+     
   this.appendChild(reorderElement);
-   
+  if(reorderElement.getAttribute('id')=="-2" && reorderElement.getAttribute('content_id')=="0") show_module_config_form($(reorderElement));
+   save_modules_order($(this));
     reorderElement=null;
   }
 if(dragedElement==null ) return false;
@@ -81,6 +85,8 @@ if(dragedElement==null ) return false;
     var newDragedElement=dragedElement.cloneNode(true);
     newDragedElement.classList.remove('dragable');
     newDragedElement.classList.add('reorderable');
+
+    
     newDragedElement.addEventListener('dragstart', reorderHandleDragStart, false);
 
  //2. dragenter, dragover, and dragleave 
@@ -91,7 +97,11 @@ if(dragedElement==null ) return false;
    //3. Completing a Drag
   newDragedElement.addEventListener('drop', reorderHandleDrop, false);
   newDragedElement.addEventListener('dragend', reorderHandleDragEnd, false);
-    this.appendChild(newDragedElement);
+    this.appendChild(newDragedElement);    
+    
+    newDragedElement.setAttribute('onClick','show_module_config_form($(this));');
+    newDragedElement.setAttribute('onBlur','hide_module_config_form($(this));');
+    $(newDragedElement).click();$(newDragedElement).focus();
     //this.innerHTML= this.innerHTML+'<div class="dropable">'+e.dataTransfer.getData('text/html')+'</div>';
   
   
@@ -128,6 +138,7 @@ function reorderHandleDrop(e){
     if(reorderElement==null) return false;
   this.parentNode.insertBefore(reorderElement, this);
    
+    save_modules_order($(this.parentNode));
     reorderElement=null;
 }
 
@@ -143,7 +154,7 @@ function reorderHandleDrop(e){
     
     
 for (var i =0 ; i < reorderElements.length  ; i++){
-    dragElements[i].setAttribute('draggable','true');
+    reorderElements[i].setAttribute('draggable','true');
 
 
     reorderElements[i].addEventListener('dragstart', reorderHandleDragStart, false);

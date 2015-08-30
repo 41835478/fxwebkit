@@ -24,7 +24,7 @@ class CreateCmsPagesContentsTable extends Migration {
             $table->string("module_id",255)->nullable(); //
             $table->integer('type');
             $table->integer('page_id');
-            $table->string('module_name');
+            $table->string('module_name')->nullable();
             $table->integer('order'); //order in the position 
             $table->integer('float'); //to let the module or content go right or left  but here we have to get care when we build the theme (main template ) and use clear:both property in css 
             $table->integer('display'); //inline or block ; to let the content in seprit line
