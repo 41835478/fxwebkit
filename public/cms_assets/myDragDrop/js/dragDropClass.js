@@ -56,7 +56,7 @@ function handleDragLeave(e) {
 }
 
 //3. Completing a Drag
-function handleDrop(e) {alert(5);
+function handleDrop(e) {
     // this/e.target is current target element. 
     if (this.getAttribute('id') == 'trash_div') {
         delete_module(reorderElement);
@@ -143,7 +143,7 @@ function reorderHandleDragStart(e) {
     e.dataTransfer.setData('text/html', this.innerHTML);
     reorderElement = this;
 }
-function reorderHandleDrop(e) {alert(6);
+function reorderHandleDrop(e) {
     this.style.borderTop = '1px solid #999';
 
     if (reorderElement == null)
