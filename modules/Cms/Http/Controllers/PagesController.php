@@ -51,7 +51,7 @@ class PagesController extends Controller {
 
         $module = Module::find('cms');
 
-        $positions = $this->getPageMoudulesName($page_id, 'article place and it should be one place in page');
+        $positions = $this->getPageMoudulesName2($page_id, 'article place and it should be one place in page');
 
         $asset_folder = Config::get('cms.asset_folder');
 
@@ -61,7 +61,7 @@ class PagesController extends Controller {
         $modules_list_controller = new ModulesListController;
         $modules_list = $modules_list_controller->modules_list();
 
-        return view('cms::themePositions', [
+        return view('cms::themePositions_2', [
             'pages' => $pages,
             'menus' => $menus,
             'page_id' => $page_id,
@@ -391,4 +391,39 @@ public function postSaveModulesOrders(){
         foreach($pages as $page){array_push($pages_array,$page->pages_id); }
         return implode(',', $pages_array);
     }//getPageModuleConfig($module_id){}
+    
+    
+    private function getPageMoudulesName2($page_id, $article_html = '') {
+
+              $modules_list_controller = new ModulesListController;
+        //$modules_list = $modules_list_controller->modules_list();
+ 
+        $query_string = "select *,id  from  cms_pages_contents as first_table   where
+       (all_pages=0)
+       or
+       (all_pages=1 and '$page_id' in (select pages_id from cms_pages_contents_pages where pages_contents_id=first_table.id and pages_id='$page_id') )
+       or
+      (all_pages=2 and not '$page_id' in (select pages_id from cms_pages_contents_pages where pages_contents_id=first_table.id and pages_id=$page_id) )
+                order by `order` "
+               ;
+
+        $page_modules = DB::select($query_string);
+        $float_array = [0 => 'float', 1 => 'left', 2 => 'right'];
+        $display_array = [0 => 'display', 1 => 'inline', 2 => 'block'];
+        $positions = [];
+        
+        foreach ($page_modules as $page_module) {
+        $positions[$page_module->position] = [];}
+        foreach ($page_modules as $page_module) { 
+            $float = ($page_module->float != 0) ? 'float:' . $float_array[$page_module->float] . ';' : '';
+            $display = ($page_module->display != 0) ? 'display:' . $display_array[$page_module->display] . ';' : '';
+
+            $module_html = '<div id="'.$page_module->type.'" value="'.$page_module->module_id.'" content_id="' . $page_module->id . '"  float="'.$page_module->float.'"  all_pages="'.$page_module->all_pages.'" selected_pages="'.$page_id.'" class="module_list_button reorderable" onclick="show_module_config_form($(this));" draggable="true">';
+            $module_html.= $modules_list_controller->getPageModulesName($page_module->type, $page_module->module_id);
+            $module_html.='</div>';
+            array_push($positions[$page_module->position], $module_html);
+        }
+        return $positions;
+    }//getPageMoudules($page_id){
+    
 }

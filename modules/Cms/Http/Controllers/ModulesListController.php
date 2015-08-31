@@ -203,4 +203,53 @@ $module_info=$this->modules_list($module_type);
     }
 
 // get_module_options($id){
+      public function getModuleOptionsList2($id = 0) {
+
+
+        $id = Input::get('module_id');
+
+
+        $module_list = $this->modules_list();
+        $results = [];
+        if ($id == -1) {
+            $menus = DB::select('select id,title from cms_menus ', []);
+            if($menus){
+            foreach($menus as $menu){
+                                array_push($results, ['id'=>$menu->id,'title'=>$menu->title]);
+                                
+            }
+            }
+        } else{
+        
+        
+        $module = $module_list[$id];
+        if (isset($module['type']) && $module['type'] == 'files') {
+            $files = File::allFiles(Config::get('cms.asset_folder') . $module['folder']);
+
+            foreach ($files as $file) {
+                $base_name = basename($file);
+                $name_array = explode('.', $base_name);
+                array_push($results, ['id' => $name_array[0], 'title' => $name_array[0]]);
+            }
+        } else if (isset($module['type']) && $module['type'] == 'database') {
+
+            $query_result = DB::select('select id,' . $module['title_field'] . ' from ' . $module['table'] . ' ', []);
+            
+          if($query_result){
+            foreach($query_result as $result){
+                                array_push($results, ['id'=>$result->id,'title'=>$result->title]);
+                                
+            }
+            }
+        }
+        }
+
+        $options_html = '';
+    foreach($results as $result){
+        $options_html.='<option  value="' . $result['id'] . '" >' . $result['title'] . '</option>';
+    }
+        return $options_html;
+    }
+
+// get_module_options($id){
 }
