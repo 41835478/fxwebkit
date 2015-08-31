@@ -38,6 +38,9 @@ class MenusController extends Controller {
         $asset_folder = Config::get('cms.asset_folder');
 
 
+        $links = cms_menus_items::where(['menu_id' => $selected_id])->get();
+        $links = $links->toArray();        
+$menu_preview=$this->order_menu_get_html(0, $links);
 
         return view("cms::menus", ['menus' => $menus,
             'selected_id' => $selected_id,
@@ -46,6 +49,7 @@ class MenusController extends Controller {
             'menu_items' => $menu_items,
             'pages' => $pages,
             'articles' => $articles,
+            'menu_preview'=>$menu_preview,
             'render_menu_html' => $this->render_menu($selected_id),
             'asset_folder' => $asset_folder
                 ]
@@ -108,21 +112,22 @@ class MenusController extends Controller {
             return Redirect::to('/cms/menus/menus/'.Input::get('selected_id'));
     }
     /* _________________________________________________________________________________render_menu_html( order menu each link with his parent and get it's html) */
-    /*
+
       private function order_menu_get_html($root, $links) {
 
 
       $menu_html='';
       if(!is_null($links) && count($links) > 0) {
-      $menu_html.='<ul>';
+      $menu_html.=($root==0)?'<ul class="dropdown-menu" style="display: block;">':'<ul class="dropdown-menu sub-menu">';
       foreach($links as $key=>$link) {
       $child=$link['id'];
       $parent=$link['parent_item_id'];
       if($parent == $root) {
       unset($links[$key]);
       if($link['hide']) continue;
-      $menu_html.=($link['disable'])? '<li>'.$link['name']:'<li><a href="'.asset($link["name"]).'">'.$link['name'].'</a>';
-      $menu_html.=$this->order_menu_get_html($child, $links);
+      $sub_menu=$this->order_menu_get_html($child, $links);
+      $menu_html.=(trim($sub_menu)=='')? '<li><a >'.$link['name']:'</a><li><a class="trigger right-caret" >'.$link['name'].'</a>';
+      $menu_html.=$sub_menu;
       $menu_html.='</li>';
       }
       }
@@ -130,8 +135,7 @@ class MenusController extends Controller {
       }
       return $menu_html;
       }
-     * 
-     */
+   
 
     function order_menu($links, $root = 0) {
 

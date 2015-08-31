@@ -1,5 +1,5 @@
 /* Prevent the text contents of draggable elements from being selectable. */
-.dragable {
+.dragable,.reorderable  {
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;

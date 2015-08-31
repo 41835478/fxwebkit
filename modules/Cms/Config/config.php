@@ -29,6 +29,11 @@ return [
 			'route' => 'cms.customHtmlList',
 			'title' => 'customHtml',
 			'icon' => 'fa fa-file-text-o',
+		],
+		[
+			'route' => 'cms.themesList',
+			'title' => 'themes',
+			'icon' => 'fa fa-file-text-o',
 		]
 	]
 ];

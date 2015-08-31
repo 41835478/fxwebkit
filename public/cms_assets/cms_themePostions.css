@@ -93,9 +93,9 @@ background-color:#ffffff;
     height: 60px !important;
     padding: 0px;
     text-align: center;
-    background-color: transparent;
+    background-color: #ffffff;
 }
-#trash_div.over{color:#ff0000;}
+#trash_div.over,#trash_div:hover{color:#ff0000;}
 #trash_div:before{
     content: none;
 }

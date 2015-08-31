@@ -9,6 +9,7 @@ Route::group(['prefix' => 'cms', 'namespace' => 'Modules\Cms\Http\Controllers'],
         Route::controller('menus','MenusController',['getMenusList'=>'cms.menusList']);
         Route::controller('articles','ArticlesController',['getArticlesList'=>'cms.articlesList']);
         Route::controller('customHtml','CustomHtmlController',['getCustomHtmlList'=>'cms.customHtmlList']);
+        Route::controller('themes','ThemesController',['getThemesList'=>'cms.themesList']);
 
         Route::controller('modules', 'ModulesListController');
 });

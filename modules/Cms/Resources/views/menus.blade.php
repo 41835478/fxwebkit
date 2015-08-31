@@ -115,7 +115,20 @@
     <div class="panel-heading">
         <span class="panel-title">the render menu preview  </span>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" id="preview_menu_div">
+        
+        
+        
+        <div class="dropdown" style="position:relative">
+            
+   {!! $menu_preview !!}
+   
+</div>
+   
+        
+    </div>
+    
+    <div class="panel-body"  >
         {!! $render_menu_html !!}
     </div>
 </div>

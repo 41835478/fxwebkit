@@ -280,5 +280,10 @@ $(document).ready(function(){
     $(".dropable .reorderable[id='-2']").each(function(){
         $("#modules_list .reorderable[id='-2']").remove();
     });
-    
+     $(".dropable").mouseout(function(){
+        $(this).removeClass('over'); 
+     });
+     $(".dropable").on('drop',function(){
+        $(this).removeClass('over'); 
+     });
 });
