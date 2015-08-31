@@ -130,8 +130,8 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'cms_themePostions.css') }}">
-<!--    <script src="{{ asset($asset_folder.'jquery-2.1.1.min.js') }}"></script>
-    <script src="{{ asset($asset_folder.'cms_themePostions.js') }}"></script>-->
+    <script src="{{ asset($asset_folder.'jquery-2.1.1.min.js') }}"></script>
+    <script src="{{ asset($asset_folder.'cms_themePostions.js') }}"></script>
     
     
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'/myDragDrop/css/dragDrop.css') }}">
