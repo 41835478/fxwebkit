@@ -376,7 +376,7 @@ public function postSaveModulesOrders(){
             $float = ($page_module->float != 0) ? 'float:' . $float_array[$page_module->float] . ';' : '';
             $display = ($page_module->display != 0) ? 'display:' . $display_array[$page_module->display] . ';' : '';
 
-            $module_html = '<div id="'.$page_module->type.'" value="'.$page_module->module_id.'" content_id="' . $page_module->id . '"  float="'.$page_module->float.'"  all_pages="'.$page_module->all_pages.'" selected_pages="'.$page_id.'" class="module_list_button reorderable" onclick="show_module_config_form($(this));" onblur="hide_module_config_form($(this));" draggable="true">';
+            $module_html = '<div id="'.$page_module->type.'" value="'.$page_module->module_id.'" content_id="' . $page_module->id . '"  float="'.$page_module->float.'"  all_pages="'.$page_module->all_pages.'" selected_pages="'.$page_id.'" class="module_list_button reorderable" onclick="show_module_config_form($(this));"  draggable="true">';
             $module_html.= $modules_list_controller->getPageModulesName($page_module->type, $page_module->module_id);
             $module_html.='</div>';
             array_push($positions[$page_module->position], $module_html);

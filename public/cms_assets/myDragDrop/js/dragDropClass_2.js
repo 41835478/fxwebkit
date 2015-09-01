@@ -106,7 +106,8 @@ function handleDrop(e) {
     this.appendChild(newDragedElement);
 
     newDragedElement.setAttribute('onClick', 'show_module_config_form($(this));');
-    newDragedElement.setAttribute('onBlur', 'hide_module_config_form($(this));');
+   // newDragedElement.setAttribute('onBlur', 'hide_module_config_form($(this));');
+    $(newDragedElement).append('<b class="module_status_b red_font">not saved</b>');
     $(newDragedElement).click();
     $(newDragedElement).focus();
     //this.innerHTML= this.innerHTML+'<div class="dropable">'+e.dataTransfer.getData('text/html')+'</div>';

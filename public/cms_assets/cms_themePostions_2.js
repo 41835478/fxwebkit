@@ -3,7 +3,7 @@
 function set_radio_select_value(selected_node){
     var parent_node=selected_node.parent();
     var value=selected_node.attr('value');
-    parent_node.find('input').val(value);
+    //parent_node.find('input').val(value);
        parent_node.find('label').removeClass('active');
             parent_node.find('label[value="'+value+'"]').addClass('active');
 }
@@ -89,6 +89,8 @@ form_set_defult_vlaues(null);
 
 
 function get_module_options(select_node,target_url){
+    
+                $("#module_value").html("<option value='0'>please wait to get options </option>");
         var id=0;
     if(select_node.data('type') !=0){
        
@@ -108,9 +110,10 @@ function get_module_options(select_node,target_url){
             if(data.trim() !=''){
                 
            $("#module_value").html(data);
-           
+          
+        
    $('#module_value').val(select_node.attr('value'));
-           
+       
             }else{
                 $("#module_value").html("<option value='0'>no values </option>");
             }
@@ -126,6 +129,10 @@ function show_module_config_form(module_node){
     if(module_node.attr('content_id')== selected_module_node) return false;
     selected_module_node=module_node.attr('content_id');
     selected_module=module_node;
+    
+    $("#module_name_b").html(module_node.html());
+    $("#module_name_b b").remove();
+    $("#cur_module_status").html('change & save');
             module_node.attr('tabindex',"0");
             module_node.focus();
   var temp_form= $("#module_config_form");
@@ -135,15 +142,16 @@ function show_module_config_form(module_node){
    temp_form.find('input[name="content_id"]').val(module_node.attr('content_id'));
    
    
-   var float_node=temp_form.find('input[name="float"]');
-   float_node.val(module_node.attr('float'));
-   set_radio_select_value(float_node);
+   temp_form.find('input[name="float"]').parent().removeClass('active');
+   temp_form.find('input[name="float"][value="'+module_node.attr('float')+'"]').parent().addClass('active');
+    
    
+   var all_pages_node=temp_form.find('input[name="all_pages"][value="'+module_node.attr('all_pages')+'"]');
+  // all_pages_node.attr('value',module_node.attr('all_pages'));
+   //set_radio_select_value(all_pages_node);
+   temp_form.find('input[name="all_pages"]').parent().removeClass('active');
    
-   var all_pages_node=temp_form.find('input[name="all_pages"]');
-   all_pages_node.attr('value',module_node.attr('all_pages'));
-   set_radio_select_value(all_pages_node);
-   
+   all_pages_node.parent().addClass('active');
    
    get_module_options(module_node,'/cms/modules/module-options-list2');
    
@@ -154,6 +162,14 @@ function show_module_config_form(module_node){
    
    
      
+enable_element($('#module_config_form'));
+
+         if (module_node.attr('all_pages') == 0) {
+        disable_element($(".multi_select_all_div "));
+    } else {
+        enable_element($(".multi_select_all_div "));
+    }
+  
 }
 //function hide_module_config_form(module_node){
 //       module_node.find('#module_config_form').hide();
@@ -165,6 +181,7 @@ function show_module_config_form(module_node){
      if($(window).scrollTop()>100){
       //  $("#modules_list").css({'position':'fixed','top':'0','left':0,'height':'100vh','z-index':'99999999999999999','backgroundColor':'#ffffff'}); 
        $("#modules_list").width($("#modules_list").width());
+       $("body").height($("body").height());
       $("#modules_list").addClass('fixed_modules_list');
       
     }else{
@@ -174,10 +191,12 @@ function show_module_config_form(module_node){
 
 
 function save_module_config(module_node){
+    var selected_module_status_b=module_node.find('b');  
+    $("#cur_module_status,#save_mdule_button").html('wait until saving');
         var id=0;
-        var all_pages=$('input[name="all_pages"]').val();
+        var all_pages=$('.active input[name="all_pages"]').val();
         var selected_pages=$('input[name="selected_pages"]').val();
-        var float=$('input[name="float"]').val();
+        var float=$('.active input[name="float"]').attr('value');
         var module_value=$('#module_config_form #module_value').val();
         var sent_data={
             '_token':$('input[name="_token"]').val(),
@@ -197,16 +216,24 @@ function save_module_config(module_node){
         data:sent_data,
         success:function(data){
 if(data >0){
+  
+    selected_module_status_b.removeClass('red_font');
+    selected_module_status_b.find('b').addClass('green_font');
+    selected_module_status_b.html('saved');
     
+    $("#cur_module_status").html('saved');
 module_node.attr('content_id',data.trim());
 module_node.attr('all_pages',all_pages);
 module_node.attr('selected_pages',selected_pages);
 module_node.attr('float',float);
 module_node.attr('value',module_value);
 
-}else{  console.log(data);}
+}else{   $("#cur_module_status").html('error try again');}
 
-        }
+        },complete:function(){
+        
+    $("#save_mdule_button").html('save');
+    }
         
     });//ajax
 }
@@ -269,7 +296,13 @@ if(all_pages==0 || module_id ==0) return false;
         data:{'delete_module_id':module_id,'_token':$('input[name="_token"]').val()},
         success:function(data){
 if(data.trim() =='success'){
-module_node.remove();}
+        if(module_node.getAttribute('id')=="-2"){
+            module_node.setAttribute('content_id',0);
+       document.getElementById("modules_list_list").appendChild(module_node);
+    }else{
+module_node.remove();
+    }
+}
    
 
         }
@@ -277,10 +310,22 @@ module_node.remove();}
     });//ajax
      
  }
-
+ function disable_element(disable_node){
+     disable_node.css('position','relative');
+    disable_node.css('overflow','hidden');
+     disable_node.append('<div class="disable_div" style="height:'+disable_node.height()+'px;"></div>');
+ }
+ 
+ 
+ function enable_element(disable_node){
+     
+    disable_node.css('overflow','auto');
+     disable_node.find('.disable_div').remove();
+ }
+disable_element($('#module_config_form'));
 $(document).ready(function(){
     $(".dropable .reorderable[id='-2']").each(function(){
-        $("#modules_list .reorderable[id='-2']").remove();
+        $("#modules_list .reorderable[id='-2']").hide();
     });
      $(".dropable").mouseout(function(){
         $(this).removeClass('over'); 
@@ -292,5 +337,11 @@ $(document).ready(function(){
      $('#save_mdule_button').click(function(){
          save_module_config(selected_module);
      });
+     
+     $('#all_pages_button_group label').click(function(){
+         if($(this).find("input").attr('value')==0){
+     disable_element($(".multi_select_all_div "));}else{enable_element($(".multi_select_all_div "));}
+     });
+    
 });
 

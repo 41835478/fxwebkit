@@ -219,7 +219,9 @@ $module_info=$this->modules_list($module_type);
                                 
             }
             }
-        } else{
+        } else if($id == -2){
+            return '';
+        }else{
         
         
         $module = $module_list[$id];

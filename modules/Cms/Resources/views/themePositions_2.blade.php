@@ -8,7 +8,12 @@
         </div>
 
 
-<aside id="modules_list"> 
+<aside id="modules_list" class="custom_scroll"> 
+    
+ <div id="trash_div" class="dropable" >drop module here <i class="fa fa-trash-o"></i></div>
+     
+ <div id="modules_list_list">
+    <div class="separator_div">Modules List</div>
     <div 
         id="-2" 
         content_id="0" 
@@ -19,7 +24,7 @@
         class="reorderable module_list_button"
         draggable="true" 
         onclick="show_module_config_form($(this));" 
-        ondrop="show_module_config_form($(this));alert(4);"
+        ondrop="show_module_config_form($(this));"
         >main article place</div>
     
     <div id="-1" 
@@ -65,31 +70,40 @@
          
     
     @endforeach
-    
-    
+ </div>
+    <div class="separator_div"><b id="module_name_b">Module</b> Attributes <b id="cur_module_status"></b></div>
     
     {!! Form::open(['url'=>asset('cms/pages/add-module'),'id'=>'module_config_form']) !!}
-{!! Form::select('module_value',[],0,['id'=>'module_value']) !!}
-    <div class="form_row">
-    <div class="radio_select_all_div">
-        <input type="hidden" name="float" value="0" >
-        <label value="1"> left </label>
-        <label value="0">no float</label>
-        <label value="2">right</label>
-    </div>
-    </div>
+{!! Form::select('module_value',['0'=>'No Values'],0,['id'=>'module_value']) !!}
+
     
-    
-    <div class="form_row">
-    <div class="radio_select_all_div">
-        <input type="hidden" name="all_pages" value="0" >
-        <label value="0"> all_pages </label>
-        <label value="1">selected pages</label>
-        <label value="2">except pages </label>
-    </div>
+<div class="btn-group" data-toggle="buttons" id="float_button_group">
+							<label class="btn btn-info">
+                                                            <input type="radio" name="float" id="float_1" value="1"> left
+							</label>
+							<label class="btn btn-info active">
+								<input type="radio" name="float" id="float_0" value="0"> no float
+							</label>
+							<label class="btn btn-info">
+								<input type="radio" name="float" id="float_2" value="2"> right
+							</label>
+						</div>
+
+<div class="btn-group" data-toggle="buttons" id="all_pages_button_group">
+							<label class="btn btn-info">
+                                                            <input type="radio" name="all_pages" id="all_pages_0" value="0"> all pages
+							</label>
+							<label class="btn btn-info active">
+								<input type="radio" name="all_pages" id="all_pages_1" value="1"> selected pages
+							</label>
+							<label class="btn btn-info">
+								<input type="radio" name="all_pages" id="all_pages_2" value="2"> except pages
+							</label>
+						</div>
+
        
         
-    <div class="multi_select_all_div">
+    <div class="multi_select_all_div custom_scroll">
         <input type="hidden" name="selected_pages" value="1,3" >
         @foreach($pages as $key=>$page)
         
@@ -97,23 +111,20 @@
         @endforeach
     </div>
         
-    </div>
+
     
          {!! Form::hidden('position',$page_id ,['id'=>'position_name_input' ,]) !!}
-         {!! Form::hidden('module_value','' ) !!}
+        
          {!! Form::hidden('type','' ) !!}
          {!! Form::hidden('content_id','' ) !!}
         
          {!! Form::hidden('page_id',$page_id ) !!}
-         {!! Form::button('save',['id'=>'save_mdule_button']) !!}
+         {!! Form::button('save',['id'=>'save_mdule_button','class'=>'btn btn-primary btn-flat']) !!}
          {!! Form::close() !!}
 
   
     
     
- <div id="trash_div" class="dropable" ><i class="fa fa-trash-o"></i></div>
-     
- 
  
  
  
