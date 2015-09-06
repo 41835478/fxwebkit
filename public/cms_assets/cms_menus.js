@@ -10,7 +10,7 @@ function show_add_menu_item(){
 $(".dropdown-menu ul").each(function(){
     var sub_menu=$(this).find('li');
     if(sub_menu.length ==0){
-       $(this).prev().attr('class','');
+       $(this).prev().attr('class','btn');
         $(this).remove();
     }
 });

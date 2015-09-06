@@ -52,7 +52,6 @@ class MenusController extends Controller {
         
         $links = $links->toArray();        
 $menu_preview=$this->order_menu_get_html(0, $links);
-
 $disable_icons=["fa fa-check","fa fa-ban"];
 $hide_icons=["fa fa-eye","fa fa-eye-slash"];
         return view("cms::menus", ['menus' => $menus,
@@ -82,12 +81,11 @@ $hide_icons=["fa fa-eye","fa fa-eye-slash"];
         $languages[0]='English';
          $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):0;
          
-         
-        $menu_item =($menu_item_id!=0)? cms_menus_items::with('cms_menus_items', 'page', 'article')->find($menu_item_id)->first():0;
+      
+        $menu_item =($menu_item_id!=0)? cms_menus_items::with('cms_menus_items', 'page', 'article')->where('id',$menu_item_id)->first():0;
 
         
-        $menu_items = cms_menus_items::with('cms_menus_items', 'page', 'article')->where('menu_id',$menu_id)->get();
-
+        $menu_items = cms_menus_items::with('cms_menus_items', 'page', 'article')->where('menu_id',$menu_id)->first();
         $pages = cms_pages::lists('title', 'id');
         $disable_array = ['0' => 'enable', '1' => 'disable'];
         $hide_array = ['0' => 'show', '1' => 'hide'];
@@ -156,6 +154,7 @@ $menu_preview=$this->order_menu_get_html(0, $links);
         }
         
         if (null !== Input::get('edit_menu_item_id')) {
+            
        return $this->getEditMenuItem(Input::get('edit_menu_item_id'),Input::get('selected_id'));
         }
 
@@ -178,7 +177,10 @@ $menu_preview=$this->order_menu_get_html(0, $links);
 
     public function postInsertNewMenuItem(CreateMenuItemRequest $request){
                     $type = Input::get('type');
-            $item = new cms_menus_items;
+             if(Input::get('edit_menu_item_id')!=null) {
+                 $item=cms_menus_items::find(Input::get('edit_menu_item_id'));
+             }else {     
+             $item = new cms_menus_items;}
             $item->menu_id = Input::get('selected_id');
             $item->disable = Input::get('disable');
             $item->hide = Input::get('hide');
@@ -239,7 +241,7 @@ $menu_preview=$this->order_menu_get_html(0, $links);
 
       $menu_html='';
       if(!is_null($links) && count($links) > 0) {
-      $menu_html.=($root==0)?'<ul class="dropdown-menu" style="display: block;">':'<ul class="dropdown-menu sub-menu">';
+      $menu_html.=($root==0)?'<ul class="dropdown-menu btn-group" style="display: block;">':'<ul class="dropdown-menu sub-menu">';
       foreach($links as $key=>$link) {
       $child=$link['id'];
       $parent=$link['parent_item_id'];
@@ -247,7 +249,7 @@ $menu_preview=$this->order_menu_get_html(0, $links);
       unset($links[$key]);
       if($link['hide']) continue;
       $sub_menu=$this->order_menu_get_html($child, $links);
-      $menu_html.=(trim($sub_menu)=='')? '<li><a >'.$link['name']:'</a><li><a class="trigger right-caret" >'.$link['name'].'</a>';
+      $menu_html.= '<li ><a class=" btn trigger right-caret" >'.$link['name'].'</a>';
       $menu_html.=$sub_menu;
       $menu_html.='</li>';
       }
