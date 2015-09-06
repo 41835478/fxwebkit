@@ -3,29 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/themes.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Controllers/ThemesController.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/cms_themePostions.css</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/themePositions.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/cms_themePostions.js</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/routes.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/cms_menus.css</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Config/config.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/lang/en/cms.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Http/routes.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/pages.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Requests/CreatePagesRequest.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/cms_menus.js</file>
-            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/cms_themes.js</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Entities/cms_menus_languages.php</file>
             <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/menus.blade.php</file>
             <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Controllers/MenusController.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/develop_theme_iframe.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/theme1/theme.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/theme1/theme_setting.xml</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Controllers/ModulesListController.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Controllers/PagesController.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/cms_themes.css</file>
-            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/develop_theme_iframe.js</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Entities/CmsMenus.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Database/Migrations/2015_08_04_142351_create_cms_languages_table.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Database/Migrations/2015_08_04_142439_create_cms_menus_languages_table.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/menusList.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/main.css</file>
         </group>
     </open-files>
 </project-private>

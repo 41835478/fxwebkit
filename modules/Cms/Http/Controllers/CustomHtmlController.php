@@ -5,6 +5,9 @@ namespace Modules\Cms\Http\Controllers;
 use Pingpong\Modules\Routing\Controller;
 use Modules\Cms\Entities\cms_pages;
 use Modules\Cms\Entities\cms_customHtml;
+use Modules\Cms\Entities\cms_languages;
+use Modules\Cms\Entities\cms_customHtml_languages;
+
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
@@ -18,13 +21,24 @@ class CustomHtmlController extends Controller {
 
         $pages = cms_pages::lists('title', 'id');
         $customHtmls = cms_customHtml::lists('title', 'id');
+        if ($customHtml_id == 0) {$customHtml_id = (Input::get('customHtml_id') !== null) ? Input::get('customHtml_id') : 0;}
+        
 
-        if ($customHtml_id == 0) {
-            $customHtml_id = (Input::get('article_id') !== null) ? Input::get('article_id') : 0;
-        }
+        
+        $languages=  cms_languages::lists('name','id');
+        $languages[0]='English';
+         $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):0;
+
+
+      
         $edit_customHtml = '';
-        if ($customHtml_id > 0) {
-            $edit_customHtml = cms_customHtml::find($customHtml_id);
+        if ($customHtml_id > 0 && $selected_language ==0) {
+            
+            $edit_customHtml = cms_customHtml::find($customHtml_id); 
+            
+        }else if($customHtml_id > 0 && $selected_language >0){
+            
+            $edit_customHtml = cms_customHtml_languages::where(['cms_customHtml_id'=>$customHtml_id,'cms_languages_id'=>$selected_language])->first();
         }
 
         $asset_folder = Config::get('cms.asset_folder');
@@ -32,11 +46,37 @@ class CustomHtmlController extends Controller {
             'selected_id' => $customHtml_id,
             'customHtmls' => $customHtmls,
             'edit_customHtml' => $edit_customHtml,
+            'languages'=>$languages,
+            'selected_language'=>$selected_language,
             'asset_folder' => $asset_folder,
                 ]
         );
     }
 
+    public function postSaveCustomHtmlTranslate(){
+        $translate_title=Input::get('title');
+        $translate_body=Input::get('editor1');
+        $selected_language=Input::get('selected_language');
+        $id=Input::get('customHtml_id');
+        
+            
+            $translate=cms_customHtml_languages::where(['cms_languages_id'=>$selected_language,'cms_customHtml_id'=>$id])->first();
+            if($translate){
+                $translate->title=$translate_title;
+                $translate->body=$translate_body;
+                $translate->save();
+            }else{
+                $translate=new cms_customHtml_languages;
+                $translate->title=$translate_title;
+                $translate->body=$translate_body;
+                $translate->cms_languages_id=$selected_language;
+                $translate->cms_customHtml_id=$id;
+                $translate->save();
+            }
+            
+        
+        return $this->getCustomHtml($id);
+    }   
     public function getCustomHtmlList() {
         //  $selected_id = (Input::get('selected_id') !== null) ? Input::get('selected_id') : 1;
         $customHtmls = cms_customHtml::lists('title', 'id');

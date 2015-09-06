@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCmsLanguagesTable extends Migration {
+class CreateCmsMenusLanguagesTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,12 +12,13 @@ class CreateCmsLanguagesTable extends Migration {
      */
     public function up()
     {
-        Schema::create('cms_languages', function(Blueprint $table)
+        Schema::create('cms_menus_languages', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('name');
-
-            //$table->timestamps();
+$table->integer('cms_menus_id');
+$table->integer('cms_languages_id');
+$table->text('translate');
+            $table->timestamps();
         });
     }
 
@@ -28,7 +29,7 @@ class CreateCmsLanguagesTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('cms_languages');
+        Schema::drop('cms_menus_languages');
     }
 
 }

@@ -6,6 +6,7 @@ return [
     'menus' => 'Menus',
     'articles' => 'Articles',
     'themes' => 'Themes',
+    'languages' => 'Languages',
     'customHtml' => 'custom HTML',
     'pageBuilder' => 'page builder',
     'pagesList' => 'Pages List',

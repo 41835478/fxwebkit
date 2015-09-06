@@ -28,12 +28,17 @@ return [
 		[
 			'route' => 'cms.customHtmlList',
 			'title' => 'customHtml',
-			'icon' => 'fa fa-file-text-o',
+			'icon' => 'fa fa-code',
 		],
 		[
 			'route' => 'cms.themesList',
 			'title' => 'themes',
-			'icon' => 'fa fa-file-text-o',
+			'icon' => 'fa fa-picture-o',
+		],
+		[
+			'route' => 'cms.languagesList',
+			'title' => 'languages',
+			'icon' => 'fa fa-globe',
 		]
 	]
 ];

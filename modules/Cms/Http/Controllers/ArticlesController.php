@@ -5,6 +5,9 @@ namespace Modules\Cms\Http\Controllers;
 use Pingpong\Modules\Routing\Controller;
 use Modules\Cms\Entities\cms_pages;
 use Modules\Cms\Entities\cms_articles;
+use Modules\Cms\Entities\cms_languages;
+use Modules\Cms\Entities\cms_articles_languages;
+
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
@@ -18,15 +21,20 @@ class ArticlesController extends Controller {
 
         $pages = cms_pages::lists('title','id');
         $articles = cms_articles::lists( 'title','id');
-
-
-
         if($artilce_id==0){$artilce_id = (Input::get('article_id') !== null)? Input::get('article_id'):0;}
+
+        $languages=  cms_languages::lists('name','id');
+        $languages[0]='English';
+         $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):0;
+
 
 
 
         $edit_article = '';
-        if ($artilce_id > 0) { $edit_article = cms_articles::find($artilce_id); }
+        if ($artilce_id > 0 && $selected_language ==0) { $edit_article = cms_articles::find($artilce_id); }
+        else if($artilce_id > 0 && $selected_language >0){
+            $edit_article = cms_articles_languages::where(['cms_articles_id'=>$artilce_id,'cms_languages_id'=>$selected_language])->first();
+        }
 
         $asset_folder=Config::get('cms.asset_folder'); 
         return view('cms::articles', [
@@ -34,12 +42,39 @@ class ArticlesController extends Controller {
             'selected_id' => $artilce_id,
             'articles' => $articles,
             'edit_article' => $edit_article,
+            'languages'=>$languages,
+            'selected_language'=>$selected_language,
             'asset_folder'=>$asset_folder,
             ]
                 
                 
         );
     }
+      
+    public function postSaveArticleTranslate(){
+        $translate_title=Input::get('title');
+        $translate_body=Input::get('editor1');
+        $selected_language=Input::get('selected_language');
+        $id=Input::get('article_id');
+        
+            
+            $translate=cms_articles_languages::where(['cms_languages_id'=>$selected_language,'cms_articles_id'=>$id])->first();
+            if($translate){
+                $translate->title=$translate_title;
+                $translate->body=$translate_body;
+                $translate->save();
+            }else{
+                $translate=new cms_articles_languages;
+                $translate->title=$translate_title;
+                $translate->body=$translate_body;
+                $translate->cms_languages_id=$selected_language;
+                $translate->cms_articles_id=$id;
+                $translate->save();
+            }
+            
+        
+        return $this->getArticle($id);
+    }   
 public function getArticlesList(){
           //  $selected_id = (Input::get('selected_id') !== null) ? Input::get('selected_id') : 1;
         $articles = cms_articles::lists('title','id');

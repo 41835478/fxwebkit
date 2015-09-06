@@ -99,3 +99,7 @@ width: auto;}
 .blue_icon{ color:#00f ;}
 
 /*_____END__icons*/
+
+.language_select_form{
+    float:right;
+}

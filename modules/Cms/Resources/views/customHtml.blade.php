@@ -4,9 +4,18 @@
 
 	<div class="page-header">
 		<h1>{{ trans('cms::cms.newCustomHTML') }}</h1>
+                 @if($selected_id>0)               
+{!! Form::open(['url'=>asset('/cms/customHtml/custom-html'),'class'=>'language_select_form']) !!}
+     {!! Form::hidden('customHtml_id',$selected_id) !!}
+    {!! Form::select('selected_language',$languages,$selected_language,['class'=>'language_select']) !!}
+    {!! Form::submit('translate',["name"=>'select_language_submit','class'=>'btn btn-primary btn-flat' ]) !!}
+    
+{!! Form::close() !!}
+@endif
 	</div>
 
 
+@if($selected_language == 0)
 {!! Form::open(['url'=>asset('cms/customHtml/insert-edit-custom-html'),'class'=>'panel form-horizontal']) !!}
                 <div class="panel-heading">
                     <span class="panel-title">custom HTML </span>
@@ -33,6 +42,22 @@
                         @endif
                 </div>
 {!! Form::close() !!}
+@else
+{!! Form::open(['url'=>asset('/cms/customHtml/save-custom-html-translate'),'class'=>'panel form-horizontal']) !!}
+                <div class="panel-heading">
+                    <span class="panel-title">article </span>
+                </div>
+                <div class="panel-body">
+                    {!! Form::text('title',(isset($edit_customHtml->title))?  $edit_customHtml->title:'',['id'=>'title','placeholder'=>'title','class'=>'form-control ']) !!}
+                    {!! Form::textarea('editor1',(isset($edit_customHtml->body))?  $edit_customHtml->body:'',['id'=>'editor1','placeholder'=>'title']) !!}
+                    {!! Form::hidden('customHtml_id' ,$selected_id) !!}
+                    {!! Form::hidden('selected_language' ,$selected_language) !!}
+                    {!! Form::submit('save translate',["name"=>'editcustomHtml_submit','id'=>'edit_customHtml_submit','class'=>'btn btn-primary' ]) !!}
+                    
+                    
+                </div>
+{!! Form::close() !!}
+@endif
 
 
 
