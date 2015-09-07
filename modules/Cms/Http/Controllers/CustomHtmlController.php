@@ -26,17 +26,16 @@ class CustomHtmlController extends Controller {
 
         
         $languages=  cms_languages::lists('name','id');
-        $languages[0]='English';
-         $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):0;
+         $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):1;
 
 
       
         $edit_customHtml = '';
-        if ($customHtml_id > 0 && $selected_language ==0) {
+        if ($customHtml_id > 0 && $selected_language ==1) {
             
             $edit_customHtml = cms_customHtml::find($customHtml_id); 
             
-        }else if($customHtml_id > 0 && $selected_language >0){
+        }else if($customHtml_id > 0 && $selected_language >1){
             
             $edit_customHtml = cms_customHtml_languages::where(['cms_customHtml_id'=>$customHtml_id,'cms_languages_id'=>$selected_language])->first();
         }

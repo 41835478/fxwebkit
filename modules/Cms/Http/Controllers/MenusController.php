@@ -34,8 +34,7 @@ class MenusController extends Controller {
         }
 
         $languages=  cms_languages::lists('name','id');
-        $languages[0]='English';
-         $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):0;
+         $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):1;
         //$menu_items = cms_menus_items::with('cms_menus_items', 'page', 'article')->where('menu_id', $selected_id)->get();
         $menu_items = cms_menus_items::with(['cms_menus_items_languages' => function($query) use($selected_language)
 {$query->where('cms_languages_id', '=', $selected_language);}])->where('menu_id',$selected_id)->get();
@@ -78,8 +77,7 @@ $hide_icons=["fa fa-eye","fa fa-eye-slash"];
         $menus = CmsMenus::lists('title', 'id');
 
         $languages=  cms_languages::lists('name','id');
-        $languages[0]='English';
-         $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):0;
+         $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):1;
          
       
         $menu_item =($menu_item_id!=0)? cms_menus_items::with('cms_menus_items', 'page', 'article')->where('id',$menu_item_id)->first():0;
@@ -118,8 +116,7 @@ $menu_preview=$this->order_menu_get_html(0, $links);
     public function getMenusList() {  
         
         $languages=  cms_languages::lists('name','id');
-        $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):0;
-        $languages[0]='English';
+        $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):1;
         
         $menus = CmsMenus::lists('title', 'id');
     
@@ -281,7 +278,7 @@ $menu_preview=$this->order_menu_get_html(0, $links);
         return $return;
     }
 
-    public function render_menu($menu_id, $language = 0) {
+    public function render_menu($menu_id, $language = 1) {
 
         $links = cms_menus_items::where(['menu_id' => $menu_id])->get();
 

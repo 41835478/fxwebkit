@@ -32,7 +32,7 @@
                         @endif
         </div>
     </div>
-    @if($selected_language==0)
+    @if($selected_language==1)
     {!! Form::open() !!}
     {!! Form::hidden('selected_id',$selected_id) !!}
         <table border="0" class="table table-bordered">

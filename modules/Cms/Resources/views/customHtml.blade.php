@@ -15,7 +15,7 @@
 	</div>
 
 
-@if($selected_language == 0)
+@if($selected_language == 1)
 {!! Form::open(['url'=>asset('cms/customHtml/insert-edit-custom-html'),'class'=>'panel form-horizontal']) !!}
                 <div class="panel-heading">
                     <span class="panel-title">custom HTML </span>

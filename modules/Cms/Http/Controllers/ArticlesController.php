@@ -24,15 +24,14 @@ class ArticlesController extends Controller {
         if($artilce_id==0){$artilce_id = (Input::get('article_id') !== null)? Input::get('article_id'):0;}
 
         $languages=  cms_languages::lists('name','id');
-        $languages[0]='English';
-         $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):0;
+         $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):1;
 
 
 
 
         $edit_article = '';
-        if ($artilce_id > 0 && $selected_language ==0) { $edit_article = cms_articles::find($artilce_id); }
-        else if($artilce_id > 0 && $selected_language >0){
+        if ($artilce_id > 0 && $selected_language ==1) { $edit_article = cms_articles::find($artilce_id); }
+            else if($artilce_id > 0 && $selected_language >1){
             $edit_article = cms_articles_languages::where(['cms_articles_id'=>$artilce_id,'cms_languages_id'=>$selected_language])->first();
         }
 

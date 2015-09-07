@@ -91,9 +91,18 @@ $translate= ($translate_results!==0 && count($translate_results))? $translate_re
 //                'class_name' => 'Modules\Blog\Http\Controllers\BlogController',
 //                'class_method' => 'index'
 //            ],
-            ['name' => 'static_html',
-                'class_name' => '$this',
-                'class_method' => 'static_html'
+            
+            ['name' => 'customHtml',
+                "type" => 'database',
+                "table" => 'cms_customHtml',
+                "title_field" => 'title',
+                "html_field" => 'body',
+                "languages"=>"multi"
+            ],
+    ['name' => 'static_pages',
+                "type" => 'files',
+                "folder" => 'static_pages'
+                
             ],
             ['name' => 'files',
                 "type" => 'files',
@@ -102,12 +111,6 @@ $translate= ($translate_results!==0 && count($translate_results))? $translate_re
             ['name' => 'articles',
                 "type" => 'database',
                 "table" => 'cms_articles',
-                "title_field" => 'title',
-                "html_field" => 'body'
-            ],
-            ['name' => 'customHtml',
-                "type" => 'database',
-                "table" => 'cms_customHtml',
                 "title_field" => 'title',
                 "html_field" => 'body',
                 "languages"=>"multi"
@@ -239,7 +242,7 @@ $translate= ($translate_results!==0 && count($translate_results))? $translate_re
 
             $module = $module_list[$id];
             if (isset($module['type']) && $module['type'] == 'files') {
-                $files = File::allFiles(Config::get('cms.asset_folder') . $module['folder']);
+                $files = File::allFiles(base_path('modules/Cms/Resources/views/'. $module['folder']));
 
                 foreach ($files as $file) {
                     $base_name = basename($file);

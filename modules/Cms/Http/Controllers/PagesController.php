@@ -117,7 +117,7 @@ public function getDeleteModule(){
             if($page_module->delete()){return 'success';}
 
 }
-    public function website($page_id = 1, $article_html = '',$language=0) {
+    public function website($page_id = 1, $article_html = '',$language=1) {
 
         $asset_folder = Config::get('cms.asset_folder');
         return view('cms::' . Config::get('cms.theme_folder') . '.theme', [
@@ -273,13 +273,14 @@ public function postSaveModulesOrders(){
 
     /* ________________________________________________________________render_page */
 
-    public function getRenderPage($menu_item,$language=0) {
+    public function getRenderPage($menu_item,$language=1) {
         $page_id = 0;
         $article_id = 0;
         $article_html = '';
+        
         $language = new LanguagesController();
-        $language = ($language->postGetLanguage())? $language->postGetLanguage()->id:0;
-
+        $language = ($language->postGetLanguage())? $language->postGetLanguage()->id:1;
+$menu_item=($menu_item=='')? 'home':$menu_item;
         $menu_item = cms_menus_items::where(['name' => $menu_item])->first();
 
         if (empty($menu_item)) {
@@ -294,7 +295,7 @@ public function postSaveModulesOrders(){
 
             $results = cms_articles::find($article_id);
             $translate_results = 0;
-            if ($language > 0) {
+            if ($language > 1) {
                 $translate_results = cms_articles_languages::where(['cms_articles_id' => $article_id, 'cms_languages_id' => $language])->first();
             }
             
@@ -313,7 +314,7 @@ public function postSaveModulesOrders(){
 
     /* ________________________________________________________END________render_page */
 
-    private function getPageMoudules($page_id, $article_html = '',$language=0) {
+    private function getPageMoudules($page_id, $article_html = '',$language=1) {
         $modules_list_controller = new ModulesListController();
         $modules_list = $modules_list_controller->modules_list();
 
