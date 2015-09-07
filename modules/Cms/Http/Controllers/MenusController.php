@@ -38,7 +38,7 @@ class MenusController extends Controller {
          $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):0;
         //$menu_items = cms_menus_items::with('cms_menus_items', 'page', 'article')->where('menu_id', $selected_id)->get();
         $menu_items = cms_menus_items::with(['cms_menus_items_languages' => function($query) use($selected_language)
-{$query->where('cms_languages_id', '=', $selected_language);}])->get();
+{$query->where('cms_languages_id', '=', $selected_language);}])->where('menu_id',$selected_id)->get();
 
 
         $pages = cms_pages::lists('title', 'id');
@@ -266,13 +266,14 @@ $menu_preview=$this->order_menu_get_html(0, $links);
         foreach ($links as $key => $link) {
             $child = $link['id'];
             $parent = $link['parent_item_id'];
+            $translate=(isset($link["cms_menus_items_languages"][0]["translate"]))? $link["cms_menus_items_languages"][0]["translate"]:""; 
             if ($parent == $root) {
 
                 unset($links[$key]);
 
                 $return[] = array(
                     'id' => $child,
-                    'name' => $link['name'],
+                    'name' => ($translate=='')? $link['name']:$translate,
                     'children' => $this->order_menu($links, $child)
                 );
             }
@@ -280,9 +281,14 @@ $menu_preview=$this->order_menu_get_html(0, $links);
         return $return;
     }
 
-    public function render_menu($menu_id) {
+    public function render_menu($menu_id, $language = 0) {
 
         $links = cms_menus_items::where(['menu_id' => $menu_id])->get();
+
+        // $links=cms_menus_items_languages::where(['cms_languages_id'=>$language,'cms_menus_items_id'=>$id])->get();
+        $links = cms_menus_items::with(['cms_menus_items_languages' => function($query) use($language) {
+                        $query->where('cms_languages_id', '=', $language);
+                    }])->where('menu_id', $menu_id)->get();
         $links = $links->toArray();
         return view('cms::' . Config::get('cms.theme_folder') . '.theme_menu', [
             'menu_array' => $this->order_menu($links),

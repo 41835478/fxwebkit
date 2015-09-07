@@ -9,6 +9,7 @@ use Modules\Cms\Entities\cms_pages_contents;
 use Modules\Cms\Entities\cms_pages_contents_pages;
 use Modules\Cms\Entities\cms_menus_items;
 use Modules\Cms\Entities\cms_articles;
+use Modules\Cms\Entities\cms_articles_languages;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
@@ -55,7 +56,7 @@ class PagesController extends Controller {
 
         $asset_folder = Config::get('cms.asset_folder');
 
-        $xmlFile = file_get_contents($module->getPath() . '/Resources/Views/' . Config::get('cms.theme_folder') . '/theme_setting.xml');
+        $xmlFile = file_get_contents($module->getPath() . '/Resources/views/' . Config::get('cms.theme_folder') . '/theme_setting.xml');
         $xmlElements = new SimpleXMLElement($xmlFile);
 
         $modules_list_controller = new ModulesListController;
@@ -116,12 +117,12 @@ public function getDeleteModule(){
             if($page_module->delete()){return 'success';}
 
 }
-    public function website($page_id = 1, $article_html = '') {
+    public function website($page_id = 1, $article_html = '',$language=0) {
 
         $asset_folder = Config::get('cms.asset_folder');
         return view('cms::' . Config::get('cms.theme_folder') . '.theme', [
             'page_id' => $page_id,
-            'positions' => $this->getPageMoudules($page_id, $article_html),
+            'positions' => $this->getPageMoudules($page_id, $article_html,$language),
             'asset_folder' => $asset_folder]
         );
     }
@@ -272,11 +273,12 @@ public function postSaveModulesOrders(){
 
     /* ________________________________________________________________render_page */
 
-    public function getRenderPage($menu_item) {
+    public function getRenderPage($menu_item,$language=0) {
         $page_id = 0;
         $article_id = 0;
         $article_html = '';
-
+        $language = new LanguagesController();
+        $language = ($language->postGetLanguage())? $language->postGetLanguage()->id:0;
 
         $menu_item = cms_menus_items::where(['name' => $menu_item])->first();
 
@@ -290,19 +292,28 @@ public function postSaveModulesOrders(){
         } else {
             $article_id = $menu_item->page_id;
 
+            $results = cms_articles::find($article_id);
+            $translate_results = 0;
+            if ($language > 0) {
+                $translate_results = cms_articles_languages::where(['cms_articles_id' => $article_id, 'cms_languages_id' => $language])->first();
+            }
+            
+            $original_article = (count($results)) ? $results->body : '';
+            $translate_article = ($translate_results !== 0 && count($translate_results)) ? $translate_results->body: '';
+            $article_html = ($translate_article !== '') ? $translate_article : $original_article;
             $article = cms_articles::find($article_id);
-            if ($article) {
-                $article_html = $article->body;
+           
+            if ($results) {
                 $page_id = $article->page_id;
             }
         }
 
-        return $this->website($page_id, $article_html);
+        return $this->website($page_id, $article_html,$language);
     }
 
     /* ________________________________________________________END________render_page */
 
-    private function getPageMoudules($page_id, $article_html = '') {
+    private function getPageMoudules($page_id, $article_html = '',$language=0) {
         $modules_list_controller = new ModulesListController();
         $modules_list = $modules_list_controller->modules_list();
 
@@ -333,7 +344,7 @@ public function postSaveModulesOrders(){
 
                 case -1:
                     $menu = new MenusController();
-                    $module_html.= $menu->render_menu($page_module->module_id);
+                    $module_html.= $menu->render_menu($page_module->module_id,$language);
                     break;
 
                 case -2:
@@ -341,7 +352,7 @@ public function postSaveModulesOrders(){
                     break;
                 default:
            if(!isset($modules_list[$page_module->type])) break;
-                    $module_html.= $modules_list_controller->index($modules_list[$page_module->type], $page_module->module_id);
+                    $module_html.= $modules_list_controller->index($modules_list[$page_module->type], $page_module->module_id,$language);
             }
             $module_html.='</div>';
             array_push($positions[$page_module->position], $module_html);

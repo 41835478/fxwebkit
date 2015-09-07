@@ -16,7 +16,9 @@ class CreateCmsLanguagesTable extends Migration {
         {
             $table->increments('id');
             $table->string('name');
-
+$table->string('charset',20);
+$table->string('code',4);
+$table->string('dir',3);
             //$table->timestamps();
         });
     }

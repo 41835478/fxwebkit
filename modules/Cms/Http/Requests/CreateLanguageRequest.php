@@ -22,7 +22,10 @@ class CreateLanguageRequest extends FormRequest {
 	public function rules()
 	{
 		return [
-			'new_language_name_input'=>'required'
+			'new_language_name_input'=>'required',
+			'new_language_charset_input'=>'required',
+			'new_language_code_input'=>'required',
+			'new_language_dir_input'=>'required'
 		];
 	}
 

@@ -14,6 +14,9 @@
 {!! Form::open(['url'=>asset('cms/languages/insert-new-language') ,'id'=>'create_language_form','class'=>'']) !!}
 
     {!! Form::text('new_language_name_input','',['placeholder'=>'new language name','class'=>'form-control ']) !!}
+    {!! Form::text('new_language_charset_input','',['placeholder'=>'charset','class'=>'form-control ']) !!}
+    {!! Form::text('new_language_code_input','',['placeholder'=>'code','class'=>'form-control ']) !!}
+    {!! Form::text('new_language_dir_input','',['placeholder'=>'dir','class'=>'form-control ']) !!}
     {!! Form::submit('create new language',["name"=>'new_language_submit','class'=>'btn btn-primary btn-flat' ]) !!}
     
                             
@@ -34,18 +37,24 @@
             <thead>
             <th>id</th>
             <th>name</th>
+            <th>charset</th>
+            <th>code</th>
+            <th>dir</th>
             <th></th>
             </thead>
             <tbody>
-                @foreach($languages as $key=>$language)
+                @foreach($languages as  $language)
                 <tr>
-                    <td >{{ $key }}</td>
-                    <td >{{ $language }}</td>
+                    <td >{{ $language->id }}</td>
+                    <td >{{ $language->name }}</td>
+                    <td >{{ $language->charset }}</td>
+                    <td >{{ $language->code }}</td>
+                    <td >{{ $language->dir }}</td>
                 
                     
                     <td>
-                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_Language_submit' ,'class'=>'icon_button red_icon','type'=>'submit','value'=>$key ]) !!}
-                        {{-- Form::button('<i class="fa fa-cog "></i>',['name'=>'selected_id' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$key ]) --}}
+                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_Language_submit' ,'class'=>'icon_button red_icon','type'=>'submit','value'=>$language->id ]) !!}
+                        {{-- Form::button('<i class="fa fa-cog "></i>',['name'=>'selected_id' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$language->id ]) --}}
                     </td>
                 <tr>
                     @endforeach
