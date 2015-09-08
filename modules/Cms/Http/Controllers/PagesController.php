@@ -87,8 +87,7 @@ class PagesController extends Controller {
     public function postPages() {
 
         if (null !== Input::get('go_to_page')) {
-        return Redirect::to('cms/pages/pages/' . Input::get('go_to_page'));
-           
+            return Redirect::to('cms/pages/pages/' . Input::get('go_to_page'));
         }
 
 
@@ -107,22 +106,25 @@ class PagesController extends Controller {
             return Redirect::route('cms.pagesList');
         }
         return Redirect::to('cms/pages/pages/' . Input::get('page_id'));
-          
+
         //return $this->getPages(Input::get('page_id'));
     }
-public function getDeleteModule(){
-    
-            $page_module = cms_pages_contents::find(Input::get('delete_module_id'));
 
-            if($page_module->delete()){return 'success';}
+    public function getDeleteModule() {
 
-}
-    public function website($page_id = 1, $article_html = '',$language=1) {
+        $page_module = cms_pages_contents::find(Input::get('delete_module_id'));
+
+        if ($page_module->delete()) {
+            return 'success';
+        }
+    }
+
+    public function website($page_id = 1, $article_html = '', $language = 1) {
 
         $asset_folder = Config::get('cms.asset_folder');
         return view('cms::' . Config::get('cms.theme_folder') . '.theme', [
             'page_id' => $page_id,
-            'positions' => $this->getPageMoudules($page_id, $article_html,$language),
+            'positions' => $this->getPageMoudules($page_id, $article_html, $language),
             'asset_folder' => $asset_folder]
         );
     }
@@ -140,16 +142,16 @@ public function getDeleteModule(){
         $page_id = Input::get('page_id');
         $module_id = 0;
 
-       $module_variable=(Input::get('module_variable')!=null)? Input::get('module_variable'):'';
-if(Input::get('content_id')>0){
-        $page_module =  cms_pages_contents::find(Input::get('content_id')); 
-}else{
-        $page_module = new cms_pages_contents; 
-}
+        $module_variable = (Input::get('module_variable') != null) ? Input::get('module_variable') : '';
+        if (Input::get('content_id') > 0) {
+            $page_module = cms_pages_contents::find(Input::get('content_id'));
+        } else {
+            $page_module = new cms_pages_contents;
+        }
         $page_module->page_id = $page_id;
         $page_module->module_id = Input::get('module_variable');
-       $page_module->type = Input::get('type');
-       $page_module->module_name ='delete';
+        $page_module->type = Input::get('type');
+        $page_module->module_name = 'delete';
         $page_module->order = '0';
         $page_module->float = Input::get('float');
         $page_module->display = '0';
@@ -157,14 +159,14 @@ if(Input::get('content_id')>0){
         $page_module->all_pages = $all_pages;
         $page_module->save();
 
-        $delete_pages=cms_pages_contents_pages::where('pages_contents_id',$page_module->id);
-$delete_pages->delete();
+        $delete_pages = cms_pages_contents_pages::where('pages_contents_id', $page_module->id);
+        $delete_pages->delete();
 
         if ($all_pages != 0) {
-            
+
             $selected_pages = Input::get('selected_pages');
-        
-             $selected_pages=  explode(',', $selected_pages);
+
+            $selected_pages = explode(',', $selected_pages);
             for ($i = 0; $i < count($selected_pages); $i++) {
                 $module_pages = new cms_pages_contents_pages;
                 $module_pages->pages_id = $selected_pages[$i];
@@ -173,22 +175,23 @@ $delete_pages->delete();
             }
         }
         return $page_module->id;
-       // return Redirect::to('cms/pages/develop-theme-view/' . $page_id);
+        // return Redirect::to('cms/pages/develop-theme-view/' . $page_id);
     }
-public function postSaveModulesOrders(){
-    
-    $order_array=Input::get('order_array');
-    foreach($order_array as $order)
-        {
-        $module=cms_pages_contents::find($order['content_id']);
-        if($module){
-        $module->order=$order['order'];
-        $module->position=$order['position'];
-        $module->save();
+
+    public function postSaveModulesOrders() {
+
+        $order_array = Input::get('order_array');
+        foreach ($order_array as $order) {
+            $module = cms_pages_contents::find($order['content_id']);
+            if ($module) {
+                $module->order = $order['order'];
+                $module->position = $order['position'];
+                $module->save();
+            }
         }
-        }
-        return json_encode($order_array).'success';
-}
+        return json_encode($order_array) . 'success';
+    }
+
     public function postAddModulePast() {
 
         $type = Input::get('type');
@@ -223,7 +226,7 @@ public function postSaveModulesOrders(){
 
 
         if ($all_pages != 0) {
-            
+
             $selected_pages = Input::get('selected_pages');
             for ($i = 0; $i < count($selected_pages); $i++) {
                 $module_pages = new cms_pages_contents_pages;
@@ -273,16 +276,19 @@ public function postSaveModulesOrders(){
 
     /* ________________________________________________________________render_page */
 
-    public function getRenderPage($menu_item,$language=1) {
+    public function getRenderPage($menu_item = '', $language = 1) {
         $page_id = 0;
         $article_id = 0;
         $article_html = '';
-        
-        $language = new LanguagesController();
-        $language = ($language->postGetLanguage())? $language->postGetLanguage()->id:1;
-$menu_item=($menu_item=='')? 'home':$menu_item;
-        $menu_item = cms_menus_items::where(['name' => $menu_item])->first();
 
+        $language = new LanguagesController();
+        $language = ($language->postGetLanguage()) ? $language->postGetLanguage()->id : 1;
+
+        if (!cms_menus_items::first() && $menu_item == '') {
+            return view('cms::static_pages/home');
+        }
+        $menu_item = ($menu_item == '') ? 'home' : $menu_item;
+        $menu_item = cms_menus_items::where(['name' => $menu_item])->first();
         if (empty($menu_item)) {
 
             return view('errors/404');
@@ -298,23 +304,23 @@ $menu_item=($menu_item=='')? 'home':$menu_item;
             if ($language > 1) {
                 $translate_results = cms_articles_languages::where(['cms_articles_id' => $article_id, 'cms_languages_id' => $language])->first();
             }
-            
+
             $original_article = (count($results)) ? $results->body : '';
-            $translate_article = ($translate_results !== 0 && count($translate_results)) ? $translate_results->body: '';
+            $translate_article = ($translate_results !== 0 && count($translate_results)) ? $translate_results->body : '';
             $article_html = ($translate_article !== '') ? $translate_article : $original_article;
             $article = cms_articles::find($article_id);
-           
+
             if ($results) {
                 $page_id = $article->page_id;
             }
         }
 
-        return $this->website($page_id, $article_html,$language);
+        return $this->website($page_id, $article_html, $language);
     }
 
     /* ________________________________________________________END________render_page */
 
-    private function getPageMoudules($page_id, $article_html = '',$language=1) {
+    private function getPageMoudules($page_id, $article_html = '', $language = 1) {
         $modules_list_controller = new ModulesListController();
         $modules_list = $modules_list_controller->modules_list();
 
@@ -345,15 +351,16 @@ $menu_item=($menu_item=='')? 'home':$menu_item;
 
                 case -1:
                     $menu = new MenusController();
-                    $module_html.= $menu->render_menu($page_module->module_id,$language);
+                    $module_html.= $menu->render_menu($page_module->module_id, $language);
                     break;
 
                 case -2:
                     $module_html.= $article_html;
                     break;
                 default:
-           if(!isset($modules_list[$page_module->type])) break;
-                    $module_html.= $modules_list_controller->index($modules_list[$page_module->type], $page_module->module_id,$language);
+                    if (!isset($modules_list[$page_module->type]))
+                        break;
+                    $module_html.= $modules_list_controller->index($modules_list[$page_module->type], $page_module->module_id, $language);
             }
             $module_html.='</div>';
             array_push($positions[$page_module->position], $module_html);
@@ -365,9 +372,9 @@ $menu_item=($menu_item=='')? 'home':$menu_item;
 
     private function getPageMoudulesName($page_id, $article_html = '') {
 
-              $modules_list_controller = new ModulesListController;
+        $modules_list_controller = new ModulesListController;
         //$modules_list = $modules_list_controller->modules_list();
- 
+
         $query_string = "select *,id  from  cms_pages_contents as first_table   where
        (all_pages=0)
        or
@@ -375,41 +382,47 @@ $menu_item=($menu_item=='')? 'home':$menu_item;
        or
       (all_pages=2 and not '$page_id' in (select pages_id from cms_pages_contents_pages where pages_contents_id=first_table.id and pages_id=$page_id) )
                 order by `order` "
-               ;
+        ;
 
         $page_modules = DB::select($query_string);
         $float_array = [0 => 'float', 1 => 'left', 2 => 'right'];
         $display_array = [0 => 'display', 1 => 'inline', 2 => 'block'];
         $positions = [];
-        
+
         foreach ($page_modules as $page_module) {
-        $positions[$page_module->position] = [];}
-        foreach ($page_modules as $page_module) { 
+            $positions[$page_module->position] = [];
+        }
+        foreach ($page_modules as $page_module) {
             $float = ($page_module->float != 0) ? 'float:' . $float_array[$page_module->float] . ';' : '';
             $display = ($page_module->display != 0) ? 'display:' . $display_array[$page_module->display] . ';' : '';
 
-            $module_html = '<div id="'.$page_module->type.'" value="'.$page_module->module_id.'" content_id="' . $page_module->id . '"  float="'.$page_module->float.'"  all_pages="'.$page_module->all_pages.'" selected_pages="'.$page_id.'" class="module_list_button reorderable" onclick="show_module_config_form($(this));"  draggable="true">';
+            $module_html = '<div id="' . $page_module->type . '" value="' . $page_module->module_id . '" content_id="' . $page_module->id . '"  float="' . $page_module->float . '"  all_pages="' . $page_module->all_pages . '" selected_pages="' . $page_id . '" class="module_list_button reorderable" onclick="show_module_config_form($(this));"  draggable="true">';
             $module_html.= $modules_list_controller->getPageModulesName($page_module->type, $page_module->module_id);
             $module_html.='</div>';
             array_push($positions[$page_module->position], $module_html);
         }
         return $positions;
-    }//getPageMoudules($page_id){
-    
-    public function getPageModuleConfig(){
-        $module_id=Input::get('module_id');
-        $pages= cms_pages_contents_pages::where('pages_contents_id',$module_id)->get();
-        $pages_array=[];
-        foreach($pages as $page){array_push($pages_array,$page->pages_id); }
+    }
+
+//getPageMoudules($page_id){
+
+    public function getPageModuleConfig() {
+        $module_id = Input::get('module_id');
+        $pages = cms_pages_contents_pages::where('pages_contents_id', $module_id)->get();
+        $pages_array = [];
+        foreach ($pages as $page) {
+            array_push($pages_array, $page->pages_id);
+        }
         return implode(',', $pages_array);
-    }//getPageModuleConfig($module_id){}
-    
-    
+    }
+
+//getPageModuleConfig($module_id){}
+
     private function getPageMoudulesName2($page_id, $article_html = '') {
 
-              $modules_list_controller = new ModulesListController;
+        $modules_list_controller = new ModulesListController;
         //$modules_list = $modules_list_controller->modules_list();
- 
+
         $query_string = "select *,id  from  cms_pages_contents as first_table   where
        (all_pages=0)
        or
@@ -417,25 +430,27 @@ $menu_item=($menu_item=='')? 'home':$menu_item;
        or
       (all_pages=2 and not '$page_id' in (select pages_id from cms_pages_contents_pages where pages_contents_id=first_table.id and pages_id=$page_id) )
                 order by `order` "
-               ;
+        ;
 
         $page_modules = DB::select($query_string);
         $float_array = [0 => 'float', 1 => 'left', 2 => 'right'];
         $display_array = [0 => 'display', 1 => 'inline', 2 => 'block'];
         $positions = [];
-        
+
         foreach ($page_modules as $page_module) {
-        $positions[$page_module->position] = [];}
-        foreach ($page_modules as $page_module) { 
+            $positions[$page_module->position] = [];
+        }
+        foreach ($page_modules as $page_module) {
             $float = ($page_module->float != 0) ? 'float:' . $float_array[$page_module->float] . ';' : '';
             $display = ($page_module->display != 0) ? 'display:' . $display_array[$page_module->display] . ';' : '';
 
-            $module_html = '<div id="'.$page_module->type.'" value="'.$page_module->module_id.'" content_id="' . $page_module->id . '"  float="'.$page_module->float.'"  all_pages="'.$page_module->all_pages.'" selected_pages="'.$page_id.'" class="module_list_button reorderable" onclick="show_module_config_form($(this));" draggable="true">';
+            $module_html = '<div id="' . $page_module->type . '" value="' . $page_module->module_id . '" content_id="' . $page_module->id . '"  float="' . $page_module->float . '"  all_pages="' . $page_module->all_pages . '" selected_pages="' . $page_id . '" class="module_list_button reorderable" onclick="show_module_config_form($(this));" draggable="true">';
             $module_html.= $modules_list_controller->getPageModulesName($page_module->type, $page_module->module_id);
             $module_html.='</div>';
             array_push($positions[$page_module->position], $module_html);
         }
         return $positions;
-    }//getPageMoudules($page_id){
-    
+    }
+
+//getPageMoudules($page_id){
 }

@@ -21,13 +21,6 @@ class CmsLanguagesTableSeeder extends Seeder {
                     "dir"=>'ltr',
                 ]);
                 
-                DB::table('cms_pages')->insert([
-                    "id"=>"1",
-                    "name"=>'English',
-                    "charset"=>'utf8',
-                    "code"=>'en',
-                    "dir"=>'ltr',
-                ]);
                 
 		// $this->call("OthersTableSeeder");
 	}

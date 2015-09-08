@@ -2,7 +2,6 @@
 <?php
 
 use Pingpong\Widget\WidgetFacade;
-
 Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => 'Modules\Cms\Http\Controllers'], function() {
     
         Route::controller('pages','PagesController',['getPagesList'=>'cms.pagesList']);
@@ -15,7 +14,7 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespa
         Route::controller('modules', 'ModulesListController');
 });
 
-Route::get('/{page_name}', 'Modules\Cms\Http\Controllers\PagesController@getRenderPage');
+//Route::get('/{page_name}', 'Modules\Cms\Http\Controllers\PagesController@getRenderPage');
 
 
 
