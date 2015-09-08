@@ -23,8 +23,8 @@
 					<ul class="nav navbar-nav pull-right right-navbar-nav">
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
-								<img src="data:image/jpeg;base64, current_user()->getAvatar() " alt="">
-								<span> current_user()->getName()  </span>
+								<img src="data:image/jpeg;base64,{{ current_user()->getAvatar() }}" alt="">
+								<span>{{ current_user()->getName() }} </span>
 							</a>
 							<ul class="dropdown-menu">
 								<li>

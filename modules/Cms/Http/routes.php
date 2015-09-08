@@ -3,7 +3,7 @@
 
 use Pingpong\Widget\WidgetFacade;
 
-Route::group(['prefix' => 'cms', 'namespace' => 'Modules\Cms\Http\Controllers'], function() {
+Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => 'Modules\Cms\Http\Controllers'], function() {
     
         Route::controller('pages','PagesController',['getPagesList'=>'cms.pagesList']);
         Route::controller('menus','MenusController',['getMenusList'=>'cms.menusList']);

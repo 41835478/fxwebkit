@@ -9,10 +9,10 @@ class User
 
 	public function __construct()
 	{
-		$this->oUser = Sentinel::check();
-	}
+        $this->oUser = Sentinel::check();
+    }
 
-	public function getUser()
+    public function getUser()
 	{
 		return $this->oUser;
 	}
