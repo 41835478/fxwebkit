@@ -36,7 +36,7 @@ class MenusController extends Controller {
         $languages=  cms_languages::lists('name','id');
          $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):1;
         //$menu_items = cms_menus_items::with('cms_menus_items', 'page', 'article')->where('menu_id', $selected_id)->get();
-        $menu_items = cms_menus_items::with(['cms_menus_items_languages' => function($query) use($selected_language)
+        $menu_items = cms_menus_items::with(['article'=>function($query){$query->where('page_id',"!=","0");},'cms_menus_items','page','cms_menus_items_languages' => function($query) use($selected_language)
 {$query->where('cms_languages_id', '=', $selected_language);}])->where('menu_id',$selected_id)->get();
 
 
@@ -87,7 +87,7 @@ $hide_icons=["fa fa-eye","fa fa-eye-slash"];
         $pages = cms_pages::lists('title', 'id');
         $disable_array = ['0' => 'enable', '1' => 'disable'];
         $hide_array = ['0' => 'show', '1' => 'hide'];
-        $articles = cms_articles::lists('title', 'id');
+        $articles = cms_articles::where('page_id','>',0)->lists('title', 'id');
         $asset_folder = Config::get('cms.asset_folder');
 
 
