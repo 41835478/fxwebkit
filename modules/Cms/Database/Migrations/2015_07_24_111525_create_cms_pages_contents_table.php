@@ -23,13 +23,18 @@ class CreateCmsPagesContentsTable extends Migration {
             $table->increments('id');
             $table->string("module_id",255)->nullable(); //
             $table->integer('type');
-            $table->integer('page_id');
+            $table->integer('page_id')->unsigned();
             $table->string('module_name')->nullable();
             $table->integer('order'); //order in the position 
             $table->integer('float'); //to let the module or content go right or left  but here we have to get care when we build the theme (main template ) and use clear:both property in css 
             $table->integer('display'); //inline or block ; to let the content in seprit line
             $table->string('position'); //we save name of position which will be in id of container in .blade.php file
             $table->boolean('all_pages'); //if true it will be in all pages and this condition wil has the first priorty  
+            
+            $table->foreign('page_id')
+                    ->references('id')->on('cms_pages')
+                    ->onDelete('cascade');
+        
   $table->timestamps();
       
 //            $table->string('pages'); //we will save allowed pages -1-3-  and search with 'like' condition 

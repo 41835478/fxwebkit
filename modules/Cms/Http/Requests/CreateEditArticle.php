@@ -23,8 +23,7 @@ class CreateEditArticle extends FormRequest {
     public function rules() {
         return [
             'title' => 'required',
-            'editor1' => 'required',
-            'page_id' => 'required'
+            'editor1' => 'required'
         ];
     }
 

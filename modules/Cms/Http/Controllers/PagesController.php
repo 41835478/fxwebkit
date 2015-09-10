@@ -100,8 +100,10 @@ class PagesController extends Controller {
             return Redirect::to('cms/pages/develop-theme-view/' . Input::get('page_id'));
         }
         if (null !== Input::get('remove_page_submit')) {
-
-            $page_module = cms_pages::find(Input::get('remove_page_submit'));
+            $page_id = Input::get('remove_page_submit');
+            $menu_item = cms_menus_items::where(['type' => '0', 'page_id' => $page_id]);
+            $menu_item->delete();
+            $page_module = cms_pages::find($page_id);
             $page_module->delete();
             return Redirect::route('cms.pagesList');
         }

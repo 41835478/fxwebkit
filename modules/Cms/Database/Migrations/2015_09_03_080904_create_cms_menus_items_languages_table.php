@@ -16,9 +16,17 @@ class CreateCmsMenusItemsLanguagesTable extends Migration {
         {
             $table->increments('id');
 
-$table->integer('cms_menus_items_id');
-$table->integer('cms_languages_id');
+$table->integer('cms_menus_items_id')->unsigned();
+$table->integer('cms_languages_id')->unsigned();
 $table->string('translate');
+
+            $table->foreign('cms_menus_items_id')
+                    ->references('id')->on('cms_menus_items')
+                    ->onDelete('cascade');
+            
+            $table->foreign('cms_languages_id')
+                    ->references('id')->on('cms_languages')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

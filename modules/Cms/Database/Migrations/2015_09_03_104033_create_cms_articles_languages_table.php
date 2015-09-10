@@ -16,10 +16,19 @@ class CreateCmsArticlesLanguagesTable extends Migration {
         {
             $table->increments('id');
             
-$table->integer('cms_articles_id');
-$table->integer('cms_languages_id');
+$table->integer('cms_articles_id')->unsigned();
+$table->integer('cms_languages_id')->unsigned();
 $table->string('title',255);
 $table->text('body');
+
+
+            $table->foreign('cms_articles_id')
+                    ->references('id')->on('cms_articles')
+                    ->onDelete('cascade');
+            
+            $table->foreign('cms_languages_id')
+                    ->references('id')->on('cms_languages')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

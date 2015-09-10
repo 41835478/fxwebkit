@@ -49,7 +49,7 @@
                 
                     </td>
                     <td>
-                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'remove_page_submit' ,'class'=>'icon_button red_icon','type'=>'submit','value'=>$key ]) !!}
+                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'remove_page_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete page with all it\'s relatives")) return false;','class'=>'icon_button red_icon','type'=>'submit','value'=>$key ]) !!}
                         {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'page_id' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$key ]) !!}
                     </td>
                 <tr>

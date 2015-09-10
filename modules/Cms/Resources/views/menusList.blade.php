@@ -54,7 +54,7 @@
                     <td >{{ $menu->title }}</td>
                  
                     <td>
-                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_menu_submit' ,'class'=>'icon_button red_icon','type'=>'submit','value'=>$menu->id ]) !!}
+                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_menu_submit' ,'class'=>'icon_button red_icon','onclick'=>'if(!confirm("Are you sure you want to delete menu with all links in it")) return false;','type'=>'submit','value'=>$menu->id ]) !!}
                         {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'selected_id' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$menu->id ]) !!}
                     </td>
                 <tr>

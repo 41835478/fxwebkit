@@ -35,7 +35,7 @@
                 
                     
                     <td>
-                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_customHtml_submit' ,'class'=>'icon_button red_icon','type'=>'submit','value'=>$key ]) !!}
+                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_customHtml_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete custom html with its links")) return false;','class'=>'icon_button red_icon','type'=>'submit','value'=>$key ]) !!}
                         {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_customHtml_page' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$key ]) !!}
                     </td>
                 <tr>

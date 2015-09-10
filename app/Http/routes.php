@@ -27,8 +27,8 @@ if (class_exists("Module") && Module::find('cms')) {
     Route::get('/{page_name}', '\Modules\Cms\Http\Controllers\PagesController@getRenderPage');
 
     Route::group(['prefix' => env('CLIENT_NAME'), 'namespace' => 'Client'], function () {
-    require_once __DIR__ . "/Routes/Client/Dashboard.php";
-    require_once __DIR__ . "/Routes/Client/Auth.php";
+        require_once __DIR__ . "/Routes/Client/Dashboard.php";
+        require_once __DIR__ . "/Routes/Client/Auth.php";
     });
 } else {
 

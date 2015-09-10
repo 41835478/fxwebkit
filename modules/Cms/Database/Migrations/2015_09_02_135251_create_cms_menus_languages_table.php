@@ -15,9 +15,17 @@ class CreateCmsMenusLanguagesTable extends Migration {
         Schema::create('cms_menus_languages', function(Blueprint $table)
         {
             $table->increments('id');
-$table->integer('cms_menus_id');
-$table->integer('cms_languages_id');
+$table->integer('cms_menus_id')->unsigned();
+$table->integer('cms_languages_id')->unsigned();
 $table->text('translate');
+
+            $table->foreign('cms_menus_id')
+                    ->references('id')->on('cms_menus')
+                    ->onDelete('cascade');
+            
+            $table->foreign('cms_languages_id')
+                    ->references('id')->on('cms_languages')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

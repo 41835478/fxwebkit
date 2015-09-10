@@ -17,6 +17,14 @@ class CreateCmsPagesContentsPagesTable extends Migration {
             $table->integer('pages_id')->unsigned();
             $table->integer('pages_contents_id')->unsigned();
 
+            $table->foreign('pages_id')
+                    ->references('id')->on('cms_pages')
+                    ->onDelete('cascade');
+            
+            $table->foreign('pages_contents_id')
+                    ->references('id')->on('cms_pages_contents')
+                    ->onDelete('cascade');
+  
         });
     }
 

@@ -16,10 +16,18 @@ class CreateCmsCustomHtmlLanguagesTable extends Migration {
         {
             $table->increments('id');
             
-$table->integer('cms_customHtml_id');
-$table->integer('cms_languages_id');
+$table->integer('cms_customHtml_id')->unsigned();
+$table->integer('cms_languages_id')->unsigned();
 $table->string('title',255);
 $table->text('body');
+
+            $table->foreign('cms_customHtml_id')
+                    ->references('id')->on('cms_customHtml')
+                    ->onDelete('cascade');
+            
+            $table->foreign('cms_languages_id')
+                    ->references('id')->on('cms_languages')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }
