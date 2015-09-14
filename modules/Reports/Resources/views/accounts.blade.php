@@ -56,6 +56,26 @@
 			</div>
 		</div>
 		<div class="col-sm-10 ">
+			@include('admin.partials.messages')
+
+			@if (count($oResults))
+				<div class="stat-panel no-margin-b">
+					<div class="stat-row">
+						<div class="stat-counters bg-info no-padding text-center">
+							<div class="stat-cell col-xs-4 padding-xs-vr">
+								<span class="text-xs">Total Results {{ $oResults->total() }}</span>
+							</div>
+							<div class="stat-cell col-xs-4 padding-xs-vr">
+								<span class="text-xs">Results From {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }}</span>
+							</div>
+							<div class="stat-cell col-xs-4 padding-xs-vr">
+								<span class="text-xs">Page {{ $oResults->currentPage() }} of {{ $oResults->lastPage() }}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="padding-xs-vr"></div>
+			@endif
 
 			<div class="table-info">
 				<div class="table-header">
@@ -122,7 +142,6 @@
 		
 
 			$('#all-groups-chx').change(function(){
-                            
                             
 				if ($('#all-groups-chx').prop('checked')) {
 					$('#all-groups-slc').attr('disabled', 'disabled');
