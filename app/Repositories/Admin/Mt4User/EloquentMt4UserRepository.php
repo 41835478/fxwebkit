@@ -30,7 +30,8 @@ class EloquentMt4UserRepository implements Mt4UserContract
 	public function getLoginsInGroup($aGroups, $sOrderBy = 'LOGIN', $sSort = 'ASC')
 	{
 		if (is_string($aGroups)) {
-			$aGroups = [$aGroups];
+                    
+			$aGroups = explode(',', $aGroups);
 		}
 
 		$oUsers = Mt4User::whereIn('GROUP', $aGroups)->select('LOGIN')->get();
@@ -42,6 +43,9 @@ class EloquentMt4UserRepository implements Mt4UserContract
 
 		return $aUsers;
 	}
+        public function getAllGroups(){
+            return Mt4User::select('group')->get();
+        }
 	public function getUsersByFilters($aFilters, $bFullSet=false, $sOrderBy = 'login', $sSort = 'ASC')
 	{
 		$oResult =  new Mt4User();

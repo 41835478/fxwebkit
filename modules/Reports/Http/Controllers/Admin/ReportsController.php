@@ -226,7 +226,7 @@ class ReportsController extends Controller
 
 	public function getAccounts(AccountsRequest $oRequest)
 	{
-		$oGroups = $this->oMt4Group->getAllGroups();
+		$oGroups = $this->oMt4User->getAllGroups();
 		$sSort = ($oRequest->sort)? $oRequest->sort:'asc';
 		$sOrder =($oRequest->order)? $oRequest->order:'login' ;
 		$aGroups = [];
