@@ -1,59 +1,61 @@
 @extends('admin.layouts.main')
 @section('title', trans('reports::reports.accounts'))
 @section('content')
-<style type="text/css">
-    #content-wrapper{ padding: 0px; margin: 0px;}
-    .nav-input-div{padding:7px;}
-    .mail-container-header{
-        border-bottom: 1px solid #ccc;
-        margin-bottom: 7px;
-        padding: 5px !important;
-    }
-    .center_page_all_div{ padding: 0px 10px;}
-</style>
-	<div class="  theme-default page-mail" >
-            <div class="mail-nav" >
-		<div class="navigation">{!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
-			<ul class="sections">
-            <li class="active"><a href="#"><i class="fa fa-search"></i>search </a></li>
-                            <li><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control  input-sm']) !!}</div> </li>
-				<li><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
-                                <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}</div></li>
-				<li>
-                                        
-                                    <div class=" nav-input-div form-group ">
+	<div class="page-header  ">
+		<h1>{{ trans('reports::reports.accounts') }}</h1>
+	</div>
+
+	<div class="row">
+
+            <div class="col-sm-2" >
+			<div class="panel panel-info panel-dark">
+				<div class="panel-heading">
+					<span class="panel-title">
+						<i class="panel-title-icon fa fa-search"></i>
+						{{ trans('general.Search') }}
+					</span>
+				</div>
+				{!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
+				<div class="panel-body">
+
+					<div class="row form-group no-border-t no-padding-t">
+						{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}
+					</div>
+					<div class="row form-group no-border-t no-padding-t">
+						{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}
+					</div>
+
+					<div class="row form-group no-border-t no-padding-t">
+						{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}
+					</div>
+
+                                    <div class=" row form-group ">
                                 						<div class="checkbox">
 							<label>
 								{!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
 								<span class="lbl">{{ trans('reports::reports.AllGroups') }}</span>
 							</label>
 						</div>
-                                        {!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','id'=>'all-groups-slc']) !!}
                                     </div>
-                                       
-                                        </li>
-
+                            
                                     
-                                    <li><div  class=" nav-input-div  ">
-                                        {!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-                                        </div></li>
-				<li class="divider"></li>
-			</ul>
-                    
-                    
+                                    <div class=" row form-group no-border-t no-padding-t ">
+                                {!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','id'=>'all-groups-slc']) !!}
+                                    </div>
+                             
+					
+
+				</div>
+
+				<div class="panel-footer text-right">
+					{!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+				</div>
 				{!! Form::hidden('sort', $aFilterParams['sort']) !!}
 				{!! Form::hidden('order', $aFilterParams['order']) !!}
 				{!! Form::close() !!}
-						
-					
 			</div>
 		</div>
-                        
-            <div class="mail-container " >
-	<div class="mail-container-header">
-		{{ trans('reports::reports.accounts') }}
-	</div>
-                <div class="center_page_all_div">
+		<div class="col-sm-10 ">
 			@include('admin.partials.messages')
 
 			@if (count($oResults))
@@ -134,8 +136,6 @@
 				</div>
 			</div>
 		</div>
-                </div>
-                </div>
 	</div>
 	<script>
 		init.push(function () {
