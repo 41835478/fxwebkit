@@ -13,7 +13,7 @@ return [
 	'AllSymbols' => 'All Symbols',
     
     
-    'Accounts' => 'Accounts',
+    'accounts' => 'Accounts',
     'Login' => 'Log In',
     'Name' => 'Name',
     'Group' => 'Group',

@@ -20,7 +20,7 @@ return [
 		[
 			'route' => 'admin.reports.accounts',
 			'title' => 'accounts',
-			'icon' => 'fa-folder-open-o',
+			'icon' => 'fa fa-user',
 		]
 	]
 ];

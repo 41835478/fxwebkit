@@ -1,8 +1,8 @@
 @extends('admin.layouts.main')
-@section('title', trans('reports::reports.Accounts'))
+@section('title', trans('reports::reports.accounts'))
 @section('content')
 	<div class="page-header  ">
-		<h1>{{ trans('reports::reports.Accounts') }}</h1>
+		<h1>{{ trans('reports::reports.accounts') }}</h1>
 	</div>
 
 	<div class="row">
@@ -80,7 +80,7 @@
 			<div class="table-info">
 				<div class="table-header">
 					<div class="table-caption">
-						{{ trans('reports::reports.Accounts') }}
+						{{ trans('reports::reports.accounts') }}
 
 						@if (count($oResults))
 							<div class="panel-heading-controls">
