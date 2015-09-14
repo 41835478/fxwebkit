@@ -102,7 +102,11 @@ if (!function_exists('th_sort')) {
 			$sUrl .= '?';
 			foreach ($aParams as $sKey => $sValue) {
 				if (!in_array($sKey, ['order', 'sort'])) {
+                                    if(!is_array($sValue)){
 					$sUrl .= $sKey.'='.$sValue.'&';
+                                    }else{
+                                        $sUrl .= $sKey.'='.implode(',',$sValue).'&';
+                                    }
 				}
 			}
 
