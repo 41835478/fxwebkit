@@ -16,6 +16,11 @@ return [
 			'route' => 'admin.reports.openOrders',
 			'title' => 'OpenOrders',
 			'icon' => 'fa-folder-open-o',
+		],
+		[
+			'route' => 'admin.reports.accounts',
+			'title' => 'accounts',
+			'icon' => 'fa-folder-open-o',
 		]
 	]
 ];

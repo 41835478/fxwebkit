@@ -10,5 +10,14 @@ return [
 	'FromDate' => 'From Date',
 	'ToDate' => 'To Date',
 	'AllGroups' => 'All Groups',
-	'AllSymbols' => 'All Symbols'
+	'AllSymbols' => 'All Symbols',
+    
+    
+    'Accounts' => 'Accounts',
+    'Login' => 'Log In',
+    'Name' => 'Name',
+    'Group' => 'Group',
+    'Equity' => 'Equity',
+    'Balance' => 'Balance',
+    'Comments' => 'Comments'
 ];

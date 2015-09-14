@@ -67,7 +67,7 @@
                         {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_menu_item_id' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$item->id ]) !!}
                     </td>
                 <tr> 
-                    @endif;
+                    @endif
                     @endforeach
             </tbody>
         </table>
@@ -88,7 +88,9 @@
             <th></th>
             </thead>
             <tbody>
-                @foreach($menu_items as $item)
+                @foreach($menu_items as $item)   
+                @if($item->type == 1 && $item->article['title']=='')
+                @else
                 <tr>
                     <td >{{ $item->id }}</td>
                     <td >{{ $item->name }}</td>
@@ -102,6 +104,7 @@
                         {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'remove_menu_item_submit' ,'class'=>'icon_button red_icon','type'=>'submit','value'=>$item->id ]) !!}
                     </td>
                 <tr>
+                    @endif
                     @endforeach
             </tbody>
         </table>
