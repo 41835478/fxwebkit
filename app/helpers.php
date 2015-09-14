@@ -98,8 +98,8 @@ if (!function_exists('th_sort')) {
 		$sUrl = route($sRouteName);
 		$aArrow = '';
 
-		if (count($aParams)) {
 			$sUrl .= '?';
+		if (count($aParams)) {
 			foreach ($aParams as $sKey => $sValue) {
 				if (!in_array($sKey, ['order', 'sort'])) {
                                     if(!is_array($sValue)){
@@ -110,9 +110,11 @@ if (!function_exists('th_sort')) {
 				}
 			}
 
+		}
+
 			$sUrl .= 'order='.$sCol;
 
-			if ($aParams['order'] == $sCol) {
+			if (isset($aParams['order']) && $aParams['order'] == $sCol) {
 				if ($aParams['sort'] == 'ASC') {
 					$sSort = 'DESC';
 					$aArrow = ' <i class="fa fa-chevron-down"></i>';
@@ -121,12 +123,10 @@ if (!function_exists('th_sort')) {
 					$aArrow = ' <i class="fa fa-chevron-up"></i>';
 				}
 			} else {
-				$sSort = $aParams['sort'];
+				$sSort = 'desc';
 			}
 
 			$sUrl .= '&sort='.$sSort;
-		}
-
 		return '<a href="'.$sUrl.'">'.$sText.$aArrow.'</a>';
 	}
 }
