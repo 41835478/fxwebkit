@@ -43,7 +43,7 @@
 						</div>
                        </div></li>
                    <li>
-                   <div class=" form-group nav-input-div">
+                   <div class="   nav-input-div">
 						<div class="checkbox">
 							<label>
 								{!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
@@ -54,7 +54,7 @@
                    </li>
                    <li><div  class=" nav-input-div  ">{!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-groups-slc']) !!}</div></li>
                    <li>
-					<div class=" form-group nav-input-div">
+					<div class="  nav-input-div">
 						<div class="checkbox">
 							<label>
 								{!! Form::checkbox('all_symbols', 1, $aFilterParams['all_symbols'], ['class'=>'px','id'=>'all-symbols-chx']) !!}
