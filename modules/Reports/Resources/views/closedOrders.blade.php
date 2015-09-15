@@ -1,190 +1,95 @@
 @extends('admin.layouts.main')
 @section('title', trans('reports::reports.ClosedOrders'))
 @section('content')
-	<div class="page-header  ">
-		<h1>{{ trans('reports::reports.ClosedOrders') }}</h1>
-	</div>
 
-	<div class="row">
             <!-- ______________________________________-->
-            <div class=" theme-default page-mail "style="display: none" >
-            <div class="mail-nav ">
-		<div class="navigation">
+          <style type="text/css">
+    #content-wrapper{ padding: 0px; margin: 0px !important;height: auto; overflow:visible !important ;}
+    .nav-input-div{padding:7px;}
+    .mail-container-header{
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 7px;
+        padding: 5px !important;
+    }
+      .theme-default .page-mail{ overflow: visible;height: auto; min-height: 800px;}
+    .center_page_all_div{ padding: 0px 10px;}
+    .mail-nav .navigation{margin-top: 35px;}
+</style>
+<div class="  theme-default page-mail" >
+    <div class="mail-nav" >
+        <div class="navigation">
+				{!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
+                                <ul class="sections" >
+                <li class="active"><a href="#"> <i class="fa fa-search"></i> search </a></li>
+                <li><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
+                <li><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
+                <li><div  class=" nav-input-div  ">
                     
-				{!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
-                                
-			<div class="mail-nav-header">Search</div>
-			<ul class="sections">
-				<li  >
-                                    <div class=" form-group ">
-                                {!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}
-                                    </div>
-                                </li>
-                                <li  >
-                                    <div class=" form-group ">
-                                {!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}
-                                    </div>
-                                    </li>
-                                    
-				<li class="divider"></li>
-				<li>
-                                
-                                    <div class=" form-group ">
 						<div class="input-group date datepicker-warpper">
 							{!! Form::text('from_date', $aFilterParams['from_date'], ['placeholder'=>trans('reports::reports.FromDate'),'class'=>'form-control input-sm']) !!}
 							<span class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							</span>
 						</div>
-                                    </div>
-                                </li>
-				<li>
-                                    <div class=" form-group">
-                                    						<div class="input-group date datepicker-warpper">
+                    </div></li>
+                
+                
+                   <li><div  class=" nav-input-div  ">
+                       <div class="input-group date datepicker-warpper">
 							{!! Form::text('to_date', $aFilterParams['to_date'], ['placeholder'=>trans('reports::reports.ToDate'),'class'=>'form-control input-sm']) !!}
 							<span class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							</span>
 						</div>
-                                    </div>
-                                </li>
-                                
-				<li class="divider"></li>
-				<li>
-                                    <div class=" form-group ">
-                                						<div class="checkbox">
+                       </div></li>
+                   <li>
+                   <div class=" form-group nav-input-div">
+						<div class="checkbox">
 							<label>
 								{!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
 								<span class="lbl">{{ trans('reports::reports.AllGroups') }}</span>
 							</label>
 						</div>
-                                    </div>
-                                </li>
-				<li>
-                                    
-                                    <div class=" form-group ">
-                                {!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-groups-slc']) !!}
-                                    </div>
-                                </li>
-				<li class="divider"></li>
-                                <li>
-                                    
-                                    <div class=" form-group ">
-                                						<div class="checkbox">
+					</div>
+                   </li>
+                   <li><div  class=" nav-input-div  ">{!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-groups-slc']) !!}</div></li>
+                   <li>
+					<div class=" form-group nav-input-div">
+						<div class="checkbox">
 							<label>
 								{!! Form::checkbox('all_symbols', 1, $aFilterParams['all_symbols'], ['class'=>'px','id'=>'all-symbols-chx']) !!}
 								<span class="lbl">{{ trans('reports::reports.AllSymbols') }}</span>
 							</label>
 						</div>
-                                    </div>
-                                </li>
-                                <li>
-                                    
-                                    <div class=" form-group">
-                                    {!! Form::select('symbol[]', $aSymbols, $aFilterParams['symbol'], ['multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-symbols-slc']) !!}
-                                    </div>
-                                </li>
-                                <li class="divider"></li>
-                                	<li>
-                                            
-                                    <div class=" form-group">
-						{!! Form::select('type', $aTradeTypes, $aFilterParams['type'], ['class'=>'form-control  input-sm']) !!}
-                                    </div>
-					</li>
+					</div>
+                   </li>
+                   <li><div  class=" nav-input-div  ">{!! Form::select('symbol[]', $aSymbols, $aFilterParams['symbol'], ['multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-symbols-slc']) !!}</div></li>
+                   <li><div  class=" nav-input-div  ">{!! Form::select('type', $aTradeTypes, $aFilterParams['type'], ['class'=>'form-control  input-sm']) !!}</div></li>
+          
 
-				
-				<li>
-                                    
-                                    <div class=" form-group ">
+
+
+                <li><div  class=" nav-input-div  ">
 					{!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-                                    </div>
-				</li>
-			</ul>
+                    </div></li>
+                <li class="divider"></li>
+            </ul>
 
-			
-                        
+
 				{!! Form::hidden('sort', $aFilterParams['sort']) !!}
 				{!! Form::hidden('order', $aFilterParams['order']) !!}
 				{!! Form::close() !!}
-		</div>
-	</div>
-                <div class="clearfix"></div>
-            </div>
+
+        </div>
+    </div>
             <!-- ___________________END___________________-->
-            <div class="col-sm-2" >
-			<div class="panel panel-info panel-dark">
-				<div class="panel-heading">
-					<span class="panel-title">
-						<i class="panel-title-icon fa fa-search"></i>
-						{{ trans('general.Search') }}
-					</span>
-				</div>
-				{!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
-				<div class="panel-body">
+            
 
-					<div class="row form-group no-border-t no-padding-t">
-						{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}
-					</div>
-					<div class="row form-group no-border-t no-padding-t">
-						{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}
-					</div>
-
-					<div class="row form-group">
-						<div class="input-group date datepicker-warpper">
-							{!! Form::text('from_date', $aFilterParams['from_date'], ['placeholder'=>trans('reports::reports.FromDate'),'class'=>'form-control input-sm']) !!}
-							<span class="input-group-addon">
-								<i class="fa fa-calendar"></i>
-							</span>
-						</div>
-					</div>
-					<div class="row form-group no-border-t no-padding-t">
-						<div class="input-group date datepicker-warpper">
-							{!! Form::text('to_date', $aFilterParams['to_date'], ['placeholder'=>trans('reports::reports.ToDate'),'class'=>'form-control input-sm']) !!}
-							<span class="input-group-addon">
-								<i class="fa fa-calendar"></i>
-							</span>
-						</div>
-					</div>
-
-					<div class="row form-group no-margin-b">
-						<div class="checkbox">
-							<label>
-								{!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
-								<span class="lbl">{{ trans('reports::reports.AllGroups') }}</span>
-							</label>
-						</div>
-					</div>
-					<div class="row form-group no-border-t no-padding-t">
-						{!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-groups-slc']) !!}
-					</div>
-
-					<div class="row form-group no-margin-b">
-						<div class="checkbox">
-							<label>
-								{!! Form::checkbox('all_symbols', 1, $aFilterParams['all_symbols'], ['class'=>'px','id'=>'all-symbols-chx']) !!}
-								<span class="lbl">{{ trans('reports::reports.AllSymbols') }}</span>
-							</label>
-						</div>
-					</div>
-					<div class="row form-group no-border-t no-padding-t">
-						{!! Form::select('symbol[]', $aSymbols, $aFilterParams['symbol'], ['multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-symbols-slc']) !!}
-					</div>
-
-					<div class="row form-group no-margin-b">
-						{!! Form::select('type', $aTradeTypes, $aFilterParams['type'], ['class'=>'form-control  input-sm']) !!}
-					</div>
-
-				</div>
-
-				<div class="panel-footer text-right">
-					{!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-				</div>
-				{!! Form::hidden('sort', $aFilterParams['sort']) !!}
-				{!! Form::hidden('order', $aFilterParams['order']) !!}
-				{!! Form::close() !!}
-			</div>
-		</div>
-		<div class="col-sm-10 ">
+    <div class="mail-container " >
+        <div class="mail-container-header">
+            {{ trans('reports::reports.ClosedOrders') }}
+        </div>
+        <div class="center_page_all_div">
 			@include('admin.partials.messages')
 
 			@if (count($oResults))
@@ -277,7 +182,9 @@
 				</div>
 			</div>
 		</div>
+    </div>
 	</div>
+</div>
 	<script>
 		init.push(function () {
 			var options = {

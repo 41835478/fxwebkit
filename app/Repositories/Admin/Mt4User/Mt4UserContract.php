@@ -13,5 +13,6 @@ interface Mt4UserContract
 	 */
 	public function getLoginsInGroup($aGroups, $sOrderBy = 'LOGIN', $sSort = 'ASC');
         	public function getUsersByFilters($aFilters, $bFullSet=false, $sOrderBy = 'LOGIN', $sSort = 'ASC');
+                 public function getAllGroups();
 
 }

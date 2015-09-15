@@ -255,8 +255,8 @@ class ReportsController extends Controller
 			$aFilterParams['group'] = $oRequest->group;
 			$aFilterParams['sort'] = $oRequest->sort;
 			$aFilterParams['order'] = $oRequest->order;
-		}
                 $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
+		}
                
 
 		if ($oRequest->has('export')) {
