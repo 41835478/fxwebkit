@@ -3,51 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Database/Migrations/2015_08_23_130021_create_cms_customHtml_table.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Http/Routes/Admin/Dashboard.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Entities/cms_menus_languages.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/pagesList.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/Mt4User/EloquentMt4UserRepository.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Resources/views/accounts.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Resources/lang/en/reports.php</file>
             <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/articlesList.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Database/Migrations/2015_09_03_104033_create_cms_customHtml_languages_table.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Http/routes.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Helpers/User.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/cms_menus.js</file>
-            <file>file:/F:/wamp/www/fxwebkit/resources/views/admin/partials/header.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Database/Migrations/2015_08_03_124230_create_cms_articles_table.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/menus.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Controllers/MenusController.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/themes/PixelAdmin-1.3.0/html/pages-inbox.html</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Entities/CmsMenus.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Controllers/ArticlesController.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/languagesList.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Controllers/CustomHtmlController.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Database/Migrations/2015_09_03_104033_create_cms_articles_languages_table.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Controllers/ModulesListController.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/helpers.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Controllers/LangugesController.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/themes/PixelAdmin-1.3.0/html/forms-advanced.html</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/customHtml.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/config/filesystems.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Database/Migrations/2015_08_04_142351_create_cms_languages_table.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/routes.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/cms_menus.css</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/menusList.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Database/Seeders/CmsLanguagesTableSeeder.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Resources/views/closedOrders.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Http/Routes/Admin/routes.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Http/Controllers/Admin/ReportsController.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Config/config.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Http/Requests/Admin/AccountsRequest.php</file>
             <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Http/routes.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Database/Seeders/CmsDatabaseSeeder.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/config/view.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/pages.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Controllers/LanguagesController.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/menusAddEditItem.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/config/app.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/resources/views/admin/partials/menu.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Requests/CreateLanguageRequest.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/customHtmlList.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Requests/CreateEditArticle.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Http/Controllers/PagesController.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/articles.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/public/cms_assets/main.css</file>
+            <file>file:/F:/wamp/www/fxwebkit/app/Providers/BusServiceProvider.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Http/Requests/Admin/ClosedTradesRequest.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/Mt4Group/Mt4GroupContract.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/themes/PixelAdmin-1.3.0/html/pages-inbox.html</file>
+            <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/Mt4Trade/EloquentMt4TradeRepository.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/Mt4User/Mt4UserContract.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Providers/ReportsServiceProvider.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/app/helpers.php</file>
         </group>
     </open-files>
 </project-private>

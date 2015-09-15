@@ -15,7 +15,7 @@
             <div class="mail-nav" >
 		<div class="navigation">{!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
 			<ul class="sections">
-            <li class="active"><a href="#"><i class="fa fa-search"></i>search </a></li>
+            <li class="active"><a href="#"> <i class="fa fa-search"></i> search </a></li>
                             <li><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control  input-sm']) !!}</div> </li>
 				<li><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
                                 <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}</div></li>
