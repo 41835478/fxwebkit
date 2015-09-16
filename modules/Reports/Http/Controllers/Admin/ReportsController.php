@@ -8,6 +8,7 @@ use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Modules\Reports\Http\Requests\Admin\ClosedTradesRequest;
 use Modules\Reports\Http\Requests\Admin\OpenTradesRequest;
 use Modules\Reports\Http\Requests\Admin\AccountsRequest;
+use Modules\Reports\Http\Requests\Admin\AccountStatementRequest;
 class ReportsController extends Controller
 {
 	/**
@@ -289,6 +290,45 @@ class ReportsController extends Controller
 		return view('reports::accounts')
 			->with('aGroups', $aGroups)
 			->with('oResults', $oResults)
+			->with('aFilterParams', $aFilterParams);
+	}
+
+        
+        
+	public function getAccountStatement(AccountStatementRequest $oRequest)
+	{
+		$oGroups = $this->oMt4User->getAllGroups();
+		$sSort = ($oRequest->sort)? $oRequest->sort:'asc';
+		$sOrder =($oRequest->order)? $oRequest->order:'login' ;
+		$aGroups = [];
+		$oResults = null;
+		$oOpenResults = null;
+		$oCloseResults = null;
+		$aFilterParams = [
+			'from_date' => '',
+			'to_date' => '',
+			'sort' => $sSort ,
+			'order' => $sOrder,
+		];
+
+
+		if ($oRequest->has('search')) {
+			$aFilterParams['from_date'] = $oRequest->from_date;
+			$aFilterParams['to_date'] = $oRequest->to_date;
+			$aFilterParams['sort'] = $oRequest->sort;
+			$aFilterParams['order'] = $oRequest->order;
+			$oOpenResults = $this->oMt4Trade->getOpenTradesByDate($aFilterParams, false, $sOrder, $sSort);
+			$oCloseResults = $this->oMt4Trade->getClosedTradesByDate($aFilterParams, false, $sOrder, $sSort);
+               
+		}
+               
+
+
+		return view('reports::accountStatement')
+			->with('aGroups', $aGroups)
+			->with('oResults', $oResults)
+			->with('oOpenResults', $oOpenResults)
+			->with('oCloseResults', $oCloseResults)
 			->with('aFilterParams', $aFilterParams);
 	}
 

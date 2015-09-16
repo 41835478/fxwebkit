@@ -156,6 +156,91 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 	 * @param string $sSort
 	 * @return object
 	 */
+	public function getOpenTradesByDate($aFilters, $bFullSet=false, $sOrderBy = 'TICKET', $sSort = 'ASC')
+	{
+		$oFxHelper = new Fx();
+		$oResult = Mt4Trade::where('CLOSE_TIME', '=', '1970-01-01 00:00:00');
+
+		/* =============== Date Filter  =============== */
+		if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
+			(isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
+
+			if (!empty($aFilters['from_date'])) {
+				$oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'].' 00:00:00');
+			}
+
+			if (!empty($aFilters['to_date'])) {
+				$oResult = $oResult->where('CLOSE_TIME', '<=', $aFilters['to_date'].' 23:59:59');
+			}
+		}
+
+		
+
+		$oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+		if (!$bFullSet) {
+			$oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+		} else {
+			$oResult = $oResult->get();
+		}
+
+		/* =============== Preparing Output  =============== */
+		foreach ($oResult as $dKey => $oValue) {
+			// Set CMD type
+			$oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
+			$oResult[$dKey]->VOLUME = $oValue->VOLUME/100;
+		}
+
+		return $oResult;
+	}
+        
+        
+        
+        public function getClosedTradesByDate($aFilters, $bFullSet=false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC')
+	{
+		$oFxHelper = new Fx();
+		$oResult = Mt4Trade::where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
+
+		/* =============== Date Filter  =============== */
+		if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
+			(isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
+
+			if (!empty($aFilters['from_date'])) {
+				$oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'].' 00:00:00');
+			}
+
+			if (!empty($aFilters['to_date'])) {
+				$oResult = $oResult->where('CLOSE_TIME', '<=', $aFilters['to_date'].' 23:59:59');
+			}
+		}
+
+		$oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+		if (!$bFullSet) {
+			$oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+		} else {
+			$oResult = $oResult->get();
+		}
+
+		/* =============== Preparing Output  =============== */
+		foreach ($oResult as $dKey => $oValue) {
+			// Set CMD type
+			$oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
+			$oResult[$dKey]->VOLUME = $oValue->VOLUME/100;
+		}
+
+		return $oResult;
+	}
+
+	/**
+	 * Gets the closed orders by filters
+	 *
+	 * @param array $aFilters
+	 * @param bool $bFullSet
+	 * @param string $sOrderBy
+	 * @param string $sSort
+	 * @return object
+	 */
 	public function getOpenTradesByFilters($aFilters, $bFullSet=false, $sOrderBy = 'TICKET', $sSort = 'ASC')
 	{
 		$oFxHelper = new Fx();

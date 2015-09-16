@@ -6,5 +6,6 @@ Route::group(['middleware' => ['authorize.admin'], 'namespace' => 'Http\Controll
 		'getClosedOrders' => 'admin.reports.closedOrders',
 		'getOpenOrders' => 'admin.reports.openOrders',
 		'getAccounts' => 'admin.reports.accounts',
+		'getAccountStatement' => 'admin.reports.accountStatement',
 	]);
 });

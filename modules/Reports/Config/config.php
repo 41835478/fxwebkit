@@ -21,6 +21,11 @@ return [
 			'route' => 'admin.reports.accounts',
 			'title' => 'accounts',
 			'icon' => 'fa fa-user',
+		],
+		[
+			'route' => 'admin.reports.accountStatement',
+			'title' => 'accountStatement',
+			'icon' => 'fa fa-gears',
 		]
 	]
 ];

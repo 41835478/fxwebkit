@@ -4,6 +4,8 @@ return [
 	'ModuleTitle' => 'Reports',
 	'OpenOrders' => 'Open Orders',
 	'ClosedOrders' => 'Closed Orders',
+    'accounts' => 'Accounts',
+    'accountStatement' => 'Account Statement',
 	'SearchClosedOrders' => 'Search Closed Orders',
 	'FromLogin' => 'From Login',
 	'ToLogin' => 'To Login',
@@ -13,7 +15,6 @@ return [
 	'AllSymbols' => 'All Symbols',
     
     
-    'accounts' => 'Accounts',
     'Login' => 'Log In',
     'Name' => 'Name',
     'Group' => 'Group',
