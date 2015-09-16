@@ -55,7 +55,9 @@ class EloquentMt4UserRepository implements Mt4UserContract
 	 * @return array
 	 */
         public function getUserInfo($login){
-            return Mt4User::where('LOGIN','=',$login)->get()[0];
+            $oResult=Mt4User::where('LOGIN','=',$login);
+            $oResult=$oResult->get();
+            return (count($oResult))? $oResult[0]:null;
         }
 	public function getUsersByFilters($aFilters, $bFullSet=false, $sOrderBy = 'login', $sSort = 'ASC')
 	{

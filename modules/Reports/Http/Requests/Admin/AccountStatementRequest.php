@@ -22,6 +22,8 @@ class AccountStatementRequest  extends Request {
 	public function rules()
 	{
 		return [
+                    
+                    
 			'from_date' => 'date',
 			'to_date' => 'date',
 		];

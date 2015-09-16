@@ -162,10 +162,10 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 		$oResult = Mt4Trade::where('CLOSE_TIME', '=', '1970-01-01 00:00:00');
 
 		/* =============== Login Filters =============== */
-		if ((isset($aFilters['login']) && !empty($aFilters['login'])) ) {
+		//if ((isset($aFilters['login']) && !empty($aFilters['login'])) ) {
 
 				$oResult = $oResult->where('LOGIN', '=', $aFilters['login']);
-		}
+		//}
 		/* =============== Date Filter  =============== */
 		if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
 			(isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
@@ -206,10 +206,10 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 		$oResult = Mt4Trade::where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
 
 		/* =============== Login Filters =============== */
-		if ((isset($aFilters['login']) && !empty($aFilters['login'])) ) {
+		//if ((isset($aFilters['login']) && !empty($aFilters['login'])) ) {
 
 				$oResult = $oResult->where('LOGIN', '=', $aFilters['login']);
-		}
+		//}
 		/* =============== Date Filter  =============== */
 		if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
 			(isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
