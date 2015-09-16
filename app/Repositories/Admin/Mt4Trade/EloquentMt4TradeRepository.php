@@ -161,6 +161,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 		$oFxHelper = new Fx();
 		$oResult = Mt4Trade::where('CLOSE_TIME', '=', '1970-01-01 00:00:00');
 
+		/* =============== Login Filters =============== */
+		if ((isset($aFilters['login']) && !empty($aFilters['login'])) ) {
+
+				$oResult = $oResult->where('LOGIN', '=', $aFilters['login']);
+		}
 		/* =============== Date Filter  =============== */
 		if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
 			(isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
@@ -173,7 +178,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 				$oResult = $oResult->where('CLOSE_TIME', '<=', $aFilters['to_date'].' 23:59:59');
 			}
 		}
-
 		
 
 		$oResult = $oResult->orderBy($sOrderBy, $sSort);
@@ -201,6 +205,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 		$oFxHelper = new Fx();
 		$oResult = Mt4Trade::where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
 
+		/* =============== Login Filters =============== */
+		if ((isset($aFilters['login']) && !empty($aFilters['login'])) ) {
+
+				$oResult = $oResult->where('LOGIN', '=', $aFilters['login']);
+		}
 		/* =============== Date Filter  =============== */
 		if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
 			(isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
@@ -298,4 +307,56 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
 		return $oResult;
 	}
+              
+    /**
+	 * Gets Deposit/Withdrawal for login
+	 *
+	 * @param integer $login
+	 * @return integer
+	 */    
+public function getDepositByLogin($login){
+
+        $oResult = Mt4Trade::select('PROFIT')->where('CMD', '=', 6);
+        $oResult->where('LOGIN', '=', $login);
+        return $oResult->sum('PROFIT');
+}       
+    /**
+	 * Gets Credit Facility for login
+	 *
+	 * @param integer $login
+	 * @return integer
+	 */    
+public function getCreditFacilityByLogin($login){
+    
+        $oResult = Mt4Trade::select('PROFIT')->where('CMD', '=', 7);
+        $oResult->where('LOGIN', '=', $login);
+        return $oResult->sum('PROFIT');
+}       
+    /**
+	 * Gets ClosedTrade for login
+	 *
+	 * @param integer $login
+	 * @return integer
+	 */
+    public function getClosedTradeByLogin($login) {
+        $oResult = Mt4Trade::select('PROFIT')->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
+        $oResult->where('LOGIN', '=', $login);
+        $oResult->where('CMD', '<', 2);
+        
+        return $oResult->sum('PROFIT');
+    }        
+    /**
+	 * Gets Floating  P/L for login
+	 *
+	 * @param integer $login
+	 * @return integer
+	 */    
+    public function getFloatingByLogin($login){
+        
+        $oResult = Mt4Trade::select('PROFIT')->where('CLOSE_TIME', '=', '1970-01-01 00:00:00');
+        $oResult->where('LOGIN', '=', $login);
+        $oResult->where('CMD', '<', 2);
+        
+        return $oResult->sum('PROFIT');
+    }
 }

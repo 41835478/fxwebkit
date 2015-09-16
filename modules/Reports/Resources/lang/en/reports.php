@@ -20,5 +20,8 @@ return [
     'Group' => 'Group',
     'Equity' => 'Equity',
     'Balance' => 'Balance',
-    'Comments' => 'Comments'
+    'Comments' => 'Comments',
+    
+    
+    'Summary'=>'Summary',
 ];

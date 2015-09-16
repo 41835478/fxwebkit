@@ -43,8 +43,19 @@ class EloquentMt4UserRepository implements Mt4UserContract
 
 		return $aUsers;
 	}
+        
+	/**
+	 * 
+	 */
         public function getAllGroups(){
             return Mt4User::select('group')->get();
+        }
+	/**
+	 * @param int $login
+	 * @return array
+	 */
+        public function getUserInfo($login){
+            return Mt4User::where('LOGIN','=',$login)->get()[0];
         }
 	public function getUsersByFilters($aFilters, $bFullSet=false, $sOrderBy = 'login', $sSort = 'ASC')
 	{
