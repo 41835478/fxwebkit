@@ -36,6 +36,11 @@ return [
 			'route' => 'admin.reports.agentCommission',
 			'title' => 'agentCommission',
 			'icon' => 'fa fa-money',
+		],
+		[
+			'route' => 'admin.reports.accountant',
+			'title' => 'accountant',
+			'icon' => 'fa fa-money',
 		]
             
 	]

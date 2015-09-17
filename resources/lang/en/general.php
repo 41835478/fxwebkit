@@ -30,4 +30,10 @@ return [
 	'Price' => 'Price',
 	'Profit' => 'Profit',
 	'Export' => 'Export',
+    
+    
+    'Deposits'=>'Deposits',
+    'Withdraws'=>'Withdraws',
+    'CreditIn'=>'Credit In',
+    'CreditOut'=>'Credit Out'
 ];

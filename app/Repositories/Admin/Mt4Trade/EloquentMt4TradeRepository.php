@@ -148,15 +148,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 		return $oResult;
 	}
 
-	/**
-	 * Gets the closed orders by filters
-	 *
-	 * @param array $aFilters
-	 * @param bool $bFullSet
-	 * @param string $sOrderBy
-	 * @param string $sSort
-	 * @return object
-	 */
 	public function getOpenTradesByDate($aFilters, $bFullSet=false, $sOrderBy = 'TICKET', $sSort = 'ASC')
 	{
 		$oFxHelper = new Fx();
@@ -201,6 +192,15 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         
         
         
+	/**
+	 * Gets the closed orders by filters
+	 *
+	 * @param array $aFilters
+	 * @param bool $bFullSet
+	 * @param string $sOrderBy
+	 * @param string $sSort
+	 * @return object
+	 */
         public function getClosedTradesByDate($aFilters, $bFullSet=false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC')
 	{
 		$oFxHelper = new Fx();
@@ -528,5 +528,93 @@ public function getCreditFacilityByLogin($aFilters){
 
 		return $oResult;
 	}
-              
+        
+	/**
+	 * Gets Accountant by filters
+	 *
+	 * @param array $aFilters
+	 * @param bool $bFullSet
+	 * @param string $sOrderBy
+	 * @param string $sSort
+	 * @return array
+	 */
+	
+        
+        public function getAccountantByFilters($aFilters, $bFullSet=false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC')
+	{
+        $oFxHelper = new Fx();
+        $oResult = new Mt4Trade() ;
+        $aSummury = [];
+        /* =============== Login Filters =============== */
+		if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+			(isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
+
+			if (!empty($aFilters['from_login'])) {
+				$oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
+			}
+
+			if (!empty($aFilters['to_login'])) {
+				$oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
+			}
+		}
+
+		/* =============== Groups Filter  =============== */
+		if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
+			$aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
+			$oResult = $oResult->whereIn('LOGIN', $aUsers);
+		}
+
+		/* =============== Date Filter  =============== */
+		if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
+			(isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
+
+			if (!empty($aFilters['from_date'])) {
+				$oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'].' 00:00:00');
+			}
+
+			if (!empty($aFilters['to_date'])) {
+				$oResult = $oResult->where('CLOSE_TIME', '<=', $aFilters['to_date'].' 23:59:59');
+			}
+		}
+                
+$depositResult= clone $oResult;
+$withdrawsResult= clone $oResult;
+$creditInResult= clone $oResult;
+$creditOutResult= clone $oResult;
+
+
+$aSummury ['deposits']=$depositResult->where('CMD',6)->where('PROFIT','>',0)->sum('PROFIT');
+$aSummury ['withdraws']=$withdrawsResult->where('CMD',6)->where('PROFIT','<',0)->sum('PROFIT');
+$aSummury ['creditIn']=$creditInResult->where('CMD',7)->where('PROFIT','>',0)->sum('PROFIT');
+$aSummury ['creditOut']=$creditOutResult->where('CMD',7)->where('PROFIT','<',0)->sum('PROFIT');
+
+		/* =============== Type Filter  =============== */
+		if (isset($aFilters['type']) && !empty($aFilters['type'])) {
+			if ($aFilters['type'] == 1) {
+				$oResult = $oResult->where('CMD', '<', 2);
+			} elseif ($aFilters['type'] == 2) {
+				$oResult = $oResult->whereBetween('CMD', [2, 5]);
+			}
+		} else {
+			$oResult = $oResult->where('CMD', '<', 6);
+		}
+
+		$oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+		if (!$bFullSet) {
+			$oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+		} else {
+			$oResult = $oResult->get();
+		}
+
+		/* =============== Preparing Output  =============== */
+		foreach ($oResult as $dKey => $oValue) {
+			// Set CMD type
+			$oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
+			$oResult[$dKey]->VOLUME = $oValue->VOLUME/100;
+		}
+
+		return [$oResult,$aSummury];
+	}
+      
 }

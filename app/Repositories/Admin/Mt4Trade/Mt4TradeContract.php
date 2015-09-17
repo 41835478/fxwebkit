@@ -107,4 +107,38 @@ interface Mt4TradeContract {
      * @return integer
      */
     public function getFloatingByLogin($login);
+    
+    /**
+     * Gets the commission by filters
+     *
+     * @param array $aFilters
+     * @param bool $bFullSet
+     * @param string $sOrderBy
+     * @param string $sSort
+     * @return object
+     */
+    public function getCommissionByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC');
+    
+    /**
+     * Gets the agent commission by filters
+     *
+     * @param array $aFilters
+     * @param bool $bFullSet
+     * @param string $sOrderBy
+     * @param string $sSort
+     * @return object
+     */
+    public function getAgentCommissionByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC');
+    
+    /**
+     * Gets the accountant by filters
+     *
+     * @param array $aFilters
+     * @param bool $bFullSet
+     * @param string $sOrderBy
+     * @param string $sSort
+     * @return object
+     */
+    public function getAccountantByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC');
+
 }

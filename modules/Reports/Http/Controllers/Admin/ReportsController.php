@@ -12,7 +12,7 @@ use Modules\Reports\Http\Requests\Admin\OpenTradesRequest;
 use Modules\Reports\Http\Requests\Admin\AccountsRequest;
 use Modules\Reports\Http\Requests\Admin\AccountStatementRequest;
 use Modules\Reports\Http\Requests\Admin\CommissionRequest;
-
+use Modules\Reports\Http\Requests\Admin\AccountantRequest;
 class ReportsController extends Controller {
 
     /**
@@ -428,6 +428,70 @@ class ReportsController extends Controller {
 
         return view('reports::agentCommission')
                         ->with('aGroups', $aGroups)
+                        ->with('oResults', $oResults)
+                        ->with('aFilterParams', $aFilterParams);
+    }
+
+    
+    
+    public function getAccountant(AccountantRequest $oRequest) {
+        $oGroups = $this->oMt4Group->getAllGroups();
+        $oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
+        $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
+        $sSort = $oRequest->sort;
+        $sOrder = $oRequest->order;
+        $aGroups = [];
+        $aSymbols = [];
+        $oResults = null;
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'from_date' => '',
+            'to_date' => '',
+            'all_groups' => true,
+            'group' => '',
+            'all_symbols' => true,
+            'symbol' => '',
+            'type' => '',
+            'sort' => 'ASC',
+            'order' => 'TICKET',
+        ];
+
+        foreach ($oGroups as $oGroup) {
+            $aGroups[$oGroup->group] = $oGroup->group;
+        }
+
+        foreach ($oSymbols as $oSymbol) {
+            $aSymbols[$oSymbol->SYMBOL] = $oSymbol->SYMBOL;
+        }
+
+        foreach ($aTradeTypes as $sKey => $sValue) {
+            $aTradeTypes[$sKey] = trans('general.' . $sValue);
+        }
+
+        if ($oRequest->has('search')) {
+            $aFilterParams['from_login'] = $oRequest->from_login;
+            $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['from_date'] = $oRequest->from_date;
+            $aFilterParams['to_date'] = $oRequest->to_date;
+            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['group'] = $oRequest->group;
+            $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
+            $aFilterParams['symbol'] = $oRequest->symbol;
+            $aFilterParams['type'] = $oRequest->type;
+        }
+
+      
+        if ($oRequest->has('search')) {
+            $oResults = $this->oMt4Trade->getAccountantByFilters($aFilterParams, false, $sOrder, $sSort);
+            $oResults[0]->order = $aFilterParams['order'];
+            $oResults[0]->sorts = $aFilterParams['sort'];
+        }
+
+        return view('reports::accountant')
+                        ->with('aGroups', $aGroups)
+                        ->with('aSymbols', $aSymbols)
+                        ->with('aTradeTypes', $aTradeTypes)
                         ->with('oResults', $oResults)
                         ->with('aFilterParams', $aFilterParams);
     }
