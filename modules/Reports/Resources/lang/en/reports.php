@@ -27,4 +27,5 @@ return [
     
     
     'commission'=>'Commission',
+    'agentCommission'=>'Agent Commission',
 ];

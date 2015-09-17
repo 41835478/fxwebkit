@@ -8,5 +8,7 @@ Route::group(['middleware' => ['authorize.admin'], 'namespace' => 'Http\Controll
 		'getAccounts' => 'admin.reports.accounts',
 		'getAccountStatement' => 'admin.reports.accountStatement',
 		'getCommission' => 'admin.reports.commission',
+		'getAgentCommission' => 'admin.reports.agentCommission',
+            
 	]);
 });

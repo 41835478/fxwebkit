@@ -324,10 +324,10 @@ class ReportsController extends Controller {
             $oResults = $this->oMt4User->getUserInfo($aFilterParams['login']);
 
             $aSummery = [
-                'deposit' => $this->oMt4Trade->getDepositByLogin($aFilterParams['login']),
-                'credit_facility' => $this->oMt4Trade->getCreditFacilityByLogin($aFilterParams['login']),
-                'closed_trade' => $this->oMt4Trade->getClosedTradeByLogin($aFilterParams['login']),
-                'floating' => $this->oMt4Trade->getFloatingByLogin($aFilterParams['login']),
+                'deposit' => $this->oMt4Trade->getDepositByLogin($aFilterParams),
+                'credit_facility' => $this->oMt4Trade->getCreditFacilityByLogin($aFilterParams),
+                'closed_trade' => $this->oMt4Trade->getClosedTradeByLogin($aFilterParams),
+                'floating' => $this->oMt4Trade->getFloatingByLogin($aFilterParams),
             ];
         }
 
@@ -380,7 +380,53 @@ class ReportsController extends Controller {
             $oResults->sorts = $aFilterParams['sort'];
         }
 
-        return view('reports::Commission')
+        return view('reports::commission')
+                        ->with('aGroups', $aGroups)
+                        ->with('oResults', $oResults)
+                        ->with('aFilterParams', $aFilterParams);
+    }
+
+    
+    
+    public function getAgentCommission(CommissionRequest $oRequest) {
+       $oGroups = $this->oMt4Group->getAllGroups();
+        $sSort = $oRequest->sort;
+        $sOrder = $oRequest->order;
+        $aGroups = [];
+        $oResults = null;
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'from_date' => '',
+            'to_date' => '',
+            'all_groups' => true,
+            'group' => '',
+            'sort' => 'ASC',
+            'order' => 'TICKET',
+        ];
+
+        foreach ($oGroups as $oGroup) {
+            $aGroups[$oGroup->group] = $oGroup->group;
+        }
+
+
+
+        if ($oRequest->has('search')) {
+            $aFilterParams['from_login'] = $oRequest->from_login;
+            $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['from_date'] = $oRequest->from_date;
+            $aFilterParams['to_date'] = $oRequest->to_date;
+            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['group'] = $oRequest->group;
+        }
+
+        if ($oRequest->has('search')) {
+            $oResults = $this->oMt4Trade->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
+            $oResults->order = $aFilterParams['order'];
+            $oResults->sorts = $aFilterParams['sort'];
+        }
+
+        return view('reports::agentCommission')
                         ->with('aGroups', $aGroups)
                         ->with('oResults', $oResults)
                         ->with('aFilterParams', $aFilterParams);
