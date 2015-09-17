@@ -429,13 +429,13 @@ public function getCreditFacilityByLogin($aFilters){
 	public function getCommissionByFilters($aFilters, $bFullSet=false, $sOrderBy = 'TICKET', $sSort = 'ASC')
 	{
 		$oFxHelper = new Fx();
-		$oResult = Mt4Trade::groupBy('SYMBOL')->where('CLOSE_TIME', '=', '1970-01-01 00:00:00');
-                $oResult ->select(['SYMBOL',
-        DB::raw('sum(COMMISSION) as COMMISSION'),
-        DB::raw('sum(VOLUME) as VOLUME')
+        $oResult = Mt4Trade::groupBy('SYMBOL')->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
+        $oResult->select(['SYMBOL',
+            DB::raw('sum(COMMISSION) as COMMISSION'),
+            DB::raw('sum(VOLUME) as VOLUME')
         ]);
 
-		/* =============== Login Filters =============== */
+        /* =============== Login Filters =============== */
 		if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
 			(isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
 
@@ -485,7 +485,7 @@ public function getCreditFacilityByLogin($aFilters){
 	public function getAgentCommissionByFilters($aFilters, $bFullSet=false, $sOrderBy = 'TICKET', $sSort = 'ASC')
 	{
 		$oFxHelper = new Fx();
-		$oResult = Mt4Trade::groupBy('SYMBOL')->where('CLOSE_TIME', '=', '1970-01-01 00:00:00');
+		$oResult = Mt4Trade::groupBy('SYMBOL')->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
                 $oResult ->select(['SYMBOL',
         DB::raw('sum(COMMISSION_AGENT) as COMMISSION'),
         DB::raw('sum(VOLUME) as VOLUME')
