@@ -102,7 +102,7 @@
 					<div class="stat-row">
 						<div class="stat-counters bg-info no-padding text-center">
 							<div class="stat-cell col-xs-4 padding-xs-vr">
-								<span class="text-xs">Total COMMISSION : {{ $oResults->sum('COMMISSION') }}</span>
+								<span class="text-xs">Total Commission : {{ round($oResults->sum('COMMISSION'), 2) }}</span>
 							</div>
 							
 						</div>
@@ -150,7 +150,7 @@
 							@foreach($oResults as $oResult)
 								<tr>
 									<td>{{ $oResult->SYMBOL }}</td>
-									<td>{{ $oResult->COMMISSION }}</td>
+									<td>{{ round($oResult->COMMISSION, 2) }}</td>
 									<td>{{ $oResult->VOLUME }}</td>
 								</tr>
 							@endforeach
