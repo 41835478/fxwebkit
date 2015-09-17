@@ -3,23 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/Mt4Trade/Mt4TradeContract.php</file>
             <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/Mt4User/EloquentMt4UserRepository.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Resources/views/accounts.blade.php</file>
             <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Resources/lang/en/reports.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/articlesList.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Resources/views/openOrders.blade.php</file>
             <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Http/Routes/Admin/routes.php</file>
             <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Http/Controllers/Admin/ReportsController.php</file>
             <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Config/config.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Resources/views/accountStatement.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Resources/views/closedOrders.blade.php</file>
             <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Http/Requests/Admin/AccountsRequest.php</file>
             <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Http/routes.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Providers/BusServiceProvider.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Http/Requests/Admin/ClosedTradesRequest.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/Mt4Group/Mt4GroupContract.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/themes/PixelAdmin-1.3.0/html/pages-inbox.html</file>
+            <file>file:/F:/wamp/www/fxwebkit/resources/lang/en/general.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Http/Requests/Admin/AccountStatementRequest.php</file>
             <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/Mt4Trade/EloquentMt4TradeRepository.php</file>
             <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/Mt4User/Mt4UserContract.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Providers/ReportsServiceProvider.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/helpers.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/app/Models/Mt4Trade.php</file>
         </group>
     </open-files>
 </project-private>

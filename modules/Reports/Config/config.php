@@ -26,6 +26,11 @@ return [
 			'route' => 'admin.reports.accountStatement',
 			'title' => 'accountStatement',
 			'icon' => 'fa fa-gears',
+		],
+		[
+			'route' => 'admin.reports.commission',
+			'title' => 'commission',
+			'icon' => 'fa fa-money',
 		]
 	]
 ];

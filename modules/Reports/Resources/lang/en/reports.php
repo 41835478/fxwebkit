@@ -24,4 +24,7 @@ return [
     
     
     'Summary'=>'Summary',
+    
+    
+    'commission'=>'Commission',
 ];

@@ -7,5 +7,6 @@ Route::group(['middleware' => ['authorize.admin'], 'namespace' => 'Http\Controll
 		'getOpenOrders' => 'admin.reports.openOrders',
 		'getAccounts' => 'admin.reports.accounts',
 		'getAccountStatement' => 'admin.reports.accountStatement',
+		'getCommission' => 'admin.reports.commission',
 	]);
 });

@@ -3,6 +3,7 @@
 use Fxweb\Helpers\Fx;
 use Fxweb\Models\Mt4Trade;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
+use Illuminate\Support\Facades\DB;
 use Config;
 
 /**
@@ -171,11 +172,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 			(isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
 
 			if (!empty($aFilters['from_date'])) {
-				$oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'].' 00:00:00');
+				$oResult = $oResult->where('OPEN_TIME', '>=', $aFilters['from_date'].' 00:00:00');
 			}
 
 			if (!empty($aFilters['to_date'])) {
-				$oResult = $oResult->where('CLOSE_TIME', '<=', $aFilters['to_date'].' 23:59:59');
+				$oResult = $oResult->where('OPEN_TIME', '<=', $aFilters['to_date'].' 23:59:59');
 			}
 		}
 		
@@ -359,4 +360,61 @@ public function getCreditFacilityByLogin($login){
         
         return $oResult->sum('PROFIT');
     }
+    
+    	/**
+	 * Gets the Commission by filters
+	 *
+	 * @param array $aFilters
+	 * @param bool $bFullSet
+	 * @param string $sOrderBy
+	 * @param string $sSort
+	 * @return object
+	 */
+	public function getCommissionByFilters($aFilters, $bFullSet=false, $sOrderBy = 'TICKET', $sSort = 'ASC')
+	{
+		$oFxHelper = new Fx();
+		$oResult = Mt4Trade::groupBy('SYMBOL')->where('CLOSE_TIME', '=', '1970-01-01 00:00:00');
+                $oResult ->select(['SYMBOL',
+        DB::raw('sum(COMMISSION) as COMMISSION'),
+        DB::raw('sum(VOLUME) as VOLUME')
+        ]);
+
+		/* =============== Login Filters =============== */
+		if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+			(isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
+
+			if (!empty($aFilters['from_login'])) {
+				$oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
+			}
+
+			if (!empty($aFilters['to_login'])) {
+				$oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
+			}
+		}
+
+		/* =============== Groups Filter  =============== */
+		if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
+			$aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
+			$oResult = $oResult->whereIn('LOGIN', $aUsers);
+		}
+
+		//$oResult = $oResult;
+		$oResult = $oResult->orderBy($sOrderBy, $sSort);
+		
+		if (!$bFullSet) {
+			$oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+		} else {
+			$oResult = $oResult->get();
+		}
+
+		/* =============== Preparing Output  =============== */
+		foreach ($oResult as $dKey => $oValue) {
+			// Set CMD type
+			$oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
+			$oResult[$dKey]->VOLUME = $oValue->VOLUME/100;
+		}
+
+		return $oResult;
+	}
+              
 }

@@ -11,6 +11,7 @@ use Modules\Reports\Http\Requests\Admin\ClosedTradesRequest;
 use Modules\Reports\Http\Requests\Admin\OpenTradesRequest;
 use Modules\Reports\Http\Requests\Admin\AccountsRequest;
 use Modules\Reports\Http\Requests\Admin\AccountStatementRequest;
+use Modules\Reports\Http\Requests\Admin\CommissionRequest;
 
 class ReportsController extends Controller {
 
@@ -338,6 +339,50 @@ class ReportsController extends Controller {
                         ->with('oOpenResults', $oOpenResults)
                         ->with('oCloseResults', $oCloseResults)
                         ->with('aSummery', $aSummery)
+                        ->with('aFilterParams', $aFilterParams);
+    }
+
+    public function getCommission(CommissionRequest $oRequest) {
+       $oGroups = $this->oMt4Group->getAllGroups();
+        $sSort = $oRequest->sort;
+        $sOrder = $oRequest->order;
+        $aGroups = [];
+        $oResults = null;
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'from_date' => '',
+            'to_date' => '',
+            'all_groups' => true,
+            'group' => '',
+            'sort' => 'ASC',
+            'order' => 'TICKET',
+        ];
+
+        foreach ($oGroups as $oGroup) {
+            $aGroups[$oGroup->group] = $oGroup->group;
+        }
+
+
+
+        if ($oRequest->has('search')) {
+            $aFilterParams['from_login'] = $oRequest->from_login;
+            $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['from_date'] = $oRequest->from_date;
+            $aFilterParams['to_date'] = $oRequest->to_date;
+            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['group'] = $oRequest->group;
+        }
+
+        if ($oRequest->has('search')) {
+            $oResults = $this->oMt4Trade->getCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
+            $oResults->order = $aFilterParams['order'];
+            $oResults->sorts = $aFilterParams['sort'];
+        }
+
+        return view('reports::Commission')
+                        ->with('aGroups', $aGroups)
+                        ->with('oResults', $oResults)
                         ->with('aFilterParams', $aFilterParams);
     }
 
