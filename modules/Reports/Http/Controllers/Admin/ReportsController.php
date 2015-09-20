@@ -437,7 +437,7 @@ class ReportsController extends Controller {
     public function getAccountant(AccountantRequest $oRequest) {
         $oGroups = $this->oMt4Group->getAllGroups();
         $oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
-        $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
+        $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getAccountantTypes();
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
         $aGroups = [];

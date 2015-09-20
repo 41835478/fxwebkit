@@ -30,10 +30,22 @@ return [
 	'Price' => 'Price',
 	'Profit' => 'Profit',
 	'Export' => 'Export',
+    'Total'=>'Total',
     
     
+    'BalanceOperations'=>'Balance Operations',
+    'CreditOperations'=>'Credit Operations',
     'Deposits'=>'Deposits',
     'Withdraws'=>'Withdraws',
     'CreditIn'=>'Credit In',
-    'CreditOut'=>'Credit Out'
+    'CreditOut'=>'Credit Out',
+    
+ 
+    
+    'ACCOUNTANT_TYPE_6_DEPOSITS'=>'Deposits Operation',
+    'ACCOUNTANT_TYPE_7_CREDIT'=>'Credits Operation',
+    'ACCOUNTANT_TYPE_6_POS'=>'Deposit ',
+    'ACCOUNTANT_TYPE_6_MIN'=>'Withdrowl',
+    'ACCOUNTANT_TYPE_7_POS'=>'Credit In',
+    'ACCOUNTANT_TYPE_7_MIN'=>'Credit Out',
 ];

@@ -67,6 +67,24 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 			2 => 'PENDING_TRADES',
 		];
 	}
+        
+	/**
+	 * Gets the accountant types
+	 *
+	 * @return array
+	 */
+	public function getAccountantTypes()
+	{
+           
+		return [
+			1 => 'BalanceOperations',
+			2 => 'CreditOperations',
+			3 => 'Deposits',
+			4 => 'Withdraws',
+			5 => 'CreditIn',
+			6 => 'CreditOut',
+		];
+	}
 
 	/**
 	 * Gets the closed orders by filters
@@ -576,29 +594,50 @@ public function getCreditFacilityByLogin($aFilters){
 				$oResult = $oResult->where('CLOSE_TIME', '<=', $aFilters['to_date'].' 23:59:59');
 			}
 		}
-                
-$depositResult= clone $oResult;
-$withdrawsResult= clone $oResult;
-$creditInResult= clone $oResult;
-$creditOutResult= clone $oResult;
+ 
+		/* =============== Get sum info and others =============== */
+        $depositResult = clone $oResult;
+        $withdrawsResult = clone $oResult;
+        $creditInResult = clone $oResult;
+        $creditOutResult = clone $oResult;
 
 
-$aSummury ['deposits']=$depositResult->where('CMD',6)->where('PROFIT','>',0)->sum('PROFIT');
-$aSummury ['withdraws']=$withdrawsResult->where('CMD',6)->where('PROFIT','<',0)->sum('PROFIT');
-$aSummury ['creditIn']=$creditInResult->where('CMD',7)->where('PROFIT','>',0)->sum('PROFIT');
-$aSummury ['creditOut']=$creditOutResult->where('CMD',7)->where('PROFIT','<',0)->sum('PROFIT');
-
-		/* =============== Type Filter  =============== */
-		if (isset($aFilters['type']) && !empty($aFilters['type'])) {
-			if ($aFilters['type'] == 1) {
-				$oResult = $oResult->where('CMD', '<', 2);
-			} elseif ($aFilters['type'] == 2) {
-				$oResult = $oResult->whereBetween('CMD', [2, 5]);
-			}
+        $aSummury ['deposits'] = $depositResult->where('CMD', 6)->where('PROFIT', '>', 0)->sum('PROFIT');
+        $aSummury ['withdraws'] = $withdrawsResult->where('CMD', 6)->where('PROFIT', '<', 0)->sum('PROFIT');
+        $aSummury ['creditIn'] = $creditInResult->where('CMD', 7)->where('PROFIT', '>', 0)->sum('PROFIT');
+        $aSummury ['creditOut'] = $creditOutResult->where('CMD', 7)->where('PROFIT', '<', 0)->sum('PROFIT');
+            
+        /* =============== Type Filter  ===============
+        
+			1 => 'BalanceOperations',
+			2 => 'CreditOperations',
+			3 => 'Deposits',
+			4 => 'Withdraws',
+			5 => 'CreditIn',
+			6 => 'CreditOut',
+	 */
+        if (isset($aFilters['type']) && !empty($aFilters['type'])) {
+            if ($aFilters['type'] == 1) {
+                $oResult = $oResult->where('CMD',  6);
+            } elseif ($aFilters['type'] == 2) {
+				$oResult = $oResult->where('CMD',  7);
+			
+            } elseif ($aFilters['type'] == 3) {
+				$oResult = $oResult->where('CMD',  6)->where('PROFIT','>',0);
+			
+            } elseif ($aFilters['type'] == 4) {
+				$oResult = $oResult->where('CMD',  6)->where('PROFIT','<',0);
+			
+            } elseif ($aFilters['type'] == 5) {
+				$oResult = $oResult->where('CMD',  7)->where('PROFIT','>',0);
+			
+            } elseif ($aFilters['type'] == 6) {
+				$oResult = $oResult->where('CMD',  7)->where('PROFIT','<',0);
+            }
 		} else {
-			$oResult = $oResult->where('CMD', '<', 6);
+			$oResult = $oResult->where('CMD', '=', 6)->Orwhere('CMD', '=', 7);
 		}
-
+   
 		$oResult = $oResult->orderBy($sOrderBy, $sSort);
 
 		if (!$bFullSet) {
@@ -610,7 +649,7 @@ $aSummury ['creditOut']=$creditOutResult->where('CMD',7)->where('PROFIT','<',0)-
 		/* =============== Preparing Output  =============== */
 		foreach ($oResult as $dKey => $oValue) {
 			// Set CMD type
-			$oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
+			$oResult[$dKey]->TYPE = $oFxHelper->getAccountantType($oValue->CMD,$oValue->PROFIT);
 			$oResult[$dKey]->VOLUME = $oValue->VOLUME/100;
 		}
 

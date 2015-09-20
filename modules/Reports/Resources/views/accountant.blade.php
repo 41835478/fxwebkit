@@ -147,13 +147,13 @@
 								</tr>
 							
 								<tr>
-                                                                    <td colspan="2" style="text-align:center">Total : {{ $oResults[1]['deposits']+$oResults[1]['withdraws'] }}</td>
+                                                                    <td colspan="2" style="text-align:center"> {!!  trans('general.Total')  !!} : {{ $oResults[1]['deposits']+$oResults[1]['withdraws'] }}</td>
 									
-									<td colspan="2" style="text-align:center">Total : {{ $oResults[1]['creditIn']+ $oResults[1]['creditOut']  }}</td>
+									<td colspan="2" style="text-align:center">{!!  trans('general.Total')  !!} :  {{ $oResults[1]['creditIn']+ $oResults[1]['creditOut']  }}</td>
 									
 								</tr>
 								<tr>
-                                                                    <td colspan="4" style="text-align:center">Total : {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}</td>
+                                                                    <td colspan="4" style="text-align:center">{!!  trans('general.Total')  !!} : {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}</td>
 
 								</tr>
 						@endif
@@ -197,16 +197,9 @@
 						<tr>
 							<th class="no-warp">{!! th_sort(trans('general.Order#'), 'TICKET', $oResults[0]) !!}</th>
 							<th class="no-warp">{!! th_sort(trans('general.Login'), 'LOGIN', $oResults[0]) !!}</th>
-							<th class="no-warp">{!! th_sort(trans('general.Symbol'), 'SYMBOL', $oResults[0]) !!}</th>
 							<th class="no-warp">{!! th_sort(trans('general.Type'), 'CMD', $oResults[0]) !!}</th>
-							<th class="no-warp">{!! th_sort(trans('general.Lots'), 'VOLUME', $oResults[0]) !!}</th>
-							<th class="no-warp">{!! th_sort(trans('general.OpenPrice'), 'OPEN_PRICE', $oResults[0]) !!}</th>
-							<th class="no-warp">{!! th_sort(trans('general.SL'), 'SL', $oResults[0]) !!}</th>
-							<th class="no-warp">{!! th_sort(trans('general.TP'), 'TP', $oResults[0]) !!}</th>
-							<th class="no-warp">{!! th_sort(trans('general.Commission'), 'COMMISSION', $oResults[0]) !!}</th>
-							<th class="no-warp">{!! th_sort(trans('general.Swaps'), 'SWAPS', $oResults[0]) !!}</th>
-							<th class="no-warp">{!! th_sort(trans('general.Price'), 'CLOSE_PRICE', $oResults[0]) !!}</th>
-							<th class="no-warp">{!! th_sort(trans('general.Profit'), 'PROFIT', $oResults[0]) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.Total'), 'PROFIT', $oResults[0]) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.CloseTime'), 'CLOSE_TIME', $oResults[0]) !!}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -215,16 +208,9 @@
 								<tr>
 									<td>{{ $oResult->TICKET }}</td>
 									<td>{{ $oResult->LOGIN }}</td>
-									<td>{{ $oResult->SYMBOL }}</td>
 									<td>{{ $oResult->TYPE }}</td>
-									<td>{{ $oResult->VOLUME }}</td>
-									<td>{{ $oResult->OPEN_PRICE }}</td>
-									<td>{{ $oResult->SL }}</td>
-									<td>{{ $oResult->TP }}</td>
-									<td>{{ $oResult->COMMISSION }}</td>
-									<td>{{ $oResult->SWAPS }}</td>
-									<td>{{ $oResult->CLOSE_PRICE }}</td>
 									<td>{{ $oResult->PROFIT }}</td>
+                                                                        <td>{{ $oResult->CLOSE_TIME }}</td>
 								</tr>
 							@endforeach
 						@endif
