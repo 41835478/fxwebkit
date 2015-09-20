@@ -100,6 +100,58 @@
 				</div>
 				<div class="padding-xs-vr"></div>
 			@endif
+                        <!-- ___________________________________chart__________________________________-->
+	{!! HTML::script('assets/js/jquery.2.0.3.min.js') !!}
+                   <script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+
+<script >
+ function buildHighCharts(){ 
+    $('#container').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Stacked bar chart'
+        },
+        xAxis: {
+            /*
+							 trans('general.Deposits') 
+							trans('general.Withdraws') 
+							 trans('general.CreditIn')  
+							 trans('general.CreditOut') 
+ *  {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}
+                                                         */
+            categories: ['{!!  trans('general.ACCOUNTANT_TYPE_6_DEPOSITS') !!}', '{!!  trans('general.ACCOUNTANT_TYPE_7_CREDIT') !!}']
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total fruit consumption'
+            }
+        },
+        legend: {
+            reversed: true
+        },
+        plotOptions: {
+            series: {
+                stacking: 'normal'
+            }
+        },
+        series: [{
+            name: '{!!  trans('general.Deposits') !!}',
+            data: [{!! $oResults[1]['deposits'] !!},{!! $oResults[1]['creditIn'] !!}]
+        }, {
+            name: '{!!  trans('general.Withdraws') !!}',
+            data: [{!! $oResults[1]['withdraws']*-1 !!}, {!! $oResults[1]['creditOut']*-1 !!}]
+        }]
+    });
+}
+ buildHighCharts();
+</script>
+                        <!-- ______________________________END_____chart__________________________________-->
 <!-- ________________________________tables______________-->
 <div class="table-info">
 				<div class="table-header">
