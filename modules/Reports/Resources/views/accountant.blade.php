@@ -156,7 +156,7 @@
 <div class="table-info">
 				<div class="table-header">
 					<div class="table-caption">
-						{{ trans('reports::reports.ClosedOrders') }}
+						{{ trans('reports::reports.accountant') }}
 
 						@if (count($oResults[0]))
 							<div class="panel-heading-controls">
@@ -221,7 +221,7 @@
 			<div class="table-info">
 				<div class="table-header">
 					<div class="table-caption">
-						{{ trans('reports::reports.ClosedOrders') }}
+						{{ trans('reports::reports.accountant') }}
 
 						@if (count($oResults[0]))
 							<div class="panel-heading-controls">
