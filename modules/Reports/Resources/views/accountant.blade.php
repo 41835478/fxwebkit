@@ -141,10 +141,10 @@
             }
         },
         series: [{
-            name: '{!!  trans('general.Deposits') !!}',
+            name: '{!!  trans('general.Deposits').' - '.trans('general.CreditIn') !!}',
             data: [{!! $oResults[1]['deposits'] !!},{!! $oResults[1]['creditIn'] !!}]
         }, {
-            name: '{!!  trans('general.Withdraws') !!}',
+            name: '{!!  trans('general.Withdraws').' - '.trans('general.CreditOut') !!}',
             data: [{!! $oResults[1]['withdraws']*-1 !!}, {!! $oResults[1]['creditOut']*-1 !!}]
         }]
     });
