@@ -21,9 +21,20 @@
 				{!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
                                 <ul class="sections" >
                 <li class="active"><a href="#"> <i class="fa fa-search"></i> search </a></li>
-                <li><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
-                <li><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
-                <li><div  class=" nav-input-div  ">
+                                                   <li>
+                   <div class="   nav-input-div">
+						<div class="checkbox">
+							<label>
+								{!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
+								<span class="lbl">{{ trans('reports::reports.ExactLogin') }}</span>
+							</label>
+						</div>
+					</div>
+                   </li>
+                <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
+                <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
+                <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div></li>
+              <li><div  class=" nav-input-div  ">
                     
 						<div class="input-group date datepicker-warpper">
 							{!! Form::text('from_date', $aFilterParams['from_date'], ['placeholder'=>trans('reports::reports.FromDate'),'class'=>'form-control input-sm']) !!}
@@ -206,6 +217,25 @@
 			} else {
 				$('#all-symbols-slc').removeAttr('disabled');
 			}
+                                                
+                        
+			$('#exactLogin').change(function(){
+				if ($('#exactLogin').prop('checked')) {
+                                    $("#from_login_li,#to_login_li").hide();
+                                    $("#login_li").show();
+				} else {
+                                    $("#from_login_li,#to_login_li").show();
+                                    $("#login_li").hide();
+				}
+			});
+
+				if ($('#exactLogin').prop('checked')) {
+                                    $("#from_login_li,#to_login_li").hide();
+                                    $("#login_li").show();
+				} else {
+                                    $("#from_login_li,#to_login_li").show();
+                                    $("#login_li").hide();
+				}
 		});
 	</script>
 @stop

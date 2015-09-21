@@ -9,6 +9,7 @@
         margin-bottom: 7px;
         padding: 5px !important;
     }
+      .theme-default .page-mail{ overflow: visible;height: auto; min-height: 800px;}
     .center_page_all_div{ padding: 0px 10px;}
     .mail-nav .navigation{margin-top: 35px;}
 </style>
@@ -18,9 +19,20 @@
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections">
                 <li class="active"><a href="#"> <i class="fa fa-search"></i> search </a></li>
-                <li><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control  input-sm']) !!}</div> </li>
-                <li><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
-                <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}</div></li>
+                                                   <li>
+                   <div class="   nav-input-div">
+						<div class="checkbox">
+							<label>
+								{!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
+								<span class="lbl">{{ trans('reports::reports.ExactLogin') }}</span>
+							</label>
+						</div>
+					</div>
+                   </li>
+                 <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
+                <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
+                <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div></li>
+            <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li>
 
                     <div class=" nav-input-div form-group ">
@@ -165,7 +177,25 @@
         } else {
             $('#all-groups-slc').removeAttr('disabled');
         }
+                        
+                        
+			$('#exactLogin').change(function(){
+				if ($('#exactLogin').prop('checked')) {
+                                    $("#from_login_li,#to_login_li").hide();
+                                    $("#login_li").show();
+				} else {
+                                    $("#from_login_li,#to_login_li").show();
+                                    $("#login_li").hide();
+				}
+			});
 
+				if ($('#exactLogin').prop('checked')) {
+                                    $("#from_login_li,#to_login_li").hide();
+                                    $("#login_li").show();
+				} else {
+                                    $("#from_login_li,#to_login_li").show();
+                                    $("#login_li").hide();
+				}
 
     });
 

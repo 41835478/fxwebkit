@@ -101,7 +101,10 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 		$oResult = Mt4Trade::where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
 
 		/* =============== Login Filters =============== */
-		if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+                if(isset($aFilters['exactLogin']) && $aFilters['exactLogin']){
+                    $oResult = $oResult->where('LOGIN', $aFilters['login']);
+                }
+		else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
 			(isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
 
 			if (!empty($aFilters['from_login'])) {
@@ -308,7 +311,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 		$oResult = Mt4Trade::where('CLOSE_TIME', '=', '1970-01-01 00:00:00');
 
 		/* =============== Login Filters =============== */
-		if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+		
+                if(isset($aFilters['exactLogin']) && $aFilters['exactLogin']){
+                    $oResult = $oResult->where('LOGIN', $aFilters['login']);
+                }
+		else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
 			(isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
 
 			if (!empty($aFilters['from_login'])) {
@@ -498,7 +505,11 @@ public function getCreditFacilityByLogin($aFilters){
         ]);
 
         /* =============== Login Filters =============== */
-		if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+		
+                if(isset($aFilters['exactLogin']) && $aFilters['exactLogin']){
+                    $oResult = $oResult->where('LOGIN', $aFilters['login']);
+                }
+		else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
 			(isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
 
 			if (!empty($aFilters['from_login'])) {
@@ -563,7 +574,11 @@ public function getCreditFacilityByLogin($aFilters){
         ]);
 
 		/* =============== Login Filters =============== */
-		if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+		
+                if(isset($aFilters['exactLogin']) && $aFilters['exactLogin']){
+                    $oResult = $oResult->where('LOGIN', $aFilters['login']);
+                }
+		else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
 			(isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
 
 			if (!empty($aFilters['from_login'])) {
@@ -623,7 +638,11 @@ public function getCreditFacilityByLogin($aFilters){
         $oResult = new Mt4Trade() ;
         $aSummury = [];
         /* =============== Login Filters =============== */
-		if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+		
+                if(isset($aFilters['exactLogin']) && $aFilters['exactLogin']){
+                    $oResult = $oResult->where('LOGIN', $aFilters['login']);
+                }
+		else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
 			(isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
 
 			if (!empty($aFilters['from_login'])) {

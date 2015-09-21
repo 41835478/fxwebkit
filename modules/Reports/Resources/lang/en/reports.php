@@ -9,10 +9,12 @@ return [
 	'SearchClosedOrders' => 'Search Closed Orders',
 	'FromLogin' => 'From Login',
 	'ToLogin' => 'To Login',
+	'Login' => 'Login',
 	'FromDate' => 'From Date',
 	'ToDate' => 'To Date',
 	'AllGroups' => 'All Groups',
 	'AllSymbols' => 'All Symbols',
+	'ExactLogin' => 'Exact Login',
     
     
     'Login' => 'Log In',

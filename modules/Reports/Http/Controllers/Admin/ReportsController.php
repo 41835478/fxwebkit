@@ -42,6 +42,8 @@ class ReportsController extends Controller {
         $aFilterParams = [
             'from_login' => '',
             'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
             'from_date' => '',
             'to_date' => '',
             'all_groups' => true,
@@ -68,6 +70,8 @@ class ReportsController extends Controller {
         if ($oRequest->has('search')) {
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
@@ -142,6 +146,8 @@ class ReportsController extends Controller {
         $aFilterParams = [
             'from_login' => '',
             'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
             'all_groups' => true,
             'group' => '',
             'all_symbols' => true,
@@ -166,6 +172,8 @@ class ReportsController extends Controller {
         if ($oRequest->has('search')) {
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
             $aFilterParams['group'] = $oRequest->group;
             $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
@@ -233,6 +241,8 @@ class ReportsController extends Controller {
         $aFilterParams = [
             'from_login' => '',
             'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
             'name' => '',
             'all_groups' => true,
             'group' => '',
@@ -249,6 +259,8 @@ class ReportsController extends Controller {
         if ($oRequest->has('search')) {
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['name'] = $oRequest->name;
             $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
             $aFilterParams['group'] = $oRequest->group;
@@ -351,6 +363,8 @@ class ReportsController extends Controller {
         $aFilterParams = [
             'from_login' => '',
             'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
             'from_date' => '',
             'to_date' => '',
             'all_groups' => true,
@@ -368,6 +382,8 @@ class ReportsController extends Controller {
         if ($oRequest->has('search')) {
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
@@ -397,6 +413,8 @@ class ReportsController extends Controller {
         $aFilterParams = [
             'from_login' => '',
             'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
             'from_date' => '',
             'to_date' => '',
             'all_groups' => true,
@@ -414,6 +432,8 @@ class ReportsController extends Controller {
         if ($oRequest->has('search')) {
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
@@ -446,6 +466,8 @@ class ReportsController extends Controller {
         $aFilterParams = [
             'from_login' => '',
             'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
             'from_date' => '',
             'to_date' => '',
             'all_groups' => true,
@@ -472,6 +494,8 @@ class ReportsController extends Controller {
         if ($oRequest->has('search')) {
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
