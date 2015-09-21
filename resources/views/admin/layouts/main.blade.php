@@ -37,7 +37,7 @@
 		<div id="main-menu-bg"></div>
 	</div>
 
-
+@section('script')
 	<!--[if !IE]> -->
 	{!! HTML::script('assets/js/jquery.2.0.3.min.js') !!}
 	<!-- <![endif]-->
@@ -51,5 +51,6 @@
 	<script type="text/javascript">
 		window.PixelAdmin.start(init);
 	</script>
+        @show
 </body>
 </html>
