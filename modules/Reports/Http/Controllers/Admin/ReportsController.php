@@ -376,8 +376,8 @@ class ReportsController extends Controller {
 
         if ($oRequest->has('search')) {
             $oResults = $this->oMt4Trade->getCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
-            $oResults->order = $aFilterParams['order'];
-            $oResults->sorts = $aFilterParams['sort'];
+            $oResults[0]->order = $aFilterParams['order'];
+            $oResults[0]->sorts = $aFilterParams['sort'];
         }
 
         return view('reports::commission')
@@ -422,8 +422,8 @@ class ReportsController extends Controller {
 
         if ($oRequest->has('search')) {
             $oResults = $this->oMt4Trade->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
-            $oResults->order = $aFilterParams['order'];
-            $oResults->sorts = $aFilterParams['sort'];
+            $oResults[0]->order = $aFilterParams['order'];
+            $oResults[0]->sorts = $aFilterParams['sort'];
         }
 
         return view('reports::agentCommission')

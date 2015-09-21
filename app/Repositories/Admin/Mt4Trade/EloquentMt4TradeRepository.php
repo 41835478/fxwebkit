@@ -491,7 +491,7 @@ public function getCreditFacilityByLogin($aFilters){
 	public function getCommissionByFilters($aFilters, $bFullSet=false, $sOrderBy = 'TICKET', $sSort = 'ASC')
 	{
 		$oFxHelper = new Fx();
-        $oResult = Mt4Trade::groupBy('SYMBOL')->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')->where('COMMISSION', '!=', 0);
+        $oResult = Mt4Trade::where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
         $oResult->select(['SYMBOL',
             DB::raw('sum(COMMISSION) as COMMISSION'),
             DB::raw('sum(VOLUME) as VOLUME')
@@ -515,8 +515,15 @@ public function getCreditFacilityByLogin($aFilters){
 			$aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
 			$oResult = $oResult->whereIn('LOGIN', $aUsers);
 		}
+		/* =============== get sum of volume  =============== */
+                $totalResult=clone $oResult;
+                $totalLotsResult=clone $oResult;
+		$totalCommission=$totalResult->where('COMMISSION', '!=', 0)->sum('COMMISSION');
+		$totalLots=$totalLotsResult->where('COMMISSION', '!=', 0)->sum('VOLUME');
 
-		//$oResult = $oResult;
+
+		/* =============== $oResult = $oResult; =====================*/
+                $oResult->groupBy('SYMBOL');
 		$oResult = $oResult->orderBy($sOrderBy, $sSort);
 		
 		if (!$bFullSet) {
@@ -525,6 +532,8 @@ public function getCreditFacilityByLogin($aFilters){
 			$oResult = $oResult->get();
 		}
 
+
+
 		/* =============== Preparing Output  =============== */
 		foreach ($oResult as $dKey => $oValue) {
 			// Set CMD type
@@ -532,7 +541,7 @@ public function getCreditFacilityByLogin($aFilters){
 			$oResult[$dKey]->VOLUME = $oValue->VOLUME/100;
 		}
 
-		return $oResult;
+		return [$oResult,$totalCommission,$totalLots];
 	}
       
     	/**
@@ -547,7 +556,7 @@ public function getCreditFacilityByLogin($aFilters){
 	public function getAgentCommissionByFilters($aFilters, $bFullSet=false, $sOrderBy = 'TICKET', $sSort = 'ASC')
 	{
 		$oFxHelper = new Fx();
-		$oResult = Mt4Trade::groupBy('SYMBOL')->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')->where('COMMISSION_AGENT', '!=', 0);
+		$oResult = Mt4Trade::where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')->where('COMMISSION_AGENT', '!=', 0);
                 $oResult ->select(['SYMBOL',
         DB::raw('sum(COMMISSION_AGENT) as COMMISSION'),
         DB::raw('sum(VOLUME) as VOLUME')
@@ -571,7 +580,13 @@ public function getCreditFacilityByLogin($aFilters){
 			$aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
 			$oResult = $oResult->whereIn('LOGIN', $aUsers);
 		}
+		/* =============== get sum of volume  =============== */
+                $totalResult=clone $oResult;
+                $totalLotsResult=clone $oResult;
+		$totalCommission=$totalResult->where('COMMISSION', '!=', 0)->sum('COMMISSION');
+		$totalLots=$totalLotsResult->where('COMMISSION', '!=', 0)->sum('VOLUME');
 
+                $oResult->groupBy('SYMBOL');
 		//$oResult = $oResult;
 		$oResult = $oResult->orderBy($sOrderBy, $sSort);
 		
@@ -588,7 +603,7 @@ public function getCreditFacilityByLogin($aFilters){
 			$oResult[$dKey]->VOLUME = $oValue->VOLUME/100;
 		}
 
-		return $oResult;
+		return [$oResult,$totalCommission,$totalLots];
 	}
         
 	/**

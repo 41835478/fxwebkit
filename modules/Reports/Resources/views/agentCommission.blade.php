@@ -79,34 +79,34 @@
         <div class="center_page_all_div">
 			@include('admin.partials.messages')
 
-			@if (count($oResults))
+			@if (count($oResults[0]))
 				<div class="stat-panel no-margin-b">
 					<div class="stat-row">
 						<div class="stat-counters bg-info no-padding text-center">
 							<div class="stat-cell col-xs-4 padding-xs-vr">
-								<span class="text-xs">Total Results {{ $oResults->total() }}</span>
+								<span class="text-xs">Total Results {{ $oResults[0]->total() }}</span>
 							</div>
 							<div class="stat-cell col-xs-4 padding-xs-vr">
-								<span class="text-xs">Results From {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }}</span>
+								<span class="text-xs">Results From {{ $oResults[0]->firstItem() }} to {{ $oResults[0]->lastItem() }}</span>
 							</div>
 							<div class="stat-cell col-xs-4 padding-xs-vr">
-								<span class="text-xs">Page {{ $oResults->currentPage() }} of {{ $oResults->lastPage() }}</span>
+								<span class="text-xs">Page {{ $oResults[0]->currentPage() }} of {{ $oResults[0]->lastPage() }}</span>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="padding-xs-vr"></div>
 			@endif
-			@if (count($oResults))
+			@if (count($oResults[0]))
 				<div class="stat-panel no-margin-b">
 					<div class="stat-row">
 						<div class="stat-counters bg-info no-padding text-center">
 							<div class="stat-cell col-xs-4 padding-xs-vr">
-								<span class="text-xs">Total Commission : {{ round($oResults->sum('COMMISSION'), 2) }}</span>
+								<span class="text-xs">Total Commission : {{ round($oResults[1], 2) }}</span>
 							</div>
 							
 							<div class="stat-cell col-xs-4 padding-xs-vr">
-								<span class="text-xs">Total Lots : {{ round($oResults->sum('VOLUME'), 2) }}</span>
+								<span class="text-xs">Total Lots : {{ round($oResults[2], 2) }}</span>
 							</div>
 						</div>
 					</div>
@@ -119,7 +119,7 @@
 					<div class="table-caption">
 						{{ trans('reports::reports.agentCommission') }}
 
-						@if (count($oResults))
+						@if (count($oResults[0]))
 							<div class="panel-heading-controls">
 								<div class="btn-group btn-group-xs">
 									<button data-toggle="dropdown" type="button" class="btn btn-success dropdown-toggle">
@@ -143,14 +143,14 @@
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th class="no-warp">{!! th_sort(trans('general.Symbol'), 'SYMBOL', $oResults) !!}</th>
-							<th class="no-warp">{!! th_sort(trans('general.Commission'), 'COMMISSION', $oResults) !!}</th>
-							<th class="no-warp">{!! th_sort(trans('general.Lots'), 'VOLUME', $oResults) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.Symbol'), 'SYMBOL', $oResults[0]) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.Commission'), 'COMMISSION', $oResults[0]) !!}</th>
+							<th class="no-warp">{!! th_sort(trans('general.Lots'), 'VOLUME', $oResults[0]) !!}</th>
 						</tr>
 					</thead>
 					<tbody>
-						@if (count($oResults))
-							@foreach($oResults as $oResult)
+						@if (count($oResults[0]))
+							@foreach($oResults[0] as $oResult)
 								<tr>
 									<td>{{ $oResult->SYMBOL }}</td>
 									<td>{{ round($oResult->COMMISSION, 2) }}</td>
@@ -161,8 +161,8 @@
 					</tbody>
 				</table>
 				<div class="table-footer text-center">
-					@if (count($oResults))
-						{!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->render()) !!}
+					@if (count($oResults[0]))
+						{!! str_replace('/?', '?', $oResults[0]->appends(Input::except('page'))->render()) !!}
 					@endif
 				</div>
 			</div>
