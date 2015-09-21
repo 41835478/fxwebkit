@@ -1,4 +1,4 @@
-<?php
+<?php //
 
 Route::group(['middleware' => ['authenticate.admin'], 'prefix' => env('ADMIN_NAME'), 'namespace' => 'Modules\Reports'], function()
 {
@@ -13,7 +13,7 @@ Route::group(['prefix' => env('CLIENT_NAME'), 'namespace' => 'Client'], function
 
 
 
-Event::listen('illuminate.query', function($query)
-{
-    var_dump($query);
-});
+//Event::listen('illuminate.query', function($query)
+//{
+//    var_dump($query);
+//});
