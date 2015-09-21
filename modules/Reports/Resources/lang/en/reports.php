@@ -28,5 +28,9 @@ return [
     
     'commission'=>'Commission',
     'agentCommission'=>'Agent Commission',
-    'accountant'=>'Accountant'
+    'accountant'=>'Accountant',
+    'AgentAccount'=>'Agent Account',
+    'Margin'=>'Margin',
+    'MarginFree'=>'Margin Free',
+    'Leverage'=>'Leverage',
 ];

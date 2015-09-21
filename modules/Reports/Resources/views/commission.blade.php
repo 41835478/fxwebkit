@@ -104,6 +104,9 @@
 							<div class="stat-cell col-xs-4 padding-xs-vr">
 								<span class="text-xs">Total Commission : {{ round($oResults->sum('COMMISSION'), 2) }}</span>
 							</div>
+							<div class="stat-cell col-xs-4 padding-xs-vr">
+								<span class="text-xs">Total Lots : {{ round($oResults->sum('VOLUME'), 2) }}</span>
+							</div>
 							
 						</div>
 					</div>
@@ -114,7 +117,7 @@
 			<div class="table-info">
 				<div class="table-header">
 					<div class="table-caption">
-						{{ trans('reports::reports.ClosedOrders') }}
+						{{ trans('reports::reports.commission') }}
 
 						@if (count($oResults))
 							<div class="panel-heading-controls">

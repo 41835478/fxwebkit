@@ -105,16 +105,16 @@
                    <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
-<div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+<div id="total_accountant_chart" style="min-width: 310px; max-width: 700px; height: 300px; margin: 0 auto"></div>
 
 <script >
  function buildHighCharts(){ 
-    $('#container').highcharts({
+    $('#total_accountant_chart').highcharts({
         chart: {
             type: 'bar'
         },
         title: {
-            text: 'Stacked bar chart'
+            text: 'Accountant Total'
         },
         xAxis: {
             /*
@@ -129,7 +129,7 @@
         yAxis: {
             min: 0,
             title: {
-                text: 'Total fruit consumption'
+                text: 'Total'
             }
         },
         legend: {
@@ -141,16 +141,32 @@
             }
         },
         series: [{
-            name: '{!!  trans('general.Deposits').' - '.trans('general.CreditIn') !!}',
-            data: [{!! $oResults[1]['deposits'] !!},{!! $oResults[1]['creditIn'] !!}]
+            name: ['{!!  trans('general.Deposits') !!}'],
+            data: [{!! $oResults[1]['deposits']+$oResults[1]['withdraws'] !!},0]
+        },{
+            name: ['{!! trans('general.CreditIn') !!}'],
+            data: [0,{!! $oResults[1]['creditIn']+$oResults[1]['creditOut'] !!}]
         }, {
-            name: '{!!  trans('general.Withdraws').' - '.trans('general.CreditOut') !!}',
-            data: [{!! $oResults[1]['withdraws']*-1 !!}, {!! $oResults[1]['creditOut']*-1 !!}]
+            name: ['{!!  trans('general.Withdraws') !!}'],
+            data: [{!! $oResults[1]['withdraws']*-1 !!}, 0]
+        }, {
+            name: ['{!! trans('general.CreditOut') !!}'],
+            data: [0, {!! $oResults[1]['creditOut']*-1 !!}]
         }]
     });
 }
  buildHighCharts();
+  $(".highcharts-legend-item").attr('onclick','return false;');
 </script>
+
+<style type="text/css">
+    #total_accountant_chart { padding-bottom: -50px;}
+   /*.highcharts-title,*/
+.highcharts-yaxis-title,.highcharts-button{ display: none ;}
+#total_accountant_chart svg>text:last-child{ display: none !important;}
+ .highcharts-legend-item{
+ }
+</style>
                         <!-- ______________________________END_____chart__________________________________-->
 <!-- ________________________________tables______________-->
 <div class="table-info">

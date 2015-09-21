@@ -57,6 +57,17 @@ class EloquentMt4UserRepository implements Mt4UserContract
         public function getUserInfo($login){
             $oResult=Mt4User::where('LOGIN','=',$login);
             $oResult=$oResult->get();
+            		/* =============== Preparing Output  =============== */
+		foreach ($oResult as $dKey => $oValue) {
+			$oResult[$dKey]->BALANCE = round($oResult[$dKey]->BALANCE,2) ;
+			$oResult[$dKey]->EQUITY = round($oResult[$dKey]->EQUITY,2) ;
+                        $oResult[$dKey]->AGENT_ACCOUNT = round($oResult[$dKey]->AGENT_ACCOUNT,2) ;
+			$oResult[$dKey]->MARGIN = round($oResult[$dKey]->MARGIN,2) ;
+                        $oResult[$dKey]->MARGIN_FREE = round($oResult[$dKey]->MARGIN_FREE,2) ;
+			$oResult[$dKey]->LEVERAGE = round($oResult[$dKey]->LEVERAGE,2) ;
+                        
+                        
+                }
             return (count($oResult))? $oResult[0]:null;
         }
 	public function getUsersByFilters($aFilters, $bFullSet=false, $sOrderBy = 'login', $sSort = 'ASC')
@@ -94,7 +105,17 @@ class EloquentMt4UserRepository implements Mt4UserContract
 		} else {
 			$oResult = $oResult->get();
 		}
-
+		/* =============== Preparing Output  =============== */
+		foreach ($oResult as $dKey => $oValue) {
+			$oResult[$dKey]->BALANCE = round($oResult[$dKey]->BALANCE,2) ;
+			$oResult[$dKey]->EQUITY = round($oResult[$dKey]->EQUITY,2) ;
+                        $oResult[$dKey]->AGENT_ACCOUNT = round($oResult[$dKey]->AGENT_ACCOUNT,2) ;
+			$oResult[$dKey]->MARGIN = round($oResult[$dKey]->MARGIN,2) ;
+                        $oResult[$dKey]->MARGIN_FREE = round($oResult[$dKey]->MARGIN_FREE,2) ;
+			$oResult[$dKey]->LEVERAGE = round($oResult[$dKey]->LEVERAGE,2) ;
+                        
+                        
+                }
 		/* =============== Preparing Output  =============== */
 		return $oResult;
 	}

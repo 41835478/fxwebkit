@@ -161,6 +161,17 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 			// Set CMD type
 			$oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
 			$oResult[$dKey]->VOLUME = $oValue->VOLUME/100;
+                        
+			$oResult[$dKey]->COMMISSION = round($oResult[$dKey]->COMMISSION,2) ;
+			$oResult[$dKey]->SWAPS = round($oResult[$dKey]->SWAPS,2) ;
+			$oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT,2) ;
+                        
+                        //OPenPrice/SL/TP/CLOSED_PRICE
+                        $digits=$oResult[$dKey]->Mt4Prices()->first()->DIGITS;
+                        $oResult[$dKey]->OPEN_PRICE=  round($oResult[$dKey]->OPEN_PRICE,$digits) ;
+                        $oResult[$dKey]->SL=  round($oResult[$dKey]->SL,$digits) ;
+                        $oResult[$dKey]->TP=  round($oResult[$dKey]->TP,$digits) ;
+                        $oResult[$dKey]->CLOSE_PRICE=  round($oResult[$dKey]->CLOSE_PRICE,$digits) ;
 		}
 
 		return $oResult;
@@ -203,6 +214,17 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 			// Set CMD type
 			$oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
 			$oResult[$dKey]->VOLUME = $oValue->VOLUME/100;
+                        
+			$oResult[$dKey]->COMMISSION = round($oResult[$dKey]->COMMISSION,2) ;
+			$oResult[$dKey]->SWAPS = round($oResult[$dKey]->SWAPS,2) ;
+			$oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT,2) ;
+                        
+                        //OPenPrice/SL/TP/CLOSED_PRICE
+                        $digits=$oResult[$dKey]->Mt4Prices()->first()->DIGITS;
+                        $oResult[$dKey]->OPEN_PRICE=  round($oResult[$dKey]->OPEN_PRICE,$digits) ;
+                        $oResult[$dKey]->SL=  round($oResult[$dKey]->SL,$digits) ;
+                        $oResult[$dKey]->TP=  round($oResult[$dKey]->TP,$digits) ;
+                        $oResult[$dKey]->CLOSE_PRICE=  round($oResult[$dKey]->CLOSE_PRICE,$digits) ;
 		}
 
 		return $oResult;
@@ -255,6 +277,17 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 			// Set CMD type
 			$oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
 			$oResult[$dKey]->VOLUME = $oValue->VOLUME/100;
+                        
+			$oResult[$dKey]->COMMISSION = round($oResult[$dKey]->COMMISSION,2) ;
+			$oResult[$dKey]->SWAPS = round($oResult[$dKey]->SWAPS,2) ;
+			$oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT,2) ;
+                        
+                        //OPenPrice/SL/TP/CLOSED_PRICE
+                        $digits=$oResult[$dKey]->Mt4Prices()->first()->DIGITS;
+                        $oResult[$dKey]->OPEN_PRICE=  round($oResult[$dKey]->OPEN_PRICE,$digits) ;
+                        $oResult[$dKey]->SL=  round($oResult[$dKey]->SL,$digits) ;
+                        $oResult[$dKey]->TP=  round($oResult[$dKey]->TP,$digits) ;
+                        $oResult[$dKey]->CLOSE_PRICE=  round($oResult[$dKey]->CLOSE_PRICE,$digits) ;
 		}
 
 		return $oResult;
@@ -322,6 +355,17 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 			// Set CMD type
 			$oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
 			$oResult[$dKey]->VOLUME = $oValue->VOLUME/100;
+                        
+			$oResult[$dKey]->COMMISSION = round($oResult[$dKey]->COMMISSION,2) ;
+			$oResult[$dKey]->SWAPS = round($oResult[$dKey]->SWAPS,2) ;
+			$oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT,2) ;
+                        
+                        //OPenPrice/SL/TP/CLOSED_PRICE
+                        $digits=$oResult[$dKey]->Mt4Prices()->first()->DIGITS;
+                        $oResult[$dKey]->OPEN_PRICE=  round($oResult[$dKey]->OPEN_PRICE,$digits) ;
+                        $oResult[$dKey]->SL=  round($oResult[$dKey]->SL,$digits) ;
+                        $oResult[$dKey]->TP=  round($oResult[$dKey]->TP,$digits) ;
+                        $oResult[$dKey]->CLOSE_PRICE=  round($oResult[$dKey]->CLOSE_PRICE,$digits) ;
 		}
 
 		return $oResult;
@@ -447,7 +491,7 @@ public function getCreditFacilityByLogin($aFilters){
 	public function getCommissionByFilters($aFilters, $bFullSet=false, $sOrderBy = 'TICKET', $sSort = 'ASC')
 	{
 		$oFxHelper = new Fx();
-        $oResult = Mt4Trade::groupBy('SYMBOL')->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
+        $oResult = Mt4Trade::groupBy('SYMBOL')->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')->where('COMMISSION', '!=', 0);
         $oResult->select(['SYMBOL',
             DB::raw('sum(COMMISSION) as COMMISSION'),
             DB::raw('sum(VOLUME) as VOLUME')
@@ -503,7 +547,7 @@ public function getCreditFacilityByLogin($aFilters){
 	public function getAgentCommissionByFilters($aFilters, $bFullSet=false, $sOrderBy = 'TICKET', $sSort = 'ASC')
 	{
 		$oFxHelper = new Fx();
-		$oResult = Mt4Trade::groupBy('SYMBOL')->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
+		$oResult = Mt4Trade::groupBy('SYMBOL')->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')->where('COMMISSION_AGENT', '!=', 0);
                 $oResult ->select(['SYMBOL',
         DB::raw('sum(COMMISSION_AGENT) as COMMISSION'),
         DB::raw('sum(VOLUME) as VOLUME')
@@ -651,6 +695,13 @@ public function getCreditFacilityByLogin($aFilters){
 			// Set CMD type
 			$oResult[$dKey]->TYPE = $oFxHelper->getAccountantType($oValue->CMD,$oValue->PROFIT);
 			$oResult[$dKey]->VOLUME = $oValue->VOLUME/100;
+                        
+                          $oResult[$dKey]->EQUITY = round($oResult[$dKey]->EQUITY,2) ;
+                          $oResult[$dKey]->BALANCE = round($oResult[$dKey]->BALANCE,2) ;
+                          $oResult[$dKey]->AGENT_ACCOUNT = round($oResult[$dKey]->AGENT_ACCOUNT,2) ;
+                          $oResult[$dKey]->MARGIN = round($oResult[$dKey]->MARGIN,2) ;
+                          $oResult[$dKey]->MARGIN_FREE = round($oResult[$dKey]->MARGIN_FREE,2) ;
+                          $oResult[$dKey]->LEVERAGE = round($oResult[$dKey]->LEVERAGE,2) ;
 		}
 
 		return [$oResult,$aSummury];

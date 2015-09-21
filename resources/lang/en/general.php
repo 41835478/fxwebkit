@@ -42,7 +42,7 @@ return [
     
  
     
-    'ACCOUNTANT_TYPE_6_DEPOSITS'=>'Deposits Operation',
+    'ACCOUNTANT_TYPE_6_DEPOSITS'=>'Balance Operation',
     'ACCOUNTANT_TYPE_7_CREDIT'=>'Credits Operation',
     'ACCOUNTANT_TYPE_6_POS'=>'Deposit ',
     'ACCOUNTANT_TYPE_6_MIN'=>'Withdrowl',
