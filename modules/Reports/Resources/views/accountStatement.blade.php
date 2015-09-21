@@ -11,6 +11,8 @@
     }
     .center_page_all_div{ padding: 0px 10px;}
     .mail-nav .navigation{margin-top: 35px;}
+    .user-info-table th{ text-align: right;}
+    .user-info-table td{ text-align: left;}
 </style>
 <div class="  theme-default page-mail" >
     <div class="mail-nav" >
@@ -236,11 +238,46 @@
 
                     </div>
                 </div>
-                <table class="table table-bordered">
+                <table class="table table-bordered user-info-table">
                     <tr>
+                        <th colspan="3">Registration date : </th><td>{{ $oResults->REGDATE }}</td>
+                        <th  >MetaQuotes ID : </th><td>{{ $oResults->MQID }}</td>
+                    </tr>
+                    <tr>
+                        <th >Name : </th><td colspan="3">{{ $oResults->NAME }}</td>
+                        <th  >Phone password : </th><td>{{ $oResults->PASSWORD_PHONE }}</td>
+                    </tr>
+                    <tr>
+                        <th >City : </th><td >{{ $oResults->CITY }}</td>
+                        <th >State : </th><td >{{ $oResults->STATE }}</td>
+                        <th  >Country : </th><td>{{ $oResults->COUNTRY }}</td>
+                    </tr>
+                    <tr>
+                        <th >Address : </th><td  colspan="3">{{ $oResults->ADDRESS }}</td>
+                        <th >Zip-code : </th><td >{{ $oResults->ZIPCODE }}</td>
+                    </tr>
+                    <tr>
+                        <th >Phone : </th><td >{{ $oResults->PHONE }}</td>
+                        <th >Email : </th><td  colspan="3">{{ $oResults->EMAIL }}</td>
+                    </tr>
+                    <tr>
+                        <th >ID number : </th><td >{{ $oResults->ID }}</td>
+                        <th >Status : </th><td >{{ $oResults->STATUS }}</td>
+                        <th  >Color : </th><td>{{ $oResults->USER_COLOR }}</td>
+                    </tr>
+                    <tr>
+                        <th >Group : </th><td >{{ $oResults->GROUP }}</td>
+                        <th >comment : </th><td  colspan="3">{{ $oResults->COMMENT }}</td>
+                    </tr>
+                    <tr>
+                        <th >Leverage : </th><td >{{ $oResults->LEVERAGE }}</td>
+                        <th >tax : </th><td >{{ $oResults->TAXES }}%</td>
+                        <th  >Agent account : </th><td>{{ $oResults->AGENT_ACCOUNT }}</td>
+                    </tr>
+                    <tr>
+                        <th class="no-warp"></th><td></td>
                         <th class="no-warp">Deposit / Withdrawal :</th><td>{{ $aSummery['deposit'] }}</td>
                         <th class="no-warp">Credit Facility :</th><td>{{ $aSummery['credit_facility'] }}</td>
-                        <th class="no-warp"></th><td></td>
                     </tr>
                     <tr>
                         <th class="no-warp">Closed Trade P/L : </th><td>{{ $aSummery['closed_trade'] }}</td>
