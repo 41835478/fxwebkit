@@ -6,9 +6,9 @@ Route::group(['middleware' => ['authenticate.admin'], 'prefix' => env('ADMIN_NAM
 });
 
 
-Route::group(['prefix' => env('CLIENT_NAME'), 'namespace' => 'Client'], function()
+Route::group(['prefix' => env('CLIENT_NAME'), 'namespace' => 'Client', 'namespace' => 'Modules\Reports'], function()
 {
-	//require_once __DIR__ . "/Routes/Client/routes.php";
+	require_once __DIR__ . "/Routes/Client/routes.php";
 });
 
 

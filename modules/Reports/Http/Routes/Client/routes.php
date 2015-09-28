@@ -3,7 +3,7 @@
 /*
  * Client Routes that needs login
  */
-Route::group(['middleware' => ['authenticate.client']], function()
+Route::group(['middleware' => ['authenticate.client'], 'namespace' => 'Http\Controllers\Client'], function()
 {
 	Route::controller('users', 'UserController', [
 		'getSettings' => 'client.users.settings',

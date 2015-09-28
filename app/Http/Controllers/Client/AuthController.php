@@ -39,7 +39,7 @@ class AuthController extends Controller
 		}
 
 		if ($oUser) {
-			return Redirect::intended('/');
+			return Redirect::intended('/client');
 		} else {
 			return redirect()
 				->route('client.auth.login')

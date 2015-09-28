@@ -22,14 +22,15 @@ Route::group(['prefix' => env('ADMIN_NAME'), 'namespace' => 'Admin'], function()
 
 
 if (class_exists("Module") && Module::find('cms')) {
-
-    Route::get('/', '\Modules\Cms\Http\Controllers\PagesController@getRenderPage');
-    Route::get('/{page_name}', '\Modules\Cms\Http\Controllers\PagesController@getRenderPage');
-
+ 
     Route::group(['prefix' => env('CLIENT_NAME'), 'namespace' => 'Client'], function () {
+
         require_once __DIR__ . "/Routes/Client/Dashboard.php";
         require_once __DIR__ . "/Routes/Client/Auth.php";
     });
+    Route::get('/', '\Modules\Cms\Http\Controllers\PagesController@getRenderPage');
+    Route::get('/{page_name}', '\Modules\Cms\Http\Controllers\PagesController@getRenderPage');
+
 } else {
 
     Route::get('/', function () {

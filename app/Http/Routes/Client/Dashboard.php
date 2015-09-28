@@ -6,6 +6,8 @@
 Route::group(['middleware' => ['authenticate.client']], function()
 {
 	Route::get('/', ['as' => 'client.index', 'uses' => 'DashboardController@index']);
+    
+       // Route::get('/', function(){dd(3);});
 });
 
 /*
