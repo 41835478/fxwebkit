@@ -4,17 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Http/routes.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/Mt4Trade/Mt4TradeContract.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Resources/views/accounts.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Resources/lang/en/reports.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Resources/views/commission.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Resources/views/openOrders.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Resources/views/agentCommission.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/Mt4Trade/EloquentMt4TradeRepository.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Http/Controllers/Admin/ReportsController.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Resources/views/accountant.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/resources/views/admin/layouts/main.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Resources/views/closedOrders.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/app/Http/Controllers/Client/AuthController.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/resources/views/client/partials/menu.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Reports/Http/Controllers/Client/UserController.php</file>
         </group>
     </open-files>
 </project-private>

@@ -27,6 +27,11 @@ class FxWebKitServiceProvider extends ServiceProvider {
 		);
 
 		$this->app->bind(
+			'Fxweb\Repositories\Admin\User\UserContract',
+			'Fxweb\Repositories\Admin\User\EloquentUserRepository'
+		);
+
+		$this->app->bind(
 			'Fxweb\Repositories\Admin\Mt4Group\Mt4GroupContract',
 			'Fxweb\Repositories\Admin\Mt4Group\EloquentMt4GroupRepository'
 		);

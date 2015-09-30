@@ -12,6 +12,7 @@
  */
 Route::group(['prefix' => env('ADMIN_NAME'), 'namespace' => 'Admin'], function() {
     require_once __DIR__ . "/Routes/Admin/Dashboard.php";
+    require_once __DIR__ . "/Routes/Admin/Settings.php";
     require_once __DIR__ . "/Routes/Admin/Auth.php";
 });
 

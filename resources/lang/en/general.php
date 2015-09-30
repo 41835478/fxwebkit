@@ -48,4 +48,16 @@ return [
     'ACCOUNTANT_TYPE_6_MIN'=>'Withdrowl',
     'ACCOUNTANT_TYPE_7_POS'=>'Credit In',
     'ACCOUNTANT_TYPE_7_MIN'=>'Credit Out',
+    
+    /*____settings____adminsList__*/
+    'id'=>'Id',
+    'first_name'=>'First Name',
+    'last_name'=>'Last Name',
+    'email'=>'Email',
+    'password'=>'Password',
+    'addUser'=>'Add User'
+    /*__add admin*/
+    
+    /*__end_add_admin*/
+    /*__END__settings____adminsList__*/
 ];
