@@ -90,7 +90,7 @@
                     <div class="table-caption">
                         {{ trans('reports::reports.accounts') }}  
                         <a href="{{ route('accounts.addAccount') }}" style="float:right;">
-                        <input name="new_menu_submit" class="btn btn-primary btn-flat" type="submit" value="{{ trans('accounts.addAccount') }}"> </a>
+                        <input name="new_menu_submit" class="btn btn-primary btn-flat" type="submit" value="{{ trans('accounts::accounts.addAccount') }}"> </a>
                    </div>
                 </div>
                 <table class="table table-bordered">

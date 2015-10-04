@@ -8,6 +8,7 @@ use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Modules\Accounts\Http\Requests\AddUserRequest;
 use Illuminate\Support\Facades\Redirect;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Illuminate\Support\Facades\Config;
 class AccountsController extends Controller {
 	
     /**
@@ -55,7 +56,10 @@ class AccountsController extends Controller {
 
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-            $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort);
+            
+        $role = explode(',', Config::get('fxweb.client_default_role'));
+        
+            $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort,$role);
         }
 
 
@@ -103,7 +107,8 @@ class AccountsController extends Controller {
             $result = $this->oUsers->updateUser($oRequest);
         } else {
 
-            $result = $this->oUsers->addUser($oRequest);
+        $role = explode(',', Config::get('fxweb.client_default_role'));
+            $result = $this->oUsers->addUser($oRequest,$role);
         }
 
 

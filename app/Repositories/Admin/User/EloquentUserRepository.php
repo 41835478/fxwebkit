@@ -43,9 +43,13 @@ class EloquentUserRepository implements UserContract {
         // return User::select('group')->get();
     }
 
-    public function getUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC') {
+    public function getUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC',$role='admin') {
 
-        $oResult = new User();
+        $oRole = Sentinel::findRoleBySlug($role);
+        $role_id = $oRole->id;
+        $oResult = User::with('roles')->whereHas('roles', function($query) use($role_id) {
+            $query->where('id', $role_id);
+        });
 
         /* =============== id Filter  =============== */
         if (isset($aFilters['id']) && !empty($aFilters['id'])) {
@@ -82,9 +86,9 @@ class EloquentUserRepository implements UserContract {
         return $oResult;
     }
 
-    public function addUser($oRequest) {
-        $admin_role = explode(',', Config::get('fxweb.admin_roles'));
-        $oClientRole = Sentinel::findRoleBySlug($admin_role[0]);
+    public function addUser($oRequest,$role='admin') {
+       
+        $oClientRole = Sentinel::findRoleBySlug($role);
 
         //$bAutoActivate	= Config::get('fxweb.auto_activate_client');
         $aCredentials = [

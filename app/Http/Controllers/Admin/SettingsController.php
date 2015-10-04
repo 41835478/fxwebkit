@@ -11,6 +11,7 @@ use Fxweb\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
+use Illuminate\Support\Facades\Config;
 class SettingsController extends Controller {
 
     /**
@@ -54,7 +55,9 @@ class SettingsController extends Controller {
 
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-            $oResults = $this->oUser->getUsersByFilter($aFilterParams, false, $sOrder, $sSort);
+            
+        $role = explode(',', Config::get('fxweb.admin_roles'));
+            $oResults = $this->oUser->getUsersByFilter($aFilterParams, false, $sOrder, $sSort,$role[0]);
         }
 
 
@@ -101,8 +104,9 @@ class SettingsController extends Controller {
 
             $result = $this->oUser->updateUser($oRequest);
         } else {
-
-            $result = $this->oUser->addUser($oRequest);
+ $admin_role = explode(',', Config::get('fxweb.admin_roles'));
+        
+            $result = $this->oUser->addUser($oRequest,$admin_role[0]);
         }
 
 

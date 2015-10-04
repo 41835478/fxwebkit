@@ -19,7 +19,7 @@ interface UserContract
 	 * @param string $sSort
 	 * @return array
 	 */
-         public function getUsersByFilter($aFilters, $bFullSet=false, $sOrderBy = 'LOGIN', $sSort = 'ASC');
+         public function getUsersByFilter($aFilters, $bFullSet=false, $sOrderBy = 'LOGIN', $sSort = 'ASC',$role='admin');
          public function getAllGroups();
 
 }
