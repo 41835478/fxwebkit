@@ -1,1 +1,0 @@
-module_view_to_include.blade.php

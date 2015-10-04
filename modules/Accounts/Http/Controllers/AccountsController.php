@@ -3,7 +3,11 @@
 use Pingpong\Modules\Routing\Controller;
 use Modules\Accounts\Http\Requests\AccountsRequest;
 
+use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
+use Modules\Accounts\Http\Requests\AddUserRequest;
+use Illuminate\Support\Facades\Redirect;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 class AccountsController extends Controller {
 	
     /**
@@ -27,69 +31,96 @@ class AccountsController extends Controller {
     public function getAccountsList(AccountsRequest $oRequest) {
      
         
-        $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
-        $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
         $aGroups = [];
         $oResults = null;
         $aFilterParams = [
-            'from_login' => '',
-            'to_login' => '',
-            'exactLogin' => false,
-            'login' => '',
-            'name' => '',
-            'all_groups' => true,
-            'group' => '',
+            'id' => '',
+            'first_name' => '',
+            'last_name' => '',
+            'email' => '',
             'sort' => $sSort,
             'order' => $sOrder,
         ];
 
 
 
+
         if ($oRequest->has('search')) {
-            $aFilterParams['from_login'] = $oRequest->from_login;
-            $aFilterParams['to_login'] = $oRequest->to_login;
-            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
-            $aFilterParams['login'] = $oRequest->login;
-            $aFilterParams['name'] = $oRequest->name;
-            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
-            $aFilterParams['group'] = $oRequest->group;
+            $aFilterParams['id'] = $oRequest->id;
+            $aFilterParams['first_name'] = $oRequest->first_name;
+            $aFilterParams['last_name'] = $oRequest->last_name;
+            $aFilterParams['email'] = $oRequest->email;
+
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
             $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort);
         }
 
 
-        if ($oRequest->has('export')) {
-            $oResults = $this->oUsers->getUsersByFilter($aFilterParams, true, $sOrder, $sSort);
-            $sOutput = $oRequest->export;
-            $aData = [];
-            $aHeaders = [
-                trans('reports::reports.Login'),
-                trans('reports::reports.Name'),
-                trans('reports::reports.Group'),
-                trans('reports::reports.Equity'),
-                trans('reports::reports.Balance'),
-                trans('reports::reports.Comments')
-            ];
 
-            foreach ($oResults as $oResult) {
-                $aData[] = [
-                    $oResult->LOGIN,
-                    $oResult->NAME,
-                    $oResult->GROUP,
-                    $oResult->EQUITY,
-                    $oResult->BALANCE,
-                    $oResult->COMMENTS,
-                ];
-            }
-            $oExport = new Export($aHeaders, $aData);
-            return $oExport->export($sOutput);
-        }
-
-        return view('reports::accounts')
-                        ->with('aGroups', $aGroups)
+        return view('accounts::accountsList')
                         ->with('oResults', $oResults)
                         ->with('aFilterParams', $aFilterParams);
+    }
+
+    
+    
+    public function getEditAccount(Request $oRequest) {
+
+        if ($oRequest->has('delete_id')) {
+            $result = $this->oUsers->deleteUser($oRequest->delete_id);
+            return Redirect::route('accounts.accountsList')->withErrors($result);
+        }
+
+
+        $userInfo = [
+            'edit_id' => 0,
+            'first_name' => '',
+            'last_name' => '',
+            'email' => '',
+            'password' => ''];
+        if ($oRequest->has('edit_id')) {
+            $user = Sentinel::findById($oRequest->edit_id);
+            $userInfo = [
+                'edit_id' => $oRequest->edit_id,
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'email' => $user->email,
+                'password' => ''];
+        }
+
+        return view('accounts::addAccount')->with('userInfo', $userInfo);
+    }
+
+    public function postEditAccount(AddUserRequest $oRequest) {
+
+
+        $result = false;
+        $resultMessage = [];
+        if ($oRequest->edit_id > 0) {
+            $result = $this->oUsers->updateUser($oRequest);
+        } else {
+
+            $result = $this->oUsers->addUser($oRequest);
+        }
+
+
+
+        if ($result === true) {
+            return Redirect::route('accounts.accountsList');
+        } else {
+            return view('accounts::addAccount')
+                            ->withErrors($resultMessage)
+                            ->withErrors($result)
+                            ->with('userInfo', [
+                                'edit_id' => $oRequest->edit_id,
+                                'first_name' => $oRequest->first_name,
+                                'last_name' => $oRequest->last_name,
+                                'email' => $oRequest->email,
+                                'password' => $oRequest->password]);
+        }
     }
 
 }

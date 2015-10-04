@@ -44,6 +44,7 @@ class EloquentUserRepository implements UserContract {
     }
 
     public function getUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC') {
+
         $oResult = new User();
 
         /* =============== id Filter  =============== */
