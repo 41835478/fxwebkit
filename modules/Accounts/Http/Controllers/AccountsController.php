@@ -3,8 +3,7 @@
 use Pingpong\Modules\Routing\Controller;
 use Modules\Accounts\Http\Requests\AccountsRequest;
 
-use Fxweb\Repositories\Admin\Mt4Group\Mt4GroupContract as Mt4Group;
-
+use Fxweb\Repositories\Admin\User\UserContract as Users;
 class AccountsController extends Controller {
 	
     /**
@@ -26,8 +25,8 @@ class AccountsController extends Controller {
         
 
     public function getAccountsList(AccountsRequest $oRequest) {
-      
-        $oGroups = $this->oMt4User->getAllGroups();
+     
+        
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
         $aGroups = [];
@@ -44,10 +43,6 @@ class AccountsController extends Controller {
             'order' => $sOrder,
         ];
 
-        foreach ($oGroups as $oGroup) {
-            $aGroups[$oGroup->group] = $oGroup->group;
-        }
-
 
 
         if ($oRequest->has('search')) {
@@ -60,12 +55,12 @@ class AccountsController extends Controller {
             $aFilterParams['group'] = $oRequest->group;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-            $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
+            $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort);
         }
 
 
         if ($oRequest->has('export')) {
-            $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, true, $sOrder, $sSort);
+            $oResults = $this->oUsers->getUsersByFilter($aFilterParams, true, $sOrder, $sSort);
             $sOutput = $oRequest->export;
             $aData = [];
             $aHeaders = [
