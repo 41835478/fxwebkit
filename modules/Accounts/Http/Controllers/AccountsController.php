@@ -5,10 +5,14 @@ use Modules\Accounts\Http\Requests\AccountsRequest;
 
 use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
+
+use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
+
 use Modules\Accounts\Http\Requests\AddUserRequest;
 use Illuminate\Support\Facades\Redirect;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 class AccountsController extends Controller {
 	
     /**
@@ -18,9 +22,11 @@ class AccountsController extends Controller {
     
     
     public function __construct(
-    Users $oUsers
+    Users $oUsers, Mt4User $oMt4User
     ) {
         $this->oUsers = $oUsers;
+        
+        $this->oMt4User = $oMt4User;
     }
 	public function index()
 	{
@@ -127,5 +133,91 @@ class AccountsController extends Controller {
                                 'password' => $oRequest->password]);
         }
     }
+    public function getAsignMt4Users(Request $oRequest ){
+$account_id=$oRequest->account_id;
+if(!$account_id >0){$account_id=Session::get('account_id');}
+         $oGroups = $this->oMt4User->getAllGroups();
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
+        $aGroups = [];
+        $oResults = null;
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
+            'name' => '',
+            'all_groups' => true,
+            'group' => '',
+            'sort' => $sSort,
+            'order' => $sOrder,
+            'account_id' => $account_id,
+        ];
+
+        foreach ($oGroups as $oGroup) {
+            $aGroups[$oGroup->group] = $oGroup->group;
+        }
+
+
+
+       if ($oRequest->has('search')) {
+            $aFilterParams['from_login'] = $oRequest->from_login;
+            $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['name'] = $oRequest->name;
+            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['group'] = $oRequest->group;
+            $aFilterParams['sort'] = $oRequest->sort;
+            $aFilterParams['order'] = $oRequest->order;
+        }
+
+            $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
+
+        if ($oRequest->has('export')) {
+            $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, true, $sOrder, $sSort);
+            $sOutput = $oRequest->export;
+            $aData = [];
+            $aHeaders = [
+                trans('reports::reports.Login'),
+                trans('reports::reports.Name'),
+                trans('reports::reports.Group'),
+                trans('reports::reports.Equity'),
+                trans('reports::reports.Balance'),
+                trans('reports::reports.Comments')
+            ];
+
+            foreach ($oResults as $oResult) {
+                $aData[] = [
+                    $oResult->LOGIN,
+                    $oResult->NAME,
+                    $oResult->GROUP,
+                    $oResult->EQUITY,
+                    $oResult->BALANCE,
+                    $oResult->COMMENTS,
+                ];
+            }
+            $oExport = new Export($aHeaders, $aData);
+            return $oExport->export($sOutput);
+        }
+
+        return view('accounts::asignMt4Users')
+                        ->with('aGroups', $aGroups)
+                        ->with('oResults', $oResults)
+                ->with('account_id',$account_id)
+                        ->with('aFilterParams', $aFilterParams);
+    }
+    
+     public function postAsignMt4Users(Request $oRequest ){
+         if($oRequest->has('asign_mt4_users_submit')){
+             
+             $users_checkbox=$oRequest->users_checkbox;
+             $account_id=$oRequest->account_id;
+         $this->oUsers->asignMt4UsersToAccount($account_id,$users_checkbox);
+     
+           return Redirect::route('accounts.asignMt4Users')->with('account_id',$account_id);
+         }
+     }
+    
 
 }

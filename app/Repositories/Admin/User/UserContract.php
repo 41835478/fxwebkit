@@ -20,6 +20,11 @@ interface UserContract
 	 * @return array
 	 */
          public function getUsersByFilter($aFilters, $bFullSet=false, $sOrderBy = 'LOGIN', $sSort = 'ASC',$role='admin');
+         
+	
          public function getAllGroups();
+         
+         
+        public function asignMt4UsersToAccount($account_id,$users_id);
 
 }

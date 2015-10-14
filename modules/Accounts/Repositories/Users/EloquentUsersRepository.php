@@ -8,6 +8,8 @@
  * Class EloquentUsersRepository
  * @package App\Repositories\User
  */
+
+use Modules\Accounts\Entities\mt4_users_users;
 class EloquentUsersRepository implements Mt4UserContract
 {
 	/**
@@ -67,4 +69,24 @@ class EloquentUsersRepository implements Mt4UserContract
 		/* =============== Preparing Output  =============== */
 		return $oResult;
 	}
+        
+        public function asignMt4UsersToAccount($account_id,$users_id){
+
+        foreach($users_id as $id=>$user_id){
+            
+            $asign=mt4_users_users::where(['users_id'=>$account_id,'mt4_users_id'=>$user_id])->first();
+            if($asign){
+                $asign->users_id=$account_id;
+               $asign->mt4_users_id=$user_id;
+                $asign->save();
+            }else{
+                $translate=new mt4_users_users;
+
+                $asign->users_id=$account_id;
+               $asign->mt4_users_id=$user_id;
+                $asign->save();
+            }
+        }
+            
+        }
 }
