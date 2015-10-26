@@ -40,5 +40,13 @@ class FxWebKitServiceProvider extends ServiceProvider {
 			'Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract',
 			'Fxweb\Repositories\Admin\Mt4Trade\EloquentMt4TradeRepository'
 		);
+                $this->app->bind(
+			'Modules\Accounts\Repositories\Agents\AgentsInterface',
+			'Modules\Accounts\Repositories\Agents\EloquentAgentsRepository'
+		);
+                $this->app->bind(
+			'Modules\Accounts\Repositories\FullDetails\FullDetailsInterface',
+			'Modules\Accounts\Repositories\FullDetails\EloquentFullDetailsRepository'
+		);
 	}
 }

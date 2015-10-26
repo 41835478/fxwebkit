@@ -159,4 +159,9 @@ class EloquentUserRepository implements UserContract {
         }
             
         }
+             public function details($id) {
+           
+        $user = Sentinel::findById($id);
+        return $user;
+    }
 }

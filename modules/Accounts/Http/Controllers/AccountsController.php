@@ -5,6 +5,7 @@ use Modules\Accounts\Http\Requests\AccountsRequest;
 
 use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
+use Fxweb\Repositories\Admin\FullDetails\FullDetailsInterface as FullDetails;
 
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 
@@ -18,14 +19,14 @@ class AccountsController extends Controller {
     /**
      * @var Mt4Group
      */
-    protected $oUsers;
+    protected $oUsers,$oFullDetails;
     
     
     public function __construct(
     Users $oUsers, Mt4User $oMt4User
     ) {
         $this->oUsers = $oUsers;
-        
+     //   $this->oFullDetails = $oFullDetails;
         $this->oMt4User = $oMt4User;
     }
 	public function index()
@@ -36,8 +37,7 @@ class AccountsController extends Controller {
         
 
     public function getAccountsList(AccountsRequest $oRequest) {
-     
-        
+
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
         $aGroups = [];
@@ -63,8 +63,8 @@ class AccountsController extends Controller {
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
             
-        $role = explode(',', Config::get('fxweb.client_default_role'));
-        
+      
+          $role = explode(',', Config::get('fxweb.client_default_role'));
             $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort,$role);
         }
 
@@ -218,6 +218,39 @@ if(!$account_id >0){$account_id=Session::get('account_id');}
            return Redirect::route('accounts.asignMt4Users')->with('account_id',$account_id);
          }
      }
-    
-
+      public function getDetailsAccount(Request $oRequest)
+     {
+         if ($oRequest->has('details_id')) {
+            $result = $this->oUsers->details($oRequest->details_id);
+            
+            $userInfo = [
+                'edit_id' => $oRequest->details_id,
+                'first_name' => $result->first_name,
+                'last_name' => $result->last_name,
+                'email' => $result->email,
+                'password' => ''];
+            
+            return view('accounts::detailsAccount')
+                                ->with('oResults', $result)
+                                    ->with('userInfo', $userInfo);
+                              
+        }
+     }
+     
+     public function getFullDetailsAccount(Request $oRequest)
+     {
+      
+         if ($oRequest->has('details_id')) {
+        
+            $result = $this->oUsers->details($oRequest->details_id);
+       
+         $userInfo = [
+                'edit_id' => $oRequest->edit_id,
+                'first_name' => $result->first_name,
+                'last_name' => $result->last_name];
+         
+         return view('accounts::fullDetails')->with('userInfo', $userInfo);
+     }
+     }
+     
 }

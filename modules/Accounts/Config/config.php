@@ -11,6 +11,11 @@ return [
 			'route' => 'accounts.accountsList',
 			'title' => 'accountsList',
 			'icon' => 'fa fa-users',
+		],
+		[
+			'route' => 'accounts.agentsList',
+			'title' => 'agentsList',
+			'icon' => 'fa fa-users',
 		]
 	]
 ];
