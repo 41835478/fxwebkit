@@ -3,29 +3,37 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Resources/views/index.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Resources/lang/en/accounts.php</file>
             <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Resources/views/agentsList.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fxwebkit/app/Repositories/Admin/Mt4User/Mt4UserContract.php</file>
             <file>file:/C:/xampp/htdocs/fxwebkit/app/Providers/FxWebKitServiceProvider.php</file>
             <file>file:/C:/xampp/htdocs/fxwebkit/modules/Cms/Http/Controllers/PagesController.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Entities/Agents.php</file>
             <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Resources/views/addAccount.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Resources/views/detailsAccount.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Http/routes.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Database/Migrations/2015_10_14_124151_create_mt4_users_users_table.php</file>
             <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Repositories/Users/UsersInterface.php</file>
-            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Http/Controllers/AccountsController.php</file>
-            <file>file:/C:/xampp/htdocs/fxwebkit/app/Repositories/Admin/Mt4User/EloquentMt4UserRepository.php</file>
-            <file>file:/C:/xampp/htdocs/fxwebkit/app/Http/routes.php</file>
-            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Repositories/Mohammad/EloquentMohammadRepository.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Repositories/Agents/EloquentAgentsRepository.php</file>
             <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Resources/views/addAgents.blade.php</file>
-            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Config/config.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/database/migrations/2014_07_02_230147_migration_cartalyst_sentinel.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Repositories/FullDetails/FullDetailsInterface.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Resources/views/accountsList.blade.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Entities/mt4_users_users.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Entities/Users.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Resources/lang/en/accounts.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/app/Repositories/Admin/Mt4User/Mt4UserContract.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Http/routes.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Resources/views/detailsAccount.blade.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Http/Controllers/AccountsController.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/app/Http/routes.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/app/Repositories/Admin/Mt4User/EloquentMt4UserRepository.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Entities/FullDetails.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Http/Controllers/.gitkeep</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Resources/views/fullDetails.blade.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Repositories/FullDetails/EloquentFullDetailsRepository.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Repositories/Agents/AgentsInterface.php</file>
             <file>file:/C:/xampp/htdocs/fxwebkit/app/Repositories/Admin/User/EloquentUserRepository.php</file>
             <file>file:/C:/xampp/htdocs/fxwebkit/app/Repositories/Admin/User/UserContract.php</file>
             <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Http/Controllers/AgentsController.php</file>
-            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Resources/views/accountsList.blade.php</file>
+            <file>file:/C:/xampp/htdocs/fxwebkit/database/migrations/2015_10_26_075910_user_full_details.php</file>
             <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Repositories/Users/EloquentUsersRepository.php</file>
-            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Entities/Mohammad.php</file>
-            <file>file:/C:/xampp/htdocs/fxwebkit/modules/Accounts/Repositories/Mohammad/MohammadInterface.php</file>
         </group>
     </open-files>
 </project-private>

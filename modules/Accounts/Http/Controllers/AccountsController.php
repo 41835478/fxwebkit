@@ -5,7 +5,7 @@ use Modules\Accounts\Http\Requests\AccountsRequest;
 
 use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
-use Fxweb\Repositories\Admin\FullDetails\FullDetailsInterface as FullDetails;
+use Modules\Accounts\Repositories\FullDetails\FullDetailsInterface as FullDetails;
 
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 
@@ -23,10 +23,10 @@ class AccountsController extends Controller {
     
     
     public function __construct(
-    Users $oUsers, Mt4User $oMt4User
+    Users $oUsers, Mt4User $oMt4User,FullDetails $fullDetails
     ) {
         $this->oUsers = $oUsers;
-     //   $this->oFullDetails = $oFullDetails;
+        $this->oFullDetails = $fullDetails;
         $this->oMt4User = $oMt4User;
     }
 	public function index()
@@ -238,19 +238,46 @@ if(!$account_id >0){$account_id=Session::get('account_id');}
      }
      
      public function getFullDetailsAccount(Request $oRequest)
-     {
-      
-         if ($oRequest->has('details_id')) {
-        
+     { 
+            if ($oRequest->has('details_id')) {
             $result = $this->oUsers->details($oRequest->details_id);
-       
-         $userInfo = [
-                'edit_id' => $oRequest->edit_id,
+            $fullDetalisResult=$this->oFullDetails->insertFullDetails($oRequest);
+             
+            $userInfo = [
+                'edit_id' => '',
+                'first_name' => '',
+                'last_name' => '',
+                'address' => ''
+              ];
+              dd(3);
+            if(count($fullDetalisResult)){
+          $userInfo = [
+                'edit_id' => $oRequest->details_id,
                 'first_name' => $result->first_name,
-                'last_name' => $result->last_name];
-         
-         return view('accounts::fullDetails')->with('userInfo', $userInfo);
+                'last_name' => $result->last_name,
+                'address' => $fullDetalisResult->address
+              ];
+            }
+            return view('accounts::fullDetails')->with('userInfo', $userInfo);
+            }  
      }
-     }
+     
+     public function postFullDetailsAccount(Request $oRequest)
+             {
+                   $result = $this->oUsers->details($oRequest->details_id);
+                 $fullDetalisResult=$this->oFullDetails->getFullDetails($oRequest);
+            
+            if($oRequest->has('edit_id'))
+            {
+                 $userInfo = [
+                     'edit_id'=>$oRequest->details_id, 
+                     'first_name' => $result->first_name,
+                     'last_name' => $result->last_name,
+                     'address' => $fullDetalisResult->address
+              ]; 
+                 return view('accounts::fullDetails')->with('userInfo', $userInfo);
+            }
+    
+             }
      
 }
