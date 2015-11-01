@@ -1,42 +1,39 @@
-<?php namespace Modules\Accounts\Http\Controllers;
+<?php
+
+namespace Modules\Accounts\Http\Controllers;
 
 use Pingpong\Modules\Routing\Controller;
 use Modules\Accounts\Http\Requests\AccountsRequest;
-
 use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
-use Fxweb\Repositories\Admin\FullDetails\FullDetailsInterface as FullDetails;
-
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
-
 use Modules\Accounts\Http\Requests\AddUserRequest;
 use Illuminate\Support\Facades\Redirect;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
+
 class AccountsController extends Controller {
-	
+
     /**
      * @var Mt4Group
      */
-    protected $oUsers,$oFullDetails;
-    
-    
+    protected $oUsers;
+
     public function __construct(
     Users $oUsers, Mt4User $oMt4User
     ) {
         $this->oUsers = $oUsers;
-     //   $this->oFullDetails = $oFullDetails;
+
         $this->oMt4User = $oMt4User;
     }
-	public function index()
-	{
-		return view('accounts::index');
-	}
-	
-        
+
+    public function index() {
+        return view('accounts::index');
+    }
 
     public function getAccountsList(AccountsRequest $oRequest) {
+
 
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
@@ -62,10 +59,10 @@ class AccountsController extends Controller {
 
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-            
-      
-          $role = explode(',', Config::get('fxweb.client_default_role'));
-            $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort,$role);
+
+            $role = explode(',', Config::get('fxweb.client_default_role'));
+
+            $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
         }
 
 
@@ -75,8 +72,6 @@ class AccountsController extends Controller {
                         ->with('aFilterParams', $aFilterParams);
     }
 
-    
-    
     public function getEditAccount(Request $oRequest) {
 
         if ($oRequest->has('delete_id')) {
@@ -113,8 +108,8 @@ class AccountsController extends Controller {
             $result = $this->oUsers->updateUser($oRequest);
         } else {
 
-        $role = explode(',', Config::get('fxweb.client_default_role'));
-            $result = $this->oUsers->addUser($oRequest,$role);
+            $role = explode(',', Config::get('fxweb.client_default_role'));
+            $result = $this->oUsers->addUser($oRequest, $role);
         }
 
 
@@ -133,10 +128,11 @@ class AccountsController extends Controller {
                                 'password' => $oRequest->password]);
         }
     }
-    public function getAsignMt4Users(Request $oRequest ){
-$account_id=$oRequest->account_id;
-if(!$account_id >0){$account_id=Session::get('account_id');}
-         $oGroups = $this->oMt4User->getAllGroups();
+
+    public function getAsignMt4Users(Request $oRequest) {
+        $account_id = $oRequest->account_id;
+
+        $oGroups = $this->oMt4User->getAllGroups();
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
         $aGroups = [];
@@ -151,6 +147,7 @@ if(!$account_id >0){$account_id=Session::get('account_id');}
             'group' => '',
             'sort' => $sSort,
             'order' => $sOrder,
+            'signed' => 1,
             'account_id' => $account_id,
         ];
 
@@ -160,7 +157,7 @@ if(!$account_id >0){$account_id=Session::get('account_id');}
 
 
 
-       if ($oRequest->has('search')) {
+        if ($oRequest->has('search')) {
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
             $aFilterParams['exactLogin'] = $oRequest->exactLogin;
@@ -169,10 +166,12 @@ if(!$account_id >0){$account_id=Session::get('account_id');}
             $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
             $aFilterParams['group'] = $oRequest->group;
             $aFilterParams['sort'] = $oRequest->sort;
+            $aFilterParams['signed'] = $oRequest->signed;
+            $aFilterParams['account_id'] = $account_id;
             $aFilterParams['order'] = $oRequest->order;
         }
 
-            $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
+        $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
 
         if ($oRequest->has('export')) {
             $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, true, $sOrder, $sSort);
@@ -201,56 +200,33 @@ if(!$account_id >0){$account_id=Session::get('account_id');}
             return $oExport->export($sOutput);
         }
 
-        return view('accounts::asignMt4Users')
+        return view('accounts::fastAsignMt4Users')
                         ->with('aGroups', $aGroups)
                         ->with('oResults', $oResults)
-                ->with('account_id',$account_id)
+                        ->with('account_id', $account_id)
                         ->with('aFilterParams', $aFilterParams);
     }
-    
-     public function postAsignMt4Users(Request $oRequest ){
-         if($oRequest->has('asign_mt4_users_submit')){
-             
-             $users_checkbox=$oRequest->users_checkbox;
-             $account_id=$oRequest->account_id;
-         $this->oUsers->asignMt4UsersToAccount($account_id,$users_checkbox);
-     
-           return Redirect::route('accounts.asignMt4Users')->with('account_id',$account_id);
-         }
-     }
-      public function getDetailsAccount(Request $oRequest)
-     {
-         if ($oRequest->has('details_id')) {
-            $result = $this->oUsers->details($oRequest->details_id);
+
+    public function postAsignMt4Users(Request $oRequest) {
+        if ($oRequest->has('asign_mt4_users_submit')|| $oRequest->has('asign_mt4_users_submit_id')) {
+
+            $users_checkbox =($oRequest->has('asign_mt4_users_submit_id'))? [$oRequest->get('asign_mt4_users_submit_id')]:$oRequest->users_checkbox;
             
-            $userInfo = [
-                'edit_id' => $oRequest->details_id,
-                'first_name' => $result->first_name,
-                'last_name' => $result->last_name,
-                'email' => $result->email,
-                'password' => ''];
-            
-            return view('accounts::detailsAccount')
-                                ->with('oResults', $result)
-                                    ->with('userInfo', $userInfo);
-                              
+            $account_id = $oRequest->account_id;
+            $this->oUsers->asignMt4UsersToAccount($account_id, $users_checkbox);
+return $this->getAsignMt4Users($oRequest);
+            return Redirect::route('accounts.asignMt4Users')->with('account_id', $account_id);
         }
-     }
-     
-     public function getFullDetailsAccount(Request $oRequest)
-     {
-      
-         if ($oRequest->has('details_id')) {
-        
-            $result = $this->oUsers->details($oRequest->details_id);
-       
-         $userInfo = [
-                'edit_id' => $oRequest->edit_id,
-                'first_name' => $result->first_name,
-                'last_name' => $result->last_name];
-         
-         return view('accounts::fullDetails')->with('userInfo', $userInfo);
-     }
-     }
-     
+
+        if ($oRequest->has('un_sign_mt4_users_submit') || $oRequest->has('un_sign_mt4_users_submit_id')) {
+
+            $users_checkbox =($oRequest->has('un_sign_mt4_users_submit_id'))? [$oRequest->get('un_sign_mt4_users_submit_id')]:$oRequest->users_checkbox;
+            
+            $account_id = $oRequest->account_id;
+            $this->oUsers->unsignMt4UsersToAccount($account_id, $users_checkbox);
+return $this->getAsignMt4Users($oRequest);
+            return Redirect::route('accounts.asignMt4Users')->with('account_id', $account_id);
+        }
+    }
+
 }

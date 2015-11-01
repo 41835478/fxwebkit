@@ -44,7 +44,7 @@ class EloquentUserRepository implements UserContract {
         // return User::select('group')->get();
     }
 
-    public function getUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC',$role='admin') {
+    public function getUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin') {
 
         $oRole = Sentinel::findRoleBySlug($role);
         $role_id = $oRole->id;
@@ -87,11 +87,8 @@ class EloquentUserRepository implements UserContract {
         return $oResult;
     }
 
-    
-    
-    
-    public function addUser($oRequest,$role='admin') {
-       
+    public function addUser($oRequest, $role = 'admin') {
+
         $oClientRole = Sentinel::findRoleBySlug($role);
 
         //$bAutoActivate	= Config::get('fxweb.auto_activate_client');
@@ -139,29 +136,38 @@ class EloquentUserRepository implements UserContract {
         }
         return ['deleted successfully.'];
     }
- 
-        public function asignMt4UsersToAccount($account_id,$users_id){
 
-        foreach($users_id as $id=>$user_id){
-            
-            $asign=mt4_users_users::where(['users_id'=>$account_id,'mt4_users_id'=>$user_id])->first();
-            if($asign){
-                $asign->users_id=$account_id;
-               $asign->mt4_users_id=$user_id;
+    public function asignMt4UsersToAccount($account_id, $users_id) {
+if(is_array($users_id)){
+        foreach ($users_id as $id => $user_id) {
+
+            $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id])->first();
+            if ($asign) {
+                $asign->users_id = $account_id;
+                $asign->mt4_users_id = $user_id;
                 $asign->save();
-            }else{
-                $asign=new mt4_users_users;
+            } else {
+                $asign = new mt4_users_users;
 
-                $asign->users_id=$account_id;
-               $asign->mt4_users_id=$user_id;
+                $asign->users_id = $account_id;
+                $asign->mt4_users_id = $user_id;
                 $asign->save();
             }
         }
-            
-        }
-             public function details($id) {
-           
-        $user = Sentinel::findById($id);
-        return $user;
+}
     }
+
+    public function unsignMt4UsersToAccount($account_id, $users_id) {
+      
+if(is_array($users_id)){  
+        foreach ($users_id as $id => $user_id) {
+
+            $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id])->first();
+            if ($asign) {
+                $asign->delete();
+            } 
+        }
+}
+    }
+
 }

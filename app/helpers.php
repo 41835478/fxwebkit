@@ -94,8 +94,9 @@ if (!function_exists('th_sort')) {
 		}
 
 		$sRouteName = Route::currentRouteName();
+                               
 		$aParams = Input::get();
-		$sUrl = route($sRouteName);
+		$sUrl =($sRouteName ==null)? '': route($sRouteName);
 		$aArrow = '';
 
 			$sUrl .= '?';

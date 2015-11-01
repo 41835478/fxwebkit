@@ -4,6 +4,7 @@ return [
     'ModuleTitle' => 'Accounts',
     'accountsList' => 'Accounts List',
     'addAccount'=>'Add Account',
-    'agentsList'=>'Agents List',
-    'addAgents'=>'Agents'
+    'asignMt4User'=>'Asign MT4 User',
+    'enterMt4User'=>'Enter Mt4 User',
+    'unsign'=>'Un Sign'
 ];

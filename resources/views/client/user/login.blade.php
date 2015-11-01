@@ -40,7 +40,7 @@
 			{!! Form::close() !!}
 
 			<div class="signin-with">
-				<a href="{{ route('client.auth.register') }}" class="signin-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">
+				<a href="{{ route('client.facebook.login') }}" class="signin-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">
 					{{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.Facebook') }}</span>
 				</a>
 			</div>

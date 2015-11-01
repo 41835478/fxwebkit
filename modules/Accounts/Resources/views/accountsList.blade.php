@@ -116,7 +116,6 @@
                                 <a href="{{ route('accounts.addAccount').'?edit_id='.$oResult->id }}" class="fa fa-edit"></a>
                                 <a href="{{ route('accounts.addAccount').'?delete_id='.$oResult->id }}" class="fa fa-trash-o"></a>
                                 <a href="{{ route('accounts.asignMt4Users').'?account_id='.$oResult->id }}" class="fa fa-plus-square-o"> asign mt4 user</a>
-                               <a href="{{ route('accounts.detailsAccount').'?details_id='.$oResult->id }}" class="fa fa-edit"></a> 
                             </td>
                         </tr>
                         @endforeach
