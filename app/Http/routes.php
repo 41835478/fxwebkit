@@ -10,7 +10,7 @@
   | and give it the controller to call when that URI is requested.
   |
  */
-
+/*
 Route::get('facebook',function(){
     
     Social::addConnection('facebook' ,[
@@ -67,7 +67,7 @@ catch (Cartalyst\Sentinel\Addons\Social\AccessMissingException $e)
 }
     
 });
-
+*/
 
 Route::get('twitter',function(){
     
