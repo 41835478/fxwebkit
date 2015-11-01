@@ -1,4 +1,4 @@
-<?php
+com<?php
 
 define('LARAVEL_START', microtime(true));
 
