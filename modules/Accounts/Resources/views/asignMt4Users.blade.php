@@ -32,7 +32,15 @@
                  <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
                 <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div></li>
-            <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}</div></li>
+               
+                <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}</div></li>
+                 <li>
+                    <div  class=" nav-input-div  ">
+                        {!! Form::radio('signed',0,$aFilterParams['signed'],['id'=>'signed_0','checked'=>'true']) !!}<label for="signed_0">all</label>
+                   {!! Form::radio('signed',1,($aFilterParams['signed']==1),['id'=>'signed_1']) !!}<label for="signed_1">signed</label>
+                   
+                    </div>
+                </li>
                 <li>
 
                     <div class=" nav-input-div form-group ">
@@ -55,6 +63,7 @@
             </ul>
 
 
+            {!! Form::hidden('account_id', $aFilterParams['account_id']) !!}
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
             {!! Form::hidden('order', $aFilterParams['order']) !!}
             {!! Form::close() !!}
@@ -115,7 +124,7 @@
 
                     </div>
                 </div>
-                
+                  @if (count($oResults))
     {!! Form::open() !!}
                 <table class="table table-bordered">
                     <thead>
@@ -133,10 +142,18 @@
                            </tr>
                     </thead>
                     <tbody>
-                        @if (count($oResults))
+                      
                         @foreach($oResults as $oResult)
                         <tr>
-                            <td>{!! Form::checkbox('users_checkbox[]',$oResult->LOGIN,false,['class'=>'users_checkbox']) !!}</td>
+                            <td>{!! Form::checkbox('users_checkbox[]',$oResult->LOGIN,false,['class'=>'users_checkbox']) !!}
+                                
+                            @if(isset($oResult->users_id ) )
+                            <font style="color:#060">signed</font>
+                            @else
+                            <font style="color:#600">not signed </font>
+                            @endif
+                           
+                            </td>
                    
                             <td>{{ $oResult->LOGIN }}</td>
                             <td>{{ $oResult->NAME }}</td>
@@ -150,17 +167,23 @@
                             <td>{{ $oResult->LEVERAGE }}</td>
                             </tr>
                         @endforeach
-                        @endif
                     </tbody>
                      <tfoot>
                 <tr>
                     <td colspan="5">
-                        {!! Form::hidden('account_id',$account_id,['value'=>$account_id]) !!}
-                    {!! Form::button('asign',['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ]) !!}
+                        
+                        
+            {!! Form::hidden('account_id', $aFilterParams['account_id']) !!}
+            {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+            {!! Form::hidden('order', $aFilterParams['order']) !!}
+            
+                    {!! Form::button('sign',['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ]) !!}
+                    {!! Form::button('un sign',['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ]) !!}
                     </td>
                 </tr>
                      </tfoot>
                 </table>
+                        @endif
     {{ Form::close() }}
                 <div class="table-footer text-center">
                     @if (count($oResults))

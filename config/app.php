@@ -153,6 +153,8 @@ return [
 		'Cartalyst\Sentinel\Laravel\SentinelServiceProvider',
 		'Maatwebsite\Excel\ExcelServiceProvider',
 		'Pingpong\Modules\ModulesServiceProvider',
+            
+            'Cartalyst\Sentinel\Addons\Social\Laravel\SocialServiceProvider',
 
 	],
 
@@ -212,6 +214,8 @@ return [
 		'Sentinel' => 'Cartalyst\Sentinel\Laravel\Facades\Sentinel',
 		'Module' => 'Pingpong\Modules\Facades\Module',
 		'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+            
+            'Social' => 'Cartalyst\Sentinel\Addons\Social\Laravel\Facades\Social',
 	],
 
 ];

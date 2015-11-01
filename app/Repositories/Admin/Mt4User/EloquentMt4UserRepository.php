@@ -75,7 +75,10 @@ class EloquentMt4UserRepository implements Mt4UserContract
 		$oResult =  new Mt4User();
                 
 		/* =============== Login Filters =============== */
-		if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+		 if(isset($aFilters['exactLogin']) && $aFilters['exactLogin']){
+                    $oResult = $oResult->where('LOGIN', $aFilters['login']);
+                }
+		else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
 			(isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
 
 			if (!empty($aFilters['from_login'])) {
@@ -120,14 +123,42 @@ class EloquentMt4UserRepository implements Mt4UserContract
 		return $oResult;
 	}
         
+
         public function getUsersMt4UsersByFilter($aFilters, $bFullSet=false, $sOrderBy = 'login', $sSort = 'ASC')
 	{
 //                 $oResult = Mt4User::with('account')->whereHas('account', function($query) use($account_id) {
 //            $query->where('users_id', $account_id);
+        
+            $account_id=$aFilters['account_id'];
 		//$oResult = Mt4User::with('account');
-                $oResult =new Mt4User();
+            //select * from `mt4_users` left join `mt4_users_users` on `mt4_users`.`id` = `mt4_users_users`.`mt4_users_id` and (`mt4_users_users`.`users_id` = 18)
+                $oResult = Mt4User::leftJoin('mt4_users_users', function($join) use($account_id)
+{
+  $join->on('mt4_users.LOGIN', '=', 'mt4_users_users.mt4_users_id')->where('mt4_users_users.users_id','=', $account_id);
+});
+                
+//                $oResult = Mt4User::leftJoin('mt4_users_users', function ($join) use ($account_id){
+//                    $join->on('mt4_users.id', '=', 'mt4_users_users.mt4_users_id');
+//      $join->where('mt4_users_users.users_id', '=',$account_id );
+//      
+//    });
+              
+
+        /* =============== signed filter ============== */
+        if ((isset($aFilters['signed']) && !empty($aFilters['signed']))) {
+          
+            if($aFilters['signed']==1){
+            $oResult = $oResult->with('account')->whereHas('account', function($query) use($account_id) {
+                $query->where('users_id', $account_id);
+            });
+            }elseif($aFilters['signed']==2){
+                }
+        }
 		/* =============== Login Filters =============== */
-		if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+		 if(isset($aFilters['exactLogin']) && $aFilters['exactLogin']){
+                    $oResult = $oResult->where('LOGIN', $aFilters['login']);
+                }
+		else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
 			(isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
 
 			if (!empty($aFilters['from_login'])) {
@@ -137,9 +168,9 @@ class EloquentMt4UserRepository implements Mt4UserContract
 			if (!empty($aFilters['to_login'])) {
 				$oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
 			}
-		}
-		/* =============== Nmae Filter  =============== */
-		if (isset($aFilters['name']) && !empty($aFilters['name'])) {
+        }
+        /* =============== Nmae Filter  =============== */
+        if (isset($aFilters['name']) && !empty($aFilters['name'])) {
 			$oResult = $oResult->where('name','like','%'. $aFilters['name'] .'%');
 		}
 
