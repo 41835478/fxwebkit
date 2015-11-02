@@ -44,12 +44,12 @@ Route::get('recover', [
 	'as' => 'client.auth.recover',
 	'uses' => 'AuthController@getRecover'
 ]);
-Route::get('facebook-login', [
-	'as' => 'client.facebook.login',
-	'uses' => 'AuthController@getFacebookLogin'
-]);
-Route::get('facebook-callback-login', [
-	'as' => 'client.facebook_callback.login',
-	'uses' => 'AuthController@getFacebookLoginCallback'
-]);
+//Route::get('facebook-login', [
+//	'as' => 'client.facebook.login',
+//	'uses' => 'AuthController@getFacebookLogin'
+//]);
+//Route::get('facebook-callback-login', [
+//	'as' => 'client.facebook_callback.login',
+//	'uses' => 'AuthController@getFacebookLoginCallback'
+//]);
 

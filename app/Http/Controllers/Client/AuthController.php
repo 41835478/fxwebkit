@@ -110,7 +110,7 @@ class AuthController extends Controller {
         exit;
     }
 
-    public function getFacebookLoginCallback() {
+    public function getFacebookLoginCallback(\Illuminate\Support\Facades\Request $oRequest) {
 
 
 

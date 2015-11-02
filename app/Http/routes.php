@@ -10,8 +10,8 @@
   | and give it the controller to call when that URI is requested.
   |
  */
-/*
-Route::get('facebook',function(){
+use Fxweb\Http\Controllers\Client\AuthController;
+Route::get('client/facebook-login',function(){
     
     Social::addConnection('facebook' ,[
         'driver'     => 'Facebook',
@@ -22,7 +22,7 @@ Route::get('facebook',function(){
     ]
 );
     
-    $callback = 'http://localhost:8000/callback';
+        $callback = 'http://localhost:8000/client/facebook-callback-login';
 $url      = Social::getAuthorizationUrl('facebook', $callback);
 
 
@@ -33,9 +33,9 @@ exit;
 });
 
 
-Route::get('callback',function(){
+Route::get('client/facebook-callback-login',function(){
     
-    $callback = 'http://localhost:8000/callback';
+        $callback = 'http://localhost:8000/client/facebook-callback-login';
         Social::addConnection('facebook' ,[
         'driver'     => 'Facebook',
         'identifier' => '1647542828861678',
@@ -46,28 +46,48 @@ Route::get('callback',function(){
 );
     try
 {
+      
     $user = Social::authenticate('facebook', $callback, function(Cartalyst\Sentinel\Addons\Social\Models\LinkInterface $link, $provider, $token, $slug)
-    {
+    {  
         // Retrieve the user in question for modificiation
-        $user = $link->getUser();
+      $user = $link->getUser();
 
+//$user = Sentinel::findById(1);
+
+//Sentinel::login($user);
+//Sentinel::loginAndRemember($user);
         // You could add your custom data
         $data = $provider->getUserDetails($token);
-dd($user);
-        $user->foo = $data->foo;
+
+      
         $user->save();
-    });
+       
+        if(!$user->inRole('client')){
+         $activation = Activation::create($user);
+//$activation = Activation::exists($user);
+            $activation_code = $activation->code;
+            $role = Sentinel::findRoleByName('client');
+            
+        $role->users()->attach($user);}
+//        return Redirect::to('/client');
+//        header('location:/client');exit();
+         
+});
+
+    
 }
 catch (Cartalyst\Sentinel\Addons\Social\AccessMissingException $e)
 {
-    var_dump($e); // You may save this to the session, redirect somewhere
-    die();
+     return redirect()
+                            ->route('client.auth.login')
+                            ->withErrors([trans('user.InvalidLogin')]);
+
 
     header('HTTP/1.0 404 Not Found');
 }
-    
+  return Redirect::intended('/client');  
 });
-*/
+
 
 Route::get('twitter',function(){
     
