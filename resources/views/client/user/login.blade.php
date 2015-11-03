@@ -40,8 +40,14 @@
 			{!! Form::close() !!}
 
 			<div class="signin-with">
-				<a href="/client/facebook-login" class="signin-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">
+				<a href="{{ route('client.facebook.login') }}" class="signin-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">
 					{{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.Facebook') }}</span>
+				</a>
+				<a href="{{ route('client.google.login') }}" class="signin-with-btn" style="background:#4285F4;background:rgba(66, 133, 244, .8);">
+					{{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.google') }}</span>
+				</a>
+				<a href="{{ route('client.linkedin.login') }}" class="signin-with-btn" style="background:#0077B5;background:rgba(0, 119, 181, .8);">
+					{{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.linkedin') }}</span>
 				</a>
 			</div>
 		</div>
@@ -50,4 +56,20 @@
 	<div class="not-a-member">
 		Not a member? <a href="{{ route('client.auth.register') }}">Sign up now</a>
 	</div>
+<style type="text/css">
+    .page-signin .signin-with-btn {
+    border-radius: 2px;
+    width: 32%;
+    color: #fff;
+    display: block;
+    font-weight: 300;
+    padding: 10px 0;
+    text-align: center;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    float: left;
+    margin-top: 0px !important;
+    margin-left: 1%;
+}
+</style>
 @stop

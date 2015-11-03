@@ -16,6 +16,7 @@ use Exception,
     Log,
     Activation;
 use Cartalyst\Sentinel\Addons\Social\Laravel\Facades\Social;
+use Cartalyst\Sentinel\Addons\Social\Models\LinkInterface;
 
 class AuthController extends Controller {
 
@@ -92,8 +93,6 @@ class AuthController extends Controller {
     }
 
     public function getFacebookLogin() {
-
-
         Social::addConnection('facebook', [
             'driver' => 'Facebook',
             'identifier' => '1647542828861678',
@@ -102,18 +101,13 @@ class AuthController extends Controller {
             'scopes' => ['email'],
                 ]
         );
-
         $callback = 'http://localhost:8000/client/facebook-callback-login';
         $url = Social::getAuthorizationUrl('facebook', $callback);
-
         header('Location: ' . $url);
         exit;
     }
 
     public function getFacebookLoginCallback(\Illuminate\Support\Facades\Request $oRequest) {
-
-
-
 
         $callback = 'http://localhost:8000/client/facebook-callback-login';
         Social::addConnection('facebook', [
@@ -125,34 +119,128 @@ class AuthController extends Controller {
                 ]
         );
         try {
-            $user = Social::authenticate('facebook', $callback, function(Cartalyst\Sentinel\Addons\Social\Models\LinkInterface $link, $provider, $token, $slug) {
 
-                        return Redirect::intended('/client');
-                        /*
-                          // Retrieve the user in question for modificiation
-                          $user = $link->getUser();
+            $user = Social::authenticate('facebook', $callback, function(LinkInterface $link, $provider, $token, $slug) {
 
-                          // You could add your custom data
-                          $data = $provider->getUserDetails($token);
-                          dd($user);
-                          $user->foo = $data->foo;
-                          $user->save();
-                         * 
-                         */
+                        $user = $link->getUser();
+                        $data = $provider->getUserDetails($token);
+                        $user->save();
+
+                        if (!$user->inRole('client')) {
+                            $activation = Activation::create($user);
+                            $activation_code = $activation->code;
+                            $role = Sentinel::findRoleByName('client');
+                            $role->users()->attach($user);
+                        }
                     });
         } catch (Cartalyst\Sentinel\Addons\Social\AccessMissingException $e) {
-
             return redirect()
                             ->route('client.auth.login')
                             ->withErrors([trans('user.InvalidLogin')]);
-            /*
-              var_dump($e); // You may save this to the session, redirect somewhere
-              die();
-
-              header('HTTP/1.0 404 Not Found');
-             * 
-             */
         }
+        return Redirect::intended('/client');
+    }
+
+    public function getGoogleLogin() {
+
+        Social::addConnection('google', [
+            'driver' => 'google',
+            'identifier' => '153369653879-grpme2quc1398mjf57q8gl4s7g48o8kg.apps.googleusercontent.com',
+            'secret' => 'M6gqHVqK-t3CC55g3aH63zGM',
+            'scopes' => ['email'],
+                ]
+        );
+
+        $callback = 'http://localhost:8000/client/google-callback-login';
+        $url = Social::getAuthorizationUrl('google', $callback);
+
+
+        header('Location: ' . $url);
+        exit;
+    }
+
+    public function getGoogleLoginCallback(\Illuminate\Support\Facades\Request $oRequest) {
+
+        $callback = 'http://localhost:8000/client/google-callback-login';
+        Social::addConnection('google', [
+            'driver' => 'google',
+            'identifier' => '153369653879-grpme2quc1398mjf57q8gl4s7g48o8kg.apps.googleusercontent.com',
+            'secret' => 'M6gqHVqK-t3CC55g3aH63zGM',
+            'scopes' => ['email'],
+                ]
+        );
+        try {
+
+            $user = Social::authenticate('google', $callback, function(LinkInterface $link, $provider, $token, $slug) {
+
+                        $user = $link->getUser();
+                        $data = $provider->getUserDetails($token);
+                        $user->save();
+
+                        if (!$user->inRole('client')) {
+                            $activation = Activation::create($user);
+                            $activation_code = $activation->code;
+                            $role = Sentinel::findRoleByName('client');
+                            $role->users()->attach($user);
+                        }
+                    });
+        } catch (Cartalyst\Sentinel\Addons\Social\AccessMissingException $e) {
+            return redirect()
+                            ->route('client.auth.login')
+                            ->withErrors([trans('user.InvalidLogin')]);
+        }
+        return Redirect::intended('/client');
+    }
+
+    
+    public function getLinkedinLogin() {
+
+       
+    Social::addConnection('linkedin', [
+                                       'driver'     => 'linkedin',
+                                       'identifier' => '779y8ism8ovwns',
+                                       'secret'     => 'l9paUw3eQJgtYRRV',
+                                      ]
+                           );
+
+        $callback = 'http://localhost:8000/client/linkedin-callback-login';
+        $url = Social::getAuthorizationUrl('linkedin', $callback);
+        header('Location: ' . $url);
+        exit;
+    }
+
+    public function getLinkedinLoginCallback(\Illuminate\Support\Facades\Request $oRequest) {
+
+        $callback = 'http://localhost:8000/client/linkedin-callback-login';
+
+       
+    Social::addConnection('linkedin', [
+                                       'driver'     => 'linkedin',
+                                       'identifier' => '779y8ism8ovwns',
+                                       'secret'     => 'l9paUw3eQJgtYRRV',
+                                      ]
+                           );
+        try {
+
+            $user = Social::authenticate('linkedin', $callback, function(LinkInterface $link, $provider, $token, $slug) {
+
+                        $user = $link->getUser();
+                        $data = $provider->getUserDetails($token);
+                        $user->save();
+
+                        if (!$user->inRole('client')) {
+                            $activation = Activation::create($user);
+                            $activation_code = $activation->code;
+                            $role = Sentinel::findRoleByName('client');
+                            $role->users()->attach($user);
+                        }
+                    });
+        } catch (Cartalyst\Sentinel\Addons\Social\AccessMissingException $e) {
+            return redirect()
+                            ->route('client.auth.login')
+                            ->withErrors([trans('user.InvalidLogin')]);
+        }
+        return Redirect::intended('/client');
     }
 
 }
