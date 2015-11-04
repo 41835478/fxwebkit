@@ -92,6 +92,7 @@ class EloquentUserRepository implements UserContract {
         $oClientRole = Sentinel::findRoleBySlug($role);
 
         //$bAutoActivate	= Config::get('fxweb.auto_activate_client');
+        
         $aCredentials = [
             'first_name' => $oRequest->first_name,
             'last_name' => $oRequest->last_name,

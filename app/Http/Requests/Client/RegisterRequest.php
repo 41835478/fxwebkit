@@ -21,6 +21,7 @@ class RegisterRequest extends Request {
 	 */
 	public function rules()
 	{
+        
 		return [
 			'first_name' => 'required|alpha',
 			'last_name'	=> 'required|alpha',

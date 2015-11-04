@@ -31,4 +31,13 @@ return [
 	'SignUpWith' => 'Sign up with',
 	'AlreadyHaveAnAccount' => 'Already have an account',
 	'SignUp' => 'Sign Up',
+        'Nickname' => 'Nickname',
+        'location' => 'Location',
+        'Birthday' => 'BirthDay',
+        'Phone' => 'Phone',
+        'Country' => 'Country',
+        'City' => 'City',
+        'ZipCode' => 'Zip Code',
+
+        
 ];

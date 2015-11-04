@@ -214,6 +214,7 @@ return [
 		'Sentinel' => 'Cartalyst\Sentinel\Laravel\Facades\Sentinel',
 		'Module' => 'Pingpong\Modules\Facades\Module',
 		'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+
             
             'Social' => 'Cartalyst\Sentinel\Addons\Social\Laravel\Facades\Social',
 	],
