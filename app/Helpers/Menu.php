@@ -13,6 +13,27 @@ class Menu
 	{
 		$oModules = Module::all();
 		$aModules = [];
+                
+$mainAdimMenus=Config::get('fxweb.admin_menu',[]);
+foreach( $mainAdimMenus as $mainAdimMenu){
+    
+    foreach($mainAdimMenu['subMenus'] as &$subMenu){
+        $subMenu['title'] = trans('general.'.$subMenu['title'] );
+							if (empty($subMenu['route'])) {
+								$subMenu['route'] = '#';
+							} else {
+								$subMenu['route'] = route($subMenu['route']);
+							}
+    }
+					$menuTab = [
+						'route' => $mainAdimMenu['route'],
+						'icon' => $mainAdimMenu['icon'],
+						'title' => trans('general.'.$mainAdimMenu['title']),
+						'menu' => $mainAdimMenu['subMenus'],
+					];
+					$aModules[] = $menuTab;
+    
+}
 		if (count($oModules)) {
 			foreach ($oModules as $sName => $oModule) {
 				$sLowerName = strtolower($sName);

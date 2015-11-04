@@ -55,9 +55,11 @@ return [
     'last_name'=>'Last Name',
     'email'=>'Email',
     'password'=>'Password',
-    'addUser'=>'Add User'
+    'addUser'=>'Add User',
     /*__add admin*/
     
     /*__end_add_admin*/
+    'adminsList'=>'Admins List'
+    
     /*__END__settings____adminsList__*/
 ];
