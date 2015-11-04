@@ -18,7 +18,6 @@ use Exception,
 use Carbon\Carbon;
 use Cartalyst\Sentinel\Addons\Social\Laravel\Facades\Social;
 use Cartalyst\Sentinel\Addons\Social\Models\LinkInterface;
-
 use Fxweb\Models\UsersDetails;
 
 class AuthController extends Controller {
@@ -65,54 +64,53 @@ class AuthController extends Controller {
 
     public function getRegister() {
         $carbon = new Carbon();
-        $dt =$carbon->now();
+        $dt = $carbon->now();
         $dt->subYears(18);
-       
+
         return view('client.user.register')
-        ->with('default_birthday', $dt->format('m/d/Y'))
+                        ->with('default_birthday', $dt->format('m/d/Y'))
                         ->with('random', rand(1, 8));
-        
     }
 
     public function postRegister(RegisterRequest $oRequest) {
         $oClientRole = Sentinel::findRoleBySlug(Config::get('fxweb.client_default_role'));
         $bAutoActivate = Config::get('fxweb.auto_activate_client');
-        
+
         $aCredentials = [
             'first_name' => $oRequest->first_name,
             'last_name' => $oRequest->last_name,
             'email' => $oRequest->email,
             'password' => $oRequest->password,
         ];
-        
+
 
         if ($bAutoActivate) {
-            
+
             $oUser = Sentinel::registerAndActivate($aCredentials);
             $oClientRole->users()->attach($oUser);
             return redirect()->route('client.index');
         } else {
-           
+
             $oUser = Sentinel::register($aCredentials);
             $oClientRole->users()->attach($oUser);
             $oActivation = Activation::create($oUser);
-          
 
-             $aCredentialsFullDetails = [
-            'users_id' => $oUser->id,
-            'nickname' => $oRequest->nickname,
-            'location' => $oRequest->location,
-            'birthday' => $oRequest->birthday,
-            'phone' => $oRequest->phone,
-            'country' => $oRequest->country,
-            'city' => $oRequest->city,
-            'zipCode'=>$oRequest->zip_code,
-            'gender'=>$oRequest->gender
-        ];
-             
-            $details=new UsersDetails($aCredentialsFullDetails);
+
+            $aCredentialsFullDetails = [
+                'users_id' => $oUser->id,
+                'nickname' => $oRequest->nickname,
+                'location' => $oRequest->location,
+                'birthday' => $oRequest->birthday,
+                'phone' => $oRequest->phone,
+                'country' => $oRequest->country,
+                'city' => $oRequest->city,
+                'zip_code' => $oRequest->zip_code,
+                'gender' => $oRequest->gender
+            ];
+
+            $details = new UsersDetails($aCredentialsFullDetails);
             $details->save();
-             
+
             return redirect()->route('client.auth.login');
         }
     }
@@ -160,6 +158,20 @@ class AuthController extends Controller {
                             $activation_code = $activation->code;
                             $role = Sentinel::findRoleByName('client');
                             $role->users()->attach($user);
+
+                            $aCredentialsFullDetails = [
+                                'users_id' => $user->id,
+                                'nickname' => (isset($data->nickname)) ? $data->nickname : '',
+                                'location' => (isset($data->location)) ? $data->location : '',
+                                'birthday' => (isset($data->birthday)) ? $data->birthday : ' ',
+                                'phone' => (isset($data->phone)) ? $data->phone : ' ',
+                                'country' => (isset($data->country)) ? $data->country : ' ',
+                                'city' => (isset($data->city)) ? $data->city : ' ',
+                                'zip_code' => (isset($data->zip_code)) ? $data->zip_code : ' ',
+                                'gender' => (isset($data->gender) && $data->gender == 'female') ? 1 : 0
+                            ];
+                            $details = new UsersDetails($aCredentialsFullDetails);
+                            $details->save();
                         }
                     });
         } catch (Cartalyst\Sentinel\Addons\Social\AccessMissingException $e) {
@@ -211,6 +223,21 @@ class AuthController extends Controller {
                             $activation_code = $activation->code;
                             $role = Sentinel::findRoleByName('client');
                             $role->users()->attach($user);
+
+                            $aCredentialsFullDetails = [
+                                'users_id' => $user->id,
+                                'nickname' => (isset($data->nickname)) ? $data->nickname : '',
+                                'location' => (isset($data->location)) ? $data->location : '',
+                                'birthday' => (isset($data->birthday)) ? $data->birthday : ' ',
+                                'phone' => (isset($data->phone)) ? $data->phone : ' ',
+                                'country' => (isset($data->country)) ? $data->country : ' ',
+                                'city' => (isset($data->city)) ? $data->city : ' ',
+                                'zip_code' => (isset($data->zip_code)) ? $data->zip_code : ' ',
+                                'gender' => (isset($data->gender) && $data->gender == 'female') ? 1 : 0
+                            ];
+
+                            $details = new UsersDetails($aCredentialsFullDetails);
+                            $details->save();
                         }
                     });
         } catch (Cartalyst\Sentinel\Addons\Social\AccessMissingException $e) {
@@ -221,16 +248,15 @@ class AuthController extends Controller {
         return Redirect::intended('/client');
     }
 
-    
     public function getLinkedinLogin() {
 
-       
-    Social::addConnection('linkedin', [
-                                       'driver'     => 'linkedin',
-                                       'identifier' => '779y8ism8ovwns',
-                                       'secret'     => 'l9paUw3eQJgtYRRV',
-                                      ]
-                           );
+
+        Social::addConnection('linkedin', [
+            'driver' => 'linkedin',
+            'identifier' => '779y8ism8ovwns',
+            'secret' => 'l9paUw3eQJgtYRRV',
+                ]
+        );
 
         $callback = 'http://localhost:8000/client/linkedin-callback-login';
         $url = Social::getAuthorizationUrl('linkedin', $callback);
@@ -242,13 +268,13 @@ class AuthController extends Controller {
 
         $callback = 'http://localhost:8000/client/linkedin-callback-login';
 
-       
-    Social::addConnection('linkedin', [
-                                       'driver'     => 'linkedin',
-                                       'identifier' => '779y8ism8ovwns',
-                                       'secret'     => 'l9paUw3eQJgtYRRV',
-                                      ]
-                           );
+
+        Social::addConnection('linkedin', [
+            'driver' => 'linkedin',
+            'identifier' => '779y8ism8ovwns',
+            'secret' => 'l9paUw3eQJgtYRRV',
+                ]
+        );
         try {
 
             $user = Social::authenticate('linkedin', $callback, function(LinkInterface $link, $provider, $token, $slug) {
@@ -262,6 +288,21 @@ class AuthController extends Controller {
                             $activation_code = $activation->code;
                             $role = Sentinel::findRoleByName('client');
                             $role->users()->attach($user);
+
+                            $aCredentialsFullDetails = [
+                                'users_id' => $user->id,
+                                'nickname' => (isset($data->nickname)) ? $data->nickname : '',
+                                'location' => (isset($data->location)) ? $data->location : '',
+                                'birthday' => (isset($data->birthday)) ? $data->birthday : ' ',
+                                'phone' => (isset($data->phone)) ? $data->phone : ' ',
+                                'country' => (isset($data->country)) ? $data->country : ' ',
+                                'city' => (isset($data->city)) ? $data->city : ' ',
+                                'zip_code' => (isset($data->zip_code)) ? $data->zip_code : ' ',
+                                'gender' => (isset($data->gender) && $data->gender == 'female') ? 1 : 0
+                            ];
+
+                            $details = new UsersDetails($aCredentialsFullDetails);
+                            $details->save();
                         }
                     });
         } catch (Cartalyst\Sentinel\Addons\Social\AccessMissingException $e) {
@@ -274,15 +315,15 @@ class AuthController extends Controller {
 
     public function getTwitterLogin() {
 
-       
- 
-    Social::addConnection('twitter', [
-        'driver' => 'twitter',
-        'identifier' => 'ls4If9Mewb28kKF8DtjgBw7Os',
-        'secret' => 'OhjvkSm7P4yHEJ89FpHsChCWhgTwO9Xp5QT9kvkZx5G6I4sw82',
-        'scopes' => [],
-            ]
-    );
+
+
+        Social::addConnection('twitter', [
+            'driver' => 'twitter',
+            'identifier' => 'ls4If9Mewb28kKF8DtjgBw7Os',
+            'secret' => 'OhjvkSm7P4yHEJ89FpHsChCWhgTwO9Xp5QT9kvkZx5G6I4sw82',
+            'scopes' => [],
+                ]
+        );
 
         $callback = 'http://localhost:8000/client/twitter-callback-login';
         $url = Social::getAuthorizationUrl('twitter', $callback);
@@ -294,15 +335,15 @@ class AuthController extends Controller {
 
         $callback = 'http://localhost:8000/client/twitter-callback-login';
 
-       
-  
-    Social::addConnection('twitter', [
-        'driver' => 'twitter',
-        'identifier' => 'ls4If9Mewb28kKF8DtjgBw7Os',
-        'secret' => 'OhjvkSm7P4yHEJ89FpHsChCWhgTwO9Xp5QT9kvkZx5G6I4sw82',
-        'scopes' => [],
-            ]
-    );
+
+
+        Social::addConnection('twitter', [
+            'driver' => 'twitter',
+            'identifier' => 'ls4If9Mewb28kKF8DtjgBw7Os',
+            'secret' => 'OhjvkSm7P4yHEJ89FpHsChCWhgTwO9Xp5QT9kvkZx5G6I4sw82',
+            'scopes' => [],
+                ]
+        );
         try {
 
             $user = Social::authenticate('twitter', $callback, function(LinkInterface $link, $provider, $token, $slug) {
@@ -316,6 +357,21 @@ class AuthController extends Controller {
                             $activation_code = $activation->code;
                             $role = Sentinel::findRoleByName('client');
                             $role->users()->attach($user);
+
+                            $aCredentialsFullDetails = [
+                                'users_id' => $user->id,
+                                'nickname' => (isset($data->nickname)) ? $data->nickname : '',
+                                'location' => (isset($data->location)) ? $data->location : '',
+                                'birthday' => (isset($data->birthday)) ? $data->birthday : ' ',
+                                'phone' => (isset($data->phone)) ? $data->phone : ' ',
+                                'country' => (isset($data->country)) ? $data->country : ' ',
+                                'city' => (isset($data->city)) ? $data->city : ' ',
+                                'zip_code' => (isset($data->zip_code)) ? $data->zip_code : ' ',
+                                'gender' => (isset($data->gender) && $data->gender == 'female') ? 1 : 0
+                            ];
+
+                            $details = new UsersDetails($aCredentialsFullDetails);
+                            $details->save();
                         }
                     });
         } catch (Cartalyst\Sentinel\Addons\Social\AccessMissingException $e) {

@@ -10,6 +10,7 @@ class UsersDetails extends Model
        
         protected $fillable = [
     
+        'users_id',
         'nickname',
         'location',
         'birthday',
