@@ -16,6 +16,8 @@ return [
 	'ForgotYourPassword' => 'Forgot Your Password',
 	'SignInWith' => 'Sign in with',
 	'Facebook' => 'Facebook',
+	'google' => 'Google+',
+	'linkedin' => 'Linked In',
 	'InvalidLogin' => 'Invalid Email or Password',
 	'LoginSuspended' => 'Login Suspended For This IP Address',
 	'LoginNotActive' => 'User Not Activated Yet',
