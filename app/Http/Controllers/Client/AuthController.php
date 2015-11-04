@@ -15,7 +15,10 @@ use Exception,
     Config,
     Log,
     Activation;
+use Carbon\Carbon;
 use Cartalyst\Sentinel\Addons\Social\Laravel\Facades\Social;
+
+use Fxweb\Models\UsersDetails;
 
 class AuthController extends Controller {
 
@@ -60,29 +63,55 @@ class AuthController extends Controller {
     }
 
     public function getRegister() {
+        $carbon = new Carbon();
+        $dt =$carbon->now();
+        $dt->subYears(18);
+       
         return view('client.user.register')
+        ->with('default_birthday', $dt->format('m/d/Y'))
                         ->with('random', rand(1, 8));
+        
     }
 
     public function postRegister(RegisterRequest $oRequest) {
         $oClientRole = Sentinel::findRoleBySlug(Config::get('fxweb.client_default_role'));
         $bAutoActivate = Config::get('fxweb.auto_activate_client');
+        
         $aCredentials = [
             'first_name' => $oRequest->first_name,
             'last_name' => $oRequest->last_name,
             'email' => $oRequest->email,
             'password' => $oRequest->password,
         ];
+        
 
         if ($bAutoActivate) {
+            
             $oUser = Sentinel::registerAndActivate($aCredentials);
             $oClientRole->users()->attach($oUser);
             return redirect()->route('client.index');
         } else {
+           
             $oUser = Sentinel::register($aCredentials);
             $oClientRole->users()->attach($oUser);
             $oActivation = Activation::create($oUser);
-            dd($oActivation);
+          
+
+             $aCredentialsFullDetails = [
+            'users_id' => $oUser->id,
+            'nickname' => $oRequest->nickname,
+            'location' => $oRequest->location,
+            'birthday' => $oRequest->birthday,
+            'phone' => $oRequest->phone,
+            'country' => $oRequest->country,
+            'city' => $oRequest->city,
+            'zipCode'=>$oRequest->zip_code,
+            'gender'=>$oRequest->gender
+        ];
+             
+            $details=new UsersDetails($aCredentialsFullDetails);
+            $details->save();
+             
             return redirect()->route('client.auth.login');
         }
     }

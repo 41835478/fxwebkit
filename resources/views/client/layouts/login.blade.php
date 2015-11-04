@@ -32,6 +32,8 @@
 
 	@yield('content')
 
+        @section('script')
+        
 	<!--[if !IE]> -->
 	{!! HTML::script('assets/js/jquery.2.0.3.min.js') !!}
 	<!-- <![endif]-->
@@ -58,5 +60,6 @@
 		});
 		window.PixelAdmin.start(init);
 	</script>
+        @show
 </body>
 </html>
