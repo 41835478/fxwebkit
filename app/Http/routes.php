@@ -80,7 +80,7 @@ Route::get('client/facebook-callback-login', function() {
     }
     return Redirect::intended('/client');
 });
-*/
+
 
 Route::get('twitter', function() {
 
@@ -134,7 +134,7 @@ Route::get('callback_twitter', function() {
     }
 });
 
-/*
+
 
 Route::get('google', function() {
 
@@ -186,7 +186,7 @@ Route::get('callback_google', function() {
     }
 });
 
-*/
+
 Route::get('linkedin', function() {
 
     Social::addConnection('linkedin', [
@@ -234,7 +234,7 @@ Route::get('callback_linkedin', function() {
         header('HTTP/1.0 404 Not Found');
     }
 });
-
+*/
 Route::group(['prefix' => env('ADMIN_NAME'), 'namespace' => 'Admin'], function() {
     require_once __DIR__ . "/Routes/Admin/Dashboard.php";
     require_once __DIR__ . "/Routes/Admin/Settings.php";

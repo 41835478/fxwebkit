@@ -74,5 +74,14 @@ Route::get('linkedin-callback-login', [
 	'uses' => 'AuthController@getLinkedinLoginCallback'
 ]);
 
+Route::get('twitter-login', [
+	'as' => 'client.twitter.login',
+	'uses' => 'AuthController@getTwitterLogin'
+]);
+Route::get('twitter-callback-login', [
+	'as' => 'client.twitter_callback.login',
+	'uses' => 'AuthController@getTwitterLoginCallback'
+]);
+
 
 

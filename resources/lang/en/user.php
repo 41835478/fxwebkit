@@ -18,6 +18,7 @@ return [
 	'Facebook' => 'Facebook',
 	'google' => 'Google+',
 	'linkedin' => 'Linked In',
+	'twitter' => 'Twitter',
 	'InvalidLogin' => 'Invalid Email or Password',
 	'LoginSuspended' => 'Login Suspended For This IP Address',
 	'LoginNotActive' => 'User Not Activated Yet',

@@ -18,8 +18,10 @@ class CreateUsersDetailsTable extends Migration
             $table->string('location', 100);
             $table->date('birthday', 50);
             $table->string('phone', 14);
-            $table->string('country', 50);
+            $table->string('country', 2);
             $table->string('city', 50);
+            $table->string('zip_code', 16);
+            $table->boolean('gender');
             
             $table->engine = 'InnoDB';
         });

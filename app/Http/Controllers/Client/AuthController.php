@@ -243,4 +243,58 @@ class AuthController extends Controller {
         return Redirect::intended('/client');
     }
 
+    public function getTwitterLogin() {
+
+       
+ 
+    Social::addConnection('twitter', [
+        'driver' => 'twitter',
+        'identifier' => 'ls4If9Mewb28kKF8DtjgBw7Os',
+        'secret' => 'OhjvkSm7P4yHEJ89FpHsChCWhgTwO9Xp5QT9kvkZx5G6I4sw82',
+        'scopes' => [],
+            ]
+    );
+
+        $callback = 'http://localhost:8000/client/twitter-callback-login';
+        $url = Social::getAuthorizationUrl('twitter', $callback);
+        header('Location: ' . $url);
+        exit;
+    }
+
+    public function getTwitterLoginCallback(\Illuminate\Support\Facades\Request $oRequest) {
+
+        $callback = 'http://localhost:8000/client/twitter-callback-login';
+
+       
+  
+    Social::addConnection('twitter', [
+        'driver' => 'twitter',
+        'identifier' => 'ls4If9Mewb28kKF8DtjgBw7Os',
+        'secret' => 'OhjvkSm7P4yHEJ89FpHsChCWhgTwO9Xp5QT9kvkZx5G6I4sw82',
+        'scopes' => [],
+            ]
+    );
+        try {
+
+            $user = Social::authenticate('twitter', $callback, function(LinkInterface $link, $provider, $token, $slug) {
+
+                        $user = $link->getUser();
+                        $data = $provider->getUserDetails($token);
+                        $user->save();
+
+                        if (!$user->inRole('client')) {
+                            $activation = Activation::create($user);
+                            $activation_code = $activation->code;
+                            $role = Sentinel::findRoleByName('client');
+                            $role->users()->attach($user);
+                        }
+                    });
+        } catch (Cartalyst\Sentinel\Addons\Social\AccessMissingException $e) {
+            return redirect()
+                            ->route('client.auth.login')
+                            ->withErrors([trans('user.InvalidLogin')]);
+        }
+        return Redirect::intended('/client');
+    }
+
 }
