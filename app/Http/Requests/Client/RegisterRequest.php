@@ -23,11 +23,18 @@ class RegisterRequest extends Request {
 	{
         
 		return [
-			'first_name' => 'required|alpha',
+			'first_name'    => 'required|alpha',
 			'last_name'	=> 'required|alpha',
-			'email'	=> 'required|email|unique:users,email',
+			'email'	        => 'required|email|unique:users,email',
 			'password'	=> 'required|min:8',
-			'agreement' => 'required',
+			'agreement'     => 'required',
+                        'location'	=> 'required',
+                        'phone'  	=> 'required',
+                        'city'	        => 'required',
+                        'cuontry'	=> 'required',
+                        'zip_code'	=> 'required',
+                        'gender'	=> 'required',
+                        'birthday'	=> 'required',
 		];
 	}
 
