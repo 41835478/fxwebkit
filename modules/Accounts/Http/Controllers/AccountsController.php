@@ -93,7 +93,7 @@ class AccountsController extends Controller {
         
         if ($oRequest->has('edit_id')) {
              $oResult=$this->oUsers->getUserDetails($oRequest->edit_id);
-             $countryName=$this->oUsers->getCountry($oResult['country']);
+             $country_array=$this->oUsers->getCountry(null);
            
             $userInfo = [
             'edit_id' => $oRequest->edit_id,      
@@ -105,7 +105,8 @@ class AccountsController extends Controller {
             'location' => $oResult['location'],
             'birthday' => $oResult['birthday'],
             'phone' => $oResult['phone'],
-            'country' => $countryName,
+            'country' =>$oResult['country'],
+                'country_array'=>$country_array,
             'city' => $oResult['city'],
                 ];
         }
@@ -125,7 +126,7 @@ class AccountsController extends Controller {
         }
 
         if ($result === true) {
-            return Redirect::route('accounts.accountsList');
+            return $this->getEditAccount($oRequest);
         } else {
             return view('accounts::addAccount')
                             ->withErrors($resultMessage)
