@@ -10,8 +10,11 @@
             <file>file:/F:/wamp/www/fxwebkit/app/Http/Controllers/Client/AuthController.php</file>
             <file>file:/F:/wamp/www/fxwebkit/config/fxweb.php</file>
             <file>file:/F:/wamp/www/fxwebkit/app/Models/UsersDetails.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Accounts/Resources/views/asignMt4Users.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Accounts/Resources/views/fastAsignMt4Users.blade.php</file>
             <file>file:/F:/wamp/www/fxwebkit/app/Http/Controllers/Admin/DashboardController.php</file>
             <file>file:/F:/wamp/www/fxwebkit/database/migrations/2015_11_01_112411_create_users_details_table.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/User/EloquentUserRepository.php</file>
             <file>file:/F:/wamp/www/fxwebkit/app/Http/Controllers/Admin/SettingsController.php</file>
             <file>file:/F:/wamp/www/fxwebkit/app/helpers.php</file>
         </group>

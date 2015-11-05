@@ -33,6 +33,11 @@ return [
                     'route' => 'admin.adminsList',
                     'title' => 'adminsList',
                     'icon' => 'fa fa-users',
+                ],
+                [
+                    'route' => 'admin.mt4UsersList',
+                    'title' => 'mt4UsersList',
+                    'icon' => 'fa fa-users',
                 ]
             ]
         ]
