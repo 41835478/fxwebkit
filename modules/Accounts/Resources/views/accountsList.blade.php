@@ -27,17 +27,17 @@
                 </li>
                 <li  >
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('first_name', $aFilterParams['first_name'], ['placeholder'=>trans('general.first_name'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('first_name', $aFilterParams['first_name'], ['placeholder'=>trans('user.first_name'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
                 <li  >
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('last_name', $aFilterParams['last_name'], ['placeholder'=>trans('general.last_name'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('last_name', $aFilterParams['last_name'], ['placeholder'=>trans('user.last_name'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
                 <li>
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('general.email'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('user.Email'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
 
@@ -97,9 +97,9 @@
                     <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('general.id'), 'id', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.first_name'), 'first_name', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.last_name'), 'last_name', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.email'), 'email', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('user.first_name'), 'first_name', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('user.last_name'), 'last_name', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('user.Email'), 'email', $oResults) !!}</th>
 
                             <th class="no-warp"></th>
                         </tr>
@@ -115,7 +115,8 @@
                             <td>
                                 <a href="{{ route('accounts.addAccount').'?edit_id='.$oResult->id }}" class="fa fa-edit"></a>
                                 <a href="{{ route('accounts.addAccount').'?delete_id='.$oResult->id }}" class="fa fa-trash-o"></a>
-                                <a href="{{ route('accounts.asignMt4Users').'?account_id='.$oResult->id }}" class="fa fa-plus-square-o"> asign mt4 user</a>
+                                <a href="{{ route('accounts.detailsAccount').'?edit_id='.$oResult->id }}" class="fa fa-file-text"></a>   
+                                <a href="{{ route('accounts.asignMt4Users').'?account_id='.$oResult->id }}" class="fa fa-plus-square-o"></a>
                             </td>
                         </tr>
                         @endforeach

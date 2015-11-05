@@ -10,13 +10,13 @@
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="form-group no-margin-hr">
-									<label class="control-label">{{ trans('general.first_name') }}</label>
+									<label class="control-label">{{ trans('user.first_name') }}</label>
                                                                         {!! Form::text('first_name',$userInfo['first_name'],['class'=>'form-control']) !!}
 								</div>
 							</div><!-- col-sm-6 -->
 							<div class="col-sm-6">
 								<div class="form-group no-margin-hr">
-									<label class="control-label">{{ trans('general.last_name') }}</label>
+									<label class="control-label">{{ trans('user.last_name') }}</label>
                                                                         {!! Form::text('last_name',$userInfo['last_name'],['class'=>'form-control']) !!}
                                                                         
 								</div>
@@ -26,19 +26,65 @@
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="form-group no-margin-hr">
-									<label class="control-label">{{ trans('general.email') }}</label>
+									<label class="control-label">{{ trans('user.Email') }}</label>
                                                                         {!! Form::text('email',$userInfo['email'],['class'=>'form-control']) !!}
-                                                                        
 								</div>
 							</div><!-- col-sm-6 -->
 							<div class="col-sm-6">
 								<div class="form-group no-margin-hr">
-									<label class="control-label">{{ trans('general.password') }}</label>
-                                                                        <input type="password" name="password" class="form-control" value="{{ $userInfo['password'] }}">
+									<label class="control-label">{{ trans('user.Password') }}</label>
+                                                                        {!! Form::text('password',$userInfo['password'],['class'=>'form-control']) !!}
                                                                         
 								</div>
 							</div><!-- col-sm-6 -->
-                                                        
+						</div><!-- row -->
+                                                
+                                                <div class="row">
+							<div class="col-sm-6">
+								<div class="form-group no-margin-hr">
+									<label class="control-label">{{ trans('user.Nickname') }}</label>
+                                                                        {!! Form::text('nickname',$userInfo['nickname'],['class'=>'form-control']) !!}
+								</div>
+							</div><!-- col-sm-6 -->
+							<div class="col-sm-6">
+								<div class="form-group no-margin-hr">
+									<label class="control-label">{{ trans('user.location') }}</label>
+                                                                        {!! Form::text('location',$userInfo['location'],['class'=>'form-control']) !!}
+                                                                        
+								</div>
+							</div><!-- col-sm-6 -->
+						</div><!-- row -->
+                                                
+                                                <div class="row">
+							<div class="col-sm-6">
+								<div class="form-group no-margin-hr">
+									<label class="control-label">{{ trans('user.Birthday') }}</label>
+                                                                        {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control']) !!}
+								</div>
+							</div><!-- col-sm-6 -->
+							<div class="col-sm-6">
+								<div class="form-group no-margin-hr">
+									<label class="control-label">{{ trans('user.Phone') }}</label>
+                                                                        {!! Form::text('phone',$userInfo['phone'],['class'=>'form-control']) !!}
+                                                                        
+								</div>
+							</div><!-- col-sm-6 -->
+						</div><!-- row -->
+                                                
+                                              <div class="row">
+							<div class="col-sm-6">
+								<div class="form-group no-margin-hr">
+									<label class="control-label">{{ trans('user.Country') }}</label>
+                                                                        {!! Form::text('country',$userInfo['country'],['class'=>'form-control']) !!}
+								</div>
+							</div><!-- col-sm-6 -->
+							<div class="col-sm-6">
+								<div class="form-group no-margin-hr">
+									<label class="control-label">{{ trans('user.City') }}</label>
+                                                                        {!! Form::text('city',$userInfo['city'],['class'=>'form-control']) !!}
+                                                                        
+								</div>
+							</div><!-- col-sm-6 -->
 						</div><!-- row -->
 					</div>
              @if($errors->any())

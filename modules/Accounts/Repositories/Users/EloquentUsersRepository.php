@@ -89,4 +89,6 @@ class EloquentUsersRepository implements Mt4UserContract
         }
             
         }
+        
+      
 }

@@ -26,5 +26,7 @@ interface UserContract
          
          
         public function asignMt4UsersToAccount($account_id,$users_id);
-
+        
+        public function getUserDetails($userId);
+        public function getCountry($iso2);
 }

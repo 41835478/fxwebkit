@@ -38,6 +38,8 @@ return [
         'Country' => 'Country',
         'City' => 'City',
         'ZipCode' => 'Zip Code',
+         'first_name' => 'First Name',
+        'last_name' => 'Last Name',
 
         
 ];

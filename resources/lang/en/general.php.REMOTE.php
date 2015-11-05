@@ -51,21 +51,11 @@ return [
     
     /*____settings____adminsList__*/
     'id'=>'Id',
-    'first_name'=>'First Name :',
-    'last_name'=>'Last Name :',
-    'email'=>'Email :',
+    'first_name'=>'First Name',
+    'last_name'=>'Last Name',
+    'email'=>'Email',
     'password'=>'Password',
-<<<<<<< HEAD
-    'nickname'=>'Nickname :',
-    'location' => 'Location :',
-    'birthday' => 'BirthDay :',
-    'phone' => 'Phone :',
-    'country' => 'Country :',
-    'city' => 'City :',
-    'addUser'=>'Add User'
-=======
     'addUser'=>'Add User',
->>>>>>> aa0a7bc088b37a68033bf01ece75a48d6fba8e11
     /*__add admin*/
     
     /*__end_add_admin*/
