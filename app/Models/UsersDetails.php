@@ -9,12 +9,13 @@ class UsersDetails extends Model
         public $timestamps = false;
        
         protected $fillable = [
-    
+        'users_id',
         'nickname',
         'location',
         'birthday',
         'phone',
         'country',
         'city',
+            
             ];
 }

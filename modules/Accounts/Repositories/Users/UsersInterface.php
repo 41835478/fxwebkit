@@ -27,5 +27,7 @@ interface Mt4UserContract
 	 */
         public function getUserInfo($login);
         
+        
+        
 
 }
