@@ -467,8 +467,10 @@ if(is_array($users_id)){
         ];
                 if($iso2==null){
                     return $country_arr;
-                }else{
+                }if(isset($country_arr[$iso2])){
                     return $country_arr[$iso2][0];
+                }else{
+                    return '';
                 }
        
         }
