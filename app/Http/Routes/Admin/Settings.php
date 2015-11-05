@@ -5,7 +5,7 @@
  */
 Route::group(['middleware' => ['authenticate.admin']], function()
 {
-    Route::controller('settings','SettingsController',['getAdminsList'=>'admins-list','getEditUser'=>'general.editUser']);
+    Route::controller('settings','SettingsController',['getAdminsList'=>'admin.adminsList','getEditUser'=>'general.editUser']);
 //	Route::get('/', [
 //		'as' => 'admin.index',
 //		'uses' => '@getAdminsList'

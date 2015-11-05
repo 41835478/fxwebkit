@@ -14,12 +14,14 @@ class CreateUsersDetailsTable extends Migration
         Schema::create('users_details', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('users_id')->unsigned();
-            $table->string('nickname', 50);
-            $table->string('location', 100);
-            $table->date('birthday', 50);
-            $table->string('phone', 14);
-            $table->string('country', 50);
-            $table->string('city', 50);
+            $table->string('nickname', 50)->nullable();
+            $table->string('location', 100)->nullable();
+            $table->date('birthday', 50)->nullable();
+            $table->string('phone', 14)->nullable();
+            $table->string('country', 50)->nullable();
+            $table->string('city', 50)->nullable();
+            $table->string('zip_code', 16)->nullable();
+            $table->boolean('gender');
             
             $table->engine = 'InnoDB';
         });

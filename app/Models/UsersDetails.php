@@ -9,6 +9,10 @@ class UsersDetails extends Model
         public $timestamps = false;
        
         protected $fillable = [
+<<<<<<< HEAD
+=======
+    
+>>>>>>> aa0a7bc088b37a68033bf01ece75a48d6fba8e11
         'users_id',
         'nickname',
         'location',

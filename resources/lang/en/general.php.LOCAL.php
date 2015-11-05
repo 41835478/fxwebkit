@@ -55,7 +55,6 @@ return [
     'last_name'=>'Last Name :',
     'email'=>'Email :',
     'password'=>'Password',
-<<<<<<< HEAD
     'nickname'=>'Nickname :',
     'location' => 'Location :',
     'birthday' => 'BirthDay :',
@@ -63,13 +62,8 @@ return [
     'country' => 'Country :',
     'city' => 'City :',
     'addUser'=>'Add User'
-=======
-    'addUser'=>'Add User',
->>>>>>> aa0a7bc088b37a68033bf01ece75a48d6fba8e11
     /*__add admin*/
     
     /*__end_add_admin*/
-    'adminsList'=>'Admins List'
-    
     /*__END__settings____adminsList__*/
 ];

@@ -49,6 +49,9 @@
 				<a href="{{ route('client.linkedin.login') }}" class="signin-with-btn" style="background:#0077B5;background:rgba(0, 119, 181, .8);">
 					{{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.linkedin') }}</span>
 				</a>
+				<a href="{{ route('client.twitter.login') }}" class="signin-with-btn" style=" display: none;background:#0077B5;background:rgba(0, 119, 181, .8);">
+					{{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.twitter') }}</span>
+				</a>
 			</div>
 		</div>
 	</div>
