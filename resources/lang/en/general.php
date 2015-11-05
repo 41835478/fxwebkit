@@ -62,7 +62,9 @@ return [
     'country' => 'Country :',
     'city' => 'City :',
     'addUser'=>'Add User',
-    'mt4UsersList'=>'Mt4 Users List',
+
+    'details'=>'Details',
+    'edit_info'=>'Edit Info',    
     /*__add admin*/
     
     /*__end_add_admin*/

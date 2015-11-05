@@ -2,10 +2,22 @@
 @section('title', trans('accounts.addAccount'))
 @section('content')
 
+
+    <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+        <li class="">
+            <a href="{{ route('accounts.detailsAccount').'?edit_id='.$userInfo['edit_id']}}">{{ trans('general.details') }}<span class="label label-success"></span></a>
+        </li>
+
+        <li  class="active">
+
+            <a href="{{ route('accounts.addAccount').'?edit_id='.$userInfo['edit_id']}}">{{ trans('general.edit_info') }}<span class="badge badge-primary"></span></a>
+
+        </li>
+    </ul>
+
+
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
-					<div class="panel-heading">
-						<span class="panel-title">{{ trans('accounts.addAccount') }}</span>
-					</div>
+					
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-sm-6">
@@ -102,3 +114,19 @@
                     
 	{!! Form::close() !!}
 @stop
+@section("script")
+@parent
+<script>
+ init.push(function () {
+            var options = {
+                format:"yyyy-mm-dd",
+                todayBtn: "linked",
+                orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+            }
+    
+            $('input[name="birthday"]').datepicker(options);
+         
+        });
+
+ </script>
+ @stop
