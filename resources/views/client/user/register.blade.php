@@ -52,7 +52,7 @@
 
         <div class="form-group w-icon">
             {!! Form::text('birthday', $default_birthday, ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.Birthday')]) !!}
-            <span class="fa fa-calendar signup-form-icon"></span>
+                 <span class="fa fa-calendar signup-form-icon"></span>  
         </div>
 
         <div class="form-group w-icon">

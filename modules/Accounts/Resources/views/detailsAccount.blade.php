@@ -1,19 +1,19 @@
 @extends('admin.layouts.main')
 @section('title', trans('accounts.addAccount'))
 @section('content')
-<div class="panel-body">
+
     <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
         <li class="active">
-            <a href="#uidemo-tabs-default-demo-home" data-toggle="tab">Details <span class="label label-success"></span></a>
+            <a href="#uidemo-tabs-default-demo-home" data-toggle="tab">{{ trans('general.details') }}<span class="label label-success"></span></a>
         </li>
 
         <li  class="">
 
-            <a href="{{ route('accounts.addAccount').'?edit_id='.$user_detalis['id']}}"  > Edit client Information Details <span class="badge badge-primary"></span></a>
+            <a href="{{ route('accounts.addAccount').'?edit_id='.$user_detalis['id']}}"  >{{ trans('general.edit_info') }}<span class="badge badge-primary"></span></a>
 
         </li>
     </ul>
-</div>
+
 
 <div class="panel-body">
     <div class="row">

@@ -465,12 +465,12 @@ if(is_array($users_id)){
             "zm"=>[" Zambia ", " 260"],
             "zw"=>[" Zimbabwe ", " 263"],
         ];
-                if($iso2==null){
+                if($iso2===null){
                     return $country_arr;
                 }if(isset($country_arr[$iso2])){
                     return $country_arr[$iso2][0];
                 }else{
-                    return '';
+                    return $iso2;
                 }
        
         }
