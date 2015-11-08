@@ -22,6 +22,15 @@ use Fxweb\Models\UsersDetails;
 
 class AuthController extends Controller {
 
+    
+     protected $oUsers;
+
+    public function __construct(
+    Users $oUsers
+    ) {
+        $this->oUsers = $oUsers;
+    }
+    
     public function getLogin() {
         return view('client.user.login')
                         ->with('random', rand(1, 8));
@@ -381,5 +390,9 @@ class AuthController extends Controller {
         }
         return Redirect::intended('/client');
     }
+    
+       
+        
+       
 
 }

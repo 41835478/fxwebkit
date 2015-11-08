@@ -28,7 +28,7 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="#">
+									<a href="{{ route('admin.profile') }}">
 										<i class="dropdown-icon fa fa-user"></i>&nbsp;&nbsp;
 										{{ trans('general.Profile') }}
 									</a>

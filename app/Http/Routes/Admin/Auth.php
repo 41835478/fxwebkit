@@ -30,3 +30,4 @@ Route::get('logout', [
 	'as' => 'admin.auth.logout',
 	'uses' => 'AuthController@getLogout'
 ]);
+

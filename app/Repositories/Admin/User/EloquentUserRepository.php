@@ -186,7 +186,7 @@ if(is_array($users_id)){
     }
       public function getUserDetails($userId)
         {
-     
+     //     dd($userId);
            $user = Sentinel::findById($userId);
            $fullDetails=  UsersDetails::where('users_id',$userId)->first();
            
@@ -211,7 +211,7 @@ if(is_array($users_id)){
             "af"=>" Afghanistan (افغانستان) ",
             "ax"=>" Åland Islands (Åland) ",
             "al"=>" Albania (Shqipëri) ",
-            "dz"=>" Algeria ", " 213",
+            "dz"=>" Algeria ",
             "as"=>"American Samoa ", 
             "ad"=>"Andorra ", 
             "ao"=>"Angola ", 
@@ -472,7 +472,6 @@ if(is_array($users_id)){
                 }else{
                     return $iso2;
                 }
-       
         }
         
 }
