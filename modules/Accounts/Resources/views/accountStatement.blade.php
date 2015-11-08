@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('reports::reports.accounts'))
+@section('title', trans('accounts::accounts.accountStatement'))
 @section('content')
 <style type="text/css">
     #content-wrapper{ padding: 0px; margin: 0px;}
@@ -19,12 +19,12 @@
         <div class="navigation">
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections">
-                <li><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div> </li>
+                <li><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']) !!}</div> </li>
 
                 <li><div  class=" nav-input-div  ">
 
                         <div class="input-group date datepicker-warpper">
-                            {!! Form::text('from_date', $aFilterParams['from_date'], ['placeholder'=>trans('reports::reports.FromDate'),'class'=>'form-control input-sm']) !!}
+                            {!! Form::text('from_date', $aFilterParams['from_date'], ['placeholder'=>trans('accounts::accounts.FromDate'),'class'=>'form-control input-sm']) !!}
                             <span class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </span>
@@ -34,14 +34,14 @@
 
                 <li><div  class=" nav-input-div  ">
                         <div class="input-group date datepicker-warpper">
-                            {!! Form::text('to_date', $aFilterParams['to_date'], ['placeholder'=>trans('reports::reports.ToDate'),'class'=>'form-control input-sm']) !!}
+                            {!! Form::text('to_date', $aFilterParams['to_date'], ['placeholder'=>trans('accounts::accounts.ToDate'),'class'=>'form-control input-sm']) !!}
                             <span class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </span>
                         </div>
                     </div></li>
                 <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('accounts::accounts.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>
                 <li class="divider"></li>
             </ul>
@@ -57,7 +57,7 @@
 
     <div class="mail-container " >
         <div class="mail-container-header">
-            {{ trans('reports::reports.accounts') }}
+            {{ trans('accounts::accounts.accounts') }}
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
@@ -89,7 +89,7 @@
             <div class="table-info">
                 <div class="table-header">
                     <div class="table-caption">
-                        {{ trans('reports::reports.Summary') }}
+                        {{ trans('accounts::accounts.Summary') }}
 
                     </div>
                 </div>
