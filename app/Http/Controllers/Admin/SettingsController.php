@@ -12,15 +12,17 @@ use Illuminate\Support\Facades\Redirect;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 use Illuminate\Support\Facades\Config;
+
+use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 class SettingsController extends Controller {
 
     /**
      * @var Mt4Group
      */
     protected $oUser;
-
-    public function __construct(User $oUser
-    ) {
+    protected $oMt4User;
+    public function __construct(User $oUser,Mt4User $oMt4User) {
+        $this->oMt4User=$oMt4User;
         $this->oUser = $oUser;
     }
 
@@ -185,5 +187,4 @@ class SettingsController extends Controller {
     public function destroy($id) {
         //
     }
-
 }

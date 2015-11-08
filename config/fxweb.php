@@ -34,6 +34,7 @@ return [
                     'title' => 'adminsList',
                     'icon' => 'fa fa-users',
                 ]
+                
             ]
         ]
     ]

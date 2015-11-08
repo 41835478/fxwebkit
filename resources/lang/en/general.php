@@ -62,12 +62,13 @@ return [
     'country' => 'Country :',
     'city' => 'City :',
     'addUser'=>'Add User',
+
     'details'=>'Details',
     'edit_info'=>'Edit Info',    
     /*__add admin*/
     
     /*__end_add_admin*/
-    'adminsList'=>'Admins List'
-    
+    'adminsList'=>'Admins List',
+    'mt4UsersList'=>'Mt4 Users'
     /*__END__settings____adminsList__*/
 ];

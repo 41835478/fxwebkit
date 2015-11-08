@@ -41,5 +41,10 @@ return [
         'first_name' => 'First Name',
         'last_name' => 'Last Name',
 
-        
+        'mt4UserLogin'=>'Log IN',
+        'mt4UserName'=>'Name',
+        'mt4UserGroup'=>'Group',
+        'mt4UserBalance'=>'Balance',
+        'mt4UserEquity'=>'Equity',
+        'mt4UserCountry'=>'Country',
 ];

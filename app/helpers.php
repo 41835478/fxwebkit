@@ -86,6 +86,14 @@ if (!function_exists('get_admin_menu')) {
 	}
 }
 
+if (!function_exists('get_client_menu')) {
+	function get_client_menu()
+	{
+		$oMenu = new Menu(env('CLIENT_NAME'));
+		return $oMenu->getClientMenu();
+	}
+}
+
 if (!function_exists('th_sort')) {
 	function th_sort($sText, $sCol, $oResult)
 	{

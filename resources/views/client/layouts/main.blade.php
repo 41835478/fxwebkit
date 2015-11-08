@@ -20,6 +20,7 @@
 	{!! HTML::style('assets/css/pages.min.css') !!}
 	{!! HTML::style('assets/css/rtl.min.css') !!}
 	{!! HTML::style('assets/css/themes.min.css') !!}
+	{!! HTML::style('assets/css/helper.css') !!}
 	<!--[if lt IE 9]>
 	{!! HTML::script('assets/js/ie.min.js') !!}
 	<![endif]-->
