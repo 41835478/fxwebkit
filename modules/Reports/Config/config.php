@@ -19,14 +19,14 @@ return [
 		],
 		[
 			'route' => 'admin.reports.accounts',
-			'title' => 'accounts',
+			'title' => 'accountStatement',
 			'icon' => 'fa fa-user',
 		],
-		[
-			'route' => 'admin.reports.accountStatement',
-			'title' => 'accountStatement',
-			'icon' => 'fa fa-gears',
-		],
+//		[
+//			'route' => 'admin.reports.accountStatement',
+//			'title' => 'accountStatement',
+//			'icon' => 'fa fa-gears',
+//		],
 		[
 			'route' => 'admin.reports.commission',
 			'title' => 'commission',
@@ -57,14 +57,14 @@ return [
 		],
 		[
 			'route' => 'clients.reports.accounts',
-			'title' => 'accounts',
+			'title' => 'accountStatement',
 			'icon' => 'fa fa-user',
 		],
-		[
-			'route' => 'clients.reports.accountStatement',
-			'title' => 'accountStatement',
-			'icon' => 'fa fa-gears',
-		],
+//		[
+//			'route' => 'clients.reports.accountStatement',
+//			'title' => 'accountStatement',
+//			'icon' => 'fa fa-gears',
+//		],
 		[
 			'route' => 'clients.reports.commission',
 			'title' => 'commission',
