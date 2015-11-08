@@ -5,7 +5,7 @@ namespace Fxweb\Repositories\Admin\Mt4User;
 use Fxweb\Models\Mt4User;
 use Fxweb\Helpers\Fx;
 use Config;
-
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 /**
  * Class EloquentUserRepository
  * @package App\Repositories\User
@@ -71,8 +71,19 @@ class EloquentMt4UserRepository implements Mt4UserContract {
     }
 
     public function getUsersByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC') {
-        $oResult = new Mt4User();
+        //$oResult = new Mt4User();
+       /* ===============================check admin or user================ */
+        $oResult =new Mt4User();
+        if ($user = Sentinel::getUser()) {
+            if ($user->InRole('client')) {
+                $account_id = $user->id;
+                $oResult = Mt4User::with('accounts')->whereHas('accounts', function($query) use($account_id) {
+                            $query->where('users_id', $account_id);
+                        });
+            } 
+        }
 
+        /* =================================== */
         /* =============== Login Filters =============== */
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
             $oResult = $oResult->where('LOGIN', $aFilters['login']);

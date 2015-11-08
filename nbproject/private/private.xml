@@ -1,22 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>resources/views/admin/user/mt4UsersList.blabe.php</url>
+            <bookmark id="1">
+                <name/>
+                <line>70</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/F:/wamp/www/fxwebkit/resources/views/admin/user/adminsList.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Accounts/Http/Controllers/AccountsController.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/Mt4User/EloquentMt4UserRepository.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/app/Http/Controllers/Client/AuthController.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/app/Http/Routes/Admin/Settings.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/resources/lang/en/user.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/config/fxweb.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Accounts/Resources/views/asignMt4Users.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/modules/Accounts/Resources/views/fastAsignMt4Users.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/resources/views/admin/layouts/main.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/database/migrations/2015_11_01_112411_create_users_details_table.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/User/EloquentUserRepository.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/resources/views/admin/user/mt4UsersList.blade.php</file>
             <file>file:/F:/wamp/www/fxwebkit/app/Http/routes.php</file>
             <file>file:/F:/wamp/www/fxwebkit/resources/lang/en/general.php</file>
             <file>file:/F:/wamp/www/fxwebkit/app/Helpers/Menu.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Http/Routes/Admin/Settings.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Http/Controllers/Client/AuthController.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/config/fxweb.php</file>
             <file>file:/F:/wamp/www/fxwebkit/app/Models/UsersDetails.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Accounts/Resources/views/asignMt4Users.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Accounts/Resources/views/fastAsignMt4Users.blade.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/resources/views/client/user/register.blade.php</file>
             <file>file:/F:/wamp/www/fxwebkit/app/Http/Controllers/Admin/DashboardController.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/database/migrations/2015_11_01_112411_create_users_details_table.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/User/EloquentUserRepository.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Http/Controllers/Admin/SettingsController.php</file>
             <file>file:/F:/wamp/www/fxwebkit/app/helpers.php</file>
+            <file>file:/F:/wamp/www/fxwebkit/app/Http/Controllers/Admin/SettingsController.php</file>
         </group>
     </open-files>
 </project-private>

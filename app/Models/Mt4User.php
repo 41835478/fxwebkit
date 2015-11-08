@@ -10,4 +10,9 @@ class Mt4User extends Model
         public function account(){
             return $this->hasOne('\Modules\Accounts\Entities\mt4_users_users','mt4_users_id');
         }
+           
+        public function accounts(){
+            return $this->belongsToMany('Fxweb\Models\User','mt4_users_users','mt4_users_id','users_id','login');
+        }
+        
 }
