@@ -8,17 +8,17 @@
     <li class="">
         <a href="{{ route('accounts.detailsAccount').'?edit_id='.$userInfo['edit_id']}}">{{ trans('general.details') }}<span class="label label-success"></span></a>
     </li>
-    
+
     <li  class="active">
 
         <a href="{{ route('accounts.addAccount').'?edit_id='.$userInfo['edit_id']}}">{{ trans('general.edit_info') }}<span class="badge badge-primary"></span></a>
 
     </li>
-    
+
     @else
     <li  class="active">
 
-        <a href=""> New user <span class="badge badge-primary"></span></a>
+        <a href="">{{ trans('general.new_user') }}<span class="badge badge-primary"></span></a>
 
     </li>
     @endif
@@ -110,6 +110,20 @@
                 {!! Form::text('zip_code',$userInfo['zip_code'],['class'=>'form-control']) !!}           
             </div>
         </div><!-- col-sm-6 -->
+        <div class="col-sm-6">
+            <div class="radio col-xs-2">
+                <label class='gender_radio_0'>
+                    {!! Form::radio('gender', 0,['id'=>'gender_radio_0','class'=>'form-control input-lg']) !!}
+                    <span class="lbl">{{ trans('user.male') }}</span>
+                </label>
+            </div>
+            <div class="radio col-xs-2">
+                <label class='gender_radio_1'>
+                    {!! Form::radio('gender', 1,['id'=>'gender_radio_1','class'=>'form-control input-lg']) !!}
+                    <span class="lbl">{{ trans('user.female') }}</span>
+                </label>
+            </div>
+        </div>
     </div><!-- row -->
 </div>
 @if($errors->any())

@@ -61,7 +61,10 @@ return [
     'phone' => 'Phone :',
     'country' => 'Country :',
     'city' => 'City :',
+    'zip_code' => 'Zip Code :',
     'addUser'=>'Add User',
+    'gender'=>'Gender :',
+    'new_user'=>'New user',
 
     'details'=>'Details',
     'edit_info'=>'Edit Info',    

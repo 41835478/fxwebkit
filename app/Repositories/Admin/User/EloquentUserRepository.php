@@ -117,7 +117,8 @@ class EloquentUserRepository implements UserContract {
             $fullDetails->city=$oRequest->city;
             $fullDetails->gender=$oRequest->gender;
             $fullDetails->zip_code=$oRequest->zip_code;
-             $fullDetails->save();
+            $fullDetails->gender=$oRequest->gender;
+            $fullDetails->save();
              
         return $oUser->id;
     }
@@ -143,6 +144,8 @@ class EloquentUserRepository implements UserContract {
             $fullDetails->phone=$oRequest->phone;
             $fullDetails->country=$oRequest->country;
             $fullDetails->city=$oRequest->city;
+            $fullDetails->zip_code=$oRequest->zip_code;
+            $fullDetails->gender=$oRequest->gender;
              $fullDetails->save();
      }else{
          $fullDetails=new UsersDetails();
@@ -233,6 +236,7 @@ if(is_array($users_id)){
             'country' => '',
             'city' => '',
             'zip_code' => '',
+            'gender'=>0
         ];
             if($fullDetails){
            
@@ -243,6 +247,7 @@ if(is_array($users_id)){
             $userDetails ['country'] = $fullDetails['country'];
             $userDetails ['city']= $fullDetails['city'];
             $userDetails ['zip_code'] = $fullDetails['zip_code'];
+            $userDetails ['gender'] = $fullDetails['gender'];
             }
             return $userDetails;
         }
