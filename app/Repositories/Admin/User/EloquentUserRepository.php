@@ -109,6 +109,7 @@ class EloquentUserRepository implements UserContract {
     }
 
     public function updateUser($oRequest) {
+        
         $user = Sentinel::findById($oRequest->edit_id);
         $fullDetails=  UsersDetails::where('users_id',$oRequest->edit_id)->first();
 
@@ -186,7 +187,7 @@ if(is_array($users_id)){
     }
       public function getUserDetails($userId)
         {
-     //     dd($userId);
+
            $user = Sentinel::findById($userId);
            $fullDetails=  UsersDetails::where('users_id',$userId)->first();
            

@@ -110,7 +110,7 @@ protected $oMt4Trade;
             'birthday' => $oResult['birthday'],
             'phone' => $oResult['phone'],
             'country' =>$oResult['country'],
-                'country_array'=>$country_array,
+            'country_array'=>$country_array,
             'city' => $oResult['city'],
                 ];
         }
