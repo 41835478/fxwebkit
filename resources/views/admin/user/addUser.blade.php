@@ -34,8 +34,9 @@
 							<div class="col-sm-6">
 								<div class="form-group no-margin-hr">
 									<label class="control-label">{{ trans('general.password') }}</label>
-                                                                        <input type="password" name="password" class="form-control" value="{{ $userInfo['password'] }}">
                                                                         
+                                                                        
+                                                                        {!! Form::password("password",["class"=>"form-control","value"=>$userInfo['password']]) !!}
 								</div>
 							</div><!-- col-sm-6 -->
                                                         
