@@ -40,6 +40,8 @@ return [
         'ZipCode' => 'Zip Code',
         'first_name' => 'First Name',
         'last_name' => 'Last Name',
+        'male'=>'Male',
+        'female'=>'Female',
 
         'mt4UserLogin'=>'Log IN',
         'mt4UserName'=>'Name',

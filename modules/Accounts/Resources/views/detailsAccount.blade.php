@@ -124,10 +124,35 @@
                 <label class="control-label">{{$user_detalis['city'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
-
-      
+         <div class="col-sm-2 text-right">
+            <div class="form-group no-margin-hr">
+                <label class="control-label">{{ trans('general.zip_code') }}</label>
+            </div>
+        </div><!-- ol-sm-6 -->
+        <div class="col-sm-4 text-left">
+            <div class="form-group no-margin-hr">
+                <label class="control-label">{{$user_detalis['zip_code'] }}</label>
+            </div>
+        </div><!--ol-sm-6 -->
     </div><!-- row -->
 
+     <div class="row">
+        <div class="col-sm-2 text-right">
+            <div class="form-group no-margin-hr">
+                <label class="control-label">{{ trans('general.gender') }}</label>
+            </div>
+        </div><!-- ol-sm-6 -->
+        <div class="col-sm-4 text-left">
+            <div class="form-group no-margin-hr">
+                @if($user_detalis['gender']==0)
+                <label class="control-label">Male</label>
+                @else
+                <label class="control-label">Femle</label>
+                @endif
+            </div>
+        </div><!--ol-sm-6 -->
+    </div><!-- row -->
+    
 </div>
 
 <div class="panel-footer text-right"></div>

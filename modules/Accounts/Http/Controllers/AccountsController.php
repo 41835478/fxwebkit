@@ -95,7 +95,8 @@ class AccountsController extends Controller {
             'country' => '',
             'country_array'=>$country_array ,
             'city' => '',
-            'zip_code' => ''
+            'zip_code' => '',
+            'gender'=>0
          
          ];
         
@@ -117,7 +118,8 @@ class AccountsController extends Controller {
             'country' =>$oResult['country'],
             'country_array'=>$country_array,
             'city' => $oResult['city'],
-            'zip_code' => $oResult['zip_code']
+            'zip_code' => $oResult['zip_code'],
+            'gender'=>$oResult['gender']
                 ];
     }
         return view('accounts::addAccount')->with('userInfo', $userInfo);
@@ -156,6 +158,9 @@ class AccountsController extends Controller {
                                 'country' => $oRequest->country,
                                 'country_array' => $country_array,
                                 'city' => $oRequest->city,
+                                'gender' => $oRequest->gender,
+                                'zip_code' => $oRequest->zip_code,
+                                
             ]);
         }
     }
@@ -276,6 +281,7 @@ class AccountsController extends Controller {
             'country' => $this->oUsers->getCountry($oResult['country']),
             'city' => $oResult['city'],
             'zip_code' => $oResult['zip_code'],
+            'gender' => $oResult['gender'],
     ];
         
         return view('accounts::detailsAccount')->with('user_detalis',$user_detalis);
@@ -296,7 +302,8 @@ class AccountsController extends Controller {
             'phone' => '',
             'country' => '',
             'city' => '',
-            'zip_code' => ''
+            'zip_code' => '',
+            'gender'=>0
             ];
         
         if ($oRequest->has('edit_id')) {
@@ -316,7 +323,8 @@ class AccountsController extends Controller {
             'phone' => $oResult['phone'],
             'country' => $oResult['country'],
             'city' => $oResult['city'],
-            'zip_code' => $oResult['zip_code']
+            'zip_code' => $oResult['zip_code'],
+            'gender' => $oResult['gender'],
                 ];
         }
 
