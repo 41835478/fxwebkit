@@ -77,8 +77,7 @@ class AccountsController extends Controller {
     }
 
     public function getEditAccount(Request $oRequest) {
-
-
+        
         if ($oRequest->has('delete_id')) {
             $result = $this->oUsers->deleteUser($oRequest->delete_id);
             return Redirect::route('accounts.accountsList')->withErrors($result);
@@ -94,13 +93,13 @@ class AccountsController extends Controller {
             'birthday' => '',
             'phone' => '',
             'country' => '',
-
             'city' => '',
             'zip_code' => ''
          
          ];
         
         if ($oRequest->has('edit_id')) {
+            dd(45);
              $oResult=$this->oUsers->getUserDetails($oRequest->edit_id);
              $country_array=$this->oUsers->getCountry(null);
           
