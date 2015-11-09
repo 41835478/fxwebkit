@@ -104,6 +104,7 @@ class Menu {
                 if ($bIsClient) {
                     $sRoute = Config::get($sLowerName . '.route');
                     $aSubMenus = Config::get($sLowerName . '.client_menu', []);
+                  
                     if (count($aSubMenus)) {
                         foreach ($aSubMenus as &$aSubMenu) {
                             $aSubMenu['title'] = trans($sLowerName . '::' . $sLowerName . '.' . $aSubMenu['title']);

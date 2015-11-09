@@ -11,6 +11,11 @@ return [
 			'route' => 'accounts.accountsList',
 			'title' => 'accountsList',
 			'icon' => 'fa fa-users',
+		],
+		[
+			'route' => 'accounts.Mt4UsersList',
+			'title' => 'mt4UsersList',
+			'icon' => 'fa fa-users',
 		]
 	]
 ];

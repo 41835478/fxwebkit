@@ -21,33 +21,7 @@
 			<li>
 				<a href=" "><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span></a>
 			</li>
-			<li>
-				<a href="{{ route('clients.reports.closedOrders') }}"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">close order</span></a>
-			</li>
-			<li>
-				<a href="{{ route('clients.reports.openOrders') }}"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">open order</span></a>
-			</li>
-
-			<li>
-				<a href="{{ route('clients.reports.accounts') }}"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Accounts</span></a>
-			</li>
-
-			<li>
-				<a href="{{ route('clients.reports.accountStatement') }}"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Account Statement</span></a>
-			</li>
-
-
-			<li>
-				<a href="{{ route('clients.reports.commission') }}"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Commission</span></a>
-			</li>
-
-			<li>
-				<a href="{{ route('clients.reports.agentCommission') }}"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Agent Commission</span></a>
-			</li>
-
-			<li>
-				<a href="{{ route('clients.reports.accountant') }}"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Accountant </span></a>
-			</li>
+			
 {{--*/ $aAdminMenu = get_client_menu() /*--}}
 			@if(count($aAdminMenu))
 				@foreach($aAdminMenu as $aModule)
