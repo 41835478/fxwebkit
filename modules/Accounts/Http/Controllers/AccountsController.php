@@ -119,10 +119,6 @@ class AccountsController extends Controller {
             'city' => $oResult['city'],
             'zip_code' => $oResult['zip_code']
                 ];
-<<<<<<< HEAD
-
-=======
->>>>>>> 47c7485ab9d99012fc561d5fda70d4527c9b7434
     }
         return view('accounts::addAccount')->with('userInfo', $userInfo);
     }

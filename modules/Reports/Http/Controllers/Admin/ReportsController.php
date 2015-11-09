@@ -482,7 +482,6 @@ class ReportsController extends Controller {
         foreach ($oGroups as $oGroup) {
             $aGroups[$oGroup->group] = $oGroup->group;
         }
-
         foreach ($oSymbols as $oSymbol) {
             $aSymbols[$oSymbol->SYMBOL] = $oSymbol->SYMBOL;
         }
@@ -511,7 +510,7 @@ class ReportsController extends Controller {
             $oResults[0]->order = $aFilterParams['order'];
             $oResults[0]->sorts = $aFilterParams['sort'];
         }
-
+        
         return view('reports::accountant')
                         ->with('aGroups', $aGroups)
                         ->with('aSymbols', $aSymbols)

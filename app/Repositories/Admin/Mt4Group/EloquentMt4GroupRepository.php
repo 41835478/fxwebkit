@@ -1,6 +1,7 @@
 <?php namespace Fxweb\Repositories\Admin\Mt4Group;
 
 use Fxweb\Models\Mt4Group;
+use Fxweb\Models\Mt4User;
 
 /**
  * Class EloquentUserRepository
@@ -20,8 +21,14 @@ class EloquentMt4GroupRepository implements Mt4GroupContract
 	 * @param string $sSort
 	 * @return mixed
 	 */
-	public function getAllGroups($sOrderBy = 'gid', $sSort = 'ASC')
+	public function getAllGroups($sOrderBy = 'symbol', $sSort = 'ASC')
 	{
-		return Mt4Group::orderBy($sOrderBy, $sSort)->get();
+		$oGroups=Mt4User::distinct()->select('GROUP')->get();
+        foreach ($oGroups as &$oGroup) {
+           
+            $oGroup->group = $oGroup->GROUP;
+          
+        }
+		return $oGroups;
 	}
 }
