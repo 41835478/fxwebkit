@@ -36,7 +36,7 @@ class DashboardController extends Controller
             'location' => $oResult['location'],
             'birthday' => $oResult['birthday'],
             'phone' => $oResult['phone'],
-            'country' => $oResult['country'],
+            'country' => $this->oUsers->getCountry($oResult['country']),
             'city' => $oResult['city'],
     ];
         
