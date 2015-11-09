@@ -33,11 +33,13 @@ class DashboardController extends Controller {
             'last_name' => $oResult['last_name'],
             'email' => $oResult['email'],
             'nickname' => $oResult['nickname'],
-            'location' => $oResult['location'],
+            'address' => $oResult['address'],
             'birthday' => $oResult['birthday'],
             'phone' => $oResult['phone'],
             'country' => $this->oUsers->getCountry($oResult['country']),
             'city' => $oResult['city'],
+            'zip_code' => $oResult['zip_code'],
+            'gender' => $oResult['gender'],
         ];
 
         return view('client.user.detailsProfile')->with('user_detalis', $user_detalis);
@@ -57,12 +59,14 @@ class DashboardController extends Controller {
             'email' => $oResult['email'],
             'password' => '',
             'nickname' => $oResult['nickname'],
-            'location' => $oResult['location'],
+            'address' => $oResult['address'],
             'birthday' => $oResult['birthday'],
             'phone' => $oResult['phone'],
             'country' => $oResult['country'],
             'country_array' => $country_array,
             'city' => $oResult['city'],
+            'zip_code' => $oResult['zip_code'],
+            'gender' => $oResult['gender'],
         ];
 
 
@@ -95,12 +99,14 @@ class DashboardController extends Controller {
                                 'email' => $oRequest->email,
                                 'password' => $oRequest->password,
                                 'nickname' => $oRequest->nickname,
-                                'location' => $oRequest->location,
+                                'address' => $oRequest->address,
                                 'birthday' => $oRequest->birthday,
                                 'phone' => $oRequest->phone,
                                 'country' => $oRequest->country,
                                 'country_array' => $this->oUsers->getCountry(null),
                                 'city' => $oRequest->city,
+                                'zip_code' => $oRequest->zip_code,
+                                 'gender' => $oRequest->gender,
             ]);
         }
     }

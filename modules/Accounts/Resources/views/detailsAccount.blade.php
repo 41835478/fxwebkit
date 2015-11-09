@@ -68,12 +68,12 @@
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.location') }}</label>
+                <label class="control-label">{{ trans('general.address') }}</label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['location'] }}</label>
+                <label class="control-label">{{$user_detalis['address'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
 
@@ -124,16 +124,17 @@
                 <label class="control-label">{{$user_detalis['city'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
-         <div class="col-sm-2 text-right">
+
+        <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.zip_code') }}</label>
+                <label class="control-label">{{ trans('general.zip_code') }}</label>     
             </div>
-        </div><!-- ol-sm-6 -->
+        </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{$user_detalis['zip_code'] }}</label>
             </div>
-        </div><!--ol-sm-6 -->
+        </div>
     </div><!-- row -->
 
      <div class="row">

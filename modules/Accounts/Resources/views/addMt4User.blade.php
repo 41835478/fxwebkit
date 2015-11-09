@@ -2,34 +2,22 @@
 @section('title', trans('accounts.addAccount'))
 @section('content')
 
-
-<ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
-    <li class="">
-        <a href="{{ route('admin.profile')}}">{{ trans('general.details') }}<span class="label label-success"></span></a>
-    </li>
-
-    <li  class="active">
-
-        <a href="{{ route('accounts.addAccount')}}">{{ trans('general.edit_info') }}<span class="badge badge-primary"></span></a>
-
-    </li>
-</ul>
-
-
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
-
+<div class="panel-heading">
+    <span class="panel-title">{{ trans('general.new_mt4_user') }}</span>
+</div>
 <div class="panel-body">
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.first_name') }}</label>
-                {!! Form::text('first_name',$userInfo['first_name'],['class'=>'form-control']) !!}
+                <label class="control-label">{{ trans('user.name') }}</label>
+                {!! Form::text('name',$userInfo['name'],['class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.last_name') }}</label>
-                {!! Form::text('last_name',$userInfo['last_name'],['class'=>'form-control']) !!}
+                <label class="control-label">{{ trans('user.phone_password') }}</label>
+                {!! Form::text('phone_password',$userInfo['phone_password'],['class'=>'form-control']) !!}
 
             </div>
         </div><!-- col-sm-6 -->
@@ -54,8 +42,8 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.Nickname') }}</label>
-                {!! Form::text('nickname',$userInfo['nickname'],['class'=>'form-control']) !!}
+                <label class="control-label">{{ trans('user.status') }}</label>
+                {!! Form::text('status',$userInfo['status'],['class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
         <div class="col-sm-6">
@@ -70,14 +58,15 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.Birthday') }}</label>
-                {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control']) !!}
+                <label class="control-label">{{ trans('user.id_number') }}</label>
+                {!! Form::text('id_number',$userInfo['id_number'],['class'=>'form-control']) !!}
+
             </div>
         </div><!-- col-sm-6 -->
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.Phone') }}</label>
-                {!! Form::text('phone',$userInfo['phone'],['class'=>'form-control']) !!}
+                <label class="control-label">{{ trans('user.state') }}</label>
+                {!! Form::text('state',$userInfo['state'],['class'=>'form-control']) !!}
 
             </div>
         </div><!-- col-sm-6 -->
@@ -90,37 +79,29 @@
                 <label class="control-label">{{ trans('user.Country') }}</label>
                 {!! Form::select('country',$userInfo['country_array'],$userInfo['country'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
             </div>
-        </div><!-- col-sm-6 -->
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.City') }}</label>
-                {!! Form::text('city',$userInfo['city'],['class'=>'form-control']) !!}
 
-            </div>
-        </div><!-- col-sm-6 -->
-        <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.ZipCode') }}</label>
+                <label class="control-label">{{ trans('user.Phone') }}</label>
+                {!! Form::text('Phone',$userInfo['Phone'],['class'=>'form-control']) !!}           
+            </div>
+
+            <div class="form-group no-margin-hr">
+                <label class="control-label">{{ trans('user.group') }}</label>
                 {!! Form::text('zip_code',$userInfo['zip_code'],['class'=>'form-control']) !!}           
             </div>
         </div><!-- col-sm-6 -->
         <div class="col-sm-6">
-            <label class="control-label " style="text-align: left;display: block;">{{ trans('user.gender') }}</label>
-            <div class="radio col-xs-2">
-                <label class='gender_radio_0'>
-               
-                    {!! Form::radio('gender', 0,true,['id'=>'gender_radio_0','class'=>'px']) !!}
-                    <span class="lbl">{{ trans('user.male') }}</span>
-                </label>
+            <div class="form-group no-margin-hr">
+                <label class="control-label">{{ trans('user.City') }}</label>
+                {!! Form::text('city',$userInfo['city'],['class'=>'form-control']) !!}           
             </div>
-            <div class="radio col-xs-2">
-                <label class='gender_radio_1'>
-                    
-                    {!! Form::radio('gender',1,false,['id'=>'gender_radio_1','class'=>'px']) !!}
-                    <span class="lbl">{{ trans('user.female') }}</span>
-                </label>
+            <div class="form-group no-margin-hr">
+                <label class="control-label">{{ trans('user.ZipCode') }}</label>
+                {!! Form::text('zip_code',$userInfo['zip_code'],['class'=>'form-control']) !!}           
             </div>
-        </div>
+
+        </div><!-- col-sm-6 -->
+
     </div><!-- row -->
 </div>
 @if($errors->any())

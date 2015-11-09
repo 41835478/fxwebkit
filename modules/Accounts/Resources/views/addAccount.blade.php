@@ -69,8 +69,8 @@
         </div><!-- col-sm-6 -->
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.location') }}</label>
-                {!! Form::text('location',$userInfo['location'],['class'=>'form-control']) !!}
+                <label class="control-label">{{ trans('user.address') }}</label>
+                {!! Form::text('address',$userInfo['address'],['class'=>'form-control']) !!}
 
             </div>
         </div><!-- col-sm-6 -->
@@ -105,21 +105,28 @@
                 <label class="control-label">{{ trans('user.City') }}</label>
                 {!! Form::text('city',$userInfo['city'],['class'=>'form-control']) !!}           
             </div>
+            
+        </div><!-- col-sm-6 -->
+        
+        <div class="col-sm-6">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('user.ZipCode') }}</label>
                 {!! Form::text('zip_code',$userInfo['zip_code'],['class'=>'form-control']) !!}           
             </div>
         </div><!-- col-sm-6 -->
         <div class="col-sm-6">
+            <label class="control-label " style="text-align: left;display: block;">{{ trans('user.gender') }}</label>
             <div class="radio col-xs-2">
                 <label class='gender_radio_0'>
-                    {!! Form::radio('gender', 0,['id'=>'gender_radio_0','class'=>'form-control input-lg']) !!}
+               
+                    {!! Form::radio('gender', 0,true,['id'=>'gender_radio_0','class'=>'px']) !!}
                     <span class="lbl">{{ trans('user.male') }}</span>
                 </label>
             </div>
             <div class="radio col-xs-2">
                 <label class='gender_radio_1'>
-                    {!! Form::radio('gender', 1,['id'=>'gender_radio_1','class'=>'form-control input-lg']) !!}
+                    
+                    {!! Form::radio('gender',1,false,['id'=>'gender_radio_1','class'=>'px']) !!}
                     <span class="lbl">{{ trans('user.female') }}</span>
                 </label>
             </div>

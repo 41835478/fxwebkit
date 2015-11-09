@@ -21,7 +21,7 @@ class AddUserRequest extends FormRequest {
 	 */
 	 public function rules()
     {
-        
+     
         $roles= [
             'first_name'=>'required|min:2|max:255',
             'last_name'=>'required|min:2|max:255',

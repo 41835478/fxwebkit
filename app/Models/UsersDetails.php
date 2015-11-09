@@ -11,12 +11,13 @@ class UsersDetails extends Model
         protected $fillable = [
         'users_id',
         'nickname',
-        'location',
+        'address',
         'birthday',
         'phone',
         'country',
         'city',
         'zip_code',
+        'gender',
             
             ];
 }

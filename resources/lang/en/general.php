@@ -56,7 +56,7 @@ return [
     'email'=>'Email :',
     'password'=>'Password',
     'nickname'=>'Nickname :',
-    'location' => 'Location :',
+    'address' => 'Address :',
     'birthday' => 'BirthDay :',
     'phone' => 'Phone :',
     'country' => 'Country :',
@@ -65,6 +65,8 @@ return [
     'addUser'=>'Add User',
     'gender'=>'Gender :',
     'new_user'=>'New user',
+    'new_mt4_user'=>'New Mt4 User',
+    'add_mt4_user'=>'Add Mt4 User',
 
     'details'=>'Details',
     'edit_info'=>'Edit Info',    

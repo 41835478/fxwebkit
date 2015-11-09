@@ -106,11 +106,11 @@ class EloquentUserRepository implements UserContract {
         $oActivation = Activation::create($oUser);
 
         
-             $fullDetails=new UsersDetails();
+          $fullDetails=new UsersDetails();
          
             $fullDetails->users_id=$oUser->id;
             $fullDetails->nickname=$oRequest->nickname;
-            $fullDetails->location=$oRequest->location;
+            $fullDetails->address=$oRequest->address;
             $fullDetails->birthday=$oRequest->birthday;
             $fullDetails->phone=$oRequest->phone;
             $fullDetails->country=$oRequest->country;
@@ -139,7 +139,7 @@ class EloquentUserRepository implements UserContract {
 
      if($fullDetails){
             $fullDetails->nickname=$oRequest->nickname;
-            $fullDetails->location=$oRequest->location;
+            $fullDetails->address=$oRequest->address;
             $fullDetails->birthday=$oRequest->birthday;
             $fullDetails->phone=$oRequest->phone;
             $fullDetails->country=$oRequest->country;
@@ -152,7 +152,7 @@ class EloquentUserRepository implements UserContract {
          
             $fullDetails->users_id=$oRequest->edit_id;
             $fullDetails->nickname=$oRequest->nickname;
-            $fullDetails->location=$oRequest->location;
+            $fullDetails->address=$oRequest->address;
             $fullDetails->birthday=$oRequest->birthday;
             $fullDetails->phone=$oRequest->phone;
             $fullDetails->country=$oRequest->country;
@@ -230,7 +230,7 @@ if(is_array($users_id)){
             'last_name' => $user->last_name,
             'email' => $user->email,
             'nickname' => '',
-            'location' => '',
+            'address' => '',
             'birthday' => '',
             'phone' => '',
             'country' => '',
@@ -241,7 +241,7 @@ if(is_array($users_id)){
             if($fullDetails){
            
             $userDetails ['nickname'] = $fullDetails['nickname'];
-            $userDetails ['location'] = $fullDetails['location'];
+            $userDetails ['address'] = $fullDetails['address'];
             $userDetails ['birthday'] = $fullDetails['birthday'];
             $userDetails ['phone'] = $fullDetails['phone'];
             $userDetails ['country'] = $fullDetails['country'];

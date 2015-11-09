@@ -139,6 +139,7 @@
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Margin'), 'MARGIN', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.MarginFree'), 'MARGIN_FREE', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Leverage'), 'LEVERAGE', $oResults) !!}</th>
+                            
                            </tr>
                     </thead>
                     <tbody>
@@ -160,6 +161,7 @@
                             <td>{{ $oResult->GROUP }}</td>
                             <td>{{ $oResult->EQUITY }}</td>
                             <td>{{ $oResult->BALANCE }}</td>
+                            
                             
                             <td>{{ $oResult->AGENT_ACCOUNT }}</td>
                             <td>{{ $oResult->MARGIN }}</td>

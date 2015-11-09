@@ -90,13 +90,15 @@
             @endif
 
             <div class="table-info">
+                
+                 
+                
                 <div class="table-header">
                     <div class="table-caption">
-                        {{ trans('accounts::accounts.accounts') }}
-
-                       
-
-                    </div>
+                        {{ trans('reports::reports.accounts') }}  
+                        <a href="{{ route('accounts.addMt4User') }}" style="float:right;">
+                        <input name="new_menu_submit" class="btn btn-primary btn-flat" type="submit" value="{{ trans('general.add_mt4_user') }}"> </a>
+                   </div>
                 </div>
                 <table class="table table-bordered">
                     <thead>
