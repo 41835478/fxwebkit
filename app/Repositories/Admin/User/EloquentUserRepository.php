@@ -110,7 +110,7 @@ class EloquentUserRepository implements UserContract {
 
     public function updateUser($oRequest) {
     
-        $user = Sentinel::getUser();
+        $user = Sentinel::findById($oRequest->edit_id);
         $fullDetails=  UsersDetails::where('users_id',$user->id)->first();
 
         $aCredentials = [
@@ -130,7 +130,7 @@ class EloquentUserRepository implements UserContract {
      }else{
          $fullDetails=new UsersDetails();
          
-            $fullDetails->users_id=$user->id;
+            $fullDetails->users_id=$oRequest->edit_id;
             $fullDetails->nickname=$oRequest->nickname;
             $fullDetails->location=$oRequest->location;
             $fullDetails->birthday=$oRequest->birthday;

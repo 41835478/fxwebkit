@@ -78,6 +78,7 @@ class DashboardController extends Controller
         $result = false;
         $resultMessage = [];
         if ($oRequest->edit_id > 0) {
+            $oRequest->edit_id= Sentinel::getUser()->id;
             $result = $this->oUsers->updateUser($oRequest);
         } else {
             $role = explode(',', Config::get('fxweb.client_default_role'));
