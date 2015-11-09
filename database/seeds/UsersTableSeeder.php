@@ -16,12 +16,14 @@ class UsersTableSeeder extends Seeder {
                 'admin' => true,
             ]
         ];
-        $adminRole = Sentinel::getRoleRepository()->createModel()->fill($role)->save();
+        Sentinel::getRoleRepository()->createModel()->fill($role)->save();
+        $adminRole = Sentinel::getRoleRepository()->findBySlug($role['slug']);
         $cRole = [
             'name' => 'Client',
             'slug' => 'client',
         ];
-        $clientRole = Sentinel::getRoleRepository()->createModel()->fill($cRole)->save();
+        Sentinel::getRoleRepository()->createModel()->fill($cRole)->save();
+        $clientRole = Sentinel::getRoleRepository()->findBySlug($cRole['slug']);
 
         $admin = [
             'email'    => 'admin@example.com',
