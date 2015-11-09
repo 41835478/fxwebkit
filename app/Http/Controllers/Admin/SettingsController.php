@@ -10,10 +10,9 @@ use Fxweb\Http\Requests;
 use Fxweb\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-
 use Illuminate\Support\Facades\Config;
-
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
+
 class SettingsController extends Controller {
 
     /**
@@ -21,8 +20,9 @@ class SettingsController extends Controller {
      */
     protected $oUser;
     protected $oMt4User;
-    public function __construct(User $oUser,Mt4User $oMt4User) {
-        $this->oMt4User=$oMt4User;
+
+    public function __construct(User $oUser, Mt4User $oMt4User) {
+        $this->oMt4User = $oMt4User;
         $this->oUser = $oUser;
     }
 
@@ -57,9 +57,9 @@ class SettingsController extends Controller {
 
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-            
-        $role = explode(',', Config::get('fxweb.admin_roles'));
-            $oResults = $this->oUser->getUsersByFilter($aFilterParams, false, $sOrder, $sSort,$role[0]);
+
+            $role = explode(',', Config::get('fxweb.admin_roles'));
+            $oResults = $this->oUser->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role[0]);
         }
 
 
@@ -75,22 +75,39 @@ class SettingsController extends Controller {
             $result = $this->oUser->deleteUser($oRequest->delete_id);
             return Redirect::route('admins-list')->withErrors($result);
         }
-
+        $country_array = $this->oUser->getCountry(null);
 
         $userInfo = [
             'edit_id' => 0,
             'first_name' => '',
             'last_name' => '',
             'email' => '',
-            'password' => ''];
+            'password' => '',
+            'nickname' => '',
+            'address' => '',
+            'birthday' => '',
+            'phone' => '',
+            'country' => '',
+            'country_array' => $country_array,
+            'city' => ''];
         if ($oRequest->has('edit_id')) {
             $user = Sentinel::findById($oRequest->edit_id);
+
+            $oResult = $this->oUser->getUserDetails($user->id);
             $userInfo = [
                 'edit_id' => $oRequest->edit_id,
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
                 'email' => $user->email,
-                'password' => ''];
+                'password' => '',
+                'nickname' => $oResult['nickname'],
+                'address' => $oResult['address'],
+                'birthday' => $oResult['birthday'],
+                'phone' => $oResult['phone'],
+                'country' => $this->oUser->getCountry($oResult['country']),
+                'country_array' => $country_array,
+                'city' => $oResult['city'],
+            ];
         }
 
         return view('admin/user/addUser')->with('userInfo', $userInfo);
@@ -106,15 +123,15 @@ class SettingsController extends Controller {
 
             $result = $this->oUser->updateUser($oRequest);
         } else {
- $admin_role = explode(',', Config::get('fxweb.admin_roles'));
-        
-            $result = $this->oUser->addUser($oRequest,$admin_role[0]);
+            $admin_role = explode(',', Config::get('fxweb.admin_roles'));
+
+            $result = $this->oUser->addUser($oRequest, $admin_role[0]);
         }
 
 
 
-        if ($result === true) {
-            return Redirect::route('admins-list');
+        if ($result >0) {
+            return Redirect::to('/admin/settings/admins-list');
         } else {
             return view('admin/user/addUser')
                             ->withErrors($resultMessage)
@@ -124,7 +141,15 @@ class SettingsController extends Controller {
                                 'first_name' => $oRequest->first_name,
                                 'last_name' => $oRequest->last_name,
                                 'email' => $oRequest->email,
-                                'password' => $oRequest->password]);
+                                'password' => $oRequest->password,
+                                'nickname' => $oRequest->nickname,
+                                'address' => $oRequest->location,
+                                'birthday' => $oRequest->birthday,
+                                'phone' => $oRequest->phone,
+                                'country' => $oRequest->country,
+                                'country_array' => $this->oUser->getCountry(null),
+                                'city' => $oRequest->city
+            ]);
         }
     }
 
@@ -187,4 +212,5 @@ class SettingsController extends Controller {
     public function destroy($id) {
         //
     }
+
 }

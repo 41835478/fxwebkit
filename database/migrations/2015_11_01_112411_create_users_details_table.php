@@ -15,7 +15,7 @@ class CreateUsersDetailsTable extends Migration
             $table->increments('id');
             $table->integer('users_id')->unsigned();
             $table->string('nickname', 50)->nullable();
-            $table->string('location', 100)->nullable();
+            $table->string('address', 100)->nullable();
             $table->date('birthday', 50)->nullable();
             $table->string('phone', 14)->nullable();
             $table->string('country', 50)->nullable();
