@@ -17,11 +17,12 @@ class UsersTableSeeder extends Seeder {
             ]
         ];
         $adminRole = Sentinel::getRoleRepository()->createModel()->fill($role)->save();
-        $subscribersRole = [
+        $cRole = [
             'name' => 'Client',
             'slug' => 'client',
         ];
-        Sentinel::getRoleRepository()->createModel()->fill($subscribersRole)->save();
+        $clientRole = Sentinel::getRoleRepository()->createModel()->fill($cRole)->save();
+
         $admin = [
             'email'    => 'admin@example.com',
             'password' => 'admin',
@@ -40,11 +41,14 @@ class UsersTableSeeder extends Seeder {
                 'password' => 'demo3',
             ],
         ];
+
         $adminUser = Sentinel::registerAndActivate($admin);
         $adminUser->roles()->attach($adminRole);
+
         foreach ($users as $user)
         {
-            Sentinel::registerAndActivate($user);
+            $clientUser = Sentinel::registerAndActivate($user);
+            $clientUser->roles()->attach($clientRole);
         }
     }
 }

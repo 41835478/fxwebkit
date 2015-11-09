@@ -77,8 +77,7 @@ class AccountsController extends Controller {
     }
 
     public function getEditAccount(Request $oRequest) {
-
-
+        
         if ($oRequest->has('delete_id')) {
             $result = $this->oUsers->deleteUser($oRequest->delete_id);
             return Redirect::route('accounts.accountsList')->withErrors($result);
@@ -94,13 +93,14 @@ class AccountsController extends Controller {
             'birthday' => '',
             'phone' => '',
             'country' => '',
-'country_array'=>$country_array ,
+            'country_array'=>$country_array ,
             'city' => '',
             'zip_code' => ''
          
          ];
         
         if ($oRequest->has('edit_id')) {
+
              $oResult=$this->oUsers->getUserDetails($oRequest->edit_id);
             
           
@@ -119,7 +119,10 @@ class AccountsController extends Controller {
             'city' => $oResult['city'],
             'zip_code' => $oResult['zip_code']
                 ];
+<<<<<<< HEAD
 
+=======
+>>>>>>> 47c7485ab9d99012fc561d5fda70d4527c9b7434
     }
         return view('accounts::addAccount')->with('userInfo', $userInfo);
     }
@@ -264,7 +267,7 @@ class AccountsController extends Controller {
 
     public function getDetailsAccount(Request $oRequest) {
         $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
-
+        
         $user_detalis = [
             'id' => $oRequest->edit_id,
             'first_name' => $oResult['first_name'],
@@ -276,7 +279,6 @@ class AccountsController extends Controller {
             'phone' => $oResult['phone'],
             'country' => $this->oUsers->getCountry($oResult['country']),
             'city' => $oResult['city'],
-
             'zip_code' => $oResult['zip_code'],
     ];
         

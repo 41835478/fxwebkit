@@ -4,15 +4,24 @@
 
 
 <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+    @if($userInfo['edit_id']!=0)
     <li class="">
         <a href="{{ route('accounts.detailsAccount').'?edit_id='.$userInfo['edit_id']}}">{{ trans('general.details') }}<span class="label label-success"></span></a>
     </li>
-
+    
     <li  class="active">
 
         <a href="{{ route('accounts.addAccount').'?edit_id='.$userInfo['edit_id']}}">{{ trans('general.edit_info') }}<span class="badge badge-primary"></span></a>
 
     </li>
+    
+    @else
+    <li  class="active">
+
+        <a href=""> New user <span class="badge badge-primary"></span></a>
+
+    </li>
+    @endif
 </ul>
 
 
