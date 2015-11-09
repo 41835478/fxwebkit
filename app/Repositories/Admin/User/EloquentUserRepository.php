@@ -226,15 +226,24 @@ if(is_array($users_id)){
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
             'email' => $user->email,
-            'nickname' => $fullDetails['nickname'],
-            'location' => $fullDetails['location'],
-            'birthday' => $fullDetails['birthday'],
-            'phone' => $fullDetails['phone'],
-            'country' => $fullDetails['country'],
-            'city' => $fullDetails['city'],
-            'zip_code' => $fullDetails['zip_code'],
-         
+            'nickname' => '',
+            'location' => '',
+            'birthday' => '',
+            'phone' => '',
+            'country' => '',
+            'city' => '',
+            'zip_code' => '',
         ];
+            if($fullDetails){
+           
+            $userDetails ['nickname'] = $fullDetails['nickname'];
+            $userDetails ['location'] = $fullDetails['location'];
+            $userDetails ['birthday'] = $fullDetails['birthday'];
+            $userDetails ['phone'] = $fullDetails['phone'];
+            $userDetails ['country'] = $fullDetails['country'];
+            $userDetails ['city']= $fullDetails['city'];
+            $userDetails ['zip_code'] = $fullDetails['zip_code'];
+            }
             return $userDetails;
         }
 
