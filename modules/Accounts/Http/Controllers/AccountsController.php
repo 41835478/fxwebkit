@@ -94,7 +94,7 @@ class AccountsController extends Controller {
             'birthday' => '',
             'phone' => '',
             'country' => '',
-
+'country_array'=>$country_array ,
             'city' => '',
             'zip_code' => ''
          
@@ -102,7 +102,7 @@ class AccountsController extends Controller {
         
         if ($oRequest->has('edit_id')) {
              $oResult=$this->oUsers->getUserDetails($oRequest->edit_id);
-             $country_array=$this->oUsers->getCountry(null);
+            
           
             $userInfo = [
             'edit_id' => $oRequest->edit_id,      
@@ -121,28 +121,28 @@ class AccountsController extends Controller {
                 ];
 
 
-        if ($oRequest->has('edit_id')  ) {
-            $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
-
-
-            $userInfo = [
-                'edit_id' => $oRequest->edit_id,
-                'first_name' => $oResult['first_name'],
-                'last_name' => $oResult['last_name'],
-                'email' => $oResult['email'],
-                'password' => '',
-                'nickname' => $oResult['nickname'],
-                'location' => $oResult['location'],
-                'birthday' => $oResult['birthday'],
-                'phone' => $oResult['phone'],
-                'country' => $oResult['country'],
-                'country_array' => $country_array,
-                'city' => $oResult['city'],
-            ];
-
-        }
-        return view('accounts::addAccount')->with('userInfo', $userInfo);
+//        if ($oRequest->has('edit_id')  ) {
+//            $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
+//
+//
+//            $userInfo = [
+//                'edit_id' => $oRequest->edit_id,
+//                'first_name' => $oResult['first_name'],
+//                'last_name' => $oResult['last_name'],
+//                'email' => $oResult['email'],
+//                'password' => '',
+//                'nickname' => $oResult['nickname'],
+//                'location' => $oResult['location'],
+//                'birthday' => $oResult['birthday'],
+//                'phone' => $oResult['phone'],
+//                'country' => $oResult['country'],
+//                'country_array' => $country_array,
+//                'city' => $oResult['city'],
+//            ];
+//
+//        }
     }
+        return view('accounts::addAccount')->with('userInfo', $userInfo);
     }
 
     public function postEditAccount(AddUserRequest $oRequest) {
