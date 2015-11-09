@@ -7,7 +7,7 @@ class Authenticate
 	public function handle($oRequest, Closure $fNext)
 	{
 		// Check if the user is logged in
-		if ($oUser = Sentinel::check()) {
+		if ($oUser = Sentinel::check()  && Sentinel::inRole('client') ) {
 			// User is logged in and assigned to the $oUser variable.
 			// Check if the user has the right role
 		} else {
