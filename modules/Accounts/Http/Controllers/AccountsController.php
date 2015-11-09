@@ -7,7 +7,6 @@ use Modules\Accounts\Http\Requests\AccountsRequest;
 use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
-
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
 use Modules\Accounts\Http\Requests\AddUserRequest;
 use Illuminate\Support\Facades\Redirect;
@@ -21,8 +20,9 @@ class AccountsController extends Controller {
      * @var Mt4Group
      */
     protected $oUsers;
-protected $oMt4Trade;
-       protected $oMt4User;
+    protected $oMt4Trade;
+    protected $oMt4User;
+
     public function __construct(
     Users $oUsers, Mt4User $oMt4User, Mt4Trade $oMt4Trade
     ) {
@@ -77,22 +77,24 @@ protected $oMt4Trade;
     }
 
     public function getEditAccount(Request $oRequest) {
-        
+
 
         if ($oRequest->has('delete_id')) {
             $result = $this->oUsers->deleteUser($oRequest->delete_id);
             return Redirect::route('accounts.accountsList')->withErrors($result);
         }
-     $userInfo = [  'edit_id'=>0,
+        $country_array = $this->oUsers->getCountry(null);
+        $userInfo = [ 'edit_id' => 0,
             'first_name' => '',
             'last_name' => '',
-            'password'=>'',
+            'password' => '',
             'email' => '',
             'nickname' => '',
             'location' => '',
-            'birthday' =>'',
+            'birthday' => '',
             'phone' => '',
             'country' => '',
+
             'city' => '',
             'zip_code' => ''
          
@@ -117,14 +119,35 @@ protected $oMt4Trade;
             'city' => $oResult['city'],
             'zip_code' => $oResult['zip_code']
                 ];
-        }
 
+
+        if ($oRequest->has('edit_id')  ) {
+            $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
+
+
+            $userInfo = [
+                'edit_id' => $oRequest->edit_id,
+                'first_name' => $oResult['first_name'],
+                'last_name' => $oResult['last_name'],
+                'email' => $oResult['email'],
+                'password' => '',
+                'nickname' => $oResult['nickname'],
+                'location' => $oResult['location'],
+                'birthday' => $oResult['birthday'],
+                'phone' => $oResult['phone'],
+                'country' => $oResult['country'],
+                'country_array' => $country_array,
+                'city' => $oResult['city'],
+            ];
+
+        }
         return view('accounts::addAccount')->with('userInfo', $userInfo);
+    }
     }
 
     public function postEditAccount(AddUserRequest $oRequest) {
-        
-        $result = false;
+
+        $result = 0;
         $resultMessage = [];
         if ($oRequest->edit_id > 0) {
             $result = $this->oUsers->updateUser($oRequest);
@@ -133,9 +156,12 @@ protected $oMt4Trade;
             $result = $this->oUsers->addUser($oRequest, $role);
         }
 
-        if ($result === true) {
-            return $this->getEditAccount($oRequest);
+        if ($result > 0) {
+            $oRequest->edit_id=$result;
+            //return $this->getEditAccount($oRequest);
+            return $this->getDetailsAccount($oRequest);
         } else {
+            $country_array = $this->oUsers->getCountry(null);
             return view('accounts::addAccount')
                             ->withErrors($resultMessage)
                             ->withErrors($result)
@@ -144,8 +170,15 @@ protected $oMt4Trade;
                                 'first_name' => $oRequest->first_name,
                                 'last_name' => $oRequest->last_name,
                                 'email' => $oRequest->email,
-                                'password' => $oRequest->password
-                                    ]);
+                                'password' => '',
+                                'nickname' => $oRequest->nickname,
+                                'location' => $oRequest->location,
+                                'birthday' => $oRequest->birthday,
+                                'phone' => $oRequest->phone,
+                                'country' => $oRequest->country,
+                                'country_array' => $country_array,
+                                'city' => $oRequest->city,
+            ]);
         }
     }
 
@@ -228,34 +261,33 @@ protected $oMt4Trade;
     }
 
     public function postAsignMt4Users(Request $oRequest) {
-        if ($oRequest->has('asign_mt4_users_submit')|| $oRequest->has('asign_mt4_users_submit_id')) {
+        if ($oRequest->has('asign_mt4_users_submit') || $oRequest->has('asign_mt4_users_submit_id')) {
 
-            $users_checkbox =($oRequest->has('asign_mt4_users_submit_id'))? [$oRequest->get('asign_mt4_users_submit_id')]:$oRequest->users_checkbox;
-            
+            $users_checkbox = ($oRequest->has('asign_mt4_users_submit_id')) ? [$oRequest->get('asign_mt4_users_submit_id')] : $oRequest->users_checkbox;
+
             $account_id = $oRequest->account_id;
             $this->oUsers->asignMt4UsersToAccount($account_id, $users_checkbox);
-return $this->getAsignMt4Users($oRequest);
+            return $this->getAsignMt4Users($oRequest);
             return Redirect::route('accounts.asignMt4Users')->with('account_id', $account_id);
         }
 
         if ($oRequest->has('un_sign_mt4_users_submit') || $oRequest->has('un_sign_mt4_users_submit_id')) {
 
-            $users_checkbox =($oRequest->has('un_sign_mt4_users_submit_id'))? [$oRequest->get('un_sign_mt4_users_submit_id')]:$oRequest->users_checkbox;
-            
+            $users_checkbox = ($oRequest->has('un_sign_mt4_users_submit_id')) ? [$oRequest->get('un_sign_mt4_users_submit_id')] : $oRequest->users_checkbox;
+
             $account_id = $oRequest->account_id;
             $this->oUsers->unsignMt4UsersToAccount($account_id, $users_checkbox);
-            
+
             return $this->getAsignMt4Users($oRequest);
             return Redirect::route('accounts.asignMt4Users')->with('account_id', $account_id);
         }
     }
-    
-    public function getDetailsAccount(Request $oRequest)
-    {
-        $oResult=$this->oUsers->getUserDetails($oRequest->edit_id);
-        
-        $user_detalis=[
-            'id'=>$oRequest->edit_id,
+
+    public function getDetailsAccount(Request $oRequest) {
+        $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
+
+        $user_detalis = [
+            'id' => $oRequest->edit_id,
             'first_name' => $oResult['first_name'],
             'last_name' => $oResult['last_name'],
             'email' => $oResult['email'],
@@ -263,25 +295,27 @@ return $this->getAsignMt4Users($oRequest);
             'location' => $oResult['location'],
             'birthday' => $oResult['birthday'],
             'phone' => $oResult['phone'],
-            'country' => $oResult['country'],
+            'country' => $this->oUsers->getCountry($oResult['country']),
             'city' => $oResult['city'],
+
             'zip_code' => $oResult['zip_code'],
     ];
         
         return view('accounts::detailsAccount')->with('user_detalis',$user_detalis);
+
+
     }
-    
-    public function getEditClientInfo(Request $oRequest)
-    { 
-        
-        $userInfo = [  'edit_id'=>0,
+
+    public function getEditClientInfo(Request $oRequest) {
+
+        $userInfo = [ 'edit_id' => 0,
             'first_name' => '',
             'last_name' => '',
-            'password'=>'',
+            'password' => '',
             'email' => '',
             'nickname' => '',
             'location' => '',
-            'birthday' =>'',
+            'birthday' => '',
             'phone' => '',
             'country' => '',
             'city' => '',
@@ -289,10 +323,11 @@ return $this->getAsignMt4Users($oRequest);
             ];
         
         if ($oRequest->has('edit_id')) {
-            
-            $oResult=$this->oUsers->getUserDetails($oRequest->edit_id);
-         
+
+            $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
+
             $userInfo = [
+
             'edit_id'=>$oRequest->edit_id,
             'first_name' => $oResult['first_name'],
             'last_name' => $oResult['last_name'],
@@ -311,7 +346,7 @@ return $this->getAsignMt4Users($oRequest);
         return view('accounts::addAccount')->with('userInfo', $userInfo);
     }
 
-    public function getMt4UsersList(Request $oRequest){
+    public function getMt4UsersList(Request $oRequest) {
         $oGroups = $this->oMt4User->getAllGroups();
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
@@ -354,8 +389,9 @@ return $this->getAsignMt4Users($oRequest);
                         ->with('oResults', $oResults)
                         ->with('aFilterParams', $aFilterParams);
     }
-    public function getMt4UserDetails(Request $oRequest){
-         $oGroups = $this->oMt4User->getAllGroups();
+
+    public function getMt4UserDetails(Request $oRequest) {
+        $oGroups = $this->oMt4User->getAllGroups();
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
         $aGroups = [];
@@ -400,4 +436,5 @@ return $this->getAsignMt4Users($oRequest);
                         ->with('aSummery', $aSummery)
                         ->with('aFilterParams', $aFilterParams);
     }
+
 }

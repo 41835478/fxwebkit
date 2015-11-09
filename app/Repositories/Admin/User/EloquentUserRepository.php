@@ -50,7 +50,7 @@ class EloquentUserRepository implements UserContract {
         $oRole = Sentinel::findRoleBySlug($role);
         $role_id = $oRole->id;
         $oResult = User::with('roles')->whereHas('roles', function($query) use($role_id) {
-            $query->where('id', $role_id);
+        $query->where('id', $role_id);
         });
 
         /* =============== id Filter  =============== */
@@ -105,12 +105,28 @@ class EloquentUserRepository implements UserContract {
         $oClientRole->users()->attach($oUser);
         $oActivation = Activation::create($oUser);
 
-        return true;
+        
+             $fullDetails=new UsersDetails();
+         
+            $fullDetails->users_id=$oUser->id;
+            $fullDetails->nickname=$oRequest->nickname;
+            $fullDetails->location=$oRequest->location;
+            $fullDetails->birthday=$oRequest->birthday;
+            $fullDetails->phone=$oRequest->phone;
+            $fullDetails->country=$oRequest->country;
+            $fullDetails->city=$oRequest->city;
+            $fullDetails->gender=$oRequest->gender;
+            $fullDetails->zip_code=$oRequest->zip_code;
+             $fullDetails->save();
+             
+        return $oUser->id;
     }
 
     public function updateUser($oRequest) {
 
+
         $user = Sentinel::getUser();
+        $user = Sentinel::findById($oRequest->edit_id);
         $fullDetails=  UsersDetails::where('users_id',$user->id)->first();
 
 
@@ -131,7 +147,7 @@ class EloquentUserRepository implements UserContract {
      }else{
          $fullDetails=new UsersDetails();
          
-            $fullDetails->users_id=$user->id;
+            $fullDetails->users_id=$oRequest->edit_id;
             $fullDetails->nickname=$oRequest->nickname;
             $fullDetails->location=$oRequest->location;
             $fullDetails->birthday=$oRequest->birthday;
@@ -154,7 +170,7 @@ class EloquentUserRepository implements UserContract {
         } catch (QueryException $e) {
             return ['The email has already been taken.'];
         }
-        return true;
+        return $user->id;
     }
 
     public function deleteUser($id) {
