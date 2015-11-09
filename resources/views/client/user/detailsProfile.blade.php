@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('client.layouts.main')
 @section('title', trans('accounts.addAccount'))
 @section('content')
 

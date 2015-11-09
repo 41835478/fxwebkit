@@ -4,7 +4,8 @@ namespace Fxweb\Http\Controllers\Client;
 
 use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
-use Cartalyst\Sentinel\Users;
+//use Cartalyst\Sentinel\Users;
+use Modules\Accounts\Entities\Users;
 use Fxweb\Http\Controllers\Controller;
 use Fxweb\Http\Requests\Client\LoginRequest;
 use Fxweb\Http\Requests\Client\RegisterRequest;

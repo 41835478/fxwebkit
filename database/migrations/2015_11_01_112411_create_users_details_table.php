@@ -21,7 +21,7 @@ class CreateUsersDetailsTable extends Migration
             $table->string('country', 50)->nullable();
             $table->string('city', 50)->nullable();
             $table->string('zip_code', 16)->nullable();
-            $table->boolean('gender');
+            $table->boolean('gender')->nullable();
             
             $table->engine = 'InnoDB';
         });
