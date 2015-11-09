@@ -216,6 +216,7 @@ if(is_array($users_id)){
             'phone' => $fullDetails['phone'],
             'country' => $fullDetails['country'],
             'city' => $fullDetails['city'],
+            'zip_code' => $fullDetails['zip_code'],
          
         ];
             return $userDetails;

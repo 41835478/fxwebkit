@@ -16,6 +16,7 @@ class UsersDetails extends Model
         'phone',
         'country',
         'city',
+        'zip_code',
             
             ];
 }

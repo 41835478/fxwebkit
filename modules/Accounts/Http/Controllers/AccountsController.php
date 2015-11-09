@@ -93,12 +93,15 @@ protected $oMt4Trade;
             'birthday' =>'',
             'phone' => '',
             'country' => '',
-            'city' => ''];
+            'city' => '',
+            'zip_code' => ''
+         
+         ];
         
         if ($oRequest->has('edit_id')) {
              $oResult=$this->oUsers->getUserDetails($oRequest->edit_id);
              $country_array=$this->oUsers->getCountry(null);
-           
+          
             $userInfo = [
             'edit_id' => $oRequest->edit_id,      
             'first_name' => $oResult['first_name'],
@@ -112,6 +115,7 @@ protected $oMt4Trade;
             'country' =>$oResult['country'],
             'country_array'=>$country_array,
             'city' => $oResult['city'],
+            'zip_code' => $oResult['zip_code']
                 ];
         }
 
@@ -261,6 +265,7 @@ return $this->getAsignMt4Users($oRequest);
             'phone' => $oResult['phone'],
             'country' => $oResult['country'],
             'city' => $oResult['city'],
+            'zip_code' => $oResult['zip_code'],
     ];
         
         return view('accounts::detailsAccount')->with('user_detalis',$user_detalis);
@@ -279,7 +284,10 @@ return $this->getAsignMt4Users($oRequest);
             'birthday' =>'',
             'phone' => '',
             'country' => '',
-            'city' => ''];
+            'city' => '',
+            'zip_code' => ''
+            ];
+        
         if ($oRequest->has('edit_id')) {
             
             $oResult=$this->oUsers->getUserDetails($oRequest->edit_id);
@@ -296,6 +304,7 @@ return $this->getAsignMt4Users($oRequest);
             'phone' => $oResult['phone'],
             'country' => $oResult['country'],
             'city' => $oResult['city'],
+            'zip_code' => $oResult['zip_code']
                 ];
         }
 
