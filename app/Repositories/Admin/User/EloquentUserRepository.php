@@ -109,8 +109,9 @@ class EloquentUserRepository implements UserContract {
     }
 
     public function updateUser($oRequest) {
-        $user = Sentinel::findById($oRequest->edit_id);
-        $fullDetails=  UsersDetails::where('users_id',$oRequest->edit_id)->first();
+    
+        $user = Sentinel::getUser();
+        $fullDetails=  UsersDetails::where('users_id',$user->id)->first();
 
         $aCredentials = [
             'first_name' => $oRequest->first_name,
@@ -118,14 +119,28 @@ class EloquentUserRepository implements UserContract {
             'email' => $oRequest->email
                 ];
 
-     
+     if($fullDetails){
             $fullDetails->nickname=$oRequest->nickname;
             $fullDetails->location=$oRequest->location;
             $fullDetails->birthday=$oRequest->birthday;
             $fullDetails->phone=$oRequest->phone;
             $fullDetails->country=$oRequest->country;
             $fullDetails->city=$oRequest->city;
-      
+             $fullDetails->save();
+     }else{
+         $fullDetails=new UsersDetails();
+         
+            $fullDetails->users_id=$user->id;
+            $fullDetails->nickname=$oRequest->nickname;
+            $fullDetails->location=$oRequest->location;
+            $fullDetails->birthday=$oRequest->birthday;
+            $fullDetails->phone=$oRequest->phone;
+            $fullDetails->country=$oRequest->country;
+            $fullDetails->city=$oRequest->city;
+            $fullDetails->gender=$oRequest->gender;
+            $fullDetails->zip_code=$oRequest->zip_code;
+             $fullDetails->save();
+     }
 
         if ($oRequest->password != '') {
             $aCredentials['password'] = $oRequest->password;

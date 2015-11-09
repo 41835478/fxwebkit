@@ -47,7 +47,7 @@ class DashboardController extends Controller
     {
       
         $user=Sentinel::getUser(); 
-          dd($user->id);
+         
         $oResult=$this->oUsers->getUserDetails($user->id);
          
              $country_array=$this->oUsers->getCountry(null);
