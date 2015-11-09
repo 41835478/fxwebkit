@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('reports::reports.accounts'))
+@section('title', trans('general.adminsList'))
 @section('content')
 <style type="text/css">
     #content-wrapper{ padding: 0px; margin: 0px;}
@@ -61,7 +61,7 @@
 
     <div class="mail-container " >
         <div class="mail-container-header">
-            {{ trans('reports::reports.accounts') }}
+            {{ trans('general.adminsList') }}
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
@@ -88,7 +88,7 @@
             <div class="table-info">
                 <div class="table-header">
                     <div class="table-caption">
-                        {{ trans('reports::reports.accounts') }}  
+                        {{ trans('general.adminsList') }}  
                         <a href="{{ route('general.editUser') }}" style="float:right;">
                         <input name="new_menu_submit" class="btn btn-primary btn-flat" type="submit" value="{{ trans('general.addUser') }}"> </a>
                    </div>
