@@ -46,7 +46,7 @@
         </div>
 
         <div class="form-group w-icon">
-            {!! Form::text('location', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.location')]) !!}
+            {!! Form::text('address', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.address')]) !!}
             <span class="fa fa-location-arrow signup-form-icon"></span>
         </div>
 

@@ -52,7 +52,7 @@
 							<div class="col-sm-6">
 								<div class="form-group no-margin-hr">
 									<label class="control-label">{{ trans('user.address') }}</label>
-                                                                        {!! Form::text('location',$userInfo['address'],['class'=>'form-control']) !!}
+                                                                        {!! Form::text('address',$userInfo['address'],['class'=>'form-control']) !!}
                                                                         
 								</div>
 							</div><!-- col-sm-6 -->

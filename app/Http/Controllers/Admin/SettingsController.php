@@ -143,7 +143,7 @@ class SettingsController extends Controller {
                                 'email' => $oRequest->email,
                                 'password' => $oRequest->password,
                                 'nickname' => $oRequest->nickname,
-                                'address' => $oRequest->location,
+                                'address' => $oRequest->address,
                                 'birthday' => $oRequest->birthday,
                                 'phone' => $oRequest->phone,
                                 'country' => $oRequest->country,

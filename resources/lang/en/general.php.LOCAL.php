@@ -56,7 +56,7 @@ return [
     'email'=>'Email :',
     'password'=>'Password',
     'nickname'=>'Nickname :',
-    'location' => 'Location :',
+    'address' => 'address :',
     'birthday' => 'BirthDay :',
     'phone' => 'Phone :',
     'country' => 'Country :',
