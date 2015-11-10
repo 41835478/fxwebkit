@@ -21,14 +21,17 @@ use Cartalyst\Sentinel\Addons\Social\Laravel\Facades\Social;
 use Cartalyst\Sentinel\Addons\Social\Models\LinkInterface;
 use Fxweb\Models\UsersDetails;
 
+use Fxweb\Repositories\Admin\User\UserContract;
+
 class AuthController extends Controller {
 
     
      protected $oUsers;
+     protected $oUserRepostry;
 
     public function __construct(
-    Users $oUsers
-    ) {
+    Users $oUsers, UserContract $oUserRepostry
+    ) {$this->oUserRepostry = $oUserRepostry;
         $this->oUsers = $oUsers;
     }
     
@@ -76,9 +79,10 @@ class AuthController extends Controller {
         $carbon = new Carbon();
         $dt = $carbon->now();
         $dt->subYears(18);
-
+$country_array=$this->oUserRepostry->getCountry(null);
         return view('client.user.register')
                         ->with('default_birthday', $dt->format('m/d/Y'))
+                        ->with('country_array',$country_array )
                         ->with('random', rand(1, 8));
     }
 
@@ -95,10 +99,29 @@ class AuthController extends Controller {
 
 
         if ($bAutoActivate) {
-
+            
+                            
             $oUser = Sentinel::registerAndActivate($aCredentials);
+            
             $oClientRole->users()->attach($oUser);
-            return redirect()->route('client.index');
+            Sentinel::login($oUser);
+            
+            $aCredentialsFullDetails = [
+                'users_id' => $oUser->id,
+                'nickname' => $oRequest->nickname,
+                'address' => $oRequest->address,
+                'birthday' => $oRequest->birthday,
+                'phone' => $oRequest->phone,
+                'country' => $oRequest->country,
+                'city' => $oRequest->city,
+                'zip_code' => $oRequest->zip_code,
+                'gender' => $oRequest->gender
+            ];
+
+            $details = new UsersDetails($aCredentialsFullDetails);
+            $details->save(); 
+            
+            return redirect()->route('clinet.editProfile');
         } else {
 
             $oUser = Sentinel::register($aCredentials);
