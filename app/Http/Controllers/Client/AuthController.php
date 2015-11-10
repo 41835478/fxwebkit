@@ -109,7 +109,7 @@ class AuthController extends Controller {
             $aCredentialsFullDetails = [
                 'users_id' => $oUser->id,
                 'nickname' => $oRequest->nickname,
-                'location' => $oRequest->location,
+                'address' => $oRequest->address,
                 'birthday' => $oRequest->birthday,
                 'phone' => $oRequest->phone,
                 'country' => $oRequest->country,
@@ -172,7 +172,7 @@ class AuthController extends Controller {
                             $aCredentialsFullDetails = [
                                 'users_id' => $user->id,
                                 'nickname' => (isset($data->nickname)) ? $data->nickname : '',
-                                'location' => (isset($data->location)) ? $data->location : '',
+                                'address' => (isset($data->location)) ? $data->location : '',
                                 'birthday' => (isset($data->birthday)) ? $data->birthday : ' ',
                                 'phone' => (isset($data->phone)) ? $data->phone : ' ',
                                 'country' => (isset($data->country)) ? $data->country : ' ',
@@ -237,7 +237,7 @@ class AuthController extends Controller {
                             $aCredentialsFullDetails = [
                                 'users_id' => $user->id,
                                 'nickname' => (isset($data->nickname)) ? $data->nickname : '',
-                                'location' => (isset($data->location)) ? $data->location : '',
+                                'address' => (isset($data->location)) ? $data->location : '',
                                 'birthday' => (isset($data->birthday)) ? $data->birthday : ' ',
                                 'phone' => (isset($data->phone)) ? $data->phone : ' ',
                                 'country' => (isset($data->country)) ? $data->country : ' ',
@@ -302,7 +302,7 @@ class AuthController extends Controller {
                             $aCredentialsFullDetails = [
                                 'users_id' => $user->id,
                                 'nickname' => (isset($data->nickname)) ? $data->nickname : '',
-                                'location' => (isset($data->location)) ? $data->location : '',
+                                'address' => (isset($data->location)) ? $data->location : '',
                                 'birthday' => (isset($data->birthday)) ? $data->birthday : ' ',
                                 'phone' => (isset($data->phone)) ? $data->phone : ' ',
                                 'country' => (isset($data->country)) ? $data->country : ' ',
@@ -371,7 +371,7 @@ class AuthController extends Controller {
                             $aCredentialsFullDetails = [
                                 'users_id' => $user->id,
                                 'nickname' => (isset($data->nickname)) ? $data->nickname : '',
-                                'location' => (isset($data->location)) ? $data->location : '',
+                                'address' => (isset($data->location)) ? $data->location : '',
                                 'birthday' => (isset($data->birthday)) ? $data->birthday : ' ',
                                 'phone' => (isset($data->phone)) ? $data->phone : ' ',
                                 'country' => (isset($data->country)) ? $data->country : ' ',

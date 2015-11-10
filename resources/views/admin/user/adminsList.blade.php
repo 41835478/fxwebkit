@@ -114,6 +114,7 @@
                             <td>{{ $oResult->email }}</td>
                             <td>
                                 <a href="{{ route('general.editUser').'?edit_id='.$oResult->id }}" class="fa fa-edit"></a>
+                                <a href="{{ route('general.userDetails').'?edit_id='.$oResult->id }}" class="fa fa-file-text"></a>
                                 <a href="{{ route('general.editUser').'?delete_id='.$oResult->id }}" class="fa fa-trash-o"></a>
                             </td>
                         </tr>

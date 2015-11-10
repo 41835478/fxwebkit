@@ -2,6 +2,27 @@
 @section('title', trans('general.addUser'))
 @section('content')
 
+<ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+    @if($userInfo['edit_id']!=0)
+    <li class="">
+        <a href="{{ route('general.userDetails').'?edit_id='.$userInfo['edit_id']}}">{{ trans('general.details') }}<span class="label label-success"></span></a>
+    </li>
+
+    <li  class="active">
+
+        <a href="{{ route('general.editUser').'?edit_id='.$userInfo['edit_id']}}">{{ trans('general.edit_info') }}<span class="badge badge-primary"></span></a>
+
+    </li>
+
+    @else
+    <li  class="active">
+
+        <a href="">{{ trans('general.new_user') }}<span class="badge badge-primary"></span></a>
+
+    </li>
+    @endif
+</ul>
+
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
 					<div class="panel-heading">
 						<span class="panel-title">{{ trans('general.addUser') }}</span>
@@ -78,7 +99,7 @@
 							<div class="col-sm-6">
 								<div class="form-group no-margin-hr">
                                                                     
-									<label class="control-label">{{ trans('user.Country') }}</label>
+									<label class="control-label">{{ trans('user.Country').$userInfo['country'] }}</label>
 								 {!! Form::select('country',$userInfo['country_array'],$userInfo['country'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
 								</div>
 							</div><!-- col-sm-6 -->
@@ -89,6 +110,30 @@
                                                                         
 								</div>
 							</div><!-- col-sm-6 -->
+                                                                
+        <div class="col-sm-6">
+            <div class="form-group no-margin-hr">
+                <label class="control-label">{{ trans('user.ZipCode') }}</label>
+                {!! Form::text('zip_code',$userInfo['zip_code'],['class'=>'form-control']) !!}           
+            </div>
+        </div><!-- col-sm-6 -->
+        <div class="col-sm-6">
+            <label class="control-label " style="text-align: left;display: block;">{{ trans('user.gender') }}</label>
+            <div class="radio col-xs-2">
+                <label class='gender_radio_0'>
+               
+                    {!! Form::radio('gender',0,!$userInfo['gender'],['id'=>'gender_radio_0','class'=>'px']) !!}
+                    <span class="lbl">{{ trans('user.male') }}</span>
+                </label>
+            </div>
+            <div class="radio col-xs-2">
+                <label class='gender_radio_1'>
+                    
+                    {!! Form::radio('gender',1,$userInfo['gender'],['id'=>'gender_radio_1','class'=>'px']) !!}
+                    <span class="lbl">{{ trans('user.female') }}</span>
+                </label>
+            </div>
+        </div>
 						</div><!-- row -->
 					</div>
              @if($errors->any())

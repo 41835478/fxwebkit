@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.first_name') }}</label>
+                <label class="control-label">{{ trans('general.first_name') }} : </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -30,7 +30,7 @@
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.last_name') }}</label>     
+                <label class="control-label">{{ trans('general.last_name') }} : </label>     
             </div>
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
@@ -43,7 +43,7 @@
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.email') }}</label>
+                <label class="control-label">{{ trans('general.email') }} : </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -54,7 +54,7 @@
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.nickname') }}</label>     
+                <label class="control-label">{{ trans('general.nickname') }} : </label>     
             </div>
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
@@ -68,7 +68,7 @@
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.address') }}</label>
+                <label class="control-label">{{ trans('general.address') }} : </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -79,7 +79,7 @@
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.birthday') }}</label>     
+                <label class="control-label">{{ trans('general.birthday') }} : </label>     
             </div>
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
@@ -92,7 +92,7 @@
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.phone') }}</label>
+                <label class="control-label">{{ trans('general.phone') }} : </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -103,7 +103,7 @@
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.country') }}</label>     
+                <label class="control-label">{{ trans('general.country') }} : </label>     
             </div>
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
@@ -116,7 +116,7 @@
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.city') }}</label>
+                <label class="control-label">{{ trans('general.city') }} : </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -127,7 +127,7 @@
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.zip_code') }}</label>     
+                <label class="control-label">{{ trans('general.zip_code') }} : </label>     
             </div>
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
@@ -140,7 +140,7 @@
      <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.gender') }}</label>
+                <label class="control-label">{{ trans('general.gender') }} : </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">

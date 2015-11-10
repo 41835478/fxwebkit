@@ -2,17 +2,27 @@
 @section('title', trans('accounts.addAccount'))
 @section('content')
 
-    <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
-        <li class="active">
-            <a href="#uidemo-tabs-default-demo-home" data-toggle="tab">{{ trans('general.details') }}<span class="label label-success"></span></a>
-        </li>
+  <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+    @if($user_detalis['edit_id']!=0)
+    <li  class="active">
+        <a href="{{ route('general.userDetails').'?edit_id='.$user_detalis['edit_id']}}">{{ trans('general.details') }}<span class="label label-success"></span></a>
+    </li>
 
-        <li  class="">
+    <li >
 
-            <a href="{{ route('admin.editProfile')}}">{{ trans('general.edit_info') }}<span class="badge badge-primary"></span></a>
+        <a href="{{ route('general.editUser').'?edit_id='.$user_detalis['edit_id']}}">{{ trans('general.edit_info') }}<span class="badge badge-primary"></span></a>
 
-        </li>
-    </ul>
+    </li>
+
+    @else
+    <li  class="active">
+
+        <a href="">{{ trans('general.new_user') }}<span class="badge badge-primary"></span></a>
+
+    </li>
+    @endif
+</ul>
+
 
 
 <div class="panel-body">
@@ -113,7 +123,7 @@
         </div>
     </div><!-- row -->
 
-     <div class="row">
+    <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('general.city') }} : </label>
@@ -136,7 +146,7 @@
             </div>
         </div>
     </div><!-- row -->
-    
+
      <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
@@ -145,15 +155,11 @@
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                @if($user_detalis['gender']==0)
-                <label class="control-label">Male</label>
-                @else
-                <label class="control-label">Female</label>
-                @endif
+                <label class="control-label">{{ ($user_detalis['gender']==1)? 'Female':'Male' }}</label>
             </div>
         </div><!--ol-sm-6 -->
     </div><!-- row -->
-
+    
 </div>
 
 <div class="panel-footer text-right"></div>
