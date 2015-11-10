@@ -148,7 +148,7 @@
                 @if($user_detalis['gender']==0)
                 <label class="control-label">Male</label>
                 @else
-                <label class="control-label">Femle</label>
+                <label class="control-label">Female</label>
                 @endif
             </div>
         </div><!--ol-sm-6 -->
