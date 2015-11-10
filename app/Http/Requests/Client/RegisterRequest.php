@@ -31,7 +31,7 @@ class RegisterRequest extends Request {
                         'location'	=> 'required',
                         'phone'  	=> 'required',
                         'city'	        => 'required',
-                        'cuontry'	=> 'required',
+                        'country'	=> 'required',
                         'zip_code'	=> 'required',
                         'gender'	=> 'required',
                         'birthday'	=> 'required',
