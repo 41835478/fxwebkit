@@ -27,14 +27,11 @@ class EloquentUserRepository implements UserContract {
 
             $aGroups = explode(',', $aGroups);
         }
-
         $oUsers = Mt4User::whereIn('GROUP', $aGroups)->select('LOGIN')->get();
         $aUsers = [];
-
         foreach ($oUsers as $oUser) {
             $aUsers[] = $oUser->LOGIN;
         }
-
         return $aUsers;
     }
 
