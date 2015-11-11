@@ -29,7 +29,7 @@ class User {
     }
 
     public function getLastName() {
-        return $this->oUser->first_name;
+        return $this->oUser->last_name;
     }
 
     public function getName() {

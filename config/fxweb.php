@@ -15,7 +15,7 @@ return [
     'app_name' => env('APP_NAME', 'FxWebKit'),
     'admin_roles' => env('ADMIN_ROLES', 'admin'),
     'client_default_role' => env('CLIENT_DEFAULT_ROLE'),
-    'auto_activate_client' => env('CLIENT_AUTO_ACTIVATE', false),
+    'auto_activate_client' => env('CLIENT_AUTO_ACTIVATE',true),
     'pagination_size' => env('PAGINATION_SIZE', 25),
     'theme' => [
         'color' => env('THEME_COLOR', 'default'),

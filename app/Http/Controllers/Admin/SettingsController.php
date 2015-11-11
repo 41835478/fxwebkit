@@ -89,7 +89,9 @@ class SettingsController extends Controller {
             'phone' => '',
             'country' => '',
             'country_array' => $country_array,
-            'city' => ''];
+            'city' => '',
+                'gender'=> '',
+                'zip_code'=> ''];
         if ($oRequest->has('edit_id')) {
             $user = Sentinel::findById($oRequest->edit_id);
 
@@ -104,9 +106,11 @@ class SettingsController extends Controller {
                 'address' => $oResult['address'],
                 'birthday' => $oResult['birthday'],
                 'phone' => $oResult['phone'],
-                'country' => $this->oUser->getCountry($oResult['country']),
+                'country' => $oResult['country'],
                 'country_array' => $country_array,
                 'city' => $oResult['city'],
+                'gender'=> $oResult['gender'],
+                'zip_code'=> $oResult['zip_code'],
             ];
         }
 
@@ -131,7 +135,7 @@ class SettingsController extends Controller {
 
 
         if ($result >0) {
-            return Redirect::to('/admin/settings/admins-list');
+            return Redirect::to('/admin/settings/edit-user?edit_id='.$result);
         } else {
             return view('admin/user/addUser')
                             ->withErrors($resultMessage)
@@ -143,16 +147,39 @@ class SettingsController extends Controller {
                                 'email' => $oRequest->email,
                                 'password' => $oRequest->password,
                                 'nickname' => $oRequest->nickname,
-                                'address' => $oRequest->location,
+                                'address' => $oRequest->address,
                                 'birthday' => $oRequest->birthday,
                                 'phone' => $oRequest->phone,
                                 'country' => $oRequest->country,
                                 'country_array' => $this->oUser->getCountry(null),
-                                'city' => $oRequest->city
+                                'city' => $oRequest->city,
+                'gender'=> $oRequest->gender,
+                'zip_code'=> $oRequest->zip_code
             ]);
         }
     }
 
+    
+    public function getUserDetails(Request $oRequest){
+                $oResult = $this->oUser->getUserDetails($oRequest->edit_id);
+        
+        $user_detalis = [
+            'edit_id' => $oRequest->edit_id,
+            'first_name' => $oResult['first_name'],
+            'last_name' => $oResult['last_name'],
+            'email' => $oResult['email'],
+            'nickname' => $oResult['nickname'],
+            'address' => $oResult['address'],
+            'birthday' => $oResult['birthday'],
+            'phone' => $oResult['phone'],
+            'country' => $this->oUser->getCountry($oResult['country']),
+            'city' => $oResult['city'],
+            'zip_code' => $oResult['zip_code'],
+            'gender' => $oResult['gender'],
+    ];
+        
+        return view('admin.user.detailsAccount')->with('user_detalis',$user_detalis);
+    }
     /**
      * Show the form for creating a new resource.
      *
