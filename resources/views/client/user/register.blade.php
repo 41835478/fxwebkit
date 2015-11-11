@@ -134,6 +134,7 @@
     <script>
         init.push(function () {
             var options = {
+                format: "yyyy-mm-dd",
                 todayBtn: "linked",
                 orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
             }

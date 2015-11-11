@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('reports::reports.accounts'))
+@section('title', trans('accounts::accounts.accounts'))
 @section('content')
 <style type="text/css">
     #content-wrapper{ padding: 0px; margin: 0px;}
@@ -18,26 +18,26 @@
         <div class="navigation">
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections">
-                <li class="active"><a href="#"> <i class="fa fa-search"></i> search </a></li>
+                <li class="active"><a href="#"> <i class="fa fa-search"></i> {{ trans('accounts::accounts.search') }} </a></li>
                 
                 <li  >
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('general.id'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('accounts::accounts.id'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
                 <li  >
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('first_name', $aFilterParams['first_name'], ['placeholder'=>trans('user.first_name'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('first_name', $aFilterParams['first_name'], ['placeholder'=>trans('accounts::accounts.first_name'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
                 <li  >
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('last_name', $aFilterParams['last_name'], ['placeholder'=>trans('user.last_name'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('last_name', $aFilterParams['last_name'], ['placeholder'=>trans('accounts::accounts.last_name'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
                 <li>
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('user.Email'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('accounts::accounts.Email'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
 
@@ -45,7 +45,7 @@
 
 
                 <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>
                 <li class="divider"></li>
             </ul>
@@ -61,7 +61,7 @@
 
     <div class="mail-container " >
         <div class="mail-container-header">
-            {{ trans('reports::reports.accounts') }}
+            {{ trans('accounts::accounts.accounts') }}
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
@@ -88,7 +88,7 @@
             <div class="table-info">
                 <div class="table-header">
                     <div class="table-caption">
-                        {{ trans('reports::reports.accounts') }}  
+                        {{ trans('accounts::accounts.accounts') }}  
                         <a href="{{ route('accounts.addAccount') }}" style="float:right;">
                         <input name="new_menu_submit" class="btn btn-primary btn-flat" type="submit" value="{{ trans('accounts::accounts.addAccount') }}"> </a>
                    </div>
@@ -96,10 +96,10 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('general.id'), 'id', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('user.first_name'), 'first_name', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('user.last_name'), 'last_name', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('user.Email'), 'email', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.id'), 'id', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.first_name'), 'first_name', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.last_name'), 'last_name', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Email'), 'email', $oResults) !!}</th>
 
                             <th class="no-warp"></th>
                         </tr>

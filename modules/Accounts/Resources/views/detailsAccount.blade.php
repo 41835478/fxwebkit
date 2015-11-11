@@ -1,25 +1,25 @@
 @extends('admin.layouts.main')
-@section('title', trans('accounts.addAccount'))
+@section('title', trans('accounts::accounts.addAccount'))
 @section('content')
 
-    <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
-        <li class="active">
-            <a href="#uidemo-tabs-default-demo-home" data-toggle="tab">{{ trans('general.details') }}<span class="label label-success"></span></a>
-        </li>
+<ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+    <li class="active">
+        <a href="#uidemo-tabs-default-demo-home" data-toggle="tab">{{ trans('accounts::accounts.details') }}<span class="label label-success"></span></a>
+    </li>
 
-        <li  class="">
+    <li  class="">
 
-            <a href="{{ route('accounts.addAccount').'?edit_id='.$user_detalis['id']}}"  >{{ trans('general.edit_info') }}<span class="badge badge-primary"></span></a>
+        <a href="{{ route('accounts.addAccount').'?edit_id='.$user_detalis['id']}}"  >{{ trans('accounts::accounts.edit_info') }}<span class="badge badge-primary"></span></a>
 
-        </li>
-    </ul>
+    </li>
+</ul>
 
 
 <div class="panel-body">
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.first_name') }} : </label>
+                <label class="control-label">{{ trans('accounts::accounts.first_name :') }}  </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -30,7 +30,7 @@
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.last_name') }} : </label>     
+                <label class="control-label">{{ trans('accounts::accounts.last_name :') }}  </label>     
             </div>
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
@@ -43,7 +43,7 @@
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.email') }} : </label>
+                <label class="control-label">{{ trans('accounts::accounts.email') }}  </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -54,7 +54,7 @@
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.nickname') }} : </label>     
+                <label class="control-label">{{ trans('accounts::accounts.nickname') }}  </label>     
             </div>
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
@@ -64,11 +64,10 @@
         </div>
     </div><!-- row -->
 
-
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.address') }} : </label>
+                <label class="control-label">{{ trans('accounts::accounts.address :') }}  </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -79,7 +78,7 @@
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.birthday') }} : </label>     
+                <label class="control-label">{{ trans('accounts::accounts.birthday') }}  </label>     
             </div>
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
@@ -92,7 +91,7 @@
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.phone') }} : </label>
+                <label class="control-label">{{ trans('accounts::accounts.phone') }}  </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -103,7 +102,7 @@
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.country') }} : </label>     
+                <label class="control-label">{{ trans('accounts::accounts.country') }}  </label>     
             </div>
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
@@ -116,7 +115,7 @@
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.city') }} : </label>
+                <label class="control-label">{{ trans('accounts::accounts.city') }}  </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -127,7 +126,7 @@
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.zip_code') }} : </label>     
+                <label class="control-label">{{ trans('accounts::accounts.zip_code') }} </label>     
             </div>
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
@@ -137,23 +136,23 @@
         </div>
     </div><!-- row -->
 
-     <div class="row">
+    <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.gender') }} : </label>
+                <label class="control-label">{{ trans('accounts::accounts.gender') }} : </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
                 @if($user_detalis['gender']==0)
-                <label class="control-label">Male</label>
+                <label class="control-label">{{ trans('accounts::accounts.male') }}</label>
                 @else
-                <label class="control-label">Female</label>
+                <label class="control-label">{{ trans('accounts::accounts.female') }}</label>
                 @endif
             </div>
         </div><!--ol-sm-6 -->
     </div><!-- row -->
-    
+
 </div>
 
 <div class="panel-footer text-right"></div>

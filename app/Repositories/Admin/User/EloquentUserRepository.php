@@ -102,9 +102,9 @@ class EloquentUserRepository implements UserContract {
         $oClientRole->users()->attach($oUser);
         $oActivation = Activation::create($oUser);
 
-        
+        dd($oRequest->birthday);
           $fullDetails=new UsersDetails();
-         
+        
             $fullDetails->users_id=$oUser->id;
             $fullDetails->nickname=$oRequest->nickname;
             $fullDetails->address=$oRequest->address;
@@ -133,7 +133,7 @@ class EloquentUserRepository implements UserContract {
             'last_name' => $oRequest->last_name,
             'email' => $oRequest->email
                 ];
-
+        
      if($fullDetails){
             $fullDetails->nickname=$oRequest->nickname;
             $fullDetails->address=$oRequest->address;
@@ -146,7 +146,7 @@ class EloquentUserRepository implements UserContract {
              $fullDetails->save();
      }else{
          $fullDetails=new UsersDetails();
-         
+   
             $fullDetails->users_id=$oRequest->edit_id;
             $fullDetails->nickname=$oRequest->nickname;
             $fullDetails->address=$oRequest->address;

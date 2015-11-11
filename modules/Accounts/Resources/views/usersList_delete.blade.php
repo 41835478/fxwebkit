@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('reports::reports.accounts'))
+@section('title', trans('accounts::accounts.accounts'))
 @section('content')
 <style type="text/css">
     #content-wrapper{ padding: 0px; margin: 0px;}
@@ -24,22 +24,22 @@
 						<div class="checkbox">
 							<label>
 								{!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
-								<span class="lbl">{{ trans('reports::reports.ExactLogin') }}</span>
+								<span class="lbl">{{ trans('accounts::accounts.ExactLogin') }}</span>
 							</label>
 						</div>
 					</div>
                    </li>
-                 <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
-                <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
-                <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div></li>
-            <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}</div></li>
+                 <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('accounts::accounts.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
+                <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('accounts::accounts.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
+                <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']) !!}</div></li>
+            <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li>
 
                     <div class=" nav-input-div form-group ">
                         <div class="checkbox">
                             <label>
                                 {!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
-                                <span class="lbl">{{ trans('reports::reports.AllGroups') }}</span>
+                                <span class="lbl">{{ trans('accounts::accounts.AllGroups') }}</span>
                             </label>
                         </div>
                         {!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','id'=>'all-groups-slc']) !!}
@@ -49,7 +49,7 @@
 
 
                 <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>
                 <li class="divider"></li>
             </ul>
@@ -65,7 +65,7 @@
 
     <div class="mail-container " >
         <div class="mail-container-header">
-            {{ trans('reports::reports.accounts') }}
+            {{ trans('accounts::accounts.accounts') }}
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
@@ -92,7 +92,7 @@
             <div class="table-info">
                 <div class="table-header">
                     <div class="table-caption">
-                        {{ trans('reports::reports.accounts') }}
+                        {{ trans('accounts::accounts.accounts') }}
 
                         @if (count($oResults))
                         <div class="panel-heading-controls">
@@ -105,7 +105,7 @@
                                     <li>
                                         <a href="{{ Request::fullUrl() }}&export=xls">
                                             <i class="dropdown-icon fa fa-camera-retro"></i>
-                                            {{ trans('general.Export') }}
+                                            {{ trans('accounts.Export') }}
                                         </a>
                                     </li>
                                 </ul>
@@ -118,15 +118,15 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Name'), 'NAME', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Group'), 'GROUP', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Equity'), 'EQUITY', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Balance'), 'BALANCE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.AgentAccount'), 'AGENT_ACCOUNT', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Margin'), 'MARGIN', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.MarginFree'), 'MARGIN_FREE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Leverage'), 'LEVERAGE', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Login'), 'LOGIN', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.name'), 'NAME', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Equity'), 'EQUITY', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Balance'), 'BALANCE', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.AgentAccount'), 'AGENT_ACCOUNT', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Margin'), 'MARGIN', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.MarginFree'), 'MARGIN_FREE', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Leverage'), 'LEVERAGE', $oResults) !!}</th>
                             <th class="no-warp"></th>
                         </tr>
                     </thead>

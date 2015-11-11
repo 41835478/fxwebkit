@@ -108,8 +108,7 @@
             <label class="control-label " style="text-align: left;display: block;">{{ trans('user.gender') }}</label>
             <div class="radio col-xs-2">
                 <label class='gender_radio_0'>
-               
-                    {!! Form::radio('gender', 0,$userInfo['gender'],['id'=>'gender_radio_0','class'=>'px']) !!}
+                    {!! Form::radio('gender', 0,!$userInfo['gender'],['id'=>'gender_radio_0','class'=>'px']) !!}
                     <span class="lbl">{{ trans('user.male') }}</span>
                 </label>
             </div>

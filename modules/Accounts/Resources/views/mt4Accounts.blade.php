@@ -9,7 +9,7 @@
         margin-bottom: 7px;
         padding: 5px !important;
     }
-      .theme-default .page-mail{ overflow: visible;height: auto; min-height: 800px;}
+    .theme-default .page-mail{ overflow: visible;height: auto; min-height: 800px;}
     .center_page_all_div{ padding: 0px 10px;}
     .mail-nav .navigation{margin-top: 35px;}
 </style>
@@ -19,20 +19,20 @@
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections">
                 <li class="active"><a href="#"> <i class="fa fa-search"></i> search </a></li>
-                                                   <li>
-                   <div class="   nav-input-div">
-						<div class="checkbox">
-							<label>
-								{!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
-								<span class="lbl">{{ trans('accounts::accounts.ExactLogin') }}</span>
-							</label>
-						</div>
-					</div>
-                   </li>
-                 <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('accounts::accounts.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
+                <li>
+                    <div class="   nav-input-div">
+                        <div class="checkbox">
+                            <label>
+                                {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
+                                <span class="lbl">{{ trans('accounts::accounts.ExactLogin') }}</span>
+                            </label>
+                        </div>
+                    </div>
+                </li>
+                <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('accounts::accounts.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
                 <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('accounts::accounts.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']) !!}</div></li>
-            <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']) !!}</div></li>
+                <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li>
 
                     <div class=" nav-input-div form-group ">
@@ -90,15 +90,14 @@
             @endif
 
             <div class="table-info">
-                
-                 
-                
+
+
+
                 <div class="table-header">
                     <div class="table-caption">
-                        {{ trans('reports::reports.accounts') }}  
-                        <a href="{{ route('accounts.addMt4User') }}" style="float:right;">
-                        <input name="new_menu_submit" class="btn btn-primary btn-flat" type="submit" value="{{ trans('general.add_mt4_user') }}"> </a>
-                   </div>
+                        {{ trans('accounts::accounts.mt4Users') }}  
+
+                    </div>
                 </div>
                 <table class="table table-bordered">
                     <thead>
@@ -124,13 +123,13 @@
                             <td>{{ $oResult->GROUP }}</td>
                             <td>{{ $oResult->EQUITY }}</td>
                             <td>{{ $oResult->BALANCE }}</td>
-                            
+
                             <td>{{ $oResult->AGENT_ACCOUNT }}</td>
                             <td>{{ $oResult->MARGIN }}</td>
                             <td>{{ $oResult->MARGIN_FREE }}</td>
                             <td>{{ $oResult->LEVERAGE }}</td>
-                       <td><a href="{{ route('accounts.mt4UserDetails').'?login='. $oResult->LOGIN }}&from_date=&to_date=&search=Search&sort=asc&order=login">details</a></td>
-                     
+                            <td><a href="{{ route('accounts.mt4UserDetails').'?login='. $oResult->LOGIN }}&from_date=&to_date=&search=Search&sort=asc&order=login">details</a></td>
+
                         </tr>
                         @endforeach
                         @endif
@@ -163,25 +162,25 @@
         } else {
             $('#all-groups-slc').removeAttr('disabled');
         }
-                        
-                        
-			$('#exactLogin').change(function(){
-				if ($('#exactLogin').prop('checked')) {
-                                    $("#from_login_li,#to_login_li").hide();
-                                    $("#login_li").show();
-				} else {
-                                    $("#from_login_li,#to_login_li").show();
-                                    $("#login_li").hide();
-				}
-			});
 
-				if ($('#exactLogin').prop('checked')) {
-                                    $("#from_login_li,#to_login_li").hide();
-                                    $("#login_li").show();
-				} else {
-                                    $("#from_login_li,#to_login_li").show();
-                                    $("#login_li").hide();
-				}
+
+        $('#exactLogin').change(function () {
+            if ($('#exactLogin').prop('checked')) {
+                $("#from_login_li,#to_login_li").hide();
+                $("#login_li").show();
+            } else {
+                $("#from_login_li,#to_login_li").show();
+                $("#login_li").hide();
+            }
+        });
+
+        if ($('#exactLogin').prop('checked')) {
+            $("#from_login_li,#to_login_li").hide();
+            $("#login_li").show();
+        } else {
+            $("#from_login_li,#to_login_li").show();
+            $("#login_li").hide();
+        }
 
     });
 
