@@ -34,5 +34,5 @@ interface Mt4UserContract
 	 * @return array
 	 */
         public function getUserInfo($login);
-
+        public function addMt4User($oRequest);
 }

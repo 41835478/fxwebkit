@@ -48,7 +48,7 @@ return [
         'address' => 'Address',
         'id_number'=>'Id Number',
         'status'=>'Status',
-        'group'=>'Grope',
+        'group'=>'Group',
         'gender'=>'Gender',
        
 

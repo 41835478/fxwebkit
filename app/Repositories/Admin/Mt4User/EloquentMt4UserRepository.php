@@ -215,9 +215,25 @@ class EloquentMt4UserRepository implements Mt4UserContract {
         return false;
     }
     
-    public function addMt4User()
+    public function addMt4User($oRequest)
     {
-        
+       
+        $fullDetails=new Mt4User();
+            $fullDetails->name=$oRequest->name;
+            $fullDetails->email=$oRequest->email;
+            $fullDetails->status=$oRequest->status;
+            $fullDetails->password_phone='vFDrwwwrrrS';
+            $fullDetails->address=$oRequest->address;
+            $fullDetails->id=$oRequest->id_number;
+            $fullDetails->phone='$oRequssest->phone';
+            $fullDetails->country=$oRequest->country;
+            $fullDetails->city=$oRequest->city;
+            $fullDetails->state=$oRequest->state;
+            $fullDetails->zipcode=$oRequest->zip_code;
+            $fullDetails->group='$oReqwwuestrrr->group';
+            $fullDetails->save();
+             
+        return $fullDetails;
     }
 
 }

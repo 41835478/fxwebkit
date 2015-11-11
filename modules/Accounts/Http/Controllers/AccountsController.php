@@ -9,6 +9,8 @@ use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
 use Modules\Accounts\Http\Requests\AddUserRequest;
+use Modules\Accounts\Http\Requests\AddMt4UserRequest;
+use Modules\Accounts\Http\Requests\AsignMt4User;
 use Illuminate\Support\Facades\Redirect;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Config;
@@ -432,7 +434,6 @@ class AccountsController extends Controller {
           //  'edit_id' => 0,
             'name' => '',
             'phone_password' => '',
-            'password' => '',
             'email' => '',
             'status' => '',
             'address' => '',
@@ -457,7 +458,6 @@ class AccountsController extends Controller {
             'name' => $oResult['name'],
             'phone_password' => $oResult['phone_password'],
             'email' => $oResult['email'],
-            'password'=>'',
             'status' => $oResult['status'],
             'address' => $oResult['address'],
             'id_number' => $oResult['id_number'],
@@ -467,22 +467,23 @@ class AccountsController extends Controller {
             'city' => $oResult['city'],
             'Phone' => $oResult['Phone'],
             'zip_code' => $oResult['zip_code'],
-            'group'=>$oResult['group']
-                    
+            'group'=>$oResult['group']     
                 ];
     }
         return view('accounts::addMt4User')->with('userInfo', $userInfo);
     }
     
-    public function postEditMt4User(AddUserRequest $oRequest) {
+    public function postEditMt4User(AddMt4UserRequest $oRequest) {
 
         $result = 0;
         $resultMessage = [];
         if ($oRequest->edit_id > 0) {
             $result = $this->oUsers->updateUser($oRequest);
+         
         } else {
             $role = explode(',', Config::get('fxweb.client_default_role'));
-            $result = $this->oUsers->addUser($oRequest, $role);
+            $result = $this->oMt4User->addMt4User($oRequest);
+            dd($result);
         }
 
         if ($result > 0) {
@@ -491,7 +492,7 @@ class AccountsController extends Controller {
             return $this->getDetailsAccount($oRequest);
         } else {
             $country_array = $this->oUsers->getCountry(null);
-            return view('accounts::addAccount')
+            return view('accounts::addMt4User')
                             ->withErrors($resultMessage)
                             ->withErrors($result)
                             ->with('userInfo', [
@@ -513,7 +514,27 @@ class AccountsController extends Controller {
             ]);
         }
     }
-
     
+    public function getClientAddMt4User(Request $oRequest)
+    {
+      
+        $userInfo = [    
+            'login' => $oRequest['login'],
+            'password' => $oRequest['password']];
+        
+        return view('accounts::clientAddMt4User')->with('userInfo',$userInfo);
+    }
+    
+     public function postClientAddMt4User(AsignMt4User $oRequest)
+    {
+      
+        $userInfo = [    
+            'login' => $oRequest['login'],
+            'password' => $oRequest['password']];
+        
+        dd($userInfo);
+        
+        return view('accounts::clientAddMt4User')->with('userInfo',$userInfo);
+    }
 
 }

@@ -17,13 +17,13 @@
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('user.phone_password') }}</label>
-                {!! Form::text('phone_password',$userInfo['phone_password'],['class'=>'form-control']) !!}
+                 {!! Form::password("phone_password",["class"=>"form-control","value"=>$userInfo['phone_password']]) !!}
 
             </div>
         </div><!-- col-sm-6 -->
     </div><!-- row -->
 
-    <div class="row">
+   <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('user.Email') }}</label>
@@ -32,9 +32,8 @@
         </div><!-- col-sm-6 -->
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.Password') }}</label>
-                {!! Form::text('password',$userInfo['password'],['class'=>'form-control']) !!}
-
+                <label class="control-label">{{ trans('user.group') }}</label>
+                {!! Form::text('group',$userInfo['group'],['class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
     </div><!-- row -->
@@ -50,7 +49,6 @@
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('user.address') }}</label>
                 {!! Form::text('address',$userInfo['address'],['class'=>'form-control']) !!}
-
             </div>
         </div><!-- col-sm-6 -->
     </div><!-- row -->
@@ -85,10 +83,7 @@
                 {!! Form::text('Phone',$userInfo['Phone'],['class'=>'form-control']) !!}           
             </div>
 
-            <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.group') }}</label>
-                {!! Form::text('zip_code',$userInfo['zip_code'],['class'=>'form-control']) !!}           
-            </div>
+            
         </div><!-- col-sm-6 -->
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
