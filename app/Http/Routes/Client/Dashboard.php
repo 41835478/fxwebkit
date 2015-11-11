@@ -20,7 +20,7 @@ Route::group(['middleware' => ['authenticate.client']], function()
 		'as' => 'clinet.editProfile',
 		'uses' => 'DashboardController@postEditProfile'
 	]);
-       // Route::get('/', function(){dd(3);});
+ 
 });
 
 /*

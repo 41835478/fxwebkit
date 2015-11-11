@@ -110,5 +110,27 @@ class DashboardController extends Controller {
             ]);
         }
     }
+    
+    public function getClientAddMt4User(Request $oRequest)
+    {
+      
+        $userInfo = [    
+            'login' => $oRequest['login'],
+            'password' => $oRequest['password']];
+        
+        return view('accounts::clientAddMt4User')->with('userInfo',$userInfo);
+    }
+    
+     public function postClientAddMt4User(AsignMt4User $oRequest)
+    {
+      
+        $userInfo = [    
+            'login' => $oRequest['login'],
+            'password' => $oRequest['password']];
+        
+        dd($userInfo);
+        
+        return view('accounts::clientAddMt4User')->with('userInfo',$userInfo);
+    }
 
 }
