@@ -275,7 +275,7 @@ class AccountsController extends Controller {
     public function getDetailsAccount(Request $oRequest) {
         $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
 
-        $user_detalis = [
+        $user_details = [
             'id' => $oRequest->edit_id,
             'first_name' => $oResult['first_name'],
             'last_name' => $oResult['last_name'],
@@ -290,7 +290,7 @@ class AccountsController extends Controller {
             'gender' => $oResult['gender'],
         ];
 
-        return view('accounts::detailsAccount')->with('user_detalis', $user_detalis);
+        return view('accounts::detailsAccount')->with('user_detalis', $user_details);
     }
 
     public function getEditClientInfo(Request $oRequest) {

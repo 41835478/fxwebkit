@@ -27,7 +27,7 @@ class DashboardController extends Controller {
         $user = Sentinel::getUser();
         $oResult = $this->oUsers->getUserDetails($user->id);
 
-        $user_detalis = [
+        $user_details = [
             'id' => $oRequest->edit_id,
             'first_name' => $oResult['first_name'],
             'last_name' => $oResult['last_name'],
@@ -43,7 +43,7 @@ class DashboardController extends Controller {
             
         ];
 
-        return view('admin.user.detailsProfile')->with('user_detalis', $user_detalis);
+        return view('admin.user.detailsProfile')->with('user_detalis', $user_details);
     }
 
 

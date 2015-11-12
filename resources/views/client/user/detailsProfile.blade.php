@@ -24,7 +24,7 @@
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['first_name'] }}</label>
+                <label class="control-label">{{$user_details['first_name'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
 
@@ -35,7 +35,7 @@
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['last_name'] }}</label>
+                <label class="control-label">{{$user_details['last_name'] }}</label>
             </div>
         </div>
     </div><!-- row -->
@@ -48,7 +48,7 @@
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['email'] }}</label>
+                <label class="control-label">{{$user_details['email'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
 
@@ -59,7 +59,7 @@
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['nickname'] }}</label>
+                <label class="control-label">{{$user_details['nickname'] }}</label>
             </div>
         </div>
     </div><!-- row -->
@@ -73,7 +73,7 @@
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['address'] }}</label>
+                <label class="control-label">{{$user_details['address'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
 
@@ -84,7 +84,7 @@
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['birthday'] }}</label>
+                <label class="control-label">{{$user_details['birthday'] }}</label>
             </div>
         </div>
     </div><!-- row -->
@@ -97,7 +97,7 @@
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['phone'] }}</label>
+                <label class="control-label">{{$user_details['phone'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
 
@@ -108,7 +108,7 @@
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['country'] }}</label>
+                <label class="control-label">{{$user_details['country'] }}</label>
             </div>
         </div>
     </div><!-- row -->
@@ -121,7 +121,7 @@
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['city'] }}</label>
+                <label class="control-label">{{$user_details['city'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
 
@@ -132,7 +132,7 @@
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['zip_code'] }}</label>
+                <label class="control-label">{{$user_details['zip_code'] }}</label>
             </div>
         </div>
     </div><!-- row -->
@@ -145,7 +145,7 @@
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                @if($user_detalis['gender']==0)
+                @if($user_details['gender']==0)
                 <label class="control-label">Male</label>
                 @else
                 <label class="control-label">Female</label>

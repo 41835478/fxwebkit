@@ -170,7 +170,7 @@ class SettingsController extends Controller {
     public function getUserDetails(Request $oRequest){
                 $oResult = $this->oUser->getUserDetails($oRequest->edit_id);
         
-        $user_detalis = [
+        $user_details = [
             'edit_id' => $oRequest->edit_id,
             'first_name' => $oResult['first_name'],
             'last_name' => $oResult['last_name'],
@@ -185,7 +185,7 @@ class SettingsController extends Controller {
             'gender' => $oResult['gender'],
     ];
         
-        return view('admin.user.detailsAccount')->with('user_detalis',$user_detalis);
+        return view('admin.user.detailsAccount')->with('user_detalis',$user_details);
     }
   
 	public function getEmailTemplates(Request $oRequest)

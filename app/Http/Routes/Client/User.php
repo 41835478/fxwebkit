@@ -9,6 +9,20 @@ Route::group(['middleware' => ['authenticate.client']], function()
 		'getSettings' => 'client.users.settings',
 		'getProfile' => 'client.users.profile',
 	]);
+        
+          Route::get('clientProfile', [
+		'as' => 'clinet.profile',
+		'uses' => 'UserController@getClientProfile'
+	]);
+        Route::get('editProfile', [
+		'as' => 'clinet.editProfile',
+		'uses' => 'UserController@getEditProfile'
+	]);
+    
+        Route::post('editProfile', [
+		'as' => 'clinet.editProfile',
+		'uses' => 'UserController@postEditProfile'
+	]);
 });
 
 /*
