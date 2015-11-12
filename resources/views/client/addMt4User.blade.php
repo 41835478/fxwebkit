@@ -1,5 +1,10 @@
+<<<<<<< HEAD:resources/views/client/addMt4User.blade.php
 @extends('client.layouts.main')
 @section('title', trans('accounts.addAccount'))
+=======
+@extends('admin.layouts.main')
+@section('title', trans('accounts::accounts.addAccount'))
+>>>>>>> 846561ffa5f87b238cad0005360a4f77e26da741:modules/Accounts/Resources/views/clientAddMt4User.blade.php
 @section('content')
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
 
@@ -10,13 +15,13 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.Login') }}</label>
+                <label class="control-label">{{ trans('accounts::accounts.Login') }}</label>
                 {!! Form::text('login',$userInfo['login'],['class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.Password') }}</label>
+                <label class="control-label">{{ trans('accounts::accounts.Password') }}</label>
                  {!! Form::password("password",["class"=>"form-control","value"=>$userInfo['password']]) !!}
             </div>
         </div><!-- col-sm-6 -->
@@ -31,7 +36,7 @@
 </div>
 @endif
 <div class="panel-footer text-right">
-    <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']  or 0 }}">save</button>
+    <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']  or 0 }}">{{ trans('accounts::accounts.save') }}</button>
 
 </div>
 
