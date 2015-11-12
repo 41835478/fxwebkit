@@ -33,19 +33,7 @@
                 <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div></li>
             <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}</div></li>
-                <li>
-
-                    <div class=" nav-input-div form-group ">
-                        <div class="checkbox">
-                            <label>
-                                {!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
-                                <span class="lbl">{{ trans('reports::reports.AllGroups') }}</span>
-                            </label>
-                        </div>
-                        {!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','id'=>'all-groups-slc']) !!}
-                    </div>
-
-                </li>
+           
 
 
                 <li><div  class=" nav-input-div  ">
@@ -120,7 +108,6 @@
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Name'), 'NAME', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Group'), 'GROUP', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Equity'), 'EQUITY', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Balance'), 'BALANCE', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.AgentAccount'), 'AGENT_ACCOUNT', $oResults) !!}</th>
@@ -136,7 +123,6 @@
                         <tr>
                             <td>{{ $oResult->LOGIN }}</td>
                             <td>{{ $oResult->NAME }}</td>
-                            <td>{{ $oResult->GROUP }}</td>
                             <td>{{ $oResult->EQUITY }}</td>
                             <td>{{ $oResult->BALANCE }}</td>
                             

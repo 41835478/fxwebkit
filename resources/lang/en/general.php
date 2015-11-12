@@ -74,6 +74,9 @@ return [
     
     /*__end_add_admin*/
     'adminsList'=>'Admins List',
-    'mt4UsersList'=>'Mt4 Users'
+    'mt4UsersList'=>'Mt4 Users',
+    'Mt4Users'=>'Mt4 Users',
+    'addMt4User'=>'Add Mt4 User'
+    
     /*__END__settings____adminsList__*/
 ];

@@ -106,31 +106,10 @@ class DashboardController extends Controller {
                                 'country_array' => $this->oUsers->getCountry(null),
                                 'city' => $oRequest->city,
                                 'zip_code' => $oRequest->zip_code,
-                                 'gender' => $oRequest->gender,
+                                'gender' => $oRequest->gender,
             ]);
         }
     }
-    
-    public function getClientAddMt4User(Request $oRequest)
-    {
-      
-        $userInfo = [    
-            'login' => $oRequest['login'],
-            'password' => $oRequest['password']];
-        
-        return view('accounts::clientAddMt4User')->with('userInfo',$userInfo);
-    }
-    
-     public function postClientAddMt4User(AsignMt4User $oRequest)
-    {
-      
-        $userInfo = [    
-            'login' => $oRequest['login'],
-            'password' => $oRequest['password']];
-        
-        dd($userInfo);
-        
-        return view('accounts::clientAddMt4User')->with('userInfo',$userInfo);
-    }
 
+   
 }

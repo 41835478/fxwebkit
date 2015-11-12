@@ -53,18 +53,7 @@
 							</span>
 						</div>
                        </div></li>
-                   <li>
-                   <div class="   nav-input-div">
-						<div class="checkbox">
-							<label>
-								{!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
-								<span class="lbl">{{ trans('reports::reports.AllGroups') }}</span>
-							</label>
-						</div>
-					</div>
-                   </li>
-                   <li><div  class=" nav-input-div  ">{!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-groups-slc']) !!}</div></li>
-                 
+                   
 
 
                 <li><div  class=" nav-input-div  ">

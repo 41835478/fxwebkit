@@ -17,6 +17,8 @@ return [
     'client_default_role' => env('CLIENT_DEFAULT_ROLE'),
     'auto_activate_client' => env('CLIENT_AUTO_ACTIVATE',true),
     'pagination_size' => env('PAGINATION_SIZE', 25),
+    'mt4CheckHost'=>'192.168.15.10',
+    'mt4CheckPort'=>443,
     'theme' => [
         'color' => env('THEME_COLOR', 'default'),
         'navbarFixed' => env('FIXED_NAVBAR', false),
@@ -33,6 +35,20 @@ return [
                     'route' => 'admin.adminsList',
                     'title' => 'adminsList',
                     'icon' => 'fa fa-users',
+                ]
+                
+            ]
+        ]
+    ],'client_menu' => [
+        [
+            'route' => '#',
+            'title' => 'Mt4Users',
+            'icon' => 'fa fa-users',
+            'subMenus' => [
+                [
+                    'route' => 'client.addMt4User',
+                    'title' => 'addMt4User',
+                    'icon' => 'fa fa-plus',
                 ]
                 
             ]

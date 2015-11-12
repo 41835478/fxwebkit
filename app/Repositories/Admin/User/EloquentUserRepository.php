@@ -202,6 +202,7 @@ if(is_array($users_id)){
             }
         }
 }
+return true;
     }
 
     public function unsignMt4UsersToAccount($account_id, $users_id) {
