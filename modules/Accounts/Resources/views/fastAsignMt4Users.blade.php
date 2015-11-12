@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('reports::reports.accounts'))
+@section('title', trans('accounts::accounts.accounts'))
 @section('content')
 <style type="text/css">
     #content-wrapper{ padding: 0px; margin: 0px;}
@@ -24,16 +24,16 @@
                         <div class="checkbox">
                             <label>
                                 {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
-                                <span class="lbl">{{ trans('reports::reports.ExactLogin') }}</span>
+                                <span class="lbl">{{ trans('accounts::accounts.ExactLogin') }}</span>
                             </label>
                         </div>
                     </div>
                 </li>
-                <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
-                <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
-                <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div></li>
+                <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('accounts::accounts.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
+                <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('accounts::accounts.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
+                <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']) !!}</div></li>
 
-                <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}</div></li>
+                <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.name'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li>
                     <div  class=" nav-input-div  ">
                         {!! Form::radio('signed',0,$aFilterParams['signed'],['id'=>'signed_0','checked'=>'true']) !!}<label for="signed_0">all</label>
@@ -47,7 +47,7 @@
                         <div class="checkbox">
                             <label>
                                 {!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
-                                <span class="lbl">{{ trans('reports::reports.AllGroups') }}</span>
+                                <span class="lbl">{{ trans('accounts::accounts.AllGroups') }}</span>
                             </label>
                         </div>
                         {!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','id'=>'all-groups-slc']) !!}
@@ -57,7 +57,7 @@
 
 
                 <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>
                 <li class="divider"></li>
             </ul>
@@ -74,7 +74,7 @@
 
     <div class="mail-container " >
         <div class="mail-container-header">
-            {{ trans('reports::reports.accounts') }}
+            {{ trans('accounts::accounts.accounts') }}
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
@@ -118,7 +118,7 @@
                 <div class="panel-body">
                     <div class="row"> 
                         <div class="col-sm-2">
-                            <label class="control-label">{{ trans('general.Login') }}</label>
+                            <label class="control-label">{{ trans('accounts::accounts.Login') }}</label>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group no-margin-hr">
@@ -166,9 +166,9 @@
                     <thead>
                         <tr>
                             <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all','Select All') !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Name'), 'NAME', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Group'), 'GROUP', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Login'), 'LOGIN', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</th>
                             <th class="no-warp">{!! trans('accounts::accounts.unsign') !!}</th>
                         </tr>
                     </thead>

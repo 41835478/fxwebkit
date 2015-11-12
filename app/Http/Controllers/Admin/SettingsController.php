@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Redirect;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Config;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
+use Carbon\Carbon;
+
 
 class SettingsController extends Controller {
 
@@ -76,7 +78,11 @@ class SettingsController extends Controller {
             return Redirect::route('admins-list')->withErrors($result);
         }
         $country_array = $this->oUser->getCountry(null);
-
+        
+        $carbon = new Carbon();
+        $dt = $carbon->now();
+        $dt->subYears(18);
+        
         $userInfo = [
             'edit_id' => 0,
             'first_name' => '',
@@ -85,7 +91,7 @@ class SettingsController extends Controller {
             'password' => '',
             'nickname' => '',
             'address' => '',
-            'birthday' => '',
+            'birthday' => $dt->format('Y/m/d'),
             'phone' => '',
             'country' => '',
             'country_array' => $country_array,

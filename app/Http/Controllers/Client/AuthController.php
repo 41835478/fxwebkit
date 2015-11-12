@@ -81,7 +81,7 @@ class AuthController extends Controller {
         $dt->subYears(18);
 $country_array=$this->oUserRepostry->getCountry(null);
         return view('client.user.register')
-                        ->with('default_birthday', $dt->format('m/d/Y'))
+                        ->with('default_birthday', $dt->format('Y/m/d'))
                         ->with('country_array',$country_array )
                         ->with('random', rand(1, 8));
     }
@@ -97,15 +97,13 @@ $country_array=$this->oUserRepostry->getCountry(null);
             'password' => $oRequest->password,
         ];
 
-
-        if ($bAutoActivate) {
+       
+        if ($bAutoActivate) {             
             
-                            
             $oUser = Sentinel::registerAndActivate($aCredentials);
-            
             $oClientRole->users()->attach($oUser);
             Sentinel::login($oUser);
-            
+
             $aCredentialsFullDetails = [
                 'users_id' => $oUser->id,
                 'nickname' => $oRequest->nickname,

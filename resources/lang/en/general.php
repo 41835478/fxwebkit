@@ -30,7 +30,7 @@ return [
 	'Price' => 'Price',
 	'Profit' => 'Profit',
 	'Export' => 'Export',
-    'Total'=>'Total',
+        'Total'=>'Total',
     
     
     'BalanceOperations'=>'Balance Operations',
