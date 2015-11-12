@@ -20,6 +20,7 @@ use Carbon\Carbon;
 use Cartalyst\Sentinel\Addons\Social\Laravel\Facades\Social;
 use Cartalyst\Sentinel\Addons\Social\Models\LinkInterface;
 use Fxweb\Models\UsersDetails;
+use Fxweb\Http\Controllers\admin\Email;
 
 use Fxweb\Repositories\Admin\User\UserContract;
 
@@ -118,7 +119,8 @@ $country_array=$this->oUserRepostry->getCountry(null);
 
             $details = new UsersDetails($aCredentialsFullDetails);
             $details->save(); 
-            
+            $oEmail=new Email;
+            @$oEmail->signUpWelcome($aCredentials+$aCredentialsFullDetails);
             return redirect()->route('clinet.editProfile');
         } else {
 
@@ -180,10 +182,11 @@ $country_array=$this->oUserRepostry->getCountry(null);
 
             $user = Social::authenticate('facebook', $callback, function(LinkInterface $link, $provider, $token, $slug) {
 
-                        $user = $link->getUser();
+                        $user = $link->getUser(); 
                         $data = $provider->getUserDetails($token);
                         $user->save();
-
+                       
+                       Sentinel::login($user);
                         if (!$user->inRole('client')) {
                             $activation = Activation::create($user);
                             $activation_code = $activation->code;
