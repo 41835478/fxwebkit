@@ -27,7 +27,6 @@ class RegisterRequest extends Request {
 			'last_name'	=> 'required|alpha',
 			'email'	        => 'required|email|unique:users,email',
 			'password'	=> 'required|min:8',
-			'agreement'     => 'required',
                         'address'	=> 'required',
                         'phone'  	=> 'required',
                         'city'	        => 'required',
@@ -35,6 +34,7 @@ class RegisterRequest extends Request {
                         'zip_code'	=> 'required',
                         'gender'	=> 'required',
                         'birthday'	=> 'required',
+                        'agreement'     => 'required',
 		];
 	}
 

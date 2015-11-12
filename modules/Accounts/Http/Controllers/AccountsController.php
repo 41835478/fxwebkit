@@ -13,6 +13,8 @@ use Modules\Accounts\Http\Requests\AsignMt4User;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Config;
 use Carbon\Carbon;
+use Mail;
+
 
 class AccountsController extends Controller {
 

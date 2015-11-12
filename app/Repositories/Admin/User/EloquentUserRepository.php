@@ -102,7 +102,7 @@ class EloquentUserRepository implements UserContract {
         $oClientRole->users()->attach($oUser);
         $oActivation = Activation::create($oUser);
 
-        dd($oRequest->birthday);
+    
           $fullDetails=new UsersDetails();
         
             $fullDetails->users_id=$oUser->id;
