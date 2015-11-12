@@ -53,7 +53,7 @@
 @stop
 @section('script')
 @parent
-<script src="http://localhost:8000/cms_assets/ckeditor/ckeditor.js"></script>
+<script src="/cms_assets/ckeditor/ckeditor.js"></script>
 <script>
 //CKEDITOR.replace( textarea );
 CKEDITOR.replace('editor1', {

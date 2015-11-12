@@ -102,7 +102,6 @@ class EloquentUserRepository implements UserContract {
         $oClientRole->users()->attach($oUser);
         $oActivation = Activation::create($oUser);
 
-        dd($oRequest->birthday);
           $fullDetails=new UsersDetails();
         
             $fullDetails->users_id=$oUser->id;
@@ -163,11 +162,11 @@ class EloquentUserRepository implements UserContract {
             $aCredentials['password'] = $oRequest->password;
         }
         try {
-   
+            
             $user = Sentinel::update($user, $aCredentials);
             $fullDetails->save();
             
-        } catch (QueryException $e) {
+        } catch (Exception $e) {
             return ['The email has already been taken.'];
         }
         return $user->id;
