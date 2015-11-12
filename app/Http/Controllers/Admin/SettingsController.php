@@ -13,6 +13,7 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Config;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Carbon\Carbon;
+use File;
 
 
 class SettingsController extends Controller {
@@ -186,64 +187,66 @@ class SettingsController extends Controller {
         
         return view('admin.user.detailsAccount')->with('user_detalis',$user_detalis);
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create() {
-        //
-    }
+  
+	public function getEmailTemplates(Request $oRequest)
+	{
+	
+		$aTemplates= [
+			'' => '',
+			'external' => [
+				'signUpWelcome' => 'Sign Up Welcome',
+				'accountAssign' => 'accountAssign',
+				'agentActivation' => 'agentActivation',
+				'newAgent' => 'newAgent',
+				'newPassword' => 'newPassword',
+				'recoverPassword' => 'recoverPassword',
+				'withdrawResult' => 'withdrawResult',
+			],
+			'internal' => [
+				'newAgentNotify' => 'newAgentNotify',
+				'withdrawRequest' => 'withdrawRequest'
+			]
+		];
+		$sTemplate = $oRequest->name;
+		$sLanguage = $oRequest->lang;
+		$sContent = '';
+                
+		$aLanguages = ['ar' => 'Arabic','en'=>'English'] ;
+	
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-    public function store(Request $request) {
-        //
-    }
+		if (!empty($sTemplate) && !empty($sLanguage)) {
+			$sPath = base_path() . '/resources/views/admin/email/templates/'.$sLanguage.'/'.$sTemplate.'.blade.php';
+			
+                        if (file_exists($sPath)) {
+				$sContent = File::get($sPath);
+			}
+		}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id) {
-        //
-    }
+		return view('admin.email.addEmailTemplates')
+			->with('aLanguages', $aLanguages)
+			->with('aTemplates', $aTemplates)
+			->with('sTemplate', $sTemplate)
+			->with('sLanguage', $sLanguage)
+			->with('sContent', $sContent);
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id) {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id) {
-        //
-    }
+public function postEmailTemplates(Request $oRequest)
+	{
+		$sTemplate = $oRequest->name;
+		$sLanguage = $oRequest->lang;
+$sContent = $oRequest->template_body;
+		if (!empty($sTemplate) && !empty($sLanguage) && !empty($sContent)) {
+			$sPath = base_path() . '/resources/views/admin/email/templates/'.$sLanguage.'/'.$sTemplate.'.blade.php';
+			
+			if (file_exists($sPath)) {
+				File::put($sPath, $sContent);
+			}
+		}
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id) {
-        //
-    }
+		return Redirect::to(route('admin.addEmailTemplates').'?name='.$sTemplate.'&lang='.$sLanguage);
+	}
 
+    
+    
 }

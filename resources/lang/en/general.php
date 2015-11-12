@@ -76,7 +76,16 @@ return [
     'adminsList'=>'Admins List',
     'mt4UsersList'=>'Mt4 Users',
     'Mt4Users'=>'Mt4 Users',
-    'addMt4User'=>'Add Mt4 User'
+    'addMt4User'=>'Add Mt4 User',
     
     /*__END__settings____adminsList__*/
+    
+    /*__________________email*/
+    "Email"=>'Email',
+    'addEmailTemplates'=>'Add Email Templates',
+    'emailTemplates'=>'Email Templates',
+    'template'=>'Template',
+    'language'=>'Language',
+    'save'=>'Save'
+    /*_______________End___email*/
 ];

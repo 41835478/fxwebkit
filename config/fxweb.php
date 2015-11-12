@@ -38,7 +38,20 @@ return [
                 ]
                 
             ]
+        ],[
+            'route' => 'admin.addEmailTemplates',
+            'title' => 'Email',
+            'icon' => 'fa fa-envelope-o',
+            'subMenus' => [
+                [
+                    'route' => 'admin.addEmailTemplates',
+                    'title' => 'addEmailTemplates',
+                    'icon' => 'fa fa-plus',
+                ]
+                
+            ]
         ]
+        
     ],'client_menu' => [
         [
             'route' => '#',
