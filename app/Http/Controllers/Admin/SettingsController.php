@@ -5,7 +5,8 @@ namespace Fxweb\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as User;
 use Fxweb\Http\Requests\AdminsListRequest;
-use Fxweb\Http\Requests\AddUserRequest;
+use Fxweb\Http\Requests\Admin\AddUserRequest;
+use Fxweb\Http\Requests\Admin\EditUserRequsest;
 use Fxweb\Http\Requests;
 use Fxweb\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
@@ -71,8 +72,8 @@ class SettingsController extends Controller {
                         ->with('oResults', $oResults)
                         ->with('aFilterParams', $aFilterParams);
     }
-
-    public function getEditUser(Request $oRequest) {
+    
+    public function getAddUser(Request $oRequest) {
 
         if ($oRequest->has('delete_id')) {
             $result = $this->oUser->deleteUser($oRequest->delete_id);
@@ -124,7 +125,101 @@ class SettingsController extends Controller {
         return view('admin/user/addUser')->with('userInfo', $userInfo);
     }
 
-    public function postEditUser(AddUserRequest $oRequest) {
+    public function getEditUser(Request $oRequest) {
+
+        if ($oRequest->has('delete_id')) {
+            $result = $this->oUser->deleteUser($oRequest->delete_id);
+            return Redirect::route('admins-list')->withErrors($result);
+        }
+        $country_array = $this->oUser->getCountry(null);
+        
+        $carbon = new Carbon();
+        $dt = $carbon->now();
+        $dt->subYears(18);
+        
+        $userInfo = [
+            'edit_id' => 0,
+            'first_name' => '',
+            'last_name' => '',
+            'email' => '',
+            'password' => '',
+            'nickname' => '',
+            'address' => '',
+            'birthday' => $dt->format('Y/m/d'),
+            'phone' => '',
+            'country' => '',
+            'country_array' => $country_array,
+            'city' => '',
+                'gender'=> '',
+                'zip_code'=> ''];
+        if ($oRequest->has('edit_id')) {
+            $user = Sentinel::findById($oRequest->edit_id);
+
+            $oResult = $this->oUser->getUserDetails($user->id);
+            $userInfo = [
+                'edit_id' => $oRequest->edit_id,
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'email' => $user->email,
+                'password' => '',
+                'nickname' => $oResult['nickname'],
+                'address' => $oResult['address'],
+                'birthday' => $oResult['birthday'],
+                'phone' => $oResult['phone'],
+                'country' => $oResult['country'],
+                'country_array' => $country_array,
+                'city' => $oResult['city'],
+                'gender'=> $oResult['gender'],
+                'zip_code'=> $oResult['zip_code'],
+            ];
+        }
+
+        return view('admin/user/editUser')->with('userInfo', $userInfo);
+    }
+
+    public function postEditUser(EditUserRequsest $oRequest) {
+
+
+        $result = false;
+        $resultMessage = [];
+        if ($oRequest->edit_id > 0) {
+
+
+            $result = $this->oUser->updateUser($oRequest);
+        } else {
+            $admin_role = explode(',', Config::get('fxweb.admin_roles'));
+
+            $result = $this->oUser->addUser($oRequest, $admin_role[0]);
+        }
+
+
+
+        if ($result >0) {
+            return Redirect::to('/admin/settings/edit-user?edit_id='.$result);
+        } else {
+            return view('admin/user/addUser')
+                            ->withErrors($resultMessage)
+                            ->withErrors($result)
+                            ->with('userInfo', [
+                                'edit_id' => $oRequest->edit_id,
+                                'first_name' => $oRequest->first_name,
+                                'last_name' => $oRequest->last_name,
+                                'email' => $oRequest->email,
+                                'password' => $oRequest->password,
+                                'nickname' => $oRequest->nickname,
+                                'address' => $oRequest->address,
+                                'birthday' => $oRequest->birthday,
+                                'phone' => $oRequest->phone,
+                                'country' => $oRequest->country,
+                                'country_array' => $this->oUser->getCountry(null),
+                                'city' => $oRequest->city,
+                'gender'=> $oRequest->gender,
+                'zip_code'=> $oRequest->zip_code
+            ]);
+        }
+    }
+    
+     public function postAddUser(AddUserRequest $oRequest) {
 
 
         $result = false;
@@ -166,6 +261,7 @@ class SettingsController extends Controller {
         }
     }
 
+
     
     public function getUserDetails(Request $oRequest){
                 $oResult = $this->oUser->getUserDetails($oRequest->edit_id);
@@ -185,7 +281,7 @@ class SettingsController extends Controller {
             'gender' => $oResult['gender'],
     ];
         
-        return view('admin.user.detailsAccount')->with('user_detalis',$user_details);
+        return view('admin.user.detailsAccount')->with('user_details',$user_details);
     }
   
 	public function getEmailTemplates(Request $oRequest)

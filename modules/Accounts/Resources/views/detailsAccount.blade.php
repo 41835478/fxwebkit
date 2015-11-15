@@ -9,7 +9,7 @@
 
     <li  class="">
 
-        <a href="{{ route('accounts.addAccount').'?edit_id='.$user_details['id']}}"  >{{ trans('accounts::accounts.edit_info') }}<span class="badge badge-primary"></span></a>
+        <a href="{{ route('accounts.editAccount').'?edit_id='.$user_details['id']}}"  >{{ trans('accounts::accounts.edit_info') }}<span class="badge badge-primary"></span></a>
 
     </li>
 </ul>

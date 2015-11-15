@@ -89,7 +89,7 @@
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('general.adminsList') }}  
-                        <a href="{{ route('general.editUser') }}" style="float:right;">
+                        <a href="{{ route('general.addUser') }}" style="float:right;">
                         <input name="new_menu_submit" class="btn btn-primary btn-flat" type="submit" value="{{ trans('general.addUser') }}"> </a>
                    </div>
                 </div>

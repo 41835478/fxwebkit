@@ -1,32 +1,33 @@
-<?php namespace Modules\Accounts\Http\Requests;
+<?php
 
-use Illuminate\Foundation\Http\FormRequest;
+namespace Fxweb\Http\Requests\Admin;
 
-class AddUserRequest extends FormRequest {
+use Fxweb\Http\Requests\Request;
 
-	/**
-	 * Determine if the user is authorized to make this request.
-	 *
-	 * @return bool
-	 */
-	public function authorize()
-	{
-		return true;
-	}
+class editUserRequsest extends Request
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
 
-	/**
-	 * Get the validation rules that apply to the request.
-	 *
-	 * @return array
-	 */
-	 public function rules()
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
     {
      
-        $roles= [
+       $roles= [
             'first_name'=>'required|min:2|max:255',
             'last_name'=>'required|min:2|max:255',
             'email'=>'required|email|unique:users',
-            'password'=>'required|min:6|max:255',
             'address'	=> 'required',
             'phone'  	=> 'required',
             'city'      => 'required',
@@ -37,8 +38,7 @@ class AddUserRequest extends FormRequest {
             'birthday'	=> 'required'
         ];
         
-        /*
-           if($this->edit_id >0 ){
+        if($this->edit_id >0 ){
                
             $roles['email']='required|email';
             
@@ -47,12 +47,9 @@ class AddUserRequest extends FormRequest {
             $roles['password']='required|min:6|max:255';
             
             }
-        }else{
-             $roles['password']='required|min:6|max:255';
         }
-        */
+    //  dd($roles);       
         return $roles;
-        
     }
-
+    
 }

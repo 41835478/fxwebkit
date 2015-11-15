@@ -113,7 +113,7 @@
                             <td>{{ $oResult->last_name }}</td>
                             <td>{{ $oResult->email }}</td>
                             <td>
-                                <a href="{{ route('accounts.addAccount').'?edit_id='.$oResult->id }}" class="fa fa-edit"></a>
+                                <a href="{{ route('accounts.editAccount').'?edit_id='.$oResult->id }}" class="fa fa-edit"></a>
                                 <a href="{{ route('accounts.addAccount').'?delete_id='.$oResult->id }}" class="fa fa-trash-o"></a>
                                 <a href="{{ route('accounts.detailsAccount').'?edit_id='.$oResult->id }}" class="fa fa-file-text"></a>   
                                 <a href="{{ route('accounts.asignMt4Users').'?account_id='.$oResult->id }}" class="fa fa-plus-square-o"></a>

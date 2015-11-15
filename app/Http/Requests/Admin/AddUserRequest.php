@@ -1,6 +1,6 @@
 <?php
 
-namespace Fxweb\Http\Requests;
+namespace Fxweb\Http\Requests\Admin;
 
 use Fxweb\Http\Requests\Request;
 
@@ -26,23 +26,21 @@ class AddUserRequest extends Request
         
         $roles= [
             'first_name'=>'required|min:2|max:255',
-            'last_name'=>'required|min:2|max:255',
-            'email'=>'required|email|unique:users',
+            'last_name' =>'required|min:2|max:255',
+            'email'     =>'required|email|unique:users',
+            'password'=>'required|min:6|max:255',
+            'address'	=> 'required',
+            'phone'  	=> 'required',
+            'city'      => 'required',
+            'country'	=> 'required',
+            'zip_code'	=> 'required',
+            'gender'	=> 'required',
+            'nickname'	=> 'required',
+            'birthday'	=> 'required'
         ];
         
         
-           if($this->edit_id >0 ){
-               
-            $roles['email']='required|email';
-            
-            if($this->password != ''){
-                
-            $roles['password']='required|min:6|max:255';
-            
-            }
-        }else{
-             $roles['password']='required|min:6|max:255';
-        }
+          
         
         return $roles;
         
