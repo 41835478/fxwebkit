@@ -9,6 +9,7 @@ Route::group(['middleware' => ['authenticate.admin']], function()
 		'as' => 'admin.index',
 		'uses' => 'DashboardController@index'
 	]);
+        /*
 	Route::get('profile', [
 		'as' => 'admin.profile',
 		'uses' => 'DashboardController@getProfile'
@@ -21,6 +22,8 @@ Route::group(['middleware' => ['authenticate.admin']], function()
 		'as' => 'admin.editProfile',
 		'uses' => 'DashboardController@postEditProfile'
 	]);
+         
+         */
 });
 
 /*

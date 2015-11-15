@@ -5,7 +5,7 @@
 
 <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
     <li class="">
-        <a href="{{ route('clinet.profile')}}">{{ trans('general.details') }}<span class="label label-success"></span></a>
+        <a href="{{ route('client.users.profile')}}">{{ trans('general.details') }}<span class="label label-success"></span></a>
     </li>
 
     <li  class="active">

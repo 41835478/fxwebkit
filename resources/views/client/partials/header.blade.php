@@ -28,7 +28,7 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li>
-									<a href="{{ route('clinet.profile') }}">
+									<a href="{{ route('client.users.profile') }}">
 										<i class="dropdown-icon fa fa-user"></i>&nbsp;&nbsp;
 										{{ Lang::get('general.Profile') }}
 									</a>

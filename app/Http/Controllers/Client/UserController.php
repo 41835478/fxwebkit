@@ -17,8 +17,8 @@ class UserController extends Controller
         $this->oUsers = $oUsers;
     }
 
-    public function getClientProfile(Request $oRequest) {
-        dd(5);
+    public function getProfiles(Request $oRequest) {
+
         $user = Sentinel::getUser();
         $oResult = $this->oUsers->getUserDetails($user->id);
 
@@ -37,10 +37,11 @@ class UserController extends Controller
             'gender' => $oResult['gender'],
         ];
 
-        return view('client.user.detailsProfile')->with('user_detalis', $user_details);
+        return view('client.user.detailsProfile')->with('user_details', $user_details);
     }
 
     public function getEditProfile(Request $oRequest) {
+
         $user = Sentinel::getUser();
         $oResult = $this->oUsers->getUserDetails($user->id);
 
@@ -63,14 +64,10 @@ class UserController extends Controller
             'zip_code' => $oResult['zip_code'],
             'gender' => $oResult['gender'],
         ];
-
-
         return view('client.user.editProfile')->with('userInfo', $userInfo);
     }
 
     public function postEditProfile(AddUserRequest $oRequest) {
-
-
         $result = 0;
         $resultMessage = [];
         if ($oRequest->edit_id > 0) {

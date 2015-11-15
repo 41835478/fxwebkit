@@ -1,6 +1,4 @@
-<?php
-
-namespace Fxweb\Http\Controllers\Admin;
+<?php namespace Fxweb\Http\Controllers\admin;
 
 use Fxweb\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,13 +7,9 @@ use Modules\Accounts\Http\Requests\AddUserRequest;
 use Illuminate\Support\Facades\Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
-class DashboardController extends Controller {
-
-    public function index() {
-        return view('admin.dashboard');
-    }
-/*
-    protected $oUsers;
+class UserController extends Controller
+{
+	protected $oUsers;
 
     public function __construct(
     Users $oUsers
@@ -23,7 +17,8 @@ class DashboardController extends Controller {
         $this->oUsers = $oUsers;
     }
 
-    public function getProfile(Request $oRequest) {
+    public function getProfiles(Request $oRequest) {
+
         $user = Sentinel::getUser();
         $oResult = $this->oUsers->getUserDetails($user->id);
 
@@ -40,17 +35,14 @@ class DashboardController extends Controller {
             'city' => $oResult['city'],
             'zip_code' => $oResult['zip_code'],
             'gender' => $oResult['gender'],
-            
         ];
 
-        return view('admin.user.detailsProfile')->with('user_detalis', $user_details);
+        return view('admin.user.detailsProfile')->with('user_details', $user_details);
     }
-
 
     public function getEditProfile(Request $oRequest) {
 
         $user = Sentinel::getUser();
-
         $oResult = $this->oUsers->getUserDetails($user->id);
 
         $country_array = $this->oUsers->getCountry(null);
@@ -73,13 +65,10 @@ class DashboardController extends Controller {
             'gender' => $oResult['gender'],
         ];
 
-
         return view('admin.user.editProfile')->with('userInfo', $userInfo);
     }
 
     public function postEditProfile(AddUserRequest $oRequest) {
-
-
         $result = 0;
         $resultMessage = [];
         if ($oRequest->edit_id > 0) {
@@ -110,11 +99,9 @@ class DashboardController extends Controller {
                                 'country_array' => $this->oUsers->getCountry(null),
                                 'city' => $oRequest->city,
                                 'zip_code' => $oRequest->zip_code,
-                                'gender' => $oRequest->gender,            
+                                'gender' => $oRequest->gender,
             ]);
         }
     }
- 
- */
-
+        
 }

@@ -7,7 +7,6 @@ Route::group(['middleware' => ['authenticate.client'], 'namespace' => 'Http\Cont
 {
 	Route::controller('users', 'UserController', [
 		'getSettings' => 'client.users.settings',
-		'getProfile' => 'client.users.profile',
 	]);
         	Route::controller('reports', 'ReportsController', [
 		'getClosedOrders' => 'clients.reports.closedOrders',
