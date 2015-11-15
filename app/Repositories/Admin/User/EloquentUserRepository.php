@@ -161,14 +161,22 @@ class EloquentUserRepository implements UserContract {
         if ($oRequest->password != '') {
             $aCredentials['password'] = $oRequest->password;
         }
+        
+//        $updateResult = Sentinel::validForUpdate($user, $aCredentials);
+//       
+//        if($updateResult){
+//            $fullDetails->save();
+//        }else{
+//            return ['The email has already been taken.'];
+//        }
         try {
-            
             $user = Sentinel::update($user, $aCredentials);
             $fullDetails->save();
             
-        } catch (Exception $e) {
-            return ['The email has already been taken.'];
+        } catch (\Illuminate\Database\QueryException $e) {
+            return 'The email has already been taken.';
         }
+       
         return $user->id;
     }
 
