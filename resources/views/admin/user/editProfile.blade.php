@@ -3,20 +3,11 @@
 @section('content')
 
 
-<ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
-    <li class="">
-        <a href="{{ route('admin.users.profile')}}">{{ trans('general.details') }}<span class="label label-success"></span></a>
-    </li>
-
-    <li  class="active">
-
-        <a href="{{ route('accounts.addAccount')}}">{{ trans('general.edit_info') }}<span class="badge badge-primary"></span></a>
-
-    </li>
-</ul>
-
-
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
+
+<div class="panel-heading">
+    <span class="panel-title">{{ trans('user.edit_user') }}</span>
+</div>
 
 <div class="panel-body">
     <div class="row">
@@ -131,11 +122,11 @@
 </div>
 @endif
 <div class="panel-footer text-right">
-    <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']  or 0 }}">save</button>
-
+     <a href="{{ route('admin.users.profile')}}">
+         <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('general.save') }}</button></a>
 </div>
-
 {!! Form::close() !!}
+
 @stop
 @section("script")
 @parent

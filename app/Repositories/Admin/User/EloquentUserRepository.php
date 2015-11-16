@@ -89,8 +89,7 @@ class EloquentUserRepository implements UserContract {
 
         $oClientRole = Sentinel::findRoleBySlug($role);
 
-        //$bAutoActivate	= Config::get('fxweb.auto_activate_client');
-        
+       
         $aCredentials = [
             'first_name' => $oRequest->first_name,
             'last_name' => $oRequest->last_name,
@@ -101,6 +100,7 @@ class EloquentUserRepository implements UserContract {
         $oUser = Sentinel::register($aCredentials);
         $oClientRole->users()->attach($oUser);
         $oActivation = Activation::create($oUser);
+
 
           $fullDetails=new UsersDetails();
         
@@ -226,10 +226,11 @@ if(is_array($users_id)){
     }
       public function getUserDetails($userId)
         {
-
+     
            $user = Sentinel::findById($userId);
-           $fullDetails=  UsersDetails::where('users_id',$userId)->first();
            
+           $fullDetails=  UsersDetails::where('users_id',$userId)->first();
+          
             $userDetails = [
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,

@@ -86,6 +86,8 @@ return [
     'emailTemplates'=>'Email Templates',
     'template'=>'Template',
     'language'=>'Language',
-    'save'=>'Save'
+    'save'=>'Save',
+    'edit'=>'Edit'
+    
     /*_______________End___email*/
 ];

@@ -3,9 +3,10 @@
 use Fxweb\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
-use Modules\Accounts\Http\Requests\AddUserRequest;
+use Fxweb\Http\Requests\Client\editUserRequest;
 use Illuminate\Support\Facades\Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Redirect;
 
 class UserController extends Controller
 {
@@ -67,39 +68,16 @@ class UserController extends Controller
         return view('client.user.editProfile')->with('userInfo', $userInfo);
     }
 
-    public function postEditProfile(AddUserRequest $oRequest) {
+    public function postEditProfile(editUserRequest $oRequest) {
         $result = 0;
-        $resultMessage = [];
-        if ($oRequest->edit_id > 0) {
+
             $oRequest->edit_id = Sentinel::getUser()->id;
             $result = $this->oUsers->updateUser($oRequest);
-        } else {
-            $role = explode(',', Config::get('fxweb.client_default_role'));
-            $result = $this->oUsers->addUser($oRequest, $role);
-        }
-
-        if ($result > 0) {
-            return $this->getEditProfile($oRequest);
-        } else {
-            return view('accounts::addAccount')
-                            ->withErrors($resultMessage)
-                            ->withErrors($result)
-                            ->with('userInfo', [
-                                'edit_id' => $oRequest->edit_id,
-                                'first_name' => $oRequest->first_name,
-                                'last_name' => $oRequest->last_name,
-                                'email' => $oRequest->email,
-                                'password' => $oRequest->password,
-                                'nickname' => $oRequest->nickname,
-                                'address' => $oRequest->address,
-                                'birthday' => $oRequest->birthday,
-                                'phone' => $oRequest->phone,
-                                'country' => $oRequest->country,
-                                'country_array' => $this->oUsers->getCountry(null),
-                                'city' => $oRequest->city,
-                                'zip_code' => $oRequest->zip_code,
-                                'gender' => $oRequest->gender,
-            ]);
+                
+        if ($result > 0) {    
+           return Redirect::route('client.users.profile'); 
+        } else {   
+            return Redirect::route('clinet.editProfile')->withErrors($result);                  
         }
     }
         

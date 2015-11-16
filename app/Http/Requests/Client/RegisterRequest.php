@@ -28,6 +28,7 @@ class RegisterRequest extends Request {
 			'email'	        => 'required|email|unique:users,email',
 			'password'	=> 'required|min:8',
                         'address'	=> 'required',
+                        'nickname'	=> 'required',
                         'phone'  	=> 'required',
                         'city'	        => 'required',
                         'country'	=> 'required',

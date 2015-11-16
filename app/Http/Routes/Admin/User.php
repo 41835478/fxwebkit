@@ -9,8 +9,7 @@ Route::group(['middleware' => ['authenticate.admin']], function()
 		'getSettings' => 'admin.users.settings',
 		 'getProfiles'=>'admin.users.profile',
                 'getEditProfile' => 'admin.editProfile',   
-                'postEditProfile' => 'admin.editProfiles', 
-               
+                'postEditProfile' => 'admin.editProfiles',      
 	]);
         /*
           Route::get('clientProfile', [

@@ -12,8 +12,8 @@ Route::group(['middleware' => ['authenticate.admin']], function()
         'getUserDetails'=>'general.userDetails',
         'getMt4UsersList'=>'admin.mt4UsersList',
         'getMt4UsersDetails'=>'admin.mt4UsersDetails',
-        'getEmailTemplates'=>'admin.addEmailTemplates'
+        'getEmailTemplates'=>'admin.addEmailTemplates',
+        'getDeleteUser'=>'admin.deleteUser'
         ]);
-
 });
 

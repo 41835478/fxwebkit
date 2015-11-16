@@ -1,10 +1,10 @@
 <?php
 
-namespace Fxweb\Http\Requests\Admin;
+namespace Fxweb\Http\Requests\Client;
 
 use Fxweb\Http\Requests\Request;
 
-class editUserRequsest extends Request
+class editUserRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,7 @@ class editUserRequsest extends Request
      */
     public function rules()
     {
-
-       $roles= [
+        $roles= [
             'first_name'=>'required|min:2|max:255',
             'last_name'=>'required|min:2|max:255',
             'email'=>'required|email|unique:users',
@@ -47,5 +46,4 @@ class editUserRequsest extends Request
            
         return $roles;
     }
-    
 }

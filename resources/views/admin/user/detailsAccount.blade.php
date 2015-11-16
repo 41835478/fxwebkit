@@ -2,28 +2,9 @@
 @section('title', trans('accounts.addAccount'))
 @section('content')
 
-  <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
-    @if($user_details['edit_id']!=0)
-    <li  class="active">
-        <a href="{{ route('general.userDetails').'?edit_id='.$user_details['edit_id']}}">{{ trans('general.details') }}<span class="label label-success"></span></a>
-    </li>
-
-    <li >
-
-        <a href="{{ route('general.editUser').'?edit_id='.$user_details['edit_id']}}">{{ trans('general.edit_info') }}<span class="badge badge-primary"></span></a>
-
-    </li>
-
-    @else
-    <li  class="active">
-
-        <a href="">{{ trans('general.new_user') }}<span class="badge badge-primary"></span></a>
-
-    </li>
-    @endif
-</ul>
-
-
+<div class="panel-heading">
+    <span class="panel-title">{{ trans('user.details') }}</span>
+</div>
 
 <div class="panel-body">
     <div class="row">
@@ -162,7 +143,10 @@
     
 </div>
 
-<div class="panel-footer text-right"></div>
+<div class="panel-footer text-right">
+     <a href="{{ route('general.editUser').'?edit_id='.$user_details['edit_id'] }}">
+         <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('general.edit') }}</button></a>
+</div>
 
 
 @stop

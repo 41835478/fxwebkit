@@ -2,17 +2,13 @@
 @section('title', trans('accounts::accounts.addAccount'))
 @section('content')
 
-<ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
-    
-    <li class="">
-        <a href="{{ route('accounts.detailsAccount').'?edit_id='.$userInfo['edit_id']}}">{{ trans('accounts::accounts.details') }}<span class="label label-success"></span></a>
-    </li>
-    <li  class="active">
-        <a href="{{ route('accounts.editAccount').'?edit_id='.$userInfo['edit_id']}}">{{ trans('accounts::accounts.edit_info') }}<span class="badge badge-primary"></span></a>
-    </li>
-</ul>
+
 
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
+
+<div class="panel-heading">
+    <span class="panel-title">{{ trans('user.edit_user') }}</span>
+</div>
 
 <div class="panel-body">
     <div class="row">
@@ -127,9 +123,9 @@
 </div>
 @endif
 <div class="panel-footer text-right">
-    <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']  or 0 }}">{{ trans('accounts::accounts.save') }}</button>
-
-</div>
+     <a href="{{ route('general.userDetails') }}">
+         <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']  or 0 }}">{{ trans('general.save') }}</button></a>
+         
 
 {!! Form::close() !!}
 @stop

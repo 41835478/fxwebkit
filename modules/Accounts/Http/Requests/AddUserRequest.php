@@ -37,20 +37,7 @@ class AddUserRequest extends FormRequest {
             'birthday'	=> 'required'
         ];
         
-        /*
-           if($this->edit_id >0 ){
-               
-            $roles['email']='required|email';
-            
-            if($this->password != ''){
-                
-            $roles['password']='required|min:6|max:255';
-            
-            }
-        }else{
-             $roles['password']='required|min:6|max:255';
-        }
-        */
+      
         return $roles;
         
     }

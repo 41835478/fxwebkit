@@ -2,18 +2,10 @@
 @section('title', trans('accounts.addAccount'))
 @section('content')
 
-    <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
-        <li class="active">
-            <a href="#uidemo-tabs-default-demo-home" data-toggle="tab">{{ trans('general.details') }}<span class="label label-success"></span></a>
-        </li>
 
-        <li  class="">
-
-            <a href="{{ route('clinet.editProfile')}}"  >{{ trans('general.edit_info') }}<span class="badge badge-primary"></span></a>
-
-        </li>
-    </ul>
-
+<div class="panel-heading">
+    <span class="panel-title">{{ trans('user.details') }}</span>
+</div>
 
 <div class="panel-body">
     <div class="row">
@@ -156,7 +148,11 @@
 
 </div>
 
-<div class="panel-footer text-right"></div>
+<div class="panel-footer text-right">
+     <a href="{{ route('clinet.editProfile').'?edit_id='.$user_details['id'] }}">
+         <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('general.edit') }}</button></a>
+</div>
+
 
 
 @stop

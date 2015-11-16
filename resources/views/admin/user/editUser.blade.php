@@ -2,23 +2,12 @@
 @section('title', trans('general.addUser'))
 @section('content')
 
-<ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
-
-    <li class="">
-        <a href="{{ route('general.userDetails').'?edit_id='.$userInfo['edit_id']}}">{{ trans('general.details') }}<span class="label label-success"></span></a>
-    </li>
-
-    <li  class="active">
-
-        <a href="{{ route('general.editUser').'?edit_id='.$userInfo['edit_id']}}">{{ trans('general.edit_info') }}<span class="badge badge-primary"></span></a>
-
-    </li>
-</ul>
 
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
-					<div class="panel-heading">
-						<span class="panel-title">{{ trans('general.addUser') }}</span>
-					</div>
+<div class="panel-heading">
+    <span class="panel-title">{{ trans('user.edit_user') }}</span>
+</div>
+					
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-sm-6">
@@ -136,12 +125,14 @@
                             
                         </div>
                         @endif
-					<div class="panel-footer text-right">
-                                            <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']  or 0 }}">save</button>
-                                            
-					</div>
+					
                     
-	{!! Form::close() !!}
+<div class="panel-footer text-right">
+     <a href="{{ route('general.userDetails') }}">
+         <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']  or 0 }}">{{ trans('general.save') }}</button></a>
+         
+         {!! Form::close() !!}
+</div>
 @stop
 @section('script')
     @parent

@@ -35,16 +35,7 @@ class editUserRequsest extends FormRequest {
             'birthday'	=> 'required'
         ];
         
-        if($this->edit_id >0 ){
-               
-            $roles['email']='required|email';
-            
-            if($this->password != ''){
-                
-            $roles['password']='required|min:6|max:255';
-            
-            }
-        }
+        $roles['email']='required|email';
         
         
         return $roles;

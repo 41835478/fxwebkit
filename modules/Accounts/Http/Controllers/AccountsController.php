@@ -78,13 +78,13 @@ class AccountsController extends Controller {
                         ->with('oResults', $oResults)
                         ->with('aFilterParams', $aFilterParams);
     }
+    
+    public function getDeleteAccount(Request $oRequest){
+        $result = $this->oUsers->deleteUser($oRequest->delete_id);
+            return Redirect::route('accounts.accountsList')->withErrors($result);
+    }
 
     public function getAddAccount(Request $oRequest) {
-
-        if ($oRequest->has('delete_id')) {
-            $result = $this->oUsers->deleteUser($oRequest->delete_id);
-            return Redirect::route('accounts.accountsList')->withErrors($result);
-        }
 
         $carbon = new Carbon();
         $dt = $carbon->now();
@@ -187,79 +187,73 @@ class AccountsController extends Controller {
 
     public function postAddAccount(AddUserRequest $oRequest) {
 
-        $result = 0;
-        $resultMessage = [];
-        if ($oRequest->edit_id > 0) {
-            $result = $this->oUsers->updateUser($oRequest);
-        } else {
-            $role = explode(',', Config::get('fxweb.client_default_role'));
-            $result = $this->oUsers->addUser($oRequest, $role);
-        }
+       $result = 0;
+
+        $admin_role = explode(',', Config::get('fxweb.admin_roles'));
+        
+        $result = $this->oUsers->addUser($oRequest, $admin_role[0]);
 
         if ($result > 0) {
             $oRequest->edit_id = $result;
-            //return $this->getEditAccount($oRequest);
-            return $this->getDetailsAccount($oRequest);
+             
+            $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
+
+            $user_details = [
+
+                'edit_id' => $oRequest->edit_id,
+                'first_name' => $oResult['first_name'],
+                'last_name' => $oResult['last_name'],
+                'password' => '',
+                'email' => $oResult['email'],
+                'nickname' => $oResult['nickname'],
+                'address' => $oResult['address'],
+                'birthday' => $oResult['birthday'],
+                'phone' => $oResult['phone'],
+                'country' => $oResult['country'],
+                'city' => $oResult['city'],
+                'zip_code' => $oResult['zip_code'],
+                'gender' => $oResult['gender'],
+            ];
+            return view('accounts::detailsAccount')->with('user_details', $user_details);
         } else {
-            $country_array = $this->oUsers->getCountry(null);
-            return view('accounts::addAccount')
-                            ->withErrors($resultMessage)
-                            ->withErrors($result)
-                            ->with('userInfo', [
-                                'edit_id' => $oRequest->edit_id,
-                                'first_name' => $oRequest->first_name,
-                                'last_name' => $oRequest->last_name,
-                                'email' => $oRequest->email,
-                                'password' => '',
-                                'nickname' => $oRequest->nickname,
-                                'address' => $oRequest->address,
-                                'birthday' => $oRequest->birthday,
-                                'phone' => $oRequest->phone,
-                                'country' => $oRequest->country,
-                                'country_array' => $country_array,
-                                'city' => $oRequest->city,
-                                'gender' => $oRequest->gender,
-                                'zip_code' => $oRequest->zip_code,
-            ]);
+
+            return view('accounts::addAccount')->withErrors($result);
         }
     }
 
     public function postEditAccount(EditUserRequsest $oRequest) {
 
-        $result = 0;
-        $resultMessage = [];
-        if ($oRequest->edit_id > 0) {
-            $result = $this->oUsers->updateUser($oRequest);
-        } else {
-            $role = explode(',', Config::get('fxweb.client_default_role'));
-            $result = $this->oUsers->addUser($oRequest, $role);
-        }
+       $result = 0;
+
+        $result = $this->oUsers->updateUser($oRequest);
+        
 
         if ($result > 0) {
-            $oRequest->edit_id = $result;
-            //return $this->getEditAccount($oRequest);
-            return $this->getDetailsAccount($oRequest);
+
+          $oRequest->edit_id = $result;
+             
+            $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
+
+            $user_details = [
+
+                'edit_id' => $oRequest->edit_id,
+                'first_name' => $oResult['first_name'],
+                'last_name' => $oResult['last_name'],
+                'password' => '',
+                'email' => $oResult['email'],
+                'nickname' => $oResult['nickname'],
+                'address' => $oResult['address'],
+                'birthday' => $oResult['birthday'],
+                'phone' => $oResult['phone'],
+                'country' => $oResult['country'],
+                'city' => $oResult['city'],
+                'zip_code' => $oResult['zip_code'],
+                'gender' => $oResult['gender'],
+            ];
+            return view('accounts::detailsAccount')->with('user_details', $user_details);
         } else {
-            $country_array = $this->oUsers->getCountry(null);
-            return view('accounts::addAccount')
-                            ->withErrors($resultMessage)
-                            ->withErrors($result)
-                            ->with('userInfo', [
-                                'edit_id' => $oRequest->edit_id,
-                                'first_name' => $oRequest->first_name,
-                                'last_name' => $oRequest->last_name,
-                                'email' => $oRequest->email,
-                                'password' => '',
-                                'nickname' => $oRequest->nickname,
-                                'address' => $oRequest->address,
-                                'birthday' => $oRequest->birthday,
-                                'phone' => $oRequest->phone,
-                                'country' => $oRequest->country,
-                                'country_array' => $country_array,
-                                'city' => $oRequest->city,
-                                'gender' => $oRequest->gender,
-                                'zip_code' => $oRequest->zip_code,
-            ]);
+
+            return view('accounts::addAccount')->withErrors($result);
         }
     }
 
@@ -535,7 +529,7 @@ class AccountsController extends Controller {
             'login' => $oRequest['login'],
             'password' => $oRequest['password']];
 
-        dd($userInfo);
+       
 
         return view('accounts::clientAddMt4User')->with('userInfo', $userInfo);
     }
