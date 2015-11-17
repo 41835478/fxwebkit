@@ -9,7 +9,7 @@ use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
 use Modules\Accounts\Http\Requests\AddUserRequest;
-use Modules\Accounts\Http\Requests\EditUserRequsest;
+use Modules\Accounts\Http\Requests\EditUserRequest;
 use Modules\Accounts\Http\Requests\AsignMt4User;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Config;
@@ -134,7 +134,6 @@ class AccountsController extends Controller {
     
      public function getEditAccount(Request $oRequest) {
        
-      
         if ($oRequest->has('delete_id')) {
             $result = $this->oUsers->deleteUser($oRequest->delete_id);
             return Redirect::route('accounts.accountsList')->withErrors($result);
@@ -200,7 +199,6 @@ class AccountsController extends Controller {
             $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
 
             $user_details = [
-
                 'edit_id' => $oRequest->edit_id,
                 'first_name' => $oResult['first_name'],
                 'last_name' => $oResult['last_name'],
@@ -222,22 +220,21 @@ class AccountsController extends Controller {
         }
     }
 
-    public function postEditAccount(EditUserRequsest $oRequest) {
+    public function postEditAccount(EditUserRequest $oRequest) {
 
        $result = 0;
-
+     
         $result = $this->oUsers->updateUser($oRequest);
         
-
         if ($result > 0) {
 
           $oRequest->edit_id = $result;
-             
+            
             $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
 
             $user_details = [
 
-                'edit_id' => $oRequest->edit_id,
+                'id' => $oRequest->edit_id,
                 'first_name' => $oResult['first_name'],
                 'last_name' => $oResult['last_name'],
                 'password' => '',
@@ -251,6 +248,7 @@ class AccountsController extends Controller {
                 'zip_code' => $oResult['zip_code'],
                 'gender' => $oResult['gender'],
             ];
+            
             return view('accounts::detailsAccount')->with('user_details', $user_details);
         } else {
 

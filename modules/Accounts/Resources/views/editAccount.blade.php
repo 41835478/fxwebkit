@@ -2,13 +2,11 @@
 @section('title', trans('accounts::accounts.addAccount'))
 @section('content')
 
-
+<div class="page-header">
+		<h1>{{ trans('accounts::accounts.edit_account') }}</h1>
+	</div>
 
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
-
-<div class="panel-heading">
-    <span class="panel-title">{{ trans('user.edit_user') }}</span>
-</div>
 
 <div class="panel-body">
     <div class="row">
@@ -123,10 +121,9 @@
 </div>
 @endif
 <div class="panel-footer text-right">
-     <a href="{{ route('general.userDetails') }}">
-         <button type="submit" class="btn btn-primary" name="edit_id"">{{ trans('general.save') }}</button></a>
+     <a href="{{ route('accounts.detailsAccount') }}">
+         <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']}}">{{ trans('general.save') }}</button></a>
          
-
 {!! Form::close() !!}
 @stop
 @section("script")

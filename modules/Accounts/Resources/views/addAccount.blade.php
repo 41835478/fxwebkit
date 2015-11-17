@@ -2,12 +2,10 @@
 @section('title', trans('accounts::accounts.addAccount'))
 @section('content')
 
-
+<div class="page-header">
+		<h1>{{ trans('accounts::accounts.addAccount') }}</h1>
+	</div>
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
-<div class="panel-heading">
-    <span class="panel-title">{{ trans('general.addUser') }}</span>
-</div>
-
 <div class="panel-body">
     <div class="row">
         <div class="col-sm-6">
@@ -117,12 +115,10 @@
     @foreach($errors->all() as $key=>$error)
     <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
     @endforeach
-
 </div>
 @endif
 <div class="panel-footer text-right">
     <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']  or 0 }}">{{ trans('accounts::accounts.save') }}</button>
-
 </div>
 
 {!! Form::close() !!}

@@ -3,7 +3,7 @@
 use Fxweb\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
-use Fxweb\Http\Requests\Admin\EditUserRequsest;
+use Fxweb\Http\Requests\Admin\EditUserRequest;
 use Illuminate\Support\Facades\Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Redirect;
@@ -68,15 +68,36 @@ class UserController extends Controller
         return view('admin.user.editProfile')->with('userInfo', $userInfo);
     }
 
-    public function postEditProfile(EditUserRequsest $oRequest) {
+    public function postEditProfile(EditUserRequest $oRequest) {
      
         $result = 0;
 
-            $oRequest->edit_id = Sentinel::getUser()->id;
+              $oRequest->edit_id = Sentinel::getUser()->id;
             $result = $this->oUsers->updateUser($oRequest);
-   
-        if ($result > 0) {    
-           return Redirect::route('general.userDetails'); 
+           
+        if ($result > 0) {   
+            
+            $oRequest->edit_id = $result;
+             
+            $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
+
+            $user_details = [
+                'edit_id' => $oRequest->edit_id,
+                'first_name' => $oResult['first_name'],
+                'last_name' => $oResult['last_name'],
+                'password' => '',
+                'email' => $oResult['email'],
+                'nickname' => $oResult['nickname'],
+                'address' => $oResult['address'],
+                'birthday' => $oResult['birthday'],
+                'phone' => $oResult['phone'],
+                'country' => $oResult['country'],
+                'city' => $oResult['city'],
+                'zip_code' => $oResult['zip_code'],
+                'gender' => $oResult['gender'],
+            ];
+          
+         return Redirect::route('admin.users.profile')->with('user_details',$user_details); 
         } else {   
             return Redirect::route('general.editUser')->withErrors($result);                  
         }

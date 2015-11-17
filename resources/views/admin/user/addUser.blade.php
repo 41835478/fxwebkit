@@ -2,12 +2,12 @@
 @section('title', trans('general.addUser'))
 @section('content')
 
-
+<div class="page-header">
+		<h1>{{ trans('general.addUser') }}</h1>
+	</div>
 
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
-<div class="panel-heading">
-    <span class="panel-title">{{ trans('general.addUser') }}</span>
-</div>
+
 <div class="panel-body">
     <div class="row">
         <div class="col-sm-6">

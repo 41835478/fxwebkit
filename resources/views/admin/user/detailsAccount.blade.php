@@ -2,9 +2,11 @@
 @section('title', trans('accounts.addAccount'))
 @section('content')
 
-<div class="panel-heading">
-    <span class="panel-title">{{ trans('user.details') }}</span>
-</div>
+<div class="page-header">
+		<h1>{{ trans('user.details') }}</h1>
+	</div>
+
+
 
 <div class="panel-body">
     <div class="row">

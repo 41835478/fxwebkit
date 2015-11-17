@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as User;
 use Fxweb\Http\Requests\AdminsListRequest;
 use Fxweb\Http\Requests\Admin\AddUserRequest;
-use Fxweb\Http\Requests\Admin\EditUserRequsest;
+use Fxweb\Http\Requests\Admin\EditUserRequest;
 use Fxweb\Http\Requests;
 use Fxweb\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
@@ -172,7 +172,7 @@ class SettingsController extends Controller {
         return view('admin/user/editUser')->with('userInfo', $userInfo)->with('oResult', $oResult);
     }
 
-    public function postEditUser(EditUserRequsest $oRequest) {
+    public function postEditUser(EditUserRequest $oRequest) {
 
         $result = 0;
 

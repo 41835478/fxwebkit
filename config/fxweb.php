@@ -35,14 +35,7 @@ return [
                     'route' => 'admin.adminsList',
                     'title' => 'adminsList',
                     'icon' => 'fa fa-users',
-                ]
-                
-            ]
-        ],[
-            'route' => 'admin.addEmailTemplates',
-            'title' => 'Email',
-            'icon' => 'fa fa-envelope-o',
-            'subMenus' => [
+                ],
                 [
                     'route' => 'admin.addEmailTemplates',
                     'title' => 'addEmailTemplates',
@@ -50,7 +43,7 @@ return [
                 ]
                 
             ]
-        ]
+        ],
         
     ],'client_menu' => [
         [

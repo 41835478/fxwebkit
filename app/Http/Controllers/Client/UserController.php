@@ -3,7 +3,7 @@
 use Fxweb\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
-use Fxweb\Http\Requests\Client\editUserRequest;
+use Fxweb\Http\Requests\Client\EditUserRequest;
 use Illuminate\Support\Facades\Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Redirect;
@@ -68,7 +68,7 @@ class UserController extends Controller
         return view('client.user.editProfile')->with('userInfo', $userInfo);
     }
 
-    public function postEditProfile(editUserRequest $oRequest) {
+    public function postEditProfile(EditUserRequest $oRequest) {
         $result = 0;
 
             $oRequest->edit_id = Sentinel::getUser()->id;

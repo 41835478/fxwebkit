@@ -2,11 +2,10 @@
 @section('title', trans('accounts::accounts.addAccount'))
 @section('content')
 
+<div class="page-header">
+		<h1>{{ trans('accounts::accounts.details') }}</h1>
+	</div>
 
-
-<div class="panel-heading">
-    <span class="panel-title">{{ trans('user.details') }}</span>
-</div>
 
 <div class="panel-body">
     <div class="row">
@@ -149,7 +148,7 @@
 </div>
 
 <div class="panel-footer text-right">
-     <a href="{{ route('general.editUser').'?edit_id='.$user_details['id'] }}">
+     <a href="{{ route('accounts.editAccount').'?edit_id='.$user_details['id'] }}">
          <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('general.edit') }}</button></a>
 </div>
 

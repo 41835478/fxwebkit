@@ -3,13 +3,13 @@
 @section('content')
 
 
-
+<div class="page-header">
+		<h1>{{ trans('user.edit_user') }}</h1>
+	</div>
 
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
 
-<div class="panel-heading">
-    <span class="panel-title">{{ trans('user.edit_user') }}</span>
-</div>
+
 
 <div class="panel-body">
     <div class="row">

@@ -4,7 +4,7 @@ namespace Fxweb\Http\Requests\Admin;
 
 use Fxweb\Http\Requests\Request;
 
-class editUserRequsest extends Request
+class EditUserRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class editUserRequsest extends Request
      */
     public function authorize()
     {
-        return true;
+        return TRUE;
     }
 
     /**
@@ -23,7 +23,7 @@ class editUserRequsest extends Request
      */
     public function rules()
     {
-
+        
        $roles= [
             'first_name'=>'required|min:2|max:255',
             'last_name'=>'required|min:2|max:255',
@@ -47,5 +47,4 @@ class editUserRequsest extends Request
            
         return $roles;
     }
-    
 }

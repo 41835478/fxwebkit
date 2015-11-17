@@ -87,4 +87,5 @@ return [
     'country' => 'Country :',
     'city' => 'City :',
     'zip_code' => 'Zip Code :',
+    'edit_account'=>'Edit Account',
 ];
