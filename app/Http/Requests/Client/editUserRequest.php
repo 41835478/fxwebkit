@@ -4,7 +4,7 @@ namespace Fxweb\Http\Requests\Client;
 
 use Fxweb\Http\Requests\Request;
 
-class editUserRequest extends Request
+class EditUserRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
