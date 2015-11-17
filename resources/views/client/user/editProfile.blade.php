@@ -128,7 +128,7 @@
 
 <div class="panel-footer text-right">
      <a href="{{ route('client.users.profile')}}">
-         <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('general.save') }}</button></a>
+         <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']}}">{{ trans('general.save') }}</button></a>
 </div>
 {!! Form::close() !!}
 

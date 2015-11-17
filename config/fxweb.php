@@ -46,18 +46,6 @@ return [
         ],
         
     ],'client_menu' => [
-        [
-            'route' => '#',
-            'title' => 'Mt4Users',
-            'icon' => 'fa fa-users',
-            'subMenus' => [
-                [
-                    'route' => 'client.addMt4User',
-                    'title' => 'addMt4User',
-                    'icon' => 'fa fa-plus',
-                ]
-                
-            ]
-        ]
+        
     ]
 ];

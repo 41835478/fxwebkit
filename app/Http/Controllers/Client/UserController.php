@@ -24,7 +24,7 @@ class UserController extends Controller
         $oResult = $this->oUsers->getUserDetails($user->id);
 
         $user_details = [
-            'id' => $oRequest->edit_id,
+            'id' =>  $user->id,
             'first_name' => $oResult['first_name'],
             'last_name' => $oResult['last_name'],
             'email' => $oResult['email'],

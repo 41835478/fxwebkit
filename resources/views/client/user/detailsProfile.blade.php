@@ -3,34 +3,37 @@
 @section('content')
 
 <div class="page-header">
-		<h1>{{ trans('user.details') }}</h1>
-	</div>
-
+    <h1>{{ trans('user.details') }}</h1>
+</div>
 
 
 <div class="panel-body">
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.first_name') }} : </label>
+                <label class="control-label">{{ trans('general.name') }}</label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_details['first_name'] }}</label>
+                <label class="control-label">{{$user_details['first_name'].$user_details['last_name'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.last_name') }} : </label>     
+                <label class="control-label">{{ trans('general.gender') }} : </label>
             </div>
-        </div><!-- col-sm-6 --> 
+        </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_details['last_name'] }}</label>
+                @if($user_details['gender']==0)
+                <label class="control-label">{{ trans('user.male') }}</label>
+                @else
+                <label class="control-label">{{ trans('user.female') }}</label>
+                @endif
             </div>
-        </div>
+        </div><!--ol-sm-6 -->
     </div><!-- row -->
 
     <div class="row">
@@ -129,31 +132,12 @@
             </div>
         </div>
     </div><!-- row -->
-    
-     <div class="row">
-        <div class="col-sm-2 text-right">
-            <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.gender') }} : </label>
-            </div>
-        </div><!-- ol-sm-6 -->
-        <div class="col-sm-4 text-left">
-            <div class="form-group no-margin-hr">
-                @if($user_details['gender']==0)
-                <label class="control-label">Male</label>
-                @else
-                <label class="control-label">Female</label>
-                @endif
-            </div>
-        </div><!--ol-sm-6 -->
-    </div><!-- row -->
 
 </div>
-
 <div class="panel-footer text-right">
-     <a href="{{ route('clinet.editProfile').'?edit_id='.$user_details['id'] }}">
-         <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('general.edit') }}</button></a>
+    <a href="{{ route('clinet.editProfile').'?edit_id='.$user_details['id'] }}">
+        <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('general.edit') }}</button></a>
 </div>
-
 
 
 @stop

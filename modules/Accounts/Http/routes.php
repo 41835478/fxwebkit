@@ -17,3 +17,10 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'accounts', 'na
             ]);
 });
 
+
+Route::group(['middleware' => ['authenticate.client'],'prefix' => 'accounts', 'namespace' => 'Modules\Accounts\Http\Controllers'], function()
+{
+        Route::controller('client-accounts','ClientAccountsController',[
+            'getMt4UsersList'=>'clients.accounts.Mt4UsersList',
+            ]);
+});

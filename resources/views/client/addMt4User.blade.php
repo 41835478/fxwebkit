@@ -3,9 +3,11 @@
 @section('content')
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
 
-<div class="panel-heading">
-    <span class="panel-title">Asign Mt4 User</span>
+<div class="page-header">
+    <h1>{{ trans('general.asign_mt4_user') }}</h1>
 </div>
+
+
 <div class="panel-body">
     <div class="row">
         <div class="col-sm-6">
