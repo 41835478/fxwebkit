@@ -69,36 +69,13 @@
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
-
-            @if (count($oResults))
-            <div class="stat-panel no-margin-b">
-                <div class="stat-row">
-                    <div class="stat-counters bg-info no-padding text-center">
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Total Results {{ $oResults->total() }}</span>
-                        </div>
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Results From {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }}</span>
-                        </div>
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Page {{ $oResults->currentPage() }} of {{ $oResults->lastPage() }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="padding-xs-vr"></div>
-            @endif
-
             <div class="table-info">
-
-
-
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('accounts::accounts.mt4Users') }}  
-
                     </div>
                 </div>
+               
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -128,7 +105,7 @@
                             <td>{{ $oResult->MARGIN }}</td>
                             <td>{{ $oResult->MARGIN_FREE }}</td>
                             <td>{{ $oResult->LEVERAGE }}</td>
-                            <td><a href="{{ route('accounts.mt4UserDetails').'?login='. $oResult->LOGIN }}&from_date=&to_date=&search=Search&sort=asc&order=login">details</a></td>
+                           <td><a href="{{ route('accounts.mt4UserDetails').'?login='. $oResult->LOGIN }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text"></a></td>
 
                         </tr>
                         @endforeach
@@ -138,6 +115,10 @@
                 <div class="table-footer text-center">
                     @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                    
+                    <div class="col-sm-3  padding-xs-vr">
+                        <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
+                    </div>
                     @endif
                 </div>
             </div>

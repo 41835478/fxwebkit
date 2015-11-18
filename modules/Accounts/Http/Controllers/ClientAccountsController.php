@@ -36,8 +36,9 @@ class ClientAccountsController extends Controller {
     }
 
     public function getMt4UsersList(Request $oRequest) {
+        
 
-        $oGroups = $this->oMt4User->getAllGroups();
+      
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
         $aGroups = [];
@@ -54,9 +55,7 @@ class ClientAccountsController extends Controller {
             'order' => $sOrder,
         ];
 
-        foreach ($oGroups as $oGroup) {
-            $aGroups[$oGroup->group] = $oGroup->group;
-        }
+        
 
 
 
@@ -66,11 +65,12 @@ class ClientAccountsController extends Controller {
             $aFilterParams['exactLogin'] = $oRequest->exactLogin;
             $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['name'] = $oRequest->name;
-            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['all_groups'] = true;
             $aFilterParams['group'] = $oRequest->group;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
             $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
+         
         }
 
 
@@ -81,6 +81,7 @@ class ClientAccountsController extends Controller {
     }
 
     public function getMt4UserDetails(Request $oRequest) {
+        
         $oGroups = $this->oMt4User->getAllGroups();
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';

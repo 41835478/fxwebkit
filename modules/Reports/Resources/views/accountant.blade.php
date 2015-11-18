@@ -243,6 +243,11 @@
                 <div class="table-footer text-center">
                     @if (count($oResults[0]))
                     {!! str_replace('/?', '?', $oResults[0]->appends(Input::except('page'))->render()) !!}
+                    
+                    <div class="col-sm-3  padding-xs-vr">
+                        <span class="text-xs">Showing {{ $oResults[0]->firstItem() }} to {{ $oResults[0]->lastItem() }} of {{ $oResults[0]->total() }} entries</span>
+                    </div>
+                    
                     @endif
                 </div>
             </div>
@@ -365,7 +370,7 @@
                     data: [0, {!! $oResults[1]['creditOut'] * - 1 !!}]
             }]
     });
-            }
+    }
     buildHighCharts();
             $(".highcharts-legend-item").attr('onclick', 'return false;');
 </script>

@@ -50,6 +50,7 @@
                 <label class="control-label">{{ trans('general.nickname') }} : </label>     
             </div>
         </div><!-- col-sm-6 --> 
+        
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{$user_details['nickname'] }}</label>
@@ -59,27 +60,28 @@
 
 
     <div class="row">
+       <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.address') }} : </label>
+                <label class="control-label">{{ trans('general.name') }}  </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_details['address'] }}</label>
+                <label class="control-label">{{$user_details['first_name'].$user_details['last_name'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.birthday') }} : </label>     
+                <label class="control-label">{{ trans('general.gender') }} : </label>
             </div>
-        </div><!-- col-sm-6 --> 
+        </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_details['birthday'] }}</label>
+                <label class="control-label">{{ ($user_details['gender']==1)? 'Female':'Male' }}</label>
             </div>
-        </div>
+        </div><!--ol-sm-6 -->
     </div><!-- row -->
 
     <div class="row">

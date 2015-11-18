@@ -22,7 +22,7 @@ return [
     'theme' => [
         'color' => env('THEME_COLOR', 'default'),
         'navbarFixed' => env('FIXED_NAVBAR', false),
-        'menuFixed' => env('FIXED_MENU', false),
+            'menuFixed' => env('FIXED_MENU mmc', false),
         'menuAnimated' => env('ANIMATED_MENU', false),
     ],
     'admin_menu' => [

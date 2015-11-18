@@ -57,11 +57,11 @@ class SettingsController extends Controller {
 
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-
+            
+            }
             $role = explode(',', Config::get('fxweb.admin_roles'));
             $oResults = $this->oUser->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role[0]);
-        }
-
+        
         return view('admin/user/adminsList')
                         ->with('oResults', $oResults)
                         ->with('aFilterParams', $aFilterParams);
