@@ -1,3 +1,7 @@
 .overflow-a{overflow:auto}
 .table th a{color:#FFF}
 .no-warp{white-space:nowrap}
+#jq-datatables-example_filter input{width:70px;}
+.DT-search{width:70px !important;}
+#jq-datatables-example_length{width:50px;}
+#jq-datatables-example_length input{height: 30px;width:50px !important;}

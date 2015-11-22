@@ -33,7 +33,7 @@
                 <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('accounts::accounts.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']) !!}</div></li>
- 
+
                 <li><div  class=" nav-input-div  ">
                         {!! Form::submit(trans('accounts::accounts.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>
@@ -42,7 +42,7 @@
 
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
             {!! Form::hidden('order', $aFilterParams['order']) !!}
-            
+
 
         </div>
     </div>
@@ -53,7 +53,7 @@
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
-            
+
             <div class="table-info">
                 <div class="table-header">
                     <div class="table-caption">
@@ -95,20 +95,30 @@
                     </tbody>
                 </table>
                 <div class="table-footer text-center ">
- 
+
                     @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
-                   
+
+                    <div class="DT-lf-right ">
+                        <div class="DT-per-page">
+                            <div id="jq-datatables-example_filter" class="dataTables_filter">
+                                <label>
+                                    {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                   </label>
+                            </div>
+                        </div>
+                        <div class="DT-search">
+                            <div class="dataTables_length" id="jq-datatables-example_length">
+                                <label>
+                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-sm-3  padding-xs-vr">
                         <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
-                    </div>
+                    </div> 
                     @endif
-                </div>
-                <li><div  class=" nav-input-div  ">{!! Form::text('go', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']) !!}</div></li>
- 
-                <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('accounts::accounts.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'go']) !!}
-                    </div></li>
+                </div>  
             </div>
         </div>
     </div>

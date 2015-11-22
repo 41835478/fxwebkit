@@ -392,6 +392,7 @@ class ReportsController extends Controller {
 
         if ($oRequest->has('search')) {
             $oResults = $this->oMt4Trade->getCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
+          
             $oResults[0]->order = $aFilterParams['order'];
             $oResults[0]->sorts = $aFilterParams['sort'];
         }

@@ -50,7 +50,7 @@
 
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
             {!! Form::hidden('order', $aFilterParams['order']) !!}
-            {!! Form::close() !!}
+         
 
 
         </div>
@@ -104,34 +104,37 @@
                         @endif
                     </tbody>
                 </table>
-                <div class="table-footer  clearfix">
+                <div class="table-footer text-center">
                     @if (count($oResults))
-                    <div class="DT-pagination">
-                        
-                        
-                        <li>
-                    <div  class=" nav-input-div  ">
-                        {!! Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('accounts::accounts.Email'),'class'=>'form-control input-sm']) !!}
-                    </div>
-                </li>
-
-                <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-                    </div></li>
-                        
-                        <div class="dataTables_paginate paging_simple_numbers" id="jq-datatables-example_paginate">
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
-                        </div></div>
+                   
+                    
+                    <div class="DT-lf-right ">
+                        <div class="DT-per-page">
+                            <div id="jq-datatables-example_filter" class="dataTables_filter">
+                                <label>
+                                    {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                   </label>
+                            </div>
+                        </div>
+                        <div class="DT-search">
+                            <div class="dataTables_length" id="jq-datatables-example_length">
+                                <label>
+                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="col-sm-3  padding-xs-vr">
                         <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
                     </div>
                     @endif
-                </div>
             </div>
         </div>
     </div>
 </div>
 </div>
+   {!! Form::close() !!}
 <script>
     init.push(function () {
 

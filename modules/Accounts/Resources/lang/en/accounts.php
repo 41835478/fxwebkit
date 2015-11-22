@@ -90,5 +90,7 @@ return [
     'edit_account'=>'Edit Account',
     'name'=>'Name :',
     'addMt4User'=>'Add Mt4 User',
+    'page'=>'Page',
+    'go'=>'Go',
    
 ];

@@ -76,7 +76,7 @@
 
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
             {!! Form::hidden('order', $aFilterParams['order']) !!}
-            {!! Form::close() !!}
+            
 
         </div>
     </div>
@@ -156,6 +156,23 @@
                 <div class="table-footer text-center">
                     @if (count($oResults[0]))
                     {!! str_replace('/?', '?', $oResults[0]->appends(Input::except('page'))->render()) !!}
+                 
+                     <div class="DT-lf-right ">
+                        <div class="DT-per-page">
+                            <div id="jq-datatables-example_filter" class="dataTables_filter">
+                                <label>
+                                    {!! Form::text('page',$oResults[0]->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}  </label>
+                            </div>
+                        </div>
+                        <div class="DT-search">
+                            <div class="dataTables_length" id="jq-datatables-example_length">
+                                <label>
+                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
                     
                     <div class="col-sm-3  padding-xs-vr">
                         <span class="text-xs">Showing {{ $oResults[0]->firstItem() }} to {{ $oResults[0]->lastItem() }} of {{ $oResults[0]->total() }} entries</span>
@@ -167,6 +184,7 @@
     </div>
 </div>
 </div>
+{!! Form::close() !!}
 <script>
     init.push(function () {
         var options = {
