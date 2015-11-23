@@ -244,7 +244,7 @@
                     @if (count($oResults[0]))
                     {!! str_replace('/?', '?', $oResults[0]->appends(Input::except('page'))->render()) !!}
                     
-                    
+                    @if($oResults[0]->total()>25)
                        <div class="DT-lf-right change_page_all_div" >
                   
                            
@@ -258,7 +258,7 @@
                             
                    
                     </div>
-                    
+                    @endif
                     
                     <div class="col-sm-3  padding-xs-vr">
                         <span class="text-xs">Showing {{ $oResults[0]->firstItem() }} to {{ $oResults[0]->lastItem() }} of {{ $oResults[0]->total() }} entries</span>

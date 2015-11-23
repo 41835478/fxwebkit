@@ -22,5 +22,6 @@ Route::group(['middleware' => ['authenticate.client'],'prefix' => 'accounts', 'n
 {
         Route::controller('client-accounts','ClientAccountsController',[
             'getMt4UsersList'=>'clients.accounts.Mt4UsersList',
+            'getMt4UserDetails'=>'clients.accounts.mt4UserDetails',
             ]);
 });

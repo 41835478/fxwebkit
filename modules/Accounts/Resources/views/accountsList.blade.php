@@ -107,7 +107,7 @@
                 <div class="table-footer text-right">
                     @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
-                   
+                   @if($oResults->total()>25)
                     
                     <div class="DT-lf-right change_page_all_div" >
                   
@@ -122,6 +122,7 @@
                             
                    
                     </div>
+                   @endif
                     
                     <div class="col-sm-3  padding-xs-vr">
                         <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>

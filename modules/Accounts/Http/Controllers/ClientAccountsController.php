@@ -64,6 +64,8 @@ class ClientAccountsController extends Controller {
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
             $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
+            
+        
         }
         
         return view('accounts::client.mt4Accounts')
@@ -113,7 +115,7 @@ class ClientAccountsController extends Controller {
 
 
 
-        return view('accounts::accountStatement')
+        return view('accounts::client.accountStatement')
                         ->with('aGroups', $aGroups)
                         ->with('oResults', $oResults)
                         ->with('aSummery', $aSummery)

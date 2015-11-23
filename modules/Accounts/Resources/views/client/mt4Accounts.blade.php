@@ -52,7 +52,7 @@
             {{ trans('accounts::accounts.accounts') }}
         </div>
         <div class="center_page_all_div">
-            @include('admin.partials.messages')
+            @include('client.partials.messages')
 
             <div class="table-info">
                 <div class="table-header">
@@ -87,7 +87,7 @@
                             <td>{{ $oResult->MARGIN }}</td>
                             <td>{{ $oResult->MARGIN_FREE }}</td>
                             <td>{{ $oResult->LEVERAGE }}</td>
-                            <td><a href="{{ route('accounts.mt4UserDetails').'?login='. $oResult->LOGIN }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text"></a></td>
+                            <td><a href="{{ route('clients.accounts.mt4UserDetails').'?login='. $oResult->LOGIN }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text"></a></td>
 
                         </tr>
                         @endforeach
@@ -98,7 +98,7 @@
 
                     @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
-
+@if($oResults->total()>25)
                     <div class="DT-lf-right change_page_all_div" >
                   
                            
@@ -112,6 +112,7 @@
                             
                    
                     </div>
+@endif
                     <div class="col-sm-3  padding-xs-vr">
                         <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
                     </div> 
