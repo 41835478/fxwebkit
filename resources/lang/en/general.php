@@ -67,6 +67,8 @@ return [
     'new_user'=>'New user',
     'new_mt4_user'=>'New Mt4 User',
     'add_mt4_user'=>'Add Mt4 User',
+    'name'=>'Name :',
+    'asign_mt4_user'=>'Asign Mt4 User',
 
     'details'=>'Details',
     'edit_info'=>'Edit Info',    
@@ -82,10 +84,12 @@ return [
     
     /*__________________email*/
     "Email"=>'Email',
-    'addEmailTemplates'=>'Add Email Templates',
+    'addEmailTemplates'=>'Email Templates',
     'emailTemplates'=>'Email Templates',
     'template'=>'Template',
     'language'=>'Language',
-    'save'=>'Save'
+    'save'=>'Save',
+    'edit'=>'Edit'
+    
     /*_______________End___email*/
 ];

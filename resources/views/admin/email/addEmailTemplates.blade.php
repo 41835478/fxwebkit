@@ -4,16 +4,13 @@
 
 <div class="page-header">
     <div class="page-title">
-        <h5>{{ trans('general.emailTemplates') }}</h5>
+        <h1>{{ trans('general.emailTemplates') }}</h1>
     </div>
 </div>
 
 {!! Form::open(array('method'=>'get','id'=>'showTemplateForm')) !!}
 <fieldset>
-    <div class="widget row-fluid">
-        <div class="navbar">
-            <div class="navbar-inner"><h6>{{ trans('general.emailTemplates') }}</h6></div>
-        </div>
+    
         <div class="well">
 
             <div class="col-sm-12">

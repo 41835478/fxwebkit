@@ -50,6 +50,9 @@ return [
         'status'=>'Status',
         'group'=>'Group',
         'gender'=>'Gender',
+        'edit_user'=>'Edit User',
+        'details'=>'Details',
+    
        
 
         'mt4UserLogin'=>'Log IN',

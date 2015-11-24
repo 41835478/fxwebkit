@@ -9,7 +9,7 @@
         margin-bottom: 7px;
         padding: 5px !important;
     }
-      .theme-default .page-mail{ overflow: visible;height: auto; min-height: 800px;}
+    .theme-default .page-mail{ overflow: visible;height: auto; min-height: 800px;}
     .center_page_all_div{ padding: 0px 10px;}
     .mail-nav .navigation{margin-top: 35px;}
 </style>
@@ -19,20 +19,20 @@
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections">
                 <li class="active"><a href="#"> <i class="fa fa-search"></i> search </a></li>
-                                                   <li>
-                   <div class="   nav-input-div">
-						<div class="checkbox">
-							<label>
-								{!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
-								<span class="lbl">{{ trans('reports::reports.ExactLogin') }}</span>
-							</label>
-						</div>
-					</div>
-                   </li>
-                 <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
+                <li>
+                    <div class="   nav-input-div">
+                        <div class="checkbox">
+                            <label>
+                                {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
+                                <span class="lbl">{{ trans('reports::reports.ExactLogin') }}</span>
+                            </label>
+                        </div>
+                    </div>
+                </li>
+                <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
                 <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div></li>
-            <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}</div></li>
+                <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li>
 
                     <div class=" nav-input-div form-group ">
@@ -57,7 +57,7 @@
 
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
             {!! Form::hidden('order', $aFilterParams['order']) !!}
-            {!! Form::close() !!}
+        
 
 
         </div>
@@ -70,24 +70,6 @@
         <div class="center_page_all_div">
             @include('admin.partials.messages')
 
-            @if (count($oResults))
-            <div class="stat-panel no-margin-b">
-                <div class="stat-row">
-                    <div class="stat-counters bg-info no-padding text-center">
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Total Results {{ $oResults->total() }}</span>
-                        </div>
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Results From {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }}</span>
-                        </div>
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Page {{ $oResults->currentPage() }} of {{ $oResults->lastPage() }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="padding-xs-vr"></div>
-            @endif
 
             <div class="table-info">
                 <div class="table-header">
@@ -139,20 +121,41 @@
                             <td>{{ $oResult->GROUP }}</td>
                             <td>{{ $oResult->EQUITY }}</td>
                             <td>{{ $oResult->BALANCE }}</td>
-                            
+
                             <td>{{ $oResult->AGENT_ACCOUNT }}</td>
                             <td>{{ $oResult->MARGIN }}</td>
                             <td>{{ $oResult->MARGIN_FREE }}</td>
                             <td>{{ $oResult->LEVERAGE }}</td>
-                            <td><a href="{{ asset('admin/reports/account-statement?login='. $oResult->LOGIN .'&from_date=&to_date=&search=Search&sort=asc&order=login') }}">details</a></td>
+                          <td><a href="{{ route('accounts.mt4UserDetails').'?login='. $oResult->LOGIN }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text"></a></td>
                         </tr>
                         @endforeach
                         @endif
                     </tbody>
                 </table>
-                <div class="table-footer text-center">
+                <div class="table-footer text-right">
                     @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                  
+                    @if($oResults->total()>25)
+                    
+                      <div class="DT-lf-right change_page_all_div" >
+                  
+                           
+                              
+                                    {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
+                    
+                            
+                               
+                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                               
+                            
+                   
+                    </div>
+                    
+                    @endif
+                    <div class="col-sm-3  padding-xs-vr">
+                        <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
+                    </div>
                     @endif
                 </div>
             </div>
@@ -160,6 +163,7 @@
     </div>
 </div>
 </div>
+    {!! Form::close() !!}
 <script>
     init.push(function () {
 
@@ -177,25 +181,25 @@
         } else {
             $('#all-groups-slc').removeAttr('disabled');
         }
-                        
-                        
-			$('#exactLogin').change(function(){
-				if ($('#exactLogin').prop('checked')) {
-                                    $("#from_login_li,#to_login_li").hide();
-                                    $("#login_li").show();
-				} else {
-                                    $("#from_login_li,#to_login_li").show();
-                                    $("#login_li").hide();
-				}
-			});
 
-				if ($('#exactLogin').prop('checked')) {
-                                    $("#from_login_li,#to_login_li").hide();
-                                    $("#login_li").show();
-				} else {
-                                    $("#from_login_li,#to_login_li").show();
-                                    $("#login_li").hide();
-				}
+
+        $('#exactLogin').change(function () {
+            if ($('#exactLogin').prop('checked')) {
+                $("#from_login_li,#to_login_li").hide();
+                $("#login_li").show();
+            } else {
+                $("#from_login_li,#to_login_li").show();
+                $("#login_li").hide();
+            }
+        });
+
+        if ($('#exactLogin').prop('checked')) {
+            $("#from_login_li,#to_login_li").hide();
+            $("#login_li").show();
+        } else {
+            $("#from_login_li,#to_login_li").show();
+            $("#login_li").hide();
+        }
 
     });
 

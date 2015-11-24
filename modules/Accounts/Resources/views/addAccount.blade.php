@@ -2,23 +2,10 @@
 @section('title', trans('accounts::accounts.addAccount'))
 @section('content')
 
-<ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
-    @if($userInfo['edit_id']!=0)
-    <li class="">
-        <a href="{{ route('accounts.detailsAccount').'?edit_id='.$userInfo['edit_id']}}">{{ trans('accounts::accounts.details') }}<span class="label label-success"></span></a>
-    </li>
-    <li  class="active">
-        <a href="{{ route('accounts.addAccount').'?edit_id='.$userInfo['edit_id']}}">{{ trans('accounts::accounts.edit_info') }}<span class="badge badge-primary"></span></a>
-    </li>
-    @else
-    <li  class="active">
-        <a href="">{{ trans('accounts::accounts.new_user') }}<span class="badge badge-primary"></span></a>
-    </li>
-    @endif
-</ul>
-
+<div class="page-header">
+		<h1>{{ trans('accounts::accounts.addAccount') }}</h1>
+	</div>
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
-
 <div class="panel-body">
     <div class="row">
         <div class="col-sm-6">
@@ -128,12 +115,10 @@
     @foreach($errors->all() as $key=>$error)
     <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
     @endforeach
-
 </div>
 @endif
 <div class="panel-footer text-right">
     <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']  or 0 }}">{{ trans('accounts::accounts.save') }}</button>
-
 </div>
 
 {!! Form::close() !!}

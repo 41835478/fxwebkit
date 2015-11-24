@@ -22,7 +22,7 @@ return [
     'theme' => [
         'color' => env('THEME_COLOR', 'default'),
         'navbarFixed' => env('FIXED_NAVBAR', false),
-        'menuFixed' => env('FIXED_MENU', false),
+            'menuFixed' => env('FIXED_MENU mmc', false),
         'menuAnimated' => env('ANIMATED_MENU', false),
     ],
     'admin_menu' => [
@@ -35,14 +35,7 @@ return [
                     'route' => 'admin.adminsList',
                     'title' => 'adminsList',
                     'icon' => 'fa fa-users',
-                ]
-                
-            ]
-        ],[
-            'route' => 'admin.addEmailTemplates',
-            'title' => 'Email',
-            'icon' => 'fa fa-envelope-o',
-            'subMenus' => [
+                ],
                 [
                     'route' => 'admin.addEmailTemplates',
                     'title' => 'addEmailTemplates',
@@ -50,21 +43,9 @@ return [
                 ]
                 
             ]
-        ]
+        ],
         
     ],'client_menu' => [
-        [
-            'route' => '#',
-            'title' => 'Mt4Users',
-            'icon' => 'fa fa-users',
-            'subMenus' => [
-                [
-                    'route' => 'client.addMt4User',
-                    'title' => 'addMt4User',
-                    'icon' => 'fa fa-plus',
-                ]
-                
-            ]
-        ]
+        
     ]
 ];

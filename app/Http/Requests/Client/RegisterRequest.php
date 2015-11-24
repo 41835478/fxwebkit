@@ -27,14 +27,15 @@ class RegisterRequest extends Request {
 			'last_name'	=> 'required|alpha',
 			'email'	        => 'required|email|unique:users,email',
 			'password'	=> 'required|min:8',
-			'agreement'     => 'required',
                         'address'	=> 'required',
+                        'nickname'	=> 'required',
                         'phone'  	=> 'required',
                         'city'	        => 'required',
                         'country'	=> 'required',
                         'zip_code'	=> 'required',
                         'gender'	=> 'required',
                         'birthday'	=> 'required',
+                        'agreement'     => 'required',
 		];
 	}
 

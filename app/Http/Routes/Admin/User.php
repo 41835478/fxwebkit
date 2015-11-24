@@ -3,14 +3,13 @@
 /*
  * Client Routes that needs login
  */
-Route::group(['middleware' => ['authenticate.client']], function()
+Route::group(['middleware' => ['authenticate.admin']], function()
 { 
 	Route::controller('users', 'UserController', [
-		'getSettings' => 'client.users.settings',
-		 'getProfiles'=>'client.users.profile',
-                'getEditProfile' => 'clinet.editProfile',   
-                'postEditProfile' => 'clinet.users.editProfiles', 
-               
+		'getSettings' => 'admin.users.settings',
+		 'getProfiles'=>'admin.users.profile',
+                'getEditProfile' => 'admin.editProfile',   
+                'postEditProfile' => 'admin.editProfiles',      
 	]);
         /*
           Route::get('clientProfile', [

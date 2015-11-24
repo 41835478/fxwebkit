@@ -38,7 +38,7 @@ if (!function_exists('theme_attr')) {
 	function theme_attr($bAttrCheck=true)
 	{
 		$str = '';
-
+                
 		/* Get The theme color */
 		$str .= ' theme-' . config('fxweb.theme.color');
 
@@ -65,7 +65,6 @@ if (!function_exists('theme_attr')) {
 				$str .= ' main-menu-animated';
 			}
 		}
-
 		return $str;
 	}
 }

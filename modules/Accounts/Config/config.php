@@ -2,7 +2,7 @@
 
 return [
 	'is_admin' => 1,
-	'is_client' => 0,
+	'is_client' => 1,
 	'name' => 'accounts',
 	'icon' => 'fa fa-user',
 	'route' => '',
@@ -17,5 +17,18 @@ return [
 			'title' => 'mt4UsersList',
 			'icon' => 'fa fa-users',
 		]
-	]
+	],
+    'client_menu' => [
+		
+         [
+                    'route' => 'client.addMt4User',
+                    'title' => 'addMt4User',
+                    'icon' => 'fa fa-plus',
+                ],
+        [
+			'route' => 'clients.accounts.Mt4UsersList',
+			'title' => 'mt4UsersList',
+			'icon' => 'fa-briefcase',
+		]
+        ]
 ];

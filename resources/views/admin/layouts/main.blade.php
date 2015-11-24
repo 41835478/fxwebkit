@@ -25,7 +25,7 @@
 	{!! HTML::script('assets/js/ie.min.js') !!}
 	<![endif]-->
 </head>
-<body class="{{ theme_attr() }}">
+<body class="{{ theme_attr() }} mmc" >
 	<script>var init = [];</script>
 
 	<div id="main-wrapper">
@@ -50,6 +50,9 @@
 
 	<script type="text/javascript">
 		window.PixelAdmin.start(init);
+                        $(document).ready(function(){
+                            $('body').addClass('mmc');
+                        });
 	</script>
         @show
 </body>

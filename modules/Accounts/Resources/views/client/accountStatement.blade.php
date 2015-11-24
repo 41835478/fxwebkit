@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('client.layouts.main')
 @section('title', trans('accounts::accounts.accountStatement'))
 @section('content')
 <style type="text/css">
@@ -137,7 +137,7 @@
                 </table>				
 
                 <div class="table-footer">
-                      
+                       
                 </div> 
             </div>
             @endif

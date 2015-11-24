@@ -41,9 +41,6 @@
                     </div>
                 </li>
 
-
-
-
                 <li><div  class=" nav-input-div  ">
                         {!! Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>
@@ -53,7 +50,7 @@
 
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
             {!! Form::hidden('order', $aFilterParams['order']) !!}
-            {!! Form::close() !!}
+         
 
 
         </div>
@@ -66,25 +63,6 @@
         <div class="center_page_all_div">
             @include('admin.partials.messages')
 
-            @if (count($oResults))
-            <div class="stat-panel no-margin-b">
-                <div class="stat-row">
-                    <div class="stat-counters bg-info no-padding text-center">
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Total Results {{ $oResults->total() }}</span>
-                        </div>
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Results From {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }}</span>
-                        </div>
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Page {{ $oResults->currentPage() }} of {{ $oResults->lastPage() }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="padding-xs-vr"></div>
-            @endif
-
             <div class="table-info">
                 <div class="table-header">
                     <div class="table-caption">
@@ -93,7 +71,7 @@
                         <input name="new_menu_submit" class="btn btn-primary btn-flat" type="submit" value="{{ trans('accounts::accounts.addAccount') }}"> </a>
                    </div>
                 </div>
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.id'), 'id', $oResults) !!}</th>
@@ -106,15 +84,18 @@
                     </thead>
                     <tbody>
                         @if (count($oResults))
+                       {{-- */$i=0;/* --}}
+                       {{-- */$class='';/* --}}
                         @foreach($oResults as $oResult)
-                        <tr>
+                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                        <tr class='{{ $class }}'>
                             <td>{{ $oResult->id }}</td>
                             <td>{{ $oResult->first_name }}</td>
                             <td>{{ $oResult->last_name }}</td>
                             <td>{{ $oResult->email }}</td>
                             <td>
-                                <a href="{{ route('accounts.addAccount').'?edit_id='.$oResult->id }}" class="fa fa-edit"></a>
-                                <a href="{{ route('accounts.addAccount').'?delete_id='.$oResult->id }}" class="fa fa-trash-o"></a>
+                                <a href="{{ route('accounts.editAccount').'?edit_id='.$oResult->id }}" class="fa fa-edit"></a>
+                                <a href="{{ route('accounts.deleteAccount').'?delete_id='.$oResult->id }}" class="fa fa-trash-o"></a>
                                 <a href="{{ route('accounts.detailsAccount').'?edit_id='.$oResult->id }}" class="fa fa-file-text"></a>   
                                 <a href="{{ route('accounts.asignMt4Users').'?account_id='.$oResult->id }}" class="fa fa-plus-square-o"></a>
                             </td>
@@ -123,16 +104,36 @@
                         @endif
                     </tbody>
                 </table>
-                <div class="table-footer text-center">
+                <div class="table-footer text-right">
                     @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                   @if($oResults->total()>25)
+                    
+                    <div class="DT-lf-right change_page_all_div" >
+                  
+                           
+                              
+                                    {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
+                    
+                            
+                               
+                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                               
+                            
+                   
+                    </div>
+                   @endif
+                    
+                    <div class="col-sm-3  padding-xs-vr">
+                        <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
+                    </div>
                     @endif
-                </div>
             </div>
         </div>
     </div>
 </div>
 </div>
+   {!! Form::close() !!}
 <script>
     init.push(function () {
 

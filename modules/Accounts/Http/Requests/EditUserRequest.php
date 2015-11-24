@@ -2,7 +2,7 @@
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddUserRequest extends FormRequest {
+class EditUserRequest extends FormRequest {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -19,14 +19,12 @@ class AddUserRequest extends FormRequest {
 	 *
 	 * @return array
 	 */
-	 public function rules()
-    {
-     
-        $roles= [
+	public function rules()
+	{
+		 $roles= [
             'first_name'=>'required|min:2|max:255',
             'last_name'=>'required|min:2|max:255',
             'email'=>'required|email|unique:users',
-            'password'=>'required|min:6|max:255',
             'address'	=> 'required',
             'phone'  	=> 'required',
             'city'      => 'required',
@@ -37,9 +35,10 @@ class AddUserRequest extends FormRequest {
             'birthday'	=> 'required'
         ];
         
-      
-        return $roles;
+        $roles['email']='required|email';
         
-    }
+        
+        return $roles;
+	}
 
 }

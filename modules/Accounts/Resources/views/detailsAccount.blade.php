@@ -2,40 +2,32 @@
 @section('title', trans('accounts::accounts.addAccount'))
 @section('content')
 
-<ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
-    <li class="active">
-        <a href="#uidemo-tabs-default-demo-home" data-toggle="tab">{{ trans('accounts::accounts.details') }}<span class="label label-success"></span></a>
-    </li>
-
-    <li  class="">
-
-        <a href="{{ route('accounts.addAccount').'?edit_id='.$user_detalis['id']}}"  >{{ trans('accounts::accounts.edit_info') }}<span class="badge badge-primary"></span></a>
-
-    </li>
-</ul>
+<div class="page-header">
+    <h1>{{ trans('accounts::accounts.details') }}</h1>
+</div>
 
 
 <div class="panel-body">
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('accounts::accounts.first_name :') }}  </label>
+                <label class="control-label">{{ trans('accounts::accounts.name') }}  </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['first_name'] }}</label>
+                <label class="control-label">{{$user_details['first_name'].$user_details['last_name'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('accounts::accounts.last_name :') }}  </label>     
+                <label class="control-label">{{ trans('accounts::accounts.nickname') }}  </label>     
             </div>
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['last_name'] }}</label>
+                <label class="control-label">{{$user_details['nickname'] }}</label>
             </div>
         </div>
     </div><!-- row -->
@@ -48,20 +40,24 @@
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['email'] }}</label>
+                <label class="control-label">{{$user_details['email'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
 
+       <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('accounts::accounts.nickname') }}  </label>     
+                <label class="control-label">{{ trans('accounts::accounts.gender') }} : </label>
             </div>
-        </div><!-- col-sm-6 --> 
+        </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['nickname'] }}</label>
+                @if($user_details['gender']==0)
+                <label class="control-label">{{ trans('accounts::accounts.male') }}</label>
+                @else
+                <label class="control-label">{{ trans('accounts::accounts.female') }}</label>
+                @endif
             </div>
-        </div>
     </div><!-- row -->
 
     <div class="row">
@@ -72,7 +68,7 @@
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['address'] }}</label>
+                <label class="control-label">{{$user_details['address'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
 
@@ -83,7 +79,7 @@
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['birthday'] }}</label>
+                <label class="control-label">{{$user_details['birthday'] }}</label>
             </div>
         </div>
     </div><!-- row -->
@@ -96,7 +92,7 @@
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['phone'] }}</label>
+                <label class="control-label">{{$user_details['phone'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
 
@@ -107,7 +103,7 @@
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['country'] }}</label>
+                <label class="control-label">{{$user_details['country'] }}</label>
             </div>
         </div>
     </div><!-- row -->
@@ -120,7 +116,7 @@
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['city'] }}</label>
+                <label class="control-label">{{$user_details['city'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
 
@@ -131,31 +127,16 @@
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_detalis['zip_code'] }}</label>
+                <label class="control-label">{{$user_details['zip_code'] }}</label>
             </div>
         </div>
     </div><!-- row -->
-
-    <div class="row">
-        <div class="col-sm-2 text-right">
-            <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('accounts::accounts.gender') }} : </label>
-            </div>
-        </div><!-- ol-sm-6 -->
-        <div class="col-sm-4 text-left">
-            <div class="form-group no-margin-hr">
-                @if($user_detalis['gender']==0)
-                <label class="control-label">{{ trans('accounts::accounts.male') }}</label>
-                @else
-                <label class="control-label">{{ trans('accounts::accounts.female') }}</label>
-                @endif
-            </div>
-        </div><!--ol-sm-6 -->
-    </div><!-- row -->
-
 </div>
 
-<div class="panel-footer text-right"></div>
+<div class="panel-footer text-right">
+    <a href="{{ route('accounts.editAccount').'?edit_id='.$user_details['id'] }}">
+        <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('general.edit') }}</button></a>
+</div>
 
 
 @stop

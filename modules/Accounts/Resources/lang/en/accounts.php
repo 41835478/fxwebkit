@@ -87,4 +87,10 @@ return [
     'country' => 'Country :',
     'city' => 'City :',
     'zip_code' => 'Zip Code :',
+    'edit_account'=>'Edit Account',
+    'name'=>'Name :',
+    'addMt4User'=>'Add Mt4 User',
+    'page'=>'Page',
+    'go'=>'Go',
+   
 ];

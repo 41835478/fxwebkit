@@ -6,7 +6,7 @@
 Route::group(['middleware' => ['authenticate.client']], function()
 {
 	Route::get('/', ['as' => 'client.index', 'uses' => 'DashboardController@index']);
-        
+        /*
         Route::get('clientProfile', [
 		'as' => 'clinet.profile',
 		'uses' => 'DashboardController@getClientProfile'
@@ -20,7 +20,7 @@ Route::group(['middleware' => ['authenticate.client']], function()
 		'as' => 'clinet.editProfile',
 		'uses' => 'DashboardController@postEditProfile'
 	]);
- 
+ */
 });
 
 /*
