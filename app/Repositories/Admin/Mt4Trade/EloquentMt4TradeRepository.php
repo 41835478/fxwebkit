@@ -743,6 +743,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
                 });
             } else {
                 $oResult = new Mt4Trade();
+                
             }
         }
 
