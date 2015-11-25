@@ -297,12 +297,16 @@ class AccountsController extends Controller {
             $aFilterParams['signed'] = $oRequest->signed;
             $aFilterParams['account_id'] = $account_id;
             $aFilterParams['order'] = $oRequest->order;
+             $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
+           //  dd($oResults);
+             
         }
 
-        $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
+       
 
         if ($oRequest->has('export')) {
             $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, true, $sOrder, $sSort);
+            dd($oResults);
             $sOutput = $oRequest->export;
             $aData = [];
             $aHeaders = [
@@ -336,6 +340,7 @@ class AccountsController extends Controller {
     }
 
     public function postAsignMt4Users(Request $oRequest) {
+
         if ($oRequest->has('asign_mt4_users_submit') || $oRequest->has('asign_mt4_users_submit_id')) {
 
             $users_checkbox = ($oRequest->has('asign_mt4_users_submit_id')) ? [$oRequest->get('asign_mt4_users_submit_id')] : $oRequest->users_checkbox;

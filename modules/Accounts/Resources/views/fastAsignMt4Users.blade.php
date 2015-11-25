@@ -54,20 +54,16 @@
                     </div>
 
                 </li>
-
-
-                <li><div  class=" nav-input-div  ">
+              <li><div  class=" nav-input-div  ">
                         {!! Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>
                 <li class="divider"></li>
             </ul>
 
-
             {!! Form::hidden('account_id', $aFilterParams['account_id']) !!}
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
             {!! Form::hidden('order', $aFilterParams['order']) !!}
-            {!! Form::close() !!}
-
+              {!! Form::close() !!}
 
         </div>
     </div>
@@ -79,38 +75,15 @@
         <div class="center_page_all_div">
             @include('admin.partials.messages')
 
-            @if (count($oResults))
-            <div class="stat-panel no-margin-b">
-                <div class="stat-row">
-                    <div class="stat-counters bg-info no-padding text-center">
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Total Results {{ $oResults->total() }}</span>
-                        </div>
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Results From {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }}</span>
-                        </div>
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Page {{ $oResults->currentPage() }} of {{ $oResults->lastPage() }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="padding-xs-vr"></div>
-            @endif
-
             <div class="table-info">
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('accounts::accounts.asignMt4User') }}
 
-
-
                     </div>
                 </div>
 
-
-
-                        {!! Form::open(['class'=>'panel form-horizontal']) !!}
+                {!! Form::open(['class'=>'panel form-horizontal']) !!}
 
                 <div class="panel-heading">
                     <span class="panel-title">{{ trans('accounts::accounts.enterMt4User') }}</span>
@@ -132,70 +105,47 @@
                             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                             {!! Form::hidden('order', $aFilterParams['order']) !!}
 
-                            {!! Form::button('sign',['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
+                            {!! Form::button('sign',['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary']) !!}
 
-                            {!! Form::button('un sign',['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary'  ]) !!}
+
                         </div>
                     </div><!-- row -->
 
                 </div>
 
-                        {!! Form::close() !!}
+                {!! Form::close() !!}
                 <div class="panel-footer text-right">
-            
+
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                @if (count($oResults))
+         @if (count($oResults))
                 {!! Form::open() !!}
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all','Select All') !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Login'), 'LOGIN', $oResults) !!}</th>
+                            <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all','Login') !!}</th>
+
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</th>
-                            <th class="no-warp">{!! trans('accounts::accounts.unsign') !!}</th>
+                            <th class="no-warp">{!! trans('accounts::accounts.action') !!}</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         @foreach($oResults as $oResult)
                         <tr>
-                            <td>{!! Form::checkbox('users_checkbox[]',$oResult->LOGIN,false,['class'=>'users_checkbox']) !!}
-
-                                @if(isset($oResult->users_id ) )
-                                <font style="color:#060">signed</font>
-                                @else
-                                <font style="color:#600">not signed </font>
-                                @endif
-
-                            </td>
-
-                            <td>{{ $oResult->LOGIN }}</td>
+                      
+                            <td>{!! Form::checkbox('users_checkbox[]',$oResult->LOGIN,false,['class'=>'users_checkbox']) !!}{{ $oResult->LOGIN }}</td>
                             <td>{{ $oResult->NAME }}</td>
                             <td>{{ $oResult->GROUP }}</td>
                             <td>
-                                
-                             @if(isset($oResult->users_id ) )
-                             {!! Form::button('un sign',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->LOGIN  ,'type'=>'submit' ]) !!}
-                             @else
-                             {!! Form::button('asign',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->LOGIN  ,'type'=>'submit' ]) !!}
-                            @endif
+
+                                @if(isset($oResult->users_id ) )    
+                                {!! Form::button('<i class="fa fa-file-text"></i>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->LOGIN  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+                                @else
+                               
+                                 {!! Form::button('<i class="fa fa-edit"></i>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->LOGIN  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -208,26 +158,66 @@
                                 {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                                 {!! Form::hidden('order', $aFilterParams['order']) !!}
 
-                                {!! Form::button('sign',['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ]) !!}
-                                {!! Form::button('un sign',['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ]) !!}
+                                {!! Form::button('Sign',['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
+                                {!! Form::button('Unsign',['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}
                             </td>
                         </tr>
                     </tfoot>
                 </table>
                 @endif
-                {{ Form::close() }}
-                <div class="table-footer text-center">
-                    @if (count($oResults))
+                {!! Form::close() !!}
+                <div class="table-footer text-right">
+                    
+               
+                
+                  
+                @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                    
+                    @if($oResults->total()>25)
+
+                    <div class="DT-lf-right change_page_all_div" >
+                         {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
+                
+                {!! Form::hidden('account_id', $aFilterParams['account_id']) !!}
+                {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+                {!! Form::hidden('order', $aFilterParams['order']) !!}
+                {!! Form::hidden('group', (is_array($aFilterParams['group']))?join(',',$aFilterParams['group']):$aFilterParams['group']) !!}
+                {!! Form::hidden('signed',$aFilterParams['signed']) !!}
+                {!! Form::hidden('all_groups', $aFilterParams['all_groups']) !!}
+                {!! Form::hidden('exactLogin', $aFilterParams['exactLogin']) !!}
+
+                        {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
+
+                        {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                 {!! Form::close() !!}
+                    </div>
+                   
                     @endif
+   
+                    <div class="col-sm-3  padding-xs-vr">
+                        <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
+                    </div>
+                     @else
+                    <div class="col-sm text-left">
+                        <span class="text-xs"><h3>No Assign Account</h3></span>
+                    </div>
+                    @endif
+                
                 </div>
+                  
             </div>
+          
         </div>
+        
     </div>
+     
 </div>
+
 </div>
 <script src="{{ asset('/assets/js/jquery.2.0.3.min.js') }}"></script>
 <script>
+   
 init.push(function () {
 
 
@@ -266,15 +256,15 @@ init.push(function () {
 
 });
 
-					init.push(function () {
-						// Single select
-						$("select[name='users_checkbox[]']").select2({
-							allowClear: true,
-							placeholder: "Enter Log In"
-						});
+init.push(function () {
+    // Single select
+    $("select[name='users_checkbox[]']").select2({
+        allowClear: true,
+        placeholder: "Enter Log In"
+    });
 
-					
-					});
+
+});
 
 
 $('input[name="check_all"]').click(function () {

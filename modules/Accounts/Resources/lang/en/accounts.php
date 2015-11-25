@@ -92,5 +92,6 @@ return [
     'addMt4User'=>'Add Mt4 User',
     'page'=>'Page',
     'go'=>'Go',
+    'action'=>'Action',
    
 ];
