@@ -36,8 +36,8 @@
                 <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.name'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li>
                     <div  class=" nav-input-div  ">
-                        {!! Form::radio('signed',0,$aFilterParams['signed'],['id'=>'signed_0','checked'=>'true']) !!}<label for="signed_0">all</label>
-                        {!! Form::radio('signed',1,($aFilterParams['signed']==1),['id'=>'signed_1']) !!}<label for="signed_1">signed</label>
+                        {!! Form::radio('signed',0,$aFilterParams['signed'],['id'=>'signed_0','checked'=>'true']) !!}<label for="signed_0">All</label>
+                        {!! Form::radio('signed',1,($aFilterParams['signed']==1),['id'=>'signed_1']) !!}<label for="signed_1">Assigned</label>
 
                     </div>
                 </li>
@@ -105,7 +105,7 @@
                             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                             {!! Form::hidden('order', $aFilterParams['order']) !!}
 
-                            {!! Form::button('sign',['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary']) !!}
+                            {!! Form::button('Assign',['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary']) !!}
 
 
                         </div>
@@ -141,10 +141,10 @@
                             <td>
 
                                 @if(isset($oResult->users_id ) )    
-                                {!! Form::button('<i class="fa fa-file-text"></i>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->LOGIN  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+                                {!! Form::button('<i class="fa fa-unlink"></i>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->LOGIN  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
                                 @else
                                
-                                 {!! Form::button('<i class="fa fa-edit"></i>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->LOGIN  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+                                 {!! Form::button('<i class="fa fa-link"></i>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->LOGIN  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
                                 @endif
                             </td>
                         </tr>
@@ -158,8 +158,8 @@
                                 {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                                 {!! Form::hidden('order', $aFilterParams['order']) !!}
 
-                                {!! Form::button('Sign',['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
-                                {!! Form::button('Unsign',['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}
+                                {!! Form::button('Assign',['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
+                                {!! Form::button('Un Assign',['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}
                             </td>
                         </tr>
                     </tfoot>
