@@ -71,6 +71,7 @@ class EloquentUserRepository implements UserContract {
 
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
+        
 
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
@@ -82,6 +83,7 @@ class EloquentUserRepository implements UserContract {
             
         }
         /* =============== Preparing Output  =============== */
+ 
         return $oResult;
     }
 

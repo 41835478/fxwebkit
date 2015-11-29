@@ -44,5 +44,11 @@ class FxWebKitServiceProvider extends ServiceProvider {
 			'Fxweb\Repositories\FullDetails\EloquentFullDetailsRepository',
 			'Fxweb\Repositories\FullDetails\FullDetailsInterface'
 		);
+                 $this->app->bind(
+                         'Modules\Tools\Repositories\FutureContract',
+			'Modules\Tools\Repositories\EloquentFutureContractRepository'
+                        
+                        
+		);
 	}
 }

@@ -70,6 +70,7 @@ class AccountsController extends Controller {
             $role = explode(',', Config::get('fxweb.client_default_role'));
 
             $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
+            
         }
 
 
@@ -364,6 +365,7 @@ class AccountsController extends Controller {
     }
 
     public function getDetailsAccount(Request $oRequest) {
+      
         $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
 
         $user_details = [
