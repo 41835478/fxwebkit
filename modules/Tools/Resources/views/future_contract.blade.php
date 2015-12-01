@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('accounts::accounts.accounts'))
+@section('title', trans('tools::tools.tools'))
 @section('content')
 <style type="text/css">
     #content-wrapper{ padding: 0px; margin: 0px;}
@@ -22,28 +22,25 @@
                 
                 <li  >
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('accounts::accounts.id'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('tools::tools.id'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
                 <li  >
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('first_name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.first_name'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('tools::tools.name'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
                 <li  >
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('last_name', $aFilterParams['symbol'], ['placeholder'=>trans('accounts::accounts.last_name'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('symbol', $aFilterParams['symbol'], ['placeholder'=>trans('tools::tools.symbol'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
                 <li>
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('email', $aFilterParams['exchange'], ['placeholder'=>trans('accounts::accounts.Email'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('exchange', $aFilterParams['exchange'], ['placeholder'=>trans('tools::tools.exchange'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
               
-             
-                
-               
 
                 <li><div  class=" nav-input-div  ">
                         {!! Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
@@ -62,7 +59,7 @@
 
     <div class="mail-container " >
         <div class="mail-container-header">
-            {{ trans('accounts::accounts.accounts') }}
+            {{ trans('tools::tools.tools') }}
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
@@ -70,22 +67,23 @@
             <div class="table-info">
                 <div class="table-header">
                     <div class="table-caption">
-                        {{ trans('accounts::accounts.accounts') }}  
-                        <a href="{{ route('accounts.addAccount') }}" style="float:right;">
-                        <input name="new_menu_submit" class="btn btn-primary btn-flat" type="submit" value="{{ trans('accounts::accounts.addAccount') }}"> </a>
+                        {{ trans('tools::tools.future-contract') }}  
+                        <a href="{{ route('tools.addContract') }}" style="float:right;">
+                            <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button" value="{{ trans('tools::tools.addContract') }}"> </a>
                    </div>
+                    
                 </div>
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.id'), 'id', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.name'), 'name', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.symbol'), 'symbol', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.exchange'), 'exchange', $oResults) !!}</th>
-                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.month'), 'month', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.year'), 'year', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.start_date'), 'start_date', $oResults) !!}</th>
-                              <th class="no-warp">{!! th_sort(trans('accounts::accounts.expiry_date'), 'expiry_date', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('tools::tools.id'), 'id', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('tools::tools.name'), 'name', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('tools::tools.symbol'), 'symbol', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('tools::tools.exchange'), 'exchange', $oResults) !!}</th>
+                             <th class="no-warp">{!! th_sort(trans('tools::tools.month'), 'month', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('tools::tools.year'), 'year', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('tools::tools.start_date'), 'start_date', $oResults) !!}</th>
+                              <th class="no-warp">{!! th_sort(trans('tools::tools.expiry_date'), 'expiry_date', $oResults) !!}</th>
 
                             <th class="no-warp"></th>
                         </tr>
@@ -97,20 +95,22 @@
                         @foreach($oResults as $oResult)
                         {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                         <tr class='{{ $class }}'>
-                            <td>{{ $oResult->id }}</td>
+                         
+                            <td>{!! Form::checkbox('users_checkbox[]',$oResult->LOGIN,false,['class'=>'users_checkbox']) !!}{{ $oResult->id }}</td>
                             <td>{{ $oResult->name }}</td>
                             <td>{{ $oResult->symbol }}</td>
                             <td>{{ $oResult->exchange }}</td>
-                            <td>{{ $oResult->month }}</td>
+                            <td>{{date('F', mktime(0, 0, 0, $oResult->month, 10))}}</td>
                             <td>{{ $oResult->year }}</td>
                             <td>{{ $oResult->start_date }}</td>
                             <td>{{ $oResult->expiry_date }}</td>
-                            <td>
-                                <a href="{{ route('accounts.editAccount').'?edit_id='.$oResult->id }}" class="fa fa-edit"></a>
-                                <a href="{{ route('accounts.deleteAccount').'?delete_id='.$oResult->id }}" class="fa fa-trash-o"></a>
-                                <a href="{{ route('accounts.detailsAccount').'?edit_id='.$oResult->id }}" class="fa fa-file-text"></a>   
-                                <a href="{{ route('accounts.asignMt4Users').'?account_id='.$oResult->id }}" class="fa fa-link"></a>
+                            
+                             <td>
+                                <a href="{{ route('tools.editContract').'?edit_id='.$oResult->id}}" class="fa fa-edit"></a>
+                                <a href="{{ route('tools.deleteContract').'?delete_id='.$oResult->id }}" class="fa fa-trash-o"></a>
+                               
                             </td>
+                         
                         </tr>
                         @endforeach
                         @endif

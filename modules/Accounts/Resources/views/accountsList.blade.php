@@ -68,7 +68,7 @@
                     <div class="table-caption">
                         {{ trans('accounts::accounts.accounts') }}  
                         <a href="{{ route('accounts.addAccount') }}" style="float:right;">
-                        <input name="new_menu_submit" class="btn btn-primary btn-flat" type="submit" value="{{ trans('accounts::accounts.addAccount') }}"> </a>
+                            <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button" value="{{ trans('accounts::accounts.addAccount') }}"> </a>
                    </div>
                 </div>
                 <table class="table table-bordered table-striped">
