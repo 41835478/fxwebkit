@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="page-header">
-		<h1>{{ trans('accounts::accounts.edit_account') }}</h1>
+		<h1>{{ trans('tools::tools.edit_contract') }}</h1>
 	</div>
 
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
@@ -35,7 +35,8 @@
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('tools::tools.month') }}</label>
-                {!! Form::text('month',date('F', mktime(0, 0, 0, $userInfo['month'], 10)),['class'=>'form-control']) !!}
+                
+                {!! Form::text('month',date('F', mktime(0, 0, 0, (isset($userInfo['month']) && $userInfo['month'] >0)? $userInfo['month']:0, 10)),['class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
     </div><!-- row -->

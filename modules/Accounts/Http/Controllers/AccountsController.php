@@ -307,7 +307,7 @@ class AccountsController extends Controller {
 
         if ($oRequest->has('export')) {
             $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, true, $sOrder, $sSort);
-            dd($oResults);
+            
             $sOutput = $oRequest->export;
             $aData = [];
             $aHeaders = [

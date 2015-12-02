@@ -67,16 +67,17 @@
             <div class="table-info">
                 <div class="table-header">
                     <div class="table-caption">
-                        {{ trans('tools::tools.future-contract') }}  
+                        {{ trans('tools::tools.add_contract') }}  
                         <a href="{{ route('tools.addContract') }}" style="float:right;">
-                            <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button" value="{{ trans('tools::tools.addContract') }}"> </a>
+                            <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button" value="{{ trans('tools::tools.add_contract') }}"> </a>
                    </div>
                     
                 </div>
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('tools::tools.id'), 'id', $oResults) !!}</th>
+                            <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all','Id') !!}</th>
+                          
                             <th class="no-warp">{!! th_sort(trans('tools::tools.name'), 'name', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.symbol'), 'symbol', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.exchange'), 'exchange', $oResults) !!}</th>
@@ -115,8 +116,11 @@
                         @endforeach
                         @endif
                     </tbody>
+                    
                 </table>
+                
                 <div class="table-footer text-right">
+                    {!! Form::button('sign',['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ]) !!}
                     @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
                    @if($oResults->total()>25)
@@ -182,6 +186,15 @@
             $("#from_login_li,#to_login_li").show();
             $("#login_li").hide();
         }
+
+$('input[name="check_all"]').click(function () {
+    if ($(this).prop("checked")) {
+        $("input[name='users_checkbox[]']").prop("checked", true);
+    } else {
+
+        $("input[name='users_checkbox[]']").prop("checked", false);
+    }
+});
 
     });
 

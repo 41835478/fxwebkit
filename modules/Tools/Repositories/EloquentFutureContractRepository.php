@@ -18,6 +18,28 @@ class EloquentFutureContractRepository implements FutureContract
 	{
 		//
         }
+        
+        
+    public function addContract($oRequest) {
+
+        $oClientRole = new EntitiesFutureContract();
+        
+        $aCredentials = [
+           'name'=>$oRequest->name,
+           'symbol'=>$oRequest->symbol,
+            'exchange'=>$oRequest->exchange,
+            'month'=>$oRequest->month,
+           'year'=>$oRequest->year,
+           'start_date'=>$oRequest->start_date,
+            'expiry_date'=>$oRequest->expiry_date,
+        ];
+
+          $oClientRole->create($aCredentials);
+          $oClientRole->save();
+        return $oClientRole->id;
+    }
+
+        
        public function getUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin') {
 
    

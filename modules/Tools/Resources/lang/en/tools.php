@@ -13,7 +13,8 @@ return [
     'start_date'=>'Start Date',
     'expiry_date'=>'Expiry Date',
     'tools'=>'Tools',
-    'future-contract'=>'Future Contract',
-    'addContract'=>'Add Contract',
+    'future_contract'=>'Future Contract',
+    'add_contract'=>'Add Contract',
+    'edit_contract'=>'Edit Contract',
 
 ];
