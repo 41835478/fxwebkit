@@ -196,11 +196,11 @@ class AccountsController extends Controller {
 
         if ($result > 0) {
             $oRequest->edit_id = $result;
-             
+        
             $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
 
             $user_details = [
-                'edit_id' => $oRequest->edit_id,
+                'id' => $oRequest->edit_id,
                 'first_name' => $oResult['first_name'],
                 'last_name' => $oResult['last_name'],
                 'password' => '',
@@ -298,9 +298,7 @@ class AccountsController extends Controller {
             $aFilterParams['signed'] = $oRequest->signed;
             $aFilterParams['account_id'] = $account_id;
             $aFilterParams['order'] = $oRequest->order;
-             $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
-           //  dd($oResults);
-             
+             $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);   
         }
 
        
@@ -429,9 +427,7 @@ class AccountsController extends Controller {
     }
 
     public function getMt4UsersList(Request $oRequest) {
-
-     
-        
+   
         $oGroups = $this->oMt4User->getAllGroups();
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
@@ -450,7 +446,9 @@ class AccountsController extends Controller {
         ];
 
         foreach ($oGroups as $oGroup) {
+            
             $aGroups[$oGroup->group] = $oGroup->group;
+            
         }
 
 

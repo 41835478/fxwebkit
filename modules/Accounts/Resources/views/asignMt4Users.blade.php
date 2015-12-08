@@ -248,5 +248,6 @@ $('input[name="check_all"]').click(function () {
         $("input[name='users_checkbox[]']").prop("checked", false);
     }
 });
+
 </script>
 @stop

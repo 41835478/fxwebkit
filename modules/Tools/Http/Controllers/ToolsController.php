@@ -39,80 +39,95 @@ class ToolsController extends Controller {
             'year' => '',
             'start_date' => '',
             'expiry_date' => '',
+            'all_groups' => true,
             'sort' => $sSort,
             'order' => $sOrder,
         ];
 
+          if ($oRequest->has('deleteContract')) {
+              
+              $result = $this->oFuture->deleteContract($oRequest->contract_checkbox);
+              
+              return Redirect::route('tools.futureContract')->withErrors($result);
+        }
+        
         if ($oRequest->has('search')) {
             $aFilterParams['id'] = $oRequest->id;
             $aFilterParams['name'] = $oRequest->name;
             $aFilterParams['symbol'] = $oRequest->symbol;
             $aFilterParams['exchange'] = $oRequest->exchange;
-
+            $aFilterParams['all_groups'] = (($oRequest->has('all_groups')) ? true : false);
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
 
             $role = explode(',', Config::get('fxweb.client_default_role'));
-
-
-            $oResults = $this->oFuture->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
+            $oResults = $this->oFuture->getContractByFilter($aFilterParams, false, $sOrder, $sSort, $role);
         }
 
         return view('tools::future_contract')
                         ->with('oResults', $oResults)
                         ->with('aFilterParams', $aFilterParams);
     }
-
+    
     public function getMarketWatch() {
         return 'MarketWatch';
     }
-
+     
     public function getAddContract(Request $oRequest) {
+        
+         $month_array = $this->oFuture->getMonth(null);
+        $exchange_array = $this->oFuture->getExchange();
+        $name_array = $this->oFuture->getName();
+        
 
-        $userInfo = [ 'edit_id' => 0,
+        $contractInfo = [ 'edit_id' => 0,
             'name' => '',
             'symbol' => '',
             'exchange' => '',
             'month' => '',
+            'month_array' => $month_array,
             'year' => '',
             'start_date' => '',
             'expiry_date' => '',
+            'aExchange'=>$exchange_array,
+            'aName'=>$name_array,
         ];
 
         if ($oRequest->has('edit_id')) {
 
-            $oResult = $this->oFuture->getUserDetails($oRequest->edit_id);
+            $oResult = $this->oFuture->getContractDetails($oRequest->edit_id);
 
 
-            $userInfo = [
+            $contractInfo = [
                 'id' => $oRequest->edit_id,
                 'name' => $oResult['name'],
                 'symbol' => $oResult['symbol'],
                 'exchange' => $oResult['exchange'],
                 'month' => $oResult['month'],
+                'month_array' => $month_array,
                 'year' => $oResult['year'],
                 'start_date' => $oResult['start_date'],
                 'expiry_date' => $oResult['expiry_date'],
+                'aExchange'=>$exchange_array,
+                 'aName'=>$name_array,
             ];
         }
-        return view('tools::addContract')->with('userInfo', $userInfo);
+        return view('tools::addContract')->with('contractInfo', $contractInfo);
     }
 
     public function postAddContract(AddContractRequest $oRequest) {
 
         $result = 0;
-
-        $admin_role = explode(',', Config::get('fxweb.admin_roles'));
-
+        
         $result = $this->oFuture->addContract($oRequest);
-
+        
         if ($result > 0) {
-
+               
             $oRequest->edit_id = $result;
 
-            $oResult = $this->oFuture->getUserDetails($oRequest->edit_id);
+            $oResult = $this->oFuture->getContractDetails($oRequest->edit_id);
 
-            $user_details = [
+            $contract_details = [
                 'id' => $oRequest->edit_id,
                 'name' => $oResult['name'],
                 'symbol' => $oResult['symbol'],
@@ -128,33 +143,45 @@ class ToolsController extends Controller {
     }
 
     public function getEditContract(Request $oRequest) {
-        $userInfo = [ 'id' => '',
-            'name' => '',
+        
+        $month_array = $this->oFuture->getMonth(null);
+        $exchange_array = $this->oFuture->getExchange();
+        $name_array = $this->oFuture->getName();
+        
+        
+        $contractInfo = [ 'id' => '',
+             'name' => '',
             'symbol' => '',
             'exchange' => '',
             'month' => '',
+            'month_array' => $month_array,
             'year' => '',
             'start_date' => '',
             'expiry_date' => '',
+            'aExchange'=>$exchange_array,
+            'aName'=>$name_array,
         ];
 
         if ($oRequest->has('edit_id')) {
 
-            $oResult = $this->oFuture->getUserDetails($oRequest->edit_id);
+            $oResult = $this->oFuture->getContractDetails($oRequest->edit_id);
 
 
-            $userInfo = [
+            $contractInfo = [
                 'id' => $oRequest->edit_id,
-                'name' => $oResult['name'],
+               'name' => $oResult['name'],
                 'symbol' => $oResult['symbol'],
                 'exchange' => $oResult['exchange'],
                 'month' => $oResult['month'],
+                'month_array' => $month_array,
                 'year' => $oResult['year'],
                 'start_date' => $oResult['start_date'],
                 'expiry_date' => $oResult['expiry_date'],
+                'aExchange'=>$exchange_array,
+                 'aName'=>$name_array,
             ];
         }
-        return view('tools::editContract')->with('userInfo', $userInfo);
+        return view('tools::editContract')->with('contractInfo', $contractInfo);
     }
 
     public function postEditContract(EditContractRequest $oRequest) {
@@ -167,9 +194,9 @@ class ToolsController extends Controller {
 
             $oRequest->id = $result;
 
-            $oResult = $this->oFuture->getUserDetails($oRequest->id);
+            $oResult = $this->oFuture->getContractDetails($oRequest->id);
 
-            $user_details = [
+            $contract_details = [
 
                 'id' => $oRequest->edit_id,
                 'name' => $oResult['name'],

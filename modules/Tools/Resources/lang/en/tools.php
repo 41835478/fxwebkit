@@ -16,5 +16,11 @@ return [
     'future_contract'=>'Future Contract',
     'add_contract'=>'Add Contract',
     'edit_contract'=>'Edit Contract',
+    'with_out'=>'Without Expiry Date',
+    'save'=>'Save',
+    'search'=>'Search',
+    'page'=>'Page',
+    'go'=>'Go',
+    'delete'=>'Delete',
 
 ];

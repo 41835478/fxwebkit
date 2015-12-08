@@ -256,6 +256,7 @@ if(is_array($users_id)){
             $userDetails ['zip_code'] = $fullDetails['zip_code'];
             $userDetails ['gender'] = $fullDetails['gender'];
             }
+     
             return $userDetails;
         }
 

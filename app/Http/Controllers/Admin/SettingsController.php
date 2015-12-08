@@ -231,16 +231,17 @@ class SettingsController extends Controller {
             '' => '',
             'external' => [
                 'signUpWelcome' => 'Sign Up Welcome',
-                'accountAssign' => 'accountAssign',
-                'agentActivation' => 'agentActivation',
-                'newAgent' => 'newAgent',
-                'newPassword' => 'newPassword',
-                'recoverPassword' => 'recoverPassword',
-                'withdrawResult' => 'withdrawResult',
+                'accountAssign' => 'Account Assign',
+                'agentActivation' => 'Agent Activation',
+                'newAgent' => 'New Agent',
+                'newPassword' => 'New Password',
+                'recoverPassword' => 'Recover Password',
+                'withdrawResult' => 'Withdraw Result',
+                'newContract' => 'New Contract',
             ],
             'internal' => [
-                'newAgentNotify' => 'newAgentNotify',
-                'withdrawRequest' => 'withdrawRequest'
+                'newAgentNotify' => 'New Agent Notify',
+                'withdrawRequest' => 'Withdraw Request'
             ]
         ];
         $sTemplate = $oRequest->name;

@@ -7,5 +7,6 @@ namespace Modules\Tools\Repositories;
 interface FutureContract
 {
     
-   public function getUsersByFilter($aFilters, $bFullSet=false, $sOrderBy = 'LOGIN', $sSort = 'ASC',$role='admin');
+   public function getContractByFilter($aFilters, $bFullSet=false, $sOrderBy = 'LOGIN', $sSort = 'ASC',$role='admin');
+   public function getMonth($iso2);
 }

@@ -2,7 +2,7 @@
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditContractRequest extends FormRequest {
+class AddContractRequest extends FormRequest {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,11 +22,11 @@ class EditContractRequest extends FormRequest {
 	public function rules()
 	{
 		return [
-                        'name'          => 'required',
+			'name'          => 'required',
                         'symbol'  	=> 'required',
                         'year'          => 'required',
                         'start_date'  	=> 'required',
-                        'expiry_date'  	=> 'required', 
+                        'expiry_date'  	=> 'required',  
 		];
 	}
 
