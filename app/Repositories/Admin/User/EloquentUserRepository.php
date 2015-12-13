@@ -86,7 +86,16 @@ class EloquentUserRepository implements UserContract {
  
         return $oResult;
     }
+  
+    public function getUsersEmail() {
 
+        $oResult = User::select('first_name','email')->get()->toArray();
+        
+        return $oResult;
+    }
+
+    
+    
     public function addUser($oRequest, $role = 'admin') {
 
         $oClientRole = Sentinel::findRoleBySlug($role);
@@ -256,7 +265,7 @@ if(is_array($users_id)){
             $userDetails ['zip_code'] = $fullDetails['zip_code'];
             $userDetails ['gender'] = $fullDetails['gender'];
             }
-     
+            
             return $userDetails;
         }
 

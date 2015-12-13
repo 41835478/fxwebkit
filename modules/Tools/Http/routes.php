@@ -3,6 +3,7 @@
 {
         Route::controller('tools','ToolsController',[
             'getFutureContract'=>'tools.futureContract',
+            'sendExpiryDate'=>'tools.sendExpiryDate',
             'getMarketWatch'=>'tools.marketWatch',
             'getAddContract'=>'tools.addContract',
             'getEditContract'=>'tools.editContract',

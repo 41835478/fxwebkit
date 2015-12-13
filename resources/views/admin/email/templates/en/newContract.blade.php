@@ -1,16 +1,23 @@
 <html>
 <head>
-	<title>{{ $EMAIL_TITLE }}</title>
+	<title>expiry</title>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+}
+</style>
 </head>
 <body>
-	<p>Hello {{ $TITLE }} {{ $FIRST_NAME }} {{ $LAST_NAME }}</p>
-	<p>Name: {{ $NAME }}</p>
-	<p>Symbol: {{ $CURRENCY }}</p>
-	<p>Exchange: {{ $DATE_OF_BIRTH }}</p>
-	<p>Month: {{ $COUNTRY_OF_BIRTH }}</p>
-	<p>Year: {{ $NATIONALITY }}</p>
-	<p>Start Date: {{ $ADDRESS }}</p>
-	<p>Expiry Date: {{ $CITY }}</p>
-	<p><a href="{{ $RECOVER_LINK }}">Click here for the new password</a></p>
+	<p>Dear {{ $name }}</p>
+<tabel>
+    <tr>
+    <th>Expired</th><th>Symbol</th>
+    </tr>
+       {!! $expiryHtml !!}
+</tabel>
 </body>
 </html>

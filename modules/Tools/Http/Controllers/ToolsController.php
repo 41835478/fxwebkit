@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Redirect;
 use Modules\Tools\Http\Requests\EditContractRequest;
 use Modules\Tools\Http\Requests\AddContractRequest;
 use Modules\Tools\Repositories\FutureContract as Future;
+use Fxweb\Repositories\Admin\User\UserContract as Users;
+use Fxweb\Http\Controllers\admin\Email;
 
 class ToolsController extends Controller {
 
@@ -17,14 +19,17 @@ class ToolsController extends Controller {
     }
 
     protected $oFuture;
+     protected $oUsers;
 
     public function __construct(
-    Future $oFuture
+    Future $oFuture, Users $oUsers
     ) {
         $this->oFuture = $oFuture;
+         $this->oUsers = $oUsers;
     }
 
     public function getFutureContract(Request $oRequest) {
+        
 
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
@@ -69,7 +74,73 @@ class ToolsController extends Controller {
                         ->with('aFilterParams', $aFilterParams);
     }
     
-    public function getMarketWatch() {
+    public function getSendExpiryDate(Request $oRequest){
+ 
+      
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+        $aGroups = [];
+        $oResults = null;
+        $aFilterParams = [
+            'id' => '',
+            'name' => '',
+            'symbol' => '',
+            'exchange' => '',
+            'month' => '',
+            'year' => '',
+            'start_date' => '',
+            'expiry_date' => '',
+            'all_groups' => true,
+            'sort' => $sSort,
+            'order' => $sOrder,
+        ];
+
+          if ($oRequest->has('deleteContract')) {
+              
+              $result = $this->oFuture->deleteContract($oRequest->contract_checkbox);
+              
+              return Redirect::route('tools.futureContract')->withErrors($result);
+        }
+        
+            $aFilterParams['id'] = $oRequest->id;
+            $aFilterParams['name'] = $oRequest->name;
+            $aFilterParams['symbol'] = $oRequest->symbol;
+            $aFilterParams['exchange'] = $oRequest->exchange;
+            $aFilterParams['all_groups'] = (($oRequest->has('all_groups')) ? true : false);
+            $aFilterParams['sort'] = $oRequest->sort;
+            $aFilterParams['order'] = $oRequest->order;
+            
+
+            $role = explode(',', Config::get('fxweb.client_default_role'));
+            $expiryResults = $this->oFuture->sendExpiryNotificationsEmail();
+            $userResults = $this->oUsers->getUsersEmail();
+
+            $userArray = [];
+            $expiryArray = [];
+            
+             $tabelHtml='';
+             foreach ($expiryResults as $expiry)
+             {
+            
+                $tabelHtml.='<tr><td>'.$expiry['expiry_date'].'</td><td>'.$expiry['symbol'].'</td></tr>';  
+             }
+                
+           //     $email->newContract(['email'=>'maggalya09@gmail.com','name'=>'taylor','expiryHtml'=>$tabelHtml]);
+         
+             foreach ($userResults as $user)
+             {  
+                 //dd($user['email']);
+                 $email=new Email();
+             $email->newContract(['email'=>$user['email'],'name'=>$user['first_name'],'expiryHtml'=>$tabelHtml]);
+             }
+          
+//        return view('tools::future_contract')
+//                        ->with('oResults', $oResults)
+//                        ->with('aFilterParams', $aFilterParams);
+        
+    }
+
+        public function getMarketWatch() {
         return 'MarketWatch';
     }
      

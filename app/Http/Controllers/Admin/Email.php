@@ -41,15 +41,15 @@ class Email extends Controller {
                 'Welcome in Fxwebkit');
     }
     
-     public function newContract($aUserInfo) {
+     public function newContract($info) {
 
         $this->sendEmail('admin.email.templates.en.newContract',
                 [
-                    'first_name' => $aUserInfo['first_name'],
-                    'last_name' => $aUserInfo['last_name']
+                    'name' => $info['name'],
+                    'expiryHtml'=>$info['expiryHtml']
                 ],
-                $aUserInfo['email'], 
-                'Welcome in Fxwebkit');
+                $info['email'], 
+                'expiry symbols details');
     }
 
 }
