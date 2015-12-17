@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('client.layouts.main')
 @section('title', trans('tools::tools.tools'))
 @section('content')
 <style type="text/css">
@@ -45,7 +45,7 @@
                     <div  class=" nav-input-div  ">
                         <div class="checkbox">
                             <label>
-                                 {!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
+                                {!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
                                 <span class="lbl">{{ trans('tools::tools.with_out') }}</span>
                             </label>
                         </div>
@@ -73,19 +73,11 @@
             @include('admin.partials.messages')
 
             <div class="table-info">
-                <div class="table-header">
-                    <div class="table-caption">
-                        {{ trans('tools::tools.add_contract') }}  
-                        <a href="{{ route('tools.addContract') }}" style="float:right;">
-                            <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button" value="{{ trans('tools::tools.add_contract') }}"> </a>
-                    </div>
-
-                </div>
+              
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all','Id') !!}</th>
-
+                           <th class="no-warp">{!! th_sort(trans('tools::tools.id'), 'id', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.name'), 'name', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.symbol'), 'symbol', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.exchange'), 'exchange', $oResults) !!}</th>
@@ -94,7 +86,7 @@
                             <th class="no-warp">{!! th_sort(trans('tools::tools.start_date'), 'start_date', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.expiry_date'), 'expiry_date', $oResults) !!}</th>
 
-                            <th class="no-warp"></th>
+                          
                         </tr>
                     </thead>
                     <tbody>
@@ -105,7 +97,7 @@
                         {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                         <tr class='{{ $class }}'>
 
-                            <td>{!! Form::checkbox('contract_checkbox[]',$oResult->id,false,['class'=>'contract_checkbox']) !!}{{ $oResult->id }}</td>
+                            <td>{{ $oResult->id }}</td>
                             <td>{{ $oResult->name }}</td>
                             <td>{{ $oResult->symbol }}</td>
                             <td>{{ $oResult->exchange }}</td>
@@ -114,10 +106,7 @@
                             <td>{{ $oResult->start_date }}</td>
                             <td>{{ $oResult->expiry_date }}</td>
 
-                            <td>
-                                <a href="{{ route('tools.editContract').'?edit_id='.$oResult->id}}" class="fa fa-edit"></a>
-                                <a href="{{ route('tools.deleteContract').'?delete_id='.$oResult->id }}" class="fa fa-trash-o"></a>                            
-                            </td>
+                            
                         </tr>
                         @endforeach
                         @endif
@@ -125,11 +114,9 @@
                     </tbody>
 
                 </table>
-            
 
                 <div class="table-footer text-right">
 
-                    {!! Form::button(trans('tools::tools.delete'),['name'=>'deleteContract','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary btn-flat style']) !!}
                     
                     @if (count($oResults))
                   {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->render()) !!}
@@ -137,7 +124,7 @@
 
                     <div class="DT-lf-right change_page_all_div" >
 
-                   {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
+                        {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
 
                         {!! Form::submit(trans('tools::tools.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
 
@@ -154,16 +141,5 @@
     </div>
 </div>
 {!! Form::close() !!}
-<script>
-    init.push(function () {
-        $('input[name="check_all"]').click(function () {
-            if ($(this).prop("checked")) {
-                $("input[name='contract_checkbox[]']").prop("checked", true);
-            } else {
-                $("input[name='contract_checkbox[]']").prop("checked", false);
-            }
-        });
-    });
 
-</script>
 @stop

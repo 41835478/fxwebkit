@@ -2,8 +2,7 @@
 
 use Fxweb\Http\Controllers\Controller;
 use Fxweb\Http\Requests\Admin\LoginRequest;
-
-use Sentinel, Redirect;
+use Sentinel, Redirect,Auth;
 
 class AuthController extends Controller
 {
@@ -14,8 +13,9 @@ class AuthController extends Controller
 	}
 
 	public function postLogin(LoginRequest $oRequest)
-	{
-		try {
+	{ 
+
+            try {
 			$oUser = Sentinel::authenticate([
 				'email' => $oRequest->email,
 				'password' => $oRequest->password,
@@ -52,9 +52,13 @@ class AuthController extends Controller
 		}
 	}
 
+        
 	public function getLogout()
 	{
 		Sentinel::logout(null, true);
 		return redirect()->route('admin.auth.login');
 	}
+        
+        
+        
 }

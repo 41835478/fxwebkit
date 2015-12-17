@@ -16,5 +16,18 @@ return ['is_admin' => 1,
 			'title' => 'marketWatch',
 			'icon' => 'fa fa-shopping-cart',
 		]
-	]
+	],
+    'client_menu' => [
+		
+         [
+                    'route' => 'client.tools.futureContract',
+                    'title' => 'futureContract',
+                    'icon' => 'fa fa-suitcase',
+                ],
+        [
+			'route' => 'client.tools.marketWatch',
+			'title' => 'marketWatch',
+			'icon' => 'fa fa-shopping-cart',
+		]
+        ]
 ];

@@ -8,10 +8,23 @@ use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Modules\Accounts\Http\Requests\AddUserRequest;
 use Illuminate\Support\Facades\Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 
 class DashboardController extends Controller {
 
     public function index() {
+        
+//        $user=Sentinel::getUser();
+//        $throtle=new ThrottlingException;
+//      
+//        $throtle->setDelay($user);
+//       
+//         $throtle->setType('user');
+//        dd($user); 
+//   
+//            dd($throtle->getType()); $throtle->getFree();
+//               
+        
         return view('client.dashboard');
     }
 /*

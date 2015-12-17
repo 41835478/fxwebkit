@@ -243,7 +243,7 @@ class EloquentFutureContractRepository implements FutureContract {
         }if (isset($month_arr[$iso2])) {
             return $month_arr[$iso2];
         } else {
-            dd($iso2);
+           
             return $iso2;
         }
     }

@@ -61,13 +61,15 @@ class ToolsController extends Controller {
             $aFilterParams['name'] = $oRequest->name;
             $aFilterParams['symbol'] = $oRequest->symbol;
             $aFilterParams['exchange'] = $oRequest->exchange;
-            $aFilterParams['all_groups'] = (($oRequest->has('all_groups')) ? true : false);
+             $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
 
             $role = explode(',', Config::get('fxweb.client_default_role'));
             $oResults = $this->oFuture->getContractByFilter($aFilterParams, false, $sOrder, $sSort, $role);
+            
         }
+  
 
         return view('tools::future_contract')
                         ->with('oResults', $oResults)

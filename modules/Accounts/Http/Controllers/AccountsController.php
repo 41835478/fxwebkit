@@ -73,8 +73,6 @@ class AccountsController extends Controller {
             
         }
 
-
-
         return view('accounts::accountsList')
                         ->with('oResults', $oResults)
                         ->with('aFilterParams', $aFilterParams);

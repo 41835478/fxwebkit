@@ -22,5 +22,12 @@ return [
     'page'=>'Page',
     'go'=>'Go',
     'delete'=>'Delete',
-
+    'name:'=>'Name :',
+    'symbol:'=>'Symbol :',
+    'exchange:'=>'Exchange :',
+    'month:'=>'Month :',
+    'year:'=>'Year :',
+    'start_date:'=>'Start Date :',
+    'expiry_date:'=>'Expiry Date :',
+    'contractDetails'=>'Contract Details',
 ];

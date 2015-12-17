@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
 	<title>expiry</title>
 <style>
@@ -13,11 +14,11 @@ th, td {
 </head>
 <body>
 	<p>Dear {{ $name }}</p>
-<tabel>
+        <table>
     <tr>
     <th>Expired</th><th>Symbol</th>
     </tr>
        {!! $expiryHtml !!}
-</tabel>
+</table>
 </body>
 </html>
