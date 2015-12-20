@@ -43,10 +43,10 @@ class EloquentUserRepository implements UserContract {
     }
 
     public function getUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin') {
-
+     
         $oRole = Sentinel::findRoleBySlug($role);
-        $role_id = $oRole->id;
-        $oResult = User::with('roles')->whereHas('roles', function($query) use($role_id) {
+        $role_id = $oRole->id;  
+        $oResult = User::with('roles')->whereHas('roles', function($query) use($role_id) {        
         $query->where('id', $role_id);
         });
 
@@ -71,10 +71,11 @@ class EloquentUserRepository implements UserContract {
 
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
-        
+      
 
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+             
         } else {
             $oResult = $oResult->get();
         }
@@ -83,7 +84,7 @@ class EloquentUserRepository implements UserContract {
             
         }
         /* =============== Preparing Output  =============== */
- 
+
         return $oResult;
     }
   
@@ -99,8 +100,7 @@ class EloquentUserRepository implements UserContract {
     public function addUser($oRequest, $role = 'admin') {
 
         $oClientRole = Sentinel::findRoleBySlug($role);
-
-       
+ 
         $aCredentials = [
             'first_name' => $oRequest->first_name,
             'last_name' => $oRequest->last_name,
@@ -109,6 +109,7 @@ class EloquentUserRepository implements UserContract {
         ];
 
         $oUser = Sentinel::register($aCredentials);
+       
         $oClientRole->users()->attach($oUser);
         $oActivation = Activation::create($oUser);
 

@@ -36,6 +36,8 @@ class SettingsController extends Controller {
      */
     public function getAdminsList(AdminsListRequest $oRequest) {
 
+      
+        
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
         $aGroups = [];
@@ -69,7 +71,7 @@ class SettingsController extends Controller {
 
     public function getAddUser(Request $oRequest) {
 
-
+        
         $country_array = $this->oUser->getCountry(null);
 
         $carbon = new Carbon();

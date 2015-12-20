@@ -66,13 +66,13 @@
         <div class="center_page_all_div">
             @include('admin.partials.messages')
 
-            <div class="table-info">
+            <div class="table-info">  
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('general.adminsList') }}  
                         <a href="{{ route('general.addUser') }}" style="float:right;">
-                        <input name="new_menu_submit" class="btn btn-primary btn-flat" type="submit" value="{{ trans('general.addUser') }}"> </a>
-                   </div>
+                            <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button" value="{{ trans('general.addUser') }}"> </a>
+                    </div>
                 </div>
                 <table class="table table-bordered">
                     <thead>
@@ -132,7 +132,7 @@
         </div>
     </div>
 </div>
-</div>
+
 {!! Form::close() !!}
 <script>
     init.push(function () {

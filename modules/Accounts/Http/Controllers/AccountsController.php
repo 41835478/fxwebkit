@@ -13,6 +13,7 @@ use Modules\Accounts\Http\Requests\EditUserRequest;
 use Modules\Accounts\Http\Requests\AsignMt4User;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Config;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Carbon\Carbon;
 use Mail;
 
@@ -55,9 +56,6 @@ class AccountsController extends Controller {
             'order' => $sOrder,
         ];
 
-
-
-
         if ($oRequest->has('search')) {
             $aFilterParams['id'] = $oRequest->id;
             $aFilterParams['first_name'] = $oRequest->first_name;
@@ -69,10 +67,9 @@ class AccountsController extends Controller {
 
             $role = explode(',', Config::get('fxweb.client_default_role'));
 
-            $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
-            
+            $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);           
         }
-
+   
         return view('accounts::accountsList')
                         ->with('oResults', $oResults)
                         ->with('aFilterParams', $aFilterParams);
@@ -188,7 +185,7 @@ class AccountsController extends Controller {
 
        $result = 0;
 
-        $admin_role = explode(',', Config::get('fxweb.admin_roles'));
+        $admin_role = explode(',', Config::get('fxweb.client_default_role'));
         
         $result = $this->oUsers->addUser($oRequest, $admin_role[0]);
 
@@ -219,6 +216,9 @@ class AccountsController extends Controller {
         }
     }
 
+    
+    
+    
     public function postEditAccount(EditUserRequest $oRequest) {
 
        $result = 0;
@@ -296,6 +296,7 @@ class AccountsController extends Controller {
             $aFilterParams['signed'] = $oRequest->signed;
             $aFilterParams['account_id'] = $account_id;
             $aFilterParams['order'] = $oRequest->order;
+         
              $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);   
         }
 
@@ -328,6 +329,7 @@ class AccountsController extends Controller {
             $oExport = new Export($aHeaders, $aData);
             return $oExport->export($sOutput);
         }
+      
 
         return view('accounts::fastAsignMt4Users')
                         ->with('aGroups', $aGroups)
@@ -539,4 +541,25 @@ class AccountsController extends Controller {
         return view('accounts::clientAddMt4User')->with('userInfo', $userInfo);
     }
 
+    public function getBlockAccount(Request $oRequest)
+    {
+         $user = Sentinel::findById($oRequest->account_id);
+        
+         $role = Sentinel::findRoleByName('block');
+         $role->users()->attach($user);
+         
+           return Redirect::route('accounts.accountsList')->withErrors('Block User');
+    }
+    
+    
+     public function getUnBlockAccount(Request $oRequest)
+    {
+         $user = Sentinel::findById($oRequest->account_id);
+        
+         $role = Sentinel::findRoleByName('block');
+         $role->users()->detach($user);
+         
+         return Redirect::route('accounts.accountsList')->withErrors('Unblock User');
+    }
+    
 }

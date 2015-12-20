@@ -14,6 +14,8 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'accounts', 'na
             'getEditMt4User'=>'accounts.addMt4User',
             'getEditAccount'=>'accounts.editAccount',
            'getDeleteAccount'=>'accounts.deleteAccount',
+           'getBlockAccount'=>'accounts.blockAccount',
+           'getUnBlockAccount'=>'accounts.unBlockAccount',
             ]);
 });
 
