@@ -115,15 +115,56 @@ class ClientAccountsController extends Controller {
     }
 
     
-    public function getMt4Leverage()
+    public function getMt4Leverage(Request $oRequest)
     {
       
       $oResult=Config('accounts.leverage');
+      $oPssword=Config('accounts.apiReqiredConfirmMt4Password');
       
-        
-        return view('accounts::client.addLeverage')->with('oResult',$oResult);
+        return view('accounts::client.addLeverage')
+                ->with('oResult',$oResult)
+                ->with('oPssword',$oPssword);
         }
         
+        
+        public function getMt4ChangePassword(Request $oRequest)
+        {
+            $oPssword=Config('accounts.apiReqiredConfirmMt4Password');
+            
+             $changePassword = [
+          //  'login' => '',
+            'oldPassword' =>'',
+            'newPassword' => ''];
+          
+             return view('accounts::client.changePassword') 
+                     ->with('oPssword',$oPssword)
+                     ->with('changePassword',$changePassword)
+                     ->with('login',$oRequest->login);
+           
+        }
 
+        
+          public function postMt4ChangePassword(Request $oRequest)
+        {
+              $oPssword=Config('accounts.apiReqiredConfirmMt4Password');
+              
+           $changePassword = [
+            'login' => $oRequest['login'],
+            'oldPassword' => $oRequest['oldPassword'],
+            'newPassword' => $oRequest['newPassword']];
+         
+            
+          
+             return view('accounts::client.changePassword') ->with('oPssword',$oPssword);
+           
+        }
+        
+        
+        public function getMt4InternalTransfer(Request $oRequest)
+        {
+             $oPssword=Config('accounts.apiReqiredConfirmMt4Password');
+          
+             return view('accounts::client.internalTransfer') ->with('oPssword',$oPssword);
+        }
 
 }

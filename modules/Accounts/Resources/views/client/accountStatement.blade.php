@@ -63,40 +63,27 @@
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
-
-
-
-
-            @if (count($oResults))
-            <div class="stat-panel no-margin-b">
-                <div class="stat-row">
-                    
-                </div>
-            </div>
-            @endif
+        
             <div class="padding-xs-vr"></div>
 
 
             <!-- ___________________________footer_summery_____________-->
             @if (count($oResults))
             <div class="table-info">
-
                 <ul id="profile-tabs" class="nav nav-tabs">
                     <li class="active">
-                        <a href="#profile-tabs-board" data-toggle="tab">Board</a>
+                        <a href="#profile-tabs-board" data-toggle="tab">Summry</a>
+                    </li>
+                    <li >
+                        <a href="{{ route('clients.accounts.mt4Leverage').'?login='.$oResults->LOGIN}}" >Leverage</a>
                     </li>
                     <li>
-                        <a href="{{ route('clients.accounts.mt4Leverage')}}" >Timeline</a>
-
+                        <a href="{{ route('clients.accounts.mt4ChangePassword').'?login='.$oResults->LOGIN}} ">Change Password</a>
                     </li>
                     <li>
-                        <a href="#profile-tabs-followers" data-toggle="tab">Followers</a>
-                    </li>
-                    <li>
-                        <a href="#profile-tabs-following" data-toggle="tab">Following</a>
+                        <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$oResults->LOGIN}}" >Internal Transfer</a>
                     </li>
                 </ul>
-
             </div>
             <table class="table table-bordered user-info-table">
                 <tr>
@@ -159,12 +146,7 @@
         <!--______________tables__________-->
     </div>                
 </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 90cfc2c84dbef6c58779ced2affa42a96d97c54e
-</div>
-</div>
 <script>
     init.push(function () {
         var options = {
@@ -173,8 +155,6 @@
             format: "yyyy-mm-dd"
         }
         $('.datepicker-warpper').datepicker(options);
-
-
-    });
+  });
 </script>
 @stop
