@@ -124,6 +124,7 @@ class ClientAccountsController extends Controller {
 
         return view('accounts::client.addLeverage')
                         ->with('Pssword', $Pssword)
+                         ->with('Result', $Result)
                         ->with('changeleverage', $changeleverage)
                         ->with('login', $oRequest->login);
     }
@@ -147,6 +148,7 @@ class ClientAccountsController extends Controller {
                         ->with('Result', $Result)
                         ->with('Pssword', $Pssword)
                         ->with('login', $oRequest->login)
+                 ->with('changeleverage', $changeleverage)
                         ->withErrors($result);
     }
 

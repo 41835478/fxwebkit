@@ -7,9 +7,9 @@ return [
 	'icon' => 'fa fa-user',
 	'route' => '',
         'leverage'=>[
-           '1:50',
-            '1:100',
-            '1:150',
+           '1:50'=> '1:50',
+            '1:100'=>'1:100',
+            '1:150'=>'1:150',
         ],
 	'apiReqiredConfirmMt4Password'=>true,
 	'apiMasterPassword'=>'PASS',
