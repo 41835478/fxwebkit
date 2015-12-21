@@ -3,18 +3,10 @@
 namespace Modules\Accounts\Http\Controllers;
 
 use Pingpong\Modules\Routing\Controller;
-use Modules\Accounts\Http\Requests\AccountsRequest;
 use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
-use Modules\Accounts\Http\Requests\AddUserRequest;
-use Modules\Accounts\Http\Requests\EditUserRequest;
-use Modules\Accounts\Http\Requests\AsignMt4User;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Config;
-use Carbon\Carbon;
-use Mail;
 
 
 class ClientAccountsController extends Controller {
@@ -36,7 +28,7 @@ class ClientAccountsController extends Controller {
     }
 
     public function getMt4UsersList(Request $oRequest) {
-        
+       
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
         $aGroups = [];
@@ -120,6 +112,15 @@ class ClientAccountsController extends Controller {
                         ->with('oResults', $oResults)
                         ->with('aSummery', $aSummery)
                         ->with('aFilterParams', $aFilterParams);
+    }
+    
+    public function getMt4Leverage()
+    {
+      
+      $oResult=Config('accounts.leverage');
+      
+        
+        return view('accounts::client.addLeverage')->with('oResult',$oResult);
     }
 
 }

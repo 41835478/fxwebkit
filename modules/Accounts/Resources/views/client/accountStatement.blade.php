@@ -15,6 +15,8 @@
     .user-info-table td{ text-align: left;}
 </style>
 <div class="  theme-default page-mail" >
+
+
     <div class="mail-nav" >
         <div class="navigation">
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
@@ -61,89 +63,88 @@
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
-
-
-            @if (count($oResults))
-            <div class="stat-panel no-margin-b">
-                <div class="stat-row">
-                    
-                </div>
-            </div>
-            @endif
-            <div class="padding-xs-vr"></div>
-
-        
+           
 
             <!-- ___________________________footer_summery_____________-->
             @if (count($oResults))
             <div class="table-info">
-                <div class="table-header">
-                    <div class="table-caption">
-                        {{ trans('accounts::accounts.Summary') }}
+                <ul id="profile-tabs" class="nav nav-tabs">
+                    <li class="active">
+                        <a href="{{ route('clients.accounts.mt4UserDetails').'?login='. $oResults->LOGIN }}">Board</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('clients.accounts.mt4Leverage')}}" >Leverage</a>
+                    </li>
+                    <li>
+                        <a href="#profile-tabs-followers" data-toggle="tab">Followers</a>
+                    </li>
+                    <li>
+                        <a href="#profile-tabs-following" data-toggle="tab">Following</a>
+                    </li>
+                </ul>
 
-                    </div>
-                </div>
-                <table class="table table-bordered user-info-table">
-                    <tr>
-                        <th colspan="3">Registration date : </th><td>{{ $oResults->REGDATE }}</td>
-                        <th  >MetaQuotes ID : </th><td>{{ $oResults->MQID }}</td>
-                    </tr>
-                    <tr>
-                        <th >Name : </th><td colspan="3">{{ $oResults->NAME }}</td>
-                        <th  >Phone password : </th><td>{{ $oResults->PASSWORD_PHONE }}</td>
-                    </tr>
-                    <tr>
-                        <th >City : </th><td >{{ $oResults->CITY }}</td>
-                        <th >State : </th><td >{{ $oResults->STATE }}</td>
-                        <th  >Country : </th><td>{{ $oResults->COUNTRY }}</td>
-                    </tr>
-                    <tr>
-                        <th >Address : </th><td  colspan="3">{{ $oResults->ADDRESS }}</td>
-                        <th >Zip-code : </th><td >{{ $oResults->ZIPCODE }}</td>
-                    </tr>
-                    <tr>
-                        <th >Phone : </th><td >{{ $oResults->PHONE }}</td>
-                        <th >Email : </th><td  colspan="3">{{ $oResults->EMAIL }}</td>
-                    </tr>
-                    <tr>
-                        <th >ID number : </th><td >{{ $oResults->ID }}</td>
-                        <th >Status : </th><td >{{ $oResults->STATUS }}</td>
-                        <th  >Color : </th><td>{{ $oResults->USER_COLOR }}</td>
-                    </tr>
-                    <tr>
-                        <th >Group : </th><td >{{ $oResults->GROUP }}</td>
-                        <th >comment : </th><td  colspan="3">{{ $oResults->COMMENT }}</td>
-                    </tr>
-                    <tr>
-                        <th >Leverage : </th><td >{{ $oResults->LEVERAGE }}</td>
-                        <th >tax : </th><td >{{ $oResults->TAXES }}%</td>
-                        <th  >Agent account : </th><td>{{ $oResults->AGENT_ACCOUNT }}</td>
-                    </tr>
-                    <tr>
-                        <th class="no-warp"></th><td></td>
-                        <th class="no-warp">Deposit / Withdrawal :</th><td>{{ $aSummery['deposit'] }}</td>
-                        <th class="no-warp">Credit Facility :</th><td>{{ $aSummery['credit_facility'] }}</td>
-                    </tr>
-                    <tr>
-                        <th class="no-warp">Closed Trade P/L : </th><td>{{ $aSummery['closed_trade'] }}</td>
-                        <th class="no-warp">Floating P/L : </th><td>{{ $aSummery['floating'] }}</td>
-                        <th class="no-warp">Margin : </th><td>{{ $oResults->MARGIN }}</td>
-                    </tr>
-                    <tr>
-                        <th class="no-warp">Balance : </th><td>{{ $oResults->BALANCE }}</td>
-                        <th class="no-warp">Equity : </th><td>{{ $oResults->EQUITY }}</td>
-                        <th class="no-warp">Free Margin : </th><td>{{ $oResults->MARGIN_FREE }}</td>
-                    </tr>
-                </table>				
-
-                <div class="table-footer">
-                       
-                </div> 
             </div>
-            @endif
-            <!--______________tables__________-->
-        </div>                
-    </div>
+            <table class="table table-bordered user-info-table">
+                <tr>
+                    <th colspan="3">Registration date : </th><td>{{ $oResults->REGDATE }}</td>
+                    <th  >MetaQuotes ID : </th><td>{{ $oResults->MQID }}</td>
+                </tr>
+                <tr>
+                    <th >Name : </th><td colspan="3">{{ $oResults->NAME }}</td>
+                    <th  >Phone password : </th><td>{{ $oResults->PASSWORD_PHONE }}</td>
+                </tr>
+                <tr>
+                    <th >City : </th><td >{{ $oResults->CITY }}</td>
+                    <th >State : </th><td >{{ $oResults->STATE }}</td>
+                    <th  >Country : </th><td>{{ $oResults->COUNTRY }}</td>
+                </tr>
+                <tr>
+                    <th >Address : </th><td  colspan="3">{{ $oResults->ADDRESS }}</td>
+                    <th >Zip-code : </th><td >{{ $oResults->ZIPCODE }}</td>
+                </tr>
+                <tr>
+                    <th >Phone : </th><td >{{ $oResults->PHONE }}</td>
+                    <th >Email : </th><td  colspan="3">{{ $oResults->EMAIL }}</td>
+                </tr>
+                <tr>
+                    <th >ID number : </th><td >{{ $oResults->ID }}</td>
+                    <th >Status : </th><td >{{ $oResults->STATUS }}</td>
+                    <th  >Color : </th><td>{{ $oResults->USER_COLOR }}</td>
+                </tr>
+                <tr>
+                    <th >Group : </th><td >{{ $oResults->GROUP }}</td>
+                    <th >comment : </th><td  colspan="3">{{ $oResults->COMMENT }}</td>
+                </tr>
+                <tr>
+                    <th >Leverage : </th><td >{{ $oResults->LEVERAGE }}</td>
+                    <th >tax : </th><td >{{ $oResults->TAXES }}%</td>
+                    <th  >Agent account : </th><td>{{ $oResults->AGENT_ACCOUNT }}</td>
+                </tr>
+                <tr>
+                    <th class="no-warp"></th><td></td>
+                    <th class="no-warp">Deposit / Withdrawal :</th><td>{{ $aSummery['deposit'] }}</td>
+                    <th class="no-warp">Credit Facility :</th><td>{{ $aSummery['credit_facility'] }}</td>
+                </tr>
+                <tr>
+                    <th class="no-warp">Closed Trade P/L : </th><td>{{ $aSummery['closed_trade'] }}</td>
+                    <th class="no-warp">Floating P/L : </th><td>{{ $aSummery['floating'] }}</td>
+                    <th class="no-warp">Margin : </th><td>{{ $oResults->MARGIN }}</td>
+                </tr>
+                <tr>
+                    <th class="no-warp">Balance : </th><td>{{ $oResults->BALANCE }}</td>
+                    <th class="no-warp">Equity : </th><td>{{ $oResults->EQUITY }}</td>
+                    <th class="no-warp">Free Margin : </th><td>{{ $oResults->MARGIN_FREE }}</td>
+                </tr>
+            </table>				
+
+            <div class="table-footer">
+
+            </div> 
+        </div>
+        @endif
+        <!--______________tables__________-->
+    </div>                
+</div>
 </div>
 </div>
 <script>

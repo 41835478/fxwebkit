@@ -6,6 +6,11 @@ return [
 	'name' => 'accounts',
 	'icon' => 'fa fa-user',
 	'route' => '',
+        'leverage'=>[
+           '1:50',
+            '1:100',
+            '1:150',
+        ],
 	'admin_menu' => [
 		[
 			'route' => 'accounts.accountsList',

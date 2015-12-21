@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Carbon\Carbon;
-use Mail;
+
 
 
 class AccountsController extends Controller {
