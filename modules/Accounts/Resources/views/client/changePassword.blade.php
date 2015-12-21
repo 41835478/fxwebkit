@@ -8,7 +8,7 @@
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
 
 <div class="panel-body">
-    @if($oPssword==true)
+    @if($Password==true)
     <div class="col-sm-6">
         <div class="form-group no-margin-hr">
             <label class="control-label">{{ trans('accounts::accounts.oldPassword') }}</label>
@@ -29,6 +29,12 @@
 <div class="panel-footer text-right">
     {!! Form::hidden('login',$login)!!}
     {!! Form::submit(trans('accounts::accounts.save'), ['class'=>'btn btn-info btn-sm', 'name' => 'save']) !!}
+</div>
+
+<div class="alert alert-danger alert-dark">
+    @foreach($errors->all() as $key=>$error)
+    <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
+    @endforeach
 </div>
 
 {!! Form::close() !!}

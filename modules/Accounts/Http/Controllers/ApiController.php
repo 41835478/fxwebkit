@@ -8,7 +8,7 @@ class ApiController extends Controller {
 	private $apiMasterPassword;
 	private $mt4Host;
 	private $mt4Port;
-private $returnMessages=[
+        private $returnMessages=[
 	'NOK01'=>'Invalid Data',
 	'NOK02'=>'Internal Error',
 	'NOK03'=>'General Error',
@@ -40,7 +40,7 @@ private $returnMessages=[
 			fclose($fp);
 		}
 
-		return $result;
+		return trim($result);
 
 	}
 
@@ -48,8 +48,9 @@ private $returnMessages=[
 
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
-		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=2|LOGIN='.$login.'|'.$password.'NPASS='.$newPassword.'|TYPE=0|MANAGER=1';
-		return $this->getApiResponseMessage($this->sendApiMessage($message));
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=2|LOGIN='.$login.'|'.$password.'NPASS='.$newPassword.'|TYPE=0';
+		echo('<div style="position:fixed; bottom:0px; left:0px; background:#ccc; color:#fff; width:100%; text-align:right; padding:10px;">'.$message.'</div>');
+                return $this->getApiResponseMessage($this->sendApiMessage($message));
 	}
 
 	public function changeMt4Leverage($login,$leverage,$oldPassword=null){
@@ -57,7 +58,9 @@ private $returnMessages=[
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=1|LOGIN='.$login.'|'.$password.'lEVERAGE='.$leverage.'|MANAGER=1';
-		return $this->getApiResponseMessage($this->sendApiMessage($message));
+		echo('<div style="position:fixed; bottom:0px; left:0px; background:#ccc; color:#fff; width:100%; text-align:right; padding:10px;">'.$message.'</div>');
+               
+                return $this->getApiResponseMessage($this->sendApiMessage($message));
 	}
 
 	public function internalTransfer($login1,$login2,$amount,$oldPassword=null){
@@ -65,11 +68,14 @@ private $returnMessages=[
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=4|LOGIN='.$login.'|'.$password.'TOACC='.$login2.'|AMOUNT='.$amount.'|MANAGER=1';
-		return $this->getApiResponseMessage($this->sendApiMessage($message));
+		echo('<div style="position:fixed; bottom:0px; left:0px; background:#ccc; color:#fff; width:100%; text-align:right; padding:10px;">'.$message.'</div>');
+               
+                return $this->getApiResponseMessage($this->sendApiMessage($message));
 	}
 
 	private function getApiResponseMessage($result){
-		return $this->returnMessages[$result];
+            
+		return (isset($this->returnMessages[$result]))? $this->returnMessages[$result]:$this->returnMessages['error'];
 	}
 
 }

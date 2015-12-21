@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
+use Modules\Accounts\Http\Controllers\ApiController;
 
 
 class ClientAccountsController extends Controller {
@@ -129,7 +130,7 @@ class ClientAccountsController extends Controller {
         
         public function getMt4ChangePassword(Request $oRequest)
         {
-            $oPssword=Config('accounts.apiReqiredConfirmMt4Password');
+            $Password=Config('accounts.apiReqiredConfirmMt4Password');
             
              $changePassword = [
           //  'login' => '',
@@ -137,7 +138,7 @@ class ClientAccountsController extends Controller {
             'newPassword' => ''];
           
              return view('accounts::client.changePassword') 
-                     ->with('oPssword',$oPssword)
+                     ->with('Password',$Password)
                      ->with('changePassword',$changePassword)
                      ->with('login',$oRequest->login);
            
@@ -146,16 +147,21 @@ class ClientAccountsController extends Controller {
         
           public function postMt4ChangePassword(Request $oRequest)
         {
-              $oPssword=Config('accounts.apiReqiredConfirmMt4Password');
+              $Password=Config('accounts.apiReqiredConfirmMt4Password');
               
-           $changePassword = [
-            'login' => $oRequest['login'],
-            'oldPassword' => $oRequest['oldPassword'],
-            'newPassword' => $oRequest['newPassword']];
-         
-            
+               $changePassword = [
+            'login' => '',
+            'oldPassword' =>'',
+            'newPassword' => ''];
+              
+            $mT4ChangePassword=new ApiController();
+            $result=$mT4ChangePassword->changeMt4Password($oRequest['login'],$oRequest['newPassword'],$oRequest['oldPassword']);
           
-             return view('accounts::client.changePassword') ->with('oPssword',$oPssword);
+             return view('accounts::client.changePassword') 
+                     ->withErrors($result)
+                     ->with('Password',$Password)
+                     ->with('changePassword',$changePassword)
+                      ->with('login',$oRequest->login);
            
         }
         
