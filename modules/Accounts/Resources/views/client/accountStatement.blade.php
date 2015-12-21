@@ -59,7 +59,7 @@
 
     <div class="mail-container " >
         <div class="mail-container-header">
-            {{ trans('accounts::accounts.accounts') }}
+          
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
@@ -72,16 +72,16 @@
             <div class="table-info">
                 <ul id="profile-tabs" class="nav nav-tabs">
                     <li class="active">
-                        <a href="#profile-tabs-board" data-toggle="tab">Summry</a>
+                        <a href="#profile-tabs-board" data-toggle="tab">{{ trans('accounts::accounts.summry') }}</a>
                     </li>
                     <li >
-                        <a href="{{ route('clients.accounts.mt4Leverage').'?login='.$oResults->LOGIN}}" >Leverage</a>
+                        <a href="{{ route('clients.accounts.mt4Leverage').'?login='.$oResults->LOGIN}}" >{{ trans('accounts::accounts.leverage') }}</a>
                     </li>
                     <li>
-                        <a href="{{ route('clients.accounts.mt4ChangePassword').'?login='.$oResults->LOGIN}} ">Change Password</a>
+                        <a href="{{ route('clients.accounts.mt4ChangePassword').'?login='.$oResults->LOGIN}} ">{{ trans('accounts::accounts.changePassword') }}</a>
                     </li>
                     <li>
-                        <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$oResults->LOGIN}}" >Internal Transfer</a>
+                        <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$oResults->LOGIN}}" >{{ trans('accounts::accounts.internalTransfer') }}</a>
                     </li>
                 </ul>
             </div>
