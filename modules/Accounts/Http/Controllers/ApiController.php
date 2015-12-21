@@ -25,7 +25,7 @@ class ApiController extends Controller {
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=2|LOGIN='.$login.'|'.$password.'NPASS='.$newPassword.'|TYPE=0|MANAGER=1';
 	}
 
-	private function getApiRespond
+	private function getApiResponseMessage(){}
 	public function index()
 	{
 		return view('accounts::index');
