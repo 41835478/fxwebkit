@@ -8,6 +8,7 @@ use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
 use Modules\Accounts\Http\Controllers\ApiController;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 class ClientAccountsController extends Controller {
 
@@ -186,23 +187,7 @@ class ClientAccountsController extends Controller {
 
     public function getMt4InternalTransfer(Request $oRequest) {
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
-$allowTransferToUnsignedMT4=Config('accounts.allowTransferToUnsignedMT4');
-        if(!$allowTransferToUnsignedMT4){
-            $aFilterParams = [
-                'from_login' => '',
-                'to_login' => '',
-                'exactLogin' => true,
-                'login' =>$oRequest->login2,
-                'name' => '',
-                'all_groups' => true,
-                'group' => '',
-                'sort' => "",
-                'order' => '',
-                'signed' => 1,
-                'account_id' => Sentinel::user()->id,
-            ];
-            $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
-        }
+
         $internalTransfer = [
             'login1' => '',
             'oldPassword' => '',
@@ -219,17 +204,43 @@ $allowTransferToUnsignedMT4=Config('accounts.allowTransferToUnsignedMT4');
 
        
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $allowTransferToUnsignedMT4=Config('accounts.allowTransferToUnsignedMT4');
 
+        $allowed=true;
+
+        if($allowTransferToUnsignedMT4==false){
+            $aFilterParams = [
+                'from_login' => '',
+                'to_login'   => '',
+                'exactLogin' => true,
+                'login'      => $oRequest['login2'],
+                'name'       => '',
+                'all_groups' => true,
+                'group'      => '',
+                'sort'       => "",
+                'order'      => '',
+                'signed'     => 1,
+                'account_id' => Sentinel::getUser()->id,
+            ];
+            $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, 'login','desc');
+
+            if(!count($oResults)){
+                $allowed=false;
+            }
+        }
 
          $internalTransfer = [
             'login' => '',
             'oldPassword' => '',
             'login2' => '',
             'amount' => ''];
-
+        $result='';
+        if($allowed){
         $oApiController = new ApiController();
         $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['oldPassword'], $oRequest['amount']);
-
+        }else{
+            $result='The Admin does not allowed to transfer to unsigned Mt4 users';
+        }
 
         return view('accounts::client.internalTransfer')
                         ->withErrors($result)
