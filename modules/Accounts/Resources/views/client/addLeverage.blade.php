@@ -13,22 +13,28 @@
         <div class="form-group no-margin-hr">
 
             <label class="control-label">{{ trans('accounts::accounts.leverage') }}</label>
-            {!! Form::select('country',$oResult,['id'=>'jq-validation-select2','class'=>'form-control']) !!}
+            {!! Form::select('leverage',$Result,['class'=>'form-control']) !!}
         </div>
     </div><!-- col-sm-6 -->
-    @if($oPssword==true)
+    @if($Pssword==true)
     <div class="col-sm-6">
         <div class="form-group no-margin-hr">
             <label class="control-label">{{ trans('accounts::accounts.Password') }}</label>
-            {!! Form::password("password",["class"=>"form-control","value"=>'123']) !!}
+            {!! Form::password("password",["class"=>"form-control","value"=>$changeleverage['oldPassword']) !!}
 
         </div>
     </div><!-- col-sm-6 -->
     @endif
 </div>
-
 <div class="panel-footer text-right">
-    <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']  or 0 }}">{{ trans('accounts::accounts.save') }}</button>
+    {!! Form::hidden('login',$login)!!}
+    {!! Form::submit(trans('accounts::accounts.save'), ['class'=>'btn btn-info btn-sm', 'name' => 'save']) !!}
+</div>
+
+<div class="alert alert-danger alert-dark">
+    @foreach($errors->all() as $key=>$error)
+    <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
+    @endforeach
 </div>
 
 {!! Form::close() !!}
