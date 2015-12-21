@@ -16,7 +16,6 @@
 </style>
 <div class="  theme-default page-mail" >
 
-
     <div class="mail-nav" >
         <div class="navigation">
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
@@ -63,11 +62,23 @@
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
-           
+
+
+
+            @if (count($oResults))
+            <div class="stat-panel no-margin-b">
+                <div class="stat-row">
+                    
+                </div>
+            </div>
+            @endif
+            <div class="padding-xs-vr"></div>
+
 
             <!-- ___________________________footer_summery_____________-->
             @if (count($oResults))
             <div class="table-info">
+
                 <ul id="profile-tabs" class="nav nav-tabs">
                     <li class="active">
                         <a href="#profile-tabs-board" data-toggle="tab">Board</a>
@@ -145,6 +156,7 @@
         <!--______________tables__________-->
     </div>                
 </div>
+
 </div>
 </div>
 <script>

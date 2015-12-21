@@ -1,10 +1,6 @@
-<<<<<<< HEAD:resources/views/client/addMt4User.blade.php
-@extends('client.layouts.main')
-@section('title', trans('accounts.addAccount'))
-=======
+
 @extends('admin.layouts.main')
 @section('title', trans('accounts::accounts.addAccount'))
->>>>>>> 846561ffa5f87b238cad0005360a4f77e26da741:modules/Accounts/Resources/views/clientAddMt4User.blade.php
 @section('content')
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
 

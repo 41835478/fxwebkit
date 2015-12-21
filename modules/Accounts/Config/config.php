@@ -6,8 +6,10 @@ return [
 	'name' => 'accounts',
 	'icon' => 'fa fa-user',
 	'route' => '',
+
 	'apiReqiredConfirmMt4Password'=>true,
 	'apiMasterPassword'=>'PASS',
+
 	'admin_menu' => [
 		[
 			'route' => 'accounts.accountsList',
