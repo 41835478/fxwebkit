@@ -1,0 +1,152 @@
+body{
+    background-color: #f6f6f6;
+}
+#cms_add_page_all_div{
+    
+    color:#fff;
+    padding: 10px;
+    
+}
+.theme_posion_div{
+    position: relative;
+    border:1px solid #000;
+    padding: 10px;
+    margin: 10px;
+    
+    
+}
+.theme_posion_div:hover{
+    
+    border:1px solid #00f;
+}
+.add_module_a{
+    position: absolute;
+    top: 0px;
+    right:0px;
+    color: #fff;
+    background-color: #0000C2;
+    display: block;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.one_module_all_div{position: relative;
+border:1px solid #DEDBDB;
+}
+.one_module_all_div:hover{background-color: #DEDBDB;}
+.remove_module_a{
+       position: absolute;
+    top: 0px;
+    right:0px;
+    color: #fff;
+    background-color: #f00;
+    display: block;
+    padding: 3px;
+    cursor: pointer; 
+    z-index: 9999999;
+}
+#add_module_form_all_div{
+    display: none;
+    
+    top: 0px;
+    left:0px;
+    width: 100%;
+    z-index: 99999;
+    background-color: rgba(0,0,0,0.7);
+    text-align: center;
+    padding-top:3%;
+    clear: both;
+    z-index: 9999999999999999;
+}
+
+.close_pupup_div{
+    color:#fff;
+    float: right;
+    padding: 10px;
+    font-size: 28px;
+    margin: 3px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background-color: #000;
+}
+
+.close_pupup_div:hover{
+    color:#00f;
+}
+#add_module_form_all_div form{
+    margin-top: 10%;
+    display: inline;
+    text-align: left;
+    
+}
+
+#module_variable{
+    display: none;
+}
+
+
+
+/*_______________________________classes*/
+/*__________________________________form*/
+#add_module_form_all_div{
+    background-color: #fff;
+}
+#add_module_to_web_19999_form{
+    
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #555;
+    box-sizing: border-box;
+    background-color: #fff;
+    
+}
+#add_module_to_web_19999_form .form_head_div{
+        background: #fafafa;
+    border-bottom: 2px solid #ececec;
+    padding-bottom: 9px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 11px;
+    position: relative;
+        padding: 10px 15px;
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+}
+#add_module_to_web_19999_form .form_body_div{
+        background: #fff;
+    margin: 0;
+    padding: 20px;
+
+    clear: both;
+}
+#add_module_to_web_19999_form .form_lable{
+    float: left;
+    text-align: right;
+    width: 20%;
+    margin: 0px;
+    padding:0px 5px;
+  
+    
+}
+
+#add_module_to_web_19999_form .from_row_div{clear:both;
+margin: 3px 0px;
+padding: 5px;
+border-bottom: 1px solid #eee;
+}
+
+
+#add_module_to_web_19999_form {color:#000;}
+
+#add_module_to_web_19999_form input{
+    color:#000;
+}
+#add_module_to_web_19999_form input[type="text"]{ height: 30px; padding: 2px; margin: 2px !important; width: 200px ; display: inline;}
+#add_module_to_web_19999_forminput[type="button"],#add_module_to_web_19999_form input[type="submit"],#add_module_to_web_19999_form button{ height: 30px; border:none;padding: 2px; margin: 2px; border-radius: 5px; width: 150px; display: inline;}
+#add_module_to_web_19999_form select:not(#multi_pages_select){ margin: 0px; margin: 2px !important; height: 30px; width: 200px !important; display: inline;}
+
+/*___________________________end__form_*/
+

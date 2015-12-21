@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html class="ie8">
+<![endif]-->
+<!--[if IE 9]>
+<html class="ie9 gt-ie8">
+<![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="gt-ie8 gt-ie9 not-ie">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="_token" content="2YZ6hyd8oBO2CU7aUXBeA1qYN7c96VQOAI58XNDU" />
+	<title> - FxWebKit</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
+	<link media="all" type="text/css" rel="stylesheet" href="http://localhost:8000/assets/css/bootstrap.min.css">
+
+	<link media="all" type="text/css" rel="stylesheet" href="http://localhost:8000/assets/css/pixel-admin.min.css">
+
+	<link media="all" type="text/css" rel="stylesheet" href="http://localhost:8000/assets/css/pages.min.css">
+
+	<link media="all" type="text/css" rel="stylesheet" href="http://localhost:8000/assets/css/rtl.min.css">
+
+	<link media="all" type="text/css" rel="stylesheet" href="http://localhost:8000/assets/css/themes.min.css">
+
+	<link media="all" type="text/css" rel="stylesheet" href="http://localhost:8000/assets/css/helper.css">
+
+	<!--[if lt IE 9]>
+	<script src="http://localhost:8000/assets/js/ie.min.js"></script>
+
+	<![endif]-->
+</head>
+<body class=" theme-default main-navbar-fixed main-menu-fixed main-menu-animated">
+	<script>var init = [];</script>
+
+	<div id="main-wrapper">
+		<div id="main-navbar" class="navbar navbar-inverse" role="navigation">
+	<button type="button" id="main-menu-toggle">
+		<i class="navbar-icon fa fa-bars icon"></i>
+		<span class="hide-menu-text">HIDE MENU</span>
+	</button>
+
+	<div class="navbar-inner">
+		<div class="navbar-header">
+			<a href="index.html" class="navbar-brand">
+				<div>
+					<img src="http://localhost:8000/assets/img/logo.png">
+				</div>
+				FxWebKit
+			</a>
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse">
+				<i class="navbar-icon fa fa-bars"></i>
+			</button>
+		</div>
+
+		<div id="main-navbar-collapse" class="collapse navbar-collapse main-navbar-collapse">
+			<div>
+				<div class="right clearfix">
+					<ul class="nav navbar-nav pull-right right-navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
+								<img src="data:image/jpeg;base64, current_user()->getAvatar() " alt="">
+								<span> current_user()->getName() </span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#">
+										<i class="dropdown-icon fa fa-user"></i>&nbsp;&nbsp;
+										Profile
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;
+										Settings
+									</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="http://localhost:8000/admin/logout">
+										<i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;
+										Logout
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>		<div id="main-menu" role="navigation">
+	<div id="main-menu-inner">
+		<div class="menu-content top" id="menu-content-demo">
+			<div>
+				<div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold"> current_user()->getFirstName() </span></div>
+				<img src="data:image/jpeg;base64, current_user()->getAvatar() " alt="" class="">
+				<div class="btn-group">
+					<a href="#" class="btn btn-xs btn-primary btn-outline dark">
+						<i class="fa fa-user"></i>
+					</a>
+					<a href="#" class="btn btn-xs btn-primary btn-outline dark">
+						<i class="fa fa-cog"></i>
+					</a>
+					<a href="http://localhost:8000/admin/logout" class="btn btn-xs btn-danger btn-outline dark">
+						<i class="fa fa-power-off"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+		<ul class="navigation">
+			<li>
+				<a href="http://localhost:8000/admin">
+					<i class="menu-icon fa fa-dashboard"></i>
+					<span class="mm-text">Dashboard</span>
+				</a>
+			</li>
+															<li class="mm-dropdown">
+						<a href="#">
+							<i class="menu-icon fa fa fa-gears"></i>
+							<span class="mm-text">CMS</span>
+						</a>
+													<ul>
+																	<li>
+										<a tabindex="-1" href="http://localhost:8000/cms/pages">
+											<i class="menu-icon fa fa fa-file-o"></i>
+											<span class="mm-text">Pages</span>
+										</a>
+									</li>
+																	<li>
+										<a tabindex="-1" href="http://localhost:8000/cms/menus">
+											<i class="menu-icon fa fa fa-list"></i>
+											<span class="mm-text">Menus</span>
+										</a>
+									</li>
+																	<li>
+										<a tabindex="-1" href="http://localhost:8000/cms/articles">
+											<i class="menu-icon fa fa fa-file-text-o"></i>
+											<span class="mm-text">Articles</span>
+										</a>
+									</li>
+															</ul>
+											</li>
+									<li class="mm-dropdown">
+						<a href="#">
+							<i class="menu-icon fa fa-info-circle"></i>
+							<span class="mm-text">Reports</span>
+						</a>
+													<ul>
+																	<li>
+										<a tabindex="-1" href="http://localhost:8000/admin/reports/closed-orders">
+											<i class="menu-icon fa fa-briefcase"></i>
+											<span class="mm-text">Closed Orders</span>
+										</a>
+									</li>
+																	<li>
+										<a tabindex="-1" href="http://localhost:8000/admin/reports/open-orders">
+											<i class="menu-icon fa fa-folder-open-o"></i>
+											<span class="mm-text">Open Orders</span>
+										</a>
+									</li>
+															</ul>
+											</li>
+							
+		</ul>
+	</div>
+</div>		<div id="content-wrapper">
+			
+<form action="" method="post" id="create_menu_form">
+        <input type="text" name='new_menu_name_input' placeholder="new menu name" >
+
+        <input type="hidden" name="selected_id" value="2" />
+        <input type="hidden" name="_token" value="2YZ6hyd8oBO2CU7aUXBeA1qYN7c96VQOAI58XNDU" />
+        <input type="submit" name="new_menu_submit" value="create new menu">
+
+</form>
+
+<form action="" method="post" name="pages_select_from">
+        <select name="selected_id" onchange="$(this).parent().submit();">
+                        <option selected value="2">dghdfgh</option>
+                        <option  value="3">hhhhh</option>
+                    </select>
+
+        <input type="hidden" name="_token" value="2YZ6hyd8oBO2CU7aUXBeA1qYN7c96VQOAI58XNDU" />
+        <input type="submit" value="display menu"  name="select_menu_submit">
+        <input type="submit" value="delete menu"  name="delete_menu_submit">
+
+    </form>
+
+
+
+<button id="show_add_menu_item_button" onclick="show_add_menu_item();">add item</button>
+
+<div id="add_menu_item_form_all_div">
+    <div class="close_pupup_div" >X</div>   
+    <form action="" method="post" class="form">
+   
+                <div class="form_head_div">
+
+            add link to this menu
+
+        </div>
+        <div class="form_body_div">
+            
+            <div class="from_row_div">
+                    <label class="form_lable">
+         <input type="radio" name="type" class="menu_type_radio" value="0"  checked="true">
+                    </label>
+        <select name="page_id">
+                        <option value="1">sfdasdf</option>
+                    </select>
+            </div>
+         <div class="from_row_div">
+                    <label class="form_lable">
+         <input type="radio" name="type" class="menu_type_radio" value="1"  checked="true">
+                    </label>
+        <select name="article_id">
+                        <option value="1">dfgdfg</option>
+                    </select>
+         </div>
+     
+              
+         <div class="from_row_div">
+                    <label class="form_lable">
+                        this will be the link /name_of_link
+                    </label>
+           <input name="item_name_input" placeholder="menu item name">
+         </div>
+         
+         <div class="from_row_div">
+                    <label class="form_lable">
+      the parent link
+                    </label>
+        <select name="parent_item_id">
+            <option value="0">select parent node</option>
+                        <option value="1">gdfgdf</option>
+                    </select>
+         </div>
+
+        <div class="from_row_div">
+                    <label class="form_lable">
+                        disable or enable
+                    </label>
+        <select name="disable">
+                        <option value="0">enable</option>
+                        <option value="1">disable</option>
+                    </select>
+        </div>
+                        
+                        <div class="from_row_div">
+                    <label class="form_lable">
+              hide or show
+                    </label>
+                        
+        <select name="hide">
+                        <option value="0">show</option>
+                        <option value="1">hide</option>
+                    </select>
+                        </div>
+            
+            <div class="form_row_div">
+        <input type="hidden" name="_token" value="2YZ6hyd8oBO2CU7aUXBeA1qYN7c96VQOAI58XNDU" />
+        
+        <input type="hidden" name="selected_id" value="2" />
+        <input type="submit" name="add_menu_item_submit" value="add link">
+            </div>
+        </div><!-- .form_body_div -->
+    </form>
+
+</div>
+
+
+<form method="post">
+    <table border="0" class="primary_table">
+    <thead>
+    <th>id</th>
+    <th>name</th>
+    <th>parent id</th>
+    <th>parent </th>
+    <th> disable</th>
+    <th>hide</th>
+    <th>link to page</th>
+    <th>remove</th>
+    </thead>
+    <tbody>
+                <tr>
+    <td >1</td>
+    <td >gdfgdf</td>
+    <td >0 </td>
+    <td> </td>
+    <td >0</td>
+    <td >0</td>
+    <td >
+        page  (sfdasdf)
+    </td>
+    <td><button name="remove_menu_item_submit" value="1">X</button> </td>
+        <tr>
+    </tbody>
+<tfoot>
+
+</tfoot>
+</table>
+    
+        <input type="hidden" name="_token" value="2YZ6hyd8oBO2CU7aUXBeA1qYN7c96VQOAI58XNDU" />
+</form>
+<div id="preview_menu_div">
+    <h3>the render menu preview </h3>
+    <ul class="nav" id="top-navigation">
+            <li class="main_menu_li"><a href="http://localhost:8000/gdfgdf"    >gdfgdf</a>
+       
+      
+      </li>
+                              </ul>
+
+<style type="text/css">
+    .main_menu_li:hover  .sub_menu_container{ display: block;}
+    .sub_menu_container{ position:relative; overflow: visible; z-index: 999999; display: none;   }
+    .sub_menu{ position: absolute; top: 0px; right: 0px;  }
+    .sub_menu a{
+        display: block;
+        padding: 5px;
+        text-align: center;
+        color:#fff;
+         background-color:rgba(24,26,28,0.7);
+         min-width: 120px;
+    }   
+    .sub_menu a:hover{
+
+        color:rgb(24,26,28);
+         background-color:#fff;
+    }
+</style>
+    
+</div>
+<link rel="stylesheet" type="text/css" href="http://localhost:8000/cms_assets/main.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:8000/cms_assets/cms_menus.css">
+<script src="http://localhost:8000/cms_assets/jquery-2.1.1.min.js"></script>
+<script src="http://localhost:8000/cms_assets/cms_menus.js"></script>
+
+		</div>
+		<div id="main-menu-bg"></div>
+	</div>
+
+
+	<!--[if !IE]> -->
+	<script src="http://localhost:8000/assets/js/jquery.2.0.3.min.js"></script>
+
+	<!-- <![endif]-->
+	<!--[if lte IE 9]>
+	<script src="http://localhost:8000/assets/js/jquery.1.8.3.min.js"></script>
+
+	<![endif]-->
+
+	<script src="http://localhost:8000/assets/js/bootstrap.min.js"></script>
+
+	<script src="http://localhost:8000/assets/js/pixel-admin.min.js"></script>
+
+
+	<script type="text/javascript">
+		window.PixelAdmin.start(init);
+	</script>
+</body>
+</html>
