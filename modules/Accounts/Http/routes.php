@@ -26,6 +26,7 @@ Route::group(['middleware' => ['authenticate.client'],'prefix' => 'accounts', 'n
             'getMt4UsersList'=>'clients.accounts.Mt4UsersList',
             'getMt4UserDetails'=>'clients.accounts.mt4UserDetails',
             'getMt4Leverage'=>'clients.accounts.mt4Leverage',
-            
+
+
             ]);
 });

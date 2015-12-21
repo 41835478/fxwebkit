@@ -28,7 +28,7 @@ class ClientAccountsController extends Controller {
     }
 
     public function getMt4UsersList(Request $oRequest) {
-       
+
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
         $aGroups = [];
@@ -113,6 +113,7 @@ class ClientAccountsController extends Controller {
                         ->with('aSummery', $aSummery)
                         ->with('aFilterParams', $aFilterParams);
     }
+
     
     public function getMt4Leverage()
     {
@@ -121,6 +122,8 @@ class ClientAccountsController extends Controller {
       
         
         return view('accounts::client.addLeverage')->with('oResult',$oResult);
-    }
+        }
+        
+
 
 }

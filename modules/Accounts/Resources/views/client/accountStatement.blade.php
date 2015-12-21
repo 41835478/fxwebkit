@@ -63,17 +63,31 @@
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
-           
+
+
+
+
+            @if (count($oResults))
+            <div class="stat-panel no-margin-b">
+                <div class="stat-row">
+                    
+                </div>
+            </div>
+            @endif
+            <div class="padding-xs-vr"></div>
+
 
             <!-- ___________________________footer_summery_____________-->
             @if (count($oResults))
             <div class="table-info">
+
                 <ul id="profile-tabs" class="nav nav-tabs">
                     <li class="active">
-                        <a href="{{ route('clients.accounts.mt4UserDetails').'?login='. $oResults->LOGIN }}">Board</a>
+                        <a href="#profile-tabs-board" data-toggle="tab">Board</a>
                     </li>
                     <li>
-                        <a href="{{ route('clients.accounts.mt4Leverage')}}" >Leverage</a>
+                        <a href="{{ route('clients.accounts.mt4Leverage')}}" >Timeline</a>
+
                     </li>
                     <li>
                         <a href="#profile-tabs-followers" data-toggle="tab">Followers</a>
@@ -145,6 +159,10 @@
         <!--______________tables__________-->
     </div>                
 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 90cfc2c84dbef6c58779ced2affa42a96d97c54e
 </div>
 </div>
 <script>

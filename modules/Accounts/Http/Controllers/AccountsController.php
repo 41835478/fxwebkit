@@ -17,6 +17,7 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Carbon\Carbon;
 
 
+use Mail;
 
 class AccountsController extends Controller {
 

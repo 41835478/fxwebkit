@@ -11,6 +11,8 @@ return [
             '1:100',
             '1:150',
         ],
+	'apiReqiredConfirmMt4Password'=>true,
+	'apiMasterPassword'=>'PASS',
 	'admin_menu' => [
 		[
 			'route' => 'accounts.accountsList',
