@@ -13,6 +13,8 @@ return [
         ],
 	'apiReqiredConfirmMt4Password'=>true,
 	'apiMasterPassword'=>'PASSWORD',
+	'allowTransferToUnsignedMT4'=>false,
+
 	'admin_menu' => [
 		[
 			'route' => 'accounts.accountsList',
