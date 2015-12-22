@@ -32,7 +32,7 @@ class ApiController extends Controller {
 	private function sendApiMessage($message){
 
 
-		$fp = @fsockopen($this->mt4Host,$this->mt4Port);
+		$fp = @fsockopen($this->mt4Host,$this->mt4Port,$error,$error2,10);
 		$result = 'error';
 		if ($fp) {
 			fwrite($fp, $message. "\nQUIT\n");
@@ -57,7 +57,7 @@ class ApiController extends Controller {
 
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
-		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=1|LOGIN='.$login.'|'.$password.'lEVERAGE='.$leverage.'|MANAGER=1';
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=1|LOGIN='.$login.'|'.$password.'LEVERAGE='.$leverage.'|MANAGER=1';
 		echo('<div style="position:fixed; bottom:0px; left:0px; background:#ccc; color:#fff; width:100%; text-align:right; padding:10px;">'.$message.'</div>');
                
                 return $this->getApiResponseMessage($this->sendApiMessage($message));
@@ -74,6 +74,7 @@ class ApiController extends Controller {
 	}
 
 	private function getApiResponseMessage($result){
+            
             
 		return (isset($this->returnMessages[$result]))? $this->returnMessages[$result]:$this->returnMessages['error'];
 	}
