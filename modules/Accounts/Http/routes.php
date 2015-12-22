@@ -13,12 +13,13 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'accounts', 'na
             'getMt4UserDetails'=>'accounts.mt4UserDetails',
             'getEditMt4User'=>'accounts.addMt4User',
             'getEditAccount'=>'accounts.editAccount',
-           'getDeleteAccount'=>'accounts.deleteAccount',
-           'getBlockAccount'=>'accounts.blockAccount',
-           'getUnBlockAccount'=>'accounts.unBlockAccount',
+            'getDeleteAccount'=>'accounts.deleteAccount',
+            'getBlockAccount'=>'accounts.blockAccount',
+            'getUnBlockAccount'=>'accounts.unBlockAccount',
             'getMt4Leverage'=>'accounts.mt4Leverage',
             'getMt4ChangePassword'=>'accounts.mt4ChangePassword',
             'getMt4InternalTransfer'=>'accounts.mt4InternalTransfer',
+            'getMt4Operation'=>'accounts.mt4Operation',
             ]);
 });
 

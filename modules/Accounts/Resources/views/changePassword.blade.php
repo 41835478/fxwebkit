@@ -11,8 +11,7 @@
                     <li >
                         <a href="{{ route('accounts.mt4UserDetails').'?login='.$login}}&from_date=&to_date=&search=Search&sort=asc&order=login">{{ trans('accounts::accounts.summry') }}</a>
                     </li>
-                    <li >
-                     
+                    <li > 
                         <a href="{{ route('accounts.mt4Leverage').'?login='.$login}}" >{{ trans('accounts::accounts.leverage') }}</a>
                     </li>
                     <li class="active">
@@ -21,6 +20,9 @@
                     <li>
                         <a href="{{ route('accounts.mt4InternalTransfer').'?login='.$login}}" >{{ trans('accounts::accounts.internalTransfer') }}</a>
                     </li>
+                    <li>
+                        <a href="{{ route('accounts.mt4Operation').'?login='.$login}}" >{{ trans('accounts::accounts.operation') }}</a>
+                    </li>                
                 </ul>
             </div>
     @if($Password==true)

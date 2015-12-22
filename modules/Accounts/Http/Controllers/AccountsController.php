@@ -671,6 +671,68 @@ class AccountsController extends Controller {
                         ->with('internalTransfer', $internalTransfer)
                         ->with('login', $oRequest->login);
     }
+    
+  
+    public function getMt4Operation(Request $oRequest) {
+      
+        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $Result = Config('accounts.operation');
+        
+        $changeOperation = [
+            'login1' => '',
+            'oldPassword' => '',
+            'operation' => '',
+            'amount' => '',
+            ];
+        
+        return view('accounts::operation')
+                        ->with('Pssword', $Pssword)
+                         ->with('Result', $Result)
+                        ->with('changeOperation', $changeOperation)
+                        ->with('login', $oRequest->login);
+    }
+    
+     public function postMt4Operation(Request $oRequest) {
+      
+        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $Result = Config('accounts.operation');
 
+          if($oRequest->operation=='0')
+          {
+             $operation=5;
+             $amount=$oRequest->amount;
+          }
+          elseif($oRequest->operation=='1')
+          {
+              $operation=5;
+              $amount=$oRequest->amount*-1;
+          }
+          elseif($oRequest->operation=='2')
+          {
+              $operation=3;
+              $amount=$oRequest->amount;    
+          }
+          else
+          {
+              $operation=3;
+              $amount=$oRequest->amount*-1;  
+          }
+        $changeOperation = [
+            'login' => '',
+            'oldPassword' => '',
+            'operation' => '',
+            'amount' => '',
+            ];
+        
+         $oApiController = new ApiController();
+         $result = $oApiController->operation($oRequest['login'], $amount, $operation);
+
+        return view('accounts::operation')
+                         ->withErrors($result)
+                        ->with('Pssword', $Pssword)
+                         ->with('Result', $Result)
+                        ->with('changeOperation', $changeOperation)
+                        ->with('login', $oRequest->login);
+    }
     
 }

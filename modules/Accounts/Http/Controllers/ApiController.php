@@ -72,6 +72,16 @@ class ApiController extends Controller {
                
                 return $this->getApiResponseMessage($this->sendApiMessage($message));
 	}
+        
+        public function operation($login,$amount,$mode,$oldPassword=null){
+
+		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
+
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE='.$mode.'|'.'LOGIN='.$login.'|'.$password.'AMOUNT='.$amount.'|COMMENT=ONLINE';
+		echo('<div style="position:fixed; bottom:0px; left:0px; background:#ccc; color:#fff; width:100%; text-align:right; padding:10px;">'.$message.'</div>');
+               
+                return $this->getApiResponseMessage($this->sendApiMessage($message));
+	}
 
 	private function getApiResponseMessage($result){
             

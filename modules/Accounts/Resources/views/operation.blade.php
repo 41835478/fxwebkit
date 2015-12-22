@@ -9,10 +9,10 @@
 <div class="panel-body">
      <div class="table-info">
                 <ul id="profile-tabs" class="nav nav-tabs">
-                    <li >
+                    <li>
                         <a href="{{ route('accounts.mt4UserDetails').'?login='.$login}}&from_date=&to_date=&search=Search&sort=asc&order=login">{{ trans('accounts::accounts.summry') }}</a>
                     </li>
-                    <li class="active"> 
+                    <li >      
                         <a href="{{ route('accounts.mt4Leverage').'?login='.$login}}" >{{ trans('accounts::accounts.leverage') }}</a>
                     </li>
                     <li>
@@ -21,23 +21,32 @@
                     <li>
                         <a href="{{ route('accounts.mt4InternalTransfer').'?login='.$login}}" >{{ trans('accounts::accounts.internalTransfer') }}</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="{{ route('accounts.mt4Operation').'?login='.$login}}" >{{ trans('accounts::accounts.operation') }}</a>
                     </li>
                 </ul>
             </div>
     
-    <div class="col-sm-6">
+      <div class="col-sm-6">
         <div class="form-group no-margin-hr">
-            <label class="control-label">{{ trans('accounts::accounts.leverage') }}</label>
-            {!! Form::select('leverage',$Result,'',['id'=>'jq-validation-select2','class'=>'form-control']) !!}
+            <label class="control-label">{{ trans('accounts::accounts.operation') }}</label>
+            {!! Form::select('operation',$Result,'',['id'=>'jq-validation-select2','class'=>'form-control']) !!}
         </div>
     </div><!-- col-sm-6 -->
+    
+      <div class="col-sm-6">
+        <div class="form-group no-margin-hr">
+            <label class="control-label">{{ trans('accounts::accounts.amount') }}</label>
+           {!! Form::text('amount',$changeOperation['amount'],['class'=>'form-control']) !!}
+        </div>
+    </div><!-- col-sm-6 -->
+    
+     
     @if($Pssword==true)
     <div class="col-sm-6">
         <div class="form-group no-margin-hr">
             <label class="control-label">{{ trans('accounts::accounts.mt4AccountPassword') }}</label>
-            {!! Form::password("password",["class"=>"form-control","value"=>$changeleverage['oldPassword']]) !!}
+            {!! Form::password("password",["class"=>"form-control","value"=>$changeOperation['oldPassword']]) !!}
 
         </div>
     </div><!-- col-sm-6 -->

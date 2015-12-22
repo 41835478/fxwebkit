@@ -10,11 +10,17 @@ return [
            '50'=> '1:50',
             '100'=>'1:100',
             '150'=>'1:150',
+        ],  
+    'operation'=>[
+           '0'=> 'Credit In',
+            '1'=>'Credit Out',
+            '2'=>'Deposit',
+            '3'=>'Withdraw',
         ],
-	'apiReqiredConfirmMt4Password'=>true,
+        'apiReqiredConfirmMt4Password'=>true,
 	'apiMasterPassword'=>'PASSWORD',
 	'allowTransferToUnsignedMT4'=>false,
-
+    
 	'admin_menu' => [
 		[
 			'route' => 'accounts.accountsList',

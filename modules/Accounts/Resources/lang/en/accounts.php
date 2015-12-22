@@ -98,7 +98,7 @@ return [
     'amount'=>'Amount',
     'newPassword'=>'New Password',
     'login2'=>'Login 2',
-    'summry'=>'Summry',
+    'summry'=>'Summary',
     'leverage'=>'Leverage',
     'changePassword'=>'Change Password',
     'internalTransfer'=>'Internal Transfer',
@@ -107,5 +107,6 @@ return [
     'toMt4Account'=>'To Mt4 Account',
      'transferAmount'=>'Transfer Amount',
      'currentMt4Password'=>'Current Mt4 Password',
+     'operation'=>'Operation',
    
 ];

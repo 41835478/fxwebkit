@@ -83,6 +83,9 @@
                     <li>
                         <a href="{{ route('accounts.mt4InternalTransfer').'?login='.$oResults->LOGIN}}" >{{ trans('accounts::accounts.internalTransfer') }}</a>
                     </li>
+                    <li>
+                        <a href="{{ route('accounts.mt4Operation').'?login='.$oResults->LOGIN}}" >{{ trans('accounts::accounts.operation') }}</a>
+                    </li>
                 </ul>
             </div>
             <table class="table table-bordered user-info-table">
