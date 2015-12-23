@@ -152,11 +152,12 @@
 
 
         .clock_hours_row{}
-        .clock_hours_row .left_label_div{width:20%;float:left; }
-        .city_info_all_div{float:left;  height:68px;width: 100%;}
+        .clock_hours_row .left_label_div{width:20%;float:left;
+            padding-top: 8px; }
+        .city_info_all_div{float:left;  height:70px;width: 100%;}
         .city_name_all_div{
             float: left;
-            width: 50%;
+            width: 40%;
             padding: 10px 0px;
         }
         .home_icon{float:left;}
@@ -167,7 +168,7 @@
             clear: both;
             padding-left: 10px;
         }
-        .city_hour_all_div{ float: right;padding: 10px 10px 10px 0px;}
+        .city_hour_all_div{ float: right; width:60%; text-align: right; padding-right:5px;}
         .city_hour_all_div .city_hour{float:laft; font-size: 22px;}
         .city_hour_all_div .city_hour span{color:#cccccc;float:laft;font-size: 14px; }
         .city_hour_all_div .city_date{color:#cccccc;font-size: 10px;}

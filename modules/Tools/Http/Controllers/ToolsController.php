@@ -143,7 +143,7 @@ class ToolsController extends Controller {
     }
 
         public function getMarketWatch() {
-        return 'MarketWatch';
+            return view('tools::marketWatch');
     }
      
     public function getAddContract(Request $oRequest) {
