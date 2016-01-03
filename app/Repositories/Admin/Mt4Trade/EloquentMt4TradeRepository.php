@@ -847,4 +847,41 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         return [$oResult, $aSummury];
     }
 
+    
+    public function getClinetGrowthChart($client_id){
+          
+        $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
+
+        $growth_array = [0.00, 590.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
+        $averages_array = [50.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
+
+        
+      //Trades: Profit Trades:  Loss Trade: Best Trade: Worst Trade: Gross Profit: Gross Loss: Maximum consecutive wins: Maximal consecutive profit: Sharpe Ratio: Recovery Factor: Long Trades: Shart Trades: Profits Factor: Expected Payoff: Average Profit: Average Loss: Maximum consecutive losses: Maximal consecutive loss: Monthly grouth: Annual Farecast:  
+      //trades profit_trades loss_trade best_trade worst_trade gross_profit gross_loss maximum__consecutive_wins maximal_consecutive_profit sharpe_ratio recovery_factor long_trades shart_trades profits_factor expected_payoff average_profit average_loss maximum_consecutive_losses maximal_consecutive_loss monthly_grouth annual_farecast 
+        
+        $statistics['trades']=00;
+        $statistics['profit_trades']=00;
+        $statistics['loss_trade']=00;
+        $statistics['best_trade']=00;
+        $statistics['worst_trade']=00;
+        $statistics['gross_profit']=00;
+        $statistics['gross_loss']=00;
+        $statistics['maximum_consecutive_wins']=00;
+        $statistics['maximal_consecutive_profit']=00;
+        $statistics['sharpe_ratio']=00;
+        $statistics['recovery_factor']=00;
+        $statistics['long_trades']=00;
+        $statistics['short_trades']=00;
+        $statistics['profits_factor']=00;
+        $statistics['expected_payoff']=00;
+        $statistics['average_profit']=00;
+        $statistics['average_loss']=00;
+        $statistics['maximum_consecutive_losses']=00;
+        $statistics['maximal_consecutive_loss']=00;
+        $statistics['monthly_grouth']=00;
+        $statistics['annual_farecast']=00;
+      
+        return [ $horizontal_line_numbers ,$growth_array, $averages_array,$statistics];
+        
+    }
 }
