@@ -40,7 +40,7 @@
             <tr> <th>Maximal Consecutive Profit</th><td>{{ $statistics['maximal_consecutive_profit'] }}</td><th>Maximal Consecutive Loss</th><td>{{ $statistics['maximal_consecutive_loss'] }}</td></tr>
             <tr> <th>Sharpe Ratio</th><td>{{ $statistics['sharpe_ratio'] }}</td><th>Monthly Grouth</th><td>{{ $statistics['monthly_grouth'] }}</td></tr>
             <tr> <th></th><td></td><th>Annual Farecast</th><td>{{ $statistics['annual_farecast'] }}</td></tr>
-            
+
         </tbody>
     </table>
     <style type="text/css">
@@ -51,13 +51,13 @@
         #statistics_table{
             margin:20px 0px;
             width:100%;
-            
+
         }
-        
+
         #statistics_table td, #statistics_table th{ padding: 5px 10px;width:25%;font-size: 10px;}
         #statistics_table td{text-align: right;border-right:1px solid #ccc;}
         #statistics_table td:nth-child(4){border-right:1px solid transparent;}
-        
+
         #statistics_table th{text-align: left; font-weight: normal;}
         #statistics_table th:after{content:':';}
     </style>
@@ -71,48 +71,48 @@
 <script>
 
     $(function () {
-        $('#growth_chart_all_div').highcharts({
-            title: {
-                text: '',
-                x: -20 //center
-            },
+    $('#growth_chart_all_div').highcharts({
+    title: {
+    text: '',
+            x: - 20 //center
+    },
             subtitle: {
-                text: '',
-                x: -20
+            text: '',
+                    x: - 20
             },
             xAxis: {
-                categories: {!! json_encode($horizontal_line_numbers)!!}
+            categories: {!! json_encode($horizontal_line_numbers)!!}
             },
             yAxis: {
-                title: {
-                    text: ''
-                },
-                plotLines: [{
-                        value: 0,
-                        width: 1,
-                        color: '#808080'
+            title: {
+            text: ''
+            },
+                    plotLines: [{
+                    value: 0,
+                            width: 1,
+                            color: '#808080'
                     }]
             },
             tooltip: {
-                valueSuffix: ''
+            valueSuffix: ''
             },
             legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
+            layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    borderWidth: 0
             },
             series: [{
-                    name: 'Growth %',
+            name: 'Growth %',
                     data: {!! json_encode($growth_array)!!},
                     color:'blue'
-                }, {
-                    name: 'Average',
+            }, {
+            name: 'Average',
                     data: {!! json_encode($averages_array)!!},
                     color:'red'
-                    
-                }]
-        });
+
+            }]
+    });
     });
 </script>
 @stop
