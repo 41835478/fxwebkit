@@ -149,7 +149,7 @@ class ClientAccountsController extends Controller {
                         ->with('Result', $Result)
                         ->with('Pssword', $Pssword)
                         ->with('login', $oRequest->login)
-                 ->with('changeleverage', $changeleverage)
+                        ->with('changeleverage', $changeleverage)
                         ->withErrors($result);
     }
 

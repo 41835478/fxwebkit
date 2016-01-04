@@ -69,6 +69,12 @@ return [
     'add_mt4_user'=>'Add Mt4 User',
     'name'=>'Name :',
     'asign_mt4_user'=>'Asign Mt4 User',
+    'name '=>'Name',
+    'exiest'=>'Exiest',
+    'mt4UserDetilails'=>'Mt4 User Detilails',
+    'investor'=>'Investor',
+    'deposit'=>'Deposit',
+    
 
     'details'=>'Details',
     'edit_info'=>'Edit Info',    

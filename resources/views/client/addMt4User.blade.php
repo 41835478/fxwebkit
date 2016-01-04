@@ -9,6 +9,18 @@
 
 
 <div class="panel-body">
+    
+    
+     <div class="table-info">
+                <ul id="profile-tabs" class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#profile-tabs-board" data-toggle="tab">{{ trans('general.exiest') }}</a>
+                    </li>
+                    <li >
+                        <a href="{{ route('client.addMt4UserFullDetails')}}" >{{ trans('general.mt4UserDetilails') }}</a>
+                    </li>  
+                </ul>
+            </div>
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
