@@ -52,6 +52,11 @@ return [
                     'route' => 'admin.addEmailTemplates',
                     'title' => 'addEmailTemplates',
                     'icon' => 'fa fa-plus',
+                ],
+                [
+                    'route' => 'admin.massMailer',
+                    'title' => 'massMailler',
+                    'icon' => 'fa fa-plus',
                 ]
                 
             ]

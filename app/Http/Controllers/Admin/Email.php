@@ -40,16 +40,30 @@ class Email extends Controller {
                 $aUserInfo['email'], 
                 'Welcome in Fxwebkit');
     }
-    
-     public function newContract($info) {
+
+    public function newContract($info) {
 
         $this->sendEmail('admin.email.templates.en.newContract',
-                [
-                    'name' => $info['name'],
-                    'expiryHtml'=>$info['expiryHtml']
-                ],
-                $info['email'], 
-                'expiry symbols details');
+            [
+                'name' => $info['name'],
+                'expiryHtml'=>$info['expiryHtml']
+            ],
+            $info['email'],
+            'expiry symbols details');
+    }
+
+    public function massMailler($info) {
+
+
+        Mail::raw($info['content'], function ($message) use ($info)
+        {
+            $message->from('m.hashim@mqplanet.com', 'Mqplanet');
+
+            $message->to($info['email']);
+        });
+
+
+
     }
 
 }

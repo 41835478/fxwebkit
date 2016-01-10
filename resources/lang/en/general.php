@@ -95,7 +95,9 @@ return [
     'template'=>'Template',
     'language'=>'Language',
     'save'=>'Save',
-    'edit'=>'Edit'
+	'edit'=>'Edit',
+	'send'=>'Send',
+	'massMailler'=>'Mass Mailler'
     
     /*_______________End___email*/
 ];
