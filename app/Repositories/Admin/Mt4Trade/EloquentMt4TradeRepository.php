@@ -201,6 +201,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
     }
 
     public function getOpenTradesByDate($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC') {
+        
         $oFxHelper = new Fx();
         $oResult = Mt4Trade::where('CLOSE_TIME', '=', '1970-01-01 00:00:00');
 
@@ -262,6 +263,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      * @return object
      */
     public function getClosedTradesByDate($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC') {
+        
         $oFxHelper = new Fx();
         $oResult = Mt4Trade::where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
 

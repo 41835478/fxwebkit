@@ -10,7 +10,6 @@ use Modules\Reports\Http\Requests\Admin\ClosedTradesRequest;
 use Illuminate\Support\Facades\Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
-
 use \YaLinqo\Enumerable;
 
 
@@ -54,10 +53,6 @@ class DashboardController extends Controller {
         
         list($horizontal_line_numbers,$growth_array,$averages_array,$statistics)=$this->oMt4Trade->getClinetGrowthChart(Sentinel::getUser()->id);
             
-           $oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams, false, $sOrder, $sSort);
-           $result = Enumerable::from($oResults->items())->where('$prod ==> $prod["DIGITS"] == 4');
-              
-        dd($result);
 
         return view('client.dashboard')
                         ->with('horizontal_line_numbers', $horizontal_line_numbers)
