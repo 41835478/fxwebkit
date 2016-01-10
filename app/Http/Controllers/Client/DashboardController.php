@@ -6,9 +6,13 @@ use Fxweb\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Modules\Accounts\Http\Requests\AddUserRequest;
+use Modules\Reports\Http\Requests\Admin\ClosedTradesRequest;
 use Illuminate\Support\Facades\Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
+
+use \YaLinqo\Enumerable;
+
 
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
 
@@ -20,9 +24,27 @@ class DashboardController extends Controller {
     public function __construct( Mt4Trade $oMt4Trade) {
         $this->oMt4Trade = $oMt4Trade;
     }
-    public function index() {
-
-
+    public function index(ClosedTradesRequest $oRequest) {
+           
+        $sSort = 'ASC';
+        $sOrder = 'TICKET';
+        $aSymbols = [];
+        $oResults = null;
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'exactLogin' => null,
+            'login' => '',
+            'from_date' => '',
+            'to_date' => '',
+            'all_groups' => true,
+            'group' => '',
+            'all_symbols' => true,
+            'symbol' => '',
+            'type' => '',
+            'sort' => 'ASC',
+            'order' => 'TICKET',
+        ];
 
 //        $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
 //
@@ -31,12 +53,18 @@ class DashboardController extends Controller {
 
         
         list($horizontal_line_numbers,$growth_array,$averages_array,$statistics)=$this->oMt4Trade->getClinetGrowthChart(Sentinel::getUser()->id);
+            
+           $oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams, false, $sOrder, $sSort);
+           $result = Enumerable::from($oResults->items())->where('$prod ==> $prod["DIGITS"] == 4');
+              
+      
 
         return view('client.dashboard')
                         ->with('horizontal_line_numbers', $horizontal_line_numbers)
                         ->with('growth_array', $growth_array)
                         ->with('averages_array', $averages_array)
-            ->with('statistics',$statistics);
+                        ->with('statistics',$statistics)
+                         ->with('oResults',$oResults);
     }
 
     /*

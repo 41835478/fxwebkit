@@ -96,17 +96,23 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      */
     public function getClosedTradesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC') {
         $oFxHelper = new Fx();
+        
 
         /* ===============================check admin or user================ */
         $oResult = '';
         if ($user = Sentinel::getUser()) {
+          
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
+                
                 $oResult = Mt4Trade::with('users')->whereHas('users', function($query) use($account_id) {
+                   
                             $query->where('users_id', $account_id);
                         })->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
             } else {
-                $oResult = Mt4Trade::where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
+       
+                $oResult = Mt4Trade::where('CLOSE_TIME', '!=', '1970-01-01 00:00:00'); 
+               
             }
         }
 
@@ -151,13 +157,18 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         }
 
         /* =============== Type Filter  =============== */
+
         if (isset($aFilters['type']) && !empty($aFilters['type'])) {
+         
             if ($aFilters['type'] == 1) {
+             
                 $oResult = $oResult->where('CMD', '<', 2);
             } elseif ($aFilters['type'] == 2) {
+             
                 $oResult = $oResult->whereBetween('CMD', [2, 5]);
             }
-        } else {
+        } else { 
+
             $oResult = $oResult->where('CMD', '<', 6);
         }
 

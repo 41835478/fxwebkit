@@ -27,7 +27,8 @@
 
 
 <section id="statistics_section">
-    <table id='statistics_table'>
+ 
+   <table id='statistics_table'>
         <tbody>
             <tr> <th>Trades</th><td>{{ $statistics['trades'] }}</td><th>Recovery Factor</th><td>{{ $statistics['recovery_factor'] }}</td></tr>
             <tr> <th>Profit Trades</th><td>{{ $statistics['profit_trades'] }}</td><th>Long Trades</th><td>{{ $statistics['long_trades'] }}</td></tr>
@@ -42,7 +43,10 @@
             <tr> <th></th><td></td><th>Annual Farecast</th><td>{{ $statistics['annual_farecast'] }}</td></tr>
 
         </tbody>
+        
+              
     </table>
+     
     <style type="text/css">
         #statistics_section{
             margin:20px 0px;
@@ -81,7 +85,7 @@
                     x: - 20
             },
             xAxis: {
-            categories: {!! json_encode($horizontal_line_numbers)!!}
+            categories:{!! json_encode($horizontal_line_numbers)!!}
             },
             yAxis: {
             title: {

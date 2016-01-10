@@ -67,8 +67,9 @@ class AccountsController extends Controller {
             $role = explode(',', Config::get('fxweb.client_default_role'));
 
             $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);           
+
         }
-   
+
         return view('accounts::accountsList')
                         ->with('oResults', $oResults)
                         ->with('aFilterParams', $aFilterParams);
@@ -105,6 +106,7 @@ class AccountsController extends Controller {
         if ($oRequest->has('edit_id')) {
 
             $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
+          
 
 
             $userInfo = [
