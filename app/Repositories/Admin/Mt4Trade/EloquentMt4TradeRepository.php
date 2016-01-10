@@ -848,7 +848,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             $oResult[$dKey]->TYPE = $oFxHelper->getAccountantType($oValue->CMD, $oValue->PROFIT);
             $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
 
-            $oResult[$dKey]->EQUITY = round($oResult[$dKey]->EQUITY, 2);
+            $oResult[$dKey]->EQUITY     = round($oResult[$dKey]->EQUITY, 2);
             $oResult[$dKey]->BALANCE = round($oResult[$dKey]->BALANCE, 2);
             $oResult[$dKey]->AGENT_ACCOUNT = round($oResult[$dKey]->AGENT_ACCOUNT, 2);
             $oResult[$dKey]->MARGIN = round($oResult[$dKey]->MARGIN, 2);
@@ -864,10 +864,42 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
     {
 
 
-        $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
+       // $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
 
-        $growth_array = [0.00, 590.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
-        $averages_array = [50.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
+
+        $oGrowthResults=Mt4Trade::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'),'CMD'])
+            ->whereIn('cmd',[0,1,6])
+            ->orderBy('CLOSE_TIME')
+            ->get();
+
+       // $growth_array = [0.00, 590.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
+        $growth_array = [];
+        $horizontal_line_numbers=[];
+        $pastK=1;
+        $lastBalance=0;
+        $pastBalance=0;$i=0;
+        foreach($oGrowthResults as $row){
+            if($row->CMD !=6 && $lastBalance!=0){$i++;
+
+
+                $growth_array[]=(($pastK * $pastBalance/$lastBalance) -1)*100;
+                $horizontal_line_numbers[]=$i;
+            }else if($row->CMD ==6){
+
+
+                $pastK *=($lastBalance !=0)? ($pastBalance+$lastBalance/($lastBalance*$lastBalance)):1;
+                $pastK/=($lastBalance !=0)? $lastBalance:1;
+
+                    //$pastBalance+=$row->netProfit;
+
+                $lastBalance= $pastBalance + $row->netProfit;
+
+            }
+
+            $pastBalance+=$row->netProfit;
+        }
+
+        $averages_array = [];
 
         /*
          * $result=Enumerable::from(array(1, 2, 3));
@@ -892,13 +924,13 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             ->get()
             ->count();
         $profit_trades_per = round(($profit_trades_number / $trades * 100), 5);
-        $statistics['profit_trades'] = $profit_trades_number . ' ( ' . $profit_trades_per . ' ) ';
+        $statistics['profit_trades'] = $profit_trades_number . ' ( ' . $profit_trades_per . ' % ) ';
 
 
         /*==== loss_trade ====*/
         $loss_trade_number = $trades - $profit_trades_number;
         $loss_trade_per = round($loss_trade_number / $trades * 100, 5);
-        $statistics['loss_trade'] = $loss_trade_number . ' ( ' . $loss_trade_per . ' ) ';
+        $statistics['loss_trade'] = $loss_trade_number . ' ( ' . $loss_trade_per . ' % ) ';
 
 
         /*==== best_trade ====*/
