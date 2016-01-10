@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Config;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Carbon\Carbon;
 use File;
+use Fxweb\Http\Controllers\admin\Email;
 
 class SettingsController extends Controller {
 
@@ -240,6 +241,7 @@ class SettingsController extends Controller {
                 'recoverPassword' => 'Recover Password',
                 'withdrawResult' => 'Withdraw Result',
                 'newContract' => 'New Contract',
+                'massMailler'=>'Mass Mailler'
             ],
             'internal' => [
                 'newAgentNotify' => 'New Agent Notify',
@@ -284,4 +286,36 @@ class SettingsController extends Controller {
         return Redirect::to(route('admin.addEmailTemplates') . '?name=' . $sTemplate . '&lang=' . $sLanguage);
     }
 
+
+    public function getMassMailer(Request $oRequest) {
+
+
+        $sLanguage =($oRequest->has('lang'))? $oRequest->lang:'en';
+        $sContent = '';
+
+        $aLanguages = ['ar' => 'Arabic', 'en' => 'English'];
+
+
+
+            $sPath = base_path() . '/resources/views/admin/email/templates/' . $sLanguage . '/massMailler.blade.php';
+
+            if (file_exists($sPath)) {
+                $sContent = File::get($sPath);
+            }
+
+
+        return view('admin.email.massMailler')
+            ->with('aLanguages', $aLanguages)
+            ->with('sLanguage', $sLanguage)
+            ->with('sContent', $sContent);
+    }
+
+
+
+    public function postMassMailer(Request $oRequest) {
+
+        $email=new Email();
+        
+        $email->massMailler(['email'=>'taylorsuccessor@gmail.com','content'=>$oRequest->template_body]);
+    }
 }
