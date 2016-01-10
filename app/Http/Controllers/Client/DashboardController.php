@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 
-use \YaLinqo\Enumerable;
+
 
 
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
@@ -54,10 +54,8 @@ class DashboardController extends Controller {
         
         list($horizontal_line_numbers,$growth_array,$averages_array,$statistics)=$this->oMt4Trade->getClinetGrowthChart(Sentinel::getUser()->id);
             
-           $oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams, false, $sOrder, $sSort);
-           $result = Enumerable::from($oResults->items())->where('$prod ==> $prod["DIGITS"] == 4');
-              
-      
+
+
 
         return view('client.dashboard')
                         ->with('horizontal_line_numbers', $horizontal_line_numbers)
