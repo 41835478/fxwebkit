@@ -8,6 +8,7 @@ use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Illuminate\Support\Facades\DB;
 use Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use \YaLinqo\Enumerable;
 
 /**
  * Class EloquentUserRepository
@@ -849,6 +850,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
     
     public function getClinetGrowthChart($client_id){
+        Enumerable::from(array(1, 2, 3));
           
         $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
 

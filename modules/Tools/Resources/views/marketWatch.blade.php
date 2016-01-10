@@ -13,13 +13,7 @@
 
 
 
-    <html>
-    <head>
-        <title>market clock</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="index.css">
-    </head>
-    <body>
+
     <section class="clock_all_section">
         <header class="clock_header"></header>
         <section class="clock_body_section">
@@ -79,7 +73,6 @@
         </section>
 
     </section>
-    <script src="jquery-1.11.3.min.js"></script>
 
 
     <style type="text/css">
@@ -331,7 +324,7 @@
             return html;
         }
         for (var j = 0; j < city_array.length; j++) {
-            console.log(city_array[j][1]);
+
             var timeZoneDif = city_array[j][3] - realOffset;
             $("#hours_bar_container_place").append(add_hours_bar(city_array[j][1], timeZoneDif, city_array[j][2]));
         }
@@ -347,7 +340,7 @@
         }
 
 
-        var currentTime = new Date()
+        var currentTime = new Date();
 
 
         var month = <?=(isset($_REQUEST['month'])) ? $_REQUEST['month'] : 'currentTime.getMonth() + 1';?>;
