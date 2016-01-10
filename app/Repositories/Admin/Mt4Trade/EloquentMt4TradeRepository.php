@@ -8,6 +8,7 @@ use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Illuminate\Support\Facades\DB;
 use Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use \YaLinqo\Enumerable;
 
 /**
  * Class EloquentUserRepository
@@ -861,30 +862,112 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
     }
 
     
-    public function getClinetGrowthChart($client_id){
-          
+    public function getClinetGrowthChart($client_id)
+    {
+
+
         $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
 
         $growth_array = [0.00, 590.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
         $averages_array = [50.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
 
-        
-      //Trades: Profit Trades:  Loss Trade: Best Trade: Worst Trade: Gross Profit: Gross Loss: Maximum consecutive wins: Maximal consecutive profit: Sharpe Ratio: Recovery Factor: Long Trades: Shart Trades: Profits Factor: Expected Payoff: Average Profit: Average Loss: Maximum consecutive losses: Maximal consecutive loss: Monthly grouth: Annual Farecast:  
-      //trades profit_trades loss_trade best_trade worst_trade gross_profit gross_loss maximum__consecutive_wins maximal_consecutive_profit sharpe_ratio recovery_factor long_trades shart_trades profits_factor expected_payoff average_profit average_loss maximum_consecutive_losses maximal_consecutive_loss monthly_grouth annual_farecast 
-        
-        $statistics['trades']=00;
-        $statistics['profit_trades']=00;
-        $statistics['loss_trade']=00;
-        $statistics['best_trade']=00;
-        $statistics['worst_trade']=00;
-        $statistics['gross_profit']=00;
-        $statistics['gross_loss']=00;
+        /*
+         * $result=Enumerable::from(array(1, 2, 3));
+         * dd($result);
+        */
+        //Trades: Profit Trades:  Loss Trade: Best Trade: Worst Trade: Gross Profit: Gross Loss: Maximum consecutive wins: Maximal consecutive profit: Sharpe Ratio: Recovery Factor: Long Trades: Shart Trades: Profits Factor: Expected Payoff: Average Profit: Average Loss: Maximum consecutive losses: Maximal consecutive loss: Monthly grouth: Annual Farecast:
+        //trades profit_trades loss_trade best_trade worst_trade gross_profit gross_loss maximum__consecutive_wins maximal_consecutive_profit sharpe_ratio recovery_factor long_trades shart_trades profits_factor expected_payoff average_profit average_loss maximum_consecutive_losses maximal_consecutive_loss monthly_grouth annual_farecast
+
+        /*==== trades ====*/
+        $trades = Mt4Trade::where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->count();
+        $statistics['trades'] = $trades;
+
+
+        /*==== profit_trades ====*/
+
+        $profit_trades_number = Mt4Trade::select(DB::raw('PROFIT+COMMISSION+SWAPS as total'))
+            ->where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->having('total', '>=', '0')
+            ->get()
+            ->count();
+        $profit_trades_per = round(($profit_trades_number / $trades * 100), 5);
+        $statistics['profit_trades'] = $profit_trades_number . ' ( ' . $profit_trades_per . ' ) ';
+
+
+        /*==== loss_trade ====*/
+        $loss_trade_number = $trades - $profit_trades_number;
+        $loss_trade_per = round($loss_trade_number / $trades * 100, 5);
+        $statistics['loss_trade'] = $loss_trade_number . ' ( ' . $loss_trade_per . ' ) ';
+
+
+        /*==== best_trade ====*/
+
+        $oBest_trade = Mt4Trade::select(['SYMBOL', 'PROFIT'])
+            ->orderBy('PROFIT', 'desc')
+            ->first();
+
+        $statistics['best_trade'] =(count($oBest_trade))?  $oBest_trade->PROFIT . ' ' . $oBest_trade->SYMBOL:0;
+
+
+
+        /*==== worst_trade ====*/
+
+        $oWorst_trade = Mt4Trade::select(['SYMBOL', 'PROFIT'])
+            ->orderBy('PROFIT', 'asc')
+            ->first();
+        $statistics['worst_trade']=(count($oWorst_trade))?  $oWorst_trade->PROFIT . ' ' . $oWorst_trade->SYMBOL:0;
+
+
+        /*==== gross_profit ====*/
+
+        $gross_profit_result =  Mt4Trade::select(['PROFIT',DB::raw('PROFIT+COMMISSION+SWAPS as total')])
+            ->where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->having('total', '>', '0')
+            ->get()
+            ->sum('PROFIT');
+
+        //dd($gross_profit_result);
+        $statistics['gross_profit']=$gross_profit_result;
+
+
+
+        /*==== gross_loss ====*/
+
+        $gross_loss_result =  Mt4Trade::select(['PROFIT',DB::raw('PROFIT+COMMISSION+SWAPS as total')])
+            ->where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->having('total', '<', '0')
+            ->get()
+            ->sum('PROFIT');
+        $statistics['gross_loss']=$gross_loss_result;
+
+
         $statistics['maximum_consecutive_wins']=00;
         $statistics['maximal_consecutive_profit']=00;
         $statistics['sharpe_ratio']=00;
         $statistics['recovery_factor']=00;
-        $statistics['long_trades']=00;
-        $statistics['short_trades']=00;
+
+        /*=== long_trades ====*/
+
+        $long_trades = Mt4Trade::where('cmd', '=', '0')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->count();
+        $statistics['long_trades']=$long_trades;
+
+
+
+        /*=== short_trades ====*/
+
+        $short_trades = Mt4Trade::where('cmd', '=', '1')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->count();
+        $statistics['short_trades']=$short_trades;
+
+
         $statistics['profits_factor']=00;
         $statistics['expected_payoff']=00;
         $statistics['average_profit']=00;

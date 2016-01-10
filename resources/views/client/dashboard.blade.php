@@ -85,7 +85,7 @@
                     x: - 20
             },
             xAxis: {
-            categories: {!! json_encode($horizontal_line_numbers)!!}
+            categories:{!! json_encode($horizontal_line_numbers)!!}
             },
             yAxis: {
             title: {
