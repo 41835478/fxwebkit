@@ -4,9 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ea1c81d8e4716c0a3c7204cffabcef28",
-    "content-hash": "dd4974938c0484eb9412b0bdb25f49bc",
+    "hash": "049d892924bccc7a2d22bd633d78a5a2",
+    "content-hash": "c11594c4d7f724c0d30f2c35d28ce32f",
     "packages": [
+        {
+            "name": "athari/yalinqo",
+            "version": "v2.3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Athari/YaLinqo.git",
+                "reference": "0e07d8119c233b3ac3f624cef6e0b3207baef3e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Athari/YaLinqo/zipball/0e07d8119c233b3ac3f624cef6e0b3207baef3e0",
+                "reference": "0e07d8119c233b3ac3f624cef6e0b3207baef3e0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpdocumentor/phpdocumentor": "~2.8",
+                "phpunit/phpunit": "<4.6",
+                "satooshi/php-coveralls": "dev-master",
+                "symfony/validator": "<2.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "YaLinqo/Linq.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Simplified BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Prokhorov"
+                }
+            ],
+            "description": "YaLinqo, a LINQ-to-objects library for PHP",
+            "homepage": "https://github.com/Athari/YaLinqo",
+            "keywords": [
+                "linq",
+                "linqo",
+                "query",
+                "statistic"
+            ],
+            "time": "2015-06-07 01:42:33"
+        },
         {
             "name": "cartalyst/sentinel",
             "version": "v2.0.8",
@@ -175,6 +228,10 @@
                 "php",
                 "security"
             ],
+            "support": {
+                "source": "https://github.com/cartalyst/sentinel-social/tree/v2.0.4",
+                "issues": "https://github.com/cartalyst/sentinel-social/issues"
+            },
             "time": "2015-11-26 03:05:11"
         },
         {
@@ -668,16 +725,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.5.3",
+            "version": "v2.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "2fbcea96eae34a53183377cdbb0b9bec33974648"
+                "reference": "abbdfd1cff43a7b99d027af3be709bc8fc7d4769"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/2fbcea96eae34a53183377cdbb0b9bec33974648",
-                "reference": "2fbcea96eae34a53183377cdbb0b9bec33974648",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/abbdfd1cff43a7b99d027af3be709bc8fc7d4769",
+                "reference": "abbdfd1cff43a7b99d027af3be709bc8fc7d4769",
                 "shasum": ""
             },
             "require": {
@@ -735,7 +792,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2015-12-25 16:28:24"
+            "time": "2016-01-05 22:11:12"
         },
         {
             "name": "doctrine/inflector",
@@ -2001,16 +2058,16 @@
         },
         {
             "name": "pingpong/generators",
-            "version": "v2.1.4",
+            "version": "v2.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pingpong-labs/generators.git",
-                "reference": "bbf756b633da361f99af52bcf5620f671c86e3a1"
+                "reference": "08391dff4ca7223fa07bffe9a4f14764e3a116e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pingpong-labs/generators/zipball/bbf756b633da361f99af52bcf5620f671c86e3a1",
-                "reference": "bbf756b633da361f99af52bcf5620f671c86e3a1",
+                "url": "https://api.github.com/repos/pingpong-labs/generators/zipball/08391dff4ca7223fa07bffe9a4f14764e3a116e1",
+                "reference": "08391dff4ca7223fa07bffe9a4f14764e3a116e1",
                 "shasum": ""
             },
             "require": {
@@ -2046,7 +2103,7 @@
                 "laravel",
                 "pingpong"
             ],
-            "time": "2015-07-02 04:19:47"
+            "time": "2016-01-05 04:57:42"
         },
         {
             "name": "pingpong/modules",

@@ -28,8 +28,12 @@ class ReportsController extends Controller {
     }
 
     public function getClosedOrders(ClosedTradesRequest $oRequest) {
+       
+        
         $oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
+       
         $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
+        
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
         $aSymbols = [];
@@ -112,6 +116,7 @@ class ReportsController extends Controller {
         }
 
         if ($oRequest->has('search')) {
+            dd($sOrder);
             $oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults->order = $aFilterParams['order'];
             $oResults->sorts = $aFilterParams['sort'];

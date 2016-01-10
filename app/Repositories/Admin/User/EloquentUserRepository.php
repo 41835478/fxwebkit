@@ -71,20 +71,22 @@ class EloquentUserRepository implements UserContract {
 
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
+        
       
 
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+           
              
         } else {
             $oResult = $oResult->get();
+            
         }
         /* =============== Preparing Output  =============== */
         foreach ($oResult as $dKey => $oValue) {
             
         }
         /* =============== Preparing Output  =============== */
-
         return $oResult;
     }
   
