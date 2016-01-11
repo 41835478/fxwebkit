@@ -39,7 +39,7 @@ class DashboardController extends Controller {
 
         list($firstLogin,$aLoginList)=$this->oMt4User->getUsersMt4Users($clientId);
         $login=($oRequest->has('login'))? $oRequest->login:$firstLogin;
-        list($horizontal_line_numbers,$growth_array,$averages_array,$statistics)=$this->oMt4Trade->getClinetGrowthChart($login);
+        list($horizontal_line_numbers,$growth_array,$averages_array,$statistics, $symbols_pie_array,$sell_array, $buy_array,$sell_buy_horizontal_line_numbers)=$this->oMt4Trade->getClinetGrowthChart($login);
 
 
         return view('client.dashboard')
@@ -49,6 +49,10 @@ class DashboardController extends Controller {
                         ->with('statistics',$statistics)
             ->with('aLogin',$aLoginList)
             ->with('login',$login)
+            ->with('sell_buy_horizontal_line_numbers', $sell_buy_horizontal_line_numbers)
+            ->with('symbols_pie_array', $symbols_pie_array)
+            ->with('sell_array', $sell_array)
+            ->with('buy_array', $buy_array);
             ;
 
     }
@@ -59,7 +63,7 @@ class DashboardController extends Controller {
         list($firstLogin,$aLoginList)=$this->oMt4User->getUsersMt4Users($clientId);
         $login=($oRequest->has('login'))? $oRequest->login:$firstLogin;
 
-        list($horizontal_line_numbers,$balance_array,$statistics)=$this->oMt4Trade->getClinetBalanceChart($login);
+        list($horizontal_line_numbers,$balance_array,$statistics, $symbols_pie_array,$sell_array, $buy_array,$sell_buy_horizontal_line_numbers)=$this->oMt4Trade->getClinetBalanceChart($login);
 
 
 
@@ -69,7 +73,11 @@ class DashboardController extends Controller {
             ->with('balance_array', $balance_array)
             ->with('statistics',$statistics)
             ->with('aLogin',$aLoginList)
-            ->with('login',$login);
+            ->with('login',$login)
+            ->with('sell_buy_horizontal_line_numbers', $sell_buy_horizontal_line_numbers)
+            ->with('symbols_pie_array', $symbols_pie_array)
+            ->with('sell_array', $sell_array)
+            ->with('buy_array', $buy_array);
 
     }
 

@@ -71,6 +71,13 @@
             </style>
         </section>
 
+
+    <section id="chart_section_2">
+        <div id="bar_negative_stack_all_div" class="col-xs-6"></div>
+        <div id="symbols_pie_chart_all_div" class="col-xs-6"></div>
+
+    </section>
+
         @stop
         @section('script')
         @parent
@@ -121,6 +128,116 @@
 
                     }]
             });
+            });
+
+
+
+            $(function () {
+                $('#symbols_pie_chart_all_div').highcharts({
+                    colors: ["#B5A97D", "#434348", "#B5A87C", "#F8A354", "#7F82EC", "#F9D6A3", "#E5D548",
+                        "#7F82EB", "#8F4653", "#8BE7E1", "#aaeeee"],
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    title: {
+                        text: ''
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true
+                            },
+                            showInLegend: false
+                        }
+                    },
+                    series: [{
+                        type: 'pie',
+                        name: 'Browser share',
+                        data:{!! json_encode($symbols_pie_array)!!}
+                    }]
+                });
+            });
+
+
+
+
+
+            $(function () {
+                // Age categories
+                var categories = {!! json_encode($horizontal_line_numbers)!!};
+                $(document).ready(function () {
+                    $('#bar_negative_stack_all_div').highcharts({
+                        chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: 'Trade Population'
+                        },
+                        subtitle: {
+                            text: 'Sell Buy'
+                        },
+                        xAxis: [{
+                            categories: categories,
+                            reversed: false,
+                            labels: {
+                                step: 1
+                            }
+                        }, { // mirror axis on right side
+                            opposite: true,
+                            reversed: false,
+                            categories: categories,
+                            linkedTo: 0,
+                            labels: {
+                                step: 1
+                            }
+                        }],
+                        yAxis: {
+                            title: {
+                                text: null
+                            },
+                            labels: {
+                                formatter: function () {
+                                    return Math.abs(this.value) + '%';
+                                }
+                            }
+                        },
+
+                        plotOptions: {
+                            series: {
+                                stacking: 'normal'
+                            }
+                        },
+
+                        tooltip: {
+                            formatter: function () {
+                                return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' +
+                                        'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
+                            }
+                        },
+
+                        series: [{
+                            name: 'Sell',
+                            data: {!! json_encode($sell_array)!!}
+                        }, {
+                            name: 'Buy',
+                            data: {!! json_encode($buy_array)!!}
+                        }]
+                    });
+                });
+
             });
         </script>
         @stop
