@@ -190,7 +190,7 @@
                     text: 'Trade Population'
                 },
                 subtitle: {
-                    text: 'Sell Buy'
+                    text: ''
                 },
                 xAxis: [{
                     categories: categories,
