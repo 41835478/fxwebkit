@@ -35,8 +35,12 @@
         </section>
 
 <section id="statistics_section">
- 
+ <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">{{ trans('general.statistics') }}</span>
+            </div>
    <table id='statistics_table'>
+       
        
           <tbody>
                     <tr> <th>{{ trans('general.trades') }}</th><td>{{ $statistics['trades'] }}</td><th>{{ trans('general.recovery_factor') }}</th><td>{{ $statistics['recovery_factor'] }}</td></tr>
@@ -46,7 +50,6 @@
                     <tr> <th>{{ trans('general.worst_trade') }}</th><td>{{ $statistics['worst_trade'] }}</td><th>{{ trans('general.expected_payoff') }}</th><td>{{ $statistics['expected_payoff'] }}</td></tr>
                     <tr> <th>{{ trans('general.gross_profit') }}</th><td>{{ $statistics['gross_profit'] }}</td><th>{{ trans('general.average_profit') }}</th><td>{{ $statistics['average_profit'] }}</td></tr>
                     <tr> <th>{{ trans('general.gross_loss') }}</th><td>{{ $statistics['gross_loss'] }}</td><th>{{ trans('general.average_loss') }}</th><td>{{ $statistics['average_loss'] }}</td></tr>
-                    <tr> <th>{{ trans('general.maximum_consecutive_wins') }}</th><td>{{ $statistics['maximum_consecutive_wins'] }}</td><th>{{ trans('general.maximum_consecutive_losses') }}</th><td>{{ $statistics['maximum_consecutive_losses'] }}</td></tr>
                     <tr> <th>{{ trans('general.maximal_consecutive_profit') }}</th><td>{{ $statistics['maximal_consecutive_profit'] }}</td><th>{{ trans('general.maximal_consecutive_loss') }}</th><td>{{ $statistics['maximal_consecutive_loss'] }}</td></tr>
                     <tr> <th>{{ trans('general.sharpe_ratio') }}</th><td>{{ $statistics['sharpe_ratio'] }}</td><th>{{ trans('general.monthly_grouth') }}</th><td>{{ $statistics['monthly_grouth'] }}</td></tr>
                     <tr> <th></th><td></td><th>{{ trans('general.annual_farecast') }}</th><td>{{ $statistics['annual_farecast'] }}</td></tr>
@@ -75,7 +78,7 @@
         #statistics_table th{text-align: left; font-weight: normal;}
         #statistics_table th:after{content:':';}
     </style>
->>>>>>> a3107fde274f3903e14181cc7dca607744dc7fe5
+
 </section>
 
 @stop
