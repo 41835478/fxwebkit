@@ -23,16 +23,21 @@ class DashboardController extends Controller {
         $this->oMt4Trade = $oMt4Trade;
     }
     public function index(ClosedTradesRequest $oRequest) {
-   
-        list($horizontal_line_numbers,$growth_array,$averages_array,$statistics)=$this->oMt4Trade->getClinetGrowthChart(Sentinel::getUser()->id);
-            
+    }
+
+    public function getBalanceChart() {
 
 
-        return view('client.dashboard')
-                        ->with('horizontal_line_numbers', $horizontal_line_numbers)
-                        ->with('growth_array', $growth_array)
-                        ->with('averages_array', $averages_array)
-                        ->with('statistics',$statistics);
+        list($horizontal_line_numbers,$balance_array,$statistics)=$this->oMt4Trade->getClinetBalanceChart(Sentinel::getUser()->id);
+
+
+
+
+        return view('client.balanceChart')
+            ->with('horizontal_line_numbers', $horizontal_line_numbers)
+            ->with('balance_array', $balance_array)
+            ->with('statistics',$statistics);
+
     }
 
     /*

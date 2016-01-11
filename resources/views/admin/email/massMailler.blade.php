@@ -4,7 +4,7 @@
 
     <div class="page-header">
         <div class="page-title">
-            <h1>{{ trans('general.emailTemplates') }}</h1>
+            <h1>{{ trans('general.massMailler') }}</h1>
         </div>
     </div>
 

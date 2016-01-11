@@ -315,7 +315,7 @@ class SettingsController extends Controller {
     public function postMassMailer(Request $oRequest) {
 
         $email=new Email();
-        
+
         $email->massMailler(['email'=>'taylorsuccessor@gmail.com','content'=>$oRequest->template_body]);
     }
 }

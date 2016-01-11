@@ -850,7 +850,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             $oResult[$dKey]->TYPE = $oFxHelper->getAccountantType($oValue->CMD, $oValue->PROFIT);
             $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
 
-            $oResult[$dKey]->EQUITY = round($oResult[$dKey]->EQUITY, 2);
+            $oResult[$dKey]->EQUITY     = round($oResult[$dKey]->EQUITY, 2);
             $oResult[$dKey]->BALANCE = round($oResult[$dKey]->BALANCE, 2);
             $oResult[$dKey]->AGENT_ACCOUNT = round($oResult[$dKey]->AGENT_ACCOUNT, 2);
             $oResult[$dKey]->MARGIN = round($oResult[$dKey]->MARGIN, 2);
@@ -866,10 +866,42 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
     {
 
 
-        $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
+       // $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
 
-        $growth_array = [0.00, 590.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
-        $averages_array = [50.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
+
+        $oGrowthResults=Mt4Trade::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'),'CMD'])
+            ->whereIn('cmd',[0,1,6])
+            ->orderBy('CLOSE_TIME')
+            ->get();
+
+       // $growth_array = [0.00, 590.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
+        $growth_array = [];
+        $horizontal_line_numbers=[];
+        $pastK=1;
+        $lastBalance=0;
+        $pastBalance=0;$i=0;
+        foreach($oGrowthResults as $row){
+            if($row->CMD !=6 && $lastBalance!=0){$i++;
+
+
+                $growth_array[]=(($pastK * $pastBalance/$lastBalance) -1)*100;
+                $horizontal_line_numbers[]=$i;
+            }else if($row->CMD ==6){
+
+
+                $pastK *=($lastBalance !=0)? ($pastBalance+$lastBalance/($lastBalance*$lastBalance)):1;
+                $pastK/=($lastBalance !=0)? $lastBalance:1;
+
+                    //$pastBalance+=$row->netProfit;
+
+                $lastBalance= $pastBalance + $row->netProfit;
+
+            }
+
+            $pastBalance+=$row->netProfit;
+        }
+
+        $averages_array = [];
 
         /*
          * $result=Enumerable::from(array(1, 2, 3));
@@ -894,13 +926,13 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             ->get()
             ->count();
         $profit_trades_per = round(($profit_trades_number / $trades * 100), 5);
-        $statistics['profit_trades'] = $profit_trades_number . ' ( ' . $profit_trades_per . ' ) ';
+        $statistics['profit_trades'] = $profit_trades_number . ' ( ' . $profit_trades_per . ' % ) ';
 
 
         /*==== loss_trade ====*/
         $loss_trade_number = $trades - $profit_trades_number;
         $loss_trade_per = round($loss_trade_number / $trades * 100, 5);
-        $statistics['loss_trade'] = $loss_trade_number . ' ( ' . $loss_trade_per . ' ) ';
+        $statistics['loss_trade'] = $loss_trade_number . ' ( ' . $loss_trade_per . ' % ) ';
 
 
         /*==== best_trade ====*/
@@ -979,5 +1011,139 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
       
         return [ $horizontal_line_numbers ,$growth_array, $averages_array,$statistics];
         
+    }
+
+
+    public function getClinetBalanceChart($client_id)
+    {
+
+
+        // $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
+
+
+        $oGrowthResults=Mt4Trade::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'),'CMD'])
+            ->whereIn('cmd',[0,1,6])
+            ->orderBy('CLOSE_TIME')
+            ->get();
+
+
+        $balance_array = [];
+        $horizontal_line_numbers=[];
+
+        $pastBalance=0;
+        $i=0;
+        foreach($oGrowthResults as $row){
+
+
+            $pastBalance+=$row->netProfit;
+                $balance_array[]=$pastBalance;
+            $i++;
+                $horizontal_line_numbers[]=$i;
+
+        }
+
+
+
+        /*==== trades ====*/
+        $trades = Mt4Trade::where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->count();
+        $statistics['trades'] = $trades;
+
+
+        /*==== profit_trades ====*/
+
+        $profit_trades_number = Mt4Trade::select(DB::raw('PROFIT+COMMISSION+SWAPS as total'))
+            ->where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->having('total', '>=', '0')
+            ->get()
+            ->count();
+        $profit_trades_per = round(($profit_trades_number / $trades * 100), 5);
+        $statistics['profit_trades'] = $profit_trades_number . ' ( ' . $profit_trades_per . ' % ) ';
+
+
+        /*==== loss_trade ====*/
+        $loss_trade_number = $trades - $profit_trades_number;
+        $loss_trade_per = round($loss_trade_number / $trades * 100, 5);
+        $statistics['loss_trade'] = $loss_trade_number . ' ( ' . $loss_trade_per . ' % ) ';
+
+
+        /*==== best_trade ====*/
+
+        $oBest_trade = Mt4Trade::select(['SYMBOL', 'PROFIT'])
+            ->orderBy('PROFIT', 'desc')
+            ->first();
+
+        $statistics['best_trade'] =(count($oBest_trade))?  $oBest_trade->PROFIT . ' ' . $oBest_trade->SYMBOL:0;
+
+
+
+        /*==== worst_trade ====*/
+
+        $oWorst_trade = Mt4Trade::select(['SYMBOL', 'PROFIT'])
+            ->orderBy('PROFIT', 'asc')
+            ->first();
+        $statistics['worst_trade']=(count($oWorst_trade))?  $oWorst_trade->PROFIT . ' ' . $oWorst_trade->SYMBOL:0;
+
+
+        /*==== gross_profit ====*/
+
+        $gross_profit_result =  Mt4Trade::select(['PROFIT',DB::raw('PROFIT+COMMISSION+SWAPS as total')])
+            ->where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->having('total', '>', '0')
+            ->get()
+            ->sum('PROFIT');
+
+        //dd($gross_profit_result);
+        $statistics['gross_profit']=$gross_profit_result;
+
+
+
+        /*==== gross_loss ====*/
+
+        $gross_loss_result =  Mt4Trade::select(['PROFIT',DB::raw('PROFIT+COMMISSION+SWAPS as total')])
+            ->where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->having('total', '<', '0')
+            ->get()
+            ->sum('PROFIT');
+        $statistics['gross_loss']=$gross_loss_result;
+
+
+        $statistics['maximum_consecutive_wins']=00;
+        $statistics['maximal_consecutive_profit']=00;
+        $statistics['sharpe_ratio']=00;
+        $statistics['recovery_factor']=00;
+
+        /*=== long_trades ====*/
+
+        $long_trades = Mt4Trade::where('cmd', '=', '0')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->count();
+        $statistics['long_trades']=$long_trades;
+
+
+
+        /*=== short_trades ====*/
+
+        $short_trades = Mt4Trade::where('cmd', '=', '1')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->count();
+        $statistics['short_trades']=$short_trades;
+
+
+        $statistics['profits_factor']=00;
+        $statistics['expected_payoff']=00;
+        $statistics['average_profit']=00;
+        $statistics['average_loss']=00;
+        $statistics['maximum_consecutive_losses']=00;
+        $statistics['maximal_consecutive_loss']=00;
+        $statistics['monthly_grouth']=00;
+        $statistics['annual_farecast']=00;
+
+        return [ $horizontal_line_numbers ,$balance_array,$statistics];
+
     }
 }

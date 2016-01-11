@@ -4,14 +4,14 @@
 <header>
     <div class="table-info">
         <ul id="profile-tabs" class="nav nav-tabs">
-            <li  class="active">
+            <li >
                 <a href="/client">Growth</a>
             </li>
             <li >
 
                 <a href="" >Equity </a>
             </li>
-            <li>
+            <li class="active">
                 <a href="{{route('client.balanceChart') }}"> Balance</a>
             </li>
             <li>
@@ -107,14 +107,9 @@
                     borderWidth: 0
             },
             series: [{
-            name: 'Growth %',
-                    data: {!! json_encode($growth_array)!!},
+            name: 'Balance',
+                    data: {!! json_encode($balance_array)!!},
                     color:'blue'
-            }, {
-            name: 'Average',
-                    data: {!! json_encode($averages_array)!!},
-                    color:'red'
-
             }]
     });
     });
