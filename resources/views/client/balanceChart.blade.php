@@ -26,21 +26,15 @@
         </ul>
 
     </div>
-    <section id="chart_section">
-        <div id="growth_chart_all_div"></div>
-    </section>
+        <section id="chart_section">
+            <div id="growth_chart_all_div"></div>
+        </section>
 
-
-
-    <section id="statistics_section">
-        <div class="panel">
-            <div class="panel-heading">
-                <span class="panel-title">{{ trans('general.statistics') }}</span>
-            </div>
-            <table id='statistics_table'>
-
-
-                <tbody>
+<section id="statistics_section">
+ 
+   <table id='statistics_table'>
+       
+          <tbody>
                     <tr> <th>{{ trans('general.trades') }}</th><td>{{ $statistics['trades'] }}</td><th>{{ trans('general.recovery_factor') }}</th><td>{{ $statistics['recovery_factor'] }}</td></tr>
                     <tr> <th>{{ trans('general.profit_trades') }}</th><td>{{ $statistics['profit_trades'] }}</td><th>{{ trans('general.long_trades') }}</th><td>{{ $statistics['long_trades'] }}</td></tr>
                     <tr> <th>{{ trans('general.loss_trade') }}</th><td>{{ $statistics['loss_trade'] }}</td><th>{{ trans('general.short_trades') }}</th><td>{{ $statistics['short_trades'] }}</td></tr>
@@ -54,30 +48,30 @@
                     <tr> <th></th><td></td><th>{{ trans('general.annual_farecast') }}</th><td>{{ $statistics['annual_farecast'] }}</td></tr>
                 </tbody>
 
+       
+        
+              
+    </table>
+     
+    <style type="text/css">
+        #statistics_section{
+            margin:20px 0px;
+            width:100%;
+            border-top:1px solid #ccc;}
+        #statistics_table{
+            margin:20px 0px;
+            width:100%;
 
-            </table>
-        </div>
+        }
 
-</div>
+        #statistics_table td, #statistics_table th{ padding: 5px 10px;width:25%;font-size: 10px;}
+        #statistics_table td{text-align: right;border-right:1px solid #ccc;}
+        #statistics_table td:nth-child(4){border-right:1px solid transparent;}
 
-<style type="text/css">
-    #statistics_section{
-        margin:20px 0px;
-        width:100%;
-        border-top:1px solid #ccc;}
-    #statistics_table{
-        margin:20px 0px;
-        width:100%;
-
-    }
-
-    #statistics_table td, #statistics_table th{ padding: 5px 10px;width:25%;font-size: 10px;}
-    #statistics_table td{text-align: right;border-right:1px solid #ccc;}
-    #statistics_table td:nth-child(4){border-right:1px solid transparent;}
-
-    #statistics_table th{text-align: left; font-weight: normal;}
-    #statistics_table th:after{content:':';}
-</style>
+        #statistics_table th{text-align: left; font-weight: normal;}
+        #statistics_table th:after{content:':';}
+    </style>
+>>>>>>> a3107fde274f3903e14181cc7dca607744dc7fe5
 </section>
 
 @stop

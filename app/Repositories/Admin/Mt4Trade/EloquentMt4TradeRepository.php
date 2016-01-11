@@ -1010,8 +1010,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
 
         /*=== profits_factor ====*/
-        $statistics['profits_factor']=$gross_profit_result/$gross_loss_result * 100;
-        $statistics['profits_factor']=($gross_profit_result > $gross_loss_result)? abs($statistics['profits_factor']):abs($statistics['profits_factor']);
+        $statistics['profits_factor']=($gross_loss_result !=0)? $gross_profit_result/$gross_loss_result * 100 :0;
+        $statistics['profits_factor']=($gross_profit_result >= $gross_loss_result)? abs($statistics['profits_factor']):abs($statistics['profits_factor']) * -1;
 
 
         $statistics['expected_payoff']=00;
@@ -1157,7 +1157,10 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $statistics['short_trades']=$short_trades;
 
 
-        $statistics['profits_factor']=00;
+        /*=== profits_factor ====*/
+        $statistics['profits_factor']=($gross_loss_result !=0)? $gross_profit_result/$gross_loss_result * 100 :0;
+        $statistics['profits_factor']=($gross_profit_result >= $gross_loss_result)? abs($statistics['profits_factor']):abs($statistics['profits_factor']) * -1;
+
         $statistics['expected_payoff']=00;
         $statistics['average_profit']=00;
         $statistics['average_loss']=00;

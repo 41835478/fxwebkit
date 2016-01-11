@@ -36,13 +36,14 @@
  
     <section id="statistics_section">
 
+
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ trans('general.statistics') }}</span>
             </div>
 
             <table id='statistics_table'>
-                 <tbody>
+                <tbody>
                     <tr> <th>{{ trans('general.trades') }}</th><td>{{ $statistics['trades'] }}</td><th>{{ trans('general.recovery_factor') }}</th><td>{{ $statistics['recovery_factor'] }}</td></tr>
                     <tr> <th>{{ trans('general.profit_trades') }}</th><td>{{ $statistics['profit_trades'] }}</td><th>{{ trans('general.long_trades') }}</th><td>{{ $statistics['long_trades'] }}</td></tr>
                     <tr> <th>{{ trans('general.loss_trade') }}</th><td>{{ $statistics['loss_trade'] }}</td><th>{{ trans('general.short_trades') }}</th><td>{{ $statistics['short_trades'] }}</td></tr>
