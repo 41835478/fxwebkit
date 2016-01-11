@@ -1190,16 +1190,17 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $symbols_pie_array = [];
         $horizontal_line_numbers=[];
-//$totalValume=0;
+$totalValume=0;
 
         $i=0;
 
-        //foreach($oGrowthResults as $row){$totalValume+=$row->valume;}
+        foreach($oGrowthResults as $row){$totalValume+=$row->valume;}
+        $totalValume=($totalValume!=0)? $totalValume:1;
         foreach($oGrowthResults as $row){
 
-//$valume=($totalValume!=0)? $row->valume/$totalValume:0;
+$valume= round($row->valume/$totalValume *100 ,2);
 
-            $symbols_pie_array[]=['name'=>[$row->SYMBOL],'y'=>$row->valume*1];
+            $symbols_pie_array[]=['name'=>[$row->SYMBOL .' ' . $valume . '%'],'y'=>$row->valume*1];
 
 
         }
@@ -1218,11 +1219,13 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $buy_array=[];
 
         foreach($oGrowthResults as $row){
-            if(!in_array($row->SYMBOL,$horizontal_line_numbers)){$horizontal_line_numbers[]=$row->SYMBOL;}
+            if(!in_array($row->SYMBOL,$horizontal_line_numbers)){
+                $horizontal_line_numbers[]=$row->SYMBOL;
+            }
             if($row->CMD==1){
-            $sell_array[]=$row->valume*-1;
+            $sell_array[]=$row->valume*-1 /$totalValume *100;
         }else if($row->CMD==0){
-                $buy_array[]=$row->valume*1;
+                $buy_array[]=$row->valume*1 /$totalValume *100;
             }
 
         }
