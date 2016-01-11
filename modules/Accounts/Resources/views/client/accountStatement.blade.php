@@ -15,46 +15,7 @@
     .user-info-table td{ text-align: left;}
 </style>
 <div class="  theme-default page-mail" >
-
-
-    <div class="mail-nav" >
-        <div class="navigation">
-            {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
-            <ul class="sections">
-                <li><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']) !!}</div> </li>
-
-                <li><div  class=" nav-input-div  ">
-
-                        <div class="input-group date datepicker-warpper">
-                            {!! Form::text('from_date', $aFilterParams['from_date'], ['placeholder'=>trans('accounts::accounts.FromDate'),'class'=>'form-control input-sm']) !!}
-                            <span class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </span>
-                        </div>
-                    </div></li>
-
-
-                <li><div  class=" nav-input-div  ">
-                        <div class="input-group date datepicker-warpper">
-                            {!! Form::text('to_date', $aFilterParams['to_date'], ['placeholder'=>trans('accounts::accounts.ToDate'),'class'=>'form-control input-sm']) !!}
-                            <span class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </span>
-                        </div>
-                    </div></li>
-                <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('accounts::accounts.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-                    </div></li>
-                <li class="divider"></li>
-            </ul>
-
-
-            {!! Form::hidden('sort', $aFilterParams['sort']) !!}
-            {!! Form::hidden('order', $aFilterParams['order']) !!}
-            {!! Form::close() !!}
-
-
-        </div>
+    
     </div>
 
     <div class="mail-container " >

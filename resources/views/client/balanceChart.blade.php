@@ -1,22 +1,25 @@
 @extends('client.layouts.main')
 @section('title', Lang::get('dashboard.PageTitle'))
 @section('content')
-<header>
-    <div class="table-info">
-        <ul id="profile-tabs" class="nav nav-tabs">
+<div class="panel">
+    <div class="panel-heading">
+        <span class="panel-title">Dashboard</span>
+    </div>
+    <div class="panel-body">
+        <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
             <li >
-                <a href="/client">Growth</a>
-            </li>          
+               <a href="/client">Growth</a>
+            </li>
             <li class="active">
-                <a href="{{route('client.balanceChart') }}"> Balance</a>
+                 <a href="{{route('client.balanceChart') }}"> Balance</a>
             </li>
         </ul>
-    </div>
 
-</header>
-<section id="chart_section">
-    <div id="growth_chart_all_div"></div>
-</section>
+    </div>
+        <section id="chart_section">
+            <div id="growth_chart_all_div"></div>
+        </section>
+
 
 
 <section id="statistics_section">
