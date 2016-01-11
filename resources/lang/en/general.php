@@ -128,7 +128,8 @@ return [
     'save'=>'Save',
 	'edit'=>'Edit',
 	'send'=>'Send',
-	'massMailler'=>'Mass Mailler'
+	'massMailler'=>'Mass Mailler',
     
     /*_______________End___email*/
+	'tradePopulation'=>'Trade Population'
 ];
