@@ -31,6 +31,11 @@ return [
 	'Profit' => 'Profit',
 	'Export' => 'Export',
         'Total'=>'Total',
+        'statistics'=>'Statistics',
+        'performance'=>'Performance',
+        'growth'=>'Growth',
+        'balance'=>'Balance',
+        'dashboard'=>'Dashboard',
     
     
     'BalanceOperations'=>'Balance Operations',

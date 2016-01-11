@@ -2,27 +2,38 @@
 @section('title', Lang::get('dashboard.PageTitle'))
 @section('content')
 
+
+<div class="page-header">
+    <h1>{{ trans('general.dashboard') }}</h1>
+</div>
+
 <div class="panel">
     <div class="panel-heading">
-        <span class="panel-title">Dashboard</span>
+        <span class="panel-title">{{ trans('general.performance') }}</span>
     </div>
     <div class="panel-body">
         <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
             <li class="active">
-               <a href="/client">Growth</a>
+                <a href="/client">{{ trans('general.growth') }}</a>
             </li>
             <li class="">
-                 <a href="{{route('client.balanceChart') }}"> Balance</a>
+                <a href="{{route('client.balanceChart') }}">{{ trans('general.balance') }}</a>
             </li>
         </ul>
 
     </div>
-        <section id="chart_section">
-            <div id="growth_chart_all_div"></div>
-        </section>
 
+    <section id="chart_section">
+        <div id="growth_chart_all_div"></div>
+    </section>
 
-        <section id="statistics_section">
+ 
+    <section id="statistics_section">
+
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">{{ trans('general.statistics') }}</span>
+            </div>
 
             <table id='statistics_table'>
                 <tbody>
@@ -43,77 +54,79 @@
 
             </table>
 
+        </div>
+        
+        </div>
+        <style type="text/css">
+            #statistics_section{
+                margin:20px 0px;
+                width:100%;
+                border-top:1px solid #ccc;}
+            #statistics_table{
+                margin:20px 0px;
+                width:100%;
 
-            <style type="text/css">
-                #statistics_section{
-                    margin:20px 0px;
-                    width:100%;
-                    border-top:1px solid #ccc;}
-                #statistics_table{
-                    margin:20px 0px;
-                    width:100%;
+            }
 
-                }
+            #statistics_table td, #statistics_table th{ padding: 5px 10px;width:25%;font-size: 10px;}
+            #statistics_table td{text-align: right;border-right:1px solid #ccc;}
+            #statistics_table td:nth-child(4){border-right:1px solid transparent;}
 
-                #statistics_table td, #statistics_table th{ padding: 5px 10px;width:25%;font-size: 10px;}
-                #statistics_table td{text-align: right;border-right:1px solid #ccc;}
-                #statistics_table td:nth-child(4){border-right:1px solid transparent;}
+            #statistics_table th{text-align: left; font-weight: normal;}
+            #statistics_table th:after{content:':';}
+        </style>
+    </section>
 
-                #statistics_table th{text-align: left; font-weight: normal;}
-                #statistics_table th:after{content:':';}
-            </style>
-        </section>
+    @stop
+    @section('script')
+    @parent
 
-        @stop
-        @section('script')
-        @parent
+    {!! HTML::script('assets/js/highcharts.js') !!}
+    <script>
 
-        {!! HTML::script('assets/js/highcharts.js') !!}
-        <script>
+        $(function () {
+        $('#growth_chart_all_div').highcharts({
+        title: {
+        text: '',
+                x: - 20 //center
+        },
+                subtitle: {
+                text: '',
+                        x: - 20
+                },
+                xAxis: {
+                categories:{!! json_encode($horizontal_line_numbers)!!}
+                },
+                yAxis: {
+                title: {
+                text: ''
+                },
+                        plotLines: [{
+                        value: 0,
+                                width: 1,
+                                color: '#808080'
+                        }]
+                },
+                tooltip: {
+                valueSuffix: ''
+                },
+                legend: {
+                layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle',
+                        borderWidth: 0
+                },
+                series: [{
+                name: 'Growth %',
+                        data: {!! json_encode($growth_array)!!},
+                        color:'blue'
+                }, {
+                name: 'Average',
+                        data: {!! json_encode($averages_array)!!},
+                        color:'red'
 
-            $(function () {
-            $('#growth_chart_all_div').highcharts({
-            title: {
-            text: '',
-                    x: - 20 //center
-            },
-                    subtitle: {
-                    text: '',
-                            x: - 20
-                    },
-                    xAxis: {
-                    categories:{!! json_encode($horizontal_line_numbers)!!}
-                    },
-                    yAxis: {
-                    title: {
-                    text: ''
-                    },
-                            plotLines: [{
-                            value: 0,
-                                    width: 1,
-                                    color: '#808080'
-                            }]
-                    },
-                    tooltip: {
-                    valueSuffix: ''
-                    },
-                    legend: {
-                    layout: 'vertical',
-                            align: 'right',
-                            verticalAlign: 'middle',
-                            borderWidth: 0
-                    },
-                    series: [{
-                    name: 'Growth %',
-                            data: {!! json_encode($growth_array)!!},
-                            color:'blue'
-                    }, {
-                    name: 'Average',
-                            data: {!! json_encode($averages_array)!!},
-                            color:'red'
-
-                    }]
-            });
-            });
-        </script>
-        @stop
+                }]
+        });
+        });
+    </script>
+    @stop

@@ -2,16 +2,23 @@
 @section('title', trans('accounts::accounts.addAccount'))
 @section('content')
 
-{!! Form::open(['class'=>'panel form-horizontal']) !!}
+<div class="page-header">
+    <h1>{{ trans('accounts::accounts.user_details') }}</h1>
+</div>
 
+<div class="panel">
+    {!! Form::open(['class'=>'panel form-horizontal']) !!}
+    <div class="panel-heading">
+        <span class="panel-title">{{ trans('accounts::accounts.user_details') }}</span>
+    </div>
+ 
 <div class="panel-body">
-    
-    <div class="table-info">
-               <ul id="profile-tabs" class="nav nav-tabs">
+                <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                     <li >
                         <a href="{{ route('accounts.mt4UserDetails').'?login='.$login}}&from_date=&to_date=&search=Search&sort=asc&order=login">{{ trans('accounts::accounts.summry') }}</a>
                     </li>
-                    <li > 
+                    <li >
+                     
                         <a href="{{ route('accounts.mt4Leverage').'?login='.$login}}" >{{ trans('accounts::accounts.leverage') }}</a>
                     </li>
                     <li class="active">
@@ -20,9 +27,6 @@
                     <li>
                         <a href="{{ route('accounts.mt4InternalTransfer').'?login='.$login}}" >{{ trans('accounts::accounts.internalTransfer') }}</a>
                     </li>
-                    <li>
-                        <a href="{{ route('accounts.mt4Operation').'?login='.$login}}" >{{ trans('accounts::accounts.operation') }}</a>
-                    </li>                
                 </ul>
             </div>
     @if($Password==true)
@@ -41,7 +45,7 @@
         </div>
     </div><!-- col-sm-6 -->
     @endif
-</div>
+
 
 <div class="panel-footer text-right">
     {!! Form::hidden('login',$login)!!}
