@@ -6,16 +6,9 @@
         <ul id="profile-tabs" class="nav nav-tabs">
             <li >
                 <a href="/client">Growth</a>
-            </li>
-            <li >
-
-                <a href="" >Equity </a>
-            </li>
+            </li>          
             <li class="active">
                 <a href="{{route('client.balanceChart') }}"> Balance</a>
-            </li>
-            <li>
-                <a href="" > Risks </a>
             </li>
         </ul>
     </div>

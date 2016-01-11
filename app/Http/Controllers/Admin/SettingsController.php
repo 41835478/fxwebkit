@@ -14,6 +14,7 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Config;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Carbon\Carbon;
+use Fxweb\Repositories\Admin\User\UserContract as Users;
 use File;
 use Fxweb\Http\Controllers\admin\Email;
 
@@ -25,7 +26,7 @@ class SettingsController extends Controller {
     protected $oUser;
     protected $oMt4User;
 
-    public function __construct(User $oUser, Mt4User $oMt4User) {
+    public function __construct(Users $oUser, Mt4User $oMt4User) {
         $this->oMt4User = $oMt4User;
         $this->oUser = $oUser;
     }
@@ -315,7 +316,13 @@ class SettingsController extends Controller {
     public function postMassMailer(Request $oRequest) {
 
         $email=new Email();
-
-        $email->massMailler(['email'=>'taylorsuccessor@gmail.com','content'=>$oRequest->template_body]);
+        $userResults = $this->oUser->getUsersEmail();
+      
+        foreach ($userResults as $user)
+             {
+           $email->massMailler(['email'=>$user['email'],'content'=>$oRequest->template_body]);
+             }
+        
+        
     }
 }

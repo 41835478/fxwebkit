@@ -1009,6 +1009,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $statistics['monthly_grouth']=00;
         $statistics['annual_farecast']=00;
       
+        
         return [ $horizontal_line_numbers ,$growth_array, $averages_array,$statistics];
         
     }
@@ -1142,6 +1143,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $statistics['maximal_consecutive_loss']=00;
         $statistics['monthly_grouth']=00;
         $statistics['annual_farecast']=00;
+        
 
         return [ $horizontal_line_numbers ,$balance_array,$statistics];
 

@@ -7,16 +7,10 @@
             <li  class="active">
                 <a href="/client">Growth</a>
             </li>
-            <li >
-
-                <a href="" >Equity </a>
-            </li>
             <li>
                 <a href="{{route('client.balanceChart') }}"> Balance</a>
             </li>
-            <li>
-                <a href="" > Risks </a>
-            </li>
+           
         </ul>
     </div>
 

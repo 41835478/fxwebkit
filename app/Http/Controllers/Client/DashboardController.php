@@ -23,6 +23,23 @@ class DashboardController extends Controller {
         $this->oMt4Trade = $oMt4Trade;
     }
     public function index(ClosedTradesRequest $oRequest) {
+
+
+        $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
+
+        $growth_array = [0.00, 50.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
+       $averages_array = [50.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
+
+
+        list($horizontal_line_numbers,$growth_array,$averages_array,$statistics)=$this->oMt4Trade->getClinetGrowthChart(Sentinel::getUser()->id);
+
+
+        return view('client.dashboard')
+                        ->with('horizontal_line_numbers', $horizontal_line_numbers)
+                        ->with('growth_array', $growth_array)
+                        ->with('averages_array', $averages_array)
+                        ->with('statistics',$statistics);
+
     }
 
     public function getBalanceChart() {
