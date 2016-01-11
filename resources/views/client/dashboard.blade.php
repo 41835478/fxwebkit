@@ -62,79 +62,196 @@
 
             </table>
 
-        </div>
-        
-        </div>
-        <style type="text/css">
-            #statistics_section{
-                margin:20px 0px;
-                width:100%;
-                border-top:1px solid #ccc;}
-            #statistics_table{
-                margin:20px 0px;
-                width:100%;
 
-            }
 
-            #statistics_table td, #statistics_table th{ padding: 5px 10px;width:25%;font-size: 10px;}
-            #statistics_table td{text-align: right;border-right:1px solid #ccc;}
-            #statistics_table td:nth-child(4){border-right:1px solid transparent;}
+            <style type="text/css">
+                #statistics_section{
+                    margin:20px 0px;
+                    width:100%;
+                    border-top:1px solid #ccc;}
+                #statistics_table{
+                    margin:20px 0px;
+                    width:100%;
 
-            #statistics_table th{text-align: left; font-weight: normal;}
-            #statistics_table th:after{content:':';}
-        </style>
+                }
+
+                #statistics_table td, #statistics_table th{ padding: 5px 10px;width:25%;font-size: 10px;}
+                #statistics_table td{text-align: right;border-right:1px solid #ccc;}
+                #statistics_table td:nth-child(4){border-right:1px solid transparent;}
+
+                #statistics_table th{text-align: left; font-weight: normal;}
+                #statistics_table th:after{content:':';}
+            </style>
+        </section>
+
+
+    <section id="chart_section_2">
+        <div id="bar_negative_stack_all_div" class="col-xs-6"></div>
+        <div id="symbols_pie_chart_all_div" class="col-xs-6"></div>
+
     </section>
 
-    @stop
-    @section('script')
-    @parent
+        @stop
+        @section('script')
+        @parent
 
-    {!! HTML::script('assets/js/highcharts.js') !!}
-    <script>
+        {!! HTML::script('assets/js/highcharts.js') !!}
+        <script>
 
-        $(function () {
-        $('#growth_chart_all_div').highcharts({
-        title: {
-        text: '',
-                x: - 20 //center
-        },
-                subtitle: {
-                text: '',
-                        x: - 20
-                },
-                xAxis: {
-                categories:{!! json_encode($horizontal_line_numbers)!!}
-                },
-                yAxis: {
-                title: {
-                text: ''
-                },
-                        plotLines: [{
-                        value: 0,
-                                width: 1,
-                                color: '#808080'
+            $(function () {
+            $('#growth_chart_all_div').highcharts({
+            title: {
+            text: '',
+                    x: - 20 //center
+            },
+                    subtitle: {
+                    text: '',
+                            x: - 20
+                    },
+                    xAxis: {
+                    categories:{!! json_encode($horizontal_line_numbers)!!}
+                    },
+                    yAxis: {
+                    title: {
+                    text: ''
+                    },
+                            plotLines: [{
+                            value: 0,
+                                    width: 1,
+                                    color: '#808080'
+                            }]
+                    },
+                    tooltip: {
+                    valueSuffix: ''
+                    },
+                    legend: {
+                    layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'middle',
+                            borderWidth: 0
+                    },
+                    series: [{
+                    name: 'Growth %',
+                            data: {!! json_encode($growth_array)!!},
+                            color:'blue'
+                    }, {
+                    name: 'Average',
+                            data: {!! json_encode($averages_array)!!},
+                            color:'red'
+
+                    }]
+            });
+            });
+
+
+
+            $(function () {
+                $('#symbols_pie_chart_all_div').highcharts({
+                    colors: ["#B5A97D", "#434348", "#B5A87C", "#F8A354", "#7F82EC", "#F9D6A3", "#E5D548",
+                        "#7F82EB", "#8F4653", "#8BE7E1", "#aaeeee"],
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    title: {
+                        text: ''
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true
+                            },
+                            showInLegend: false
+                        }
+                    },
+                    series: [{
+                        type: 'pie',
+                        name: 'Browser share',
+                        data:{!! json_encode($symbols_pie_array)!!}
+                    }]
+                });
+            });
+
+
+
+
+
+            $(function () {
+                // Age categories
+                var categories = {!! json_encode($horizontal_line_numbers)!!};
+                $(document).ready(function () {
+                    $('#bar_negative_stack_all_div').highcharts({
+                        chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: 'Trade Population'
+                        },
+                        subtitle: {
+                            text: 'Sell Buy'
+                        },
+                        xAxis: [{
+                            categories: categories,
+                            reversed: false,
+                            labels: {
+                                step: 1
+                            }
+                        }, { // mirror axis on right side
+                            opposite: true,
+                            reversed: false,
+                            categories: categories,
+                            linkedTo: 0,
+                            labels: {
+                                step: 1
+                            }
+                        }],
+                        yAxis: {
+                            title: {
+                                text: null
+                            },
+                            labels: {
+                                formatter: function () {
+                                    return Math.abs(this.value) + '%';
+                                }
+                            }
+                        },
+
+                        plotOptions: {
+                            series: {
+                                stacking: 'normal'
+                            }
+                        },
+
+                        tooltip: {
+                            formatter: function () {
+                                return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' +
+                                        'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
+                            }
+                        },
+
+                        series: [{
+                            name: 'Sell',
+                            data: {!! json_encode($sell_array)!!}
+                        }, {
+                            name: 'Buy',
+                            data: {!! json_encode($buy_array)!!}
                         }]
-                },
-                tooltip: {
-                valueSuffix: ''
-                },
-                legend: {
-                layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'middle',
-                        borderWidth: 0
-                },
-                series: [{
-                name: 'Growth %',
-                        data: {!! json_encode($growth_array)!!},
-                        color:'blue'
-                }, {
-                name: 'Average',
-                        data: {!! json_encode($averages_array)!!},
-                        color:'red'
+                    });
+                });
 
-                }]
-        });
-        });
-    </script>
-    @stop
+            });
+        </script>
+        @stop
+
