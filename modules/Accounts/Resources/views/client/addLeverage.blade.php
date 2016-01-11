@@ -3,12 +3,18 @@
 @section('content')
 
 
-{!! Form::open(['class'=>'panel form-horizontal']) !!}
- 
+ <div class="page-header">
+    <h1>{{ trans('accounts::accounts.user_details') }}</h1>
+</div>
+
+<div class="panel">
+    {!! Form::open(['class'=>'panel form-horizontal']) !!}
+    <div class="panel-heading">
+        <span class="panel-title">{{ trans('accounts::accounts.user_details') }}</span>
+    </div>
  
 <div class="panel-body">
-     <div class="table-info">
-                <ul id="profile-tabs" class="nav nav-tabs">
+                <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                     <li >
                         <a href="{{ route('clients.accounts.mt4UserDetails').'?login='.$login}}&from_date=&to_date=&search=Search&sort=asc&order=login">{{ trans('accounts::accounts.summry') }}</a>
                     </li>
@@ -40,18 +46,19 @@
         </div>
     </div><!-- col-sm-6 -->
     @endif
-</div>
+
+
 <div class="panel-footer text-right">
     {!! Form::hidden('login',$login)!!}
     {!! Form::submit(trans('accounts::accounts.submit'), ['class'=>'btn btn-info btn-sm', 'name' => 'save']) !!}
 </div>
+   
 
 @if($errors->any())
 <div class="alert alert-danger alert-dark">
     @foreach($errors->all() as $key=>$error)
     <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
     @endforeach
-
 </div>
 @endif
 

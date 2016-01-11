@@ -108,5 +108,6 @@ return [
      'transferAmount'=>'Transfer Amount',
      'currentMt4Password'=>'Current Mt4 Password',
      'operation'=>'Operation',
+     'user_details'=>'User Details',
    
 ];
