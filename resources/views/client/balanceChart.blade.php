@@ -37,7 +37,6 @@
             <tr> <th>Worst Trade</th><td>{{ $statistics['worst_trade'] }}</td><th>Expected Payoff</th><td>{{ $statistics['expected_payoff'] }}</td></tr>
             <tr> <th>Gross Profit</th><td>{{ $statistics['gross_profit'] }}</td><th>Average Profit</th><td>{{ $statistics['average_profit'] }}</td></tr>
             <tr> <th>Gross Loss</th><td>{{ $statistics['gross_loss'] }}</td><th>Average Loss</th><td>{{ $statistics['average_loss'] }}</td></tr>
-            <tr> <th>Maximum Consecutive Wins</th><td>{{ $statistics['maximum_consecutive_wins'] }}</td><th>Maximum Consecutive Losses</th><td>{{ $statistics['maximum_consecutive_losses'] }}</td></tr>
             <tr> <th>Maximal Consecutive Profit</th><td>{{ $statistics['maximal_consecutive_profit'] }}</td><th>Maximal Consecutive Loss</th><td>{{ $statistics['maximal_consecutive_loss'] }}</td></tr>
             <tr> <th>Sharpe Ratio</th><td>{{ $statistics['sharpe_ratio'] }}</td><th>Monthly Grouth</th><td>{{ $statistics['monthly_grouth'] }}</td></tr>
             <tr> <th></th><td></td><th>Annual Farecast</th><td>{{ $statistics['annual_farecast'] }}</td></tr>
