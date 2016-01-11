@@ -25,7 +25,7 @@ class DashboardController extends Controller {
         $this->oMt4Trade = $oMt4Trade;
     }
     public function index(ClosedTradesRequest $oRequest) {
-           
+
         $sSort = 'ASC';
         $sOrder = 'TICKET';
         $aSymbols = [];
@@ -51,18 +51,32 @@ class DashboardController extends Controller {
 //        $growth_array = [0.00, 50.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
 //        $averages_array = [50.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
 
-        
+
         list($horizontal_line_numbers,$growth_array,$averages_array,$statistics)=$this->oMt4Trade->getClinetGrowthChart(Sentinel::getUser()->id);
-            
+
 
 
 
         return view('client.dashboard')
-                        ->with('horizontal_line_numbers', $horizontal_line_numbers)
-                        ->with('growth_array', $growth_array)
-                        ->with('averages_array', $averages_array)
-                        ->with('statistics',$statistics)
-                         ->with('oResults',$oResults);
+            ->with('horizontal_line_numbers', $horizontal_line_numbers)
+            ->with('growth_array', $growth_array)
+            ->with('averages_array', $averages_array)
+            ->with('statistics',$statistics)
+            ->with('oResults',$oResults);
+    }
+
+    public function getBalanceChart() {
+
+
+        list($horizontal_line_numbers,$balance_array,$statistics)=$this->oMt4Trade->getClinetBalanceChart(Sentinel::getUser()->id);
+
+
+
+
+        return view('client.balanceChart')
+            ->with('horizontal_line_numbers', $horizontal_line_numbers)
+            ->with('balance_array', $balance_array)
+            ->with('statistics',$statistics);
     }
 
     /*
