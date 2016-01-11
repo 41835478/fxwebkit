@@ -214,4 +214,29 @@ class EloquentMt4UserRepository implements Mt4UserContract {
         }
         return false;
     }
+
+
+    public function getUsersMt4Users($account_id) {
+
+ $oResult = Mt4User::leftJoin('mt4_users_users', function($join) use($account_id) {
+            $join->on('mt4_users.LOGIN', '=', 'mt4_users_users.mt4_users_id')->where('mt4_users_users.users_id', '=', $account_id);
+        });
+
+        $oResult = $oResult->with('account')->whereHas('account', function($query) use($account_id) {
+            $query->where('users_id', $account_id);
+        });
+
+
+            $oResult = $oResult->get();
+
+        /* =============== Preparing Output  =============== */
+        $aResult=[];
+        $firstLogin =0;
+        foreach ($oResult as $dKey => $oValue) {
+            if($firstLogin ==0 )$firstLogin=$oResult[$dKey]->LOGIN;
+            $aResult[$oResult[$dKey]->LOGIN] = $oResult[$dKey]->LOGIN;
+        }
+        return [$firstLogin,$aResult];
+    }
+
 }
