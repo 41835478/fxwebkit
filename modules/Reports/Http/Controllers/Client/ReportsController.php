@@ -116,7 +116,7 @@ class ReportsController extends Controller {
         }
 
         if ($oRequest->has('search')) {
-            dd($sOrder);
+
             $oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults->order = $aFilterParams['order'];
             $oResults->sorts = $aFilterParams['sort'];
