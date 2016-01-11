@@ -73,6 +73,26 @@ class DashboardController extends Controller {
 
     }
 
+    public function getSymbolsChart(ClosedTradesRequest $oRequest) {
+        $clientId= Sentinel::getUser()->id;
+
+        list($firstLogin,$aLoginList)=$this->oMt4User->getUsersMt4Users($clientId);
+        $login=($oRequest->has('login'))? $oRequest->login:$firstLogin;
+
+        list($horizontal_line_numbers,$symbols_pie_array,$sell_array,$buy_array,$statistics)=$this->oMt4Trade->getClinetSymbolsChart($login);
+
+
+
+
+        return view('client.symbolsChart')
+            ->with('horizontal_line_numbers', $horizontal_line_numbers)
+            ->with('symbols_pie_array', $symbols_pie_array)
+            ->with('sell_array', $sell_array)
+            ->with('buy_array', $buy_array)
+            ->with('statistics',$statistics)
+            ->with('aLogin',$aLoginList)
+            ->with('login',$login);
+    }
     /*
       protected $oUsers;
 

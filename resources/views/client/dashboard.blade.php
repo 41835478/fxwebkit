@@ -25,6 +25,10 @@
             <li class="">
                 <a href="{{route('client.balanceChart') }}">{{ trans('general.balance') }}</a>
             </li>
+
+            <li >
+                <a href="{{route('client.symbolsChart') }}"> Symbols</a>
+            </li>
         </ul>
 
     </div>
