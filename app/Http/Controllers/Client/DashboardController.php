@@ -4,7 +4,6 @@ namespace Fxweb\Http\Controllers\Client;
 
 use Fxweb\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Modules\Accounts\Http\Requests\AddUserRequest;
 use Modules\Reports\Http\Requests\Admin\ClosedTradesRequest;
 use Illuminate\Support\Facades\Config;
@@ -13,39 +12,54 @@ use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 
 
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
+use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
+use Fxweb\Repositories\Admin\User\UserContract as Users;
 
 class DashboardController extends Controller {
 
     protected $oMt4Trade;
-    
-    
-    public function __construct( Mt4Trade $oMt4Trade) {
+
+    protected $oUsers;
+
+    protected $oMt4User;
+    public function __construct(Mt4User $oMt4User, Users $oUsers,Mt4Trade $oMt4Trade) {
         $this->oMt4Trade = $oMt4Trade;
+        $this->oUsers = $oUsers;
+        $this->oMt4User = $oMt4User;
     }
     public function index(ClosedTradesRequest $oRequest) {
 
 
-        $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
+        /*$horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
 
         $growth_array = [0.00, 50.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
        $averages_array = [50.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
+        */
+       $clientId= Sentinel::getUser()->id;
 
-
-        list($horizontal_line_numbers,$growth_array,$averages_array,$statistics)=$this->oMt4Trade->getClinetGrowthChart(Sentinel::getUser()->id);
+        list($firstLogin,$aLoginList)=$this->oMt4User->getUsersMt4Users($clientId);
+        $login=($oRequest->has('login'))? $oRequest->login:$firstLogin;
+        list($horizontal_line_numbers,$growth_array,$averages_array,$statistics)=$this->oMt4Trade->getClinetGrowthChart($login);
 
 
         return view('client.dashboard')
                         ->with('horizontal_line_numbers', $horizontal_line_numbers)
                         ->with('growth_array', $growth_array)
                         ->with('averages_array', $averages_array)
-                        ->with('statistics',$statistics);
+                        ->with('statistics',$statistics)
+            ->with('aLogin',$aLoginList)
+            ->with('login',$login)
+            ;
 
     }
 
-    public function getBalanceChart() {
+    public function getBalanceChart(ClosedTradesRequest $oRequest) {
+        $clientId= Sentinel::getUser()->id;
 
+        list($firstLogin,$aLoginList)=$this->oMt4User->getUsersMt4Users($clientId);
+        $login=($oRequest->has('login'))? $oRequest->login:$firstLogin;
 
-        list($horizontal_line_numbers,$balance_array,$statistics)=$this->oMt4Trade->getClinetBalanceChart(Sentinel::getUser()->id);
+        list($horizontal_line_numbers,$balance_array,$statistics)=$this->oMt4Trade->getClinetBalanceChart($login);
 
 
 
@@ -53,7 +67,9 @@ class DashboardController extends Controller {
         return view('client.balanceChart')
             ->with('horizontal_line_numbers', $horizontal_line_numbers)
             ->with('balance_array', $balance_array)
-            ->with('statistics',$statistics);
+            ->with('statistics',$statistics)
+            ->with('aLogin',$aLoginList)
+            ->with('login',$login);
 
     }
 
