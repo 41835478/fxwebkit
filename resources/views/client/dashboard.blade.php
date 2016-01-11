@@ -18,6 +18,10 @@
             <li class="">
                  <a href="{{route('client.balanceChart') }}"> Balance</a>
             </li>
+
+            <li >
+                <a href="{{route('client.symbolsChart') }}"> Symbols</a>
+            </li>
         </ul>
 
     </div>

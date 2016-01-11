@@ -1173,4 +1173,172 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         return [ $horizontal_line_numbers ,$balance_array,$statistics];
 
     }
+
+    public function getClinetSymbolsChart($login){
+        // $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
+
+
+
+        $oGrowthResults=Mt4Trade::select([DB::raw('sum(VOLUME) as valume'),'SYMBOL'])
+            ->where('login',$login)
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->whereIn('cmd',[0,1])
+            ->groupBy('SYMBOL')
+            ->orderBy('CLOSE_TIME')
+            ->get();
+
+
+        $symbols_pie_array = [];
+        $horizontal_line_numbers=[];
+//$totalValume=0;
+
+        $i=0;
+
+        //foreach($oGrowthResults as $row){$totalValume+=$row->valume;}
+        foreach($oGrowthResults as $row){
+
+//$valume=($totalValume!=0)? $row->valume/$totalValume:0;
+
+            $symbols_pie_array[]=['name'=>[$row->SYMBOL],'y'=>$row->valume*1];
+
+
+        }
+
+
+
+        $oGrowthResults=Mt4Trade::select([DB::raw('sum(VOLUME) as valume'),'SYMBOL','CMD'])
+            ->where('login',$login)
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->whereIn('cmd',[0,1])
+            ->groupBy(['SYMBOL','CMD'])
+            ->orderBy('SYMBOL')
+            ->get();
+
+        $sell_array=[];
+        $buy_array=[];
+
+        foreach($oGrowthResults as $row){
+            if(!in_array($row->SYMBOL,$horizontal_line_numbers)){$horizontal_line_numbers[]=$row->SYMBOL;}
+            if($row->CMD==1){
+            $sell_array[]=$row->valume*-1;
+        }else if($row->CMD==0){
+                $buy_array[]=$row->valume*1;
+            }
+
+        }
+        /*==== trades ====*/
+        $trades = Mt4Trade::where('cmd', '<', '2')
+            ->where('login',$login)
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->count();
+        $statistics['trades'] = $trades;
+
+
+        /*==== profit_trades ====*/
+
+        $profit_trades_number = Mt4Trade::select(DB::raw('PROFIT+COMMISSION+SWAPS as total'))
+            ->where('login',$login)
+            ->where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->having('total', '>=', '0')
+            ->get()
+            ->count();
+        $profit_trades_per =($trades>0)? round(($profit_trades_number / $trades * 100), 5):0;
+        $statistics['profit_trades'] = $profit_trades_number . ' ( ' . $profit_trades_per . ' % ) ';
+
+
+        /*==== loss_trade ====*/
+        $loss_trade_number = $trades - $profit_trades_number;
+        $loss_trade_per =($trades>0)?  round($loss_trade_number / $trades * 100, 5):0;
+        $statistics['loss_trade'] = $loss_trade_number . ' ( ' . $loss_trade_per . ' % ) ';
+
+
+        /*==== best_trade ====*/
+
+        $oBest_trade = Mt4Trade::select(['SYMBOL', 'PROFIT'])
+            ->where('login',$login)
+            ->orderBy('PROFIT', 'desc')
+            ->first();
+
+        $statistics['best_trade'] =(count($oBest_trade))?  $oBest_trade->PROFIT . ' ' . $oBest_trade->SYMBOL:0;
+
+
+
+        /*==== worst_trade ====*/
+
+        $oWorst_trade = Mt4Trade::select(['SYMBOL', 'PROFIT'])
+            ->where('login',$login)
+            ->orderBy('PROFIT', 'asc')
+            ->first();
+        $statistics['worst_trade']=(count($oWorst_trade))?  $oWorst_trade->PROFIT . ' ' . $oWorst_trade->SYMBOL:0;
+
+
+        /*==== gross_profit ====*/
+
+        $gross_profit_result =  Mt4Trade::select(['PROFIT',DB::raw('PROFIT+COMMISSION+SWAPS as total')])
+            ->where('login',$login)
+            ->where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->having('total', '>', '0')
+            ->get()
+            ->sum('PROFIT');
+
+        //dd($gross_profit_result);
+        $statistics['gross_profit']=$gross_profit_result;
+
+
+
+        /*==== gross_loss ====*/
+
+        $gross_loss_result =  Mt4Trade::select(['PROFIT',DB::raw('PROFIT+COMMISSION+SWAPS as total')])
+            ->where('login',$login)
+            ->where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->having('total', '<', '0')
+            ->get()
+            ->sum('PROFIT');
+        $statistics['gross_loss']=$gross_loss_result;
+
+
+        $statistics['maximum_consecutive_wins']=00;
+        $statistics['maximal_consecutive_profit']=00;
+        $statistics['sharpe_ratio']=00;
+        $statistics['recovery_factor']=00;
+
+        /*=== long_trades ====*/
+
+        $long_trades = Mt4Trade::where('cmd', '=', '0')
+            ->where('login',$login)
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->count();
+        $statistics['long_trades']=$long_trades;
+
+
+
+        /*=== short_trades ====*/
+
+        $short_trades = Mt4Trade::where('cmd', '=', '1')
+            ->where('login',$login)
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->count();
+        $statistics['short_trades']=$short_trades;
+
+
+        /*=== profits_factor ====*/
+        $statistics['profits_factor']=($gross_loss_result !=0)? $gross_profit_result/$gross_loss_result * 100 :0;
+        $statistics['profits_factor']=($gross_profit_result >= $gross_loss_result)? abs($statistics['profits_factor']):abs($statistics['profits_factor']) * -1;
+
+        $statistics['expected_payoff']=00;
+        $statistics['average_profit']=00;
+        $statistics['average_loss']=00;
+        $statistics['maximum_consecutive_losses']=00;
+        $statistics['maximal_consecutive_loss']=00;
+        $statistics['monthly_grouth']=00;
+        $statistics['annual_farecast']=00;
+
+
+        return [ $horizontal_line_numbers ,$symbols_pie_array,$sell_array,$buy_array,$statistics];
+
+
+    }
 }
