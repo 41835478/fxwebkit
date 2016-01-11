@@ -26,9 +26,6 @@
                 <a href="{{route('client.balanceChart') }}">{{ trans('general.balance') }}</a>
             </li>
 
-            <li >
-                <a href="{{route('client.symbolsChart') }}"> Symbols</a>
-            </li>
         </ul>
 
     </div>
@@ -190,7 +187,7 @@
 
             $(function () {
                 // Age categories
-                var categories = {!! json_encode($horizontal_line_numbers)!!};
+                var categories = {!! json_encode($sell_buy_horizontal_line_numbers)!!};
                 $(document).ready(function () {
                     $('#bar_negative_stack_all_div').highcharts({
                         chart: {

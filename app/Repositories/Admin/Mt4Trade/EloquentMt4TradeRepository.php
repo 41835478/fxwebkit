@@ -1244,14 +1244,23 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
                 $horizontal_line_numbers[]=$row->SYMBOL;
             }
             if($row->CMD==1){
-                $sell_array[]=$row->valume*-1 /$totalSymbolValume *100;
+                $sell_array[$row->SYMBOL]=$row->valume*-1 /$totalSymbolValume *100;
+                $buy_array[$row->SYMBOL]=(isset($buy_array[$row->SYMBOL] ))? $buy_array[$row->SYMBOL]:0;
             }else if($row->CMD==0){
-                $buy_array[]=$row->valume*1 /$totalSymbolValume *100;
+                $buy_array[$row->SYMBOL]=$row->valume*1 /$totalSymbolValume *100;
+                $sell_array[$row->SYMBOL]=(isset($sell_array[$row->SYMBOL] ))? $sell_array[$row->SYMBOL]:0;
             }
 
         }
+        $final_sell_array=[];
+        $final_buy_array=[];
+        foreach($buy_array as $key=>$value){
+            $final_sell_array[]=(isset($sell_array[$key]))?$sell_array[$key]:0;
+            $final_buy_array[]=$buy_array[$key];
+        }
 
-        return [$symbols_pie_array,$sell_array,$buy_array,$horizontal_line_numbers];
+
+        return [$symbols_pie_array,$final_sell_array,$final_buy_array,$horizontal_line_numbers];
 
 
     }

@@ -7,8 +7,7 @@ Route::group(['middleware' => ['authenticate.client']], function()
 {
 	Route::get('/', ['as' => 'client.index', 'uses' => 'DashboardController@index']);
 	Route::controller('Dashboard', 'DashboardController', [
-		'getBalanceChart' => 'client.balanceChart',
-		'getSymbolsChart' => 'client.symbolsChart'
+		'getBalanceChart' => 'client.balanceChart'
 	]);
 	/*
 Route::get('clientProfile', [
