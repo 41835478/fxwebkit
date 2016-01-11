@@ -1192,9 +1192,13 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $horizontal_line_numbers=[];
 $totalValume=0;
 
+
         $i=0;
 
-        foreach($oGrowthResults as $row){$totalValume+=$row->valume;}
+        foreach($oGrowthResults as $row){
+            $totalValume+=$row->valume;
+
+        }
         $totalValume=($totalValume!=0)? $totalValume:1;
         foreach($oGrowthResults as $row){
 
@@ -1207,7 +1211,7 @@ $valume= round($row->valume/$totalValume *100 ,2);
 
 
 
-        $oGrowthResults=Mt4Trade::select([DB::raw('sum(VOLUME) as valume'),'SYMBOL','CMD'])
+        $oSymbolsResults=Mt4Trade::select([DB::raw('sum(VOLUME) as valume'),'SYMBOL','CMD'])
             ->where('login',$login)
             ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
             ->whereIn('cmd',[0,1])
@@ -1217,15 +1221,25 @@ $valume= round($row->valume/$totalValume *100 ,2);
 
         $sell_array=[];
         $buy_array=[];
+        $totalSymbolsValume=[];
 
-        foreach($oGrowthResults as $row){
+        foreach($oSymbolsResults as $row){
+            if(isset($totalSymbolsValume[$row->SYMBOL])){
+                $totalSymbolsValume[$row->SYMBOL]+=$row->valume;
+            }else{
+                $totalSymbolsValume[$row->SYMBOL]=$row->valume;
+            }
+        }
+        foreach($oSymbolsResults as $row){
+
+            $totalSymbolValume=($totalSymbolsValume[$row->SYMBOL]!=0)? $totalSymbolsValume[$row->SYMBOL]:1;
             if(!in_array($row->SYMBOL,$horizontal_line_numbers)){
                 $horizontal_line_numbers[]=$row->SYMBOL;
             }
             if($row->CMD==1){
-            $sell_array[]=$row->valume*-1 /$totalValume *100;
+            $sell_array[]=$row->valume*-1 /$totalSymbolValume *100;
         }else if($row->CMD==0){
-                $buy_array[]=$row->valume*1 /$totalValume *100;
+                $buy_array[]=$row->valume*1 /$totalSymbolValume *100;
             }
 
         }
