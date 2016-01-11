@@ -30,19 +30,19 @@
         </ul>
 
     </div>
-        <section id="chart_section">
-            <div id="growth_chart_all_div"></div>
-        </section>
+    <section id="chart_section">
+        <div id="growth_chart_all_div"></div>
+    </section>
 
-<section id="statistics_section">
- <div class="panel">
+    <section id="statistics_section">
+        <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ trans('general.statistics') }}</span>
             </div>
-   <table id='statistics_table'>
-       
-       
-          <tbody>
+            <table id='statistics_table'>
+
+
+                <tbody>
                     <tr> <th>{{ trans('general.trades') }}</th><td>{{ $statistics['trades'] }}</td><th>{{ trans('general.recovery_factor') }}</th><td>{{ $statistics['recovery_factor'] }}</td></tr>
                     <tr> <th>{{ trans('general.profit_trades') }}</th><td>{{ $statistics['profit_trades'] }}</td><th>{{ trans('general.long_trades') }}</th><td>{{ $statistics['long_trades'] }}</td></tr>
                     <tr> <th>{{ trans('general.loss_trade') }}</th><td>{{ $statistics['loss_trade'] }}</td><th>{{ trans('general.short_trades') }}</th><td>{{ $statistics['short_trades'] }}</td></tr>
@@ -55,77 +55,77 @@
                     <tr> <th></th><td></td><th>{{ trans('general.annual_farecast') }}</th><td>{{ $statistics['annual_farecast'] }}</td></tr>
                 </tbody>
 
-       
-        
-              
-    </table>
-     
-    <style type="text/css">
-        #statistics_section{
-            margin:20px 0px;
-            width:100%;
-            border-top:1px solid #ccc;}
-        #statistics_table{
-            margin:20px 0px;
-            width:100%;
 
-        }
 
-        #statistics_table td, #statistics_table th{ padding: 5px 10px;width:25%;font-size: 10px;}
-        #statistics_table td{text-align: right;border-right:1px solid #ccc;}
-        #statistics_table td:nth-child(4){border-right:1px solid transparent;}
 
-        #statistics_table th{text-align: left; font-weight: normal;}
-        #statistics_table th:after{content:':';}
-    </style>
+            </table>
 
-</section>
+            <style type="text/css">
+                #statistics_section{
+                    margin:20px 0px;
+                    width:100%;
+                    border-top:1px solid #ccc;}
+                #statistics_table{
+                    margin:20px 0px;
+                    width:100%;
 
-@stop
-@section('script')
-@parent
+                }
 
-{!! HTML::script('assets/js/highcharts.js') !!}
-<script>
+                #statistics_table td, #statistics_table th{ padding: 5px 10px;width:25%;font-size: 10px;}
+                #statistics_table td{text-align: right;border-right:1px solid #ccc;}
+                #statistics_table td:nth-child(4){border-right:1px solid transparent;}
 
-    $(function () {
-    $('#growth_chart_all_div').highcharts({
-    title: {
-    text: '',
-            x: - 20 //center
-    },
-            subtitle: {
-            text: '',
-                    x: - 20
-            },
-            xAxis: {
-            categories:{!! json_encode($horizontal_line_numbers)!!}
-            },
-            yAxis: {
-            title: {
-            text: ''
-            },
-                    plotLines: [{
-                    value: 0,
-                            width: 1,
-                            color: '#808080'
-                    }]
-            },
-            tooltip: {
-            valueSuffix: ''
-            },
-            legend: {
-            layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'middle',
-                    borderWidth: 0
-            },
-            series: [{
-            name: 'Balance',
-                    data: {!! json_encode($balance_array)!!},
-                    color:'blue'
-            }]
-    });
-    });
-</script>
-@stop
+                #statistics_table th{text-align: left; font-weight: normal;}
+                #statistics_table th:after{content:':';}
+            </style>
+
+    </section>
+
+    @stop
+    @section('script')
+    @parent
+
+    {!! HTML::script('assets/js/highcharts.js') !!}
+    <script>
+
+        $(function () {
+        $('#growth_chart_all_div').highcharts({
+        title: {
+        text: '',
+                x: - 20 //center
+        },
+                subtitle: {
+                text: '',
+                        x: - 20
+                },
+                xAxis: {
+                categories:{!! json_encode($horizontal_line_numbers)!!}
+                },
+                yAxis: {
+                title: {
+                text: ''
+                },
+                        plotLines: [{
+                        value: 0,
+                                width: 1,
+                                color: '#808080'
+                        }]
+                },
+                tooltip: {
+                valueSuffix: ''
+                },
+                legend: {
+                layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle',
+                        borderWidth: 0
+                },
+                series: [{
+                name: 'Balance',
+                        data: {!! json_encode($balance_array)!!},
+                        color:'blue'
+                }]
+        });
+        });
+    </script>
+    @stop
