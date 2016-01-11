@@ -8,9 +8,9 @@
     <span class="panel-title">Asign Mt4 User</span>
 </div>
 <div class="panel-body">
-    
-   
-    
+
+
+
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
@@ -21,7 +21,7 @@
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('accounts::accounts.Password') }}</label>
-                 {!! Form::password("password",["class"=>"form-control","value"=>$userInfo['password']]) !!}
+                {!! Form::password("password",["class"=>"form-control","value"=>$userInfo['password']]) !!}
             </div>
         </div><!-- col-sm-6 -->
     </div><!-- row -->

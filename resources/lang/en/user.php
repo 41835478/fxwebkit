@@ -52,6 +52,7 @@ return [
         'gender'=>'Gender',
         'edit_user'=>'Edit User',
         'details'=>'Details',
+        'save'=>'Save',
     
        
 

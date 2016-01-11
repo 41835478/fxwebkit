@@ -45,11 +45,14 @@
 
     @if($Pssword==true)
     <div class="col-sm-6">
+        
         <div class="form-group no-margin-hr">
             <label class="control-label">{{ trans('accounts::accounts.currentMt4Password') }}</label>
             {!! Form::password("oldPassword",["class"=>"form-control","value"=>$internalTransfer['oldPassword']]) !!}
         </div>
-    </div><!-- col-sm-6 -->  
+    </div><!-- col-sm-6 --> 
+    <div class="clearfix"></div>
+
     @endif
 
     <div class="panel-footer text-right">
@@ -63,6 +66,7 @@
         <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
         @endforeach
     </div>
+    
     @endif
 
     {!! Form::close() !!}

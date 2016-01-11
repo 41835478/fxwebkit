@@ -37,6 +37,32 @@ return [
         'balance'=>'Balance',
         'dashboard'=>'Dashboard',
     
+        'trades' => 'Trades',
+	'profit_trades' => 'Profit Trades',
+	'loss_trade' => 'Loss Trade',
+	'best_trade' => 'Best Trade',
+	'worst_trade' => 'Worst Trade',
+        'gross_profit'=>'Gross Profit',
+        'gross_loss'=>'Gross Loss',
+        'maximum_consecutive_wins'=>'Maximum Consecutive Wins',
+        'maximal_consecutive_profit'=>'Maximal Consecutive Profit',
+        'sharpe_ratio'=>'Sharpe Ratio',
+        'annual_farecast'=>'Annual Farecast',
+        'recovery_factor' => 'Recovery Factor',
+	'long_trades' => 'Long Trades',
+	'short_trades' => 'Short Trades',
+	'profits_factor' => 'Profits Factor',
+	'expected_payoff' => 'Expected Payoff',
+        'average_profit'=>'Average Profit',
+        'average_loss'=>'Average Loss',
+        'maximum_consecutive_losses'=>'Maximum Consecutive Losses',
+        'maximal_consecutive_loss'=>'Maximal Consecutive_loss',
+        'monthly_grouth'=>'Monthly Grouth',
+    
+    
+    
+    
+    
     
     'BalanceOperations'=>'Balance Operations',
     'CreditOperations'=>'Credit Operations',
