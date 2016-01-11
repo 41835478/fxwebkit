@@ -25,7 +25,8 @@ class ClientToolsController extends Controller {
 
     
            public function getMarketWatch() {
-               return view('tools::marketWatch');
+               
+             return view('tools::client.marketWatch');
     }
     
     public function getFutureContract(Request $oRequest) {

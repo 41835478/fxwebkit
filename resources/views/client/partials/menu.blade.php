@@ -19,7 +19,7 @@
 		</div>
 		<ul class="navigation">
 			<li>
-				<a href=" "><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span></a>
+				<a href=" {{ route('client.index') }}"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span></a>
 			</li>
 			
 {{--*/ $aAdminMenu = get_client_menu() /*--}}
