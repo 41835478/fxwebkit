@@ -20,10 +20,10 @@
     <div class="panel-body">
         <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
             <li class="active">
-                <a href="/client">{{ trans('general.growth') }}</a>
+                <a href="/client?login={{ $login }}">{{ trans('general.growth') }}</a>
             </li>
             <li class="">
-                <a href="{{route('client.balanceChart') }}">{{ trans('general.balance') }}</a>
+                <a href="{{route('client.balanceChart') }}?login={{ $login }}">{{ trans('general.balance') }}</a>
             </li>
 
         </ul>
