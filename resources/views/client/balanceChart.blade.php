@@ -1,6 +1,8 @@
 @extends('client.layouts.main')
 @section('title', Lang::get('dashboard.PageTitle'))
 @section('content')
+
+   
     <div class="page-header">
         <h1>{{ trans('general.dashboard') }}</h1>
     </div>
@@ -17,11 +19,11 @@
         </div>
         <div class="panel-body">
             <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
-                <li >
+                <li class="">
                     <a href="/client?login={{ $login }}">{{ trans('general.growth') }}</a>
                 </li>
                 <li class="active">
-                    <a href="{{route('client.balanceChart') }}?login={{ $login }}"> {{ trans('general.balance') }}</a>
+                    <a href="{{route('client.balanceChart') }}?login={{ $login }}">{{ trans('general.balance') }}</a>
                 </li>
 
             </ul>
@@ -33,15 +35,15 @@
         </section>
     </div>
 
-
     <section id="statistics_section">
+
+
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ trans('general.statistics') }}</span>
             </div>
+
             <table id='statistics_table'>
-
-
                 <tbody>
                 <tr> <th>{{ trans('general.trades') }}</th><td>{{ $statistics['trades'] }}</td><th>{{ trans('general.recovery_factor') }}</th><td>{{ $statistics['recovery_factor'] }}</td></tr>
                 <tr> <th>{{ trans('general.profit_trades') }}</th><td>{{ $statistics['profit_trades'] }}</td><th>{{ trans('general.long_trades') }}</th><td>{{ $statistics['long_trades'] }}</td></tr>
@@ -55,10 +57,9 @@
                 <tr> <th></th><td></td><th>{{ trans('general.annual_farecast') }}</th><td>{{ $statistics['annual_farecast'] }}</td></tr>
                 </tbody>
 
-
-
-
             </table>
+
+
 
             <style type="text/css">
                 #statistics_section{
@@ -79,9 +80,7 @@
                 #statistics_table th:after{content:':';}
 
             </style>
-
     </section>
-
 
 
     <section id="chart_section_2">
@@ -95,6 +94,7 @@
             </div>
         </div>
     </section>
+
 @stop
 @section('script')
     @parent
@@ -182,7 +182,6 @@
                 }]
             });
         });
-
 
 
 
