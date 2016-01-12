@@ -273,14 +273,8 @@
         var offset = new Date().getTimezoneOffset();
         var realOffset=-1 * offset/60;
 
-        var city_array = [
-            ['Local', 6, -1, realOffset],
-            ['Sydney Time', 22, 9, 2],
-            ['Tokyo  Time', 24, 9, 1],
-            ['London  Time ', 8, 9, 4],
-            ['New Yourk  Time', 13, 9, 1]
-        ];
-
+        var city_array ={!! str_replace('&quot;','"',json_encode(Config('tools.city_array')) ) !!};
+        city_array[0][3]=realOffset;
         $(".forex_hours_container").height((city_array.length * 25 ) + 'px');
 
         for (var i = 0; i < city_array.length; i++) {
@@ -421,7 +415,7 @@
             var year = hourObject.getFullYear();
             //city_date">Fri, Nov 17 2017
 
-            $('.city_date').html(day + ', ' + monthNames[month] + ' ' + month + ' ' + year);
+            $('.city_date').html(day + ', ' + monthNames[month] + ' ' + (month+1) + ' ' + year);
 
 
         });
