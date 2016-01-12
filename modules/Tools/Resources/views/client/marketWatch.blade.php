@@ -255,17 +255,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+       
 
 
 
@@ -278,15 +268,9 @@
     var offset = new Date().getTimezoneOffset();
     var realOffset = -1 * offset / 60;
 
-    var city_array = [
-        ['Local', 6, -1, realOffset],
-        ['Sydney Time', 22, 9, 2],
-        ['Tokyo  Time', 24, 9, 1],
-        ['London  Time ', 8, 9, 4],
-        ['New Yourk  Time', 13, 9, 1]
-    ];
-
-    $(".forex_hours_container").height((city_array.length * 25) + 'px');
+     var city_array ={!! str_replace('&quot;','"',json_encode(Config('tools.city_array')) ) !!};
+        city_array[0][3]=realOffset;
+        $(".forex_hours_container").height((city_array.length * 25 ) + 'px');
 
     for (var i = 0; i < city_array.length; i++) {
 
@@ -403,6 +387,7 @@
             html += (i == day) ? ' active ">' + i + '/' + month + '</a>' : '">' + i + '</a>';
 
         }
+
     }
     html += '</div>';
     $('.clock_header').html(html);
@@ -459,6 +444,53 @@
                     '<div class="city_date">Fri, Nov 17 2017</div>' +
                     '</div>' +
                     '</div>';
+
+        html += '</div>';
+        $('.clock_header').html(html);
+
+
+        var hourObject = new Date();
+        var hour = hourObject.getHours();
+
+        var minutes = hourObject.getMinutes();
+
+
+
+        $(document).ready(function () {
+            /*$('.over_hour_box_div').animate({'left': (hour * 4.166) + '%'}, 100, function () {
+             });*/
+
+            var monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+
+            var month = hourObject.getMonth();
+            var day = hourObject.getDate();
+
+            var year = hourObject.getFullYear();
+            //city_date">Fri, Nov 17 2017
+
+            $('.city_date').html(day + ', ' + monthNames[month] + ' ' + (month+1) + ' ' + year);
+
+
+        });
+
+/*
+        $('.one_hour_div').mousemove(function () {
+            $('.over_hour_box_div').stop();
+            var index = $(this).data('index');
+            $('.over_hour_box_div').animate({'left': (index * 4.166) + '%'}, 100, function () {
+            });
+        });
+        $('.hours_bar_all_div').mouseout(function () {
+
+            $('.over_hour_box_div').stop();
+            $('.over_hour_box_div').animate({'left': (hour * 4.166) + '%'}, 1000, function () {
+            });
+        });
+*/
+
+
         }
         return html;
     }

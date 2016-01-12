@@ -5,6 +5,13 @@ return ['is_admin' => 1,
 	'name' => 'tools',
 	'icon' => 'fa fa-gear',
 	'route' => '',
+	'city_array'=>[
+		['Local', 6, -1, 'realOffset'],
+		["Sydney Time", 22, 9, 2],
+		["Tokyo  Time", 24, 9, 1],
+		["London  Time", 8, 9, 4],
+		["New Yourk  Time", 13, 9, 1]
+	],
 	'admin_menu' => [
 		[
 			'route' => 'tools.futureContract',
