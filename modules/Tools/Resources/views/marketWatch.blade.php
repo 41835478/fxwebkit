@@ -15,9 +15,12 @@
 
 
 <section class="clock_all_section">
-    <div class="panel-body">
-        <div class="  theme-default page-mail" >
+          <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">{{ trans('tools::tools.time') }}</span>
+            </div>
             <section class="clock_body_section">
+           
                
                     <div class="forex_hours_all_row">
                         <div class="left_label_div"> </div>
@@ -70,6 +73,7 @@
 
                         </div>
                     </div>
+             
               </section>
                 
         </div>
@@ -90,6 +94,7 @@
         border: 1px solid #CCC;
         overflow: auto;
     }
+    .clock_all_section .panel{margin-bottom:0px;}
     .day_tab_all_div{ display: inline-block; margin: 11px auto 0px auto;float: left;min-width: 200px;width: 18%;}
     .one_day_tab_div{
         display:block;
@@ -116,7 +121,7 @@
     .clock_body_section{
         padding:10px;
         /* background:#f00; */
-        border-top: #000000 !important;overflow: auto;border: 1px solid #ccc !important;}
+        border-top: #000000 !important;overflow: auto;}
 
 
 
@@ -254,8 +259,6 @@
 </style>
 
 
-        
-
 @stop
 @section("script")
 @parent
@@ -265,7 +268,7 @@
     var offset = new Date().getTimezoneOffset();
     var realOffset = -1 * offset / 60;
 
-    var city_array ={!! str_replace('&quot;','"',json_encode(Config('tools.city_array')) ) !!};
+     var city_array ={!! str_replace('&quot;','"',json_encode(Config('tools.city_array')) ) !!};
         city_array[0][3]=realOffset;
         $(".forex_hours_container").height((city_array.length * 25 ) + 'px');
 
@@ -450,6 +453,9 @@
         var hour = hourObject.getHours();
 
         var minutes = hourObject.getMinutes();
+
+
+
         $(document).ready(function () {
             /*$('.over_hour_box_div').animate({'left': (hour * 4.166) + '%'}, 100, function () {
              });*/
@@ -483,6 +489,8 @@
             });
         });
 */
+
+
         }
         return html;
     }

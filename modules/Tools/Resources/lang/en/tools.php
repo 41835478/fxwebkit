@@ -30,5 +30,6 @@ return [
     'start_date:'=>'Start Date :',
     'expiry_date:'=>'Expiry Date :',
     'contractDetails'=>'Contract Details',
+    'time'=>'Time',
     
 ];
