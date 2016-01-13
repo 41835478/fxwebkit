@@ -18,6 +18,12 @@
         padding-left:0px !important;
         height:65px;
     /*border-bottom:1px solid #DBDBDB;*/}
+    
+    .table-light a.fa{color:#C7C4C4 !important;}
+    /*
+     .table-light  li.active span{background-color:#C7C4C4 !important;
+     border-color: #C7C4C4  !important;
+     }*/
 </style>
 <div class="theme-default page-mail" >
     <div class="mail-nav" >
