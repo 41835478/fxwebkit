@@ -79,6 +79,8 @@
                 #statistics_table th{text-align: left; font-weight: normal;}
                 #statistics_table th:after{content:':';}
 
+                .blue_font{ color:#1D89CF;}
+                .red_font{ color:#f00;}
             </style>
     </section>
 

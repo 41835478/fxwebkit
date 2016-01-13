@@ -46,15 +46,15 @@
             <table id='statistics_table'>
                 <tbody>
                 <tr> <th>{{ trans('general.trades') }}</th><td>{{ $statistics['trades'] }}</td><th>{{ trans('general.recovery_factor') }}</th><td>{{ $statistics['recovery_factor'] }}</td></tr>
-                <tr> <th>{{ trans('general.profit_trades') }}</th><td>{{ $statistics['profit_trades'] }}</td><th>{{ trans('general.long_trades') }}</th><td>{{ $statistics['long_trades'] }}</td></tr>
-                <tr> <th>{{ trans('general.loss_trade') }}</th><td>{{ $statistics['loss_trade'] }}</td><th>{{ trans('general.short_trades') }}</th><td>{{ $statistics['short_trades'] }}</td></tr>
-                <tr> <th>{{ trans('general.best_trade') }}</th><td>{{ $statistics['best_trade'] }}</td><th>{{ trans('general.profits_factor') }}</th><td>{{ $statistics['profits_factor'] }}</td></tr>
-                <tr> <th>{{ trans('general.worst_trade') }}</th><td>{{ $statistics['worst_trade'] }}</td><th>{{ trans('general.expected_payoff') }}</th><td>{{ $statistics['expected_payoff'] }}</td></tr>
-                <tr> <th>{{ trans('general.gross_profit') }}</th><td>{{ $statistics['gross_profit'] }}</td><th>{{ trans('general.average_profit') }}</th><td>{{ $statistics['average_profit'] }}</td></tr>
-                <tr> <th>{{ trans('general.gross_loss') }}</th><td>{{ $statistics['gross_loss'] }}</td><th>{{ trans('general.average_loss') }}</th><td>{{ $statistics['average_loss'] }}</td></tr>
+                <tr> <th>{{ trans('general.profit_trades') }}</th><td>{!! $statistics['profit_trades'] !!}</td><th>{{ trans('general.long_trades') }}</th><td>{{ $statistics['long_trades'] }}</td></tr>
+                <tr> <th>{{ trans('general.loss_trade') }}</th><td>{!! $statistics['loss_trade'] !!}</td><th>{{ trans('general.short_trades') }}</th><td>{{ $statistics['short_trades'] }}</td></tr>
+                <tr> <th>{{ trans('general.best_trade') }}</th><td>{!! $statistics['best_trade'] !!}</td><th>{{ trans('general.profits_factor') }}</th><td>{{ $statistics['profits_factor'] }}</td></tr>
+                <tr> <th>{{ trans('general.worst_trade') }}</th><td>{!! $statistics['worst_trade'] !!}</td><th>{{ trans('general.expected_payoff') }}</th><td>{{ $statistics['expected_payoff'] }}</td></tr>
+                <tr> <th>{{ trans('general.gross_profit') }}</th><td>{!! $statistics['gross_profit'] !!}</td><th>{{ trans('general.average_profit') }}</th><td>{{ $statistics['average_profit'] }}</td></tr>
+                <tr> <th>{{ trans('general.gross_loss') }}</th><td>{!! $statistics['gross_loss'] !!}</td><th>{{ trans('general.average_loss') }}</th><td>{{ $statistics['average_loss'] }}</td></tr>
                 <tr> <th>{{ trans('general.maximal_consecutive_profit') }}</th><td>{{ $statistics['maximal_consecutive_profit'] }}</td><th>{{ trans('general.maximal_consecutive_loss') }}</th><td>{{ $statistics['maximal_consecutive_loss'] }}</td></tr>
                 <tr> <th>{{ trans('general.sharpe_ratio') }}</th><td>{{ $statistics['sharpe_ratio'] }}</td><th>{{ trans('general.monthly_grouth') }}</th><td>{{ $statistics['monthly_grouth'] }}</td></tr>
-                <tr> <th></th><td></td><th>{{ trans('general.annual_farecast') }}</th><td>{{ $statistics['annual_farecast'] }}</td></tr>
+                <tr> <td colspan="2"></td><th>{{ trans('general.annual_farecast') }}</th><td>{{ $statistics['annual_farecast'] }}</td></tr>
                 </tbody>
 
             </table>
@@ -78,6 +78,9 @@
 
                 #statistics_table th{text-align: left; font-weight: normal;}
                 #statistics_table th:after{content:':';}
+               
+                .blue_font{ color:#1D89CF;}
+                .red_font{ color:#f00;}
             </style>
     </section>
 
