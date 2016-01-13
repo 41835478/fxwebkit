@@ -41,7 +41,6 @@ class AccountsController extends Controller {
 
     public function getAccountsList(AccountsRequest $oRequest) {
 
-
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
         $aGroups = [];
