@@ -67,8 +67,8 @@
         <div class="center_page_all_div">
             @include('admin.partials.messages')
 
-            <div class="table-info">
-              
+            <div class="table-light">
+                <div class="table-header">{{ trans('tools::tools.futureContract') }}</div>
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>

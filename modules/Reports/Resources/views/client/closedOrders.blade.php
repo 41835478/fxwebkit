@@ -92,9 +92,9 @@
         <div class="center_page_all_div">
             @include('admin.partials.messages')
 
-           
 
-            <div class="table-info">
+
+            <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('reports::reports.ClosedOrders') }}
@@ -171,12 +171,12 @@
 
 
 
-                        {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn', 'name' => 'search']) !!}
 
 
 
                     </div>
-@endif
+                    @endif
                     <div class="col-sm-3  padding-xs-vr">
                         <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
                     </div>

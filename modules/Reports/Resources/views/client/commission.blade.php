@@ -79,7 +79,7 @@
         <div class="center_page_all_div">
             @include('admin.partials.messages')
 
-            
+
             @if (count($oResults[0]))
             <div class="stat-panel no-margin-b">
                 <div class="stat-row">
@@ -97,7 +97,7 @@
             <div class="padding-xs-vr"></div>
             @endif
 
-            <div class="table-info">
+            <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('reports::reports.commission') }}
@@ -146,15 +146,15 @@
                 <div class="table-footer text-right">
                     @if (count($oResults[0]))
                     {!! str_replace('/?', '?', $oResults[0]->appends(Input::except('page'))->render()) !!}
-                 
+
                     @if($oResults[0]->total()>25)
-                    
-                      <div class="DT-lf-right change_page_all_div" >
-                                    {!! Form::text('page',$oResults[0]->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                          
-                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+
+                    <div class="DT-lf-right change_page_all_div" >
+                        {!! Form::text('page',$oResults[0]->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                          
+                        {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn', 'name' => 'search']) !!}
                     </div>
                     @endif
-                    
+
                     <div class="col-sm-3  padding-xs-vr">
                         <span class="text-xs">Showing {{ $oResults[0]->firstItem() }} to {{ $oResults[0]->lastItem() }} of {{ $oResults[0]->total() }} entries</span>
                     </div>
