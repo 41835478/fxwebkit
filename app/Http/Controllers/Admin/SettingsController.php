@@ -25,10 +25,28 @@ class SettingsController extends Controller {
      */
     protected $oUser;
     protected $oMt4User;
-
+    private $aTemplates ;
     public function __construct(Users $oUser, Mt4User $oMt4User) {
         $this->oMt4User = $oMt4User;
         $this->oUser = $oUser;
+        $this->aTemplates = [
+            '' => '',
+            'external' => [
+                'signUpWelcome' => 'Sign Up Welcome',
+                'accountAssign' => 'Account Assign',
+                'agentActivation' => 'Agent Activation',
+                'newAgent' => 'New Agent',
+                'newPassword' => 'New Password',
+                'recoverPassword' => 'Recover Password',
+                'withdrawResult' => 'Withdraw Result',
+                'newContract' => 'New Contract',
+                'massMailler'=>'Mass Mailler'
+            ],
+            'internal' => [
+                'newAgentNotify' => 'New Agent Notify',
+                'withdrawRequest' => 'Withdraw Request'
+            ]
+        ];
     }
 
     /**
@@ -231,24 +249,7 @@ class SettingsController extends Controller {
 
     public function getEmailTemplates(Request $oRequest) {
 
-        $aTemplates = [
-            '' => '',
-            'external' => [
-                'signUpWelcome' => 'Sign Up Welcome',
-                'accountAssign' => 'Account Assign',
-                'agentActivation' => 'Agent Activation',
-                'newAgent' => 'New Agent',
-                'newPassword' => 'New Password',
-                'recoverPassword' => 'Recover Password',
-                'withdrawResult' => 'Withdraw Result',
-                'newContract' => 'New Contract',
-                'massMailler'=>'Mass Mailler'
-            ],
-            'internal' => [
-                'newAgentNotify' => 'New Agent Notify',
-                'withdrawRequest' => 'Withdraw Request'
-            ]
-        ];
+        $aTemplates = $this->aTemplates;
         $sTemplate = $oRequest->name;
         $sLanguage = $oRequest->lang;
         $sContent = '';
@@ -290,7 +291,8 @@ class SettingsController extends Controller {
 
     public function getMassMailer(Request $oRequest) {
 
-
+        $aTemplates = $this->aTemplates;
+        $sTemplate =($oRequest->has('lang'))? $oRequest->name:'massMailler';
         $sLanguage =($oRequest->has('lang'))? $oRequest->lang:'en';
         $sContent = '';
 
@@ -298,7 +300,7 @@ class SettingsController extends Controller {
 
 
 
-            $sPath = base_path() . '/resources/views/admin/email/templates/' . $sLanguage . '/massMailler.blade.php';
+            $sPath = base_path() . '/resources/views/admin/email/templates/' . $sLanguage . '/' . $sTemplate . '.blade.php';
 
             if (file_exists($sPath)) {
                 $sContent = File::get($sPath);
@@ -306,6 +308,8 @@ class SettingsController extends Controller {
 
 
         return view('admin.email.massMailler')
+                        ->with('aTemplates', $aTemplates)
+                        ->with('sTemplate', $sTemplate)
             ->with('aLanguages', $aLanguages)
             ->with('sLanguage', $sLanguage)
             ->with('sContent', $sContent);

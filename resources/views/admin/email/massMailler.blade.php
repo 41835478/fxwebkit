@@ -13,6 +13,14 @@
 
         <div class="well">
 
+            <div class="col-sm-12">
+                <div class="form-group no-margin-hr">
+                    <label class="control-label">{{ trans('general.template') }}</label>
+                    {!! Form::select('name', $aTemplates, $sTemplate, array('class' => ' form-control', 'id' => 'template-name','onchange'=>'$("#showTemplateForm").submit()')) !!}
+                
+                </div>
+            </div><!-- col-sm-6 -->
+
 
             <div class="col-sm-12">
                 <div class="form-group no-margin-hr">
