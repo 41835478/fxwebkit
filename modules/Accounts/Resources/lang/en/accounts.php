@@ -111,7 +111,7 @@ return [
      'user_details'=>'User Details',
     'mt4_users_lists'=>'MT4 Users Lists',
      'reg_date'=>'Registration Date',
-     'last_date'=>' Last Login Datetime',
+     'last_date'=>' Last Login',
     
    
 ];

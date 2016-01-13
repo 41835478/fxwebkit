@@ -24,6 +24,10 @@
      .table-light  li.active span{background-color:#C7C4C4 !important;
      border-color: #C7C4C4  !important;
      }*/
+    
+    .mail-nav{display:none;}
+    .page-mail .mail-container{margin-left:0 !important;}
+     .table-light th{border-top: 3px solid #DBDBDB !important;}
 </style>
 <div class="theme-default page-mail" >
     <div class="mail-nav" >
