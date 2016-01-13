@@ -13,14 +13,14 @@
     .center_page_all_div{ padding: 0px 10px;}
     .mail-nav .navigation{margin-top: 35px;}
 </style>
-<div class="  theme-default page-mail" >
+<div class="theme-default page-mail" >
     <div class="mail-nav" >
         <div class="navigation">
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections">
                 <li class="active"><a href="#"> <i class="fa fa-search"></i> search </a></li>
                 <li>
-                    <div class="   nav-input-div">
+                    <div class="nav-input-div">
                         <div class="checkbox">
                             <label>
                                 {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
@@ -52,7 +52,7 @@
         <div class="center_page_all_div">
             @include('client.partials.messages')
 
-            <div class="table-info">
+            <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('accounts::accounts.mt4Users') }}  
@@ -100,7 +100,7 @@
 
 
 
-                        {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn', 'name' => 'search']) !!}
 
 
 
