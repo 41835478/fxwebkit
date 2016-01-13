@@ -150,8 +150,7 @@
 
         $(function () {
             $('#symbols_pie_chart_all_div').highcharts({
-                colors: ["#B5A97D", "#434348", "#B5A87C", "#F8A354", "#7F82EC", "#F9D6A3", "#E5D548",
-                    "#7F82EB", "#8F4653", "#8BE7E1", "#aaeeee"],
+
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
@@ -255,6 +254,11 @@
             });
 
         });
+
+        function remove_copyrights(){
+            $('svg text').each(function(){if($(this).text() == 'Highcharts.com'){$(this).remove();} });
+        }
+        setTimeout('remove_copyrights()',1000);
     </script>
 @stop
 

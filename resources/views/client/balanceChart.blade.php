@@ -78,6 +78,7 @@
 
                 #statistics_table th{text-align: left; font-weight: normal;}
                 #statistics_table th:after{content:':';}
+
             </style>
     </section>
 
@@ -146,8 +147,7 @@
 
         $(function () {
             $('#symbols_pie_chart_all_div').highcharts({
-                colors: ["#B5A97D", "#434348", "#B5A87C", "#F8A354", "#7F82EC", "#F9D6A3", "#E5D548",
-                    "#7F82EB", "#8F4653", "#8BE7E1", "#aaeeee"],
+
                 chart: {
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
@@ -182,6 +182,77 @@
                 }]
             });
         });
-</script>
-@stop
 
+
+
+
+        $(function () {
+            // Age categories
+            var categories = {!! json_encode($sell_buy_horizontal_line_numbers)!!};
+            $(document).ready(function () {
+                $('#bar_negative_stack_all_div').highcharts({
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: ''
+                    },
+                    xAxis: [{
+                        categories: categories,
+                        reversed: false,
+                        labels: {
+                            step: 1
+                        }
+                    }, { // mirror axis on right side
+                        opposite: true,
+                        reversed: false,
+                        categories: categories,
+                        linkedTo: 0,
+                        labels: {
+                            step: 1
+                        }
+                    }],
+                    yAxis: {
+                        title: {
+                            text: null
+                        },
+                        labels: {
+                            formatter: function () {
+                                return Math.abs(this.value) + '%';
+                            }
+                        }
+                    },
+
+                    plotOptions: {
+                        series: {
+                            stacking: 'normal'
+                        }
+                    },
+
+                    tooltip: {
+                        formatter: function () {
+                            return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' +
+                                    'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
+                        }
+                    },
+
+                    series: [{
+                        name: 'Sell',
+                        data: {!! json_encode($sell_array)!!}
+                    }, {
+                        name: 'Buy',
+                        data: {!! json_encode($buy_array)!!}
+                    }]
+                });
+            });
+
+        });
+function remove_copyrights(){
+        $('svg text').each(function(){if($(this).text() == 'Highcharts.com'){$(this).remove();} });
+}
+        setTimeout('remove_copyrights()',1000);
+    </script>
+@stop

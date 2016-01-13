@@ -885,7 +885,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             if($row->CMD !=6 && $lastBalance!=0){$i++;
 
 
-                $growth_array[]=(($pastK * $pastBalance/$lastBalance) -1)*100;
+                $growth_array[]=round((($pastK * $pastBalance/$lastBalance) -1)*100 , 2);
                 $horizontal_line_numbers[]=$i;
             }else if($row->CMD ==6){
 
@@ -942,6 +942,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $oBest_trade = Mt4Trade::select(['SYMBOL', 'PROFIT'])
             ->where('login',$login)
+            ->where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
             ->orderBy('PROFIT', 'desc')
             ->first();
 
@@ -953,6 +955,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $oWorst_trade = Mt4Trade::select(['SYMBOL', 'PROFIT'])
             ->where('login',$login)
+            ->where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
             ->orderBy('PROFIT', 'asc')
             ->first();
         $statistics['worst_trade']=(count($oWorst_trade))?  $oWorst_trade->PROFIT . ' ' . $oWorst_trade->SYMBOL:0;
@@ -1056,7 +1060,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
 
             $pastBalance+=$row->netProfit;
-            $balance_array[]=$pastBalance;
+            $balance_array[]=round($pastBalance,2);
             $i++;
             $horizontal_line_numbers[]=$i;
 
@@ -1095,6 +1099,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $oBest_trade = Mt4Trade::select(['SYMBOL', 'PROFIT'])
             ->where('login',$login)
+            ->where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
             ->orderBy('PROFIT', 'desc')
             ->first();
 
@@ -1106,6 +1112,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $oWorst_trade = Mt4Trade::select(['SYMBOL', 'PROFIT'])
             ->where('login',$login)
+            ->where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
             ->orderBy('PROFIT', 'asc')
             ->first();
         $statistics['worst_trade']=(count($oWorst_trade))?  $oWorst_trade->PROFIT . ' ' . $oWorst_trade->SYMBOL:0;
