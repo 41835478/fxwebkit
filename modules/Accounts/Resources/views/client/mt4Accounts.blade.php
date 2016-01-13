@@ -28,6 +28,9 @@
     .mail-nav{display:none;}
     .page-mail .mail-container{margin-left:0 !important;}
      .table-light th{border-top: 3px solid #DBDBDB !important;}
+     .center_page_all_div{background: #fff;}
+     #main-wrapper{background: #fff;}
+     .mail-container-header{background: #fff !important;}
 </style>
 <div class="theme-default page-mail" >
     <div class="mail-nav" >
