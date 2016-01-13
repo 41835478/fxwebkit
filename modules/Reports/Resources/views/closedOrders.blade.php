@@ -89,7 +89,7 @@
 
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
             {!! Form::hidden('order', $aFilterParams['order']) !!}
-           
+
 
         </div>
     </div>
@@ -104,7 +104,7 @@
             @include('admin.partials.messages')
 
 
-            <div class="table-info">
+            <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('reports::reports.ClosedOrders') }}
@@ -171,23 +171,23 @@
                 <div class="table-footer text-right">
                     @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->render()) !!}
-                   
+
                     @if($oResults->total()>25)
-                    
+
                     <div class="DT-lf-right change_page_all_div" >
-                  
-                           
-                              
-                                    {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
-                    
-                            
-                               
-                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-                               
-                            
-                   
+
+
+
+                        {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
+
+
+
+                        {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+
+
+
                     </div>
-                    
+
                     @endif
                     <div class="col-sm-3  padding-xs-vr">
                         <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
@@ -200,7 +200,7 @@
 </div>
 </div>
 
- {!! Form::close() !!}
+{!! Form::close() !!}
 <script>
     init.push(function () {
         var options = {

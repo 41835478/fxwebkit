@@ -21,7 +21,7 @@
                 <a href="{{ route('client.addMt4UserFullDetails')}}" >{{ trans('general.create_new_mt4') }}</a>
             </li>
         </ul>
-    </div>
+  
 
     <div class="row">
         <div class="col-sm-6">
@@ -37,6 +37,7 @@
             </div>
         </div><!-- col-sm-6 -->
     </div><!-- row -->
+      </div>
 
 @if($errors->any())
 <div class="alert alert-danger alert-dark">

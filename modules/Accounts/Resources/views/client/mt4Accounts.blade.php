@@ -2,35 +2,9 @@
 @section('title', trans('accounts::accounts.mt4UsersList'))
 @section('content')
 <style type="text/css">
-    #content-wrapper{ padding: 0px; margin: 0px;}
-    .nav-input-div{padding:7px;}
-    .mail-container-header{
-        border-bottom: 1px solid #ccc;
-        margin-bottom: 7px;
-        padding: 5px !important;
-    }
-    .theme-default .page-mail{ overflow: visible;height: auto; min-height: 800px;}
-    .center_page_all_div{ padding: 0px 10px;}
-    .mail-nav .navigation{margin-top: -30px;}
-    .mail-nav li.active a{
-        text-align: center;
-        padding-top:15px !important;
-        padding-left:0px !important;
-        height:65px;
-    /*border-bottom:1px solid #DBDBDB;*/}
-    
-    .table-light a.fa{color:#C7C4C4 !important;}
-    /*
-     .table-light  li.active span{background-color:#C7C4C4 !important;
-     border-color: #C7C4C4  !important;
-     }*/
-    
-    .mail-nav{display:none;}
+   .mail-nav{display:none;}
     .page-mail .mail-container{margin-left:0 !important;}
-     .table-light th{border-top: 3px solid #DBDBDB !important;}
-     .center_page_all_div{background: #fff;}
-     #main-wrapper{background: #fff;}
-     .mail-container-header{background: #fff !important;}
+    #content-wrapper{ padding: 0px; margin: 0px;}
 </style>
 <div class="theme-default page-mail" >
     <div class="mail-nav" >
