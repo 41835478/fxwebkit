@@ -34,6 +34,7 @@ class ClientAccountsController extends Controller {
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
         $aGroups = [];
         $oResults = null;
+       
         $aFilterParams = [
             'from_login' => '',
             'to_login' => '',
@@ -46,7 +47,7 @@ class ClientAccountsController extends Controller {
             'order' => $sOrder,
         ];
 
-        if ($oRequest->has('search')) {
+
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
             $aFilterParams['exactLogin'] = $oRequest->exactLogin;
@@ -57,7 +58,9 @@ class ClientAccountsController extends Controller {
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
             $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
-        }
+          
+        
+        
 
         return view('accounts::client.mt4Accounts')
                         ->with('aGroups', $aGroups)
@@ -103,8 +106,6 @@ class ClientAccountsController extends Controller {
                 'floating' => $this->oMt4Trade->getFloatingByLogin($aFilterParams),
             ];
         }
-
-
 
         return view('accounts::client.accountStatement')
                         ->with('aGroups', $aGroups)

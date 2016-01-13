@@ -1,10 +1,6 @@
 @extends('client.layouts.main')
-@section('title', trans('tools::tools.addContract'))
+@section('title', trans('tools::tools.marketWatch'))
 @section('content')
-
-
-
-
 
 <div class="page-header">
     <h1>{{ trans('tools::tools.marketWatch') }}</h1>
@@ -56,7 +52,7 @@
                                 ['Sydney FX', 22, 2, 9],
                                 ['Tokyo FX', 24, 4, 9],
                                 ['London FX ', 8, -1, 9, 4],
-                                ['New Yourk Fx', 2, 13, 9]
+                                ['New York Fx', 2, 13, 9]
                             ];
                             ?>
 

@@ -57,9 +57,10 @@ class Mt4UsersController extends Controller {
     public function getMt4UserFullDetails(Request $oRequest)
     {
          $user = Sentinel::getUser();
-       // dd($user->id);
+     
          $oResult = $this->oUsers->getUserDetails($user->id);
-          $country_array = $this->oUsers->getCountry(null);
+         
+
           
           $array_group  = Config('fxweb.Group');
            $array_deposit = Config('fxweb.Deposit');
@@ -79,7 +80,7 @@ class Mt4UsersController extends Controller {
                 'birthday' => $oResult['birthday'],
                 'phone' => $oResult['phone'],
                 'country' => $oResult['country'],
-                'country_array' => $country_array,
+              //  'country_array' => $country_array,
                 'city' => $oResult['city'],
                 'zip_code' => $oResult['zip_code'],
                 'array_leverage' =>  $array_leverage,
@@ -94,10 +95,13 @@ class Mt4UsersController extends Controller {
     
     public function postMt4UserFullDetails(Request $oRequest)
     {
+        
          $user = Sentinel::getUser();
  
          $oResult = $this->oUsers->getUserDetails($user->id);
-         $country_array = $this->oUsers->getCountry($oRequest->country);
+        
+         $country_array = $this->oUsers->getCountry($oResult['country']);
+         
             $array_group  = Config('fxweb.Group');
            $array_deposit = Config('fxweb.Deposit');
            $array_leverage = Config('accounts.leverage');
@@ -116,14 +120,13 @@ class Mt4UsersController extends Controller {
                 'address' => $oRequest['address'],
                 'birthday' => $oRequest['birthday'],
                 'phone' => $oRequest['phone'],
-                'country' => $oRequest['country'],
-                'country_array' => $country_name,
+                'country' =>   $country_name,
                 'city' => $oRequest['city'],
                 'zip_code' => $oRequest['zip_code'],
                 'array_leverage' =>  $oRequest['array_leverage'],
         ];
            
-           
+          
          $oApiController = new ApiController();
         $result = $oApiController->mt4UserFullDetails($mt4_user_details);
         

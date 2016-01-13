@@ -36,7 +36,7 @@ return [
         'growth'=>'Growth',
         'balance'=>'Balance',
         'dashboard'=>'Dashboard',
-    
+        'addMt4User'=>'Add MT4 User',
         'trades' => 'Trades',
 	'profit_trades' => 'Profit Trades',
 	'loss_trade' => 'Loss Trade',
@@ -101,10 +101,12 @@ return [
     'name'=>'Name :',
     'asign_mt4_user'=>'Asign Mt4 User',
     'name '=>'Name',
-    'exiest'=>'Exiest',
-    'mt4UserDetilails'=>'Mt4 User Detilails',
+    'assign_existing_mt4'=>'Assign Existing MT4',
+    'create_new_mt4'=>'Create New MT4',
     'investor'=>'Investor',
     'deposit'=>'Deposit',
+    'assign'=>'Assign',
+    
     
 
     'details'=>'Details',

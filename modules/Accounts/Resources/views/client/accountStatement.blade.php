@@ -37,10 +37,10 @@
             </tr>
             <tr>
                 <th >Name : </th><td colspan="3">{{ $oResults->NAME }}</td>
-                <th  >Phone password : </th><td>{{ $oResults->PASSWORD_PHONE }}</td>
+                 <th >City : </th><td >{{ $oResults->CITY }}</td>
             </tr>
             <tr>
-                <th >City : </th><td >{{ $oResults->CITY }}</td>
+               
                 <th >State : </th><td >{{ $oResults->STATE }}</td>
                 <th  >Country : </th><td>{{ $oResults->COUNTRY }}</td>
             </tr>
@@ -55,22 +55,16 @@
             <tr>
                 <th >ID number : </th><td >{{ $oResults->ID }}</td>
                 <th >Status : </th><td >{{ $oResults->STATUS }}</td>
-                <th  >Color : </th><td>{{ $oResults->USER_COLOR }}</td>
+           <th >Leverage : </th><td >{{ $oResults->LEVERAGE }}</td>
             </tr>
+           
             <tr>
-                <th >Group : </th><td >{{ $oResults->GROUP }}</td>
-                <th >comment : </th><td  colspan="3">{{ $oResults->COMMENT }}</td>
-            </tr>
-            <tr>
-                <th >Leverage : </th><td >{{ $oResults->LEVERAGE }}</td>
+               
                 <th >tax : </th><td >{{ $oResults->TAXES }}%</td>
-                <th  >Agent account : </th><td>{{ $oResults->AGENT_ACCOUNT }}</td>
-            </tr>
-            <tr>
-                <th class="no-warp"></th><td></td>
-                <th class="no-warp">Deposit / Withdrawal :</th><td>{{ $aSummery['deposit'] }}</td>
+               <th class="no-warp">Deposit / Withdrawal :</th><td>{{ $aSummery['deposit'] }}</td>
                 <th class="no-warp">Credit Facility :</th><td>{{ $aSummery['credit_facility'] }}</td>
             </tr>
+       
             <tr>
                 <th class="no-warp">Closed Trade P/L : </th><td>{{ $aSummery['closed_trade'] }}</td>
                 <th class="no-warp">Floating P/L : </th><td>{{ $aSummery['floating'] }}</td>

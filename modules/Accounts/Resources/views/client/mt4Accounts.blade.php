@@ -34,9 +34,7 @@
                 <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']) !!}</div></li>
 
-                <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('accounts::accounts.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-                    </div></li>
+               
                 <li class="divider"></li>
             </ul>
 
@@ -49,7 +47,7 @@
 
     <div class="mail-container " >
         <div class="mail-container-header">
-            {{ trans('accounts::accounts.accounts') }}
+            {{ trans('accounts::accounts.mt4_users_lists') }}
         </div>
         <div class="center_page_all_div">
             @include('client.partials.messages')
@@ -65,11 +63,8 @@
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Login'), 'LOGIN', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Equity'), 'EQUITY', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Balance'), 'BALANCE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.AgentAccount'), 'AGENT_ACCOUNT', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Margin'), 'MARGIN', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.MarginFree'), 'MARGIN_FREE', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.reg_date'), 'REGDATE', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.last_date'), 'LASTDATE', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Leverage'), 'LEVERAGE', $oResults) !!}</th>
                             <th class="no-warp"></th>
                         </tr>
@@ -80,12 +75,10 @@
                         <tr>
                             <td>{{ $oResult->LOGIN }}</td>
                             <td>{{ $oResult->NAME }}</td>
-                            <td>{{ $oResult->EQUITY }}</td>
-                            <td>{{ $oResult->BALANCE }}</td>
+                            <td>{{ $oResult->REGDATE }}</td>
+                            <td>{{ $oResult->LASTDATE }}</td>
 
-                            <td>{{ $oResult->AGENT_ACCOUNT }}</td>
-                            <td>{{ $oResult->MARGIN }}</td>
-                            <td>{{ $oResult->MARGIN_FREE }}</td>
+                            
                             <td>{{ $oResult->LEVERAGE }}</td>
                             <td><a href="{{ route('clients.accounts.mt4UserDetails').'?login='. $oResult->LOGIN }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text"></a></td>
 
@@ -98,21 +91,21 @@
 
                     @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
-@if($oResults->total()>25)
+                    @if($oResults->total()>25)
                     <div class="DT-lf-right change_page_all_div" >
-                  
-                           
-                              
-                                    {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
-                    
-                            
-                               
-                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-                               
-                            
-                   
+
+
+
+                        {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
+
+
+
+                        {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+
+
+
                     </div>
-@endif
+                    @endif
                     <div class="col-sm-3  padding-xs-vr">
                         <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
                     </div> 

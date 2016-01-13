@@ -20,11 +20,7 @@
             <ul class="sections">
                 <li class="active"><a href="#"> <i class="fa fa-search"></i> {{ trans('tools::tools.search') }} </a></li>
 
-                <li  >
-                    <div  class=" nav-input-div  ">
-                        {!! Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('tools::tools.id'),'class'=>'form-control input-sm']) !!}
-                    </div>
-                </li>
+               
                 <li  >
                     <div  class=" nav-input-div  ">
                         {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('tools::tools.name'),'class'=>'form-control input-sm']) !!}

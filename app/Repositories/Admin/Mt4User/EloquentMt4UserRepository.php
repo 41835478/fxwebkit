@@ -128,6 +128,7 @@ class EloquentMt4UserRepository implements Mt4UserContract {
             $oResult[$dKey]->LEVERAGE = round($oResult[$dKey]->LEVERAGE, 2);
         }
         /* =============== Preparing Output  =============== */
+        
         return $oResult;
     }
 

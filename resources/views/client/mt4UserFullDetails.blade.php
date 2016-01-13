@@ -3,28 +3,33 @@
 @section('content')
 
 <div class="page-header">
-    <h1>{{ trans('accounts::accounts.addAccount') }}</h1>
+    <h1>{{ trans('general.addMt4User') }}</h1>
 </div>
-{!! Form::open(['class'=>'panel form-horizontal']) !!}
-<div class="panel-body">
+<div class="panel">
+    {!! Form::open(['class'=>'panel form-horizontal']) !!}
+    <div class="panel-heading">
+        <span class="panel-title">{{ trans('accounts::accounts.user_details') }}</span>
+    </div>
 
-    <div class="table-info">
-        <ul id="profile-tabs" class="nav nav-tabs">
-            <li >
-                <a href="{{ route('client.addMt4User')}}">{{ trans('general.exiest') }}</a>
+    <div class="panel-body">
+        <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+            <li  >
+                <a href="{{ route('client.addMt4User')}}">{{ trans('general.assign_existing_mt4') }}</a>
             </li>
             <li class="active">
-                <a href="{{ route('client.addMt4UserFullDetails')}}" >{{ trans('general.mt4UserDetilails') }}</a>
-            </li>  
+                <a href="{{ route('client.addMt4UserFullDetails')}}" >{{ trans('general.create_new_mt4') }}</a>
+            </li>
         </ul>
     </div>
     <div class="row">
-        <div class="col-sm-6">
+        
+         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.name ') }}</label>
-                {!! Form::text('first_name',$mt4_user_details['first_name'].' '.$mt4_user_details['last_name'],['class'=>'form-control']) !!}
+                <label class="control-label">{{ trans('accounts::accounts.leverage') }}</label>
+                {!! Form::select('array_leverage',$array_leverage,'',['id'=>'jq-validation-select2','class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
+       
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('accounts::accounts.group') }}</label>
@@ -34,12 +39,14 @@
     </div><!-- row -->
 
     <div class="row">
+        
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('accounts::accounts.Email') }}</label>
-                {!! Form::text('email',$mt4_user_details['email'],['class'=>'form-control']) !!}
+                <label class="control-label">{{ trans('general.deposit') }}</label>
+                {!! Form::select('array_deposit',$array_deposit,'',['id'=>'jq-validation-select2','class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
+        
 
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
@@ -52,71 +59,31 @@
     </div><!-- row -->
 
     <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.deposit') }}</label>
-                {!! Form::select('array_deposit',$array_deposit,'',['id'=>'jq-validation-select2','class'=>'form-control']) !!}
-            </div>
-        </div><!-- col-sm-6 -->
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('accounts::accounts.address') }}</label>
-                {!! Form::text('address',$mt4_user_details['address'],['class'=>'form-control']) !!}
-
-            </div>
-        </div><!-- col-sm-6 -->
+        
+       
     </div><!-- row -->
 
     <div class="row">
-
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('accounts::accounts.leverage') }}</label>
-                {!! Form::select('array_leverage',$array_leverage,'',['id'=>'jq-validation-select2','class'=>'form-control']) !!}
-            </div>
-        </div><!-- col-sm-6 -->
-
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('accounts::accounts.Phone') }}</label>
-                {!! Form::text('phone',$mt4_user_details['phone'],['class'=>'form-control']) !!}
-
-            </div>
-        </div><!-- col-sm-6 -->
-    </div><!-- row -->
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-
-                <label class="control-label">{{ trans('accounts::accounts.Country') }}</label>
-                {!! Form::select('country',$mt4_user_details['country_array'],$mt4_user_details['country'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
-            </div>
-        </div><!-- col-sm-6 -->
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('accounts::accounts.City') }}</label>
-                {!! Form::text('city',$mt4_user_details['city'],['class'=>'form-control']) !!}           
-            </div>
-
-        </div><!-- col-sm-6 -->
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('accounts::accounts.ZipCode') }}</label>
-                {!! Form::text('zip_code',$mt4_user_details['zip_code'],['class'=>'form-control']) !!}           
-            </div>
-        </div><!-- col-sm-6 -->
+        
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('general.investor') }}</label>
                 {!! Form::password("investor",["class"=>"form-control","value"=>$mt4_user_details['password']]) !!}
             </div>
         </div><!-- col-sm-6 -->
+
+       
+
+      
+    </div><!-- row -->
+
+    
+
+    <div class="row">
+        
+        
     </div>   
-</div>
+
 @if($errors->any())
 <div class="alert alert-danger alert-dark">
     @foreach($errors->all() as $key=>$error)
@@ -127,7 +94,7 @@
 <div class="panel-footer text-right">
     <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $mt4_user_details['edit_id']  or 0 }}">{{ trans('accounts::accounts.submit') }}</button>
 </div>
-
+</div>
 {!! Form::close() !!}
 @stop
 @section("script")

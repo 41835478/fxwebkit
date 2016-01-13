@@ -5,7 +5,7 @@ return [
     'accountsList' => 'Accounts List',
     'addAccount' => 'Add Account',
     'asignMt4User' => 'Assign MT4 User',
-    'enterMt4User' => 'Enter Mt4 User',
+    'enterMt4User' => 'Enter MT4 User',
     'unsign' => 'Un Sign',
     'mt4UsersList' => 'MT4 Users List',
     'accounts' => 'Accounts',
@@ -89,7 +89,7 @@ return [
     'zip_code' => 'Zip Code :',
     'edit_account'=>'Edit Account',
     'name'=>'Name :',
-    'addMt4User'=>'Add Mt4 User',
+    'addMt4User'=>'Add MT4 User',
     'page'=>'Page',
     'go'=>'Go',
     'action'=>'Action',
@@ -109,5 +109,9 @@ return [
      'currentMt4Password'=>'Current Mt4 Password',
      'operation'=>'Operation',
      'user_details'=>'User Details',
+    'mt4_users_lists'=>'MT4 Users Lists',
+     'reg_date'=>'Registration Date',
+     'last_date'=>' Last Login Datetime',
+    
    
 ];

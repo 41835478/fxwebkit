@@ -10,7 +10,7 @@ return ['is_admin' => 1,
 		["Sydney Time", 22, 9, 2],
 		["Tokyo  Time", 24, 9, 1],
 		["London  Time", 8, 9, 4],
-		["New Yourk  Time", 13, 9, 1]
+		["New York  Time", 13, 9, 1]
 	],
 	'admin_menu' => [
 		[

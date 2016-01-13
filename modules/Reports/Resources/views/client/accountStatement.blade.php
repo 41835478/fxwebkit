@@ -241,12 +241,9 @@
                 <table class="table table-bordered user-info-table">
                     <tr>
                         <th colspan="3">Registration date : </th><td>{{ $oResults->REGDATE }}</td>
-                        <th  >MetaQuotes ID : </th><td>{{ $oResults->MQID }}</td>
+                       <th >Name : </th><td colspan="3">{{ $oResults->NAME }}</td>
                     </tr>
-                    <tr>
-                        <th >Name : </th><td colspan="3">{{ $oResults->NAME }}</td>
-                        <th  >Phone password : </th><td>{{ $oResults->PASSWORD_PHONE }}</td>
-                    </tr>
+                  
                     <tr>
                         <th >City : </th><td >{{ $oResults->CITY }}</td>
                         <th >State : </th><td >{{ $oResults->STATE }}</td>
@@ -263,16 +260,13 @@
                     <tr>
                         <th >ID number : </th><td >{{ $oResults->ID }}</td>
                         <th >Status : </th><td >{{ $oResults->STATUS }}</td>
-                        <th  >Color : </th><td>{{ $oResults->USER_COLOR }}</td>
+                      
                     </tr>
-                    <tr>
-                        <th >Group : </th><td >{{ $oResults->GROUP }}</td>
-                        <th >comment : </th><td  colspan="3">{{ $oResults->COMMENT }}</td>
-                    </tr>
+                  
                     <tr>
                         <th >Leverage : </th><td >{{ $oResults->LEVERAGE }}</td>
                         <th >tax : </th><td >{{ $oResults->TAXES }}%</td>
-                        <th  >Agent account : </th><td>{{ $oResults->AGENT_ACCOUNT }}</td>
+                       
                     </tr>
                     <tr>
                         <th class="no-warp"></th><td></td>

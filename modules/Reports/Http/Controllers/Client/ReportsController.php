@@ -222,6 +222,7 @@ class ReportsController extends Controller {
     }
 
     public function getAccounts(AccountsRequest $oRequest) {
+        
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
         $oResults = null;
@@ -238,7 +239,7 @@ class ReportsController extends Controller {
         ];
 
 
-        if ($oRequest->has('search')) {
+        
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
             $aFilterParams['exactLogin'] = $oRequest->exactLogin;
@@ -249,7 +250,7 @@ class ReportsController extends Controller {
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
             $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
-        }
+        
 
 
         if ($oRequest->has('export')) {
@@ -285,6 +286,7 @@ class ReportsController extends Controller {
     }
 
     public function getAccountStatement(AccountStatementRequest $oRequest) {
+   
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
         $oResults = null;
@@ -305,6 +307,8 @@ class ReportsController extends Controller {
         ];
 
         if ($oRequest->has('search')) {
+         
+            
             $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
