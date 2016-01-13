@@ -70,18 +70,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (count($oResults))
+                          @if (count($oResults))
+                        {{-- */$i=0;/* --}}
+                        {{-- */$class='';/* --}}
                         @foreach($oResults as $oResult)
-                        <tr>
+                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                        <tr class='{{ $class }}'>
                             <td>{{ $oResult->LOGIN }}</td>
                             <td>{{ $oResult->NAME }}</td>
                             <td>{{ $oResult->REGDATE }}</td>
-                            <td>{{ $oResult->LASTDATE }}</td>
-
-                            
+                            <td>{{ $oResult->LASTDATE }}</td>         
                             <td>{{ $oResult->LEVERAGE }}</td>
                             <td><a href="{{ route('clients.accounts.mt4UserDetails').'?login='. $oResult->LOGIN }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text"></a></td>
-
                         </tr>
                         @endforeach
                         @endif
@@ -94,15 +94,9 @@
                     @if($oResults->total()>25)
                     <div class="DT-lf-right change_page_all_div" >
 
-
-
                         {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
 
-
-
                         {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn', 'name' => 'search']) !!}
-
-
 
                     </div>
                     @endif
