@@ -60,7 +60,6 @@ class ClientAccountsController extends Controller {
             $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
           
         
-        
 
         return view('accounts::client.mt4Accounts')
                         ->with('aGroups', $aGroups)

@@ -74,7 +74,9 @@ class EloquentMt4UserRepository implements Mt4UserContract {
     public function getUsersByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC') {
         //$oResult = new Mt4User();
         /* ===============================check admin or user================ */
+    
         $oResult = new Mt4User();
+        
         if ($user = Sentinel::getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
@@ -128,7 +130,7 @@ class EloquentMt4UserRepository implements Mt4UserContract {
             $oResult[$dKey]->LEVERAGE = round($oResult[$dKey]->LEVERAGE, 2);
         }
         /* =============== Preparing Output  =============== */
-        
+          
         return $oResult;
     }
 
