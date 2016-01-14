@@ -397,17 +397,17 @@
         /*$('.over_hour_box_div').animate({'left': (hour * 4.166) + '%'}, 100, function () {
          });*/
 
-        var monthNames = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
-
-        var month = hourObject.getMonth();
-        var day = hourObject.getDate();
-
-        var year = hourObject.getFullYear();
-        //city_date">Fri, Nov 17 2017
-
-        $('.city_date').html(day + ', ' + monthNames[month] + ' ' + month + ' ' + year);
+//        var monthNames = ["January", "February", "March", "April", "May", "June",
+//            "July", "August", "September", "October", "November", "December"
+//        ];
+//
+//        var month = hourObject.getMonth();
+//        var day = hourObject.getDate();
+//
+//        var year = hourObject.getFullYear();
+//        //city_date">Fri, Nov 17 2017
+//
+//        $('.city_date').html(day + ', ' + monthNames[month] + ' ' + month + ' ' + year);
 
 
     });
@@ -456,14 +456,14 @@
              });*/
 
 
-            var month = hourObject.getMonth();
-            var day = hourObject.getDate();
-
-            var year = hourObject.getFullYear();
-            //city_date">Fri, Nov 17 2017
-
-
-            $('.city_date').html(getFormatDate(year,month,day));
+//            var month = hourObject.getMonth();
+//            var day = hourObject.getDate();
+//
+//            var year = hourObject.getFullYear();
+//            //city_date">Fri, Nov 17 2017
+//
+//
+//            $('.city_date').html(getFormatDate(year,month,day));
 
 
         });
@@ -509,10 +509,11 @@ function getOtherCityDateFromHour(myHour,myGmt,otherGmt){
         
         var otherHour=(myHour+(otherGmt - myGmt ))%24;
         
+        console.log('otherHour >myHour && myGmt >otherGmt__'+otherHour +'>'+myHour +'&&'+ myGmt +'>'+otherGmt);
         if(otherHour >myHour && myGmt >otherGmt){
             return getPastDayDate(year,month,day);
         }
-        if(otherHour >myHour && myGmt >otherGmt){
+        if(otherHour <myHour && myGmt <otherGmt){
             return getNextDayDate(year,month,day);
         }
         
@@ -520,13 +521,16 @@ function getOtherCityDateFromHour(myHour,myGmt,otherGmt){
 }
 function getPastDayDate(year,month,day){
     
+    var today = new Date();
+var yesterDay = new Date(today.getTime() - (24 * 60 * 60 * 1000));
     
-    return getFormatDate(year,month,day);
+     return getFormatDate(yesterDay.getFullYear(),yesterDay.getMonth(),yesterDay.getDate());
 }
 function getNextDayDate(year,month,day){
-    
-    
-    return getFormatDate(year,month,day);
+    var today = new Date();
+var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
+   
+    return getFormatDate(tomorrow.getFullYear(),tomorrow.getMonth(),tomorrow.getDate());
 }
     function setTime(city_array) {
         for (var i = 0; i < city_array.length; i++) {
@@ -549,7 +553,7 @@ function getNextDayDate(year,month,day){
             $('#city_info_all_div_' + i + ' .city_hour').html(new_hour + ':' + minutes + '<span>' + am_bm + '</span>');
             
             $('#city_info_all_div_' + i + ' .city_date').html(getOtherCityDateFromHour(hourObject.getHours(),realOffset,city_array[i][3]));
-        }
+             }
     }
     setTime(city_array);
     setInterval('setTime(city_array)', 60000);

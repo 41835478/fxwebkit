@@ -7,7 +7,7 @@ return ['is_admin' => 1,
 	'route' => '',
 	'city_array'=>[
 		['Local', 6, -1, 'realOffset'],
-		["Sydney Time", 22, 9, 2],
+		["Sydney Time", 22, 9, 17],
 		["Tokyo  Time", 24, 9, 1],
 		["London  Time", 8, 9, 4],
 		["New York  Time", 13, 9, 1]
