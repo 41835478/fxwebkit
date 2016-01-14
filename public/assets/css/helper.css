@@ -35,7 +35,7 @@
         text-align: center;
         padding-top:15px !important;
         padding-left:0px !important;
-        height:65px;
+        height:55px;
     /*border-bottom:1px solid #DBDBDB;*/}
     
     .table-light a.fa{color:#C7C4C4 !important;}
@@ -52,3 +52,6 @@
      .mail-container-header{background: #fff !important;}
      .page-header{background: none !important}
      .panel{margin-bottom:0px }
+     .mail-nav .navigation{margin-top:-20px !important;}
+
+     #main-wrapper {position:absolute;top:0px; padding-top:2px;}
