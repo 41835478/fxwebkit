@@ -48,8 +48,9 @@
             {!! Form::close() !!}
             @endif
         </div>
-    </div>
+
 </fieldset>
+    </div>
 @stop
 @section('script')
 @parent
