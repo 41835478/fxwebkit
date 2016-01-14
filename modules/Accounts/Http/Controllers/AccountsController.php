@@ -451,21 +451,19 @@ class AccountsController extends Controller {
             
         }
 
-
-
-        if ($oRequest->has('search')) {
+        
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
             $aFilterParams['exactLogin'] = $oRequest->exactLogin;
             $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['name'] = $oRequest->name;
-            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['all_groups'] = true;
             $aFilterParams['group'] = $oRequest->group;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
             $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
             
-        }
+        
 
 
         return view('accounts::mt4Accounts')
