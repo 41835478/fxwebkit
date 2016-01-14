@@ -1,18 +1,10 @@
 @extends('admin.layouts.main')
-@section('title', trans('tools::tools.addContract'))
+@section('title', trans('tools::tools.marketWatch'))
 @section('content')
-
-
-
-
 
 <div class="page-header">
     <h1>{{ trans('tools::tools.marketWatch') }}</h1>
 </div>
-
-
-
-
 
 <section class="clock_all_section">
           <div class="panel">
@@ -56,7 +48,7 @@
                                 ['Sydney FX', 22, 2, 9],
                                 ['Tokyo FX', 24, 4, 9],
                                 ['London FX ', 8, -1, 9, 4],
-                                ['New Yourk Fx', 2, 13, 9]
+                                ['New York Fx', 2, 13, 9]
                             ];
                             ?>
 
@@ -401,17 +393,17 @@
         /*$('.over_hour_box_div').animate({'left': (hour * 4.166) + '%'}, 100, function () {
          });*/
 
-        var monthNames = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
-
-        var month = hourObject.getMonth();
-        var day = hourObject.getDate();
-
-        var year = hourObject.getFullYear();
-        //city_date">Fri, Nov 17 2017
-
-        $('.city_date').html(day + ', ' + monthNames[month] + ' ' + month + ' ' + year);
+//        var monthNames = ["January", "February", "March", "April", "May", "June",
+//            "July", "August", "September", "October", "November", "December"
+//        ];
+//
+//        var month = hourObject.getMonth();
+//        var day = hourObject.getDate();
+//
+//        var year = hourObject.getFullYear();
+//        //city_date">Fri, Nov 17 2017
+//
+//        $('.city_date').html(day + ', ' + monthNames[month] + ' ' + month + ' ' + year);
 
 
     });
@@ -455,22 +447,19 @@
         var minutes = hourObject.getMinutes();
 
 
-
         $(document).ready(function () {
             /*$('.over_hour_box_div').animate({'left': (hour * 4.166) + '%'}, 100, function () {
              });*/
 
-            var monthNames = ["January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"
-            ];
 
-            var month = hourObject.getMonth();
-            var day = hourObject.getDate();
-
-            var year = hourObject.getFullYear();
-            //city_date">Fri, Nov 17 2017
-
-            $('.city_date').html(day + ', ' + monthNames[month] + ' ' + (month+1) + ' ' + year);
+//            var month = hourObject.getMonth();
+//            var day = hourObject.getDate();
+//
+//            var year = hourObject.getFullYear();
+//            //city_date">Fri, Nov 17 2017
+//
+//
+//            $('.city_date').html(getFormatDate(year,month,day));
 
 
         });
@@ -497,11 +486,54 @@
     $(".clock_hours_row .left_label_div").append(city_label_and_hour_html(city_array));
 
 
+function getFormatDate(y,m,d){
+    
+            var monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+  return  d + ', ' + monthNames[m] + ' '  + y;
+}
+function getOtherCityDateFromHour(myHour,myGmt,otherGmt){
+
+    
+    var hourObject = new Date();
+            var month = hourObject.getMonth();
+            var day = hourObject.getDate();
+
+            var year = hourObject.getFullYear(); 
+            
+        
+        var otherHour=(myHour+(otherGmt - myGmt ))%24;
+        
+        console.log('otherHour >myHour && myGmt >otherGmt__'+otherHour +'>'+myHour +'&&'+ myGmt +'>'+otherGmt);
+        if(otherHour >myHour && myGmt >otherGmt){
+            return getPastDayDate(year,month,day);
+        }
+        if(otherHour <myHour && myGmt <otherGmt){
+            return getNextDayDate(year,month,day);
+        }
+        
+        return getFormatDate(year,month,day);
+}
+function getPastDayDate(year,month,day){
+    
+    var today = new Date();
+var yesterDay = new Date(today.getTime() - (24 * 60 * 60 * 1000));
+    
+     return getFormatDate(yesterDay.getFullYear(),yesterDay.getMonth(),yesterDay.getDate());
+}
+function getNextDayDate(year,month,day){
+    var today = new Date();
+var tomorrow = new Date(today.getTime() + (24 * 60 * 60 * 1000));
+   
+    return getFormatDate(tomorrow.getFullYear(),tomorrow.getMonth(),tomorrow.getDate());
+}
     function setTime(city_array) {
         for (var i = 0; i < city_array.length; i++) {
 
             var hourObject = new Date();
             var new_hour = hourObject.getHours() + (city_array[i][3] - 3);
+            
             hour = new_hour;
             minutes = hourObject.getMinutes();
 
@@ -515,7 +547,9 @@
             new_hour = (new_hour < 10) ? '0' + new_hour : new_hour;
             minutes = (minutes < 10) ? '0' + minutes : minutes;
             $('#city_info_all_div_' + i + ' .city_hour').html(new_hour + ':' + minutes + '<span>' + am_bm + '</span>');
-        }
+            
+            $('#city_info_all_div_' + i + ' .city_date').html(getOtherCityDateFromHour(hourObject.getHours(),realOffset,city_array[i][3]));
+             }
     }
     setTime(city_array);
     setInterval('setTime(city_array)', 60000);

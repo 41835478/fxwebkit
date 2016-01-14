@@ -6,6 +6,11 @@
     <h1>{{ trans('user.details') }}</h1>
 </div>
 
+<div class="panel">
+ 
+    <div class="panel-heading">
+        <span class="panel-title">{{ trans('user.details') }}</span>
+    </div>
 
 <div class="panel-body">
     <div class="row">
@@ -137,6 +142,7 @@
 <div class="panel-footer text-right">
     <a href="{{ route('clinet.editProfile').'?edit_id='.$user_details['id'] }}">
         <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('general.edit') }}</button></a>
+</div>
 </div>
 
 

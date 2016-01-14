@@ -1,3 +1,4 @@
+body{background: #fff !important}
 .overflow-a{overflow:auto}
 .table th a{color:#000;
             font-size: 14px;
@@ -21,14 +22,14 @@
     margin: -8px;
 }
 
-  //  #content-wrapper{ padding: 0px; margin: 0px;}
+    #content-wrapper{min-height: 800px}
     .nav-input-div{padding:7px;}
     .mail-container-header{
         border-bottom: 1px solid #ccc;
         margin-bottom: 7px;
         padding: 5px !important;
     }
-    .theme-default .page-mail{ overflow: visible;height: auto; min-height: 800px;}
+    .theme-default .page-mail{ overflow: visible;height: auto; min-height: 800px !important;}
     .center_page_all_div{ padding: 0px 10px;}
     .mail-nav .navigation{margin-top: -30px;}
     .mail-nav li.active a{

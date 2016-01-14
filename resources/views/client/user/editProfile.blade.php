@@ -7,7 +7,11 @@
 		<h1>{{ trans('user.edit_user') }}</h1>
 	</div>
 
-{!! Form::open(['class'=>'panel form-horizontal']) !!}
+<div class="panel">
+    {!! Form::open(['class'=>'panel form-horizontal']) !!}
+    <div class="panel-heading">
+        <span class="panel-title">{{ trans('user.edit_user') }}</span>
+    </div>
 
 
 
@@ -131,7 +135,7 @@
          <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']}}">{{ trans('general.save') }}</button></a>
 </div>
 {!! Form::close() !!}
-
+</div>
 @stop
 @section("script")
 @parent

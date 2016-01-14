@@ -141,11 +141,6 @@
                     name: 'Growth %',
                     data: {!! json_encode($growth_array)!!},
                     color:'blue'
-                }, {
-                    name: 'Average',
-                    data: {!! json_encode($averages_array)!!},
-                    color:'red'
-
                 }]
             });
         });

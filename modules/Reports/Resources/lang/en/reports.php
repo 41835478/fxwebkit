@@ -15,6 +15,7 @@ return [
 	'AllGroups' => 'All Groups',
 	'AllSymbols' => 'All Symbols',
 	'ExactLogin' => 'Exact Login',
+         'search' => 'Search',
     
     
     'Login' => 'Log In',
