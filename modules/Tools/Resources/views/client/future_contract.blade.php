@@ -71,8 +71,7 @@
                 <div class="table-header">{{ trans('tools::tools.futureContract') }}</div>
                 <table class="table table-bordered table-striped">
                     <thead>
-                        <tr>
-                           <th class="no-warp">{!! th_sort(trans('tools::tools.id'), 'id', $oResults) !!}</th>
+                        <tr>                     
                             <th class="no-warp">{!! th_sort(trans('tools::tools.name'), 'name', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.symbol'), 'symbol', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.exchange'), 'exchange', $oResults) !!}</th>
@@ -80,9 +79,7 @@
                             <th class="no-warp">{!! th_sort(trans('tools::tools.year'), 'year', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.start_date'), 'start_date', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.expiry_date'), 'expiry_date', $oResults) !!}</th>
-
-                          
-                        </tr>
+                   </tr>
                     </thead>
                     <tbody>
                         @if (count($oResults))
@@ -90,9 +87,7 @@
                         {{-- */$class='';/* --}}
                         @foreach($oResults as $oResult)
                         {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                        <tr class='{{ $class }}'>
-
-                            <td>{{ $oResult->id }}</td>
+                        <tr class='{{ $class }}'>     
                             <td>{{ $oResult->name }}</td>
                             <td>{{ $oResult->symbol }}</td>
                             <td>{{ $oResult->exchange }}</td>

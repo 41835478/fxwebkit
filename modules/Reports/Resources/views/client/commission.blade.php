@@ -123,7 +123,7 @@
 
                     </div>
                 </div>
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('general.Symbol'), 'SYMBOL', $oResults[0]) !!}</th>
@@ -132,9 +132,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (count($oResults[0]))
+                       @if (count($oResults[0]))
+                        {{-- */$i=0;/* --}}
+                        {{-- */$class='';/* --}}
                         @foreach($oResults[0] as $oResult)
-                        <tr>
+                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                        <tr class='{{ $class }}'> 
                             <td>{{ $oResult->SYMBOL }}</td>
                             <td>{{ round($oResult->COMMISSION, 2) }}</td>
                             <td>{{ $oResult->VOLUME }}</td>

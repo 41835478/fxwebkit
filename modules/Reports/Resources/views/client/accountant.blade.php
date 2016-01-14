@@ -175,7 +175,7 @@
 
                     </div>
                 </div>
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('general.Order#'), 'TICKET', $oResults[0]) !!}</th>
@@ -187,8 +187,11 @@
                     </thead>
                     <tbody>
                         @if (count($oResults[0]))
+                        {{-- */$i=0;/* --}}
+                        {{-- */$class='';/* --}}
                         @foreach($oResults[0] as $oResult)
-                        <tr>
+                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                        <tr class='{{ $class }}'> 
                             <td>{{ $oResult->TICKET }}</td>
                             <td>{{ $oResult->LOGIN }}</td>
                             <td>{{ $oResult->TYPE }}</td>
