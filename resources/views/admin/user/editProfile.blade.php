@@ -2,12 +2,16 @@
 @section('title', trans('accounts.addAccount'))
 @section('content')
 
+
 <div class="page-header">
-    <h1>{{ trans('user.edit_user') }}</h1>
-</div>
+		<h1>{{ trans('user.edit_user') }}</h1>
+	</div>
 
-
-{!! Form::open(['class'=>'panel form-horizontal']) !!}
+<div class="panel">
+    {!! Form::open(['class'=>'panel form-horizontal']) !!}
+    <div class="panel-heading">
+        <span class="panel-title">{{ trans('user.edit_user') }}</span>
+    </div>
 
 
 
@@ -101,13 +105,14 @@
             <label class="control-label " style="text-align: left;display: block;">{{ trans('user.gender') }}</label>
             <div class="radio col-xs-2">
                 <label class='gender_radio_0'>
-                    {!! Form::radio('gender', 0,!$userInfo['gender'],['id'=>'gender_radio_0','class'=>'px']) !!}
+               
+                    {!! Form::radio('gender',0,(!$userInfo['gender']),['id'=>'gender_radio_0','class'=>'px']) !!}
                     <span class="lbl">{{ trans('user.male') }}</span>
                 </label>
             </div>
             <div class="radio col-xs-2">
                 <label class='gender_radio_1'>
-
+                    
                     {!! Form::radio('gender',1,$userInfo['gender'],['id'=>'gender_radio_1','class'=>'px']) !!}
                     <span class="lbl">{{ trans('user.female') }}</span>
                 </label>
@@ -123,12 +128,14 @@
 
 </div>
 @endif
+
+
 <div class="panel-footer text-right">
-    <a href="{{ route('admin.users.profile')}}">
-        <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('general.save') }}</button></a>
+     <a href="{{ route('client.users.profile')}}">
+         <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']}}">{{ trans('general.save') }}</button></a>
 </div>
 {!! Form::close() !!}
-
+</div>
 @stop
 @section("script")
 @parent

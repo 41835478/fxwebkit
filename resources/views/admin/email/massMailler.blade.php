@@ -7,7 +7,12 @@
             <h1>{{ trans('general.massMailler') }}</h1>
         </div>
     </div>
-
+<div class="panel">
+ 
+    <div class="panel-heading">
+        <span class="panel-title">{{ trans('general.massMailler') }}</span>
+    </div>
+    
     {!! Form::open(array('method'=>'get','id'=>'showTemplateForm')) !!}
     <fieldset>
 

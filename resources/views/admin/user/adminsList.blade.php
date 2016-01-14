@@ -66,7 +66,7 @@
         <div class="center_page_all_div">
             @include('admin.partials.messages')
 
-            <div class="table-info">  
+            <div class="table-light">  
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('general.adminsList') }}  
@@ -74,7 +74,7 @@
                             <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button" value="{{ trans('general.addUser') }}"> </a>
                     </div>
                 </div>
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('general.id'), 'id', $oResults) !!}</th>
@@ -87,8 +87,11 @@
                     </thead>
                     <tbody>
                         @if (count($oResults))
+                        {{-- */$i=0;/* --}}
+                        {{-- */$class='';/* --}}
                         @foreach($oResults as $oResult)
-                        <tr>
+                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                        <tr class='{{ $class }}'>
                             <td>{{ $oResult->id }}</td>
                             <td>{{ $oResult->first_name }}</td>
                             <td>{{ $oResult->last_name }}</td>

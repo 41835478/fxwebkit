@@ -18,7 +18,7 @@
         <div class="navigation">
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections">
-                <li class="active"><a href="#"> <i class="fa fa-search"></i> search </a></li>
+                <li class="active"><a href="#"> <i class="fa fa-search"></i> {{ trans('accounts::accounts.search') }} </a></li>
                 <li>
                     <div class="   nav-input-div">
                         <div class="checkbox">
@@ -69,14 +69,14 @@
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
-            <div class="table-info">
+            <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('accounts::accounts.mt4Users') }}  
                     </div>
                 </div>
                
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Login'), 'LOGIN', $oResults) !!}</th>
@@ -93,8 +93,11 @@
                     </thead>
                     <tbody>
                         @if (count($oResults))
+                        {{-- */$i=0;/* --}}
+                        {{-- */$class='';/* --}}
                         @foreach($oResults as $oResult)
-                        <tr>
+                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                        <tr class='{{ $class }}'>
                             <td>{{ $oResult->LOGIN }}</td>
                             <td>{{ $oResult->NAME }}</td>
                             <td>{{ $oResult->GROUP }}</td>
@@ -125,7 +128,7 @@
                     
                             
                                
-                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn', 'name' => 'search']) !!}
                                
                             
                    

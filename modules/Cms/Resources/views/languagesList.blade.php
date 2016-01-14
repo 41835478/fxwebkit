@@ -8,7 +8,7 @@
 
 
 
-<div class="table-info">
+<div class="table-light">
     <div class="table-header">
         <div class="table-caption">
 {!! Form::open(['url'=>asset('cms/languages/insert-new-language') ,'id'=>'create_language_form','class'=>'']) !!}

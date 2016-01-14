@@ -3,10 +3,14 @@
 @section('content')
 
 <div class="page-header">
-		<h1>{{ trans('user.details') }}</h1>
-	</div>
+    <h1>{{ trans('user.details') }}</h1>
+</div>
 
-
+<div class="panel">
+ 
+    <div class="panel-heading">
+        <span class="panel-title">{{ trans('user.details') }}</span>
+    </div>
 
 <div class="panel-body">
     <div class="row">
@@ -21,7 +25,7 @@
             </div>
         </div><!--ol-sm-6 -->
 
-           <div class="col-sm-2 text-right">
+        <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('general.gender') }} : </label>
             </div>
@@ -134,12 +138,11 @@
         </div>
     </div><!-- row -->
 
-    
-
 </div>
 <div class="panel-footer text-right">
-     <a href="{{ route('admin.editProfile').'?edit_id='.$user_details['id'] }}">
-         <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('general.edit') }}</button></a>
+    <a href="{{ route('admin.editProfile').'?edit_id='.$user_details['id'] }}">
+        <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('general.edit') }}</button></a>
+</div>
 </div>
 
 

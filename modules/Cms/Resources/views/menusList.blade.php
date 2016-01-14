@@ -17,7 +17,7 @@
 
 
 
-<div class="table-info">
+<div class="table-light">
     <div class="table-header">
         <div class="table-caption">
 {!! Form::open(['url'=>asset('cms/menus/insert-new-menu') ,'id'=>'create_menu_form','class'=>'']) !!}

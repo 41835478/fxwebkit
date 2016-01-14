@@ -13,7 +13,7 @@
 
 
 
-<div class="table-info">
+<div class="table-light">
     <div class="table-header">
         <div class="table-caption">
 

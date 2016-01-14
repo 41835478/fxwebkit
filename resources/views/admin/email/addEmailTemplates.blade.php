@@ -7,12 +7,15 @@
         <h1>{{ trans('general.emailTemplates') }}</h1>
     </div>
 </div>
-
+<div class="panel">
+ 
+    <div class="panel-heading">
+        <span class="panel-title">{{ trans('general.email') }}</span>
+    </div>
 {!! Form::open(array('method'=>'get','id'=>'showTemplateForm')) !!}
 <fieldset>
     
         <div class="well">
-
             <div class="col-sm-12">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('general.template') }}</label>
