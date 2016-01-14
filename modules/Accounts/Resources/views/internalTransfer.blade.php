@@ -64,6 +64,5 @@
         @endforeach
     </div>
     @endif
-
     {!! Form::close() !!}
     @stop

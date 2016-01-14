@@ -22,7 +22,7 @@
         </div>
     </div>
     {!! Form::open(['url'=>asset('cms/articles/articles')]) !!}
-        <table border="0" class="table table-bordered">
+        <table border="0" class="table table-bordered table-striped">
             <thead>
             <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all','Select All') !!}</th>
             <th>id</th>
@@ -31,8 +31,13 @@
             <th></th>
             </thead>
             <tbody>
-                @foreach($articles as $article)
-                <tr>
+                {{-- */$i=0;/* --}}
+                        {{-- */$class='';/* --}}
+                      @foreach($articles as $article)
+                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                <tr class='{{ $class }}'>
+                
+              
                     <td>{!! Form::checkbox('articles_checkbox[]',$article->id,false,['class'=>'articles_checkbox']) !!}</td>
                     <td >{{ $article->id }}</td>
                     <td >{{ $article->title }}</td>

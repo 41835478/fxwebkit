@@ -83,7 +83,7 @@
             @if (count($oResults[0]))
             <div class="stat-panel no-margin-b">
                 <div class="stat-row">
-                    <div class="stat-counters bg-info no-padding text-center">
+                    <div class="stat-counters bg-panel no-padding text-center">
                         <div class="stat-cell col-xs-4 padding-xs-vr">
                             <span class="text-xs">Total Commission : {{ round($oResults[1], 2) }}</span>
                         </div>

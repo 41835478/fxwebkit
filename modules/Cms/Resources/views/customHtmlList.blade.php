@@ -21,15 +21,20 @@
         </div>
     </div>
     {!! Form::open(['url'=>asset('cms/customHtml/custom-html')]) !!}
-        <table border="0" class="table table-bordered">
+        <table border="0" class="table table-bordered table-striped">
             <thead>
             <th>id</th>
             <th>title</th>
             <th></th>
             </thead>
             <tbody>
-                @foreach($customHtmls as $key=>$customHtml)
-                <tr>
+                 {{-- */$i=0;/* --}}
+                        {{-- */$class='';/* --}}
+                      @foreach($customHtmls as $key=>$customHtml)
+                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                <tr class='{{ $class }}'>
+               
+                
                     <td >{{ $key }}</td>
                     <td >{{ $customHtml }}</td>
                 

@@ -41,15 +41,20 @@
     </div>
     @if($selected_language==1)
     {!! Form::open(['url'=>asset('cms/menus/menus')]) !!}
-        <table border="0" class="table table-bordered">
+        <table border="0" class="table table-bordered table-striped">
             <thead>
             <th>id</th>
             <th>title</th>
       <th></th>
             </thead>
             <tbody>
-                @foreach($menus as $menu)
-                <tr>
+                {{-- */$i=0;/* --}}
+                        {{-- */$class='';/* --}}
+                       @foreach($menus as $menu)
+                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                <tr class='{{ $class }}'>
+                
+              
                     <td >{{ $menu->id }}</td>
                     <td >{{ $menu->title }}</td>
                  

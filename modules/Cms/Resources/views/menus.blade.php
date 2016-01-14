@@ -17,7 +17,7 @@
 @if($selected_id != 0)
 
 
-<div class="table-info">
+<div class="table-light">
     <div class="table-header">
         <div class="table-caption">
 

@@ -14,11 +14,13 @@
     .user-info-table th{ text-align: right;}
     .user-info-table td{ text-align: left;}
 </style>
-<div class="  theme-default page-mail" >
+<div class="theme-default page-mail" >
     <div class="mail-nav" >
         <div class="navigation">
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections">
+                <li class="active"><a href="#"> <i class="fa fa-search"></i> Search </a></li>
+                
                 <li><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div> </li>
 
                 <li><div  class=" nav-input-div  ">
@@ -66,7 +68,7 @@
             @if (count($oResults))
             <div class="stat-panel no-margin-b">
                 <div class="stat-row">
-                    <div class="stat-counters bg-info no-padding text-center">
+                    <div class="stat-counters bg-panel no-padding text-center">
                         <div class="stat-cell col-xs-4 padding-xs-vr">
                             <span class="text-xs">Account :{{ $oResults->LOGIN }} </span>
                         </div>
@@ -83,7 +85,7 @@
             <div class="padding-xs-vr"></div>
 
             <!-- _____________open _  order___________________-->
-            <div class="table-info">
+            <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('reports::reports.OpenOrders') }}
@@ -157,7 +159,7 @@
 
 
 
-            <div class="table-info">
+            <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('reports::reports.ClosedOrders') }}
@@ -231,7 +233,7 @@
 
             <!-- ___________________________footer_summery_____________-->
             @if (count($oResults))
-            <div class="table-info">
+            <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('reports::reports.Summary') }}
@@ -241,12 +243,9 @@
                 <table class="table table-bordered user-info-table">
                     <tr>
                         <th colspan="3">Registration date : </th><td>{{ $oResults->REGDATE }}</td>
-                        <th  >MetaQuotes ID : </th><td>{{ $oResults->MQID }}</td>
+                       <th >Name : </th><td colspan="3">{{ $oResults->NAME }}</td>
                     </tr>
-                    <tr>
-                        <th >Name : </th><td colspan="3">{{ $oResults->NAME }}</td>
-                        <th  >Phone password : </th><td>{{ $oResults->PASSWORD_PHONE }}</td>
-                    </tr>
+                  
                     <tr>
                         <th >City : </th><td >{{ $oResults->CITY }}</td>
                         <th >State : </th><td >{{ $oResults->STATE }}</td>
@@ -263,16 +262,13 @@
                     <tr>
                         <th >ID number : </th><td >{{ $oResults->ID }}</td>
                         <th >Status : </th><td >{{ $oResults->STATUS }}</td>
-                        <th  >Color : </th><td>{{ $oResults->USER_COLOR }}</td>
+                      
                     </tr>
-                    <tr>
-                        <th >Group : </th><td >{{ $oResults->GROUP }}</td>
-                        <th >comment : </th><td  colspan="3">{{ $oResults->COMMENT }}</td>
-                    </tr>
+                  
                     <tr>
                         <th >Leverage : </th><td >{{ $oResults->LEVERAGE }}</td>
                         <th >tax : </th><td >{{ $oResults->TAXES }}%</td>
-                        <th  >Agent account : </th><td>{{ $oResults->AGENT_ACCOUNT }}</td>
+                       
                     </tr>
                     <tr>
                         <th class="no-warp"></th><td></td>
