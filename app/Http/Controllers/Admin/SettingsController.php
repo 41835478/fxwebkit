@@ -30,8 +30,6 @@ class SettingsController extends Controller {
         $this->oMt4User = $oMt4User;
         $this->oUser = $oUser;
         $this->aTemplates = [
-            '' => '',
-            'external' => [
                 'signUpWelcome' => 'Sign Up Welcome',
                 'accountAssign' => 'Account Assign',
                 'agentActivation' => 'Agent Activation',
@@ -40,12 +38,11 @@ class SettingsController extends Controller {
                 'recoverPassword' => 'Recover Password',
                 'withdrawResult' => 'Withdraw Result',
                 'newContract' => 'New Contract',
-                'massMailler'=>'Mass Mailler'
-            ],
-            'internal' => [
+                'massMailler'=>'Mass Mailler',
+          
                 'newAgentNotify' => 'New Agent Notify',
                 'withdrawRequest' => 'Withdraw Request'
-            ]
+           
         ];
     }
 
