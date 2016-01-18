@@ -390,16 +390,17 @@ class ToolsController extends Controller {
         return Redirect::route('tools.holiday')->withErrors($result);
     }
 
-    public function getAddSymbolHoliday(Request $oRequest)
+    public function getAddSymbolHoliday(Request $oRequest,$addResult='true')
     {
 
         $holidayInfo = [
-            'id' => $oRequest->edit_id,
+            'id' => $oRequest->holiday_id,
             'name' => '',
             'start_date' => '',
-            'end_date' => ''
+            'start_hour' => '',
+            'end_hour' => '',
         ];
-        if ($oRequest->has('edit_id')) {
+        if ($oRequest->has('holiday_id')) {
 
             $oResult = $this->oHoliday->getHolidayDetails($oRequest->edit_id);
 
@@ -414,16 +415,26 @@ class ToolsController extends Controller {
         }
 
         $oResults = $this->oHoliday->getSymbols();
+        $view=view('tools::addSymbolHoliday');
+        $view->with('holidayInfo', $holidayInfo);
+        $view->with('oResults', $oResults);
+        if($addResult==false){$view->withErrors('Nothing added !!!');}
 
-        return view('tools::addSymbolHoliday')
-            ->with('holidayInfo', $holidayInfo)
-            ->with('oResults', $oResults);
+
+        return $view;
     }
 
     public function postAddSymbolHoliday(Request $oRequest)
     {
 
-       $result= $this->oHoliday-> addSymbolsHoliday($oRequest->symbols,$oRequest->id,$oRequest->start_hour,$oRequest->end_hour,$oRequest->date);
+        $result= $this->oHoliday->addSymbolsHoliday($oRequest->symbols,
+            $oRequest->holiday_id,
+            $oRequest->start_hour,
+            $oRequest->end_hour,
+            $oRequest->date);
+
+            return  $this->getAddSymbolHoliday($oRequest,$result);
+
 
     }
 
