@@ -4,6 +4,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class ToolsHolidaySymbols extends Model {
     protected $table = 'tools_holiday_symbols';
-    protected $fillable = [];
+
+    public $timestamps = false;
+    protected $fillable = [
+        'id',
+        'holiday_id',
+        'symbols_id',
+        'start_hour',
+        'end_hour',
+        'date',
+
+    ];
 
 }
