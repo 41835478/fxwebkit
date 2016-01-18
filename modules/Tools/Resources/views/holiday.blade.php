@@ -91,6 +91,7 @@
                                 <a href="{{ route('tools.editHoliday').'?edit_id='.$oResult->id }}" class="fa fa-edit"></a>
                                 <a href="{{ route('tools.deleteHoliday').'?delete_id='.$oResult->id }}" class="fa fa-trash-o"></a>
                                 <a href="{{ route('tools.addSymbolHoliday').'?edit_id='.$oResult->id }}" class="fa fa-plus-square"></a>
+                                <a href="{{ route('tools.detailsHoliday').'?edit_id='.$oResult->id }}" class="fa fa-file-text"></a>
                             </td>
 
                             

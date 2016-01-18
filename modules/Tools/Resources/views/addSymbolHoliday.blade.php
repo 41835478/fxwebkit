@@ -112,7 +112,7 @@
     </div>
     @endif
     <div class="panel-footer text-right">
-        <button type="submit" class="btn btn-primary" name="id" value="{{ $holidayInfo['id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
+        <button type="submit" class="btn btn-primary" name="id" value="{{ $holidayInfo['edit_id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
     </div>
 
     {!! Form::close() !!}
@@ -133,12 +133,12 @@
 
         var options2 = {
             minuteStep: 1,
-            showSeconds: true,
+            showSeconds: false,
             showMeridian: false,
             showInputs: false,
             orientation: $('body').hasClass('right-to-left') ? { x: 'right', y: 'auto'} : { x: 'auto', y: 'auto'}
         }
-        $('input[name="end_time"],input[name="start_time"]').timepicker(options2);
+        $('input[name="end_hour"],input[name="start_hour"]').timepicker(options2);
 
 
         $('.securitiesCheckbox').change(function(){
