@@ -27,12 +27,12 @@
                 </li>
                 <li  >
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('symbol', $aFilterParams['symbol'], ['placeholder'=>trans('tools::tools.symbol'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('start_date', $aFilterParams['start_date'], ['placeholder'=>trans('tools::tools.start_date'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
                 <li>
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('exchange', $aFilterParams['exchange'], ['placeholder'=>trans('tools::tools.exchange'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('end_date', $aFilterParams['end_date'], ['placeholder'=>trans('tools::tools.end_date'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
 
@@ -89,7 +89,7 @@
                                 <a href="{{ route('tools.editHoliday').'?edit_id='.$oResult->id }}" class="fa fa-edit"></a>
                                 <a href="{{ route('tools.deleteHoliday').'?delete_id='.$oResult->id }}" class="fa fa-trash-o"></a>
                                 <a href="{{ route('tools.detailsHoliday').'?edit_id='.$oResult->id }}" class="fa fa-file-text"></a>
-                                <a href="{{ route('tools.addHoliday').'?edit_id='.$oResult->id }}" class="fa fa-file-text"></a>
+                                <a href="{{ route('tools.addSymbolHoliday').'?edit_id='.$oResult->id }}" class="fa fa-file-text"></a>
                             </td>
 
                             
