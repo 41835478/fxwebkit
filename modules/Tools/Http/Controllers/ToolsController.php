@@ -398,13 +398,13 @@ class ToolsController extends Controller {
             'start_date' => '',
             'end_date' => ''
         ];
-        if ($oRequest->has('edit_id')) {
 
-            $oResult = $this->oHoliday->getHolidayDetails($oRequest->edit_id);
+        if ($oRequest->has('id')) {
 
+            $oResult = $this->oHoliday->getHolidayDetails($oRequest->id);
 
             $holidayInfo = [
-                'id' => $oRequest->edit_id,
+                'id' => $oRequest->id,
                 'name' => $oResult['name'],
                 'start_date' => $oResult['start_date'],
                 'end_date' => $oResult['end_date']
@@ -413,9 +413,11 @@ class ToolsController extends Controller {
 
         $oResults = $this->oHoliday->getSymbols();
 
+
         return view('tools::addSymbolHoliday')
             ->with('holidayInfo', $holidayInfo)
             ->with('oResults', $oResults);
     }
+    
 
 }

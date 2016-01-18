@@ -71,7 +71,8 @@ class EloquentHolidayContractRepository implements HolidayContract
     }
 
     public function getSymbols(){
-$oResults=ToolsSymbols::with('securities')->orderBy('id','desc');
+
+        $oResults=ToolsSymbols::with('securities')->orderBy('id','desc');
         return $oResults->paginate();
     }
 
