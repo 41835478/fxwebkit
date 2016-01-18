@@ -377,7 +377,7 @@ class ToolsController extends Controller {
                 'end_date' => $oResult['expiry_date'],
             ];
 
-            return Redirect::to(route('tools.detailsHoliday').'?id='.$oResult->id);
+            return Redirect::to(route('tools.addSymbolHoliday').'?id='.$oResult->id);
         }
     }
 
@@ -385,12 +385,60 @@ class ToolsController extends Controller {
         return'getEditHoliday';
     }
 
-    public function getDeleteHoliday(){
-        return'getDeleteHoliday';
+    public function getDeleteHoliday(Request $oRequest){
+        $result = $this->oHoliday->deleteContract($oRequest->delete_id);
+        return Redirect::route('tools.holiday')->withErrors($result);
     }
 
-    public function getDetailsHoliday(){
-        return'getDetailsHoliday';
+    public function getAddSymbolHoliday(Request $oRequest)
+    {
+
+
+
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+        $aGroups = [];
+        $oResults = null;
+
+
+
+
+
+
+            $aFilterParams['id'] = $oRequest->id;
+            $aFilterParams['name'] = $oRequest->name;
+            $aFilterParams['symbol'] = $oRequest->symbol;
+            $aFilterParams['exchange'] = $oRequest->exchange;
+            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['sort'] = $oRequest->sort;
+            $aFilterParams['order'] = $oRequest->order;
+
+            $role = explode(',', Config::get('fxweb.client_default_role'));
+            $oResults = $this->oHoliday->getSymbol();
+
+
+
+
+        $holidayInfo = [ 'edit_id' => 0,
+            'name' => '',
+            'start_date' => '',
+            'expiry_date' => ''
+        ];
+
+        if ($oRequest->has('edit_id')) {
+
+            $oResult = $this->oHoliday->getHolidayDetails($oRequest->edit_id);
+
+
+            $holidayInfo = [
+                'id' => $oRequest->edit_id,
+                'name' => $oResult['name'],
+                'start_date' => $oResult['start_date'],
+                'expiry_date' => $oResult['expiry_date']
+            ];
+        }
+        return view('tools::addSymbolHoliday')->with('holidayInfo', $holidayInfo) ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
     }
 
 }

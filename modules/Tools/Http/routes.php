@@ -10,9 +10,10 @@
             'getDeleteContract'=>'tools.deleteContract',
              'getHoliday'=>'tools.holiday',
             'getAddHoliday'=>'tools.addHoliday',
+            'getAddSymbolHoliday'=>'tools.addSymbolHoliday',
             'getEditHoliday'=>'tools.editHoliday',
             'getDeleteHoliday'=>'tools.deleteHoliday',
-            'getDetailsHoliday'=>'tools.detailsHoliday',
+
             ]);
 });
 

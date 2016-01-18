@@ -67,17 +67,32 @@ class EloquentHolidayContractRepository implements HolidayContract {
 
     }
 
-    public function addSymbolsHoliday($aSymbols,$holiday_id,$start_hour,$end_hour,$date){
-$rows=[];
-        foreach($aSymbols as $symbol){
-         $rows[]=['holiday_id'=>$holiday_id,
-             'symbols_id'=>$symbol,
-         'start_hour'=>$start_hour,
-         'end_hour'=>$end_hour,
-         'date'=>$date];
-        }
-        $result=ToolsHoliday::create($rows);
 
-        return ($result)? $result:0;
+    public function addSymbolsHoliday($aSymbols,$holiday_id,$start_hour,$end_hour,$date)
+    {
+        $rows = [];
+        foreach ($aSymbols as $symbol) {
+            $rows[] = ['holiday_id' => $holiday_id,
+                'symbols_id' => $symbol,
+                'start_hour' => $start_hour,
+                'end_hour' => $end_hour,
+                'date' => $date];
+        }
+        $result = ToolsHoliday::create($rows);
+
+        return ($result) ? $result : 0;
     }
+    public function deleteHoliday($id) {
+
+        $id = (is_array($id)) ? $id : [$id];
+        $deleteResult = ToolsHoliday::whereIn('id', $id)->delete();
+
+        if ($deleteResult) {
+            return ['deleted successfully.'];
+        } else {
+            return ['deleted faild please try again later.'];
+        }
+    }
+
+
 }

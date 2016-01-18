@@ -26,6 +26,17 @@
                     </div>
                 </li>
 
+                <li  >
+                    <div  class=" nav-input-div  ">
+                        {!! Form::text('start_date', $aFilterParams['start_date'], ['placeholder'=>trans('tools::tools.start_date'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </li>
+                <li>
+                    <div  class=" nav-input-div  ">
+                        {!! Form::text('end_date', $aFilterParams['end_date'], ['placeholder'=>trans('tools::tools.end_date'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </li>
+
 
                 <li>
                     <div  class=" nav-input-div  ">
@@ -79,8 +90,7 @@
                             <td>
                                 <a href="{{ route('tools.editHoliday').'?edit_id='.$oResult->id }}" class="fa fa-edit"></a>
                                 <a href="{{ route('tools.deleteHoliday').'?delete_id='.$oResult->id }}" class="fa fa-trash-o"></a>
-                                <a href="{{ route('tools.detailsHoliday').'?edit_id='.$oResult->id }}" class="fa fa-file-text"></a>
-                                <a href="{{ route('tools.addHoliday').'?edit_id='.$oResult->id }}" class="fa fa-file-text"></a>
+                                <a href="{{ route('tools.addSymbolHoliday').'?edit_id='.$oResult->id }}" class="fa fa-plus-square"></a>
                             </td>
 
                             
