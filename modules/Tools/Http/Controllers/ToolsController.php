@@ -392,14 +392,6 @@ class ToolsController extends Controller {
 
     public function getAddSymbolHoliday(Request $oRequest)
     {
-
-
-
-
-
-
-
-
         $holidayInfo = [
             'id' => $oRequest->edit_id,
             'name' => '',
