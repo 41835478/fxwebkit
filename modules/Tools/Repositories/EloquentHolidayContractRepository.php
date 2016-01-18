@@ -66,4 +66,18 @@ class EloquentHolidayContractRepository implements HolidayContract {
         return ($result)? $result:0;
 
     }
+
+    public function addSymbolsHoliday($aSymbols,$holiday_id,$start_hour,$end_hour,$date){
+$rows=[];
+        foreach($aSymbols as $symbol){
+         $rows[]=['holiday_id'=>$holiday_id,
+             'symbols_id'=>$symbol,
+         'start_hour'=>$start_hour,
+         'end_hour'=>$end_hour,
+         'date'=>$date];
+        }
+        $result=ToolsHoliday::create($rows);
+
+        return ($result)? $result:0;
+    }
 }
