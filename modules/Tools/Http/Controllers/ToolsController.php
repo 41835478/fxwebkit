@@ -393,13 +393,6 @@ class ToolsController extends Controller {
     public function getAddSymbolHoliday(Request $oRequest)
     {
 
-
-
-
-
-
-
-
         $holidayInfo = [
             'id' => $oRequest->edit_id,
             'name' => '',
@@ -410,12 +403,13 @@ class ToolsController extends Controller {
 
             $oResult = $this->oHoliday->getHolidayDetails($oRequest->edit_id);
 
-
+// TODO[moaid] setcurrent time in start_hour and end_hour
             $holidayInfo = [
                 'id' => $oRequest->edit_id,
                 'name' => $oResult['name'],
                 'start_date' => $oResult['start_date'],
-                'end_date' => $oResult['end_date']
+                'start_hour' => '',
+                'end_hour' => '',
             ];
         }
 
@@ -426,4 +420,11 @@ class ToolsController extends Controller {
             ->with('oResults', $oResults);
     }
 
-}
+    public function postAddSymbolHoliday(Request $oRequest)
+    {
+
+       $result= $this->oHoliday-> addSymbolsHoliday($oRequest->symbols,$oRequest->id,$oRequest->start_hour,$oRequest->end_hour,$oRequest->date);
+
+    }
+
+    }

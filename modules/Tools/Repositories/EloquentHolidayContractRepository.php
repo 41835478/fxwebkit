@@ -4,6 +4,8 @@ namespace Modules\Tools\Repositories;
 
 use Modules\Tools\Entities\ToolsHoliday;
 use Modules\Tools\Entities\ToolsSymbols;
+use Modules\Tools\Entities\ToolsSecurities as Securities;
+use Modules\Tools\Entities\ToolsHolidaySymbols;
 use Config;
 class EloquentHolidayContractRepository implements HolidayContract {
 
@@ -68,23 +70,24 @@ class EloquentHolidayContractRepository implements HolidayContract {
     }
 
     public function getSymbols(){
-$oResults=ToolsSymbols::with('securities')->orderBy('id','desc');
+$oResults=Securities::with('symbols')->orderBy('id','desc');
         return $oResults->paginate();
     }
 
     public function addSymbolsHoliday($aSymbols,$holiday_id,$start_hour,$end_hour,$date)
     {
-        $rows = [];
+        $result=false;
         foreach ($aSymbols as $symbol) {
-            $rows[] = ['holiday_id' => $holiday_id,
+            $row = ['holiday_id' => $holiday_id,
                 'symbols_id' => $symbol,
                 'start_hour' => $start_hour,
                 'end_hour' => $end_hour,
                 'date' => $date];
+            $result = ToolsHolidaySymbols::create($row);
         }
-        $result = ToolsHoliday::create($rows);
 
-        return ($result) ? $result : 0;
+
+        return ($result) ? true :false;
     }
     public function deleteHoliday($id) {
 

@@ -26,10 +26,22 @@
                     {{-- */$class='';/* --}}
                     @foreach($oResults as $oResult)
                         {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                        <tr class='{{ $class }}'>
-                            <td>{{ $oResult->securities()->first()->name }}</td>
-                            <td>{{ $oResult->name }}</td>
+                        <tr class='{{ $class }}' data-security_id="{{ $oResult->id }}">
+                            <td colspan="2">
+                                {!! Form::checkbox('securities[]',$oResult->id,false,['class'=>'securitiesCheckbox']) !!}
+
+                                {{ $oResult->name }}</td>
+
                         </tr>
+                        @foreach($oResult->symbols as $symbol)
+                        <tr class='symbols_tr_{{ $oResult->id }}'>
+                            <td></td><td>
+                                {!! Form::checkbox('symbols[]',$symbol->id,false,['class'=>'symbolsCheckbox']) !!}
+                                {{ $symbol->name }}</td>
+
+                        </tr>
+
+                        @endforeach
                     @endforeach
                 @endif
 
@@ -65,14 +77,14 @@
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.date') }}</label>
-                    {!! Form::text('start_date',$holidayInfo['start_date'],['class'=>'form-control']) !!}
+                    {!! Form::text('date',$holidayInfo['start_date'],['class'=>'form-control']) !!}
                 </div>
             </div><!-- col-sm-6 -->
 
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.start_time') }}</label>
-                    {!! Form::text('start_time',$holidayInfo['start_date'],['class'=>'form-control']) !!}
+                    {!! Form::text('start_hour',$holidayInfo['start_hour'],['class'=>'form-control']) !!}
                 </div>
             </div><!-- col-sm-6 -->
 
@@ -84,7 +96,7 @@
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.end_time') }}</label>
-                    {!! Form::text('end_time',$holidayInfo['end_date'],['class'=>'form-control']) !!}
+                    {!! Form::text('end_hour',$holidayInfo['end_hour'],['class'=>'form-control']) !!}
 
                 </div>
             </div><!-- col-sm-6 -->
@@ -100,7 +112,7 @@
     </div>
     @endif
     <div class="panel-footer text-right">
-        <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $contractInfo['edit_id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
+        <button type="submit" class="btn btn-primary" name="id" value="{{ $holidayInfo['id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
     </div>
 
     {!! Form::close() !!}
@@ -128,5 +140,16 @@
         }
         $('input[name="end_time"],input[name="start_time"]').timepicker(options2);
 
+
+        $('.securitiesCheckbox').change(function(){
+            var security_id=$(this).val();
+
+            if($(this).prop("checked")){
+                $(".symbols_tr_"+security_id+" .symbolsCheckbox").prop("checked",true);
+            }else{
+
+                $(".symbols_tr_"+security_id+" .symbolsCheckbox").prop("checked",false);
+            }
+        });
     </script>
     @stop
