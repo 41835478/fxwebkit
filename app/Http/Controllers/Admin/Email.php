@@ -57,6 +57,7 @@ class Email extends Controller {
 
         Mail::raw($info['content'], function ($message) use ($info)
         {
+
             $message->from('m.hashim@mqplanet.com', 'Mqplanet');
 
             $message->to($info['email']);
