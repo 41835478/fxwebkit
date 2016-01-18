@@ -31,5 +31,9 @@ return [
     'expiry_date:'=>'Expiry Date :',
     'contractDetails'=>'Contract Details',
     'time'=>'Time',
-    
+    'holiday'=>'Holiday',
+    'add_holiday'=>'Add Holiday',
+    'end_date'=>'End Date',
+
+
 ];

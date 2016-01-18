@@ -19,11 +19,17 @@ return ['is_admin' => 1,
 			'icon' => 'fa fa-suitcase',
 		],
 		[
-			'route' => 'tools.marketWatch',
-			'title' => 'marketWatch',
+		'route' => 'tools.marketWatch',
+		'title' => 'marketWatch',
+		'icon' => 'fa fa-shopping-cart',
+	],
+		[
+			'route' => 'tools.holiday',
+			'title' => 'holiday',
 			'icon' => 'fa fa-shopping-cart',
 		]
-	],
+],
+
     'client_menu' => [
 		
          [

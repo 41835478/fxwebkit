@@ -8,6 +8,11 @@
             'getAddContract'=>'tools.addContract',
             'getEditContract'=>'tools.editContract',
             'getDeleteContract'=>'tools.deleteContract',
+             'getHoliday'=>'tools.holiday',
+            'getAddHoliday'=>'tools.addHoliday',
+            'getEditHoliday'=>'tools.editHoliday',
+            'getDeleteHoliday'=>'tools.deleteHoliday',
+            'getDetailsHoliday'=>'tools.detailsHoliday',
             ]);
 });
 
