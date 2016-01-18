@@ -25,6 +25,7 @@
                         {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('tools::tools.name'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
+
                 <li  >
                     <div  class=" nav-input-div  ">
                         {!! Form::text('start_date', $aFilterParams['start_date'], ['placeholder'=>trans('tools::tools.start_date'),'class'=>'form-control input-sm']) !!}
@@ -36,11 +37,6 @@
                     </div>
                 </li>
 
-                <li>
-                    <div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('tools::tools.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-                    </div></li>
-                <li class="divider"></li>
             </ul>
 
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
@@ -84,7 +80,7 @@
                         <tr class='{{ $class }}'>     
                             <td>{{ $oResult->name }}</td>
                             <td>{{ $oResult->start_date }}</td>
-                            <td>{{ $oResult->expiry_date }}</td>
+                            <td>{{ $oResult->end_date }}</td>
                             <td>
                                 <a href="{{ route('tools.editHoliday').'?edit_id='.$oResult->id }}" class="fa fa-edit"></a>
                                 <a href="{{ route('tools.deleteHoliday').'?delete_id='.$oResult->id }}" class="fa fa-trash-o"></a>

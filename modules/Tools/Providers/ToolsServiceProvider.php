@@ -29,8 +29,13 @@ class ToolsServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function register()
-	{		
-		//
+	{
+		$this->app->bind(
+			'Modules\Tools\Repositories\HolidayContract',
+			'Modules\Tools\Repositories\EloquentHolidayContractRepository'
+
+
+		);
 	}
 
 	/**
