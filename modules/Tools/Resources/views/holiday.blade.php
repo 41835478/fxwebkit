@@ -37,6 +37,12 @@
                     </div>
                 </li>
 
+
+                <li>
+                    <div  class=" nav-input-div  ">
+                        {!! Form::submit(trans('tools::tools.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                    </div></li>
+                <li class="divider"></li>
             </ul>
 
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
