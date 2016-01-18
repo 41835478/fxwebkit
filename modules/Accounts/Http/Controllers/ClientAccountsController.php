@@ -10,7 +10,8 @@ use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
 use Modules\Accounts\Http\Controllers\ApiController;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
-class ClientAccountsController extends Controller {
+class ClientAccountsController extends Controller
+{
 
     /**
      * @var Mt4Group
@@ -20,21 +21,23 @@ class ClientAccountsController extends Controller {
     protected $oMt4User;
 
     public function __construct(
-    Users $oUsers, Mt4User $oMt4User, Mt4Trade $oMt4Trade
-    ) {
+        Users $oUsers, Mt4User $oMt4User, Mt4Trade $oMt4Trade
+    )
+    {
         $this->oUsers = $oUsers;
 
         $this->oMt4Trade = $oMt4Trade;
         $this->oMt4User = $oMt4User;
     }
 
-    public function getMt4UsersList(Request $oRequest) {
+    public function getMt4UsersList(Request $oRequest)
+    {
 
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
         $aGroups = [];
         $oResults = null;
-       
+
         $aFilterParams = [
             'from_login' => '',
             'to_login' => '',
@@ -48,26 +51,26 @@ class ClientAccountsController extends Controller {
         ];
 
 
-            $aFilterParams['from_login'] = $oRequest->from_login;
-            $aFilterParams['to_login'] = $oRequest->to_login;
-            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
-            $aFilterParams['login'] = $oRequest->login;
-            $aFilterParams['name'] = $oRequest->name;
-            $aFilterParams['all_groups'] = true;
-            $aFilterParams['group'] = $oRequest->group;
-            $aFilterParams['sort'] = $oRequest->sort;
-            $aFilterParams['order'] = $oRequest->order;
-            $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
-          
-        
+        $aFilterParams['from_login'] = $oRequest->from_login;
+        $aFilterParams['to_login'] = $oRequest->to_login;
+        $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+        $aFilterParams['login'] = $oRequest->login;
+        $aFilterParams['name'] = $oRequest->name;
+        $aFilterParams['all_groups'] = true;
+        $aFilterParams['group'] = $oRequest->group;
+        $aFilterParams['sort'] = $oRequest->sort;
+        $aFilterParams['order'] = $oRequest->order;
+        $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
+
 
         return view('accounts::client.mt4Accounts')
-                        ->with('aGroups', $aGroups)
-                        ->with('oResults', $oResults)
-                        ->with('aFilterParams', $aFilterParams);
+            ->with('aGroups', $aGroups)
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
     }
 
-    public function getMt4UserDetails(Request $oRequest) {
+    public function getMt4UserDetails(Request $oRequest)
+    {
 
         $oGroups = $this->oMt4User->getAllGroups();
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
@@ -107,13 +110,14 @@ class ClientAccountsController extends Controller {
         }
 
         return view('accounts::client.accountStatement')
-                        ->with('aGroups', $aGroups)
-                        ->with('oResults', $oResults)
-                        ->with('aSummery', $aSummery)
-                        ->with('aFilterParams', $aFilterParams);
+            ->with('aGroups', $aGroups)
+            ->with('oResults', $oResults)
+            ->with('aSummery', $aSummery)
+            ->with('aFilterParams', $aFilterParams);
     }
 
-    public function getMt4Leverage(Request $oRequest) {
+    public function getMt4Leverage(Request $oRequest)
+    {
 
         $Result = Config('accounts.leverage');
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
@@ -124,13 +128,14 @@ class ClientAccountsController extends Controller {
             'leverage' => ''];
 
         return view('accounts::client.addLeverage')
-                        ->with('Pssword', $Pssword)
-                         ->with('Result', $Result)
-                        ->with('changeleverage', $changeleverage)
-                        ->with('login', $oRequest->login);
+            ->with('Pssword', $Pssword)
+            ->with('Result', $Result)
+            ->with('changeleverage', $changeleverage)
+            ->with('login', $oRequest->login);
     }
 
-    public function postMt4Leverage(Request $oRequest) {
+    public function postMt4Leverage(Request $oRequest)
+    {
 
         $Result = Config('accounts.leverage');
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
@@ -146,14 +151,15 @@ class ClientAccountsController extends Controller {
 
 
         return view('accounts::client.addLeverage')
-                        ->with('Result', $Result)
-                        ->with('Pssword', $Pssword)
-                        ->with('login', $oRequest->login)
-                        ->with('changeleverage', $changeleverage)
-                        ->withErrors($result);
+            ->with('Result', $Result)
+            ->with('Pssword', $Pssword)
+            ->with('login', $oRequest->login)
+            ->with('changeleverage', $changeleverage)
+            ->withErrors($result);
     }
 
-    public function getMt4ChangePassword(Request $oRequest) {
+    public function getMt4ChangePassword(Request $oRequest)
+    {
         $Password = Config('accounts.apiReqiredConfirmMt4Password');
 
         $changePassword = [
@@ -162,12 +168,13 @@ class ClientAccountsController extends Controller {
             'newPassword' => ''];
 
         return view('accounts::client.changePassword')
-                        ->with('Password', $Password)
-                        ->with('changePassword', $changePassword)
-                        ->with('login', $oRequest->login);
+            ->with('Password', $Password)
+            ->with('changePassword', $changePassword)
+            ->with('login', $oRequest->login);
     }
 
-    public function postMt4ChangePassword(Request $oRequest) {
+    public function postMt4ChangePassword(Request $oRequest)
+    {
         $Password = Config('accounts.apiReqiredConfirmMt4Password');
 
         $changePassword = [
@@ -179,13 +186,14 @@ class ClientAccountsController extends Controller {
         $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'], $oRequest['oldPassword']);
 
         return view('accounts::client.changePassword')
-                        ->withErrors($result)
-                        ->with('Password', $Password)
-                        ->with('changePassword', $changePassword)
-                        ->with('login', $oRequest->login);
+            ->withErrors($result)
+            ->with('Password', $Password)
+            ->with('changePassword', $changePassword)
+            ->with('login', $oRequest->login);
     }
 
-    public function getMt4InternalTransfer(Request $oRequest) {
+    public function getMt4InternalTransfer(Request $oRequest)
+    {
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
 
         $internalTransfer = [
@@ -195,58 +203,59 @@ class ClientAccountsController extends Controller {
             'amount' => ''];
 
         return view('accounts::client.internalTransfer')
-                        ->with('Pssword', $Pssword)
-                        ->with('internalTransfer', $internalTransfer)
-                        ->with('login', $oRequest->login);
+            ->with('Pssword', $Pssword)
+            ->with('internalTransfer', $internalTransfer)
+            ->with('login', $oRequest->login);
     }
-    
-    public function postMt4InternalTransfer(Request $oRequest) {
 
-       
+    public function postMt4InternalTransfer(Request $oRequest)
+    {
+
+
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
-        $allowTransferToUnsignedMT4=Config('accounts.allowTransferToUnsignedMT4');
+        $allowTransferToUnsignedMT4 = Config('accounts.allowTransferToUnsignedMT4');
 
-        $allowed=true;
+        $allowed = true;
 
-        if($allowTransferToUnsignedMT4==false){
+        if ($allowTransferToUnsignedMT4 == false) {
             $aFilterParams = [
                 'from_login' => '',
-                'to_login'   => '',
+                'to_login' => '',
                 'exactLogin' => true,
-                'login'      => $oRequest['login2'],
-                'name'       => '',
+                'login' => $oRequest['login2'],
+                'name' => '',
                 'all_groups' => true,
-                'group'      => '',
-                'sort'       => "",
-                'order'      => '',
-                'signed'     => 1,
+                'group' => '',
+                'sort' => "",
+                'order' => '',
+                'signed' => 1,
                 'account_id' => Sentinel::getUser()->id,
             ];
-            $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, 'login','desc');
+            $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, 'login', 'desc');
 
-            if(!count($oResults)){
-                $allowed=false;
+            if (!count($oResults)) {
+                $allowed = false;
             }
         }
 
-         $internalTransfer = [
+        $internalTransfer = [
             'login' => '',
             'oldPassword' => '',
             'login2' => '',
             'amount' => ''];
-        $result='';
-        if($allowed){
-        $oApiController = new ApiController();
-        $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['oldPassword'], $oRequest['amount']);
-        }else{
-            $result='The Admin does not allowed to transfer to unsigned Mt4 users';
+        $result = '';
+        if ($allowed) {
+            $oApiController = new ApiController();
+            $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['oldPassword'], $oRequest['amount']);
+        } else {
+            $result = 'The Admin does not allowed to transfer to unsigned Mt4 users';
         }
 
         return view('accounts::client.internalTransfer')
-                        ->withErrors($result)
-                        ->with('Pssword', $Pssword)
-                        ->with('internalTransfer', $internalTransfer)
-                        ->with('login', $oRequest->login);
+            ->withErrors($result)
+            ->with('Pssword', $Pssword)
+            ->with('internalTransfer', $internalTransfer)
+            ->with('login', $oRequest->login);
     }
 
 }
