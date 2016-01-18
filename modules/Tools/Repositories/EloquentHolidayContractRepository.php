@@ -4,7 +4,7 @@ namespace Modules\Tools\Repositories;
 
 use Modules\Tools\Entities\ToolsHoliday;
 use Config;
-class EloquentHolidayContractRepository implements FutureContract {
+class EloquentHolidayContractRepository implements HolidayContract {
 
     /**
      */
@@ -13,7 +13,7 @@ class EloquentHolidayContractRepository implements FutureContract {
     }
 
 
-    public function getHolidayByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin') {
+    public function getHolidayByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC') {
 
 
 
@@ -53,4 +53,17 @@ class EloquentHolidayContractRepository implements FutureContract {
         return $oResult;
     }
 
+    public function addHoliday($holiday_details){
+
+        $result=ToolsHoliday::create($holiday_details);
+
+        return ($result)? $result->id:0;
+    }
+
+    public function getHolidayDetails($holidayId){
+        $result=ToolsHoliday::find($holidayId);
+
+        return ($result)? $result:0;
+
+    }
 }

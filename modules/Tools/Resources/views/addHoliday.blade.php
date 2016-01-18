@@ -13,14 +13,14 @@
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.name') }}</label>
-                    {!! Form::text('name',$contractInfo['name'],['class'=>'form-control','id'=>'nameInput']) !!}
+                    {!! Form::text('name',$holidayInfo['name'],['class'=>'form-control','id'=>'nameInput']) !!}
                 </div>
             </div><!-- col-sm-6 -->
 
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.start_date') }}</label>
-                    {!! Form::text('start_date',$contractInfo['start_date'],['class'=>'form-control']) !!}
+                    {!! Form::text('start_date',$holidayInfo['start_date'],['class'=>'form-control']) !!}
                 </div>
             </div><!-- col-sm-6 -->
 
@@ -33,7 +33,7 @@
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.end_date') }}</label>
-                    {!! Form::text('expiry_date',$contractInfo['expiry_date'],['class'=>'form-control']) !!}
+                    {!! Form::text('end_date',$holidayInfo['end_date'],['class'=>'form-control']) !!}
 
                 </div>
             </div><!-- col-sm-6 -->
@@ -66,7 +66,7 @@
                 orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
         }
 
-        $('input[name="expiry_date"],input[name="start_date"]').datepicker(options);
+        $('input[name="end_date"],input[name="start_date"]').datepicker(options);
         });
 
     </script>
