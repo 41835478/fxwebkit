@@ -27,8 +27,8 @@
                     @foreach($oResults as $oResult)
                         {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                         <tr class='{{ $class }}'>
+                            <td>{{ $oResult->securities()->first()->name }}</td>
                             <td>{{ $oResult->name }}</td>
-                            <td>{{ $oResult->start_date }}</td>
                         </tr>
                     @endforeach
                 @endif
@@ -41,6 +41,7 @@
 
 
                 @if (count($oResults))
+
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->render()) !!}
                     @if($oResults->total()>25)
 
@@ -83,7 +84,7 @@
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.end_time') }}</label>
-                    {!! Form::text('end_time',$holidayInfo['expiry_date'],['class'=>'form-control']) !!}
+                    {!! Form::text('end_time',$holidayInfo['end_date'],['class'=>'form-control']) !!}
 
                 </div>
             </div><!-- col-sm-6 -->

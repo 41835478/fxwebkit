@@ -3,6 +3,7 @@
 namespace Modules\Tools\Repositories;
 
 use Modules\Tools\Entities\ToolsHoliday;
+use Modules\Tools\Entities\ToolsSymbols;
 use Config;
 class EloquentHolidayContractRepository implements HolidayContract {
 
@@ -49,7 +50,6 @@ class EloquentHolidayContractRepository implements HolidayContract {
          
         }
 
-
         return $oResult;
     }
 
@@ -67,6 +67,10 @@ class EloquentHolidayContractRepository implements HolidayContract {
 
     }
 
+    public function getSymbols(){
+$oResults=ToolsSymbols::with('securities')->orderBy('id','desc');
+        return $oResults->paginate();
+    }
 
     public function addSymbolsHoliday($aSymbols,$holiday_id,$start_hour,$end_hour,$date)
     {
