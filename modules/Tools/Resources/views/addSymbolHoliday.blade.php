@@ -64,14 +64,14 @@
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.date') }}</label>
-                    {!! Form::text('start_date',$contractInfo['start_date'],['class'=>'form-control']) !!}
+                    {!! Form::text('start_date',$holidayInfo['start_date'],['class'=>'form-control']) !!}
                 </div>
             </div><!-- col-sm-6 -->
 
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.start_time') }}</label>
-                    {!! Form::text('start_time',$contractInfo['start_date'],['class'=>'form-control']) !!}
+                    {!! Form::text('start_time',$holidayInfo['start_date'],['class'=>'form-control']) !!}
                 </div>
             </div><!-- col-sm-6 -->
 
@@ -83,7 +83,7 @@
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.end_time') }}</label>
-                    {!! Form::text('end_time',$contractInfo['expiry_date'],['class'=>'form-control']) !!}
+                    {!! Form::text('end_time',$holidayInfo['expiry_date'],['class'=>'form-control']) !!}
 
                 </div>
             </div><!-- col-sm-6 -->

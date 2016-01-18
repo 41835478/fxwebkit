@@ -66,4 +66,22 @@ class EloquentHolidayContractRepository implements HolidayContract {
         return ($result)? $result:0;
 
     }
+
+    public function deleteContract($id) {
+
+        $id = (is_array($id)) ? $id : [$id];
+        $contract = ToolsHoliday::whereIn('id', $id)->delete();
+
+        if ($contract) {
+            return ['deleted successfully.'];
+        } else {
+            return ['deleted faild please try again later.'];
+        }
+    }
+
+    public function getSymbol()
+    {
+
+
+    }
 }
