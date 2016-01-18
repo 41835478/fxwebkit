@@ -391,21 +391,24 @@ class ToolsController extends Controller {
         return Redirect::route('tools.holiday')->withErrors($result);
     }
 
-    public function getAddSymbolHoliday(Request $oRequest)
+    public function getAddSymbolHoliday(Request $oRequest,$addResult='true')
     {
         $carbon = new Carbon();
         $dt = $carbon->now();
 
 
         $holidayInfo = [
-            'id' => $oRequest->edit_id,
+            'id' => $oRequest->holiday_id,
             'name' => '',
+
             'start_hour' => $dt->format('H:i'),
             'end_hour' =>$dt->format('H:i'),
             'date' => ''
         ];
 
-        if ($oRequest->has('edit_id')) {
+
+        if ($oRequest->has('holiday_id')) {
+
 
             $oResult = $this->oHoliday->getHolidayDetails($oRequest->edit_id);
 
@@ -421,11 +424,15 @@ class ToolsController extends Controller {
         }
 
         $oResults = $this->oHoliday->getSymbols();
+        $view=view('tools::addSymbolHoliday');
+        $view->with('holidayInfo', $holidayInfo);
+        $view->with('oResults', $oResults);
+        if($addResult==false){$view->withErrors('Nothing added !!!');}
 
 
-        return view('tools::addSymbolHoliday')
-            ->with('holidayInfo', $holidayInfo)
-            ->with('oResults', $oResults);
+
+        return $view;
+
     }
     
 
@@ -433,14 +440,22 @@ class ToolsController extends Controller {
     {
 
 
-       $result= $this->oHoliday-> addSymbolsHoliday($oRequest->securities,$oRequest->symbols,$oRequest->id,$oRequest->start_hour,$oRequest->end_hour,$oRequest->date);
+        $result= $this->oHoliday->addSymbolsHoliday($oRequest->symbols,
+            $oRequest->holiday_id,
+            $oRequest->start_hour,
+            $oRequest->end_hour,
+            $oRequest->date);
+
+            return  $this->getAddSymbolHoliday($oRequest,$result);
+
+
+
 
     }
 
     public function getDetailsHoliday()
     {
-        return view('tools::addSymbolHoliday')->with('holidayInfo', $holidayInfo)
-            ->with('oResults', $oResults);
+        return 'aa';
     }
 
     }

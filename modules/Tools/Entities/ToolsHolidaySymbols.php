@@ -8,6 +8,7 @@ class ToolsHolidaySymbols extends Model {
     public $timestamps = false;
     protected $fillable = [
         'id',
+        'securities_id',
         'holiday_id',
         'symbols_id',
         'start_hour',

@@ -85,14 +85,18 @@ $oResults=Securities::with('symbols')->orderBy('id','desc');
     public function addSymbolsHoliday($aSymbols, $holiday_id, $start_hour, $end_hour, $date)
     {
         $result=false;
+        if(count($aSymbols)){
         foreach ($aSymbols as $symbol) {
+            $symbol=explode(',',$symbol);
             $row = ['holiday_id' => $holiday_id,
-                'symbols_id' => $symbol,
+                'securities_id' => $symbol[0],
+                'symbols_id' => $symbol[1],
                 'start_hour' => $start_hour,
                 'end_hour' => $end_hour,
                 'date' => $date];
             $result = ToolsHolidaySymbols::create($row);
         }
+    }
 
 
         return ($result) ? true :false;

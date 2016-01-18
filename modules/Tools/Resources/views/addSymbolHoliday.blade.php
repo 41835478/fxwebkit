@@ -36,7 +36,7 @@
                         @foreach($oResult->symbols as $symbol)
                         <tr class='symbols_tr_{{ $oResult->id }}'>
                             <td></td><td>
-                                {!! Form::checkbox('symbols[]',$symbol->id,false,['class'=>'symbolsCheckbox']) !!}
+                                {!! Form::checkbox('symbols[]',$oResult->id .','. $symbol->id,false,['class'=>'symbolsCheckbox']) !!}
                                 {{ $symbol->name }}</td>
 
                         </tr>
@@ -112,7 +112,10 @@
     </div>
     @endif
     <div class="panel-footer text-right">
-        <button type="submit" class="btn btn-primary" name="id" value="{{ $holidayInfo['edit_id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
+
+
+        <button type="submit" class="btn btn-primary" name="holiday_id" value="{{ $holidayInfo['id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
+
     </div>
 
     {!! Form::close() !!}
