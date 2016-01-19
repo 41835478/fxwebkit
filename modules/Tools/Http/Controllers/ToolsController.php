@@ -392,7 +392,7 @@ class ToolsController extends Controller {
         return Redirect::route('tools.holiday')->withErrors($result);
     }
 
-    public function getAddSymbolHoliday(Request $oRequest,$addResult='true')
+    public function getAddSymbolHoliday(Request $oRequest,$message='')
     {
         $carbon = new Carbon();
         $dt = $carbon->now();
@@ -417,7 +417,7 @@ class ToolsController extends Controller {
         $view=view('tools::addSymbolHoliday');
         $view->with('holidayInfo', $holidayInfo);
         $view->with('oResults', $oResults);
-        if($addResult==false){$view->withErrors('Nothing added !!!');}
+        if($message!=''){$view->withErrors($message);}
 
 
 
@@ -429,13 +429,24 @@ class ToolsController extends Controller {
     public function postAddSymbolHoliday(Request $oRequest)
     {
 
+
+        if($oRequest->start_hour >= $oRequest->end_hour){
+            // TODO[moaid] translate message 'start hour should be less than end hour .'
+            return  $this->getAddSymbolHoliday($oRequest,'start hour should be less than end hour .');
+        }
+
+
         $result= $this->oHoliday->addSymbolsHoliday($oRequest->symbols,
             $oRequest->holiday_id,
             $oRequest->start_hour,
             $oRequest->end_hour,
             $oRequest->date);
 
-            return  $this->getAddSymbolHoliday($oRequest,$result);
+
+
+        // TODO[moaid] translate message 'No thing added !!!'
+        $message=($result == false)? 'No thing added !!!':'';
+            return  $this->getAddSymbolHoliday($oRequest,$message);
     }
 
 
