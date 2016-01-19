@@ -3,7 +3,7 @@
 @section('content')
     {{-- TODO[moaid] translate this page and put the right words and titles --}}
     <div class="page-header">
-        <h1>{{ trans('tools::tools.add_holiday') }}</h1>
+        <h1>{{ trans('tools::tools.trading_hours_over_the').' '. $holidayInfo['name']  }}</h1>
     </div>
 
     <div class="panel">

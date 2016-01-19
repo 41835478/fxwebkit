@@ -123,7 +123,9 @@
     @section("script")
     @parent
     <link rel="stylesheet" type="text/css" href="/assets/css/autoCompleteInput.css">
+
     <script>
+        {{-- TODO [mohammad] check if the start hour less than end hour --}}
         init.push(function () {
         var options = {
         format: "yyyy-mm-dd",
