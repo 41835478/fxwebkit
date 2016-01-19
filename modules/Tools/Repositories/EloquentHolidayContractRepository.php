@@ -7,18 +7,19 @@ use Modules\Tools\Entities\ToolsSymbols;
 use Modules\Tools\Entities\ToolsSecurities as Securities;
 use Modules\Tools\Entities\ToolsHolidaySymbols;
 use Config;
-class EloquentHolidayContractRepository implements HolidayContract {
+class EloquentHolidayContractRepository implements HolidayContract
+{
 
     /**
      */
-    public function __construct() {
+    public function __construct()
+    {
         //
     }
 
 
-    public function getHolidayByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC') {
-
-
+    public function getHolidayByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
+    {
 
 
         $oResult = new ToolsHoliday();
@@ -52,29 +53,37 @@ class EloquentHolidayContractRepository implements HolidayContract {
 
         }
 
+
         return $oResult;
     }
 
-    public function addHoliday($holiday_details){
+    public function addHoliday($holiday_details)
+    {
 
-        $result=ToolsHoliday::create($holiday_details);
+        $result = ToolsHoliday::create($holiday_details);
 
-        return ($result)? $result->id:0;
+        return ($result) ? $result->id : 0;
     }
 
-    public function getHolidayDetails($holidayId){
-        $result=ToolsHoliday::find($holidayId);
+    public function getHolidayDetails($holidayId)
+    {
+        $result = ToolsHoliday::find($holidayId);
 
-        return ($result)? $result:0;
+        return ($result) ? $result : 0;
 
     }
 
     public function getSymbols(){
+
+        $oResults=ToolsSymbols::with('securities')->orderBy('id','desc');
+
+
         $oResults=Securities::with('symbols')->orderBy('id','desc');
+
         return $oResults->paginate();
     }
 
-    public function addSymbolsHoliday($aSymbols,$holiday_id,$start_hour,$end_hour,$date)
+    public function addSymbolsHoliday($aSymbols, $holiday_id, $start_hour, $end_hour, $date)
     {
         $result=false;
         if(count($aSymbols)){
@@ -93,7 +102,9 @@ class EloquentHolidayContractRepository implements HolidayContract {
 
         return ($result) ? true :false;
     }
-    public function deleteHoliday($id) {
+
+    public function deleteHoliday($id)
+    {
 
         $id = (is_array($id)) ? $id : [$id];
         $deleteResult = ToolsHoliday::whereIn('id', $id)->delete();
@@ -104,6 +115,7 @@ class EloquentHolidayContractRepository implements HolidayContract {
             return ['deleted faild please try again later.'];
         }
     }
+
 
     private function convertHourToPercent($hour){
         $aHour=explode(':',$hour);
@@ -146,6 +158,7 @@ class EloquentHolidayContractRepository implements HolidayContract {
 
         return [$aSymbolsHours,$aDates,$date];
     }
+
 
 
 }

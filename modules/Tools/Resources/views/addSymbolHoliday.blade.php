@@ -77,7 +77,7 @@
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.date') }}</label>
-                    {!! Form::text('date',$holidayInfo['start_date'],['class'=>'form-control']) !!}
+                    {!! Form::text('date',$holidayInfo['date'],['class'=>'form-control']) !!}
                 </div>
             </div><!-- col-sm-6 -->
 
@@ -112,7 +112,10 @@
     </div>
     @endif
     <div class="panel-footer text-right">
+
+
         <button type="submit" class="btn btn-primary" name="holiday_id" value="{{ $holidayInfo['id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
+
     </div>
 
     {!! Form::close() !!}
@@ -128,17 +131,17 @@
                 orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
         }
 
-        $('input[name="expiry_date"],input[name="start_date"]').datepicker(options);
+        $('input[name="date"]').datepicker(options);
         });
 
         var options2 = {
             minuteStep: 1,
-            showSeconds: true,
+            showSeconds: false,
             showMeridian: false,
             showInputs: false,
             orientation: $('body').hasClass('right-to-left') ? { x: 'right', y: 'auto'} : { x: 'auto', y: 'auto'}
         }
-        $('input[name="end_time"],input[name="start_time"]').timepicker(options2);
+        $('input[name="end_hour"],input[name="start_hour"]').timepicker(options2);
 
 
         $('.securitiesCheckbox').change(function(){

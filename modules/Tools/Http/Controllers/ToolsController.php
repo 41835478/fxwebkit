@@ -12,6 +12,7 @@ use Modules\Tools\Repositories\FutureContract as Future;
 use Modules\Tools\Repositories\HolidayContract as Holiday;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Fxweb\Http\Controllers\admin\Email;
+use Carbon\Carbon;
 
 class ToolsController extends Controller {
 
@@ -311,6 +312,7 @@ class ToolsController extends Controller {
 
 
         if ($oRequest->has('search')) {
+
             $aFilterParams['id'] = $oRequest->id;
             $aFilterParams['name'] = $oRequest->name;
             $aFilterParams['start_date'] = $oRequest->start_date;
@@ -392,18 +394,22 @@ class ToolsController extends Controller {
 
     public function getAddSymbolHoliday(Request $oRequest,$addResult='true')
     {
+        $carbon = new Carbon();
+        $dt = $carbon->now();
 
 
 
             $oResult = $this->oHoliday->getHolidayDetails($oRequest->holiday_id);
 
 // TODO[moaid] setcurrent time in start_hour and end_hour
+
             $holidayInfo = [
                 'id' => $oRequest->holiday_id,
+
                 'name' => $oResult['name'],
-                'start_date' => $oResult['start_date'],
-                'start_hour' => '',
-                'end_hour' => '',
+                'date' => $oResult['start_date'],
+                'start_hour' => $dt->format('H:i'),
+                'end_hour' => $dt->format('H:i'),
             ];
 
 
@@ -414,11 +420,15 @@ class ToolsController extends Controller {
         if($addResult==false){$view->withErrors('Nothing added !!!');}
 
 
+
         return $view;
+
     }
+    
 
     public function postAddSymbolHoliday(Request $oRequest)
     {
+
 
         $result= $this->oHoliday->addSymbolsHoliday($oRequest->symbols,
             $oRequest->holiday_id,
@@ -429,6 +439,13 @@ class ToolsController extends Controller {
             return  $this->getAddSymbolHoliday($oRequest,$result);
 
 
+
+
+    }
+
+    public function getDetailsHoliday()
+    {
+        return 'aa';
     }
     public function getHolidayDetails(Request $oRequest){
 

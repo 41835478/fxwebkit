@@ -10,5 +10,5 @@ interface HolidayContract
 
    public function addHoliday($holiday_details);
 
-   public function getSymbols();
+
 }
