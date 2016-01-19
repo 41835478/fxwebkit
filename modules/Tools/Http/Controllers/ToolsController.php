@@ -429,7 +429,6 @@ class ToolsController extends Controller {
     public function postAddSymbolHoliday(Request $oRequest)
     {
 
-
         $result= $this->oHoliday->addSymbolsHoliday($oRequest->symbols,
             $oRequest->holiday_id,
             $oRequest->start_hour,
@@ -437,10 +436,6 @@ class ToolsController extends Controller {
             $oRequest->date);
 
             return  $this->getAddSymbolHoliday($oRequest,$result);
-
-
-
-
     }
 
 
@@ -465,6 +460,13 @@ class ToolsController extends Controller {
             ->with('aSymbolsHours', $aSymbolsHours)
             ->with('aDates', $aDates)
             ->with('date', $date);
+    }
+
+    public function getDeleteSymbol(Request $oRequest)
+    {
+        $result = $this->oHoliday->deleteSymbol($oRequest->delete_id);
+        // todo[mohammad] check if there anther way (to(route) to send var with route
+        return Redirect::to(route('tools.holidayDetails').'?holiday_id='.$oRequest->holiday_id.'&date='.$oRequest->date)->withErrors($result);
     }
 
     }

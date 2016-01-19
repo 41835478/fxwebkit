@@ -61,22 +61,27 @@
 
                     @foreach($aSymbolsHours as  $key=>$symbol)
                         <tr>
-                            <td>{{ $key }}</td>
+                            <td> {{ $key }}</td>
                             <td>
                                 <div class="hoursLneAllDiv">
                                     @for($i=0;$i<24;$i++)
                                         <div class="oneHourDiv">{{$i}}</div>
                                     @endfor
+                                        {{-- */$symbol_id=0;/* --}}
                                     @if(count($symbol))
 
                                         @foreach($symbol as $period)
                                             <div data-original-title="{{$period[2] }} - {{$period[3]}}"
                                                  class="hourPeriodDiv"
                                                  style="left:{{$period[0] }}%;width:{{$period[1] - $period[0] }}%;"></div>
-
+                                                {{-- */$symbol_id=$period[4];/* --}}
                                         @endforeach
                                     @endif
                                 </div>
+                            </td>
+
+                            <td>
+                                <a href="{{ route('tools.deleteSymbol') }}?delete_id={{$symbol_id}}&holiday_id={{$holidayInfo['id']}}&date={{$oneDate}}" class="fa fa-trash-o"></a>
                             </td>
                         </tr>
                     @endforeach

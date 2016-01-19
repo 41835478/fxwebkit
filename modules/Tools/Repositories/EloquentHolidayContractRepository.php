@@ -145,18 +145,31 @@ class EloquentHolidayContractRepository implements HolidayContract
         $aSymbolsHours=[];
 
 
-        foreach($oResults as $result){
-            $aSymbolsHours[$result->symbols->name][]=
+        foreach($oResults as $result) {
+            $aSymbolsHours[$result->symbols->name][] =
                 [
                     $this->convertHourToPercent($result->start_hour),
                     $this->convertHourToPercent($result->end_hour),
                     $result->start_hour,
                     $result->end_hour,
+                    $result->symbols->id,
                 ];
+
         }
 
-
         return [$aSymbolsHours,$aDates,$date];
+    }
+
+    public function deleteSymbol($id)
+    {
+        $id = (is_array($id)) ? $id : [$id];
+        $deleteResult = ToolsHolidaySymbols::whereIn('symbols_id', $id)->delete();
+        if ($deleteResult) {
+            // todo[moaid] translate messages and all messages like this
+            return ['deleted successfully.'];
+        } else {
+            return ['deleted faild please try again later.'];
+        }
     }
 
 
