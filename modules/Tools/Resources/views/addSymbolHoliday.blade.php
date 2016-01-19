@@ -131,7 +131,7 @@
                 orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
         }
 
-        $('input[name="expiry_date"],input[name="start_date"]').datepicker(options);
+        $('input[name="date"]').datepicker(options);
         });
 
         var options2 = {

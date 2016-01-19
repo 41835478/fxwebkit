@@ -2,6 +2,7 @@
    
 use Illuminate\Database\Eloquent\Model;
 
+
 class ToolsHolidaySymbols extends Model {
     protected $table = 'tools_holiday_symbols';
 
@@ -16,5 +17,13 @@ class ToolsHolidaySymbols extends Model {
         'date',
 
     ];
+
+    public function symbols(){
+        return $this->belongsTo('Modules\Tools\Entities\ToolsSymbols','symbols_id');
+    }
+
+    public function securities(){
+        return $this->belongsTo('Modules\Tools\Entities\ToolsSecurities','securities_id');
+    }
 
 }

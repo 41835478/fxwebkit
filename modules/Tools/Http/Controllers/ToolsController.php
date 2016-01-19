@@ -312,6 +312,7 @@ class ToolsController extends Controller {
 
 
         if ($oRequest->has('search')) {
+
             $aFilterParams['id'] = $oRequest->id;
             $aFilterParams['name'] = $oRequest->name;
             $aFilterParams['start_date'] = $oRequest->start_date;
@@ -387,7 +388,7 @@ class ToolsController extends Controller {
     }
 
     public function getDeleteHoliday(Request $oRequest){
-        $result = $this->oHoliday->deleteContract($oRequest->delete_id);
+        $result = $this->oHoliday->deleteHoliday($oRequest->delete_id);
         return Redirect::route('tools.holiday')->withErrors($result);
     }
 
@@ -456,6 +457,28 @@ class ToolsController extends Controller {
     public function getDetailsHoliday()
     {
         return 'aa';
+    }
+    public function getHolidayDetails(Request $oRequest){
+
+        $holiday_id=($oRequest->has('holiday_id'))? $oRequest->holiday_id:0;
+        $oResult = $this->oHoliday->getHolidayDetails($holiday_id);
+
+
+        $holidayInfo = [
+            'id' => $holiday_id,
+            'name' => $oResult['name'],
+            'start_date' => $oResult['start_date'],
+            'end_date' => $oResult['start_date'],
+
+        ];
+        $date=($oRequest->has('date'))? $oRequest->date:'';
+        list($aSymbolsHours,$aDates,$date)=$this->oHoliday->getHolidaySymbolsDetails($holiday_id,$date);
+
+        return view('tools::holidayDetails')
+            ->with('holidayInfo', $holidayInfo)
+            ->with('aSymbolsHours', $aSymbolsHours)
+            ->with('aDates', $aDates)
+            ->with('date', $date);
     }
 
     }
