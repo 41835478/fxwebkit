@@ -1,135 +1,132 @@
-    @extends('admin.layouts.main')
-    @section('title', trans('tools::tools.addContract'))
-    @section('content')
-// TODO[moaid] translate this page and put the right words and titles
+@extends('admin.layouts.main')
+@section('title', trans('tools::tools.addContract'))
+@section('content')
+    {{-- TODO[moaid] translate this page and put the right words and titles --}}
     <div class="page-header">
         <h1>{{ trans('tools::tools.add_holiday') }}</h1>
     </div>
-    {!! Form::open(['class'=>'panel form-horizontal']) !!}
 
+<div class="panel">
 
-    <div class="panel-body">
-
-        <div class="table-light">
-
-       <table class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th class="no-warp">{!! th_sort(trans('tools::tools.securities'), 'name', $oResults) !!}</th>
-                    <th class="no-warp">{!! th_sort(trans('tools::tools.symbols'), 'symbol', $oResults) !!}</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                @if (count($oResults))
-                    {{-- */$i=0;/* --}}
-                    {{-- */$class='';/* --}}
-                    @foreach($oResults as $oResult)
-                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                        <tr class='{{ $class }}' data-security_id="{{ $oResult->id }}">
-                            <td colspan="2">
-                                {!! Form::checkbox('securities[]',$oResult->id,false,['class'=>'securitiesCheckbox']) !!}
-
-                                {{ $oResult->name }}</td>
-
-                        </tr>
-                        @foreach($oResult->symbols as $symbol)
-                        <tr class='symbols_tr_{{ $oResult->id }}'>
-                            <td></td><td>
-                                {!! Form::checkbox('symbols[]',$oResult->id .','. $symbol->id,false,['class'=>'symbolsCheckbox']) !!}
-                                {{ $symbol->name }}</td>
-
-                        </tr>
-
-                        @endforeach
-                    @endforeach
-                @endif
-
-                </tbody>
-
-            </table>
-
-            <div class="table-footer text-right">
-
-
-                @if (count($oResults))
-
-                    {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->render()) !!}
-                    @if($oResults->total()>25)
-
-                        <div class="DT-lf-right change_page_all_div" >
-
-                            {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}
-
-                            {!! Form::submit(trans('tools::tools.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-
-                        </div>
-                    @endif
-
-                    <div class="col-sm-3  padding-xs-vr">
-                        <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
-                    </div>
-                @endif
-            </div>
-        </div>
-
+    <div class="panel-heading">
         <div class="row">
 
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="form-group no-margin-hr">
 
-                    <label class="control-label">{{ trans('tools::tools.occasion') }}</label>
-                    {!! Form::text('name',$holidayInfo['name'],['class'=>'form-control']) !!}
+                    <label class="control-label">{{ $holidayInfo['name'] }}</label>
                 </div>
             </div><!-- col-sm-6 -->
 
 
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="form-group no-margin-hr">
-                    <label class="control-label">{{ trans('tools::tools.date') }}</label>
-                    {!! Form::text('date',$holidayInfo['start_date'],['class'=>'form-control']) !!}
+                    <label class="control-label">From : {{ $holidayInfo['start_date'] }}</label>
                 </div>
             </div><!-- col-sm-6 -->
 
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="form-group no-margin-hr">
-                    <label class="control-label">{{ trans('tools::tools.start_time') }}</label>
-                    {!! Form::text('end_date',$holidayInfo['end_date'],['class'=>'form-control']) !!}
+                    <label class="control-label">To : {{ $holidayInfo['end_date'] }}</label>
                 </div>
             </div><!-- col-sm-6 -->
 
         </div><!-- row -->
+    </div>
+
+
+    <div class="panel-body">
+
+
+
+
+        <div class="table-light">
+
+                <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+                    @foreach($aDates as $oneDate)
+
+                        <li @if($oneDate == $date) class="active" @endif >
+                            <a href="{{ route('tools.holidayDetails') }}?holiday_id={{$holidayInfo['id']}}&date={{$oneDate}}"> {{$oneDate}}</a>
+                        </li>
+                    @endforeach
+
+
+                </ul>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+
+
+                </thead>
+                <tbody>
+
+
+                @foreach($aSymbolsHours as  $key=>$symbol)
+                    <tr>
+                        <td>{{ $key }}</td>
+                        <td >
+                            <div class="hoursLneAllDiv">
+                                @for($i=0;$i<24;$i++)
+                                    <div class="oneHourDiv">{{$i}}</div>
+                                    @endfor
+                    @if(count($symbol))
+
+                        @foreach($symbol as $period)
+                            <div  data-original-title="{{$period[2] }} - {{$period[3]}}"  class="hourPeriodDiv" style="left:{{$period[0] }}%;width:{{$period[1] - $period[0] }}%;"></div>
+
+                        @endforeach
+                    @endif
+                            </div>
+                        </td>
+</tr>
+                @endforeach
+                </tbody>
+
+            </table>
+<style type="text/css">
+    .hoursLneAllDiv{width:100%; height:30px; position:relative;}
+    .hourPeriodDiv{ position: absolute; height:30px; background-color: rgba(141,195,40,0.46);}
+    .oneHourDiv{ width:4.166666666666%; margin-right:-1px;margin-left:1px;  border-left:1px solid #aaa; float:left; height:30px; background-color: #ccc; color:#fff; text-align:center;padding-top:5px;}
+</style>
+
+        </div>
+
 
 
 
 
 
     </div>
+</div>
     @if($errors->any())
-    <div class="alert alert-danger alert-dark">
-        @foreach($errors->all() as $key=>$error)
-        <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
-        @endforeach
-    </div>
+        <div class="alert alert-danger alert-dark">
+            @foreach($errors->all() as $key=>$error)
+                <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>
+            @endforeach
+        </div>
     @endif
     <div class="panel-footer text-right">
-        <button type="submit" class="btn btn-primary" name="holiday_id" value="{{ $holidayInfo['id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
-    </div>
+      </div>
 
-    {!! Form::close() !!}
-    @stop
-    @section("script")
+
+@stop
+@section("script")
     @parent
     <link rel="stylesheet" type="text/css" href="/assets/css/autoCompleteInput.css">
     <script>
+
         init.push(function () {
-        var options = {
-        format: "yyyy-mm-dd",
+            $('.hourPeriodDiv').tooltip();
+        });
+
+        init.push(function () {
+            var options = {
+                format: "yyyy-mm-dd",
                 todayBtn: "linked",
                 orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-        }
+            }
 
-        $('input[name="expiry_date"],input[name="start_date"]').datepicker(options);
+            $('input[name="expiry_date"],input[name="start_date"]').datepicker(options);
         });
 
         var options2 = {
@@ -153,4 +150,4 @@
             }
         });
     </script>
-    @stop
+@stop

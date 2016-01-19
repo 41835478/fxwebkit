@@ -444,16 +444,20 @@ class ToolsController extends Controller {
 
 
         $holidayInfo = [
-            'id' => $oRequest->edit_id,
+            'id' => $holiday_id,
             'name' => $oResult['name'],
             'start_date' => $oResult['start_date'],
             'end_date' => $oResult['start_date'],
 
         ];
-        $oResults=$this->oHoliday->getHolidaySymbolsDetails($holiday_id);
+        $date=($oRequest->has('date'))? $oRequest->date:'';
+        list($aSymbolsHours,$aDates,$date)=$this->oHoliday->getHolidaySymbolsDetails($holiday_id,$date);
+
         return view('tools::holidayDetails')
             ->with('holidayInfo', $holidayInfo)
-            ->with('oResults', $oResults);
+            ->with('aSymbolsHours', $aSymbolsHours)
+            ->with('aDates', $aDates)
+            ->with('date', $date);
     }
 
     }

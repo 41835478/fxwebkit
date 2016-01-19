@@ -49,7 +49,7 @@ class EloquentHolidayContractRepository implements HolidayContract {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
         } else {
             $oResult = $oResult->get();
-         
+
         }
 
         return $oResult;
@@ -70,7 +70,7 @@ class EloquentHolidayContractRepository implements HolidayContract {
     }
 
     public function getSymbols(){
-      $oResults=Securities::with('symbols')->orderBy('id','desc');
+        $oResults=Securities::with('symbols')->orderBy('id','desc');
         return $oResults->paginate();
     }
 
@@ -78,17 +78,17 @@ class EloquentHolidayContractRepository implements HolidayContract {
     {
         $result=false;
         if(count($aSymbols)){
-        foreach ($aSymbols as $symbol) {
-            $symbol=explode(',',$symbol);
-            $row = ['holiday_id' => $holiday_id,
-                'securities_id' => $symbol[0],
-                'symbols_id' => $symbol[1],
-                'start_hour' => $start_hour,
-                'end_hour' => $end_hour,
-                'date' => $date];
-            $result = ToolsHolidaySymbols::create($row);
+            foreach ($aSymbols as $symbol) {
+                $symbol=explode(',',$symbol);
+                $row = ['holiday_id' => $holiday_id,
+                    'securities_id' => $symbol[0],
+                    'symbols_id' => $symbol[1],
+                    'start_hour' => $start_hour,
+                    'end_hour' => $end_hour,
+                    'date' => $date];
+                $result = ToolsHolidaySymbols::create($row);
+            }
         }
-    }
 
 
         return ($result) ? true :false;
@@ -105,10 +105,46 @@ class EloquentHolidayContractRepository implements HolidayContract {
         }
     }
 
-    public function getHolidaySymbolsDetails($holiday_id){
-       // ToolsHolidaySymbols
-        $oResults=Securities::with('symbols')->orderBy('id','desc');
-        return $oResults->paginate();
+    private function convertHourToPercent($hour){
+        $aHour=explode(':',$hour);
+        $percent=$aHour[0]*1/24+($aHour[1]*1/(60*24))+($aHour[2]*1/(60*24*24));
+        return round($percent,7)*100;
+    }
+
+    public function getHolidaySymbolsDetails($holiday_id,$date=''){
+
+        $oHolidayDaysResults=ToolsHolidaySymbols::select('date')->distinct('date')->where('holiday_id',$holiday_id)->get();
+
+        $firstDate='';
+        $aDates=[];
+
+        foreach($oHolidayDaysResults as $result){
+            if($firstDate ==''){$firstDate=$result->date;}
+            $aDates[]=$result->date;
+        }
+        $date=($date=='')? $firstDate:$date;
+
+        $oResults=ToolsHolidaySymbols::with('symbols')
+            ->where('holiday_id',$holiday_id)
+            ->where('date',$date)
+            ->orderBy('symbols_id','desc')
+        ->paginate();
+
+        $aSymbolsHours=[];
+
+
+        foreach($oResults as $result){
+            $aSymbolsHours[$result->symbols->name][]=
+                [
+                    $this->convertHourToPercent($result->start_hour),
+                    $this->convertHourToPercent($result->end_hour),
+                    $result->start_hour,
+                    $result->end_hour,
+                ];
+        }
+
+
+        return [$aSymbolsHours,$aDates,$date];
     }
 
 
