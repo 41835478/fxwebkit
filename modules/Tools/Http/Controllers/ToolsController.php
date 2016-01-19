@@ -386,7 +386,7 @@ class ToolsController extends Controller {
     }
 
     public function getDeleteHoliday(Request $oRequest){
-        $result = $this->oHoliday->deleteContract($oRequest->delete_id);
+        $result = $this->oHoliday->deleteHoliday($oRequest->delete_id);
         return Redirect::route('tools.holiday')->withErrors($result);
     }
 
@@ -436,6 +436,24 @@ class ToolsController extends Controller {
             return  $this->getAddSymbolHoliday($oRequest,$result);
 
 
+    }
+    public function getHolidayDetails(Request $oRequest){
+
+        $holiday_id=($oRequest->has('holiday_id'))? $oRequest->holiday_id:0;
+        $oResult = $this->oHoliday->getHolidayDetails($holiday_id);
+
+
+        $holidayInfo = [
+            'id' => $oRequest->edit_id,
+            'name' => $oResult['name'],
+            'start_date' => $oResult['start_date'],
+            'end_date' => $oResult['start_date'],
+
+        ];
+        $oResults=$this->oHoliday->getHolidaySymbolsDetails($holiday_id);
+        return view('tools::holidayDetails')
+            ->with('holidayInfo', $holidayInfo)
+            ->with('oResults', $oResults);
     }
 
     }

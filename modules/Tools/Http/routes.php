@@ -13,6 +13,7 @@
             'getAddSymbolHoliday'=>'tools.addSymbolHoliday',
             'getEditHoliday'=>'tools.editHoliday',
             'getDeleteHoliday'=>'tools.deleteHoliday',
+            'getHolidayDetails'=>'tools.holidayDetails',
 
             ]);
 });

@@ -70,7 +70,7 @@ class EloquentHolidayContractRepository implements HolidayContract {
     }
 
     public function getSymbols(){
-$oResults=Securities::with('symbols')->orderBy('id','desc');
+      $oResults=Securities::with('symbols')->orderBy('id','desc');
         return $oResults->paginate();
     }
 
@@ -103,6 +103,12 @@ $oResults=Securities::with('symbols')->orderBy('id','desc');
         } else {
             return ['deleted faild please try again later.'];
         }
+    }
+
+    public function getHolidaySymbolsDetails($holiday_id){
+       // ToolsHolidaySymbols
+        $oResults=Securities::with('symbols')->orderBy('id','desc');
+        return $oResults->paginate();
     }
 
 
