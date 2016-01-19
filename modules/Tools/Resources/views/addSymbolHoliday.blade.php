@@ -3,7 +3,7 @@
     @section('content')
 
     <div class="page-header">
-        <h1>{{ trans('tools::tools.add_holiday') }}</h1>
+        <h1>{{ trans('tools::tools.trading_hours_over_the').' '. $holidayInfo['name']  }} </h1>
     </div>
     {!! Form::open(['class'=>'panel form-horizontal']) !!}
 
@@ -136,7 +136,7 @@
 
         var options2 = {
             minuteStep: 1,
-            showSeconds: false,
+            showSeconds: true,
             showMeridian: false,
             showInputs: false,
             orientation: $('body').hasClass('right-to-left') ? { x: 'right', y: 'auto'} : { x: 'auto', y: 'auto'}

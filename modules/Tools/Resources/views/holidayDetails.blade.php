@@ -6,41 +6,43 @@
         <h1>{{ trans('tools::tools.add_holiday') }}</h1>
     </div>
 
-<div class="panel">
+    <div class="panel">
 
-    <div class="panel-heading">
-        <div class="row">
+        <div class="panel-heading">
+            <div class="row">
 
-            <div class="col-sm-4">
-                <div class="form-group no-margin-hr">
+                <div class="col-sm-4">
+                    <div class="form-group no-margin-hr">
 
-                    <label class="control-label">{{ $holidayInfo['name'] }}</label>
+                        <label class="control-label">{{ $holidayInfo['name'] }}</label>
+                    </div>
                 </div>
-            </div><!-- col-sm-6 -->
+                <!-- col-sm-6 -->
 
 
-            <div class="col-sm-4">
-                <div class="form-group no-margin-hr">
-                    <label class="control-label">From : {{ $holidayInfo['start_date'] }}</label>
+                <div class="col-sm-4">
+                    <div class="form-group no-margin-hr">
+                        <label class="control-label">From : {{ $holidayInfo['start_date'] }}</label>
+                    </div>
                 </div>
-            </div><!-- col-sm-6 -->
+                <!-- col-sm-6 -->
 
-            <div class="col-sm-4">
-                <div class="form-group no-margin-hr">
-                    <label class="control-label">To : {{ $holidayInfo['end_date'] }}</label>
+                <div class="col-sm-4">
+                    <div class="form-group no-margin-hr">
+                        <label class="control-label">To : {{ $holidayInfo['end_date'] }}</label>
+                    </div>
                 </div>
-            </div><!-- col-sm-6 -->
+                <!-- col-sm-6 -->
 
-        </div><!-- row -->
-    </div>
-
-
-    <div class="panel-body">
+            </div>
+            <!-- row -->
+        </div>
 
 
+        <div class="panel-body">
 
 
-        <div class="table-light">
+            <div class="table-light">
 
                 <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                     @foreach($aDates as $oneDate)
@@ -53,51 +55,66 @@
 
                 </ul>
 
-            <table class="table table-bordered table-striped">
-                <thead>
+                <table class="table table-bordered table-striped">
+                    <tbody>
 
 
-                </thead>
-                <tbody>
-
-
-                @foreach($aSymbolsHours as  $key=>$symbol)
-                    <tr>
-                        <td>{{ $key }}</td>
-                        <td >
-                            <div class="hoursLneAllDiv">
-                                @for($i=0;$i<24;$i++)
-                                    <div class="oneHourDiv">{{$i}}</div>
+                    @foreach($aSymbolsHours as  $key=>$symbol)
+                        <tr>
+                            <td>{{ $key }}</td>
+                            <td>
+                                <div class="hoursLneAllDiv">
+                                    @for($i=0;$i<24;$i++)
+                                        <div class="oneHourDiv">{{$i}}</div>
                                     @endfor
-                    @if(count($symbol))
+                                    @if(count($symbol))
 
-                        @foreach($symbol as $period)
-                            <div  data-original-title="{{$period[2] }} - {{$period[3]}}"  class="hourPeriodDiv" style="left:{{$period[0] }}%;width:{{$period[1] - $period[0] }}%;"></div>
+                                        @foreach($symbol as $period)
+                                            <div data-original-title="{{$period[2] }} - {{$period[3]}}"
+                                                 class="hourPeriodDiv"
+                                                 style="left:{{$period[0] }}%;width:{{$period[1] - $period[0] }}%;"></div>
 
-                        @endforeach
-                    @endif
-                            </div>
-                        </td>
-</tr>
-                @endforeach
-                </tbody>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
 
-            </table>
-<style type="text/css">
-    .hoursLneAllDiv{width:100%; height:30px; position:relative;}
-    .hourPeriodDiv{ position: absolute; height:30px; background-color: rgba(141,195,40,0.46);}
-    .oneHourDiv{ width:4.166666666666%; margin-right:-1px;margin-left:1px;  border-left:1px solid #aaa; float:left; height:30px; background-color: #ccc; color:#fff; text-align:center;padding-top:5px;}
-</style>
+                </table>
+                <style type="text/css">
+                    .hoursLneAllDiv {
+                        width: 100%;
+                        height: 30px;
+                        position: relative;
+                    }
+
+                    .hourPeriodDiv {
+                        position: absolute;
+                        height: 30px;
+                        background-color: rgba(141, 195, 40, 0.46);
+                    }
+
+                    .oneHourDiv {
+                        width: 4.166666666666%;
+                        margin-right: -1px;
+                        margin-left: 1px;
+                        border-left: 1px solid #aaa;
+                        float: left;
+                        height: 30px;
+                        background-color: #ccc;
+                        color: #fff;
+                        text-align: center;
+                        padding-top: 5px;
+                    }
+                </style>
+
+            </div>
+
 
         </div>
-
-
-
-
-
-
     </div>
-</div>
     @if($errors->any())
         <div class="alert alert-danger alert-dark">
             @foreach($errors->all() as $key=>$error)
@@ -106,7 +123,7 @@
         </div>
     @endif
     <div class="panel-footer text-right">
-      </div>
+    </div>
 
 
 @stop
@@ -134,19 +151,19 @@
             showSeconds: true,
             showMeridian: false,
             showInputs: false,
-            orientation: $('body').hasClass('right-to-left') ? { x: 'right', y: 'auto'} : { x: 'auto', y: 'auto'}
+            orientation: $('body').hasClass('right-to-left') ? {x: 'right', y: 'auto'} : {x: 'auto', y: 'auto'}
         }
         $('input[name="end_time"],input[name="start_time"]').timepicker(options2);
 
 
-        $('.securitiesCheckbox').change(function(){
-            var security_id=$(this).val();
+        $('.securitiesCheckbox').change(function () {
+            var security_id = $(this).val();
 
-            if($(this).prop("checked")){
-                $(".symbols_tr_"+security_id+" .symbolsCheckbox").prop("checked",true);
-            }else{
+            if ($(this).prop("checked")) {
+                $(".symbols_tr_" + security_id + " .symbolsCheckbox").prop("checked", true);
+            } else {
 
-                $(".symbols_tr_"+security_id+" .symbolsCheckbox").prop("checked",false);
+                $(".symbols_tr_" + security_id + " .symbolsCheckbox").prop("checked", false);
             }
         });
     </script>

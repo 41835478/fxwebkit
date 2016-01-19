@@ -34,6 +34,12 @@ return [
     'holiday'=>'Holiday',
     'add_holiday'=>'Add Holiday',
     'end_date'=>'End Date',
+    'end_time'=>'End Time',
+    'start_time'=>'Start Time',
+    'securities'=>'Securities',
+    'symbols'=>'Symbols',
+    'date'=>'Date',
+    'trading_hours_over_the'=>'Trading Hours Over The',
 
 
 ];

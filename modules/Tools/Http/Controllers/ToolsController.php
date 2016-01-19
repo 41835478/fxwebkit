@@ -411,9 +411,9 @@ class ToolsController extends Controller {
         if ($oRequest->has('holiday_id')) {
 
 
-            $oResult = $this->oHoliday->getHolidayDetails($oRequest->edit_id);
+            $oResult = $this->oHoliday->getHolidayDetails($oRequest->holiday_id);
 
-// TODO[moaid] setcurrent time in start_hour and end_hour
+
 
             $holidayInfo = [
                 'edit_id' => $oRequest->edit_id,
@@ -454,10 +454,7 @@ class ToolsController extends Controller {
 
     }
 
-    public function getDetailsHoliday()
-    {
-        return 'aa';
-    }
+
     public function getHolidayDetails(Request $oRequest){
 
         $holiday_id=($oRequest->has('holiday_id'))? $oRequest->holiday_id:0;
