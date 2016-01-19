@@ -377,7 +377,7 @@ class ToolsController extends Controller {
                 'end_date' => $oResult['expiry_date'],
             ];
 
-            return Redirect::to(route('tools.addSymbolHoliday').'?id='.$oResult->id);
+            return Redirect::to(route('tools.addSymbolHoliday').'?holiday_id='.$oResult->id);
         }
     }
 
@@ -393,26 +393,19 @@ class ToolsController extends Controller {
     public function getAddSymbolHoliday(Request $oRequest,$addResult='true')
     {
 
-        $holidayInfo = [
-            'id' => $oRequest->holiday_id,
-            'name' => '',
-            'start_date' => '',
-            'start_hour' => '',
-            'end_hour' => '',
-        ];
-        if ($oRequest->has('holiday_id')) {
 
-            $oResult = $this->oHoliday->getHolidayDetails($oRequest->edit_id);
+
+            $oResult = $this->oHoliday->getHolidayDetails($oRequest->holiday_id);
 
 // TODO[moaid] setcurrent time in start_hour and end_hour
             $holidayInfo = [
-                'id' => $oRequest->edit_id,
+                'id' => $oRequest->holiday_id,
                 'name' => $oResult['name'],
                 'start_date' => $oResult['start_date'],
                 'start_hour' => '',
                 'end_hour' => '',
             ];
-        }
+
 
         $oResults = $this->oHoliday->getSymbols();
         $view=view('tools::addSymbolHoliday');
