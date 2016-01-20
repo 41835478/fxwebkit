@@ -451,8 +451,8 @@ class ToolsController extends Controller {
     {
         if($oRequest->start_hour >= $oRequest->end_hour){
 
-            $start_hour_message= trans('tools::tools.start_hour_message');
-            return  $this->getAddSymbolHoliday($oRequest,$start_hour_message);
+
+            return  $this->getAddSymbolHoliday($oRequest,trans('tools::tools.start_hour_message'));
         }
 
 
@@ -462,8 +462,8 @@ class ToolsController extends Controller {
             $oRequest->end_hour,
             $oRequest->date);
 
-        $no_thing_messag= trans('tools::tools.no_thing_message');
-        $message=($result == false)? $no_thing_messag:'';
+
+        $message=($result == false)? trans('tools::tools.no_thing_message'):'';
             return  $this->getAddSymbolHoliday($oRequest,$message);
     }
 

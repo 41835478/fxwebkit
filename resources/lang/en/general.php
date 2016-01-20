@@ -56,7 +56,7 @@ return [
     'average_profit' => 'Average Profit',
     'average_loss' => 'Average Loss',
     'maximum_consecutive_losses' => 'Maximum Consecutive Losses',
-    'maximal_consecutive_loss' => 'Maximal Consecutive_loss',
+    'maximal_consecutive_loss' => 'Maximal Consecutive Loss',
     'monthly_grouth' => 'Monthly Grouth',
 
 
