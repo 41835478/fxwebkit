@@ -383,8 +383,38 @@ class ToolsController extends Controller {
         }
     }
 
-    public function getEditHoliday(){
-        return'getEditHoliday';
+    public function getEditHoliday(Request $oRequest){
+
+
+        $oResult = $this->oHoliday->getHolidayDetails($oRequest->edit_id);
+
+
+        $holidayInfo = [
+            'id' => $oRequest->edit_id,
+            'name' => $oResult['name'],
+            'start_date' => $oResult['start_date'],
+            'end_date' => $oResult['end_date']
+        ];
+
+        return view('tools::editHoliday')->with('holidayInfo', $holidayInfo);
+    }
+
+    public function postEditHoliday(Request $oRequest) {
+
+            $oResult = $this->oHoliday->getUpdateholiday($oRequest  );
+
+
+        $holidayInfo = [
+                'id' => $oRequest->edit_id,
+                'name' => $oResult['name'],
+                'start_date' => $oResult['start_date'],
+                'end_date' => $oResult['expiry_date'],
+            ];
+      //  dd($holiday_details);
+       // dd($oRequest);
+
+        return Redirect::route('tools.holiday');
+
     }
 
     public function getDeleteHoliday(Request $oRequest){

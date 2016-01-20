@@ -67,10 +67,31 @@ class EloquentHolidayContractRepository implements HolidayContract
 
     public function getHolidayDetails($holidayId)
     {
+
         $result = ToolsHoliday::find($holidayId);
+
+
 
         return ($result) ? $result : 0;
 
+    }
+
+
+    public function getUpdateholiday($oRequest) {
+
+
+        $result = ToolsHoliday::find($oRequest->edit_id);
+
+
+        $aCredentials = [
+            'name' => $oRequest->name,
+            'start_date' => $oRequest->start_date,
+            'end_date' => $oRequest->end_date
+        ];
+
+            $result->update($aCredentials);
+
+        return $result->id;
     }
 
     public function getSymbols(){

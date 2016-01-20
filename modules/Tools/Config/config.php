@@ -41,6 +41,11 @@ return ['is_admin' => 1,
 			'route' => 'client.tools.marketWatch',
 			'title' => 'marketWatch',
 			'icon' => 'fa fa-shopping-cart',
+		],
+		[
+			'route' => 'client.tools.holiday',
+			'title' => 'holiday',
+			'icon' => 'fa fa-shopping-cart',
 		]
         ]
 ];

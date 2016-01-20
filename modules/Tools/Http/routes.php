@@ -23,7 +23,9 @@
 Route::group(['middleware' => ['authenticate.client'],'prefix' => 'tools', 'namespace' => 'Modules\Tools\Http\Controllers'], function()
 {
         Route::controller('client-tools','ClientToolsController',[
+            'getHoliday'=>'client.tools.holiday',
             'getFutureContract'=>'client.tools.futureContract',
              'getMarketWatch'=>'client.tools.marketWatch',
+            'getHolidayDetails'=>'client.tools.holidayDetails',
             ]);
 });

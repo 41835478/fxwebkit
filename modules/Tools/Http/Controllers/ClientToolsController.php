@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
 use Modules\Tools\Repositories\FutureContract as Future;
+use Modules\Tools\Repositories\HolidayContract as Holiday;
 
 
 class ClientToolsController extends Controller {
@@ -16,11 +17,13 @@ class ClientToolsController extends Controller {
     }
 
     protected $oFuture;
+    protected $oHoliday;
 
     public function __construct(
-    Future $oFuture
+    Future $oFuture,Holiday $oHoliday
     ) {
         $this->oFuture = $oFuture;
+        $this->oHoliday = $oHoliday;
     }
 
     
@@ -76,4 +79,67 @@ class ClientToolsController extends Controller {
 
  
     }
+
+
+    public function getHoliday(Request $oRequest){
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+
+        $oResults = null;
+
+        $aFilterParams = [
+            'id' => '',
+            'name' => '',
+            'start_date' => '',
+            'end_date' => '',
+            'sort' => $sSort,
+            'order' => $sOrder,
+        ];
+
+
+
+        if ($oRequest->has('search')) {
+
+            $aFilterParams['id'] = $oRequest->id;
+            $aFilterParams['name'] = $oRequest->name;
+            $aFilterParams['start_date'] = $oRequest->start_date;
+            $aFilterParams['end_date'] = $oRequest->end_date;
+            $aFilterParams['sort'] = $oRequest->sort;
+            $aFilterParams['order'] = $oRequest->order;
+
+
+            $oResults = $this->oHoliday->getHolidayByFilter($aFilterParams, false, $sOrder, $sSort);
+
+        }
+
+
+        return view('tools::client.holiday')
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
+
+    }
+
+    public function getHolidayDetails(Request $oRequest){
+
+        $holiday_id=($oRequest->has('holiday_id'))? $oRequest->holiday_id:0;
+        $oResult = $this->oHoliday->getHolidayDetails($holiday_id);
+
+
+        $holidayInfo = [
+            'id' => $holiday_id,
+            'name' => $oResult['name'],
+            'start_date' => $oResult['start_date'],
+            'end_date' => $oResult['start_date'],
+
+        ];
+        $date=($oRequest->has('date'))? $oRequest->date:'';
+        list($aSymbolsHours,$aDates,$date)=$this->oHoliday->getHolidaySymbolsDetails($holiday_id,$date);
+
+        return view('tools::client.holidayDetails')
+            ->with('holidayInfo', $holidayInfo)
+            ->with('aSymbolsHours', $aSymbolsHours)
+            ->with('aDates', $aDates)
+            ->with('date', $date);
+    }
+
 }
