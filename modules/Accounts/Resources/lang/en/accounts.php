@@ -129,6 +129,8 @@ return [
     'floating' => 'Floating P/L :',
     'total_results' => 'Total Results',
     'results_from' => 'Results From',
+    'meta_quotes_id'=>'MetaQuotes ID :',
+    'registration_date'=>'Registration date :'
 
 
 

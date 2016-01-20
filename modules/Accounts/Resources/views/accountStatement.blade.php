@@ -32,8 +32,8 @@
         @if (count($oResults))
         <table class="table table-bordered user-info-table">
             <tr>
-                <th colspan="3">{{ trans('accounts::accounts.Registration date :') }} </th><td>{{ $oResults->REGDATE }}</td>
-                <th  >{{ trans('accounts::accounts.MetaQuotes ID :') }} </th><td>{{ $oResults->MQID }}</td>
+                <th colspan="3">{{ trans('accounts::accounts.registration_date') }} </th><td>{{ $oResults->REGDATE }}</td>
+                <th  >{{ trans('accounts::accounts.meta_quotes_id') }} </th><td>{{ $oResults->MQID }}</td>
             </tr>
             <tr>
                 <th >{{ trans('accounts::accounts.name') }} </th><td colspan="3">{{ $oResults->NAME }}</td>
@@ -46,7 +46,7 @@
             </tr>
             <tr>
                 <th >{{ trans('accounts::accounts.address :') }} </th><td  colspan="3">{{ $oResults->ADDRESS }}</td>
-                <th >{{ trans('accounts::accounts.zip-code') }} </th><td >{{ $oResults->ZIPCODE }}</td>
+                <th >{{ trans('accounts::accounts.zip_code') }} </th><td >{{ $oResults->ZIPCODE }}</td>
             </tr>
             <tr>
                 <th >{{ trans('accounts::accounts.phone') }} </th><td >{{ $oResults->PHONE }}</td>
@@ -55,15 +55,15 @@
             <tr>
                 <th >{{ trans('accounts::accounts.id_number :') }} </th><td >{{ $oResults->ID }}</td>
                 <th >{{ trans('accounts::accounts.status :') }} </th><td >{{ $oResults->STATUS }}</td>
-                <th  >{{ trans('accounts::accounts.Color :') }} </th><td>{{ $oResults->USER_COLOR }}</td>
+                <th  >{{ trans('accounts::accounts.color') }} </th><td>{{ $oResults->USER_COLOR }}</td>
             </tr>
             <tr>
                 <th >{{ trans('accounts::accounts.group :') }} </th><td >{{ $oResults->GROUP }}</td>
-                <th >{{ trans('accounts::accounts.comment : ') }}</th><td  colspan="3">{{ $oResults->COMMENT }}</td>
+                <th >{{ trans('accounts::accounts.comment :') }}</th><td  colspan="3">{{ $oResults->COMMENT }}</td>
             </tr>
             <tr>
-                <th >{{ trans('accounts::accounts.leverage : ') }}</th><td >{{ $oResults->LEVERAGE }}</td>
-                <th >{{ trans('accounts::accounts.tax :') }} </th><td >{{ $oResults->TAXES }}%</td>
+                <th >{{ trans('accounts::accounts.leverage :') }}</th><td >{{ $oResults->LEVERAGE }}</td>
+                <th >{{ trans('accounts::accounts.tax') }} </th><td >{{ $oResults->TAXES }}%</td>
                 <th  >{{ trans('accounts::accounts.agent_account :') }} </th><td>{{ $oResults->AGENT_ACCOUNT }}</td>
             </tr>
             <tr>

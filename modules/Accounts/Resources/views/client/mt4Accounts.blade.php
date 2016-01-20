@@ -58,7 +58,7 @@
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.reg_date'), 'REGDATE', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.last_date'), 'LASTDATE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Leverage'), 'LEVERAGE', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.leverage'), 'LEVERAGE', $oResults) !!}</th>
                             <th class="no-warp"></th>
                         </tr>
                     </thead>
@@ -94,7 +94,7 @@
                     </div>
                     @endif
                     <div class="col-sm-3  padding-xs-vr">
-                        <span class="text-xs">trans('tools::tools.showing') {{ $oResults->firstItem() }} trans('tools::tools.to') {{ $oResults->lastItem() }} trans('tools::tools.of') {{ $oResults->total() }} trans('tools::tools.entries')</span>
+                        <span class="text-xs">{{trans('tools::tools.showing')}} {{ $oResults->firstItem() }} {{trans('tools::tools.to')}} {{ $oResults->lastItem() }} {{trans('tools::tools.of')}} {{ $oResults->total() }} {{trans('tools::tools.entries')}}</span>
                     </div> 
                     @endif
                 </div>  
