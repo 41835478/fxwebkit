@@ -32,54 +32,54 @@
         @if (count($oResults))
         <table class="table table-bordered user-info-table">
             <tr>
-                <th colspan="3">Registration date : </th><td>{{ $oResults->REGDATE }}</td>
-                <th  >MetaQuotes ID : </th><td>{{ $oResults->MQID }}</td>
+                <th colspan="3">{{ trans('accounts::accounts.Registration date :') }} </th><td>{{ $oResults->REGDATE }}</td>
+                <th  >{{ trans('accounts::accounts.MetaQuotes ID :') }} </th><td>{{ $oResults->MQID }}</td>
             </tr>
             <tr>
-                <th >Name : </th><td colspan="3">{{ $oResults->NAME }}</td>
-                <th  >Phone password : </th><td>{{ $oResults->PASSWORD_PHONE }}</td>
+                <th >{{ trans('accounts::accounts.name') }} </th><td colspan="3">{{ $oResults->NAME }}</td>
+                <th  >{{ trans('accounts::accounts.phone_password :') }} </th><td>{{ $oResults->PASSWORD_PHONE }}</td>
             </tr>
             <tr>
-                <th >City : </th><td >{{ $oResults->CITY }}</td>
-                <th >State : </th><td >{{ $oResults->STATE }}</td>
-                <th  >Country : </th><td>{{ $oResults->COUNTRY }}</td>
+                <th >{{ trans('accounts::accounts.city') }} </th><td >{{ $oResults->CITY }}</td>
+                <th >{{ trans('accounts::accounts.state :') }} </th><td >{{ $oResults->STATE }}</td>
+                <th  >{{ trans('accounts::accounts.country') }} </th><td>{{ $oResults->COUNTRY }}</td>
             </tr>
             <tr>
-                <th >Address : </th><td  colspan="3">{{ $oResults->ADDRESS }}</td>
-                <th >Zip-code : </th><td >{{ $oResults->ZIPCODE }}</td>
+                <th >{{ trans('accounts::accounts.address :') }} </th><td  colspan="3">{{ $oResults->ADDRESS }}</td>
+                <th >{{ trans('accounts::accounts.zip-code') }} </th><td >{{ $oResults->ZIPCODE }}</td>
             </tr>
             <tr>
-                <th >Phone : </th><td >{{ $oResults->PHONE }}</td>
-                <th >Email : </th><td  colspan="3">{{ $oResults->EMAIL }}</td>
+                <th >{{ trans('accounts::accounts.phone') }} </th><td >{{ $oResults->PHONE }}</td>
+                <th >{{ trans('accounts::accounts.email') }}</th><td  colspan="3">{{ $oResults->EMAIL }}</td>
             </tr>
             <tr>
-                <th >ID number : </th><td >{{ $oResults->ID }}</td>
-                <th >Status : </th><td >{{ $oResults->STATUS }}</td>
-                <th  >Color : </th><td>{{ $oResults->USER_COLOR }}</td>
+                <th >{{ trans('accounts::accounts.id_number :') }} </th><td >{{ $oResults->ID }}</td>
+                <th >{{ trans('accounts::accounts.status :') }} </th><td >{{ $oResults->STATUS }}</td>
+                <th  >{{ trans('accounts::accounts.Color :') }} </th><td>{{ $oResults->USER_COLOR }}</td>
             </tr>
             <tr>
-                <th >Group : </th><td >{{ $oResults->GROUP }}</td>
-                <th >comment : </th><td  colspan="3">{{ $oResults->COMMENT }}</td>
+                <th >{{ trans('accounts::accounts.group :') }} </th><td >{{ $oResults->GROUP }}</td>
+                <th >{{ trans('accounts::accounts.comment : ') }}</th><td  colspan="3">{{ $oResults->COMMENT }}</td>
             </tr>
             <tr>
-                <th >Leverage : </th><td >{{ $oResults->LEVERAGE }}</td>
-                <th >tax : </th><td >{{ $oResults->TAXES }}%</td>
-                <th  >Agent account : </th><td>{{ $oResults->AGENT_ACCOUNT }}</td>
+                <th >{{ trans('accounts::accounts.leverage : ') }}</th><td >{{ $oResults->LEVERAGE }}</td>
+                <th >{{ trans('accounts::accounts.tax :') }} </th><td >{{ $oResults->TAXES }}%</td>
+                <th  >{{ trans('accounts::accounts.agent_account :') }} </th><td>{{ $oResults->AGENT_ACCOUNT }}</td>
             </tr>
             <tr>
                 <th class="no-warp"></th><td></td>
-                <th class="no-warp">Deposit / Withdrawal :</th><td>{{ $aSummery['deposit'] }}</td>
-                <th class="no-warp">Credit Facility :</th><td>{{ $aSummery['credit_facility'] }}</td>
+                <th class="no-warp">{{ trans('accounts::accounts.deposit_withdrawal') }}</th><td>{{ $aSummery['deposit'] }}</td>
+                <th class="no-warp">{{ trans('accounts::accounts.credit_facility') }}</th><td>{{ $aSummery['credit_facility'] }}</td>
             </tr>
             <tr>
-                <th class="no-warp">Closed Trade P/L : </th><td>{{ $aSummery['closed_trade'] }}</td>
-                <th class="no-warp">Floating P/L : </th><td>{{ $aSummery['floating'] }}</td>
-                <th class="no-warp">Margin : </th><td>{{ $oResults->MARGIN }}</td>
+                <th class="no-warp">{{ trans('accounts::accounts.closed_trade') }} </th><td>{{ $aSummery['closed_trade'] }}</td>
+                <th class="no-warp">{{ trans('accounts::accounts.floating') }} </th><td>{{ $aSummery['floating'] }}</td>
+                <th class="no-warp">{{ trans('accounts::accounts.margin :') }} </th><td>{{ $oResults->MARGIN }}</td>
             </tr>
             <tr>
-                <th class="no-warp">Balance : </th><td>{{ $oResults->BALANCE }}</td>
-                <th class="no-warp">Equity : </th><td>{{ $oResults->EQUITY }}</td>
-                <th class="no-warp">Free Margin : </th><td>{{ $oResults->MARGIN_FREE }}</td>
+                <th class="no-warp">{{ trans('accounts::accounts.balance :') }} </th><td>{{ $oResults->BALANCE }}</td>
+                <th class="no-warp">{{ trans('accounts::accounts.equity :') }} </th><td>{{ $oResults->EQUITY }}</td>
+                <th class="no-warp">{{ trans('accounts::accounts.free_margin') }} </th><td>{{ $oResults->MARGIN_FREE }}</td>
             </tr>
         </table>				
 
