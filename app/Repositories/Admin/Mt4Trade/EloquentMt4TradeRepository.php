@@ -1114,10 +1114,111 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $statistics['gross_loss'] = '<span class="' . (( $statistics['gross_loss'] < 0) ? 'red_font' : 'blue_font') . '">' . $statistics['gross_loss'] . '</span> ';
 
 
-        $statistics['maximum_consecutive_wins'] = 00;
 
-        /* ===
-        $statistics['maximal_consecutive_profit'] = 00;
+        /* === maximal_consecutive_profit === */
+        $consecutive_result = Mt4Trade::select(['PROFIT', DB::raw('PROFIT+COMMISSION+SWAPS as total')])
+            ->where('login', $login)
+            ->where('cmd', '<', '2')
+            ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->get();
+
+
+
+        $maxWin=0;
+        $maxWinNumber=0;
+
+        $currentMaxWin=0;
+        $currentMaxWinNumber=0;
+
+        $pastMaxWin=0;
+        $pastMaxWinNumber=0;
+
+
+        $minWin=0;
+        $minWinNumber=0;
+
+        $currentMinWin=0;
+        $currentMinWinNumber=0;
+
+        $pastMinWin=0;
+        $pastMinWinNumber=0;
+
+        $pastTradeLossOrWin='win';
+        foreach($consecutive_result as $row){
+
+            if($row->total >= 0){
+                if($pastTradeLossOrWin == 'loss'){
+
+                    $pastMinWin=$currentMinWin;
+                    $pastMinWinNumber=$currentMinWinNumber;
+
+                    $currentMaxWin=0;
+                    $currentMaxWinNumber=0;
+                }else{
+
+                    $currentMaxWin+=$row->total;
+                    $currentMaxWinNumber+=1;
+
+                }
+
+                if($pastMaxWinNumber >$currentMaxWinNumber){
+                    $maxWinNumber = $pastMaxWinNumber ;
+                    $maxWin= $pastMaxWin;
+
+                }else if($pastMaxWinNumber = $currentMaxWinNumber){
+                    $maxWin=($pastMaxWin>$currentMaxWin )? $pastMaxWin:$currentMaxWin;
+                }else{
+
+                    $maxWinNumber= $currentMaxWinNumber;
+                    $maxWin= $currentMaxWin;
+                }
+
+
+
+
+                $pastTradeLossOrWin='win';
+
+            }else if($row->total < 0){
+
+                if($pastTradeLossOrWin == 'win'){
+                    $pastMaxWin=$currentMaxWin;
+                    $pastMaxWinNumber=$currentMaxWinNumber;
+
+
+                    $currentMinWin=$row->total;
+                    $currentMinWinNumber+=1;
+                }else{
+
+                    $currentMinWin+=0;
+                    $currentMinWinNumber=0;
+                }
+
+
+                if($pastMinWinNumber >$currentMinWinNumber){
+                    $minWinNumber = $pastMinWinNumber ;
+                    $minWin= $pastMinWin;
+
+                }else if($pastMinWinNumber = $currentMinWinNumber){
+                    $minWin=($pastMinWin<$currentMinWin )? $pastMinWin:$currentMinWin;
+                }else{
+
+                    $minWinNumber= $currentMinWinNumber;
+                    $minWin= $currentMinWin;
+                }
+
+
+                $pastTradeLossOrWin='loss';
+            }
+
+            $pastMaxWin=0;
+        }
+
+        $statistics['maximum_consecutive_wins'] = $maxWinNumber.' ( '.$maxWin.' ) ';
+        $statistics['maximum_consecutive_losses'] =  $minWinNumber.' ( '.$minWin.' ) ';
+
+        $statistics['maximal_consecutive_profit'] =00;
+        $statistics['maximal_consecutive_loss'] = 00;
+
         $statistics['sharpe_ratio'] = 00;
         $statistics['recovery_factor'] = 00;
 
@@ -1147,8 +1248,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $statistics['expected_payoff'] = 00;
         $statistics['average_profit'] = 00;
         $statistics['average_loss'] = 00;
-        $statistics['maximum_consecutive_losses'] = 00;
-        $statistics['maximal_consecutive_loss'] = 00;
         $statistics['monthly_grouth'] = 00;
         $statistics['annual_farecast'] = 00;
         return $statistics;
