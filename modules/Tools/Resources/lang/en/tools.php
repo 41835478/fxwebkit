@@ -41,5 +41,22 @@ return [
     'date'=>'Date',
     'trading_hours_over_the'=>'Trading Hours Over The',
 
+    'to'=>'to',
+    'from'=>'From :',
+    'to :'=>'To :',
+    'entries'=>'entries',
+    'of'=>'of',
+    'showing'=>'Showing',
+
+
+
+
+
+
+    'start_hour_message'=>'start hour should be less than end hour.',
+    'no_thing_message'=>'No thing added !!!',
+    'deleted_successfully_message'=>'deleted successfully.',
+    'deleted_faild_message'=>'deleted faild please try again later.'
+
 
 ];
