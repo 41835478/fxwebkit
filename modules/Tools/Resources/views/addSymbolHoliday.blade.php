@@ -59,7 +59,7 @@
 
                         <div class="DT-lf-right change_page_all_div" >
 
-                            {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}
+                            {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('tools::tools.page'),'class'=>'form-control input-sm']) !!}
 
                             {!! Form::submit(trans('tools::tools.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
 
@@ -67,7 +67,7 @@
                     @endif
 
                     <div class="col-sm-3  padding-xs-vr">
-                        <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
+                        <span class="text-xs">trans('tools::tools.showing') {{ $oResults->firstItem() }} trans('tools::tools.to') {{ $oResults->lastItem() }} trans('tools::tools.of') {{ $oResults->total() }} trans('tools::tools.entries')</span>
                     </div>
                 @endif
             </div>

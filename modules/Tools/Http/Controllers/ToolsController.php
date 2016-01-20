@@ -129,19 +129,13 @@ class ToolsController extends Controller {
             
                 $tabelHtml.='<tr><td>'.$expiry['expiry_date'].'</td><td>'.$expiry['symbol'].'</td></tr>';  
              }
-                
-           //     $email->newContract(['email'=>'maggalya09@gmail.com','name'=>'taylor','expiryHtml'=>$tabelHtml]);
-         
+
              foreach ($userResults as $user)
              {  
                  //dd($user['email']);
                  $email=new Email();
              $email->newContract(['email'=>$user['email'],'name'=>$user['first_name'],'expiryHtml'=>$tabelHtml]);
              }
-          
-//        return view('tools::future_contract')
-//                        ->with('oResults', $oResults)
-//                        ->with('aFilterParams', $aFilterParams);
         
     }
 
@@ -403,15 +397,12 @@ class ToolsController extends Controller {
 
             $oResult = $this->oHoliday->getUpdateholiday($oRequest  );
 
-
         $holidayInfo = [
                 'id' => $oRequest->edit_id,
                 'name' => $oResult['name'],
                 'start_date' => $oResult['start_date'],
                 'end_date' => $oResult['expiry_date'],
             ];
-      //  dd($holiday_details);
-       // dd($oRequest);
 
         return Redirect::route('tools.holiday');
 
@@ -458,11 +449,10 @@ class ToolsController extends Controller {
 
     public function postAddSymbolHoliday(Request $oRequest)
     {
-
-
         if($oRequest->start_hour >= $oRequest->end_hour){
-            // TODO[moaid] translate message 'start hour should be less than end hour .'
-            return  $this->getAddSymbolHoliday($oRequest,'start hour should be less than end hour .');
+
+
+            return  $this->getAddSymbolHoliday($oRequest,trans('tools::tools.start_hour_message'));
         }
 
 
@@ -473,9 +463,7 @@ class ToolsController extends Controller {
             $oRequest->date);
 
 
-
-        // TODO[moaid] translate message 'No thing added !!!'
-        $message=($result == false)? 'No thing added !!!':'';
+        $message=($result == false)? trans('tools::tools.no_thing_message'):'';
             return  $this->getAddSymbolHoliday($oRequest,$message);
     }
 

@@ -131,9 +131,9 @@ class EloquentHolidayContractRepository implements HolidayContract
         $deleteResult = ToolsHoliday::whereIn('id', $id)->delete();
 
         if ($deleteResult) {
-            return ['deleted successfully.'];
+            return [trans('tools::tools.deleted_successfully_message')];
         } else {
-            return ['deleted faild please try again later.'];
+            return [trans('tools::tools.deleted_faild_message')];
         }
     }
 
@@ -187,9 +187,9 @@ class EloquentHolidayContractRepository implements HolidayContract
         $deleteResult = ToolsHolidaySymbols::whereIn('symbols_id', $id)->delete();
         if ($deleteResult) {
             // todo[moaid] translate messages and all messages like this
-            return ['deleted successfully.'];
+            return [trans('tools::tools.deleted_successfully_message')];
         } else {
-            return ['deleted faild please try again later.'];
+            return [trans('tools::tools.deleted_faild_message')];
         }
     }
 
