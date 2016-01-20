@@ -1115,6 +1115,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
 
         $statistics['maximum_consecutive_wins'] = 00;
+
+        /* ===
         $statistics['maximal_consecutive_profit'] = 00;
         $statistics['sharpe_ratio'] = 00;
         $statistics['recovery_factor'] = 00;
