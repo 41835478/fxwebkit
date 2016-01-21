@@ -1166,18 +1166,18 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         }
 
         $maxWin=0;
-     $maxWinNumber=0;
-foreach($maxWinArray as $row){
-    if($maxWinNumber<$row[0]){
-        $maxWin=$row[1];
-        $maxWinNumber=$row[0];
-    }elseif($maxWinNumber==$row[0]){
-        $maxWin=($maxWin>$row[1])?$maxWin:$row[1];
-    }
-}
+        $maxWinNumber=0;
+        foreach($maxWinArray as $row){
+            if($maxWinNumber<$row[0]){
+                $maxWin=$row[1];
+                $maxWinNumber=$row[0];
+            }elseif($maxWinNumber==$row[0]){
+                $maxWin=($maxWin>$row[1])?$maxWin:$row[1];
+            }
+        }
 
         $minWin=0;
-     $minWinNumber=0;
+        $minWinNumber=0;
         foreach($minWinArray as $row){
             if($minWinNumber<$row[0]){
                 $minWin=$row[1];
@@ -1187,7 +1187,7 @@ foreach($maxWinArray as $row){
             }
         }
 
-/*______________________________________________*/
+        /*______________________________________________*/
 
 
         $maxProfit=0;
@@ -1201,7 +1201,7 @@ foreach($maxWinArray as $row){
             }
         }
 
-       $minProfit=0;
+        $minProfit=0;
         $minProfitNumber=0;
         foreach($minWinArray as $row){
             if($minProfit>$row[1]){
@@ -1440,11 +1440,11 @@ foreach($maxWinArray as $row){
 //
 //        }
 
-        $statistics['maximum_consecutive_wins'] = $maxWinNumber.' ( '.$maxWin.' ) ';
-        $statistics['maximum_consecutive_losses'] =  $minWinNumber.' ( '.$minWin.' ) ';
+        $statistics['maximum_consecutive_wins'] = $maxWinNumber.' ( <span class="blue_font">'.$maxWin.'</span> ) ';
+        $statistics['maximum_consecutive_losses'] =  $minWinNumber.' ( <span class="blue_font">'.$minWin.'</span> ) ';
 
-        $statistics['maximal_consecutive_profit'] =$maxProfitNumber.' ( '.$maxProfit.' ) ';
-        $statistics['maximal_consecutive_loss'] =  $minProfitNumber.' ( '.$minProfit.' ) ';
+        $statistics['maximal_consecutive_profit'] ='  <span class="red_font">'.$maxProfit.'</span> ( '.$maxProfitNumber.' ) ';
+        $statistics['maximal_consecutive_loss'] =  '  <span class="red_font">'.$minProfit.'</span> ( '.$minProfitNumber.' ) ';
 
         $statistics['sharpe_ratio'] = 00;
         $statistics['recovery_factor'] = 00;
@@ -1471,6 +1471,9 @@ foreach($maxWinArray as $row){
         /* === profits_factor ==== */
         $statistics['profits_factor'] = ($gross_loss_result != 0) ? $gross_profit_result / $gross_loss_result * 100 : 0;
         $statistics['profits_factor'] = ($gross_profit_result >= $gross_loss_result) ? abs($statistics['profits_factor']) : abs($statistics['profits_factor']) * -1;
+        $statistics['profits_factor']=round($statistics['profits_factor'],5);
+
+
 
         $statistics['expected_payoff'] = 00;
         $statistics['average_profit'] = 00;
