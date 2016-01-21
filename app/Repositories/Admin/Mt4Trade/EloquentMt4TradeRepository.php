@@ -1120,6 +1120,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             ->where('login', $login)
             ->where('cmd', '<', '2')
             ->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')
+            ->orderBy('CLOSE_TIME')
             ->get();
 
 
@@ -1145,79 +1146,208 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $pastTradeLossOrWin='win';
         foreach($consecutive_result as $row){
+            if($row->total >=0){
+                if($pastTradeLossOrWin!='win'){
+                    $currentMaxWinNumber=1;
+                    $currentMaxWin=$row->total;
 
-            if($row->total >= 0){
-                if($pastTradeLossOrWin == 'loss'){
-
-                    $pastMinWin=$currentMinWin;
                     $pastMinWinNumber=$currentMinWinNumber;
-
-                    $currentMaxWin=0;
-                    $currentMaxWinNumber=0;
+                    $pastMinWin=$currentMinWin;
                 }else{
-
-                    $currentMaxWin+=$row->total;
                     $currentMaxWinNumber+=1;
-
+                    $currentMaxWin+=$row->total;
                 }
-
-                if($pastMaxWinNumber >$currentMaxWinNumber){
-                    $maxWinNumber = $pastMaxWinNumber ;
-                    $maxWin= $pastMaxWin;
-
-                }else if($pastMaxWinNumber = $currentMaxWinNumber){
-                    $maxWin=($pastMaxWin>$currentMaxWin )? $pastMaxWin:$currentMaxWin;
+                if($pastMaxWinNumber>$currentMaxWinNumber){
+                    $maxWinNumber=$pastMaxWinNumber;
+                    $maxWin=$pastMaxWin;
+                }else if($pastMaxWinNumber==$currentMaxWinNumber){
+                    $maxWin=($pastMaxWin>$currentMaxWin)? $pastMaxWin:$currentMaxWin;
                 }else{
-
-                    $maxWinNumber= $currentMaxWinNumber;
-                    $maxWin= $currentMaxWin;
+                    $maxWinNumber=$currentMaxWinNumber;
+                    $maxWin=$currentMaxWin;
                 }
-
-
-
 
                 $pastTradeLossOrWin='win';
-
-            }else if($row->total < 0){
-
-                if($pastTradeLossOrWin == 'win'){
-                    $pastMaxWin=$currentMaxWin;
+            }else{
+                if($pastTradeLossOrWin!='loss'){
                     $pastMaxWinNumber=$currentMaxWinNumber;
+                    $pastMaxWin=$currentMaxWin;
 
-
+                    $currentMinWinNumber=1;
                     $currentMinWin=$row->total;
+
+
+                }else{
+
                     $currentMinWinNumber+=1;
-                }else{
-
-                    $currentMinWin+=0;
-                    $currentMinWinNumber=0;
+                    $currentMinWin+=$row->total;
                 }
-
-
-                if($pastMinWinNumber >$currentMinWinNumber){
-                    $minWinNumber = $pastMinWinNumber ;
-                    $minWin= $pastMinWin;
-
-                }else if($pastMinWinNumber = $currentMinWinNumber){
-                    $minWin=($pastMinWin<$currentMinWin )? $pastMinWin:$currentMinWin;
+                if($pastMinWinNumber<$currentMinWinNumber){
+                    $minWinNumber=$currentMinWinNumber;
+                    $minWin=$currentMinWin;
+                }else if($pastMinWinNumber==$currentMinWinNumber){
+                    $minWin=($pastMinWin<$currentMinWin)? $pastMinWin:$currentMinWin;
                 }else{
-
-                    $minWinNumber= $currentMinWinNumber;
-                    $minWin= $currentMinWin;
+                    $minWinNumber=$pastMinWinNumber;
+                    $minWin=$pastMinWin;
                 }
-
 
                 $pastTradeLossOrWin='loss';
             }
 
-            $pastMaxWin=0;
         }
+
+
+
+
+
+
+
+        $maxProfit=0;
+        $maxProfitNumber=0;
+
+        $currentMaxProfit=0;
+        $currentMaxProfitNumber=0;
+
+        $pastMaxProfit=0;
+        $pastMaxProfitNumber=0;
+
+
+        $minProfit=0;
+        $minProfitNumber=0;
+
+        $currentMinProfit=0;
+        $currentMinProfitNumber=0;
+
+        $pastMinProfit=0;
+        $pastMinProfitNumber=0;
+
+        $pastTradeLossOrWin='win';
+        foreach($consecutive_result as $row){
+            if($row->total >=0){
+                if($pastTradeLossOrWin!='win'){
+                    $currentMaxProfitNumber=1;
+                    $currentMaxProfit=$row->total;
+
+                    $pastMinProfitNumber=$currentMinProfitNumber;
+                    $pastMinProfit=$currentMinProfit;
+                }else{
+                    $currentMaxProfitNumber+=1;
+                    $currentMaxProfit+=$row->total;
+                }
+                if($pastMaxProfit>$currentMaxProfit){
+                    $maxProfitNumber=$pastMaxProfitNumber;
+                    $maxProfit=$pastMaxProfit;
+                }else if($pastMaxProfit==$currentMaxProfit){
+                    $maxProfitNumber=($pastMaxProfitNumber>$currentMaxProfitNumber)? $pastMaxProfitNumber:$currentMaxProfitNumber;
+                }else{
+                    $maxWinNumber=$currentMaxProfitNumber;
+                    $maxWin=$currentMaxProfit;
+                }
+
+                $pastTradeLossOrWin='win';
+            }else{
+                if($pastTradeLossOrWin!='loss'){
+                    $pastMaxProfitNumber=$currentMaxProfitNumber;
+                    $pastMaxProfit=$currentMaxProfit;
+
+                    $currentMinProfitNumber=1;
+                    $currentMinProfit=$row->total;
+
+
+                }else{
+
+                    $currentMinProfitNumber+=1;
+                    $currentMinProfit+=$row->total;
+                }
+                if($pastMinProfit<$currentMinProfit){
+                    $minProfitNumber=$currentMinProfitNumber;
+                    $minProfit=$currentMinProfit;
+                }else if($pastMinProfit==$currentMinProfit){
+                    $minProfitNumber=($pastMinProfitNumber<$currentMinProfitNumber)? $pastMinProfitNumber:$currentMinProfitNumber;
+                }else{
+                    $minProfitNumber=$pastMinProfitNumber;
+                    $minProfit=$pastMinProfit;
+                }
+
+                $pastTradeLossOrWin='loss';
+            }
+
+        }
+
+
+//        foreach($consecutive_result as $row){
+//
+//            if($row->total >= 0){
+//                if($pastTradeLossOrWin == 'loss'){
+//
+//                    $pastMinWin=$currentMinWin;
+//                    $pastMinWinNumber=$currentMinWinNumber;
+//
+//                    $currentMaxWin=0;
+//                    $currentMaxWinNumber=1;
+//                }else{
+//
+//                    $currentMaxWin+=$row->total;
+//                    $currentMaxWinNumber+=1;
+//
+//                }
+//
+//                if($pastMaxWinNumber > $currentMaxWinNumber){
+//                    $maxWinNumber = $pastMaxWinNumber ;
+//                    $maxWin= $pastMaxWin;
+//
+//                }else if($pastMaxWinNumber = $currentMaxWinNumber){
+//                    $maxWin=($pastMaxWin>$currentMaxWin )? $pastMaxWin:$currentMaxWin;
+//                }else{
+//
+//                    $maxWinNumber= $currentMaxWinNumber;
+//                    $maxWin= $currentMaxWin;
+//                }
+//
+//
+//
+//
+//                $pastTradeLossOrWin='win';
+//
+//            }else if($row->total < 0){
+//
+//                if($pastTradeLossOrWin == 'win'){
+//                    $pastMaxWin=$currentMaxWin;
+//                    $pastMaxWinNumber=$currentMaxWinNumber;
+//
+//                    $currentMinWin=$row->total;
+//                    $currentMinWinNumber+=1;
+//                }else{
+//
+//                    $currentMinWin=0;
+//                    $currentMinWinNumber=1;
+//                }
+//
+//
+//                if($pastMinWinNumber >$currentMinWinNumber){
+//                    $minWinNumber = $pastMinWinNumber ;
+//                    $minWin= $pastMinWin;
+//
+//                }else if($pastMinWinNumber = $currentMinWinNumber){
+//                    $minWin=($pastMinWin<$currentMinWin )? $pastMinWin:$currentMinWin;
+//                }else{
+//
+//                    $minWinNumber= $currentMinWinNumber;
+//                    $minWin= $currentMinWin;
+//                }
+//
+//
+//                $pastTradeLossOrWin='loss';
+//            }
+//
+//        }
 
         $statistics['maximum_consecutive_wins'] = $maxWinNumber.' ( '.$maxWin.' ) ';
         $statistics['maximum_consecutive_losses'] =  $minWinNumber.' ( '.$minWin.' ) ';
 
-        $statistics['maximal_consecutive_profit'] =00;
-        $statistics['maximal_consecutive_loss'] = 00;
+        $statistics['maximal_consecutive_profit'] =$maxProfitNumber.' ( '.$maxProfit.' ) ';
+        $statistics['maximal_consecutive_loss'] =  $minProfitNumber.' ( '.$minProfit.' ) ';
 
         $statistics['sharpe_ratio'] = 00;
         $statistics['recovery_factor'] = 00;
