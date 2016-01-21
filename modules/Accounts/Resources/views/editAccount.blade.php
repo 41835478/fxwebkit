@@ -126,7 +126,7 @@
 @endif
 <div class="panel-footer text-right">
      <a href="{{ route('accounts.detailsAccount') }}">
-         <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']}}">{{ trans('general.save') }}</button></a>
+         <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']}}">{{ trans('accounts::accounts.save') }}</button></a>
          
 {!! Form::close() !!}
 </div>

@@ -11,7 +11,7 @@
         <div class="navigation">
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections">
-                <li class="active"><a href="#"> <i class="fa fa-search"></i> search </a></li>
+                <li class="active"><a href="#"> <i class="fa fa-search"></i> {{ trans('accounts::accounts.search') }} </a></li>
                 <li>
                     <div class="nav-input-div">
                         <div class="checkbox">
@@ -77,7 +77,7 @@
                             <td>{{ $oResult->REGDATE }}</td>
                             <td>{{ $oResult->LASTDATE }}</td>         
                             <td>{{ $oResult->LEVERAGE }}</td>
-                            <td><a href="{{ route('clients.accounts.mt4UserDetails').'?login='. $oResult->LOGIN }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text"></a></td>
+                            <td><a href="{{ route('accounts.mt4UserDetails').'?login='. $oResult->LOGIN }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text"></a></td>
                         </tr>
                         @endforeach
                         @endif
@@ -104,7 +104,7 @@
                     @endif
                     
                     <div class="col-sm-3  padding-xs-vr">
-                        <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
+                        <span class="text-xs">{{trans('tools::tools.showing')}} {{ $oResults->firstItem() }} {{trans('tools::tools.to')}} {{ $oResults->lastItem() }} {{trans('tools::tools.of')}} {{ $oResults->total() }} {{trans('tools::tools.entries')}}</span>
                     </div>
                     @endif
                 </div>

@@ -26,7 +26,7 @@ return ['is_admin' => 1,
 		[
 			'route' => 'tools.holiday',
 			'title' => 'holiday',
-			'icon' => 'fa fa-shopping-cart',
+			'icon' => 'fa fa-home',
 		]
 ],
 
@@ -45,7 +45,7 @@ return ['is_admin' => 1,
 		[
 			'route' => 'client.tools.holiday',
 			'title' => 'holiday',
-			'icon' => 'fa fa-shopping-cart',
+			'icon' => 'fa fa-home',
 		]
         ]
 ];

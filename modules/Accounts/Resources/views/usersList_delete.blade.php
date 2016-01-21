@@ -18,7 +18,7 @@
         <div class="navigation">
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections">
-                <li class="active"><a href="#"> <i class="fa fa-search"></i> search </a></li>
+                <li class="active"><a href="#"> <i class="fa fa-search"></i> {{ trans('accounts::accounts.search') }} </a></li>
                                                    <li>
                    <div class="   nav-input-div">
 						<div class="checkbox">
@@ -75,13 +75,13 @@
                 <div class="stat-row">
                     <div class="stat-counters bg-info no-padding text-center">
                         <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Total Results {{ $oResults->total() }}</span>
+                            <span class="text-xs">{{ trans('accounts::accounts.total_results') }} {{ $oResults->total() }}</span>
                         </div>
                         <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Results From {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }}</span>
+                            <span class="text-xs">{{ trans('accounts::accounts.results_from') }} {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }}</span>
                         </div>
                         <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Page {{ $oResults->currentPage() }} of {{ $oResults->lastPage() }}</span>
+                            <span class="text-xs">{{ trans('accounts::accounts.page') }} {{ $oResults->currentPage() }} of {{ $oResults->lastPage() }}</span>
                         </div>
                     </div>
                 </div>
