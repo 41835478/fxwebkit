@@ -1123,157 +1123,254 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             ->orderBy('CLOSE_TIME')
             ->get();
 
-
-
-        $maxWin=0;
-        $maxWinNumber=0;
-
-        $currentMaxWin=0;
-        $currentMaxWinNumber=0;
-
-        $pastMaxWin=0;
+        $maxWinArray=[];
         $pastMaxWinNumber=0;
+        $pastMaxWin=0;
 
 
-        $minWin=0;
-        $minWinNumber=0;
-
-        $currentMinWin=0;
-        $currentMinWinNumber=0;
-
-        $pastMinWin=0;
+        $minWinArray=[];
         $pastMinWinNumber=0;
+        $pastMinWin=0;
 
         $pastTradeLossOrWin='win';
         foreach($consecutive_result as $row){
             if($row->total >=0){
                 if($pastTradeLossOrWin!='win'){
-                    $currentMaxWinNumber=1;
-                    $currentMaxWin=$row->total;
+                    $maxWinArray[]=[$pastMaxWinNumber,$pastMaxWin];
+                    $pastMaxWinNumber=1;
+                    $pastMaxWin=$row->total;
+                }else{
 
-                    $pastMinWinNumber=$currentMinWinNumber;
-                    $pastMinWin=$currentMinWin;
-                }else{
-                    $currentMaxWinNumber+=1;
-                    $currentMaxWin+=$row->total;
+                    $pastMaxWinNumber+=1;
+                    $pastMaxWin+=$row->total;
                 }
-                if($pastMaxWinNumber>$currentMaxWinNumber){
-                    $maxWinNumber=$pastMaxWinNumber;
-                    $maxWin=$pastMaxWin;
-                }else if($pastMaxWinNumber==$currentMaxWinNumber){
-                    $maxWin=($pastMaxWin>$currentMaxWin)? $pastMaxWin:$currentMaxWin;
-                }else{
-                    $maxWinNumber=$currentMaxWinNumber;
-                    $maxWin=$currentMaxWin;
-                }
+
 
                 $pastTradeLossOrWin='win';
             }else{
                 if($pastTradeLossOrWin!='loss'){
-                    $pastMaxWinNumber=$currentMaxWinNumber;
-                    $pastMaxWin=$currentMaxWin;
-
-                    $currentMinWinNumber=1;
-                    $currentMinWin=$row->total;
-
+                    $minWinArray[]=[$pastMinWinNumber,$pastMinWin];
+                    $pastMinWinNumber=1;
+                    $pastMinWin=$row->total;
 
                 }else{
 
-                    $currentMinWinNumber+=1;
-                    $currentMinWin+=$row->total;
+                    $pastMinWinNumber+=1;
+                    $pastMinWin+=$row->total;
                 }
-                if($pastMinWinNumber<$currentMinWinNumber){
-                    $minWinNumber=$currentMinWinNumber;
-                    $minWin=$currentMinWin;
-                }else if($pastMinWinNumber==$currentMinWinNumber){
-                    $minWin=($pastMinWin<$currentMinWin)? $pastMinWin:$currentMinWin;
-                }else{
-                    $minWinNumber=$pastMinWinNumber;
-                    $minWin=$pastMinWin;
-                }
+
 
                 $pastTradeLossOrWin='loss';
             }
 
         }
 
+        $maxWin=0;
+     $maxWinNumber=0;
+foreach($maxWinArray as $row){
+    if($maxWinNumber<$row[0]){
+        $maxWin=$row[1];
+        $maxWinNumber=$row[0];
+    }elseif($maxWinNumber==$row[0]){
+        $maxWin=($maxWin>$row[1])?$maxWin:$row[1];
+    }
+}
 
+        $minWin=0;
+     $minWinNumber=0;
+        foreach($minWinArray as $row){
+            if($minWinNumber<$row[0]){
+                $minWin=$row[1];
+                $minWinNumber=$row[0];
+            }elseif($minWinNumber==$row[0]){
+                $minWin=($minWin<$row[1])?$minWin:$row[1];
+            }
+        }
 
-
-
+/*______________________________________________*/
 
 
         $maxProfit=0;
         $maxProfitNumber=0;
-
-        $currentMaxProfit=0;
-        $currentMaxProfitNumber=0;
-
-        $pastMaxProfit=0;
-        $pastMaxProfitNumber=0;
-
-
-        $minProfit=0;
-        $minProfitNumber=0;
-
-        $currentMinProfit=0;
-        $currentMinProfitNumber=0;
-
-        $pastMinProfit=0;
-        $pastMinProfitNumber=0;
-
-        $pastTradeLossOrWin='win';
-        foreach($consecutive_result as $row){
-            if($row->total >=0){
-                if($pastTradeLossOrWin!='win'){
-                    $currentMaxProfitNumber=1;
-                    $currentMaxProfit=$row->total;
-
-                    $pastMinProfitNumber=$currentMinProfitNumber;
-                    $pastMinProfit=$currentMinProfit;
-                }else{
-                    $currentMaxProfitNumber+=1;
-                    $currentMaxProfit+=$row->total;
-                }
-                if($pastMaxProfit>$currentMaxProfit){
-                    $maxProfitNumber=$pastMaxProfitNumber;
-                    $maxProfit=$pastMaxProfit;
-                }else if($pastMaxProfit==$currentMaxProfit){
-                    $maxProfitNumber=($pastMaxProfitNumber>$currentMaxProfitNumber)? $pastMaxProfitNumber:$currentMaxProfitNumber;
-                }else{
-                    $maxWinNumber=$currentMaxProfitNumber;
-                    $maxWin=$currentMaxProfit;
-                }
-
-                $pastTradeLossOrWin='win';
-            }else{
-                if($pastTradeLossOrWin!='loss'){
-                    $pastMaxProfitNumber=$currentMaxProfitNumber;
-                    $pastMaxProfit=$currentMaxProfit;
-
-                    $currentMinProfitNumber=1;
-                    $currentMinProfit=$row->total;
-
-
-                }else{
-
-                    $currentMinProfitNumber+=1;
-                    $currentMinProfit+=$row->total;
-                }
-                if($pastMinProfit<$currentMinProfit){
-                    $minProfitNumber=$currentMinProfitNumber;
-                    $minProfit=$currentMinProfit;
-                }else if($pastMinProfit==$currentMinProfit){
-                    $minProfitNumber=($pastMinProfitNumber<$currentMinProfitNumber)? $pastMinProfitNumber:$currentMinProfitNumber;
-                }else{
-                    $minProfitNumber=$pastMinProfitNumber;
-                    $minProfit=$pastMinProfit;
-                }
-
-                $pastTradeLossOrWin='loss';
+        foreach($maxWinArray as $row){
+            if($maxProfit<$row[1]){
+                $maxProfit=$row[1];
+                $maxProfitNumber=$row[0];
+            }elseif($maxProfit==$row[1]){
+                $maxProfitNumber=($maxProfitNumber>$row[0])?$maxProfitNumber:$row[0];
             }
-
         }
+
+       $minProfit=0;
+        $minProfitNumber=0;
+        foreach($minWinArray as $row){
+            if($minProfit>$row[1]){
+                $minProfit=$row[1];
+                $minProfitNumber=$row[0];
+            }elseif($minProfit==$row[1]){
+                $minProfitNumber=($minProfitNumber<$row[0])?$minProfitNumber:$row[0];
+            }
+        }
+
+        /*_________________________________________________*/
+
+
+
+
+
+
+
+
+//
+//        $maxWin=0;
+//        $maxWinNumber=0;
+//
+//        $currentMaxWin=0;
+//        $currentMaxWinNumber=0;
+//
+//        $pastMaxWin=0;
+//        $pastMaxWinNumber=0;
+//
+//
+//        $minWin=0;
+//        $minWinNumber=0;
+//
+//        $currentMinWin=0;
+//        $currentMinWinNumber=0;
+//
+//        $pastMinWin=0;
+//        $pastMinWinNumber=0;
+//
+//        $pastTradeLossOrWin='win';
+//        foreach($consecutive_result as $row){
+//            if($row->total >=0){
+//                if($pastTradeLossOrWin!='win'){
+//                    $currentMaxWinNumber=1;
+//                    $currentMaxWin=$row->total;
+//
+//                    $pastMinWinNumber=$currentMinWinNumber;
+//                    $pastMinWin=$currentMinWin;
+//                }else{
+//                    $currentMaxWinNumber+=1;
+//                    $currentMaxWin+=$row->total;
+//                }
+//                if($pastMaxWinNumber>$currentMaxWinNumber){
+//                    $maxWinNumber=$pastMaxWinNumber;
+//                    $maxWin=$pastMaxWin;
+//                }else if($pastMaxWinNumber==$currentMaxWinNumber){
+//                    $maxWin=($pastMaxWin>$currentMaxWin)? $pastMaxWin:$currentMaxWin;
+//                }else{
+//                    $maxWinNumber=$currentMaxWinNumber;
+//                    $maxWin=$currentMaxWin;
+//                }
+//
+//                $pastTradeLossOrWin='win';
+//            }else{
+//                if($pastTradeLossOrWin!='loss'){
+//                    $pastMaxWinNumber=$currentMaxWinNumber;
+//                    $pastMaxWin=$currentMaxWin;
+//
+//                    $currentMinWinNumber=1;
+//                    $currentMinWin=$row->total;
+//
+//
+//                }else{
+//
+//                    $currentMinWinNumber+=1;
+//                    $currentMinWin+=$row->total;
+//                }
+//                if($pastMinWinNumber<$currentMinWinNumber){
+//                    $minWinNumber=$currentMinWinNumber;
+//                    $minWin=$currentMinWin;
+//                }else if($pastMinWinNumber==$currentMinWinNumber){
+//                    $minWin=($pastMinWin<$currentMinWin)? $pastMinWin:$currentMinWin;
+//                }else{
+//                    $minWinNumber=$pastMinWinNumber;
+//                    $minWin=$pastMinWin;
+//                }
+//
+//                $pastTradeLossOrWin='loss';
+//            }
+//
+//        }
+//
+//
+//
+//
+//
+//
+//
+//        $maxProfit=0;
+//        $maxProfitNumber=0;
+//
+//        $currentMaxProfit=0;
+//        $currentMaxProfitNumber=0;
+//
+//        $pastMaxProfit=0;
+//        $pastMaxProfitNumber=0;
+//
+//
+//        $minProfit=0;
+//        $minProfitNumber=0;
+//
+//        $currentMinProfit=0;
+//        $currentMinProfitNumber=0;
+//
+//        $pastMinProfit=0;
+//        $pastMinProfitNumber=0;
+//
+//        $pastTradeLossOrWin='win';
+//        foreach($consecutive_result as $row){
+//            if($row->total >=0){
+//                if($pastTradeLossOrWin!='win'){
+//                    $currentMaxProfitNumber=1;
+//                    $currentMaxProfit=$row->total;
+//
+//                    $pastMinProfitNumber=$currentMinProfitNumber;
+//                    $pastMinProfit=$currentMinProfit;
+//                }else{
+//                    $currentMaxProfitNumber+=1;
+//                    $currentMaxProfit+=$row->total;
+//                }
+//                if($pastMaxProfit>$currentMaxProfit){
+//                    $maxProfitNumber=$pastMaxProfitNumber;
+//                    $maxProfit=$pastMaxProfit;
+//                }else if($pastMaxProfit==$currentMaxProfit){
+//                    $maxProfitNumber=($pastMaxProfitNumber>$currentMaxProfitNumber)? $pastMaxProfitNumber:$currentMaxProfitNumber;
+//                }else{
+//                    $maxWinNumber=$currentMaxProfitNumber;
+//                    $maxWin=$currentMaxProfit;
+//                }
+//
+//                $pastTradeLossOrWin='win';
+//            }else{
+//                if($pastTradeLossOrWin!='loss'){
+//                    $pastMaxProfitNumber=$currentMaxProfitNumber;
+//                    $pastMaxProfit=$currentMaxProfit;
+//
+//                    $currentMinProfitNumber=1;
+//                    $currentMinProfit=$row->total;
+//
+//
+//                }else{
+//
+//                    $currentMinProfitNumber+=1;
+//                    $currentMinProfit+=$row->total;
+//                }
+//                if($pastMinProfit<$currentMinProfit){
+//                    $minProfitNumber=$currentMinProfitNumber;
+//                    $minProfit=$currentMinProfit;
+//                }else if($pastMinProfit==$currentMinProfit){
+//                    $minProfitNumber=($pastMinProfitNumber<$currentMinProfitNumber)? $pastMinProfitNumber:$currentMinProfitNumber;
+//                }else{
+//                    $minProfitNumber=$pastMinProfitNumber;
+//                    $minProfit=$pastMinProfit;
+//                }
+//
+//                $pastTradeLossOrWin='loss';
+//            }
+//
+//        }
 
 
 //        foreach($consecutive_result as $row){
