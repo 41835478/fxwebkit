@@ -1,6 +1,7 @@
 <?php namespace Modules\Mt4configrations\Http\Controllers\admin;
 
 use Pingpong\Modules\Routing\Controller;
+use Modules\Tools\Repositories\HolidayContract as Holiday;
 
 class Mt4ConfigrationsController extends Controller {
 	
@@ -10,8 +11,22 @@ class Mt4ConfigrationsController extends Controller {
 	}
 
 
+	protected $oHoliday;
+	public function __construct(
+		Holiday $oHoliday
+	) {
+
+		$this->oHoliday = $oHoliday;
+	}
+
+
+
 	public function getSymbolsList(){
-		return 'getSymbolsList';
+
+		$oResults = $this->oHoliday->getSymbols();
+		//dd($oResults);
+
+		return view('mt4configrations::symbol_list')->with('oResults',$oResults);
 	}
 	public function getSecuritiesList(){
 		return 'getSecuritiesList';

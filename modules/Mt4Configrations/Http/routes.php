@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'mt4configrations', 'namespace' => 'Modules\Mt4Configrations\Http\Controllers\admin'], function()
+Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'mt4configrations', 'namespace' => 'Modules\Mt4Configrations\Http\Controllers\admin'], function()
 {
 
 	Route::controller('mt4Configrations', 'Mt4ConfigrationsController', [

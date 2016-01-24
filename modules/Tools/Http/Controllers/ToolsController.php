@@ -413,6 +413,11 @@ class ToolsController extends Controller {
         return Redirect::route('tools.holiday')->withErrors($result);
     }
 
+    /**
+     * @param Request $oRequest
+     * @param string $message
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getAddSymbolHoliday(Request $oRequest,$message='')
     {
         $carbon = new Carbon();
@@ -435,6 +440,7 @@ class ToolsController extends Controller {
 
 
         $oResults = $this->oHoliday->getSymbols();
+
         $view=view('tools::addSymbolHoliday');
         $view->with('holidayInfo', $holidayInfo);
         $view->with('oResults', $oResults);
