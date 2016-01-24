@@ -29,8 +29,13 @@ class Mt4ConfigrationsServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function register()
-	{		
-		//
+	{
+		$this->app->bind(
+			'Modules\Tools\Repositories\Mt4ConfigrationsContract',
+			'Modules\Tools\Repositories\EloquentMt4ConfigrationsContractRepository'
+
+
+		);
 	}
 
 	/**

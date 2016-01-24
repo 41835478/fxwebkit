@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateToolsSecuritiesTable extends Migration {
+class CreateConfigrationsSymbolGroupTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,11 +12,12 @@ class CreateToolsSecuritiesTable extends Migration {
      */
     public function up()
     {
-        Schema::dropIfExists('tools_securities');
-        Schema::create('tools_securities', function(Blueprint $table)
+        Schema::create('configrations_symbol_group', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('name',50);
+
+            $table->char('name',16);
+            $table->char('description',64);
 
         });
     }
@@ -28,7 +29,7 @@ class CreateToolsSecuritiesTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('tools_securities');
+        Schema::drop('configrations_symbol_group');
     }
 
 }
