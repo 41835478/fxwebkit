@@ -31,8 +31,8 @@ class Mt4ConfigrationsServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		$this->app->bind(
-			'Modules\Tools\Repositories\Mt4ConfigrationsContract',
-			'Modules\Tools\Repositories\EloquentMt4ConfigrationsContractRepository'
+			'Modules\Mt4Configrations\Repositories\Mt4ConfigrationsContract',
+			'Modules\Mt4Configrations\Repositories\EloquentMt4ConfigrationsContractRepository'
 
 
 		);

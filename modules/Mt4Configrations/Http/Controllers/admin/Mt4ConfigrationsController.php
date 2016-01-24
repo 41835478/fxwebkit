@@ -1,9 +1,9 @@
 <?php namespace Modules\Mt4configrations\Http\Controllers\admin;
 
 use Pingpong\Modules\Routing\Controller;
-use Modules\Tools\Repositories\HolidayContract as Holiday;
+use Illuminate\Http\Request;
 
-use Modules\Mt4Confirations\Repositories\Mt4ConfirationsContract as Mt4Confirations;
+use Modules\Mt4Configrations\Repositories\Mt4ConfigrationsContract as Mt4Configrations;
 
 class Mt4ConfigrationsController extends Controller {
 
@@ -15,22 +15,40 @@ class Mt4ConfigrationsController extends Controller {
 	}
 
 
-	protected $oHoliday;
+	protected $Mt4Configrations;
 	public function __construct(
-		Holiday $oHoliday
+		Mt4Configrations $Mt4Configrations
 	) {
 
-		$this->oHoliday = $oHoliday;
+		$this->Mt4Configrations = $Mt4Configrations;
 	}
 
 
 
-	public function getSymbolsList(){
+	public function getSymbolsList(Request $oRequest){
 
-		$oResults = $this->oHoliday->getSymbols();
-		//dd($oResults);
+		$sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+		$sOrder = ($oRequest->order) ? $oRequest->order : 'id';
 
-		return view('mt4configrations::symbol_list')->with('oResults',$oResults);
+		$oResults = null;
+
+		$aFilterParams = [
+			'name' => '',
+			'sort' => $sSort,
+			'order' => $sOrder,
+		];
+
+		if ($oRequest->has('search')) {
+
+			$aFilterParams['name'] = $oRequest->name;
+
+
+			$oResults = $this->Mt4Configrations->getSymbolsByFilters($aFilterParams, false, $sOrder, $sSort);
+		}
+
+
+		return view('mt4configrations::symbol_list')->with('oResults',$oResults)
+			->with('aFilterParams',$aFilterParams);
 	}
 	public function getSecuritiesList(){
 		return 'getSecuritiesList';

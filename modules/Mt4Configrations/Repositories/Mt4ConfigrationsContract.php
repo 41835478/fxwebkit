@@ -1,14 +1,10 @@
 <?php 
-namespace Modules\Mt4Confirations\Repositories;
+namespace Modules\Mt4Configrations\Repositories;
 
 
-interface HolidayContract
+interface Mt4ConfigrationsContract
 {
     
-   public function getHolidayByFilter($aFilters, $bFullSet=false, $sOrderBy = 'LOGIN', $sSort = 'ASC');
-
-
-   public function addHoliday($holiday_details);
-
+   public function getSymbolsByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC');
 
 }

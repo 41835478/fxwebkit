@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('accounts::accounts.accounts'))
+@section('title', trans('mt4configrations::mt4configrations.symbols'))
 @section('content')
     <style type="text/css">
         #content-wrapper {
@@ -36,7 +36,24 @@
             <div class="navigation">
                 {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
 
+                <ul class="sections">
+                    <li class="active"><a href="#"> <i
+                                    class="fa fa-search"></i> {{ trans('mt4configrations::mt4configrations.search') }} </a></li>
 
+
+                    <li>
+                        <div class=" nav-input-div  ">
+                            {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('mt4configrations::mt4configrations.symbols'),'class'=>'form-control input-sm']) !!}
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class=" nav-input-div  ">
+                            {!! Form::submit(trans('mt4configrations::mt4configrations.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                </ul>
 
 
             </div>
@@ -44,7 +61,7 @@
 
         <div class="mail-container ">
             <div class="mail-container-header">
-                {{ trans('accounts::accounts.accounts') }}
+                {{ trans('mt4configrations::mt4configrations.symbols') }}
             </div>
             <div class="center_page_all_div">
                 @include('admin.partials.messages')
@@ -52,20 +69,24 @@
                 <div class="table-light">
                     <div class="table-header">
                         <div class="table-caption">
-                            {{ trans('accounts::accounts.accounts') }}
-                            <a href="{{ route('accounts.addAccount') }}" style="float:right;">
-                                <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button"
-                                       value="{{ trans('accounts::accounts.addAccount') }}"> </a>
+                            {{ trans('mt4configrations::mt4configrations.symbols') }}
+
+
                         </div>
                     </div>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.id'), 'id', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.first_name'), 'name', $oResults) !!}</th>
-
-
-
+                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.symbols'), 'symbol', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.type'), 'type', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.exemode'), 'exemode', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.filter'), 'filter', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.spread'), 'spread', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.stops_level'), 'stops_level', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.swap_long'), 'long_only', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.swap_short'), 'instant_max_volume', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.digits'), 'digits', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.trade'), 'trade', $oResults) !!}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -75,8 +96,16 @@
                             @foreach($oResults as $oResult)
                                 {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                                 <tr class='{{ $class }}'>
-                                    <td>{{ $oResult->id }}</td>
-                                    <td>{{ $oResult->name }}</td>
+                                    <td>{{ $oResult->symbol }}</td>
+                                    <td>{{ $oResult->type }}</td>
+                                    <td>{{ $oResult->exemode }}</td>
+                                    <td>{{ $oResult->filter }}</td>
+                                    <td>{{ $oResult->spread }}</td>
+                                    <td>{{ $oResult->stops_level }}</td>
+                                    <td>{{ $oResult->swap_long }}</td>
+                                    <td>{{ $oResult->swap_short}}</td>
+                                    <td>{{ $oResult->digits }}</td>
+                                    <td>{{ $oResult->trade }}</td>
                                 </tr>
                             @endforeach
                         @endif
@@ -89,13 +118,8 @@
 
                                 <div class="DT-lf-right change_page_all_div">
 
-
                                     {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}
-
-
-
                                     {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-
 
                                 </div>
                             @endif
