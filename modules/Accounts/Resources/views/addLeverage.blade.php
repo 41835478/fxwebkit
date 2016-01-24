@@ -34,7 +34,7 @@
     <div class="col-sm-6">
         <div class="form-group no-margin-hr">
             <label class="control-label">{{ trans('accounts::accounts.leverage') }}</label>
-            {!! Form::select('leverage',$Result,'',['id'=>'jq-validation-select2','class'=>'form-control']) !!}
+            {!! Form::select('leverage',$changeleverage['leverage_array'],$changeleverage['leverage'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
         </div>
     </div><!-- col-sm-6 -->
     @if($Pssword==true)

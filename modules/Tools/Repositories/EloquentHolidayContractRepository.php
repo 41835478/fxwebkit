@@ -186,7 +186,7 @@ class EloquentHolidayContractRepository implements HolidayContract
         $id = (is_array($id)) ? $id : [$id];
         $deleteResult = ToolsHolidaySymbols::whereIn('symbols_id', $id)->delete();
         if ($deleteResult) {
-            // todo[moaid] translate messages and all messages like this
+
             return [trans('tools::tools.deleted_successfully_message')];
         } else {
             return [trans('tools::tools.deleted_faild_message')];

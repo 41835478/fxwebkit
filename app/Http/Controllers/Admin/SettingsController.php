@@ -18,31 +18,32 @@ use Fxweb\Repositories\Admin\User\UserContract as Users;
 use File;
 use Fxweb\Http\Controllers\admin\Email;
 
-class SettingsController extends Controller {
+class SettingsController extends Controller
+{
 
     /**
      * @var Mt4Group
      */
     protected $oUser;
     protected $oMt4User;
-    private $aTemplates ;
-    public function __construct(Users $oUser, Mt4User $oMt4User) {
+    private $aTemplates;
+
+    public function __construct(Users $oUser, Mt4User $oMt4User)
+    {
         $this->oMt4User = $oMt4User;
         $this->oUser = $oUser;
         $this->aTemplates = [
-                'signUpWelcome' => 'Sign Up Welcome',
-                'accountAssign' => 'Account Assign',
-                'agentActivation' => 'Agent Activation',
-                'newAgent' => 'New Agent',
-                'newPassword' => 'New Password',
-                'recoverPassword' => 'Recover Password',
-                'withdrawResult' => 'Withdraw Result',
-                'newContract' => 'New Contract',
-                'massMailler'=>'Mass Mailler',
-          
-                'newAgentNotify' => 'New Agent Notify',
-                'withdrawRequest' => 'Withdraw Request'
-           
+            'signUpWelcome' => 'Sign Up Welcome',
+            'accountAssign' => 'Account Assign',
+            'agentActivation' => 'Agent Activation',
+            'newAgent' => 'New Agent',
+            'newPassword' => 'New Password',
+            'recoverPassword' => 'Recover Password',
+            'withdrawResult' => 'Withdraw Result',
+            'newContract' => 'New Contract',
+            'massMailler' => 'Mass Mailler',
+            'newAgentNotify' => 'New Agent Notify',
+            'withdrawRequest' => 'Withdraw Request'
         ];
     }
 
@@ -51,10 +52,10 @@ class SettingsController extends Controller {
      *
      * @return Response
      */
-    public function getAdminsList(AdminsListRequest $oRequest) {
+    public function getAdminsList(AdminsListRequest $oRequest)
+    {
 
-      
-        
+
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
         $aGroups = [];
@@ -67,7 +68,7 @@ class SettingsController extends Controller {
             'sort' => $sSort,
             'order' => $sOrder,
         ];
-        
+
         if ($oRequest->has('search')) {
             $aFilterParams['id'] = $oRequest->id;
             $aFilterParams['first_name'] = $oRequest->first_name;
@@ -76,19 +77,20 @@ class SettingsController extends Controller {
 
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-            
-            }
-            $role = explode(',', Config::get('fxweb.admin_roles'));
-            $oResults = $this->oUser->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role[0]);
-        
+
+        }
+        $role = explode(',', Config::get('fxweb.admin_roles'));
+        $oResults = $this->oUser->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role[0]);
+
         return view('admin/user/adminsList')
-                        ->with('oResults', $oResults)
-                        ->with('aFilterParams', $aFilterParams);
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
     }
 
-    public function getAddUser(Request $oRequest) {
+    public function getAddUser(Request $oRequest)
+    {
 
-        
+
         $country_array = $this->oUser->getCountry(null);
 
         $carbon = new Carbon();
@@ -135,13 +137,15 @@ class SettingsController extends Controller {
         return view('admin/user/addUser')->with('userInfo', $userInfo);
     }
 
-    public function getDeleteUser(Request $oRequest) {
+    public function getDeleteUser(Request $oRequest)
+    {
 
         $result = $this->oUser->deleteUser($oRequest->delete_id);
         return Redirect::route('admin.adminsList')->withErrors($result);
     }
 
-    public function getEditUser(Request $oRequest) {
+    public function getEditUser(Request $oRequest)
+    {
 
         $country_array = $this->oUser->getCountry(null);
 
@@ -191,7 +195,8 @@ class SettingsController extends Controller {
         return view('admin/user/editUser')->with('userInfo', $userInfo)->with('oResult', $oResult);
     }
 
-    public function postEditUser(EditUserRequest $oRequest) {
+    public function postEditUser(EditUserRequest $oRequest)
+    {
 
         $result = 0;
 
@@ -205,7 +210,8 @@ class SettingsController extends Controller {
         }
     }
 
-    public function postAddUser(AddUserRequest $oRequest) {
+    public function postAddUser(AddUserRequest $oRequest)
+    {
 
         $result = 0;
 
@@ -221,7 +227,8 @@ class SettingsController extends Controller {
         }
     }
 
-    public function getUserDetails(Request $oRequest) {
+    public function getUserDetails(Request $oRequest)
+    {
 
         $oResult = $this->oUser->getUserDetails($oRequest->edit_id);
 
@@ -244,7 +251,8 @@ class SettingsController extends Controller {
         return view('admin.user.detailsAccount')->with('user_details', $user_details);
     }
 
-    public function getEmailTemplates(Request $oRequest) {
+    public function getEmailTemplates(Request $oRequest)
+    {
 
         $aTemplates = $this->aTemplates;
         $sTemplate = $oRequest->name;
@@ -263,14 +271,15 @@ class SettingsController extends Controller {
         }
 
         return view('admin.email.addEmailTemplates')
-                        ->with('aLanguages', $aLanguages)
-                        ->with('aTemplates', $aTemplates)
-                        ->with('sTemplate', $sTemplate)
-                        ->with('sLanguage', $sLanguage)
-                        ->with('sContent', $sContent);
+            ->with('aLanguages', $aLanguages)
+            ->with('aTemplates', $aTemplates)
+            ->with('sTemplate', $sTemplate)
+            ->with('sLanguage', $sLanguage)
+            ->with('sContent', $sContent);
     }
 
-    public function postEmailTemplates(Request $oRequest) {
+    public function postEmailTemplates(Request $oRequest)
+    {
         $sTemplate = $oRequest->name;
         $sLanguage = $oRequest->lang;
         $sContent = $oRequest->template_body;
@@ -286,44 +295,43 @@ class SettingsController extends Controller {
     }
 
 
-    public function getMassMailer(Request $oRequest) {
+    public function getMassMailer(Request $oRequest)
+    {
 
         $aTemplates = $this->aTemplates;
-        $sTemplate =($oRequest->has('lang'))? $oRequest->name:'massMailler';
-        $sLanguage =($oRequest->has('lang'))? $oRequest->lang:'en';
+        $sTemplate = ($oRequest->has('lang')) ? $oRequest->name : 'massMailler';
+        $sLanguage = ($oRequest->has('lang')) ? $oRequest->lang : 'en';
         $sContent = '';
 
         $aLanguages = ['ar' => 'Arabic', 'en' => 'English'];
 
 
+        $sPath = base_path() . '/resources/views/admin/email/templates/' . $sLanguage . '/' . $sTemplate . '.blade.php';
 
-            $sPath = base_path() . '/resources/views/admin/email/templates/' . $sLanguage . '/' . $sTemplate . '.blade.php';
-
-            if (file_exists($sPath)) {
-                $sContent = File::get($sPath);
-            }
+        if (file_exists($sPath)) {
+            $sContent = File::get($sPath);
+        }
 
 
         return view('admin.email.massMailler')
-                        ->with('aTemplates', $aTemplates)
-                        ->with('sTemplate', $sTemplate)
+            ->with('aTemplates', $aTemplates)
+            ->with('sTemplate', $sTemplate)
             ->with('aLanguages', $aLanguages)
             ->with('sLanguage', $sLanguage)
             ->with('sContent', $sContent);
     }
 
 
+    public function postMassMailer(Request $oRequest)
+    {
 
-    public function postMassMailer(Request $oRequest) {
-
-        $email=new Email();
+        $email = new Email();
         $userResults = $this->oUser->getUsersEmail();
-      
-        foreach ($userResults as $user)
-             {
-           $email->massMailler(['email'=>$user['email'],'content'=>$oRequest->template_body]);
-             }
-        
-        
+
+        foreach ($userResults as $user) {
+            $email->massMailler(['email' => $user['email'], 'content' => $oRequest->template_body]);
+        }
+
+
     }
 }

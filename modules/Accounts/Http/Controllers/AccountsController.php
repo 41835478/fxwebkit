@@ -17,7 +17,8 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Carbon\Carbon;
 use Modules\Accounts\Http\Controllers\ApiController;
 
-class AccountsController extends Controller {
+class AccountsController extends Controller
+{
 
     /**
      * @var Mt4Group
@@ -27,19 +28,22 @@ class AccountsController extends Controller {
     protected $oMt4User;
 
     public function __construct(
-    Users $oUsers, Mt4User $oMt4User, Mt4Trade $oMt4Trade
-    ) {
+        Users $oUsers, Mt4User $oMt4User, Mt4Trade $oMt4Trade
+    )
+    {
         $this->oUsers = $oUsers;
 
         $this->oMt4Trade = $oMt4Trade;
         $this->oMt4User = $oMt4User;
     }
 
-    public function index() {
+    public function index()
+    {
         return view('accounts::index');
     }
 
-    public function getAccountsList(AccountsRequest $oRequest) {
+    public function getAccountsList(AccountsRequest $oRequest)
+    {
 
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
@@ -65,28 +69,30 @@ class AccountsController extends Controller {
 
             $role = explode(',', Config::get('fxweb.client_default_role'));
 
-            $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);           
+            $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
 
         }
 
         return view('accounts::accountsList')
-                        ->with('oResults', $oResults)
-                        ->with('aFilterParams', $aFilterParams);
-    }
-    
-    public function getDeleteAccount(Request $oRequest){
-        $result = $this->oUsers->deleteUser($oRequest->delete_id);
-            return Redirect::route('accounts.accountsList')->withErrors($result);
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
     }
 
-    public function getAddAccount(Request $oRequest) {
+    public function getDeleteAccount(Request $oRequest)
+    {
+        $result = $this->oUsers->deleteUser($oRequest->delete_id);
+        return Redirect::route('accounts.accountsList')->withErrors($result);
+    }
+
+    public function getAddAccount(Request $oRequest)
+    {
 
         $carbon = new Carbon();
         $dt = $carbon->now();
         $dt->subYears(18);
 
         $country_array = $this->oUsers->getCountry(null);
-        $userInfo = [ 'edit_id' => 0,
+        $userInfo = ['edit_id' => 0,
             'first_name' => '',
             'last_name' => '',
             'password' => '',
@@ -105,7 +111,6 @@ class AccountsController extends Controller {
         if ($oRequest->has('edit_id')) {
 
             $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
-          
 
 
             $userInfo = [
@@ -127,9 +132,10 @@ class AccountsController extends Controller {
         }
         return view('accounts::addAccount')->with('userInfo', $userInfo);
     }
-    
-     public function getEditAccount(Request $oRequest) {
-       
+
+    public function getEditAccount(Request $oRequest)
+    {
+
         if ($oRequest->has('delete_id')) {
             $result = $this->oUsers->deleteUser($oRequest->delete_id);
             return Redirect::route('accounts.accountsList')->withErrors($result);
@@ -140,7 +146,7 @@ class AccountsController extends Controller {
         $dt->subYears(18);
 
         $country_array = $this->oUsers->getCountry(null);
-        $userInfo = [ 'edit_id' => 0,
+        $userInfo = ['edit_id' => 0,
             'first_name' => '',
             'last_name' => '',
             'password' => '',
@@ -181,17 +187,18 @@ class AccountsController extends Controller {
         return view('accounts::editAccount')->with('userInfo', $userInfo);
     }
 
-    public function postAddAccount(AddUserRequest $oRequest) {
+    public function postAddAccount(AddUserRequest $oRequest)
+    {
 
-       $result = 0;
+        $result = 0;
 
         $admin_role = explode(',', Config::get('fxweb.client_default_role'));
-        
+
         $result = $this->oUsers->addUser($oRequest, $admin_role[0]);
 
         if ($result > 0) {
             $oRequest->edit_id = $result;
-        
+
             $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
 
             $user_details = [
@@ -216,19 +223,18 @@ class AccountsController extends Controller {
         }
     }
 
-    
-    
-    
-    public function postEditAccount(EditUserRequest $oRequest) {
 
-       $result = 0;
-     
+    public function postEditAccount(EditUserRequest $oRequest)
+    {
+
+        $result = 0;
+
         $result = $this->oUsers->updateUser($oRequest);
-        
+
         if ($result > 0) {
 
-          $oRequest->edit_id = $result;
-            
+            $oRequest->edit_id = $result;
+
             $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
 
             $user_details = [
@@ -247,7 +253,7 @@ class AccountsController extends Controller {
                 'zip_code' => $oResult['zip_code'],
                 'gender' => $oResult['gender'],
             ];
-            
+
             return view('accounts::detailsAccount')->with('user_details', $user_details);
         } else {
 
@@ -255,7 +261,8 @@ class AccountsController extends Controller {
         }
     }
 
-    public function getAsignMt4Users(Request $oRequest) {
+    public function getAsignMt4Users(Request $oRequest)
+    {
 
         $account_id = $oRequest->account_id;
 
@@ -283,7 +290,6 @@ class AccountsController extends Controller {
         }
 
 
-
         if ($oRequest->has('search')) {
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
@@ -296,15 +302,14 @@ class AccountsController extends Controller {
             $aFilterParams['signed'] = $oRequest->signed;
             $aFilterParams['account_id'] = $account_id;
             $aFilterParams['order'] = $oRequest->order;
-         
-             $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);   
+
+            $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
         }
 
-       
 
         if ($oRequest->has('export')) {
             $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, true, $sOrder, $sSort);
-            
+
             $sOutput = $oRequest->export;
             $aData = [];
             $aHeaders = [
@@ -329,16 +334,17 @@ class AccountsController extends Controller {
             $oExport = new Export($aHeaders, $aData);
             return $oExport->export($sOutput);
         }
-      
+
 
         return view('accounts::fastAsignMt4Users')
-                        ->with('aGroups', $aGroups)
-                        ->with('oResults', $oResults)
-                        ->with('account_id', $account_id)
-                        ->with('aFilterParams', $aFilterParams);
+            ->with('aGroups', $aGroups)
+            ->with('oResults', $oResults)
+            ->with('account_id', $account_id)
+            ->with('aFilterParams', $aFilterParams);
     }
 
-    public function postAsignMt4Users(Request $oRequest) {
+    public function postAsignMt4Users(Request $oRequest)
+    {
 
         if ($oRequest->has('asign_mt4_users_submit') || $oRequest->has('asign_mt4_users_submit_id')) {
 
@@ -362,8 +368,9 @@ class AccountsController extends Controller {
         }
     }
 
-    public function getDetailsAccount(Request $oRequest) {
-      
+    public function getDetailsAccount(Request $oRequest)
+    {
+
         $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
 
         $user_details = [
@@ -384,9 +391,10 @@ class AccountsController extends Controller {
         return view('accounts::detailsAccount')->with('user_details', $user_details);
     }
 
-    public function getEditClientInfo(Request $oRequest) {
+    public function getEditClientInfo(Request $oRequest)
+    {
 
-        $userInfo = [ 'edit_id' => 0,
+        $userInfo = ['edit_id' => 0,
             'first_name' => '',
             'last_name' => '',
             'password' => '',
@@ -426,8 +434,9 @@ class AccountsController extends Controller {
         return view('accounts::addAccount')->with('userInfo', $userInfo);
     }
 
-    public function getMt4UsersList(Request $oRequest) {
-   
+    public function getMt4UsersList(Request $oRequest)
+    {
+
         $oGroups = $this->oMt4User->getAllGroups();
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
@@ -446,12 +455,12 @@ class AccountsController extends Controller {
         ];
 
         foreach ($oGroups as $oGroup) {
-            
+
             $aGroups[$oGroup->group] = $oGroup->group;
-            
+
         }
 
-        
+        if ($oRequest->has('search')) {
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
             $aFilterParams['exactLogin'] = $oRequest->exactLogin;
@@ -462,17 +471,18 @@ class AccountsController extends Controller {
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
             $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
-            
-        
+        }
 
 
         return view('accounts::mt4Accounts')
-                        ->with('aGroups', $aGroups)
-                        ->with('oResults', $oResults)
-                        ->with('aFilterParams', $aFilterParams);
+            ->with('aGroups', $aGroups)
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
     }
 
-    public function getMt4UserDetails(Request $oRequest) {
+    public function getMt4UserDetails(Request $oRequest)
+    {
+
         $oGroups = $this->oMt4User->getAllGroups();
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
@@ -502,6 +512,7 @@ class AccountsController extends Controller {
             $aFilterParams['order'] = $oRequest->order;
             $oResults = $this->oMt4User->getUserInfo($aFilterParams['login']);
 
+
             $aSummery = [
                 'deposit' => $this->oMt4Trade->getDepositByLogin($aFilterParams),
                 'credit_facility' => $this->oMt4Trade->getCreditFacilityByLogin($aFilterParams),
@@ -511,15 +522,15 @@ class AccountsController extends Controller {
         }
 
 
-
         return view('accounts::accountStatement')
-                        ->with('aGroups', $aGroups)
-                        ->with('oResults', $oResults)
-                        ->with('aSummery', $aSummery)
-                        ->with('aFilterParams', $aFilterParams);
+            ->with('aGroups', $aGroups)
+            ->with('oResults', $oResults)
+            ->with('aSummery', $aSummery)
+            ->with('aFilterParams', $aFilterParams);
     }
 
-    public function getClientAddMt4User(Request $oRequest) {
+    public function getClientAddMt4User(Request $oRequest)
+    {
 
         $userInfo = [
             'login' => $oRequest['login'],
@@ -528,57 +539,63 @@ class AccountsController extends Controller {
         return view('accounts::clientAddMt4User')->with('userInfo', $userInfo);
     }
 
-    public function postClientAddMt4User(AsignMt4User $oRequest) {
+    public function postClientAddMt4User(AsignMt4User $oRequest)
+    {
 
         $userInfo = [
             'login' => $oRequest['login'],
             'password' => $oRequest['password']];
 
-       
 
         return view('accounts::clientAddMt4User')->with('userInfo', $userInfo);
     }
 
     public function getBlockAccount(Request $oRequest)
     {
-         $user = Sentinel::findById($oRequest->account_id);
-        
-         $role = Sentinel::findRoleByName('block');
-         $role->users()->attach($user);
-         
-           return Redirect::route('accounts.accountsList')->withErrors('Block User');
+        $user = Sentinel::findById($oRequest->account_id);
+
+        $role = Sentinel::findRoleByName('block');
+        $role->users()->attach($user);
+
+        return Redirect::route('accounts.accountsList')->withErrors('Block User');
     }
-    
-    
-     public function getUnBlockAccount(Request $oRequest)
+
+
+    public function getUnBlockAccount(Request $oRequest)
     {
-         $user = Sentinel::findById($oRequest->account_id);
-        
-         $role = Sentinel::findRoleByName('block');
-         $role->users()->detach($user);
-         
-         return Redirect::route('accounts.accountsList')->withErrors('Unblock User');
+        $user = Sentinel::findById($oRequest->account_id);
+
+        $role = Sentinel::findRoleByName('block');
+        $role->users()->detach($user);
+
+        return Redirect::route('accounts.accountsList')->withErrors('Unblock User');
     }
-    
-    
-    public function getMt4Leverage(Request $oRequest) {
+
+
+    public function getMt4Leverage(Request $oRequest)
+    {
 
         $Result = Config('accounts.leverage');
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $oResults = $this->oMt4User->getUserInfo($oRequest->login);
+
 
         $changeleverage = [
             'login' => '',
             'oldPassword' => '',
-            'leverage' => ''];
+            'leverage_array' => $Result,
+            'leverage' => $oResults['LEVERAGE']];
+
 
         return view('accounts::addLeverage')
-                        ->with('Pssword', $Pssword)
-                         ->with('Result', $Result)
-                        ->with('changeleverage', $changeleverage)
-                        ->with('login', $oRequest->login);
+            ->with('Pssword', $Pssword)
+            ->with('Result', $Result)
+            ->with('changeleverage', $changeleverage)
+            ->with('login', $oRequest->login);
     }
 
-    public function postMt4Leverage(Request $oRequest) {
+    public function postMt4Leverage(Request $oRequest)
+    {
 
         $Result = Config('accounts.leverage');
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
@@ -587,6 +604,7 @@ class AccountsController extends Controller {
         $changeleverage = [
             'login' => '',
             'oldPassword' => '',
+
             'leverage' => ''];
 
         $oApiController = new ApiController();
@@ -594,14 +612,15 @@ class AccountsController extends Controller {
 
 
         return view('accounts::addLeverage')
-                        ->with('Result', $Result)
-                        ->with('Pssword', $Pssword)
-                        ->with('login', $oRequest->login)
-                 ->with('changeleverage', $changeleverage)
-                        ->withErrors($result);
+            ->with('Result', $Result)
+            ->with('Pssword', $Pssword)
+            ->with('login', $oRequest->login)
+            ->with('changeleverage', $changeleverage)
+            ->withErrors($result);
     }
 
-    public function getMt4ChangePassword(Request $oRequest) {
+    public function getMt4ChangePassword(Request $oRequest)
+    {
         $Password = Config('accounts.apiReqiredConfirmMt4Password');
 
         $changePassword = [
@@ -610,12 +629,13 @@ class AccountsController extends Controller {
             'newPassword' => ''];
 
         return view('accounts::changePassword')
-                        ->with('Password', $Password)
-                        ->with('changePassword', $changePassword)
-                        ->with('login', $oRequest->login);
+            ->with('Password', $Password)
+            ->with('changePassword', $changePassword)
+            ->with('login', $oRequest->login);
     }
 
-    public function postMt4ChangePassword(Request $oRequest) {
+    public function postMt4ChangePassword(Request $oRequest)
+    {
         $Password = Config('accounts.apiReqiredConfirmMt4Password');
 
         $changePassword = [
@@ -627,14 +647,17 @@ class AccountsController extends Controller {
         $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'], $oRequest['oldPassword']);
 
         return view('accounts::changePassword')
-                        ->withErrors($result)
-                        ->with('Password', $Password)
-                        ->with('changePassword', $changePassword)
-                        ->with('login', $oRequest->login);
+            ->withErrors($result)
+            ->with('Password', $Password)
+            ->with('changePassword', $changePassword)
+            ->with('login', $oRequest->login);
     }
 
-    public function getMt4InternalTransfer(Request $oRequest) {
+    public function getMt4InternalTransfer(Request $oRequest)
+    {
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $oResults = $this->oMt4User->getUserInfo($oRequest->login);
+
 
         $internalTransfer = [
             'login1' => '',
@@ -643,18 +666,20 @@ class AccountsController extends Controller {
             'amount' => ''];
 
         return view('accounts::internalTransfer')
-                        ->with('Pssword', $Pssword)
-                        ->with('internalTransfer', $internalTransfer)
-                        ->with('login', $oRequest->login);
+            ->with('Pssword', $Pssword)
+            ->with('internalTransfer', $internalTransfer)
+            ->with('oResults', $oResults)
+            ->with('login', $oRequest->login);
     }
-    
-    public function postMt4InternalTransfer(Request $oRequest) {
 
-       
+    public function postMt4InternalTransfer(Request $oRequest)
+    {
+
+
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
 
 
-         $internalTransfer = [
+        $internalTransfer = [
             'login' => '',
             'oldPassword' => '',
             'login2' => '',
@@ -665,73 +690,68 @@ class AccountsController extends Controller {
 
 
         return view('accounts::internalTransfer')
-                        ->withErrors($result)
-                        ->with('Pssword', $Pssword)
-                        ->with('internalTransfer', $internalTransfer)
-                        ->with('login', $oRequest->login);
+            ->withErrors($result)
+            ->with('Pssword', $Pssword)
+            ->with('internalTransfer', $internalTransfer)
+            ->with('login', $oRequest->login);
     }
-    
-  
-    public function getMt4Operation(Request $oRequest) {
-      
+
+
+    public function getMt4Operation(Request $oRequest)
+    {
+
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
         $Result = Config('accounts.operation');
-        
+
         $changeOperation = [
             'login1' => '',
             'oldPassword' => '',
             'operation' => '',
             'amount' => '',
-            ];
-        
+        ];
+
         return view('accounts::operation')
-                        ->with('Pssword', $Pssword)
-                         ->with('Result', $Result)
-                        ->with('changeOperation', $changeOperation)
-                        ->with('login', $oRequest->login);
+            ->with('Pssword', $Pssword)
+            ->with('Result', $Result)
+            ->with('changeOperation', $changeOperation)
+            ->with('login', $oRequest->login);
     }
-    
-     public function postMt4Operation(Request $oRequest) {
-      
+
+    public function postMt4Operation(Request $oRequest)
+    {
+
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
         $Result = Config('accounts.operation');
 
-          if($oRequest->operation=='0')
-          {
-             $operation=5;
-             $amount=$oRequest->amount;
-          }
-          elseif($oRequest->operation=='1')
-          {
-              $operation=5;
-              $amount=$oRequest->amount*-1;
-          }
-          elseif($oRequest->operation=='2')
-          {
-              $operation=3;
-              $amount=$oRequest->amount;    
-          }
-          else
-          {
-              $operation=3;
-              $amount=$oRequest->amount*-1;  
-          }
+        if ($oRequest->operation == '0') {
+            $operation = 5;
+            $amount = $oRequest->amount;
+        } elseif ($oRequest->operation == '1') {
+            $operation = 5;
+            $amount = $oRequest->amount * -1;
+        } elseif ($oRequest->operation == '2') {
+            $operation = 3;
+            $amount = $oRequest->amount;
+        } else {
+            $operation = 3;
+            $amount = $oRequest->amount * -1;
+        }
         $changeOperation = [
             'login' => '',
             'oldPassword' => '',
             'operation' => '',
             'amount' => '',
-            ];
-        
-         $oApiController = new ApiController();
-         $result = $oApiController->operation($oRequest['login'], $amount, $operation);
+        ];
+
+        $oApiController = new ApiController();
+        $result = $oApiController->operation($oRequest['login'], $amount, $operation);
 
         return view('accounts::operation')
-                         ->withErrors($result)
-                        ->with('Pssword', $Pssword)
-                         ->with('Result', $Result)
-                        ->with('changeOperation', $changeOperation)
-                        ->with('login', $oRequest->login);
+            ->withErrors($result)
+            ->with('Pssword', $Pssword)
+            ->with('Result', $Result)
+            ->with('changeOperation', $changeOperation)
+            ->with('login', $oRequest->login);
     }
-    
+
 }

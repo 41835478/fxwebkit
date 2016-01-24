@@ -22,14 +22,14 @@
 
                 <div class="col-sm-4">
                     <div class="form-group no-margin-hr">
-                        <label class="control-label">trans('tools::tools.from) {{ $holidayInfo['start_date'] }}</label>
+                        <label class="control-label">{{trans('tools::tools.from').' '.$holidayInfo['start_date'] }}</label>
                     </div>
                 </div>
                 <!-- col-sm-6 -->
 
                 <div class="col-sm-4">
                     <div class="form-group no-margin-hr">
-                        <label class="control-label">trans('tools::tools.to :) {{ $holidayInfo['end_date'] }}</label>
+                        <label class="control-label">{{ trans('tools::tools.to :').' '.$holidayInfo['end_date'] }}</label>
                     </div>
                 </div>
                 <!-- col-sm-6 -->

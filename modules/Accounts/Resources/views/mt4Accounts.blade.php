@@ -2,8 +2,8 @@
 @section('title', trans('accounts::accounts.mt4UsersList'))
 @section('content')
 <style type="text/css">
-    .mail-nav{display:none;}
-    .page-mail .mail-container{margin-left:0 !important;}
+
+
     #content-wrapper{ padding: 0px; margin: 0px;}
 </style>
 <div class="  theme-default page-mail" >
@@ -27,7 +27,11 @@
                 <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']) !!}</div></li>
 
-               
+                <li>
+                    <div class=" nav-input-div  ">
+                        {!! Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                    </div>
+                </li>
                 <li class="divider"></li>
             </ul>
 
@@ -61,7 +65,7 @@
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.reg_date'), 'REGDATE', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.last_date'), 'LASTDATE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Leverage'), 'LEVERAGE', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.leverage'), 'LEVERAGE', $oResults) !!}</th>
                             <th class="no-warp"></th>
                         </tr>
                     </thead>

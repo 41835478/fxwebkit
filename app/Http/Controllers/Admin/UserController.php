@@ -10,15 +10,17 @@ use Redirect;
 
 class UserController extends Controller
 {
-	protected $oUsers;
+    protected $oUsers;
 
     public function __construct(
-    Users $oUsers
-    ) {
+        Users $oUsers
+    )
+    {
         $this->oUsers = $oUsers;
     }
 
-    public function getProfiles(Request $oRequest) {
+    public function getProfiles(Request $oRequest)
+    {
 
         $user = Sentinel::getUser();
         $oResult = $this->oUsers->getUserDetails($user->id);
@@ -41,7 +43,8 @@ class UserController extends Controller
         return view('admin.user.detailsProfile')->with('user_details', $user_details);
     }
 
-    public function getEditProfile(Request $oRequest) {
+    public function getEditProfile(Request $oRequest)
+    {
 
         $user = Sentinel::getUser();
         $oResult = $this->oUsers->getUserDetails($user->id);
@@ -68,17 +71,18 @@ class UserController extends Controller
         return view('admin.user.editProfile')->with('userInfo', $userInfo);
     }
 
-    public function postEditProfile(EditUserRequest $oRequest) {
-     
+    public function postEditProfile(EditUserRequest $oRequest)
+    {
+
         $result = 0;
 
-              $oRequest->edit_id = Sentinel::getUser()->id;
-            $result = $this->oUsers->updateUser($oRequest);
-           
-        if ($result > 0) {   
-            
+        $oRequest->edit_id = Sentinel::getUser()->id;
+        $result = $this->oUsers->updateUser($oRequest);
+
+        if ($result > 0) {
+
             $oRequest->edit_id = $result;
-             
+
             $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
 
             $user_details = [
@@ -96,11 +100,11 @@ class UserController extends Controller
                 'zip_code' => $oResult['zip_code'],
                 'gender' => $oResult['gender'],
             ];
-          
-         return Redirect::route('admin.users.profile')->with('user_details',$user_details); 
-        } else {   
-            return Redirect::route('general.editUser')->withErrors($result);                  
+
+            return Redirect::route('admin.users.profile')->with('user_details', $user_details);
+        } else {
+            return Redirect::route('general.editUser')->withErrors($result);
         }
     }
-        
+
 }
