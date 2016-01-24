@@ -2,8 +2,12 @@
 
 use Pingpong\Modules\Routing\Controller;
 
+use Modules\Mt4Confirations\Repositories\Mt4ConfirationsContract as Mt4Confirations;
+
 class Mt4ConfigrationsController extends Controller {
-	
+
+
+
 	public function index()
 	{
 		return view('Mt4configrations::index');
