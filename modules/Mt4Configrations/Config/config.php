@@ -20,7 +20,7 @@ return [
 		[
 			'route' => 'admin.mt4Configrations.groupsList',
 			'title' => 'groupsList',
-			'icon' => 'fa-briefcase',
+			'icon' => 'fa fa-group',
 		],
 
 
