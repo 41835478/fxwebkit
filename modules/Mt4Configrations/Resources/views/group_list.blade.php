@@ -75,7 +75,7 @@
                             {{ trans('mt4configrations::mt4configrations.group') }}
 
                             {!! Form::open([ 'class'=>'form-bordered','style'=>'float:right']) !!}
-                            <button type="submit" class="btn btn-primary" name="edit_id" value="{{  0 }}">{{ trans('mt4configrations::mt4configrations.sync') }}</button>
+                            <button type="submit" class="btn btn-primary btn-flat" name="edit_id" value="{{  0 }}">{{ trans('mt4configrations::mt4configrations.sync') }}</button>
                             {!! Form::close() !!}
 
                         </div>

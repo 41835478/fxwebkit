@@ -127,5 +127,9 @@ return [
     'massMailler' => 'Mass Mailler',
 
     /*_______________End___email*/
-    'tradePopulation' => 'Trade Population'
+    'tradePopulation' => 'Trade Population',
+
+    'the_email_has'=>'The email has already been taken.',
+    'error_please_try'=>'error! please try again later.',
+    'deleted_successfully'=>'deleted successfully.'
 ];

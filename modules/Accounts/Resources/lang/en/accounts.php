@@ -130,7 +130,11 @@ return [
     'total_results' => 'Total Results',
     'results_from' => 'Results From',
     'meta_quotes_id'=>'MetaQuotes ID :',
-    'registration_date'=>'Registration date :'
+    'registration_date'=>'Registration date :',
+    'entries'=>'entries',
+    'of'=>'of',
+    'to'=>'to',
+    'showing'=>'showing',
 
 
 
