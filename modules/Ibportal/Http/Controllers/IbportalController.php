@@ -8,5 +8,5 @@ class IbportalController extends Controller {
 	{
 		return view('Ibportal::index');
 	}
-	
+
 }

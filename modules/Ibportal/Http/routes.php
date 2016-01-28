@@ -10,6 +10,8 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'ibportal', 'na
 {
 
 	Route::controller('Ibportal', 'IbportalController', [
+		'getPlanList'=>'admin.ibportal.planeList',
 		'getAddPlan' => 'admin.ibportal.addPlan',
+
 	]);
 });
