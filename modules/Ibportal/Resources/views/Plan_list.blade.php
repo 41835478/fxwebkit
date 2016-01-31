@@ -84,6 +84,7 @@
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.name'), 'name', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.type'), 'type', $oResults) !!}</th>
+                            <th class="no-warp">Public</th>
                             <th class="no-warp"></th>
                         </tr>
                         </thead>
@@ -96,6 +97,7 @@
                                 <tr class='{{ $class }}'>
                                     <td>{{ $oResult->name }}</td>
                                     <td>{{ $oResult->type }}</td>
+                                    <td>@if($oResult->public) {{trans('ibportal::ibportal.public') }}@endif </td>
                                     <td>
 
                                         <a href="{{ route('admin.ibportal.deletePlan').'?delete_id='.$oResult->id }}"

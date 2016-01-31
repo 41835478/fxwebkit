@@ -16,6 +16,7 @@ return [
     'value'=>'Value',
     'addAliases'=>'Add Aliases',
 'publicPlan'=>'Public Plan',
+    'public'=>'Public',
     'entries'=>'entries',
      'of'=>'of',
     'to'=>'to',

@@ -32,9 +32,9 @@
         <!-- col-sm-6 -->
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('ibportal::ibportal.publicPlan') }}</label>
+                <label class="control-label">  {!! Form::checkbox('public','1',false,[]) !!}{{ trans('ibportal::ibportal.publicPlan') }}</label>
 
-                {!! Form::checkbox('public',false,['class'=>'form-control']) !!}
+
             </div>
         </div>
         <!-- col-sm-6 -->
