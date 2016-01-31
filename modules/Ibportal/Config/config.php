@@ -4,7 +4,7 @@ return [
 	'is_admin' => 1,
 	'is_client' => 1,
 	'name' => 'Ibportal',
-	'icon' => 'fa-info-circle',
+	'icon' => 'fa-user',
 	'route' => '',
 	'type'=>[
 		'50'=> 'type',

@@ -4,7 +4,7 @@ return [
 	'is_admin' => 1,
 	'is_client' => 1,
 	'name' => 'Reports',
-	'icon' => 'fa-info-circle',
+	'icon' => 'fa-file-text-o',
 	'route' => '',
 	'admin_menu' => [
 		[
