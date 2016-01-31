@@ -161,11 +161,16 @@ class IbportalController extends Controller {
 
 	public function getAddAliases()
 	{
+
+		$oSymbolsResults = $this->Ibportal->getSymbols();
+
 		$data = [
-			'alias'=>'',
+			'symbols'=>$oSymbolsResults,
 			'operands' => ['Equals'=>'Equals','Starts With'=>'Starts With','Ends With'=>'Ends With','Contains'=>'Contains'],
 			'aliases'=>$this->Ibportal->getAliases(),
 		];
+
+
 
 
 
