@@ -17,6 +17,12 @@ return [
 			'title' => 'addPlan',
 			'icon' => 'fa-briefcase',
 		]
+,
+		[
+		'route' => 'admin.ibportal.aliasesList',
+		'title' => 'Symbols',
+		'icon' => 'fa-briefcase',
+	]
 
 
 

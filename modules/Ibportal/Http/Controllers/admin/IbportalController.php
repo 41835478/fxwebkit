@@ -91,6 +91,35 @@ class IbportalController extends Controller {
 		}
 	}
 
+public function getAliasesList(Request $oRequest){
 
+
+	$sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+	$sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+
+	$oResults = null;
+
+	$aFilterParams = [
+		'name' => '',
+		'sort' => $sSort,
+		'order' => $sOrder,
+	];
+
+
+	if ($oRequest->has('search')) {
+
+
+		$aFilterParams['name'] = $oRequest->name;
+
+
+		$oResults = $this->Mt4Configrations->getGroupsByFilters($aFilterParams, false, $sOrder, $sSort);
+
+
+
+	}
+	return view('ibportal::plan_list')->with('oResults', $oResults)
+		->with('aFilterParams', $aFilterParams);
+
+}
 	
 }
