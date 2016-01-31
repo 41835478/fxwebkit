@@ -5,6 +5,6 @@ use Illuminate\Database\Eloquent\Model;
 class IbportalPlan extends Model {
 
     protected  $table='ibportal_plan';
-    protected $fillable = [];
+    protected $fillable = ['name','type'];
 
 }

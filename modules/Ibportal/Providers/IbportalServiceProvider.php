@@ -29,8 +29,13 @@ class IbportalServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function register()
-	{		
-		//
+	{
+		$this->app->bind(
+			'Modules\Ibportal\Repositories\IbportalContract',
+			'Modules\Ibportal\Repositories\EloquentIbportalContractRepository'
+
+
+		);
 	}
 
 	/**

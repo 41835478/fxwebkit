@@ -1,5 +1,7 @@
 <?php namespace Modules\Ibportal\Http\Controllers\admin;
+use Illuminate\Support\Facades\Redirect;
 use Modules\Mt4Configrations\Repositories\Mt4ConfigrationsContract as Mt4Configrations;
+use Modules\Ibportal\Repositories\IbportalContract as Ibportal;
 
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
@@ -11,12 +13,12 @@ class IbportalController extends Controller {
 	}
 
 	protected $Mt4Configrations;
-
+	protected $Ibportal;
 	public function __construct(
-		Mt4Configrations $Mt4Configrations
+		Mt4Configrations $Mt4Configrations,Ibportal $Ibportal
 	)
 	{
-
+		$this->Ibportal=$Ibportal;
 		$this->Mt4Configrations = $Mt4Configrations;
 	}
 
@@ -56,14 +58,37 @@ class IbportalController extends Controller {
 	public function getAddPlan()
 	{
 
-		$Result = Config('ibportal.type');
 
-		$type = [
+		$data = [
 			'name'=>'',
-			'type_array' => $Result,
-			'type' => ''];
+			'planTypes' => ['Commission'=>'Commission','Rebate'=>'Rebate'],
+			'symbolTypes'=>['Money'=>'Money','Point'=>'Point','Percentage'=>'Percentage'],
+			'aliases'=>$this->Ibportal->getAliases(),
+			];
 
-		return view('ibportal::addPlan')->with('type',$type);
+		return view('ibportal::admin.addPlan')->with('data',$data);
+	}
+
+	public function postAddPlan(Request $request)
+	{
+		// TODO check validation
+		$planName=$request->planName;
+		$planType=$request->planType;
+		$planId=$this->Ibportal->addPlan($planName,$planType);
+
+		if($request->has('selectedSymbols') && $planId >0) {
+			$selectedSymbols = $request->selectedSymbols;
+			$symbolsType = $request->symbolsType;
+			$symbolsValue = $request->symbolsValue;
+			$this->Ibportal->addPlanSymbols($planId,$selectedSymbols,$symbolsType,$symbolsValue);
+		}
+
+		if($planId > 0){
+		return Redirect::route('admin.ibportal.planeList');
+		}else{
+// TODO translate this error
+			return redirect()->back()->withErrors('No thing added, please try again.');
+		}
 	}
 
 
