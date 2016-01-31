@@ -77,7 +77,8 @@ class IbportalController extends Controller {
 		// TODO check validation
 		$planName=$request->planName;
 		$planType=$request->planType;
-		$planId=$this->Ibportal->addPlan($planName,$planType);
+		$planPublic=$request->Public;
+		$planId=$this->Ibportal->addPlan($planName,$planType,$planPublic);
 
 		if($request->has('selectedSymbols') && $planId >0) {
 			$selectedSymbols = $request->selectedSymbols;

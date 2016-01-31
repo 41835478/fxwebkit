@@ -15,7 +15,7 @@ return [
     'operand'=>'Operand',
     'value'=>'Value',
     'addAliases'=>'Add Aliases',
-
+'publicPlan'=>'Public Plan',
     'entries'=>'entries',
      'of'=>'of',
     'to'=>'to',
