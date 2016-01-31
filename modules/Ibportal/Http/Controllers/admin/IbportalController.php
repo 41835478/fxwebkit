@@ -1,6 +1,7 @@
 <?php namespace Modules\Ibportal\Http\Controllers\admin;
 use Illuminate\Support\Facades\Redirect;
 use Modules\Mt4Configrations\Repositories\Mt4ConfigrationsContract as Mt4Configrations;
+
 use Modules\Ibportal\Repositories\IbportalContract as Ibportal;
 
 use Pingpong\Modules\Routing\Controller;
@@ -46,7 +47,7 @@ class IbportalController extends Controller {
 			$aFilterParams['name'] = $oRequest->name;
 
 
-			$oResults = $this->Mt4Configrations->getGroupsByFilters($aFilterParams, false, $sOrder, $sSort);
+			$oResults = $this->Ibportal->getPlansByFilters($aFilterParams, false, $sOrder, $sSort);
 
 
 
@@ -65,6 +66,8 @@ class IbportalController extends Controller {
 			'symbolTypes'=>['Money'=>'Money','Point'=>'Point','Percentage'=>'Percentage'],
 			'aliases'=>$this->Ibportal->getAliases(),
 			];
+
+
 
 		return view('ibportal::admin.addPlan')->with('data',$data);
 	}
@@ -91,35 +94,89 @@ class IbportalController extends Controller {
 		}
 	}
 
-public function getAliasesList(Request $oRequest){
+
+	public function getDeletePlan(Request $request)
+	{
 
 
-	$sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
-	$sOrder = ($oRequest->order) ? $oRequest->order : 'id';
-
-	$oResults = null;
-
-	$aFilterParams = [
-		'name' => '',
-		'sort' => $sSort,
-		'order' => $sOrder,
-	];
-
-
-	if ($oRequest->has('search')) {
-
-
-		$aFilterParams['name'] = $oRequest->name;
-
-
-		$oResults = $this->Mt4Configrations->getGroupsByFilters($aFilterParams, false, $sOrder, $sSort);
-
-
+		$result = $this->Ibportal->deletePlan($request->delete_id);
+		return Redirect::route('admin.ibportal.planeList')->withErrors($result);
 
 	}
-	return view('ibportal::plan_list')->with('oResults', $oResults)
-		->with('aFilterParams', $aFilterParams);
 
-}
+	public function getDetailsPlan(Request $request)
+	{
+	//	dd($request);
+
+		$plan_result = $this->Ibportal->getPlanDetails($request->edit_id);
+		$aliases_result=$this->Ibportal->getAliasesDetails($request->edit_id);
+
+		$plan_details=['name'=>$plan_result->name,'type'=>$plan_result->type];
+
+
+		$data = [
+			'name'=>'',
+			'planTypes' => ['Commission'=>'Commission','Rebate'=>'Rebate'],
+			'symbolTypes'=>['Money'=>'Money','Point'=>'Point','Percentage'=>'Percentage'],
+			'aliases'=>$this->Ibportal->getAliases(),
+		];
+
+
+
+
+		return view('ibportal::admin.detailsPlan')->with('data',$data)->with('plan_details',$plan_details);
+	}
+
+	public function getAssignPlan()
+	{
+		return 'CCC';
+	}
+
+	public function getAliasesList(Request $oRequest)
+	{
+
+
+		$sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+		$sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+
+		$oResults = null;
+
+		$aFilterParams = [
+			'name' => '',
+			'sort' => $sSort,
+			'order' => $sOrder,
+		];
+
+
+		if ($oRequest->has('search')) {
+
+
+			$aFilterParams['name'] = $oRequest->name;
+
+
+			$oResults = $this->Ibportal->getAliasesByFilters($aFilterParams, false, $sOrder, $sSort);
+		//	dd($oResults);
+
+
+
+		}
+		return view('ibportal::aliass_list')->with('oResults', $oResults)
+			->with('aFilterParams', $aFilterParams);
+	}
+
+	public function getAddAliases()
+	{
+		$data = [
+			'name'=>'',
+			'planTypes' => ['Commission'=>'Commission','Rebate'=>'Rebate'],
+			'symbolTypes'=>['Money'=>'Money','Point'=>'Point','Percentage'=>'Percentage'],
+			'aliases'=>$this->Ibportal->getAliases(),
+		];
+
+
+
+		return view('ibportal::admin.addAliases')->with('data',$data);
+
+	}
 	
 }

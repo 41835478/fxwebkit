@@ -44,7 +44,7 @@
 
                     <li>
                         <div class=" nav-input-div  ">
-                            {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('ibportal::ibportal.plan'),'class'=>'form-control input-sm']) !!}
+                            {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('ibportal::ibportal.aliases'),'class'=>'form-control input-sm']) !!}
                         </div>
                     </li>
 
@@ -63,7 +63,7 @@
         <div class="mail-container ">
 
             <div class="mail-container-header">
-                {{ trans('ibportal::ibportal.plan') }}
+                {{ trans('ibportal::ibportal.aliases') }}
             </div>
             <div class="center_page_all_div">
                 @include('admin.partials.messages')
@@ -72,19 +72,19 @@
                     <div class="table-header">
                         <div class="table-caption">
 
-                            {{ trans('ibportal::ibportal.plan') }}
-                            <a href="{{ route('admin.ibportal.addPlan') }}" style="float:right;">
+                            {{ trans('ibportal::ibportal.aliases') }}
+                            <a href="{{ route('admin.ibportal.addAliases') }}" style="float:right;">
                                 <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button"
-                                       value="{{ trans('ibportal::ibportal.addPlan') }}"> </a>
+                                       value="{{ trans('ibportal::ibportal.addAliases') }}"> </a>
 
                         </div>
                     </div>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.name'), 'name', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.type'), 'type', $oResults) !!}</th>
-                            <th class="no-warp"></th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.aliases'), 'alias', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.operand'), 'operand', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.value'), 'value', $oResults) !!}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -94,17 +94,9 @@
                             @foreach($oResults as $oResult)
                                 {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                                 <tr class='{{ $class }}'>
-                                    <td>{{ $oResult->name }}</td>
-                                    <td>{{ $oResult->type }}</td>
-                                    <td>
-
-                                        <a href="{{ route('admin.ibportal.deletePlan').'?delete_id='.$oResult->id }}"
-                                           class="fa fa-trash-o"></a>
-                                        <a href="{{ route('admin.ibportal.detailsPlan').'?edit_id='.$oResult->id }}"
-                                           class="fa fa-file-text"></a>
-                                        <a href="{{ route('admin.ibportal.assignPlan').'?account_id='.$oResult->id }}"
-                                           class="fa fa-link"></a>
-                                    </td>
+                                    <td>{{ $oResult->alias }}</td>
+                                    <td>{{ $oResult->operand }}</td>
+                                    <td>{{ $oResult->value }}</td>
                                 </tr>
                             @endforeach
                         @endif

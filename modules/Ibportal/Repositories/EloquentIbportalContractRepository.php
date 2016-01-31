@@ -18,6 +18,30 @@ class EloquentIbportalContractRepository implements IbportalContract
         //
     }
 
+
+    public function getPlansByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
+    {
+
+        $oResult = new Plan();
+
+        if (isset($aFilters['name']) && !empty($aFilters['name'])) {
+            $oResult = $oResult->where('name', 'like', '%' . $aFilters['name'] . '%');
+        }
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+
+        }
+
+        return $oResult;
+
+    }
+
     public function addPlan($planName,$planType){
         $planId=Plan::create([
             'name'=>$planName,
@@ -46,6 +70,61 @@ class EloquentIbportalContractRepository implements IbportalContract
             $aAliases[$alias->id]=$alias->alias;
         }
         return $aAliases;
+    }
+
+
+    public function deletePlan($id) {
+
+        $id = (is_array($id)) ? $id : [$id];
+        $plan = Plan::whereIn('id', $id)->delete();
+
+
+        if ($plan) {
+            return [trans('ibportal::ibportal.deleted_successfully_message')];
+        } else {
+            return [trans('ibportal::ibportal.deleted_faild_message')];
+        }
+    }
+
+    public function getPlanDetails($planId)
+    {
+
+        $planDetails = Plan::where('id', $planId)->first();
+
+        return $planDetails;
+    }
+
+    public function getAliasesDetails($planId)
+    {
+        $aliasesDetails = PlanAliases::where('plan_id', $planId)->get();
+
+       // $comments = Aliases::find($aliasesDetails->plan_id)->comments()->where('alias_id', '=',$aliasesDetails->alias_id)->first();
+        $comments = Aliases::find(1)->comments;
+
+        dd($comments);
+    }
+
+    public function getAliasesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
+    {
+
+        $oResult = new Aliases();
+
+        if (isset($aFilters['name']) && !empty($aFilters['name'])) {
+            $oResult = $oResult->where('name', 'like', '%' . $aFilters['name'] . '%');
+        }
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+
+        }
+
+        return $oResult;
+
     }
 
 

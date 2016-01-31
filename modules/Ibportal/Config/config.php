@@ -16,6 +16,10 @@ return [
 			'route' => 'admin.ibportal.planeList',
 			'title' => 'addPlan',
 			'icon' => 'fa-briefcase',
+		],[
+				'route' => 'admin.ibportal.aliasesList',
+			'title' => 'aliases',
+			'icon' => 'fa-briefcase',
 		]
 ,
 		[
