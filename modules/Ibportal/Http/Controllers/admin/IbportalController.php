@@ -106,7 +106,7 @@ class IbportalController extends Controller {
 
 	public function getDetailsPlan(Request $request)
 	{
-	//	dd($request);
+
 
 		$oPlanDetails = $this->Ibportal->getPlanDetails($request->edit_id);
 
@@ -115,9 +115,14 @@ class IbportalController extends Controller {
 			->with('oPlanDetails',$oPlanDetails->first());
 	}
 
-	public function getAssignPlan()
+	public function getAssignPlan(Request $request)
 	{
-		return 'CCC';
+
+		$oPlanDetails = $this->Ibportal->getPlanDetails($request->account_id);
+
+
+		return view('ibportal::admin.assignPlan')
+			->with('oPlanDetails',$oPlanDetails->first());
 	}
 
 	public function getAliasesList(Request $oRequest)

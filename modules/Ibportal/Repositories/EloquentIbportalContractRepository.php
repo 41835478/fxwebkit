@@ -94,12 +94,7 @@ class EloquentIbportalContractRepository implements IbportalContract
         return $planDetails;
     }
 
-    public function getAliasDetails($planId)
-    {
 
-
-
-    }
 
     public function getAliasesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
     {

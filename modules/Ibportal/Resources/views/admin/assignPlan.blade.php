@@ -1,15 +1,15 @@
 @extends('admin.layouts.main')
-@section('title', trans('ibportal::ibportal.detilsPlan'))
+@section('title', trans('ibportal::ibportal.assignPlan'))
 @section('content')
 
     <div class="page-header">
-        <h1>{{ trans('ibportal::ibportal.detilsPlan') }}</h1>
+        <h1>{{ trans('ibportal::ibportal.assignPlan') }}</h1>
     </div>
 
     <div class="panel">
         {!! Form::open(['class'=>'panel form-horizontal']) !!}
         <div class="panel-heading">
-            <span class="panel-title">{{ trans('ibportal::ibportal.detilsPlan') }}</span>
+            <span class="panel-title">{{ trans('ibportal::ibportal.assignPlan') }}</span>
         </div>
 
 
