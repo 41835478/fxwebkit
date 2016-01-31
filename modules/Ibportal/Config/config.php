@@ -14,18 +14,13 @@ return [
 	'admin_menu' => [
 		[
 			'route' => 'admin.ibportal.planeList',
-			'title' => 'addPlan',
+			'title' => 'plans',
 			'icon' => 'fa-briefcase',
-		],[
-				'route' => 'admin.ibportal.aliasesList',
-			'title' => 'aliases',
-			'icon' => 'fa-briefcase',
-		]
-,
+		],
 		[
 		'route' => 'admin.ibportal.aliasesList',
-		'title' => 'Symbols',
-		'icon' => 'fa-briefcase',
+		'title' => 'aliases',
+		'icon' => 'fa-random',
 	]
 
 

@@ -13,58 +13,44 @@
         </div>
 
 
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('ibportal::ibportal.name') }}</label>
-                {!! Form::text('planName','',['class'=>'form-control']) !!}
-            </div>
-        </div>
-        <!-- col-sm-6 -->
 
 
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('ibportal::ibportal.type') }}</label>
-
-                {!! Form::select('planType',$data['planTypes'],'',['class'=>'form-control']) !!}
-            </div>
-        </div>
-        <!-- col-sm-6 -->
 
         <div class="col-sm-12">
+            <div class="form-group no-margin-hr">
+                <label class="control-label">{{ trans('ibportal::ibportal.alias') }}</label>
 
-            <!-- Light table -->
-            <div class="table-light">
-                <div class="table-header">
-                    <div class="table-caption">
-                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Add Symbol</button>
-
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <table class="table table-bordered" id="symbolsListTable">
-                    <thead>
-                    <tr>
-                        <th>Symbol </th>
-                        <th>Type </th>
-                        <th>Value</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
+                {!! Form::text('alias','',['class'=>'form-control']) !!}
             </div>
-            <!-- / Light table -->
-
-
-
-
         </div>
+        <!-- col-sm-12 -->
+
+
+
+
+        <div class="col-sm-12">
+            <div class="form-group no-margin-hr">
+                <label class="control-label">{{ trans('ibportal::ibportal.operand') }}</label>
+
+                {!! Form::select('operand',$data['operands'],'',['class'=>'form-control']) !!}
+            </div>
+        </div>
+        <!-- col-sm-12 -->
+
+
+
+        <div class="col-sm-12">
+            <div class="form-group no-margin-hr">
+                <label class="control-label">{{ trans('ibportal::ibportal.value') }}</label>
+
+                {!! Form::text('value','',['class'=>'form-control']) !!}
+            </div>
+        </div>
+        <!-- col-sm-12 -->
+
+
         <div class="clearfix"></div>
         <div class="panel-footer text-right">
-            {!! Form::hidden('login')!!}
             {!! Form::submit(trans('accounts::accounts.submit'), ['class'=>'btn btn-info btn-sm', 'name' => 'save']) !!}
         </div>
 
@@ -82,48 +68,8 @@
 
 
 
-        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">Select Symbols</h4>
-                    </div>
-                    <div class="modal-body">
 
-                        {!! Form::open() !!}
-                        <div class="row form-group">
-                            <label class="col-sm-4 control-label">Symbols </label>
-                            <div class="col-sm-8">
-                                {!! Form::select('symbols',$data['aliases'],'',['id'=>'symbolsMultiSelect','multiple'=>'multiple','class'=>'form-control']) !!}
-
-                            </div>
-                        </div>
-
-                        <div class="row form-group">
-                            <label class="col-sm-4 control-label">Rebate Type </label>
-                            <div class="col-sm-8">
-                                {!! Form::select('symbolsType',$data['symbolTypes'],'',['id'=>'symbolsType', 'class'=>'form-control']) !!}
-                            </div>
-                        </div>
-
-                        <div class="row form-group">
-                            <label class="col-sm-4 control-label"> Rebate Value</label>
-                            <div class="col-sm-8">
-
-                                <input type="text" name="symbolsValue" id="symbolsValue" class="form-control">
-                            </div>
-                        </div>
-                        {!! Form::close() !!}
-                    </div> <!-- / .modal-body -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="addSymbolsToListButton">+ Add</button>
-                    </div>
-                </div> <!-- / .modal-content -->
-            </div> <!-- / .modal-dialog -->
-        </div>
-        @stop
+         @stop
         @section('script')
             @parent
             <script>

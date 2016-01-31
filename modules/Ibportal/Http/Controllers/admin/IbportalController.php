@@ -108,23 +108,11 @@ class IbportalController extends Controller {
 	{
 	//	dd($request);
 
-		$plan_result = $this->Ibportal->getPlanDetails($request->edit_id);
-		$aliases_result=$this->Ibportal->getAliasesDetails($request->edit_id);
-
-		$plan_details=['name'=>$plan_result->name,'type'=>$plan_result->type];
+		$oPlanDetails = $this->Ibportal->getPlanDetails($request->edit_id);
 
 
-		$data = [
-			'name'=>'',
-			'planTypes' => ['Commission'=>'Commission','Rebate'=>'Rebate'],
-			'symbolTypes'=>['Money'=>'Money','Point'=>'Point','Percentage'=>'Percentage'],
-			'aliases'=>$this->Ibportal->getAliases(),
-		];
-
-
-
-
-		return view('ibportal::admin.detailsPlan')->with('data',$data)->with('plan_details',$plan_details);
+		return view('ibportal::admin.detailsPlan')
+			->with('oPlanDetails',$oPlanDetails->first());
 	}
 
 	public function getAssignPlan()
@@ -160,16 +148,15 @@ class IbportalController extends Controller {
 
 
 		}
-		return view('ibportal::aliass_list')->with('oResults', $oResults)
+		return view('ibportal::admin.aliasesList')->with('oResults', $oResults)
 			->with('aFilterParams', $aFilterParams);
 	}
 
 	public function getAddAliases()
 	{
 		$data = [
-			'name'=>'',
-			'planTypes' => ['Commission'=>'Commission','Rebate'=>'Rebate'],
-			'symbolTypes'=>['Money'=>'Money','Point'=>'Point','Percentage'=>'Percentage'],
+			'alias'=>'',
+			'operands' => ['Equals'=>'Equals','Starts With'=>'Starts With','Ends With'=>'Ends With','Contains'=>'Contains'],
 			'aliases'=>$this->Ibportal->getAliases(),
 		];
 
@@ -177,6 +164,22 @@ class IbportalController extends Controller {
 
 		return view('ibportal::admin.addAliases')->with('data',$data);
 
+	}
+
+
+	public function postAddAliases(Request $oRequest)
+	{
+		$alias=$oRequest->alias;
+		$operand=$oRequest->operand;
+		$value=$oRequest->value;
+		$bResults = $this->Ibportal->addAlias($alias,$operand,$value);
+
+		if($bResults){
+			return Redirect::route('admin.ibportal.aliasesList');
+		}else{
+// TODO translate this error
+			return redirect()->back()->withErrors('No thing added, please try again.');
+		}
 	}
 	
 }

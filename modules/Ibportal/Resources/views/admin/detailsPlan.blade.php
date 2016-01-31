@@ -16,7 +16,7 @@
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('ibportal::ibportal.name:') }}</label>
-                <label class="control-label">{{$plan_details['name'] }}</label>
+                <label class="control-label">{{$oPlanDetails->name }}</label>
             </div>
         </div>
         <!-- col-sm-6 -->
@@ -25,7 +25,7 @@
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('ibportal::ibportal.type:') }}</label>
-                <label class="control-label">{{$plan_details['type'] }}</label>
+                <label class="control-label">{{$oPlanDetails->type  }}</label>
             </div>
         </div>
         <!-- col-sm-6 -->
@@ -36,8 +36,7 @@
             <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
-                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Add Symbol</button>
-
+                       Symbols
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -45,11 +44,18 @@
                     <thead>
                     <tr>
                         <th>Symbol </th>
-                        <th>Type </th>
+                        <th>Operand </th>
                         <th>Value</th>
-                        <th></th>
                     </tr>
                     </thead>
+                    @foreach($oPlanDetails->aliases as $alias)
+
+                        <tr >
+                            <td>{{ $alias->alias  }}</td>
+                            <td>{{ $alias->pivot->type }}</td>
+                            <td>{{ $alias->pivot->value  }}</td>
+                            </tr>
+                        @endforeach
                     <tbody>
 
                     </tbody>
@@ -63,9 +69,7 @@
         </div>
         <div class="clearfix"></div>
         <div class="panel-footer text-right">
-            {!! Form::hidden('login')!!}
-            {!! Form::submit(trans('accounts::accounts.submit'), ['class'=>'btn btn-info btn-sm', 'name' => 'save']) !!}
-        </div>
+             </div>
 
         @if($errors->any())
             <div class="alert alert-danger alert-dark">
@@ -81,47 +85,6 @@
 
 
 
-        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">Select Symbols</h4>
-                    </div>
-                    <div class="modal-body">
-
-                        {!! Form::open() !!}
-                        <div class="row form-group">
-                            <label class="col-sm-4 control-label">Symbols </label>
-                            <div class="col-sm-8">
-                                {!! Form::select('symbols',$data['aliases'],'',['id'=>'symbolsMultiSelect','multiple'=>'multiple','class'=>'form-control']) !!}
-
-                            </div>
-                        </div>
-
-                        <div class="row form-group">
-                            <label class="col-sm-4 control-label">Rebate Type </label>
-                            <div class="col-sm-8">
-                                {!! Form::select('symbolsType',$data['symbolTypes'],'',['id'=>'symbolsType', 'class'=>'form-control']) !!}
-                            </div>
-                        </div>
-
-                        <div class="row form-group">
-                            <label class="col-sm-4 control-label"> Rebate Value</label>
-                            <div class="col-sm-8">
-
-                                <input type="text" name="symbolsValue" id="symbolsValue" class="form-control">
-                            </div>
-                        </div>
-                        {!! Form::close() !!}
-                    </div> <!-- / .modal-body -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="addSymbolsToListButton">+ Add</button>
-                    </div>
-                </div> <!-- / .modal-content -->
-            </div> <!-- / .modal-dialog -->
-        </div>
         @stop
         @section('script')
             @parent

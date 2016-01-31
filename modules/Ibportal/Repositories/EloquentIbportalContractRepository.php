@@ -89,19 +89,16 @@ class EloquentIbportalContractRepository implements IbportalContract
     public function getPlanDetails($planId)
     {
 
-        $planDetails = Plan::where('id', $planId)->first();
+        $planDetails = Plan::with('aliases')->where('id',$planId)->get();
 
         return $planDetails;
     }
 
-    public function getAliasesDetails($planId)
+    public function getAliasDetails($planId)
     {
-        $aliasesDetails = PlanAliases::where('plan_id', $planId)->get();
 
-       // $comments = Aliases::find($aliasesDetails->plan_id)->comments()->where('alias_id', '=',$aliasesDetails->alias_id)->first();
-        $comments = Aliases::find(1)->comments;
 
-        dd($comments);
+
     }
 
     public function getAliasesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
@@ -110,7 +107,7 @@ class EloquentIbportalContractRepository implements IbportalContract
         $oResult = new Aliases();
 
         if (isset($aFilters['name']) && !empty($aFilters['name'])) {
-            $oResult = $oResult->where('name', 'like', '%' . $aFilters['name'] . '%');
+            $oResult = $oResult->where('alias', 'like', '%' . $aFilters['name'] . '%');
         }
 
 
@@ -127,5 +124,11 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     }
 
+public function addAlias($alias,$operand,$value){
+    $result=Aliases::create(['alias'=>$alias,
+    'operand'=>$operand,
+    'value'=>$value]);
 
+    return ($result)? true:false;
+}
 }
