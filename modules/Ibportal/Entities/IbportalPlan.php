@@ -7,7 +7,7 @@ use Modules\Ibportal\Entities\IbportalPlanAliases;
 class IbportalPlan extends Model {
 
     protected  $table='ibportal_plan';
-    protected $fillable = ['name','type'];
+    protected $fillable = ['name','type','public'];
 
     public function aliases(){
         return $this->belongsToMany('Modules\Ibportal\Entities\IbportalAliases','Ibportal_Plan_Aliases','plan_id','alias_id')->withPivot('value','type');
