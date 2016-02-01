@@ -5,6 +5,7 @@ namespace Modules\Ibportal\Repositories;
 use Modules\Ibportal\Entities\IbportalPlan as Plan;
 use Modules\Ibportal\Entities\IbportalPlanAliases as PlanAliases;
 use Modules\Ibportal\Entities\IbportalAliases as Aliases;
+use Modules\Ibportal\Entities\IbportalPlanUsers as PlanUsers;
 use Modules\Mt4configrations\Entities\ConfigrationsSymbols as Symbols;
 
 use Config;
@@ -131,8 +132,40 @@ class EloquentIbportalContractRepository implements IbportalContract
             'operand' => $operand,
             'value' => $value]);
 
-        return ($result) ? true : false;
+    return ($result)? true:false;
+}
+
+    public function getPlanAssignedUsers($planId,&$users){
+
+       $oResult= PlanUsers::select('user_id')->where('plan_id',$planId)->get();
+
+        $assignedUsers=[];
+        foreach($oResult as $result){
+            if(!isset($users[$result->user_id])) continue;
+            $assignedUsers[$result->user_id]=$users[$result->user_id];
+            unset($users[$result->user_id]);
+        }
+        return $assignedUsers;
     }
+
+    public function assignUsersToPlan($planId,$selectedUsers){
+        $deleteResult=PlanUsers::where('plan_id',$planId)->delete();
+        $insertResult=false;
+        if(!empty($selectedUsers)){
+            $users=[];
+            foreach($selectedUsers as $user){
+                $users[]=['plan_id'=>$planId,'user_id'=>$user];
+            }
+
+            $insertResult=PlanUsers::insert($users);
+        }else{
+            $insertResult=true;
+        }
+
+        return ($insertResult)?true:false;
+    }
+
+
 
     public function getSymbols() {
 

@@ -80,11 +80,8 @@ class EloquentUserRepository implements UserContract
 
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
-
-
         } else {
             $oResult = $oResult->get();
-
         }
         /* =============== Preparing Output  =============== */
         foreach ($oResult as $dKey => $oValue) {
@@ -551,5 +548,21 @@ class EloquentUserRepository implements UserContract
             return $iso2;
         }
     }
+
+    public function getUsersNames(){
+
+        $oRole = Sentinel::findRoleBySlug('client');
+        $role_id = $oRole->id;
+        $oResult = User::select(['id','first_name','last_name'])->with('roles')->whereHas('roles', function ($query) use ($role_id) {
+            $query->where('id', $role_id);
+        })->get();
+        $users=[];
+        foreach($oResult as $result){
+            $users[$result->id] = $result->first_name .' '.$result->last_name;
+        }
+
+        return $users;
+    }
+
 
 }

@@ -5,31 +5,32 @@ use Modules\Mt4Configrations\Repositories\Mt4ConfigrationsContract as Mt4Configr
 
 use Modules\Ibportal\Repositories\IbportalContract as Ibportal;
 
+use Fxweb\Repositories\Admin\User\UserContract as Users;
+
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 
-class IbportalController extends Controller
-{
+class IbportalController extends Controller {
+	
+	public function index()
+	{
+		return view('Ibportal::index');
+	}
 
-    public function index()
-    {
-        return view('Ibportal::index');
-    }
-
-    protected $Mt4Configrations;
-    protected $Ibportal;
-
-    public function __construct(
-        Mt4Configrations $Mt4Configrations, Ibportal $Ibportal
-    )
-    {
-        $this->Ibportal = $Ibportal;
-        $this->Mt4Configrations = $Mt4Configrations;
-    }
+	protected $Mt4Configrations;
+	protected $Ibportal;
+	protected $Users;
+	public function __construct(
+		Mt4Configrations $Mt4Configrations,Ibportal $Ibportal,Users $Users
+	)
+	{
+		$this->Ibportal=$Ibportal;
+		$this->Mt4Configrations = $Mt4Configrations;
+		$this->Users=$Users;
+	}
 
 
-    public function getPlansList(Request $oRequest)
-    {
+	public function getPlanList(Request $oRequest){
 
 
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
@@ -112,7 +113,6 @@ class IbportalController extends Controller
 
         $oPlanDetails = $this->Ibportal->getPlanDetails($request->edit_id);
 
-
         return view('ibportal::admin.detailsPlan')
             ->with('oPlanDetails', $oPlanDetails->first());
     }
@@ -120,12 +120,32 @@ class IbportalController extends Controller
     public function getAssignPlan(Request $request)
     {
 
-        $oPlanDetails = $this->Ibportal->getPlanDetails($request->account_id);
 
+		$oPlanDetails = $this->Ibportal->getPlanDetails($request->planId);
+		$users= $this->Users->getUsersNames();
+		$selectedUsers=$this->Ibportal->getPlanAssignedUsers($request->planId,$users);
+		return view('ibportal::admin.assignPlan')
+			->with('planId',$request->planId)
+			->with('oPlanDetails',$oPlanDetails->first())
+			->with('users',$users)
+			->with('selectedUsers',$selectedUsers);
+	}
 
-        return view('ibportal::admin.assignPlan')
-            ->with('oPlanDetails', $oPlanDetails->first());
-    }
+	public function postAssignPlan(Request $request)
+	{
+		$selectedUsers=$request->selectedUsers;
+		$planId=$request->planId;
+
+		$assignResult=$this->Ibportal->assignUsersToPlan($planId,$selectedUsers);
+
+		if($assignResult){
+			return Redirect::route('admin.ibportal.planeList');
+		}else{
+// TODO translate this error
+			return redirect()->back()->withErrors('Error, please try again.');
+		}
+	}
+
 
     public function getAliasesList(Request $oRequest)
     {
