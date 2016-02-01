@@ -91,7 +91,7 @@ class IbportalController extends Controller {
         }
 
         if ($planId > 0) {
-            return Redirect::route('admin.ibportal.planList');
+            return Redirect::route('admin.ibportal.plansList');
         } else {
             return redirect()->back()->withErrors(trans('ibportal::ibportal.no_thing_added'));
         }
@@ -103,7 +103,7 @@ class IbportalController extends Controller {
 
 
         $result = $this->Ibportal->deletePlan($request->delete_id);
-        return Redirect::route('admin.ibportal.planList')->withErrors($result);
+        return Redirect::route('admin.ibportal.plansList')->withErrors($result);
 
     }
 
@@ -139,7 +139,7 @@ class IbportalController extends Controller {
 		$assignResult=$this->Ibportal->assignUsersToPlan($planId,$selectedUsers);
 
 		if($assignResult){
-			return Redirect::route('admin.ibportal.planList');
+			return Redirect::route('admin.ibportal.plansList');
 		}else{
 // TODO translate this error
 			return redirect()->back()->withErrors('Error, please try again.');
