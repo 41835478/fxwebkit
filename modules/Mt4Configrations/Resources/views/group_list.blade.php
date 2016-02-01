@@ -111,6 +111,7 @@
                         @if (count($oResults))
 
                             {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->render()) !!}
+                        
                             @if($oResults->total()>25)
 
                                 <div class="DT-lf-right change_page_all_div">
