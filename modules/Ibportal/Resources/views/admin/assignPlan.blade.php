@@ -34,17 +34,17 @@
         <div class="col-sm-12" id="assignUsersAllDiv">
 
 
-                <div class="col-xs-5">
+                <div class="col-xs-12 col-sm-5">
                     {!! Form::text('usersListSearchInput','',['class'=>'form-control','id'=>'usersListSearchInput']) !!}
                     {!! Form::select('usersList',$users,'',['class'=>'form-control','id'=>'usersList', 'multiple'=>'multiple']) !!}
                 </div>
-                <div class="col-xs-2">
+                <div class="col-xs-12 col-sm-2">
                 {!! Form::button('>',['id'=>'addUserToSelect']) !!}
                 {!! Form::button('>>',['id'=>'addUsersToSelect']) !!}
                 {!! Form::button('<',['id'=>'removeUserFromSelect']) !!}
                 {!! Form::button('<<',['id'=>'removeUsersFromSelect']) !!}
                     </div>
-                <div class="col-xs-5">
+                <div class="col-xs-12 col-sm-5">
                     {!! Form::text('selectedUsersSearchInput','',['class'=>'form-control','id'=>'selectedUsersSearchInput']) !!}
 
                     {!! Form::select('selectedUsers[]',$selectedUsers,'',['class'=>'form-control','id'=>'selectedUsers', 'multiple'=>'multiple']) !!}
