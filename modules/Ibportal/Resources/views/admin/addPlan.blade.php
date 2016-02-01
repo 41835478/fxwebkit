@@ -73,7 +73,7 @@
         <div class="clearfix"></div>
         <div class="panel-footer text-right">
             {!! Form::hidden('login')!!}
-            {!! Form::submit(trans('accounts::accounts.submit'), ['class'=>'btn btn-info btn-sm', 'name' => 'save']) !!}
+            {!! Form::submit(trans('ibportal::ibportal.submit'), ['class'=>'btn btn-info btn-sm', 'name' => 'save']) !!}
         </div>
 
         @if($errors->any())

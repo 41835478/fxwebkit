@@ -36,16 +36,16 @@
             <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
-                       Symbols
+                        {{ trans('ibportal::ibportal.symbols') }}
                         <div class="clearfix"></div>
                     </div>
                 </div>
                 <table class="table table-bordered" id="symbolsListTable">
                     <thead>
                     <tr>
-                        <th>Symbol </th>
-                        <th>Operand </th>
-                        <th>Value</th>
+                        <th>{{ trans('ibportal::ibportal.symbols') }} </th>
+                        <th>{{ trans('ibportal::ibportal.operand') }} </th>
+                        <th>{{ trans('ibportal::ibportal.value') }}</th>
                     </tr>
                     </thead>
                     @foreach($oPlanDetails->aliases as $alias)
