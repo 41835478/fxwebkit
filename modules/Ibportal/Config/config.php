@@ -13,7 +13,7 @@ return [
 	],
 	'admin_menu' => [
 		[
-			'route' => 'admin.ibportal.planeList',
+			'route' => 'admin.ibportal.planList',
 			'title' => 'plans',
 			'icon' => 'fa-briefcase',
 		],
@@ -23,11 +23,12 @@ return [
 		'icon' => 'fa-random',
 	]
 
-
-
 	],
 	'client_menu' => [
-
-
+		[
+		'route' => 'client.ibportal.planList',
+		'title' => 'plans',
+		'icon' => 'fa-briefcase',
+	]
 	]
 ];

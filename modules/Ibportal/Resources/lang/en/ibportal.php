@@ -23,6 +23,18 @@ return [
      'of'=>'of',
     'to'=>'to',
     'showing'=>'showing',
+    'submit'=>'Submit',
+    'search'=>'Search',
+    'go'=>'go',
+    'page'=>'Page',
+    'entries'=>'entries',
+    'of'=>'of',
+    'to'=>'to',
+    'showing'=>'showing',
+    'symbols'=>'Symbols',
+    'symbol'=>'Symbol',
+    'no_thing_added'=>'No thing added, please try again.',
+    'agreemment'=>'Agreemment',
 
     'deleted_successfully_message'=>'deleted successfully.',
     'deleted_faild_message'=>'deleted faild please try again later.'
