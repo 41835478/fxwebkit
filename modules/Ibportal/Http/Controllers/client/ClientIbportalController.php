@@ -54,7 +54,7 @@ class ClientIbportalController extends Controller
             $aFilterParams['name'] = $oRequest->name;
 
 
-            $oResults = $this->Ibportal->getPlansByFilters($aFilterParams, false, $sOrder, $sSort);
+            $oResults = $this->Ibportal->getClientPlansByFilters($aFilterParams, false, $sOrder, $sSort,current_user()->getUser()->id);
 
 
         }

@@ -45,6 +45,29 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     }
 
+    public function getClientPlansByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC',$clientID)
+    {
+
+        $oResult =Plan::with('users')->whereHas('users',function ($query)use($clientID){$query->where('user_id',$clientID);});
+
+        if (isset($aFilters['name']) && !empty($aFilters['name'])) {
+            $oResult = $oResult->where('name', 'like', '%' . $aFilters['name'] . '%');
+        }
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+
+        }
+
+        return $oResult;
+
+    }
+
     public function addPlan($planName, $planType, $public)
     {
         $planId = Plan::create([
@@ -187,6 +210,14 @@ class EloquentIbportalContractRepository implements IbportalContract
     public function generateUserIbId($userId){
        $IbId= Hash::make($userId);
         $insertResult=UserIbid::create(['user_id'=>$userId,'user_ibid'=>$IbId]);
+        if(count($insertResult)){
+            $planResult=Plan::where('public',true)->get();
+            $aPublicPlans=[];
+            foreach($planResult as $plan){
+                $aPublicPlans[]=['plan_id'=>$plan->id,'user_id'=>$userId];
+            }
+            $assignPublicPlansResult=PlanUsers::insert($aPublicPlans);
+        }
         return $insertResult;
     }
 
