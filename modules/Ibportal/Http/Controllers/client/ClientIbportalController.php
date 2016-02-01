@@ -1,5 +1,6 @@
 <?php namespace Modules\Ibportal\Http\Controllers\client;
 
+use Cartalyst\Sentinel\Native\Facades\Sentinel;
 use Illuminate\Support\Facades\Redirect;
 use Modules\Mt4Configrations\Repositories\Mt4ConfigrationsContract as Mt4Configrations;
 
@@ -7,6 +8,7 @@ use Modules\Ibportal\Repositories\IbportalContract as Ibportal;
 
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
+use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
 
 class ClientIbportalController extends Controller
 {
@@ -56,9 +58,15 @@ class ClientIbportalController extends Controller
 
 
         }
+
+// TODO[moaid] change Sentinal::getUser() to current_user()->getUser()
+        $userIbid=UserIbid::where('user_id',current_user()->getUser()->id)->get();
+        if(count($userIbid)){
         return view('ibportal::client.plan_list')->with('oResults', $oResults)
             ->with('aFilterParams', $aFilterParams);
-
+        }else{
+            return $this->getAgreemmentPlan();
+        }
     }
 
 
@@ -76,6 +84,17 @@ class ClientIbportalController extends Controller
     public function getAgreemmentPlan()
     {
         return view('ibportal::client.agreemmentPlan');
+    }
+
+
+    public function postAgreemmentPlan(Request $request)
+    {
+
+        if($request->has('agree')){
+            $this->Ibportal->generateUserIbId(current_user()->getUser()->id);
+        }
+
+        return Redirect::route('client.ibportal.planList');
     }
 
 

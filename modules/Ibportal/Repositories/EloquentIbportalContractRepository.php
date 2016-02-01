@@ -7,6 +7,7 @@ use Modules\Ibportal\Entities\IbportalPlanAliases as PlanAliases;
 use Modules\Ibportal\Entities\IbportalAliases as Aliases;
 use Modules\Ibportal\Entities\IbportalPlanUsers as PlanUsers;
 use Modules\Mt4configrations\Entities\ConfigrationsSymbols as Symbols;
+use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
 
 use Config;
 
@@ -181,5 +182,11 @@ class EloquentIbportalContractRepository implements IbportalContract
         $symbolsJavaArray = join(',', $symbolsJavaArray);
 
         return $symbolsJavaArray;
+    }
+
+    public function generateUserIbId($userId){
+       $IbId= Hash::make($userId);
+        $insertResult=UserIbid::create(['user_id'=>$userId,'user_ibid'=>$IbId]);
+        return $insertResult;
     }
 }

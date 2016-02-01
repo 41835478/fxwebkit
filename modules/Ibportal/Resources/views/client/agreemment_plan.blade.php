@@ -24,7 +24,7 @@
     <div class="clearfix"></div>
     <div class="panel-footer text-right">
 
-        {!! Form::submit(trans('ibportal::ibportal.submit'), ['class'=>'btn btn-info btn-sm', 'name' => 'save']) !!}
+        {!! Form::submit(trans('ibportal::ibportal.submit'), ['class'=>'btn btn-info btn-sm', 'name' => 'agree']) !!}
     </div>
 
     @if($errors->any())
