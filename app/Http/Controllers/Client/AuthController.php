@@ -5,6 +5,7 @@ namespace Fxweb\Http\Controllers\Client;
 use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 //use Cartalyst\Sentinel\Users;
+//use Guzzle\Http\Message\Request;
 use Modules\Accounts\Entities\Users;
 use Fxweb\Http\Controllers\Controller;
 use Fxweb\Http\Requests\Client\LoginRequest;
@@ -21,6 +22,7 @@ use Cartalyst\Sentinel\Addons\Social\Laravel\Facades\Social;
 use Cartalyst\Sentinel\Addons\Social\Models\LinkInterface;
 use Fxweb\Models\UsersDetails;
 use Fxweb\Http\Controllers\admin\Email;
+use Illuminate\Http\Request;
 
 use Fxweb\Repositories\Admin\User\UserContract;
 
@@ -82,15 +84,21 @@ class AuthController extends Controller
         return redirect()->route('client.auth.login');
     }
 
-    public function getRegister()
+    public function getRegister(Request $request)
     {
         $carbon = new Carbon();
         $dt = $carbon->now();
         $dt->subYears(18);
         $country_array = $this->oUserRepostry->getCountry(null);
+
+        $ibid=($request->has('ibid'))? $request->ibid:'';
+        $planId=($request->has('planId'))? $request->planId:'';
+
         return view('client.user.register')
             ->with('default_birthday', $dt->format('Y/m/d'))
             ->with('country_array', $country_array)
+            ->with('ibid',$ibid)
+            ->with('planId',$planId)
             ->with('random', rand(1, 8));
     }
 

@@ -82,6 +82,7 @@
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.name'), 'name', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.type'), 'type', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.public'), 'Public', $oResults) !!}</th>
+                            <th class="no-warp">{{ trans('ibportal::ibportal.link') }}</th>
                             <th class="no-warp"></th>
                         </tr>
                         </thead>
@@ -95,6 +96,7 @@
                                     <td>{{ $oResult->name }}</td>
                                     <td>{{ $oResult->type }}</td>
                                     <td>@if($oResult->public) {{trans('ibportal::ibportal.public') }}@endif </td>
+                                    <td><a href="{{ route('client.auth.register').'?ibid='.$ibid.'&planId='.$oResult->id }}">{{ route('client.auth.register').'?ibid='.$ibid.'&planId='.$oResult->id }}</a></td>
                                     <td>
                                         <a href="{{ route('client.ibportal.detailsPlan').'?edit_id='.$oResult->id }}"
                                            class="fa fa-file-text"></a>

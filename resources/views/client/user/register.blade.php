@@ -102,6 +102,8 @@
         </div>
 
         <div class="form-actions">
+            {!! Form::hidden('ibid',$ibid) !!}
+            {!! Form::hidden('planId',$planId) !!}
             {!! Form::submit(Lang::get('user.SignUp'), ['class'=>'signup-btn bg-primary']) !!}
         </div>
         </form>

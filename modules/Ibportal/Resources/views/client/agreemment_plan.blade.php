@@ -7,7 +7,7 @@
     </div>
 
     <div class="panel">
-        {!! Form::open(['class'=>'panel form-horizontal']) !!}
+        {!! Form::open(['route'=>'client.ibportal.agreemmentPlan','class'=>'panel form-horizontal']) !!}
         <div class="panel-heading">
             <span class="panel-title">{{ trans('ibportal::ibportal.agreemment') }}</span>
         </div>

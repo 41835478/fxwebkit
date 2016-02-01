@@ -60,9 +60,13 @@ class ClientIbportalController extends Controller
         }
 
 // TODO[moaid] change Sentinel::getUser() to current_user()->getUser()
-        $userIbid=UserIbid::where('user_id',current_user()->getUser()->id)->get();
+
+        $userIbid=UserIbid::where('user_id',current_user()->getUser()->id)->first();
+
         if(count($userIbid)){
-        return view('ibportal::client.plan_list')->with('oResults', $oResults)
+        return view('ibportal::client.plan_list')
+            ->with('oResults', $oResults)
+            ->with('ibid',$userIbid->user_ibid)
             ->with('aFilterParams', $aFilterParams);
         }else{
             return $this->getAgreemmentPlan();
@@ -83,7 +87,7 @@ class ClientIbportalController extends Controller
 
     public function getAgreemmentPlan()
     {
-        return view('ibportal::client.agreemmentPlan');
+        return view('ibportal::client.agreemment_plan');
     }
 
 
