@@ -10,10 +10,10 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'ibportal', 'na
 {
 
 	Route::controller('Ibportal', 'IbportalController', [
-		'getPlansList'=>'admin.ibportal.planList',
+		'getPlansList'=>'admin.ibportal.plansList',
 		'getAddPlan' => 'admin.ibportal.addPlan',
 		'getDeletePlan'=>'admin.ibportal.deletePlan',
-		'getDetailsPlan'=>'admin.ibportal.detailsPlan',
+		'getDetailPlan'=>'admin.ibportal.detailPlan',
 		'getAssignPlan'=>'admin.ibportal.assignPlan',
 		'getAliasesList'=>'admin.ibportal.aliasesList',
 		'getAddAliases'=>'admin.ibportal.addAliases',
@@ -25,7 +25,7 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'ibportal', 'na
 Route::group(['middleware' => ['authenticate.client'],'prefix' => 'ibportal', 'namespace' => 'Modules\Ibportal\Http\Controllers\client'], function()
 {
 
-	Route::controller('Ibportal', 'ClientIbportalController', [
+	Route::controller('client-Ibportal', 'ClientIbportalController', [
 		'getPlanList'=>'client.ibportal.planList',
 		'getDetailsPlan'=>'client.ibportal.detailsPlan',
 		'getAgreemmentPlan'=>'client.ibportal.agreemmentPlan',

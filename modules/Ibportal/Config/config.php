@@ -5,12 +5,7 @@ return [
 	'is_client' => 1,
 	'route' => 'admin.ibportal.planList',
 	'icon' => 'fa-briefcase',
-],
-	[
-		'route' => 'admin.ibportal.aliasesList',
-		'title' => 'aliases',
-		'icon' => 'fa-random',
-	]
+
 
 	'name' => 'Ibportal',
 	'icon' => 'fa-user',
@@ -19,10 +14,21 @@ return [
 		'50'=> 'type',
 		'100'=>'type',
 		'150'=>'type',
-],
+],'title' => 'plans',
 	'admin_menu' => [
 
-			'title' => 'plans',[
+		[
+			'route' => 'admin.ibportal.plansList',
+			'title' => 'plans',
+			'icon' => 'fa-briefcase',
+		],
+		[
+		'route' => 'admin.ibportal.aliasesList',
+		'title' => 'aliases',
+		'icon' => 'fa-random',
+	]
+
+
 	],
 	'client_menu' => [
 		[
