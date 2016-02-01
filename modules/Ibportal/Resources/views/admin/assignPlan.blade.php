@@ -30,45 +30,32 @@
         </div>
         <!-- col-sm-6 -->
 
-        <div class="col-sm-12">
+        <div class="col-sm-12" id="assignUsersAllDiv">
 
-            <!-- Light table -->
-            <div class="table-light">
-                <div class="table-header">
-                    <div class="table-caption">
-                       Symbols
-                        <div class="clearfix"></div>
-                    </div>
+
+                <div class="col-xs-5">
+                    {!! Form::text('usersListSearchInput','',['class'=>'form-control','id'=>'usersListSearchInput']) !!}
+                    {!! Form::select('usersList',$users,'',['class'=>'form-control','id'=>'usersList', 'multiple'=>'multiple']) !!}
                 </div>
-                <table class="table table-bordered" id="symbolsListTable">
-                    <thead>
-                    <tr>
-                        <th>Symbol </th>
-                        <th>Operand </th>
-                        <th>Value</th>
-                    </tr>
-                    </thead>
-                    @foreach($oPlanDetails->aliases as $alias)
+                <div class="col-xs-2">
+                {!! Form::button('>',['id'=>'addUserToSelect']) !!}
+                {!! Form::button('>>',['id'=>'addUsersToSelect']) !!}
+                {!! Form::button('<',['id'=>'removeUserFromSelect']) !!}
+                {!! Form::button('<<',['id'=>'removeUsersFromSelect']) !!}
+                    </div>
+                <div class="col-xs-5">
+                    {!! Form::text('selectedUsersSearchInput','',['class'=>'form-control','id'=>'selectedUsersSearchInput']) !!}
 
-                        <tr >
-                            <td>{{ $alias->alias  }}</td>
-                            <td>{{ $alias->pivot->type }}</td>
-                            <td>{{ $alias->pivot->value  }}</td>
-                            </tr>
-                        @endforeach
-                    <tbody>
-
-                    </tbody>
-                </table>
-            </div>
-            <!-- / Light table -->
-
+                    {!! Form::select('selectedUsers[]',$selectedUsers,'',['class'=>'form-control','id'=>'selectedUsers', 'multiple'=>'multiple']) !!}
+</div>
 
 
 
         </div>
         <div class="clearfix"></div>
         <div class="panel-footer text-right">
+            {!! Form::hidden('planId',$planId) !!}
+            {!! Form::submit(trans('save'),['class'=>'btn lite-button','id'=>'assingUsersToPlanSubmit','onClick'=>"$('#selectedUsers option').attr('selected','selected');"]) !!}
              </div>
 
         @if($errors->any())
@@ -89,41 +76,78 @@
         @section('script')
             @parent
             <script>
-                init.push(function () {
-                    // Multiselect
-                    $("#symbolsMultiSelect").select2({
-                        placeholder: "Select a Type"
-                    });
+$('#addUserToSelect').click(function(){
+    $('#usersList option:selected').each(function(){
+        $('#selectedUsers').append($(this));
+
+    });
+    $('#usersList option:selected').remove();
+    $('#selectedUsers option').show();
+});
+
+
+$('#addUsersToSelect').click(function(){
+    $('#usersList option').each(function(){
+        $('#selectedUsers').append($(this));
+
+    });
+    $('#usersList option').remove();
+    $('#selectedUsers option').show();
+});
+
+
+$('#removeUserFromSelect').click(function(){
+    $('#selectedUsers option:selected').each(function(){
+        $('#usersList').append($(this));
+
+    });
+    $('#selectedUsers option:selected').remove();
+});
+
+$('#removeUsersFromSelect').click(function(){
+    $('#selectedUsers option').each(function(){
+        $('#usersList').append($(this));
+
+    });
+    $('#selectedUsers option').remove();
+});
+
+                $("#usersListSearchInput").change(function(){
+                    var searchText=$(this).val().toLowerCase();
+
+
                 });
 
-                $('#addSymbolsToListButton').click(function(){
-                    var html='';
-                    var selectedSymbols=$('#symbolsMultiSelect').val();
+/*_____________________________________________search_select*/
+$("#usersListSearchInput").keyup(function(){
+    var input_value=$(this).val().toLowerCase();
+    var search_text=".*"+input_value+".*";
+    var Pattern = new RegExp(search_text);
+    $("#usersList option").each(function(){
 
-                    if(selectedSymbols !=null){
-                        var type=$('#symbolsType').val();
-                        var value=$('#symbolsValue').val();
-                        for(var i=0;i<selectedSymbols.length;i++){
-                            var symbolLabel=$('#symbolsMultiSelect option[value="'+selectedSymbols[i]+'"]').text();
-                            $('#symbolsMultiSelect option[value="'+selectedSymbols[i]+'"]').remove();
-                            html='<tr id="tr_'+selectedSymbols[i]+'">'+
-                                    '<td><input type="hidden" name="selectedSymbols[]" value="'+selectedSymbols[i]+'" />'+symbolLabel+'</td>'+
-                                    '<td><input type="hidden" name="symbolsType[]" value="'+type+'" />'+type+'</td>'+
-                                    '<td><input type="hidden" name="symbolsValue[]" value="'+value+'" />'+value+'</td>'+
-                                    '<td><i class="fa fa-trash-o" onclick="removeSelectedSymbolFromTable('+selectedSymbols[i]+',\''+symbolLabel+'\')"></i> </td>'+
-                                    '</tr>';
-                            $('#symbolsListTable tbody').append(html);
-                        }
-                        $('#s2id_symbolsMultiSelect .select2-search-choice').remove();
-                    }
+        var arrResult = $(this).text().toLowerCase().match(Pattern);
+        if(arrResult !=null) {$(this).show();} else {$(this).hide();}
+
+    });//each option
 
 
-                });
+});//change search_text
+$("#selectedUsersSearchInput").keyup(function(){
+    var input_value=$(this).val().toLowerCase();
+    var search_text=".*"+input_value+".*";
+    var Pattern = new RegExp(search_text);
+    $("#selectedUsers option").each(function(){
 
-                function removeSelectedSymbolFromTable(symbol,symbolLabel){
-                    $('#tr_'+symbol).remove();
-                    $('#symbolsMultiSelect').append('<option value="'+symbol+'">'+symbolLabel+'</option>');
-                }
+        var arrResult = $(this).text().toLowerCase().match(Pattern);
+        if(arrResult !=null) {$(this).show();} else {$(this).hide();}
+
+    });//each option
+
+
+});//change search_text
+/*_________________________________________END____search_select*/
+$('#assingUsersToPlanSubmit').click(function(){$('#selectedUsers option').attr('selected','selected');});
+$('#selectedUsers').blur(function(){$('#selectedUsers option').attr('selected','selected');});
             </script>
 
 @stop

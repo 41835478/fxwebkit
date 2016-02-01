@@ -94,3 +94,20 @@ body{background: #fff !important}
 }
 
 .new_symbol_tr{border-top:2px solid #ccc;}
+
+
+/*________________________________________ibportal*/
+/*_____________________assign_users*/
+#assignUsersAllDiv{
+
+}
+#assignUsersAllDiv button{
+    width:48%;
+    width:calc(50% - 2px);
+}
+#selectedUsers,#usersList{
+    min-height:300px;
+}
+
+/*___________________End__assign_users*/
+/*_____________________________________End___ibportal*/
