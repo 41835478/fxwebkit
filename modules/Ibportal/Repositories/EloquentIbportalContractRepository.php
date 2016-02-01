@@ -128,6 +128,7 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     public function addAlias($alias, $operand, $value)
     {
+
         $result = Aliases::create(['alias' => $alias,
             'operand' => $operand,
             'value' => $value]);

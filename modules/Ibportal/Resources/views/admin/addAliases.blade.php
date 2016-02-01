@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('ibportal::ibportal.addPlan'))
+@section('title', trans('ibportal::ibportal.addAliases'))
 @section('content')
 
     <div class="page-header">
@@ -38,7 +38,7 @@
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('ibportal::ibportal.value') }}</label>
 
-                {!! Form::text('alias','',['class'=>'form-control','id'=>'valueInput']) !!}
+                {!! Form::text('value','',['class'=>'form-control','id'=>'valueInput']) !!}
             </div>
         </div>
         <!-- col-sm-12 -->

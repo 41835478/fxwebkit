@@ -45,7 +45,7 @@
             <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
-                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Add Symbol</button>
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">{{ trans('ibportal::ibportal.add_symbol') }}</button>
 
                         <div class="clearfix"></div>
                     </div>
@@ -53,9 +53,9 @@
                 <table class="table table-bordered" id="symbolsListTable">
                     <thead>
                     <tr>
-                        <th>Symbol </th>
-                        <th>Type </th>
-                        <th>Value</th>
+                        <th>{{ trans('ibportal::ibportal.symbol') }} </th>
+                        <th>{{ trans('ibportal::ibportal.type') }} </th>
+                        <th>{{ trans('ibportal::ibportal.value') }}</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -95,13 +95,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">Select Symbols</h4>
+                        <h4 class="modal-title" id="myModalLabel">{{ trans('ibportal::ibportal.select_symbols') }}</h4>
                     </div>
                     <div class="modal-body">
 
                         {!! Form::open() !!}
                         <div class="row form-group">
-                            <label class="col-sm-4 control-label">Symbols </label>
+                            <label class="col-sm-4 control-label">{{ trans('ibportal::ibportal.symbols') }} </label>
                             <div class="col-sm-8">
                                 {!! Form::select('symbols',$data['aliases'],'',['id'=>'symbolsMultiSelect','multiple'=>'multiple','class'=>'form-control']) !!}
 
@@ -109,14 +109,14 @@
                         </div>
 
                         <div class="row form-group">
-                            <label class="col-sm-4 control-label">Rebate Type </label>
+                            <label class="col-sm-4 control-label">{{ trans('ibportal::ibportal.rebate_type') }} </label>
                             <div class="col-sm-8">
                                 {!! Form::select('symbolsType',$data['symbolTypes'],'',['id'=>'symbolsType', 'class'=>'form-control']) !!}
                             </div>
                         </div>
 
                         <div class="row form-group">
-                            <label class="col-sm-4 control-label"> Rebate Value</label>
+                            <label class="col-sm-4 control-label"> {{ trans('ibportal::ibportal.rebate_value') }}</label>
                             <div class="col-sm-8">
 
                                 <input type="text" name="symbolsValue" id="symbolsValue" class="form-control">
@@ -125,8 +125,8 @@
                         {!! Form::close() !!}
                     </div> <!-- / .modal-body -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="addSymbolsToListButton">+ Add</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('ibportal::ibportal.close') }}</button>
+                        <button type="button" class="btn btn-primary" id="addSymbolsToListButton">{{ trans('ibportal::ibportal.add') }}</button>
                     </div>
                 </div> <!-- / .modal-content -->
             </div> <!-- / .modal-dialog -->

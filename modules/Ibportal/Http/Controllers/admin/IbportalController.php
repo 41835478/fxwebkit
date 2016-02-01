@@ -186,6 +186,7 @@ class IbportalController extends Controller {
             'symbols' => $oSymbolsResults,
             'operands' => ['Equals' => 'Equals', 'Starts With' => 'Starts With', 'Ends With' => 'Ends With', 'Contains' => 'Contains'],
             'aliases' => $this->Ibportal->getAliases(),
+            'value'=>$oSymbolsResults
         ];
 
 
@@ -196,10 +197,13 @@ class IbportalController extends Controller {
 
     public function postAddAliases(Request $oRequest)
     {
+
         $alias = $oRequest->alias;
         $operand = $oRequest->operand;
         $value = $oRequest->value;
+
         $bResults = $this->Ibportal->addAlias($alias, $operand, $value);
+       
 
         if ($bResults) {
             return Redirect::route('admin.ibportal.aliasesList');

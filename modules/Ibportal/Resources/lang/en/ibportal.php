@@ -35,6 +35,12 @@ return [
     'symbol'=>'Symbol',
     'no_thing_added'=>'No thing added, please try again.',
     'agreemment'=>'Agreemment',
+    'add_symbol'=>'Add Symbol',
+    'select_symbols'=>'Select Symbols',
+    'rebate_type'=>'Rebate Type',
+    'rebate_value'=>'Rebate Value',
+    'close'=>'Close',
+    'add'=>'+ Add',
 
     'deleted_successfully_message'=>'deleted successfully.',
     'deleted_faild_message'=>'deleted faild please try again later.'
