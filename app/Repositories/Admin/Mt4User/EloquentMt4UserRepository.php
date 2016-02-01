@@ -77,7 +77,7 @@ class EloquentMt4UserRepository implements Mt4UserContract {
     
         $oResult = new Mt4User();
         
-        if ($user = Sentinel::getUser()) {
+        if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
                 $oResult = Mt4User::with('accounts')->whereHas('accounts', function($query) use($account_id) {

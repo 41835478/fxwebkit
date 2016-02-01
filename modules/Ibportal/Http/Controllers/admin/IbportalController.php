@@ -203,7 +203,7 @@ class IbportalController extends Controller {
         $value = $oRequest->value;
 
         $bResults = $this->Ibportal->addAlias($alias, $operand, $value);
-       
+
 
         if ($bResults) {
             return Redirect::route('admin.ibportal.aliasesList');

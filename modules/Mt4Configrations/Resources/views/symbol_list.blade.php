@@ -114,7 +114,7 @@
                         @endif
                         </tbody>
                     </table>
-                    <div class="table-footer text-right">
+                    <div class="table-footer">
 
 
                         @if (count($oResults))

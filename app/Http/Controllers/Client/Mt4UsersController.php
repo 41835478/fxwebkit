@@ -53,7 +53,7 @@ class Mt4UsersController extends Controller
             fclose($fp);
         }
         if (preg_match('#^Balance: #', $result) === 1) {
-            $asign_result = $this->oUsers->asignMt4UsersToAccount(Sentinel::getUser()->id, [$oRequest['login']]);
+            $asign_result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$oRequest['login']]);
             return Redirect::route('clients.reports.accounts');
         }
         return view('client.addMt4User')
@@ -64,7 +64,7 @@ class Mt4UsersController extends Controller
 
     public function getMt4UserFullDetails(Request $oRequest)
     {
-        $user = Sentinel::getUser();
+        $user = current_user()->getUser();
 
         $oResult = $this->oUsers->getUserDetails($user->id);
 
@@ -103,7 +103,7 @@ class Mt4UsersController extends Controller
     public function postMt4UserFullDetails(Request $oRequest)
     {
 
-        $user = Sentinel::getUser();
+        $user = current_user()->getUser();
 
         $oResult = $this->oUsers->getUserDetails($user->id);
 

@@ -159,7 +159,8 @@
                     @endif
 
                     <div class="col-sm-3  padding-xs-vr">
-                        <span class="text-xs">Showing {{ $oResults[0]->firstItem() }} to {{ $oResults[0]->lastItem() }} of {{ $oResults[0]->total() }} entries</span>
+
+                        <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oResults[0]->firstItem() }} {{trans('reports::reports.to')}} {{ $oResults[0]->lastItem() }} {{trans('reports::reports.of')}} {{ $oResults[0]->total() }} {{trans('reports::reports.entries')}}</span>
                     </div>
                     @endif
                 </div>

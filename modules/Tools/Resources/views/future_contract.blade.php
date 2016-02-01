@@ -105,7 +105,7 @@
 
                 </table>
 
-                <div class="table-footer text-right">
+                <div class="table-footer">
 
                     
                     @if (count($oResults))
@@ -121,7 +121,7 @@
                     </div>
                     @endif
 
-                    <div class="col-sm-3  padding-xs-vr">
+                    <div class="col-sm-3">
                         <span class="text-xs">{{trans('tools::tools.showing')}} {{ $oResults->firstItem() }} {{trans('tools::tools.to')}} {{ $oResults->lastItem() }} {{trans('tools::tools.of')}} {{ $oResults->total() }} {{trans('tools::tools.entries')}}</span>
                     </div>
                     @endif

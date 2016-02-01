@@ -105,7 +105,7 @@
                         @endif
                         </tbody>
                     </table>
-                    <div class="table-footer text-right">
+                    <div class="table-footer ">
 
 
                         @if (count($oResults))
@@ -122,7 +122,7 @@
                                 </div>
                             @endif
 
-                            <div class="col-sm-3  padding-xs-vr">
+                            <div class="col-sm-3 ">
                                 <span class="text-xs">{{trans('mt4configrations::mt4configrations.showing')}} {{ $oResults->firstItem() }} {{trans('mt4configrations::mt4configrations.to')}} {{ $oResults->lastItem() }} {{trans('mt4configrations::mt4configrations.of')}} {{ $oResults->total() }} {{trans('mt4configrations::mt4configrations.entries')}}</span>
                             </div>
                         @endif

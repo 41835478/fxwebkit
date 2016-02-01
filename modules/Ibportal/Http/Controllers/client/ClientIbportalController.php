@@ -59,7 +59,7 @@ class ClientIbportalController extends Controller
 
         }
 
-// TODO[moaid] change Sentinal::getUser() to current_user()->getUser()
+// TODO[moaid] change Sentinel::getUser() to current_user()->getUser()
         $userIbid=UserIbid::where('user_id',current_user()->getUser()->id)->get();
         if(count($userIbid)){
         return view('ibportal::client.plan_list')->with('oResults', $oResults)

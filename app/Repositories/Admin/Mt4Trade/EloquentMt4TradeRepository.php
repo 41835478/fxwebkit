@@ -100,7 +100,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         /* ===============================check admin or user================ */
         $oResult = '';
-        if ($user = Sentinel::getUser()) {
+        if ($user = current_user()->getUser()) {
 
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
@@ -328,7 +328,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         //$oResult = Mt4Trade::where('CLOSE_TIME', '=', '1970-01-01 00:00:00');
         /* ===============================check admin or user================ */
         $oResult = '';
-        if ($user = Sentinel::getUser()) {
+        if ($user =current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
                 $oResult = Mt4Trade::with('users')->whereHas('users', function($query) use($account_id) {
@@ -416,7 +416,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         // $oResult = Mt4Trade::select('PROFIT')->where('CMD', '=', 6);
         /* ===============================check admin or user================ */
         $oResult = '';
-        if ($user = Sentinel::getUser()) {
+        if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
                 $oResult = Mt4Trade::with('users')->whereHas('users', function($query) use($account_id) {
@@ -456,7 +456,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         //$oResult = Mt4Trade::select('PROFIT')->where('CMD', '=', 7);
         /* ===============================check admin or user================ */
         $oResult = '';
-        if ($user = Sentinel::getUser()) {
+        if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
                 $oResult = Mt4Trade::with('users')->whereHas('users', function($query) use($account_id) {
@@ -500,7 +500,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         //$oResult = Mt4Trade::select('PROFIT')->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
         /* ===============================check admin or user================ */
         $oResult = '';
-        if ($user = Sentinel::getUser()) {
+        if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
                 $oResult = Mt4Trade::with('users')->whereHas('users', function($query) use($account_id) {
@@ -543,7 +543,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         // $oResult = Mt4Trade::select('PROFIT')->where('CLOSE_TIME', '=', '1970-01-01 00:00:00');
         /* ===============================check admin or user================ */
         $oResult = '';
-        if ($user = Sentinel::getUser()) {
+        if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
                 $oResult = Mt4Trade::with('users')->whereHas('users', function($query) use($account_id) {
@@ -588,7 +588,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         // $oResult = Mt4Trade::where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
         /* ===============================check admin or user================ */
         $oResult = '';
-        if ($user = Sentinel::getUser()) {
+        if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
                 $oResult = Mt4Trade::with('users')->whereHas('users', function($query) use($account_id) {
@@ -669,7 +669,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         //$oResult = Mt4Trade::where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')->where('COMMISSION_AGENT', '!=', 0);
         /* ===============================check admin or user================ */
         $oResult = '';
-        if ($user = Sentinel::getUser()) {
+        if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
                 $oResult = Mt4Trade::with('users')->whereHas('users', function($query) use($account_id) {
@@ -748,7 +748,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $aSummury = [];
         /* ===============================check admin or user================ */
         $oResult = new Mt4Trade();
-        if ($user = Sentinel::getUser()) {
+        if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
                 $oResult = Mt4Trade::with('users')->whereHas('users', function($query) use($account_id) {

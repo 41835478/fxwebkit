@@ -72,31 +72,12 @@
         </div>
     </div>
 
-    <div class="mail-container " >
+    <div class="mail-container" >
         <div class="mail-container-header">
             {{ trans('accounts::accounts.accounts') }}
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
-
-            @if (count($oResults))
-            <div class="stat-panel no-margin-b">
-                <div class="stat-row">
-                    <div class="stat-counters bg-info no-padding text-center">
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Total Results {{ $oResults->total() }}</span>
-                        </div>
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Results From {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }}</span>
-                        </div>
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Page {{ $oResults->currentPage() }} of {{ $oResults->lastPage() }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="padding-xs-vr"></div>
-            @endif
 
             <div class="table-info">
                 <div class="table-header">
@@ -186,6 +167,25 @@
                     </tfoot>
                 </table>
                 @endif
+                <div class="table-footer">
+                    @if (count($oResults))
+                        {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                        @if($oResults->total()>25)
+
+                            <div class="DT-lf-right change_page_all_div">
+
+                                {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}
+
+                                {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+
+                            </div>
+                        @endif
+
+                        <div class="col-sm-3">
+                            <span class="text-xs">{{trans('accounts::accounts.showing')}} {{ $oResults->firstItem() }} {{trans('accounts::accounts.to')}} {{ $oResults->lastItem() }} {{trans('accounts::accounts.of')}} {{ $oResults->total() }} {{trans('accounts::accounts.entries')}}</span>
+                        </div>
+                    @endif
+                </div>
                 {{ Form::close() }}
                 <div class="table-footer text-center">
                     @if (count($oResults))

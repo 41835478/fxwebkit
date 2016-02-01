@@ -135,6 +135,7 @@ return [
     'of'=>'of',
     'to'=>'to',
     'showing'=>'showing',
+    'no_assign_account'=>'No Assign Account',
 
 
 

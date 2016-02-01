@@ -229,7 +229,7 @@ class ClientAccountsController extends Controller
                 'sort' => "",
                 'order' => '',
                 'signed' => 1,
-                'account_id' => Sentinel::getUser()->id,
+                'account_id' => current_user()->getUser()->id,
             ];
             $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, 'login', 'desc');
 

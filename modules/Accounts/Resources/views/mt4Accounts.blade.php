@@ -87,7 +87,7 @@
                         @endif
                     </tbody>
                 </table>
-                <div class="table-footer text-right">
+                <div class="table-footer ">
                     @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
                     
@@ -107,7 +107,7 @@
                     </div>
                     @endif
                     
-                    <div class="col-sm-3  padding-xs-vr">
+                    <div class="col-sm-3 ">
                         <span class="text-xs">{{trans('accounts::accounts.showing')}} {{ $oResults->firstItem() }} {{trans('accounts::accounts.to')}} {{ $oResults->lastItem() }} {{trans('accounts::accounts.of')}} {{ $oResults->total() }} {{trans('accounts::accounts.entries')}}</span>
                     </div>
                     @endif

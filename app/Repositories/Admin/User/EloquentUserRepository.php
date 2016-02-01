@@ -138,7 +138,7 @@ class EloquentUserRepository implements UserContract
     public function updateUser($oRequest)
     {
 
-        $user = Sentinel::getUser();
+        $user = current_user()->getUser();
         $user = Sentinel::findById($oRequest->edit_id);
         $fullDetails = UsersDetails::where('users_id', $user->id)->first();
 

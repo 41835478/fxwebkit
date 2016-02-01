@@ -22,7 +22,7 @@ class UserController extends Controller
     public function getProfiles(Request $oRequest)
     {
 
-        $user = Sentinel::getUser();
+        $user = current_user()->getUser();
         $oResult = $this->oUsers->getUserDetails($user->id);
 
         $user_details = [
@@ -46,7 +46,7 @@ class UserController extends Controller
     public function getEditProfile(Request $oRequest)
     {
 
-        $user = Sentinel::getUser();
+        $user = current_user()->getUser();
         $oResult = $this->oUsers->getUserDetails($user->id);
 
         $country_array = $this->oUsers->getCountry(null);
@@ -75,7 +75,7 @@ class UserController extends Controller
     {
         $result = 0;
 
-        $oRequest->edit_id = Sentinel::getUser()->id;
+        $oRequest->edit_id = current_user()->getUser()->id;
         $result = $this->oUsers->updateUser($oRequest);
 
         if ($result > 0) {

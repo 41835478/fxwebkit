@@ -33,7 +33,7 @@
                 <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('accounts::accounts.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']) !!}</div></li>
 
-                <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.name'),'class'=>'form-control input-sm']) !!}</div></li>
+                <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li>
                     <div  class=" nav-input-div  ">
                         {!! Form::radio('signed',0,$aFilterParams['signed'],['id'=>'signed_0','checked'=>'true']) !!}<label for="signed_0">All</label>
@@ -75,7 +75,7 @@
         <div class="center_page_all_div">
             @include('admin.partials.messages')
 
-            <div class="table-info">
+            <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('accounts::accounts.asignMt4User') }}
@@ -166,7 +166,7 @@
                 </table>
                 @endif
                 {!! Form::close() !!}
-                <div class="table-footer text-right">
+                <div class="table-footer">
                     
                
                 
@@ -195,12 +195,12 @@
                    
                     @endif
    
-                    <div class="col-sm-3  padding-xs-vr">
+                    <div class="col-sm-3">
                         <span class="text-xs">{{trans('accounts::accounts.showing')}} {{ $oResults->firstItem() }} {{trans('accounts::accounts.to')}} {{ $oResults->lastItem() }} {{trans('accounts::accounts.of')}} {{ $oResults->total() }} {{trans('accounts::accounts.entries')}}</span>
                     </div>
                      @else
                     <div class="col-sm text-left">
-                        <span class="text-xs"><h3>No Assign Account</h3></span>
+                        <span class="text-xs"><h3>{{trans('accounts::accounts.no_assign_account')}}</h3></span>
                     </div>
                     @endif
                 

@@ -52,4 +52,9 @@ return [
     'Swaps' => 'Swaps',
     'Price' => 'Price',
     'Profit' => 'Profit',
+
+    'entries'=>'entries',
+    'of'=>'of',
+    'to'=>'to',
+    'showing'=>'showing',
 ];
