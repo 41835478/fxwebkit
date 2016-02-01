@@ -30,7 +30,7 @@ class IbportalController extends Controller {
 	}
 
 
-	public function getPlanList(Request $oRequest){
+	public function getPlansList(Request $oRequest){
 
 
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
@@ -107,7 +107,7 @@ class IbportalController extends Controller {
 
     }
 
-    public function getDetailsPlan(Request $request)
+    public function getDetailPlan(Request $request)
     {
 
 
