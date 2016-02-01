@@ -97,6 +97,8 @@ body{background: #fff !important}
 
 
 /*________________________________________ibportal*/
+.twitter-typeahead{display: block !important}
+
 /*_____________________assign_users*/
 #assignUsersAllDiv{
 

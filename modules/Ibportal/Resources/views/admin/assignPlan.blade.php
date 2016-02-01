@@ -147,7 +147,6 @@ $("#selectedUsersSearchInput").keyup(function(){
 });//change search_text
 /*_________________________________________END____search_select*/
 $('#assingUsersToPlanSubmit').click(function(){$('#selectedUsers option').attr('selected','selected');});
-$('#selectedUsers').blur(function(){$('#selectedUsers option').attr('selected','selected');});
             </script>
 
 @stop
