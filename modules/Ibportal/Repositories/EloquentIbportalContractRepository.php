@@ -2,13 +2,13 @@
 
 namespace Modules\Ibportal\Repositories;
 
+use Illuminate\Support\Facades\Hash;
 use Modules\Ibportal\Entities\IbportalPlan as Plan;
 use Modules\Ibportal\Entities\IbportalPlanAliases as PlanAliases;
 use Modules\Ibportal\Entities\IbportalAliases as Aliases;
 use Modules\Ibportal\Entities\IbportalPlanUsers as PlanUsers;
 use Modules\Mt4configrations\Entities\ConfigrationsSymbols as Symbols;
 use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
-
 use Config;
 
 class EloquentIbportalContractRepository implements IbportalContract
@@ -189,4 +189,5 @@ class EloquentIbportalContractRepository implements IbportalContract
         $insertResult=UserIbid::create(['user_id'=>$userId,'user_ibid'=>$IbId]);
         return $insertResult;
     }
+
 }

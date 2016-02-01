@@ -41,7 +41,7 @@ return [
     'rebate_value'=>'Rebate Value',
     'close'=>'Close',
     'add'=>'+ Add',
-
+'link'=>'Link',
     'deleted_successfully_message'=>'deleted successfully.',
     'deleted_faild_message'=>'deleted faild please try again later.'
 
