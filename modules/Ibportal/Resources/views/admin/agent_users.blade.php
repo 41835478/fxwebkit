@@ -62,6 +62,9 @@
 
                     <li>
                         <div class=" nav-input-div  ">
+                            {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+                            {!! Form::hidden('order', $aFilterParams['order']) !!}
+                            {!! Form::hidden('agentId', $aFilterParams['agent_id']) !!}
                             {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                         </div>
                     </li>
@@ -69,8 +72,6 @@
                 </ul>
 
 
-                {!! Form::hidden('sort', $aFilterParams['sort']) !!}
-                {!! Form::hidden('order', $aFilterParams['order']) !!}
 
 
             </div>

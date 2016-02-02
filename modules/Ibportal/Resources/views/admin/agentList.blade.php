@@ -62,15 +62,15 @@
 
                     <li>
                         <div class=" nav-input-div  ">
+
+                            {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+                            {!! Form::hidden('order', $aFilterParams['order']) !!}
                             {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                         </div>
                     </li>
                     <li class="divider"></li>
                 </ul>
 
-
-                {!! Form::hidden('sort', $aFilterParams['sort']) !!}
-                {!! Form::hidden('order', $aFilterParams['order']) !!}
 
 
             </div>
@@ -112,7 +112,7 @@
                                         <td>{{ $oResult->last_name }}</td>
                                         <td>{{ $oResult->email }}</td>
                                         <td>
-                                            <a href="{{ route('admin.ibportal.agentUsres').'?edit_id='.$oResult->id }}"
+                                            <a href="{{ route('admin.ibportal.agentUsres').'?agentId='.$oResult->id }}"
                                                class="fa fa-edit"></a>
 
 
