@@ -35,10 +35,6 @@ class ClientIbportalController extends Controller
 
     public function getPlanList(Request $oRequest)
     {
-
-
-
-
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
 
@@ -62,7 +58,6 @@ class ClientIbportalController extends Controller
 
         }
 
-// TODO[moaid] change Sentinel::getUser() to current_user()->getUser()
 
         $userIbid=UserIbid::where('user_id',current_user()->getUser()->id)->first();
 
@@ -106,7 +101,7 @@ class ClientIbportalController extends Controller
 
     public function getAgentUsers(Request $oRequest)
     {
-        
+
 
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
