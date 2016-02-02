@@ -106,11 +106,14 @@ class ClientIbportalController extends Controller
 
     public function getAgentUsers(Request $oRequest)
     {
+        
+
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
-        $aGroups = [];
+        $agentId = current_user()->getUser()->id;
         $oResults = null;
         $aFilterParams = [
+            'agent_id'=>$agentId,
             'id' => '',
             'first_name' => '',
             'last_name' => '',
@@ -120,6 +123,7 @@ class ClientIbportalController extends Controller
         ];
 
         if ($oRequest->has('search')) {
+            $aFilterParams['agent_id'] = $agentId;
             $aFilterParams['id'] = $oRequest->id;
             $aFilterParams['first_name'] = $oRequest->first_name;
             $aFilterParams['last_name'] = $oRequest->last_name;
@@ -130,7 +134,7 @@ class ClientIbportalController extends Controller
 
             $role = explode(',', Config::get('fxweb.client_default_role'));
 
-            $oResults = $this->Users->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
+            $oResults = $this->Users->getAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role,$agentId);
 
         }
 
