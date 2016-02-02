@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('ibportal::ibportal.agent'))
+@section('title', trans('ibportal::ibportal.agent_plan_list'))
 @section('content')
     <style type="text/css">
         #content-wrapper {
@@ -35,50 +35,35 @@
         <div class="mail-nav">
             <div class="navigation">
                 {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
+
+
                 <ul class="sections">
                     <li class="active"><a href="#"> <i
                                     class="fa fa-search"></i> {{ trans('ibportal::ibportal.search') }} </a></li>
 
+
                     <li>
                         <div class=" nav-input-div  ">
-                            {!! Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('ibportal::ibportal.id'),'class'=>'form-control input-sm']) !!}
-                        </div>
-                    </li>
-                    <li>
-                        <div class=" nav-input-div  ">
-                            {!! Form::text('first_name', $aFilterParams['first_name'], ['placeholder'=>trans('ibportal::ibportal.first_name'),'class'=>'form-control input-sm']) !!}
-                        </div>
-                    </li>
-                    <li>
-                        <div class=" nav-input-div  ">
-                            {!! Form::text('last_name', $aFilterParams['last_name'], ['placeholder'=>trans('ibportal::ibportal.last_name'),'class'=>'form-control input-sm']) !!}
-                        </div>
-                    </li>
-                    <li>
-                        <div class=" nav-input-div  ">
-                            {!! Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('ibportal::ibportal.Email'),'class'=>'form-control input-sm']) !!}
+                            {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('ibportal::ibportal.plan'),'class'=>'form-control input-sm']) !!}
                         </div>
                     </li>
 
                     <li>
                         <div class=" nav-input-div  ">
-
-                            {!! Form::hidden('sort', $aFilterParams['sort']) !!}
-                            {!! Form::hidden('order', $aFilterParams['order']) !!}
                             {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                         </div>
                     </li>
                     <li class="divider"></li>
                 </ul>
-
-
+                {!! Form::close() !!}
 
             </div>
         </div>
 
         <div class="mail-container ">
+
             <div class="mail-container-header">
-                {{ trans('ibportal::ibportal.agent') }}
+                {{ trans('ibportal::ibportal.agent_plan') }}
             </div>
             <div class="center_page_all_div">
                 @include('admin.partials.messages')
@@ -86,58 +71,53 @@
                 <div class="table-light">
                     <div class="table-header">
                         <div class="table-caption">
-                            {{ trans('ibportal::ibportal.agent') }}
+
+                            {{ trans('ibportal::ibportal.agent_plan') }}
+
+
                         </div>
                     </div>
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.id'), 'id', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.first_name'), 'first_name', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults) !!}</th>
-
-                                <th class="no-warp"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @if (count($oResults))
-                                {{-- */$i=0;/* --}}
-                                {{-- */$class='';/* --}}
-                                @foreach($oResults as $oResult)
-                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                                    <tr class='{{ $class }}'>
-                                        <td>{{ $oResult->id }}</td>
-                                        <td>{{ $oResult->first_name }}</td>
-                                        <td>{{ $oResult->last_name }}</td>
-                                        <td>{{ $oResult->email }}</td>
-                                        <td>
-                                            <a href="{{ route('admin.ibportal.agentUsres').'?agentId='.$oResult->id }}"
-                                               class="fa fa-users"></a>
-                                            <a href="{{ route('admin.ibportal.agentPlans').'?planId='.$oResult->id }}"
-                                               class="fa fa-link"></a>
-
-
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @endif
-                            </tbody>
-                        </table>
-                    <div class="table-footer">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.name'), 'name', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.type'), 'type', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.public'), 'Public', $oResults) !!}</th>
+                            <th class="no-warp"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         @if (count($oResults))
-                            {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                            {{-- */$i=0;/* --}}
+                            {{-- */$class='';/* --}}
+                            @foreach($oResults as $oResult)
+                                {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                <tr class='{{ $class }}'>
+                                    <td>{{ $oResult->name }}</td>
+                                    <td>{{ $oResult->type }}</td>
+                                    <td>@if($oResult->public) {{trans('ibportal::ibportal.public') }}@endif </td>
+                                    <td>
+                                        <a href="{{ route('admin.ibportal.assignAgentPlan').'?planId='.$oResult->id }}"
+                                           class="fa fa-link"></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                        </tbody>
+                    </table>
+                    <div class="table-footer">
+
+
+                        @if (count($oResults))
+
+                            {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->render()) !!}
                             @if($oResults->total()>25)
 
                                 <div class="DT-lf-right change_page_all_div">
 
-
                                     {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('ibportal::ibportal.page'),'class'=>'form-control input-sm']) !!}
 
-
-
                                     {!! Form::submit(trans('ibportal::ibportal.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-
 
                                 </div>
                             @endif
@@ -150,8 +130,10 @@
                 </div>
             </div>
         </div>
+
     </div>
-    {!! Form::close() !!}
+
+
     <script>
         init.push(function () {
 

@@ -190,6 +190,24 @@ class EloquentIbportalContractRepository implements IbportalContract
         return ($insertResult)?true:false;
     }
 
+    public function assignUsersToAgent($planId,$selectedUsers){
+
+        $deleteResult=PlanUsers::where('plan_id',$planId)->delete();
+        $insertResult=false;
+        if(!empty($selectedUsers)){
+            $users=[];
+            foreach($selectedUsers as $user){
+                $users[]=['plan_id'=>$planId,'user_id'=>$user];
+            }
+
+            $insertResult=PlanUsers::insert($users);
+        }else{
+            $insertResult=true;
+        }
+
+        return ($insertResult)?true:false;
+    }
+
 
 
     public function getSymbols() {

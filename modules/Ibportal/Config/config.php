@@ -32,7 +32,7 @@ return [
 		[
 			'route' => 'admin.ibportal.agentList',
 			'title' => 'agent',
-			'icon' => 'fa-random',
+			'icon' => 'fa fa-user',
 		]
 
 	],
@@ -44,7 +44,7 @@ return [
 	],[
 			'route' => 'client.ibportal.agentUser',
 			'title' => 'agent',
-			'icon' => 'fa-random',
+			'icon' => 'fa fa-user',
 		]
 	]
 
