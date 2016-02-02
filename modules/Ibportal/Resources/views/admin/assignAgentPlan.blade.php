@@ -46,7 +46,6 @@
                     </div>
                 <div class="col-xs-12 col-sm-5">
                     {!! Form::text('selectedUsersSearchInput','',['class'=>'form-control','id'=>'selectedUsersSearchInput']) !!}
-
                     {!! Form::select('selectedUsers[]',$selectedUsers,'',['class'=>'form-control','id'=>'selectedUsers', 'multiple'=>'multiple']) !!}
 </div>
 
@@ -56,6 +55,7 @@
         <div class="clearfix"></div>
         <div class="panel-footer text-right">
             {!! Form::hidden('planId',$planId) !!}
+            {!! Form::hidden('agentId',$agentId) !!}
             {!! Form::submit(trans('save'),['class'=>'btn lite-button','id'=>'assingUsersToPlanSubmit','onClick'=>"$('#selectedUsers option').attr('selected','selected');"]) !!}
              </div>
 

@@ -9,6 +9,7 @@ use Modules\Ibportal\Entities\IbportalAliases as Aliases;
 use Modules\Ibportal\Entities\IbportalPlanUsers as PlanUsers;
 use Modules\Mt4configrations\Entities\ConfigrationsSymbols as Symbols;
 use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
+use Modules\Ibportal\Entities\IbportalAgentUser as AgentUser;
 use Config;
 
 class EloquentIbportalContractRepository implements IbportalContract
@@ -162,7 +163,20 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     public function getPlanAssignedUsers($planId,&$users){
 
-       $oResult= PlanUsers::select('user_id')->where('plan_id',$planId)->get();
+        $oResult= PlanUsers::select('user_id')->where('plan_id',$planId)->get();
+
+        $assignedUsers=[];
+        foreach($oResult as $result){
+            if(!isset($users[$result->user_id])) continue;
+            $assignedUsers[$result->user_id]=$users[$result->user_id];
+            unset($users[$result->user_id]);
+        }
+        return $assignedUsers;
+    }
+
+    public function getAgentAssignedUsers($agentId,&$users){
+
+        $oResult= AgentUser::select('user_id')->where('agent_id',$agentId)->get();
 
         $assignedUsers=[];
         foreach($oResult as $result){
@@ -190,17 +204,17 @@ class EloquentIbportalContractRepository implements IbportalContract
         return ($insertResult)?true:false;
     }
 
-    public function assignUsersToAgent($planId,$selectedUsers){
+    public function assignUsersToAgent($agentId,$planId,$selectedUsers){
 
-        $deleteResult=PlanUsers::where('plan_id',$planId)->delete();
+        $deleteResult=AgentUser::where('agent_id',$agentId)->delete();
         $insertResult=false;
         if(!empty($selectedUsers)){
             $users=[];
             foreach($selectedUsers as $user){
-                $users[]=['plan_id'=>$planId,'user_id'=>$user];
+                $users[]=['agent_id'=>$agentId,'user_id'=>$user,'plan_id'=>$planId];
             }
 
-            $insertResult=PlanUsers::insert($users);
+            $insertResult=AgentUser::insert($users);
         }else{
             $insertResult=true;
         }

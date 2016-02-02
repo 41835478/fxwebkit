@@ -50,6 +50,7 @@
 
                     <li>
                         <div class=" nav-input-div  ">
+                            {!!  Form::hidden('agentId',$aFilterParams['agentId']) !!}
                             {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                         </div>
                     </li>
@@ -74,6 +75,7 @@
 
                             {{ trans('ibportal::ibportal.agent_plan') }}
 
+                            
 
                         </div>
                     </div>
@@ -97,7 +99,7 @@
                                     <td>{{ $oResult->type }}</td>
                                     <td>@if($oResult->public) {{trans('ibportal::ibportal.public') }}@endif </td>
                                     <td>
-                                        <a href="{{ route('admin.ibportal.assignAgentPlan').'?planId='.$oResult->id }}"
+                                        <a href="{{ route('admin.ibportal.assignAgentPlan').'?planId='.$oResult->id.'&agentId='.$aFilterParams['agentId'] }}"
                                            class="fa fa-link"></a>
                                     </td>
                                 </tr>

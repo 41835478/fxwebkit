@@ -290,13 +290,14 @@ class IbportalController extends Controller {
     {
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
-
+$agentId=($oRequest->agentId) ? $oRequest->agentId : '';
         $oResults = null;
 
         $aFilterParams = [
             'name' => '',
             'sort' => $sSort,
             'order' => $sOrder,
+            'agentId' => $agentId,
         ];
 
 
@@ -306,7 +307,7 @@ class IbportalController extends Controller {
             $aFilterParams['name'] = $oRequest->name;
 
 
-            $oResults = $this->Ibportal->getClientPlansByFilters($aFilterParams, false, $sOrder, $sSort,current_user()->getUser()->id);
+            $oResults = $this->Ibportal->getClientPlansByFilters($aFilterParams, false, $sOrder, $sSort,$agentId);
 
 
         }
@@ -325,10 +326,11 @@ class IbportalController extends Controller {
     {
         $oPlanDetails = $this->Ibportal->getPlanDetails($request->planId);
         $users= $this->Users->getUsersNames();
-        $selectedUsers=$this->Ibportal->getPlanAssignedUsers($request->planId,$users);
+        $selectedUsers=$this->Ibportal->getAgentAssignedUsers($request->agentId,$users);
 
         return view('ibportal::admin.assignAgentPlan')
             ->with('planId',$request->planId)
+            ->with('agentId',$request->agentId)
             ->with('oPlanDetails',$oPlanDetails->first())
             ->with('users',$users)
             ->with('selectedUsers',$selectedUsers);
@@ -338,11 +340,12 @@ class IbportalController extends Controller {
     {
         $selectedUsers=$request->selectedUsers;
         $planId=$request->planId;
+        $agentId=$request->agentId;
 
-        $assignResult=$this->Ibportal->assignUsersToAgent($planId,$selectedUsers);
+        $assignResult=$this->Ibportal->assignUsersToAgent($agentId,$planId,$selectedUsers);
 
         if($assignResult){
-            return Redirect::route('admin.ibportal.agentPlans');
+            return Redirect::to(route('admin.ibportal.agentPlans').'?agentId='.$agentId);
         }else{
 // TODO translate this error
             return redirect()->back()->withErrors('Error, please try again.');

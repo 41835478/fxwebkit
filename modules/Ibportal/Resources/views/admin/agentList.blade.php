@@ -114,7 +114,7 @@
                                         <td>
                                             <a href="{{ route('admin.ibportal.agentUsres').'?agentId='.$oResult->id }}"
                                                class="fa fa-users"></a>
-                                            <a href="{{ route('admin.ibportal.agentPlans').'?planId='.$oResult->id }}"
+                                            <a href="{{ route('admin.ibportal.agentPlans').'?agentId='.$oResult->id }}"
                                                class="fa fa-link"></a>
 
 
