@@ -18,6 +18,7 @@ class CreateIbportalAgentUserTable extends Migration {
             $table->increments('id');
             $table->integer('agent_id');
             $table->integer('user_id');
+            $table->integer('plan_id');
             $table->timestamps();
         });
     }

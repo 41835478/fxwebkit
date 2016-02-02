@@ -26,6 +26,9 @@ use Illuminate\Http\Request;
 
 use Fxweb\Repositories\Admin\User\UserContract;
 
+use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
+use Modules\Ibportal\Entities\IbportalAgentUser as AgentUser;
+
 class AuthController extends Controller
 {
 
@@ -114,13 +117,16 @@ class AuthController extends Controller
             'password' => $oRequest->password,
         ];
 
+        $ibid=($oRequest->has('ibid'))? $oRequest->ibid:'';
+        $planId=($oRequest->has('planId'))? $oRequest->planId:'';
+
 
         if ($bAutoActivate) {
 
             $oUser = Sentinel::registerAndActivate($aCredentials);
             $oClientRole->users()->attach($oUser);
             Sentinel::login($oUser);
-
+            $this->assignNewUserToAgent($ibid,$oUser->id,$planId);
             $aCredentialsFullDetails = [
                 'users_id' => $oUser->id,
                 'nickname' => $oRequest->nickname,
@@ -133,6 +139,8 @@ class AuthController extends Controller
                 'gender' => $oRequest->gender
             ];
 
+
+
             $details = new UsersDetails($aCredentialsFullDetails);
             $details->save();
             $oEmail = new Email;
@@ -144,6 +152,7 @@ class AuthController extends Controller
             $oClientRole->users()->attach($oUser);
             $oActivation = Activation::create($oUser);
 
+            $this->assignNewUserToAgent($ibid,$oUser->id,$planId);
 
             $aCredentialsFullDetails = [
                 'users_id' => $oUser->id,
@@ -162,6 +171,19 @@ class AuthController extends Controller
 
             return redirect()->route('client.auth.login');
         }
+    }
+
+    private function assignNewUserToAgent($ibid,$newUserId,$planId){
+        if($ibid != ''){
+            $oAgent=UserIbid::where('user_ibid',$ibid)->first();
+            if($oAgent){
+                AgentUser::create([
+                    'agent_id'=>$oAgent->user_id,
+                    'user_id'=>$newUserId,
+                    'plan_id'=>$planId]);
+            }
+        }
+
     }
 
     public function getRecover()
