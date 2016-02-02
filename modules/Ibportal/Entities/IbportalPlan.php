@@ -12,7 +12,7 @@ class IbportalPlan extends Model {
     protected $fillable = ['name','type','public'];
 
     public function aliases(){
-        return $this->belongsToMany('Modules\Ibportal\Entities\IbportalAliases','Ibportal_Plan_Aliases','plan_id','alias_id')->withPivot('value','type');
+        return $this->belongsToMany('Modules\Ibportal\Entities\IbportalAliases','ibportal_plan_aliases','plan_id','alias_id')->withPivot('value','type');
     }
     public function users(){
         return $this->hasMany('Modules\Ibportal\Entities\IbportalPlanUsers','plan_id');
