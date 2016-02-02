@@ -43,6 +43,12 @@ return [
     'add' => '+ Add',
     'link' => 'Link',
     'agree'=>'Agree',
+    'id'=>'Id',
+    'agent'=>'Agent',
+    'first_name'=>'First Name',
+    'last_name'=>'Last Name',
+    'Email'=>'Email',
+    'agent_users'=>'Agent Users',
     'deleted_successfully_message' => 'deleted successfully.',
     'deleted_faild_message' => 'deleted faild please try again later.'
 

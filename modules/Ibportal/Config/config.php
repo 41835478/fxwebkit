@@ -27,8 +27,13 @@ return [
 		'route' => 'admin.ibportal.aliasesList',
 		'title' => 'aliases',
 		'icon' => 'fa-random',
-	]
+	],
 
+		[
+			'route' => 'admin.ibportal.agentList',
+			'title' => 'agent',
+			'icon' => 'fa-random',
+		]
 
 	],
 	'client_menu' => [
@@ -36,7 +41,11 @@ return [
 		'route' => 'client.ibportal.planList',
 		'title' => 'plans',
 		'icon' => 'fa-briefcase',
-	]
+	],[
+			'route' => 'client.ibportal.agentUser',
+			'title' => 'agent',
+			'icon' => 'fa-random',
+		]
 	]
 
 ];
