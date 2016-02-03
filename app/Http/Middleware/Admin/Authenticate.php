@@ -1,6 +1,6 @@
 <?php namespace Fxweb\Http\Middleware\Admin;
 
-use Closure, Sentinel, Redirect;
+use Closure, Sentinel, Redirect,App;
 
 /**
  * Class Authenticate
@@ -23,6 +23,8 @@ class Authenticate
 				return Redirect::route('admin.auth.login');
 			}
 		}
+
+			App::setLocale('ar');
 		return $fNext($oRequest);
 	}
 }

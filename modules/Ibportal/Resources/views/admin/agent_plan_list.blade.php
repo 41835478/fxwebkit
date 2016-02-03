@@ -75,7 +75,7 @@
 
                             {{ trans('ibportal::ibportal.agent_plan') }}
 
-                            
+
 
                         </div>
                     </div>
