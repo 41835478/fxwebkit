@@ -57,7 +57,7 @@
 
 
                 <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('reports::reports.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>
                 <li class="divider"></li>
             </ul>
@@ -85,11 +85,11 @@
                 <div class="stat-row">
                     <div class="stat-counters bg-info no-padding text-center">
                         <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Total Commission : {{ round($oResults[1], 2) }}</span>
+                            <span class="text-xs">{{ trans('reports::reports.total_commission') }} {{ round($oResults[1], 2) }}</span>
                         </div>
 
                         <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Total Lots : {{ round($oResults[2], 2) }}</span>
+                            <span class="text-xs">{{ trans('reports::reports.total_lots') }} {{ round($oResults[2], 2) }}</span>
                         </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                                     <li>
                                         <a href="{{ Request::fullUrl() }}&export=xls">
                                             <i class="dropdown-icon fa fa-camera-retro"></i>
-                                            {{ trans('general.Export') }}
+                                            {{ trans('reports::reports.export') }}
                                         </a>
                                     </li>
                                 </ul>
@@ -126,9 +126,9 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('general.Symbol'), 'SYMBOL', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Commission'), 'COMMISSION', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Lots'), 'VOLUME', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oResults[0]) !!}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -155,11 +155,11 @@
 
 
 
-                        {!! Form::text('page',$oResults[0]->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
+                        {!! Form::text('page',$oResults[0]->currentPage(), ['type'=>'number', 'placeholder'=>trans('reports::reports.page'),'class'=>'form-control input-sm']) !!}
 
 
 
-                        {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('reports::reports.go'), ['class'=>'btn', 'name' => 'search']) !!}
 
 
 

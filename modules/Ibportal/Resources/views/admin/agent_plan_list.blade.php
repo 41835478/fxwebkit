@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('ibportal::ibportal.agent_plan_list'))
+@section('title', trans('ibportal::ibportal.agent_plan'))
 @section('content')
     <style type="text/css">
         #content-wrapper {

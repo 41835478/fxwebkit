@@ -557,7 +557,7 @@ class AccountsController extends Controller
         $role = Sentinel::findRoleByName('block');
         $role->users()->attach($user);
 
-        return Redirect::route('accounts.accountsList')->withErrors('Block User');
+        return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.unblock_user'));
     }
 
 
@@ -568,7 +568,7 @@ class AccountsController extends Controller
         $role = Sentinel::findRoleByName('block');
         $role->users()->detach($user);
 
-        return Redirect::route('accounts.accountsList')->withErrors('Unblock User');
+        return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.block_user'));
     }
 
 

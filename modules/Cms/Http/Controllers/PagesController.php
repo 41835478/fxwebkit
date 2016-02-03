@@ -18,9 +18,11 @@ use Modules\Cms\Http\Requests\CreatePagesRequest;
 use Pingpong\Modules\Facades\Module;
 use \SimpleXMLElement;
 
-class PagesController extends Controller {
+class PagesController extends Controller
+{
 
-    public function getPages2($page_id = 0) {
+    public function getPages2($page_id = 0)
+    {
         $pages = cms_pages::lists('title', 'id');
 
         if (Input::get('page_id') !== null) {
@@ -36,15 +38,17 @@ class PagesController extends Controller {
         $asset_folder = Config::get('cms.asset_folder');
 
         return view('cms::pages', [
-            'page_id' => $page_id,
-            'pages' => $pages,
-            'positions' => $this->getPageMoudules($page_id, 'article place and it should be one place in page'),
-            'asset_folder' => $asset_folder,
-                ]
+                'page_id' => $page_id,
+                'pages' => $pages,
+                'positions' => $this->getPageMoudules($page_id, 'article place and it should be one place in page'),
+                'asset_folder' => $asset_folder,
+            ]
         );
     }
 
-    public function getPages($page_id = 0) {
+    public function getPages($page_id = 0)
+    {
+
 
         $pages = cms_pages::lists('title', 'id');
         $menus = CmsMenus::lists('title', 'id');
@@ -63,28 +67,30 @@ class PagesController extends Controller {
         $modules_list = $modules_list_controller->modules_list();
 
         return view('cms::themePositions_2', [
-            'pages' => $pages,
-            'menus' => $menus,
-            'page_id' => $page_id,
-            'modules_list' => $modules_list,
-            'themeRows' => $xmlElements->rows[0],
-            'positions' => $positions,
-            'asset_folder' => $asset_folder,
-                ]
+                'pages' => $pages,
+                'menus' => $menus,
+                'page_id' => $page_id,
+                'modules_list' => $modules_list,
+                'themeRows' => $xmlElements->rows[0],
+                'positions' => $positions,
+                'asset_folder' => $asset_folder,
+            ]
         );
     }
 
-    public function getPagesList() {
+    public function getPagesList()
+    {
         $pages = cms_pages::lists('title', 'id');
         $asset_folder = Config::get('cms.asset_folder');
         return view('cms::pagesList', [
-            'pages' => $pages,
-            'asset_folder' => $asset_folder,
-                ]
+                'pages' => $pages,
+                'asset_folder' => $asset_folder,
+            ]
         );
     }
 
-    public function postPages() {
+    public function postPages()
+    {
 
         if (null !== Input::get('go_to_page')) {
             return Redirect::to('cms/pages/pages/' . Input::get('go_to_page'));
@@ -112,7 +118,8 @@ class PagesController extends Controller {
         //return $this->getPages(Input::get('page_id'));
     }
 
-    public function getDeleteModule() {
+    public function getDeleteModule()
+    {
 
         $page_module = cms_pages_contents::find(Input::get('delete_module_id'));
 
@@ -121,24 +128,27 @@ class PagesController extends Controller {
         }
     }
 
-    public function website($page_id = 1, $article_html = '', $language = 1) {
+    public function website($page_id = 1, $article_html = '', $language = 1)
+    {
 
         $asset_folder = Config::get('cms.asset_folder');
         return view('cms::' . Config::get('cms.theme_folder') . '.theme', [
-            'page_id' => $page_id,
-            'positions' => $this->getPageMoudules($page_id, $article_html, $language),
-            'asset_folder' => $asset_folder]
+                'page_id' => $page_id,
+                'positions' => $this->getPageMoudules($page_id, $article_html, $language),
+                'asset_folder' => $asset_folder]
         );
     }
 
-    public function postInsertNewPage(CreatePagesRequest $request) {
+    public function postInsertNewPage(CreatePagesRequest $request)
+    {
         $page = new cms_pages;
         $page->title = Input::get('new_page_name_input');
         $page->save();
         return Redirect::to('cms/pages/pages/' . $page->id);
     }
 
-    public function postAddModule() {
+    public function postAddModule()
+    {
 
         $all_pages = Input::get('all_pages');
         $page_id = Input::get('page_id');
@@ -180,7 +190,8 @@ class PagesController extends Controller {
         // return Redirect::to('cms/pages/develop-theme-view/' . $page_id);
     }
 
-    public function postSaveModulesOrders() {
+    public function postSaveModulesOrders()
+    {
 
         $order_array = Input::get('order_array');
         foreach ($order_array as $order) {
@@ -194,7 +205,8 @@ class PagesController extends Controller {
         return json_encode($order_array) . 'success';
     }
 
-    public function postAddModulePast() {
+    public function postAddModulePast()
+    {
 
         $type = Input::get('type');
         $all_pages = Input::get('all_pages');
@@ -210,8 +222,7 @@ class PagesController extends Controller {
                 break;
             default:
                 $module_id = Input::get('module_variable');
-                $type = Input::get('module_id');
-                ;
+                $type = Input::get('module_id');;
         }
 
         $page_module = new cms_pages_contents;
@@ -240,7 +251,8 @@ class PagesController extends Controller {
         return Redirect::to('cms/pages/develop-theme-view/' . $page_id);
     }
 
-    public function getDevelopThemeView($page_id = 0) {
+    public function getDevelopThemeView($page_id = 0)
+    {
 
         $modules_list_controller = new ModulesListController;
         $modules_list = $modules_list_controller->modules_list();
@@ -278,7 +290,8 @@ class PagesController extends Controller {
 
     /* ________________________________________________________________render_page */
 
-    public function getRenderPage($menu_item = '', $language = 1) {
+    public function getRenderPage($menu_item = '', $language = 1)
+    {
         $page_id = 0;
         $article_id = 0;
         $article_html = '';
@@ -322,7 +335,8 @@ class PagesController extends Controller {
 
     /* ________________________________________________________END________render_page */
 
-    private function getPageMoudules($page_id, $article_html = '', $language = 1) {
+    private function getPageMoudules($page_id, $article_html = '', $language = 1)
+    {
         $modules_list_controller = new ModulesListController();
         $modules_list = $modules_list_controller->modules_list();
 
@@ -353,18 +367,18 @@ class PagesController extends Controller {
 
                 case -1:
                     $menu = new MenusController();
-                    $module_html.= $menu->render_menu($page_module->module_id, $language);
+                    $module_html .= $menu->render_menu($page_module->module_id, $language);
                     break;
 
                 case -2:
-                    $module_html.= $article_html;
+                    $module_html .= $article_html;
                     break;
                 default:
                     if (!isset($modules_list[$page_module->type]))
                         break;
-                    $module_html.= $modules_list_controller->index($modules_list[$page_module->type], $page_module->module_id, $language);
+                    $module_html .= $modules_list_controller->index($modules_list[$page_module->type], $page_module->module_id, $language);
             }
-            $module_html.='</div>';
+            $module_html .= '</div>';
             array_push($positions[$page_module->position], $module_html);
         }
         return $positions;
@@ -372,7 +386,8 @@ class PagesController extends Controller {
 
 //getPageMoudules($page_id){
 
-    private function getPageMoudulesName($page_id, $article_html = '') {
+    private function getPageMoudulesName($page_id, $article_html = '')
+    {
 
         $modules_list_controller = new ModulesListController;
         //$modules_list = $modules_list_controller->modules_list();
@@ -383,8 +398,7 @@ class PagesController extends Controller {
        (all_pages=1 and '$page_id' in (select pages_id from cms_pages_contents_pages where pages_contents_id=first_table.id and pages_id='$page_id') )
        or
       (all_pages=2 and not '$page_id' in (select pages_id from cms_pages_contents_pages where pages_contents_id=first_table.id and pages_id=$page_id) )
-                order by `order` "
-        ;
+                order by `order` ";
 
         $page_modules = DB::select($query_string);
         $float_array = [0 => 'float', 1 => 'left', 2 => 'right'];
@@ -399,8 +413,8 @@ class PagesController extends Controller {
             $display = ($page_module->display != 0) ? 'display:' . $display_array[$page_module->display] . ';' : '';
 
             $module_html = '<div id="' . $page_module->type . '" value="' . $page_module->module_id . '" content_id="' . $page_module->id . '"  float="' . $page_module->float . '"  all_pages="' . $page_module->all_pages . '" selected_pages="' . $page_id . '" class="module_list_button reorderable" onclick="show_module_config_form($(this));"  draggable="true">';
-            $module_html.= $modules_list_controller->getPageModulesName($page_module->type, $page_module->module_id);
-            $module_html.='</div>';
+            $module_html .= $modules_list_controller->getPageModulesName($page_module->type, $page_module->module_id);
+            $module_html .= '</div>';
             array_push($positions[$page_module->position], $module_html);
         }
         return $positions;
@@ -408,7 +422,8 @@ class PagesController extends Controller {
 
 //getPageMoudules($page_id){
 
-    public function getPageModuleConfig() {
+    public function getPageModuleConfig()
+    {
         $module_id = Input::get('module_id');
         $pages = cms_pages_contents_pages::where('pages_contents_id', $module_id)->get();
         $pages_array = [];
@@ -420,7 +435,8 @@ class PagesController extends Controller {
 
 //getPageModuleConfig($module_id){}
 
-    private function getPageMoudulesName2($page_id, $article_html = '') {
+    private function getPageMoudulesName2($page_id, $article_html = '')
+    {
 
         $modules_list_controller = new ModulesListController;
         //$modules_list = $modules_list_controller->modules_list();
@@ -431,8 +447,7 @@ class PagesController extends Controller {
        (all_pages=1 and '$page_id' in (select pages_id from cms_pages_contents_pages where pages_contents_id=first_table.id and pages_id='$page_id') )
        or
       (all_pages=2 and not '$page_id' in (select pages_id from cms_pages_contents_pages where pages_contents_id=first_table.id and pages_id=$page_id) )
-                order by `order` "
-        ;
+                order by `order` ";
 
         $page_modules = DB::select($query_string);
         $float_array = [0 => 'float', 1 => 'left', 2 => 'right'];
@@ -447,8 +462,8 @@ class PagesController extends Controller {
             $display = ($page_module->display != 0) ? 'display:' . $display_array[$page_module->display] . ';' : '';
 
             $module_html = '<div id="' . $page_module->type . '" value="' . $page_module->module_id . '" content_id="' . $page_module->id . '"  float="' . $page_module->float . '"  all_pages="' . $page_module->all_pages . '" selected_pages="' . $page_id . '" class="module_list_button reorderable" onclick="show_module_config_form($(this));" draggable="true">';
-            $module_html.= $modules_list_controller->getPageModulesName($page_module->type, $page_module->module_id);
-            $module_html.='</div>';
+            $module_html .= $modules_list_controller->getPageModulesName($page_module->type, $page_module->module_id);
+            $module_html .= '</div>';
             array_push($positions[$page_module->position], $module_html);
         }
         return $positions;

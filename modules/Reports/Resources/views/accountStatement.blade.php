@@ -43,7 +43,7 @@
                         </div>
                     </div></li>
                 <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('reports::reports.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>
                 <li class="divider"></li>
             </ul>
@@ -101,7 +101,7 @@
                                     <li>
                                         <a href="{{ Request::fullUrl() }}&export=xls">
                                             <i class="dropdown-icon fa fa-camera-retro"></i>
-                                            {{ trans('general.Export') }}
+                                            {{ trans('reports::reports.export') }}
                                         </a>
                                     </li>
                                 </ul>
@@ -113,19 +113,19 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('general.Order#'), 'TICKET', $oOpenResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.OpenTime'), 'OPEN_TIME', $oCloseResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Symbol'), 'SYMBOL', $oOpenResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Type'), 'CMD', $oOpenResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Lots'), 'VOLUME', $oOpenResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.OpenPrice'), 'OPEN_PRICE', $oOpenResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.SL'), 'SL', $oOpenResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.TP'), 'TP', $oOpenResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.CloseTime'), 'CLOSE_TIME', $oCloseResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Taxes'), 'TAXES', $oCloseResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Swaps'), 'SWAPS', $oOpenResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Price'), 'CLOSE_PRICE', $oOpenResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Profit'), 'PROFIT', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.open_time'), 'OPEN_TIME', $oCloseResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.type'), 'CMD', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.open_Price'), 'OPEN_PRICE', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.SL'), 'SL', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.TP'), 'TP', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.close_time'), 'CLOSE_TIME', $oCloseResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.taxes'), 'TAXES', $oCloseResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.swaps'), 'SWAPS', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.price'), 'CLOSE_PRICE', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.profit'), 'PROFIT', $oOpenResults) !!}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -175,7 +175,7 @@
                                     <li>
                                         <a href="{{ Request::fullUrl() }}&export=xls">
                                             <i class="dropdown-icon fa fa-camera-retro"></i>
-                                            {{ trans('general.Export') }}
+                                            {{ trans('reports::reports.export') }}
                                         </a>
                                     </li>
                                 </ul>
@@ -188,20 +188,19 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('general.Order#'), 'TICKET', $oCloseResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.OpenTime'), 'OPEN_TIME', $oCloseResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Symbol'), 'SYMBOL', $oCloseResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Type'), 'CMD', $oCloseResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Lots'), 'VOLUME', $oCloseResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.OpenPrice'), 'OPEN_PRICE', $oCloseResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.SL'), 'SL', $oCloseResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.TP'), 'TP', $oCloseResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.CloseTime'), 'CLOSE_TIME', $oCloseResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Taxes'), 'TAXES', $oCloseResults) !!}</th>
-
-                            <th class="no-warp">{!! th_sort(trans('general.Swaps'), 'SWAPS', $oCloseResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Price'), 'CLOSE_PRICE', $oCloseResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Profit'), 'PROFIT', $oCloseResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.open_time'), 'OPEN_TIME', $oCloseResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.type'), 'CMD', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.open_Price'), 'OPEN_PRICE', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.SL'), 'SL', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.TP'), 'TP', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.close_time'), 'CLOSE_TIME', $oCloseResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.taxes'), 'TAXES', $oCloseResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.swaps'), 'SWAPS', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.price'), 'CLOSE_PRICE', $oOpenResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.profit'), 'PROFIT', $oOpenResults) !!}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -242,48 +241,48 @@
                 </div>
                 <table class="table table-bordered user-info-table">
                     <tr>
-                        <th colspan="3">Registration date : </th><td>{{ $oResults->REGDATE }}</td>
-                       <th >Name : </th><td colspan="3">{{ $oResults->NAME }}</td>
+                        <th colspan="3">{{ trans('reports::reports.registration_date') }}</th><td>{{ $oResults->REGDATE }}</td>
+                       <th >{{ trans('reports::reports.name') }} </th><td colspan="3">{{ $oResults->NAME }}</td>
                     </tr>
                   
                     <tr>
-                        <th >City : </th><td >{{ $oResults->CITY }}</td>
-                        <th >State : </th><td >{{ $oResults->STATE }}</td>
-                        <th  >Country : </th><td>{{ $oResults->COUNTRY }}</td>
+                        <th >{{ trans('reports::reports.city') }} </th><td >{{ $oResults->CITY }}</td>
+                        <th >{{ trans('reports::reports.state') }} </th><td >{{ $oResults->STATE }}</td>
+                        <th  >{{ trans('reports::reports.country') }} </th><td>{{ $oResults->COUNTRY }}</td>
                     </tr>
                     <tr>
-                        <th >Address : </th><td  colspan="3">{{ $oResults->ADDRESS }}</td>
-                        <th >Zip-code : </th><td >{{ $oResults->ZIPCODE }}</td>
+                        <th >{{ trans('reports::reports.address') }} </th><td  colspan="3">{{ $oResults->ADDRESS }}</td>
+                        <th >{{ trans('reports::reports.zip_code') }} </th><td >{{ $oResults->ZIPCODE }}</td>
                     </tr>
                     <tr>
-                        <th >Phone : </th><td >{{ $oResults->PHONE }}</td>
-                        <th >Email : </th><td  colspan="3">{{ $oResults->EMAIL }}</td>
+                        <th >{{ trans('reports::reports.phone') }} </th><td >{{ $oResults->PHONE }}</td>
+                        <th >{{ trans('reports::reports.email') }}</th><td  colspan="3">{{ $oResults->EMAIL }}</td>
                     </tr>
                     <tr>
-                        <th >ID number : </th><td >{{ $oResults->ID }}</td>
-                        <th >Status : </th><td >{{ $oResults->STATUS }}</td>
+                        <th >{{ trans('reports::reports.id_number') }} </th><td >{{ $oResults->ID }}</td>
+                        <th >{{ trans('reports::reports.status') }} </th><td >{{ $oResults->STATUS }}</td>
                       
                     </tr>
                   
                     <tr>
-                        <th >Leverage : </th><td >{{ $oResults->LEVERAGE }}</td>
-                        <th >tax : </th><td >{{ $oResults->TAXES }}%</td>
+                        <th >{{ trans('reports::reports.leverage') }}</th><td >{{ $oResults->LEVERAGE }}</td>
+                        <th >{{ trans('reports::reports.tax') }} </th><td >{{ $oResults->TAXES }}%</td>
                        
                     </tr>
                     <tr>
                         <th class="no-warp"></th><td></td>
-                        <th class="no-warp">Deposit / Withdrawal :</th><td>{{ $aSummery['deposit'] }}</td>
-                        <th class="no-warp">Credit Facility :</th><td>{{ $aSummery['credit_facility'] }}</td>
+                        <th class="no-warp">{{ trans('reports::reports.deposit_withdrawal') }}</th><td>{{ $aSummery['deposit'] }}</td>
+                        <th class="no-warp">{{ trans('reports::reports.credit_facility') }}</th><td>{{ $aSummery['credit_facility'] }}</td>
                     </tr>
                     <tr>
-                        <th class="no-warp">Closed Trade P/L : </th><td>{{ $aSummery['closed_trade'] }}</td>
-                        <th class="no-warp">Floating P/L : </th><td>{{ $aSummery['floating'] }}</td>
-                        <th class="no-warp">Margin : </th><td>{{ $oResults->MARGIN }}</td>
+                        <th class="no-warp">{{ trans('reports::reports.closed_trade') }} </th><td>{{ $aSummery['closed_trade'] }}</td>
+                        <th class="no-warp">{{ trans('reports::reports.floating') }} </th><td>{{ $aSummery['floating'] }}</td>
+                        <th class="no-warp">{{ trans('reports::reports.margin') }} </th><td>{{ $oResults->MARGIN }}</td>
                     </tr>
                     <tr>
-                        <th class="no-warp">Balance : </th><td>{{ $oResults->BALANCE }}</td>
-                        <th class="no-warp">Equity : </th><td>{{ $oResults->EQUITY }}</td>
-                        <th class="no-warp">Free Margin : </th><td>{{ $oResults->MARGIN_FREE }}</td>
+                        <th class="no-warp">{{ trans('reports::reports.balance') }} </th><td>{{ $oResults->BALANCE }}</td>
+                        <th class="no-warp">{{ trans('reports::reports.equity') }} </th><td>{{ $oResults->EQUITY }}</td>
+                        <th class="no-warp">{{ trans('reports::reports.free_margin') }} </th><td>{{ $oResults->MARGIN_FREE }}</td>
                     </tr>
                 </table>				
 

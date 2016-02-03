@@ -8,7 +8,7 @@
     {!! Form::open(['url'=>asset('/cms/articles/articles'),'class'=>'language_select_form']) !!}
     {!! Form::hidden('article_id',$selected_id) !!}
     {!! Form::select('selected_language',$languages,$selected_language,['class'=>'language_select']) !!}
-    {!! Form::submit('translate',["name"=>'select_language_submit','class'=>'btn btn-primary btn-flat' ]) !!}
+    {!! Form::submit(trans('cms::cms.translate'),["name"=>'select_language_submit','class'=>'btn btn-primary btn-flat' ]) !!}
 
     {!! Form::close() !!}
     @endif
@@ -18,21 +18,21 @@
 @if($selected_language == 1)
 {!! Form::open(['url'=>asset('/cms/articles/insert-edit-article'),'class'=>'panel form-horizontal']) !!}
 <div class="panel-heading">
-    <span class="panel-title">article </span>
+    <span class="panel-title">{{ trans('cms::cms.article') }} </span>
 </div>
 <div class="panel-body">
-    {!! Form::text('title',(isset($edit_article->title))?  $edit_article->title:'',['id'=>'title','placeholder'=>'title','class'=>'form-control ']) !!}
+    {!! Form::text('title',(isset($edit_article->title))?  $edit_article->title:'',['id'=>'title','placeholder'=>trans('cms::cms.title'),'class'=>'form-control ']) !!}
     {!! Form::textarea('editor1',(isset($edit_article->body))?  $edit_article->body:'',['id'=>'editor1','placeholder'=>'title']) !!}
     {!! Form::hidden('article_id' ,$selected_id) !!}
 
     <div style="width:250px;display: inline-block; ">
         {!! Form::select('page_id',$pages,(isset($edit_article->page_id))?  $edit_article->page_id:0 ) !!}
     </div>
-    {!! Form::submit('insert new article',["name"=>'insert_article_submit','id'=>'insert_article_submit','class'=>'btn btn-primary' ]) !!}
+    {!! Form::submit(trans('cms::cms.insert_new_article'),["name"=>'insert_article_submit','id'=>'insert_article_submit','class'=>'btn btn-primary' ]) !!}
 
     @if($selected_id > 0) 
     {!! Form::hidden('edit_article_id',$selected_id) !!}
-    {!! Form::submit('save edits',["name"=>'edit_article_submit','id'=>'edit_article_submit','class'=>'btn btn-primary' ]) !!}
+    {!! Form::submit(trans('cms::cms.save_edits'),["name"=>'edit_article_submit','id'=>'edit_article_submit','class'=>'btn btn-primary' ]) !!}
 
     @endif
 
@@ -48,10 +48,10 @@
 @else
 {!! Form::open(['url'=>asset('/cms/articles/save-article-translate'),'class'=>'panel form-horizontal']) !!}
 <div class="panel-heading">
-    <span class="panel-title">article </span>
+    <span class="panel-title">{{ trans('cms::cms.article') }} </span>
 </div>
 <div class="panel-body">
-    {!! Form::text('title',(isset($edit_article->title))?  $edit_article->title:'',['id'=>'title','placeholder'=>'title','class'=>'form-control ']) !!}
+    {!! Form::text('title',(isset($edit_article->title))?  $edit_article->title:'',['id'=>'title','placeholder'=>trans('cms::cms.title') ,'class'=>'form-control ']) !!}
     {!! Form::textarea('editor1',(isset($edit_article->body))?  $edit_article->body:'',['id'=>'editor1','placeholder'=>'title']) !!}
     {!! Form::hidden('article_id' ,$selected_id) !!}
     {!! Form::hidden('selected_language' ,$selected_language) !!}

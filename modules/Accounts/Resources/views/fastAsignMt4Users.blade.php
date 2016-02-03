@@ -36,8 +36,8 @@
                 <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li>
                     <div  class=" nav-input-div  ">
-                        {!! Form::radio('signed',0,$aFilterParams['signed'],['id'=>'signed_0','checked'=>'true']) !!}<label for="signed_0">All</label>
-                        {!! Form::radio('signed',1,($aFilterParams['signed']==1),['id'=>'signed_1']) !!}<label for="signed_1">Assigned</label>
+                        {!! Form::radio('signed',0,$aFilterParams['signed'],['id'=>'signed_0','checked'=>'true']) !!}<label for="signed_0">{{ trans('accounts::accounts.all') }}</label>
+                        {!! Form::radio('signed',1,($aFilterParams['signed']==1),['id'=>'signed_1']) !!}<label for="signed_1">{{ trans('accounts::accounts.assigned') }}</label>
 
                     </div>
                 </li>
@@ -105,7 +105,7 @@
                             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                             {!! Form::hidden('order', $aFilterParams['order']) !!}
 
-                            {!! Form::button('Assign',['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary']) !!}
+                            {!! Form::button(trans('accounts::accounts.assign'),['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary']) !!}
 
 
                         </div>
@@ -123,7 +123,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all','Login') !!}</th>
+                            <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('accounts::accounts.Login')) !!}</th>
 
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</th>
@@ -158,8 +158,8 @@
                                 {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                                 {!! Form::hidden('order', $aFilterParams['order']) !!}
 
-                                {!! Form::button('Assign',['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
-                                {!! Form::button('Unassign',['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}
+                                {!! Form::button( trans('accounts::accounts.assign') ,['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
+                                {!! Form::button(trans('accounts::accounts.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}
                             </td>
                         </tr>
                     </tfoot>

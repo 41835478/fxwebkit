@@ -16,10 +16,12 @@ use Illuminate\Support\Facades\Redirect;
 use Modules\Cms\Http\Requests\CreateMenusRequest;
 use Modules\Cms\Http\Requests\CreateMenuItemRequest;
 
-class MenusController extends Controller {
+class MenusController extends Controller
+{
     /* __________________________________________________menus */
 
-    public function getMenus($selected_id = 0) {
+    public function getMenus($selected_id = 0)
+    {
 
         //  $selected_id = (Input::get('selected_id') !== null) ? Input::get('selected_id') : 1;
         $menus = CmsMenus::lists('title', 'id');
@@ -36,11 +38,11 @@ class MenusController extends Controller {
         $languages = cms_languages::lists('name', 'id');
         $selected_language = (Input::get('selected_language') != null) ? Input::get('selected_language') : 1;
         //$menu_items = cms_menus_items::with('cms_menus_items', 'page', 'article')->where('menu_id', $selected_id)->get();
-        $menu_items = cms_menus_items::with(['article' => function($query) {
-                        $query->where('page_id', "!=", "0");
-                    }, 'cms_menus_items', 'page', 'cms_menus_items_languages' => function($query) use($selected_language) {
-                        $query->where('cms_languages_id', '=', $selected_language);
-                    }])->where('menu_id', $selected_id)->get();
+        $menu_items = cms_menus_items::with(['article' => function ($query) {
+            $query->where('page_id', "!=", "0");
+        }, 'cms_menus_items', 'page', 'cms_menus_items_languages' => function ($query) use ($selected_language) {
+            $query->where('cms_languages_id', '=', $selected_language);
+        }])->where('menu_id', $selected_id)->get();
 
 
         $pages = cms_pages::lists('title', 'id');
@@ -57,24 +59,25 @@ class MenusController extends Controller {
         $disable_icons = ["fa fa-check", "fa fa-ban"];
         $hide_icons = ["fa fa-eye", "fa fa-eye-slash"];
         return view("cms::menus", ['menus' => $menus,
-            'selected_id' => $selected_id,
-            'disable_array' => $disable_array,
-            'disable_icons' => $disable_icons,
-            'hide_array' => $hide_array,
-            'hide_icons' => $hide_icons,
-            'menu_items' => $menu_items,
-            'pages' => $pages,
-            'articles' => $articles,
-            'menu_preview' => $menu_preview,
-            'render_menu_html' => $this->render_menu($selected_id),
-            'languages' => $languages,
-            'selected_language' => $selected_language,
-            'asset_folder' => $asset_folder
-                ]
+                'selected_id' => $selected_id,
+                'disable_array' => $disable_array,
+                'disable_icons' => $disable_icons,
+                'hide_array' => $hide_array,
+                'hide_icons' => $hide_icons,
+                'menu_items' => $menu_items,
+                'pages' => $pages,
+                'articles' => $articles,
+                'menu_preview' => $menu_preview,
+                'render_menu_html' => $this->render_menu($selected_id),
+                'languages' => $languages,
+                'selected_language' => $selected_language,
+                'asset_folder' => $asset_folder
+            ]
         );
     }
 
-    public function getEditMenuItem($menu_item_id = 0, $menu_id) {
+    public function getEditMenuItem($menu_item_id = 0, $menu_id)
+    {
         //  $selected_id = (Input::get('selected_id') !== null) ? Input::get('selected_id') : 1;
 
         $menus = CmsMenus::lists('title', 'id');
@@ -100,23 +103,24 @@ class MenusController extends Controller {
         $menu_preview = $this->order_menu_get_html(0, $links);
 
         return view("cms::menusAddEditItem", [
-            'menu_item' => $menu_item,
-            'menu_items' => $menu_items,
-            'selected_id' => $menu_id,
-            'disable_array' => $disable_array,
-            'hide_array' => $hide_array,
-            'pages' => $pages,
-            'articles' => $articles,
-            'menu_preview' => $menu_preview,
-            'render_menu_html' => $this->render_menu($menu_id),
-            'languages' => $languages,
-            'selected_language' => $selected_language,
-            'asset_folder' => $asset_folder
-                ]
+                'menu_item' => $menu_item,
+                'menu_items' => $menu_items,
+                'selected_id' => $menu_id,
+                'disable_array' => $disable_array,
+                'hide_array' => $hide_array,
+                'pages' => $pages,
+                'articles' => $articles,
+                'menu_preview' => $menu_preview,
+                'render_menu_html' => $this->render_menu($menu_id),
+                'languages' => $languages,
+                'selected_language' => $selected_language,
+                'asset_folder' => $asset_folder
+            ]
         );
     }
 
-    public function getMenusList() {
+    public function getMenusList()
+    {
 
         $languages = cms_languages::lists('name', 'id');
         $selected_language = (Input::get('selected_language') != null) ? Input::get('selected_language') : 1;
@@ -124,22 +128,23 @@ class MenusController extends Controller {
         $menus = CmsMenus::lists('title', 'id');
 
         //$menus = CmsMenus::with('cms_menus_languages')->where('',$selected_language)->get();//lists('title', 'id');
-        $menus = CmsMenus::with(['cms_menus_languages' => function($query) use($selected_language) {
+        $menus = CmsMenus::with(['cms_menus_languages' => function ($query) use ($selected_language) {
 
-                        $query->where('cms_languages_id', '=', $selected_language);
-                    }])->get();
+            $query->where('cms_languages_id', '=', $selected_language);
+        }])->get();
 
         $asset_folder = Config::get('cms.asset_folder');
         return view("cms::menusList", [
-            'menus' => $menus,
-            'languages' => $languages,
-            'selected_language' => $selected_language,
-            'asset_folder' => $asset_folder
-                ]
+                'menus' => $menus,
+                'languages' => $languages,
+                'selected_language' => $selected_language,
+                'asset_folder' => $asset_folder
+            ]
         );
     }
 
-    public function postMenus() {
+    public function postMenus()
+    {
 
         if (null !== Input::get('select_menu_submit')) {
             return $this->getMenus(Input::get('selected_id'));
@@ -166,14 +171,16 @@ class MenusController extends Controller {
         return $this->getMenus(Input::get('selected_id'));
     }
 
-    public function postInsertNewMenu(CreateMenusRequest $request) {
+    public function postInsertNewMenu(CreateMenusRequest $request)
+    {
         $menu = new CmsMenus;
         $menu->title = Input::get('new_menu_name_input');
         $menu->save();
         return Redirect::to('cms/menus/menus/' . $menu->id);
     }
 
-    public function postInsertNewMenuItem(CreateMenuItemRequest $request) {
+    public function postInsertNewMenuItem(CreateMenuItemRequest $request)
+    {
         $type = Input::get('type');
         if (Input::get('edit_menu_item_id') != null) {
             $item = cms_menus_items::find(Input::get('edit_menu_item_id'));
@@ -191,7 +198,8 @@ class MenusController extends Controller {
         return Redirect::to('/cms/menus/menus/' . Input::get('selected_id'));
     }
 
-    public function postSaveTranslate() {
+    public function postSaveTranslate()
+    {
         $translate_title = Input::get('translate_title');
         $selected_language = Input::get('selected_language');
 
@@ -213,7 +221,8 @@ class MenusController extends Controller {
         return $this->getMenusList();
     }
 
-    public function postSaveItemsTranslate() {
+    public function postSaveItemsTranslate()
+    {
         $translate_name = Input::get('translate_name');
         $selected_language = Input::get('selected_language');
 
@@ -237,12 +246,13 @@ class MenusController extends Controller {
 
     /* _________________________________________________________________________________render_menu_html( order menu each link with his parent and get it's html) */
 
-    private function order_menu_get_html($root, $links) {
+    private function order_menu_get_html($root, $links)
+    {
 
 
         $menu_html = '';
         if (!is_null($links) && count($links) > 0) {
-            $menu_html.=($root == 0) ? '<ul class="dropdown-menu btn-group" style="display: block;">' : '<ul class="dropdown-menu sub-menu">';
+            $menu_html .= ($root == 0) ? '<ul class="dropdown-menu btn-group" style="display: block;">' : '<ul class="dropdown-menu sub-menu">';
             foreach ($links as $key => $link) {
                 $child = $link['id'];
                 $parent = $link['parent_item_id'];
@@ -251,17 +261,18 @@ class MenusController extends Controller {
                     if ($link['hide'])
                         continue;
                     $sub_menu = $this->order_menu_get_html($child, $links);
-                    $menu_html.= '<li ><a class=" btn trigger right-caret" >' . $link['name'] . '</a>';
-                    $menu_html.=$sub_menu;
-                    $menu_html.='</li>';
+                    $menu_html .= '<li ><a class=" btn trigger right-caret" >' . $link['name'] . '</a>';
+                    $menu_html .= $sub_menu;
+                    $menu_html .= '</li>';
                 }
             }
-            $menu_html.='</ul>';
+            $menu_html .= '</ul>';
         }
         return $menu_html;
     }
 
-    function order_menu($links, $root = 0) {
+    function order_menu($links, $root = 0)
+    {
 
         $return = array();
         foreach ($links as $key => $link) {
@@ -282,19 +293,20 @@ class MenusController extends Controller {
         return $return;
     }
 
-    public function render_menu($menu_id, $language = 1) {
+    public function render_menu($menu_id, $language = 1)
+    {
 
         $links = cms_menus_items::where(['menu_id' => $menu_id])->get();
 
         // $links=cms_menus_items_languages::where(['cms_languages_id'=>$language,'cms_menus_items_id'=>$id])->get();
-        $links = cms_menus_items::with(['cms_menus_items_languages' => function($query) use($language) {
-                        $query->where('cms_languages_id', '=', $language);
-                    }])->where('menu_id', $menu_id)->get();
+        $links = cms_menus_items::with(['cms_menus_items_languages' => function ($query) use ($language) {
+            $query->where('cms_languages_id', '=', $language);
+        }])->where('menu_id', $menu_id)->get();
         $links = $links->toArray();
         return view('cms::' . Config::get('cms.theme_folder') . '.theme_menu', [
-            'menu_array' => $this->order_menu($links),
-            'selected_id' => $menu_id
-                ]
+                'menu_array' => $this->order_menu($links),
+                'selected_id' => $menu_id
+            ]
         );
     }
 
@@ -364,9 +376,6 @@ class MenusController extends Controller {
      */
 
 
-
-
-
     /*
      * $tree=array();
       foreach ($links as $link){
@@ -392,9 +401,6 @@ class MenusController extends Controller {
       return $menu_html;
       }
      */
-
-
-
 
 
     /* ____END________render_menu_html( order menu each link with his parent and get it's html) */

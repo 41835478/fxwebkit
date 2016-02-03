@@ -139,7 +139,7 @@
          </div>
         <div class="panel-footer text-right">
             <a href="{{ route('accounts.editAccount').'?edit_id='.$user_details['id'] }}">
-                <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('general.edit') }}</button></a>
+                <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('accounts::accounts.edit') }}</button></a>
         </div>
    
 </div>

@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('ibportal::ibportal.group'))
+@section('title', trans('ibportal::ibportal.aliases'))
 @section('content')
     <style type="text/css">
         #content-wrapper {

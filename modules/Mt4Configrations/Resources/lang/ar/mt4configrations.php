@@ -1,0 +1,33 @@
+<?php
+
+return [
+
+    'ModuleTitle'=>'بسليبMt4 Configrations',
+    'symbolsList'=>'الاىلSymbols List',
+    'securitiesList'=>'بلياSecurities List',
+    'groupsList'=>'يلالبGroups List',
+    'symbols'=>'بليالبSymbols',
+    'type'=>'غفعType',
+    'exemode'=>'Executioفقغn',
+    'filter'=>'Fiقفثغlter',
+    'spread'=>'Sprقفغثقead',
+    'stops_level'=>'قفثغStops',
+    'swap_long'=>'Lonقفغثg',
+    'swap_short'=>'Shقفغort',
+    'digits'=>'Digقفثغits',
+    'trade'=>'Trيبade',
+    'search'=>'Seبيarch',
+    'securities'=>'Secبياurities',
+    'description'=>'Descrيبiption',
+    'name'=>'Namيباe',
+    'group'=>'Groؤىup',
+    'company'=>'Compصثضقany',
+    'margin_call'=>'صثقMC',
+    'margin_stopout'=>'SصقضثO',
+    'page'=>'Pagثصقضe',
+    'entries'=>'eصضقثntries',
+    'of'=>'oصثقضf',
+    'to'=>'tصقضo',
+    'showing'=>'sصثقhowing',
+    'sync'=>'Synصثقضc',
+];

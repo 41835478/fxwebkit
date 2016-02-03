@@ -136,6 +136,12 @@ return [
     'to'=>'to',
     'showing'=>'showing',
     'no_assign_account'=>'No Assign Account',
+    'edit'=>'Edit',
+    'assigned'=>'Assigned',
+    'assign'=>'Assign',
+    'un_assign'=>'UnAssign',
+    'block_user'=>'Block User',
+    'unblock_user'=>'Unblock User',
 
 
 

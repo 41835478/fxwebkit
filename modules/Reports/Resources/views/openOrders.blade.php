@@ -53,7 +53,7 @@
 
 
                 <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('reports::reports.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>
                 <li class="divider"></li>
             </ul>
@@ -91,7 +91,7 @@
                                     <li>
                                         <a href="{{ Request::fullUrl() }}&export=xls">
                                             <i class="dropdown-icon fa fa-camera-retro"></i>
-                                            {{ trans('general.Export') }}
+                                            {{ trans('reports::reports.export') }}
                                         </a>
                                     </li>
                                 </ul>
@@ -103,18 +103,18 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('general.Order#'), 'TICKET', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Login'), 'LOGIN', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Symbol'), 'SYMBOL', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Type'), 'CMD', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Lots'), 'VOLUME', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.OpenPrice'), 'OPEN_PRICE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.SL'), 'SL', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.TP'), 'TP', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Commission'), 'COMMISSION', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Swaps'), 'SWAPS', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Price'), 'CLOSE_PRICE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Profit'), 'PROFIT', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.open_Price'), 'OPEN_PRICE', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.SL'), 'SL', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.TP'), 'TP', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.swaps'), 'SWAPS', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.price'), 'CLOSE_PRICE', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.profit'), 'PROFIT', $oResults) !!}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -150,11 +150,11 @@
 
 
 
-                        {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
+                        {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('reports::reports.page'),'class'=>'form-control input-sm']) !!}
 
 
 
-                        {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('reports::reports.go'), ['class'=>'btn', 'name' => 'search']) !!}
 
 
 

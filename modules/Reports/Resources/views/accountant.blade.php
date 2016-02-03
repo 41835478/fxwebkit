@@ -60,7 +60,7 @@
 
 
                 <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('reports::reports.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>
                 <li class="divider"></li>
             </ul>
@@ -100,7 +100,7 @@
                                     <li>
                                         <a href="{{ Request::fullUrl() }}&export=xls">
                                             <i class="dropdown-icon fa fa-camera-retro"></i>
-                                            {{ trans('general.Export') }}
+                                            {{ trans('reports::reports.export') }}
                                         </a>
                                     </li>
                                 </ul>
@@ -113,10 +113,10 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!!  trans('general.Deposits') !!}</th>
-                            <th class="no-warp">{!!  trans('general.Withdraws') !!}</th>
-                            <th class="no-warp">{!!  trans('general.CreditIn')  !!}</th>
-                            <th class="no-warp">{!!  trans('general.CreditOut')  !!}</th>
+                            <th class="no-warp">{!!  trans('reports::reports.deposits') !!}</th>
+                            <th class="no-warp">{!!  trans('reports::reports.withdraws') !!}</th>
+                            <th class="no-warp">{!!  trans('reports::reports.credit_in')  !!}</th>
+                            <th class="no-warp">{!!  trans('reports::reports.credit_out')  !!}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -130,13 +130,13 @@
                         </tr>
 
                         <tr>
-                            <td colspan="2" style="text-align:center"> {!!  trans('general.Total')  !!} : {{ $oResults[1]['deposits']+$oResults[1]['withdraws'] }}</td>
+                            <td colspan="2" style="text-align:center"> {!!  trans('reports::reports.total')  !!} : {{ $oResults[1]['deposits']+$oResults[1]['withdraws'] }}</td>
 
-                            <td colspan="2" style="text-align:center">{!!  trans('general.Total')  !!} :  {{ $oResults[1]['creditIn']+ $oResults[1]['creditOut']  }}</td>
+                            <td colspan="2" style="text-align:center">{!!  trans('reports::reports.total')  !!} :  {{ $oResults[1]['creditIn']+ $oResults[1]['creditOut']  }}</td>
 
                         </tr>
                         <tr>
-                            <td colspan="4" style="text-align:center">{!!  trans('general.Total')  !!} : {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}</td>
+                            <td colspan="4" style="text-align:center">{!!  trans('reports::reports.total')  !!} : {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}</td>
 
                         </tr>
                         @endif
@@ -165,7 +165,7 @@
                                     <li>
                                         <a href="{{ Request::fullUrl() }}&export=xls">
                                             <i class="dropdown-icon fa fa-camera-retro"></i>
-                                            {{ trans('general.Export') }}
+                                            {{ trans('reports::reports.export') }}
                                         </a>
                                     </li>
                                 </ul>
@@ -178,11 +178,11 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('general.Order#'), 'TICKET', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Login'), 'LOGIN', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Type'), 'CMD', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Total'), 'PROFIT', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.CloseTime'), 'CLOSE_TIME', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.login'), 'LOGIN', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.total'), 'PROFIT', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.close_time'), 'CLOSE_TIME', $oResults[0]) !!}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -208,8 +208,8 @@
 
                     @if($oResults[0]->total()>25)
                     <div class="DT-lf-right change_page_all_div" >
-                        {!! Form::text('page',$oResults[0]->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
-                        {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn', 'name' => 'search']) !!}
+                        {!! Form::text('page',$oResults[0]->currentPage(), ['type'=>'number', 'placeholder'=>trans('reports::reports.page'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::submit(trans('reports::reports.go'), ['class'=>'btn', 'name' => 'search']) !!}
                     </div>
                     @endif
 
@@ -309,7 +309,7 @@
              trans('general.CreditOut') 
              *  {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}
              */
-            categories: ['{!!  trans('general.ACCOUNTANT_TYPE_6_DEPOSITS') !!}', '{!!  trans('general.ACCOUNTANT_TYPE_7_CREDIT') !!}']
+            categories: ['{!!  trans('reports::reports.ACCOUNTANT_TYPE_6_DEPOSITS') !!}', '{!!  trans('reports::reports.ACCOUNTANT_TYPE_7_CREDIT') !!}']
             },
             yAxis: {
             min: 0,
@@ -326,16 +326,16 @@
             }
             },
             series: [{
-            name: ['{!!  trans('general.Deposits') !!}'],
+            name: ['{!!  trans('reports::reports.deposits') !!}'],
                     data: [{!! $oResults[1]['deposits'] + $oResults[1]['withdraws'] !!}, 0]
             }, {
-            name: ['{!! trans('general.CreditIn') !!}'],
+            name: ['{!! trans('reports::reports.credit_in') !!}'],
                     data: [0, {!! $oResults[1]['creditIn'] + $oResults[1]['creditOut'] !!}]
             }, {
-            name: ['{!!  trans('general.Withdraws') !!}'],
+            name: ['{!!  trans('reports::reports.withdraws') !!}'],
                     data: [{!! $oResults[1]['withdraws'] * - 1 !!}, 0]
             }, {
-            name: ['{!! trans('general.CreditOut') !!}'],
+            name: ['{!! trans('reports::reports.credit_out') !!}'],
                     data: [0, {!! $oResults[1]['creditOut'] * - 1 !!}]
             }]
     });
