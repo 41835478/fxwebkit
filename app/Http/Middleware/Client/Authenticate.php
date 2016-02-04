@@ -1,6 +1,6 @@
 <?php namespace Fxweb\Http\Middleware\Client;
 
-use Closure, Sentinel, Redirect;
+use Closure, Sentinel, Redirect,App;
 
 class Authenticate
 {
@@ -18,6 +18,7 @@ class Authenticate
 				return Redirect::route('client.auth.login');
 			}
 		}
+		App::setLocale('ar');
 		return $fNext($oRequest);
 	}
 }

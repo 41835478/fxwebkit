@@ -21,7 +21,7 @@
             <li>
                 <a href="{{ route('admin.index') }}">
                     <i class="menu-icon fa fa-dashboard"></i>
-                    <span class="mm-text">Dashboard</span>
+                    <span class="mm-text">{{ trans('dashboard.PageTitle') }}</span>
                 </a>
             </li>
             {{--*/ $aAdminMenu = get_admin_menu() /*--}}

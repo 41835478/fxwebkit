@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('general.adminsList'))
+@section('title', trans('user.adminsList'))
 @section('content')
 <style type="text/css">
     #content-wrapper{ padding: 0px; margin: 0px;}
@@ -18,26 +18,26 @@
         <div class="navigation">
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections">
-                <li class="active"><a href="#"> <i class="fa fa-search"></i> {{ trans('general.Search') }}  </a></li>
+                <li class="active"><a href="#"> <i class="fa fa-search"></i> {{ trans('user.Search') }}  </a></li>
                 
                 <li  >
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('general.id'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('user.id'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
                 <li  >
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('first_name', $aFilterParams['first_name'], ['placeholder'=>trans('general.first_name'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('first_name', $aFilterParams['first_name'], ['placeholder'=>trans('user.first_name'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
                 <li  >
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('last_name', $aFilterParams['last_name'], ['placeholder'=>trans('general.last_name'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('last_name', $aFilterParams['last_name'], ['placeholder'=>trans('user.last_name'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
                 <li>
                     <div  class=" nav-input-div  ">
-                        {!! Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('general.email'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('user.email'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </li>
 
@@ -45,7 +45,7 @@
 
 
                 <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('user.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>
                 <li class="divider"></li>
             </ul>
@@ -61,7 +61,7 @@
 
     <div class="mail-container " >
         <div class="mail-container-header">
-            {{ trans('general.adminsList') }}
+            {{ trans('user.adminsList') }}
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
@@ -69,18 +69,18 @@
             <div class="table-light">  
                 <div class="table-header">
                     <div class="table-caption">
-                        {{ trans('general.adminsList') }}  
+                        {{ trans('user.adminsList') }}
                         <a href="{{ route('general.addUser') }}" style="float:right;">
-                            <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button" value="{{ trans('general.addUser') }}"> </a>
+                            <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button" value="{{ trans('user.addUser') }}"> </a>
                     </div>
                 </div>
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('general.id'), 'id', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.first_name'), 'first_name', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.last_name'), 'last_name', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.email'), 'email', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('user.id'), 'id', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('user.first_name'), 'first_name', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('user.last_name'), 'last_name', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('user.email'), 'email', $oResults) !!}</th>
 
                             <th class="no-warp"></th>
                         </tr>
@@ -115,11 +115,11 @@
                   
                            
                               
-                                    {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
+                                    {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('user.page'),'class'=>'form-control input-sm']) !!}
                     
                             
                                
-                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                                    {!! Form::submit(trans('user.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                                
                             
                    
@@ -127,7 +127,7 @@
                    @endif
                     
                     <div class="col-sm-3 ">
-                        <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
+                        <span class="text-xs">{{trans('user.showing')}} {{ $oResults->firstItem() }} {{trans('user.to')}} {{ $oResults->lastItem() }} {{trans('user.of')}} {{ $oResults->total() }} {{trans('user.entries')}}</span>
                     </div>
                     @endif
                 </div>

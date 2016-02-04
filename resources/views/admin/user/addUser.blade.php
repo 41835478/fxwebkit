@@ -1,9 +1,9 @@
 @extends('admin.layouts.main')
-@section('title', trans('general.addUser'))
+@section('title', trans('user.addUser'))
 @section('content')
 
 <div class="page-header">
-		<h1>{{ trans('general.addUser') }}</h1>
+		<h1>{{ trans('user.addUser') }}</h1>
 	</div>
 
 {!! Form::open(['class'=>'panel form-horizontal']) !!}
@@ -12,13 +12,13 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.first_name') }}</label>
+                <label class="control-label">{{ trans('user.first_name') }}</label>
                 {!! Form::text('first_name',$userInfo['first_name'],['class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.last_name') }}</label>
+                <label class="control-label">{{ trans('user.last_name') }}</label>
                 {!! Form::text('last_name',$userInfo['last_name'],['class'=>'form-control']) !!}
 
             </div>
@@ -28,14 +28,14 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.email') }}</label>
+                <label class="control-label">{{ trans('user.email') }}</label>
                 {!! Form::text('email',$userInfo['email'],['class'=>'form-control']) !!}
 
             </div>
         </div><!-- col-sm-6 -->
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.password') }}</label>
+                <label class="control-label">{{ trans('user.password') }}</label>
 
 
                 {!! Form::password("password",["class"=>"form-control","value"=>$userInfo['password']]) !!}
@@ -63,7 +63,7 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.Birthday') }}</label>
+                <label class="control-label">{{ trans('user.BirthDay') }}</label>
                 {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->

@@ -1,5 +1,5 @@
 @extends('client.layouts.main')
-@section('title', trans('accounts::accounts.addAccount'))
+@section('title', trans('general.addMt4User'))
 @section('content')
 
 <div class="page-header">
@@ -9,7 +9,7 @@
 <div class="panel">
     {!! Form::open(['class'=>'panel form-horizontal']) !!}
     <div class="panel-heading">
-        <span class="panel-title">{{ trans('accounts::accounts.user_details') }}</span>
+        <span class="panel-title">{{ trans('general.user_details') }}</span>
     </div>
 
     <div class="panel-body">
@@ -26,13 +26,13 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('accounts::accounts.Login') }}</label>
+                <label class="control-label">{{ trans('general.Login') }}</label>
                 {!! Form::text('login',$userInfo['login'],['class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('accounts::accounts.Password') }}</label>
+                <label class="control-label">{{ trans('general.password') }}</label>
                 {!! Form::password("password",["class"=>"form-control","value"=>$userInfo['password']]) !!}
             </div>
         </div><!-- col-sm-6 -->

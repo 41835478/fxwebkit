@@ -131,5 +131,9 @@ return [
 
     'the_email_has'=>'The email has already been taken.',
     'error_please_try'=>'error! please try again later.',
-    'deleted_successfully'=>'deleted successfully.'
+    'deleted_successfully'=>'deleted successfully.',
+    'user_details'=>'User Details',
+    'leverage'=>'Leverage',
+    'group'=>'Group',
+    'submit'=>'Submit',
 ];
