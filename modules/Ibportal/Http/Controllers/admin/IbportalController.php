@@ -240,6 +240,7 @@ class IbportalController extends Controller
             $aFilterParams['order'] = $oRequest->order;
 
             $role = explode(',', Config::get('fxweb.client_default_role'));
+            // TODO [mohammad] get agent list
 
             $oResults = $this->Users->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
 
@@ -457,6 +458,13 @@ class IbportalController extends Controller
     public function getAgentName()
     {
         return 'AAA';
+    }
+
+    public function getPlanName()
+    {
+
+        $oResults = $this->Ibportal->getPlansName();
+        dd($oResults);
     }
 
 
