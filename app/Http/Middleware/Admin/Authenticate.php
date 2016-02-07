@@ -24,7 +24,7 @@ class Authenticate
 			}
 		}
 
-			App::setLocale('ar');
+			App::setLocale('en');
 		return $fNext($oRequest);
 	}
 }
