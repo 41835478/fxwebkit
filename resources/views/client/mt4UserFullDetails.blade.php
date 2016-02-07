@@ -1,5 +1,5 @@
 @extends('client.layouts.main')
-@section('title', trans('accounts::accounts.addAccount'))
+@section('title', trans('general.addMt4User'))
 @section('content')
 
 <div class="page-header">
@@ -8,7 +8,7 @@
 <div class="panel">
     {!! Form::open(['class'=>'panel form-horizontal']) !!}
     <div class="panel-heading">
-        <span class="panel-title">{{ trans('accounts::accounts.user_details') }}</span>
+        <span class="panel-title">{{ trans('general.user_details') }}</span>
     </div>
 
     <div class="panel-body">
@@ -25,14 +25,14 @@
         
          <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('accounts::accounts.leverage') }}</label>
+                <label class="control-label">{{ trans('general.leverage') }}</label>
                 {!! Form::select('array_leverage',$array_leverage,'',['id'=>'jq-validation-select2','class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
        
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('accounts::accounts.group') }}</label>
+                <label class="control-label">{{ trans('general.group') }}</label>
                 {!! Form::select('array_group',$array_group,'',['class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
@@ -50,7 +50,7 @@
 
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('accounts::accounts.Password') }}</label>
+                <label class="control-label">{{ trans('general.password') }}</label>
                 {!! Form::password("password",["class"=>"form-control","value"=>$mt4_user_details['password']]) !!}
 
             </div>
@@ -85,7 +85,7 @@
 </div>
 @endif
 <div class="panel-footer text-right">
-    <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $mt4_user_details['edit_id']  or 0 }}">{{ trans('accounts::accounts.submit') }}</button>
+    <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $mt4_user_details['edit_id']  or 0 }}">{{ trans('general.submit') }}</button>
 </div>
 </div>
 {!! Form::close() !!}

@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('accounts.addAccount'))
+@section('title', trans('user.addAccount'))
 @section('content')
 
 <div class="page-header">
@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.name') }}</label>
+                <label class="control-label">{{ trans('user.name:') }}</label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -27,7 +27,7 @@
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.gender') }} : </label>
+                <label class="control-label">{{ trans('user.gender') }} : </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -44,7 +44,7 @@
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.email') }} : </label>
+                <label class="control-label">{{ trans('user.email') }} : </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -55,7 +55,7 @@
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.nickname') }} : </label>     
+                <label class="control-label">{{ trans('user.nickname') }} : </label>
             </div>
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
@@ -69,7 +69,7 @@
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.address') }} : </label>
+                <label class="control-label">{{ trans('user.address') }} : </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -80,7 +80,7 @@
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.birthday') }} : </label>     
+                <label class="control-label">{{ trans('user.BirthDay') }} : </label>
             </div>
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
@@ -93,7 +93,7 @@
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.phone') }} : </label>
+                <label class="control-label">{{ trans('user.Phone') }} : </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -104,7 +104,7 @@
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.country') }} : </label>     
+                <label class="control-label">{{ trans('user.Country') }} : </label>
             </div>
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
@@ -117,7 +117,7 @@
     <div class="row">
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.city') }} : </label>
+                <label class="control-label">{{ trans('user.City') }} : </label>
             </div>
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
@@ -128,7 +128,7 @@
 
         <div class="col-sm-2 text-right">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.zip_code') }} : </label>     
+                <label class="control-label">{{ trans('user.ZipCode') }} : </label>
             </div>
         </div><!-- col-sm-6 --> 
         <div class="col-sm-4 text-left">
@@ -141,7 +141,7 @@
 </div>
 <div class="panel-footer text-right">
     <a href="{{ route('admin.editProfile').'?edit_id='.$user_details['id'] }}">
-        <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('general.edit') }}</button></a>
+        <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('user.edit') }}</button></a>
 </div>
 </div>
 

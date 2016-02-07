@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('accounts.addAccount'))
+@section('title', trans('user.addAccount'))
 @section('content')
 
 
@@ -41,7 +41,7 @@
         </div><!-- col-sm-6 -->
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.Password') }}</label>
+                <label class="control-label">{{ trans('user.password') }}</label>
                 {!! Form::password('password',['class'=>'form-control','value'=>$userInfo['password']]) !!}
 
             </div>
@@ -67,7 +67,7 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.Birthday') }}</label>
+                <label class="control-label">{{ trans('user.BirthDay') }}</label>
                 {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
@@ -132,7 +132,7 @@
 
 <div class="panel-footer text-right">
      <a href="{{ route('client.users.profile')}}">
-         <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']}}">{{ trans('general.save') }}</button></a>
+         <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']}}">{{ trans('user.save') }}</button></a>
 </div>
 {!! Form::close() !!}
 </div>

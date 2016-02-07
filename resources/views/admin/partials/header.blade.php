@@ -34,7 +34,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ route('admin.editProfile') }}">
                                         <i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;
                                         {{ trans('general.Settings') }}
                                     </a>

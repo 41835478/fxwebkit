@@ -94,5 +94,6 @@ return [
 
     'total_commission'=>'Total Commission :',
     'total_lots'=>'Total Lots :',
+    'account'=>'Account :',
 
 ];

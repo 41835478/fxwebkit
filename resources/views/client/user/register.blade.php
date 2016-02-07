@@ -82,13 +82,13 @@
                 <div class=" col-xs-3">
                     <label class='radio gender_radio_0'>
                         {!! Form::radio('gender', 0,true,['id'=>'gender_radio_0','class'=>'px']) !!}
-                        <span class="lbl">Male</span>
+                        <span class="lbl">{{ trans('user.male') }}</span>
                     </label>
                 </div>
                 <div class=" col-xs-3">
                     <label class='radio gender_radio_1'>
                         {!! Form::radio('gender', 1,false,['id'=>'gender_radio_1','class'=>'px']) !!}
-                        <span class="lbl">Female</span>
+                        <span class="lbl">{{ trans('user.female') }}</span>
                     </label>
                 </div>
             </div>

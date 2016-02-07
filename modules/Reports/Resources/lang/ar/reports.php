@@ -36,7 +36,7 @@ return [
     'accountant' => 'Accouبالntant',
     'AgentAccount' => 'Agenبلاt Account',
     'Margin' => 'Marبلاgاin',
-    'MarginFree' => 'Margin Free',
+    'MarginFree' => 'Margiسيشسيn Free',
     'Leverage' => 'Leverبلاage',
 
     'order#' => 'Ordبالer#',
@@ -50,7 +50,7 @@ return [
     'SL' => 'يبلSL',
     'TP' => 'TيبلP',
     'Commission' => 'Commisيبلsion',
-    'taxes' => 'Taxes',
+    'taxes' => 'Taشسشxes',
     'swaps' => 'Sرؤلاwaps',
     'price' => 'Priضصثce',
     'profit' => 'Profضصثit',
@@ -94,5 +94,7 @@ return [
 
     'total_commission'=>'Totالتal Commission :',
     'total_lots'=>'Total لاتLots :',
+    'account'=>'Accشسشount :',
+
 
 ];
