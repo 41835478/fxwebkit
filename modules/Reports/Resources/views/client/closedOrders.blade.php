@@ -2,6 +2,8 @@
 @section('title', trans('reports::reports.ClosedOrders'))
 @section('content')
 
+        <!-- TODO [Mohammad] check the table width -->
+
         <!-- ______________________________________-->
 <style type="text/css">
     #content-wrapper{ padding: 0px; margin: 0px !important;height: auto; overflow:visible !important ;}

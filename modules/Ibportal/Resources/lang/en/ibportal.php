@@ -53,6 +53,7 @@ return [
     'deleted_faild_message' => 'deleted faild please try again later.',
     'agent_plan'=>'Agent Plan',
     'assignAgentPlan' => 'Assign Agent Plan',
+    'error_please'=>'Error, please try again.',
 
 
 ];

@@ -11,27 +11,30 @@ use Illuminate\Support\Facades\Config;
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 
-class IbportalController extends Controller {
-	
-	public function index()
-	{
-		return view('Ibportal::index');
-	}
+class IbportalController extends Controller
+{
 
-	protected $Mt4Configrations;
-	protected $Ibportal;
-	protected $Users;
-	public function __construct(
-		Mt4Configrations $Mt4Configrations,Ibportal $Ibportal,Users $Users
-	)
-	{
-		$this->Ibportal=$Ibportal;
-		$this->Mt4Configrations = $Mt4Configrations;
-		$this->Users=$Users;
-	}
+    public function index()
+    {
+        return view('Ibportal::index');
+    }
+
+    protected $Mt4Configrations;
+    protected $Ibportal;
+    protected $Users;
+
+    public function __construct(
+        Mt4Configrations $Mt4Configrations, Ibportal $Ibportal, Users $Users
+    )
+    {
+        $this->Ibportal = $Ibportal;
+        $this->Mt4Configrations = $Mt4Configrations;
+        $this->Users = $Users;
+    }
 
 
-	public function getPlansList(Request $oRequest){
+    public function getPlansList(Request $oRequest)
+    {
 
 
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
@@ -44,13 +47,10 @@ class IbportalController extends Controller {
             'sort' => $sSort,
             'order' => $sOrder,
         ];
-
-
+        
         if ($oRequest->has('search')) {
 
-
             $aFilterParams['name'] = $oRequest->name;
-
 
             $oResults = $this->Ibportal->getPlansByFilters($aFilterParams, false, $sOrder, $sSort);
 
@@ -62,7 +62,6 @@ class IbportalController extends Controller {
 
     public function getAddPlan()
     {
-
 
         $data = [
             'name' => '',
@@ -101,11 +100,8 @@ class IbportalController extends Controller {
 
     public function getDeletePlan(Request $request)
     {
-
-
         $result = $this->Ibportal->deletePlan($request->delete_id);
         return Redirect::route('admin.ibportal.plansList')->withErrors($result);
-
     }
 
     public function getDetailPlan(Request $request)
@@ -122,31 +118,30 @@ class IbportalController extends Controller {
     {
 
 
-		$oPlanDetails = $this->Ibportal->getPlanDetails($request->planId);
-		$users= $this->Users->getUsersNames();
-		$selectedUsers=$this->Ibportal->getPlanAssignedUsers($request->planId,$users);
+        $oPlanDetails = $this->Ibportal->getPlanDetails($request->planId);
+        $users = $this->Users->getUsersNames();
+        $selectedUsers = $this->Ibportal->getPlanAssignedUsers($request->planId, $users);
 
-		return view('ibportal::admin.assignPlan')
-			->with('planId',$request->planId)
-			->with('oPlanDetails',$oPlanDetails->first())
-			->with('users',$users)
-			->with('selectedUsers',$selectedUsers);
-	}
+        return view('ibportal::admin.assignPlan')
+            ->with('planId', $request->planId)
+            ->with('oPlanDetails', $oPlanDetails->first())
+            ->with('users', $users)
+            ->with('selectedUsers', $selectedUsers);
+    }
 
-	public function postAssignPlan(Request $request)
-	{
-		$selectedUsers=$request->selectedUsers;
-		$planId=$request->planId;
+    public function postAssignPlan(Request $request)
+    {
+        $selectedUsers = $request->selectedUsers;
+        $planId = $request->planId;
 
-		$assignResult=$this->Ibportal->assignUsersToPlan($planId,$selectedUsers);
+        $assignResult = $this->Ibportal->assignUsersToPlan($planId, $selectedUsers);
 
-		if($assignResult){
-			return Redirect::route('admin.ibportal.plansList');
-		}else{
-// TODO translate this error
-			return redirect()->back()->withErrors('Error, please try again.');
-		}
-	}
+        if ($assignResult) {
+            return Redirect::route('admin.ibportal.plansList');
+        } else {
+            return redirect()->back()->withErrors(trans('ibportal::ibportal.error_please'));
+        }
+    }
 
 
     public function getAliasesList(Request $oRequest)
@@ -188,7 +183,7 @@ class IbportalController extends Controller {
             'symbols' => $oSymbolsResults,
             'operands' => ['Equals' => 'Equals', 'Starts With' => 'Starts With', 'Ends With' => 'Ends With', 'Contains' => 'Contains'],
             'aliases' => $this->Ibportal->getAliases(),
-            'value'=>$oSymbolsResults
+            'value' => $oSymbolsResults
         ];
 
 
@@ -256,7 +251,7 @@ class IbportalController extends Controller {
         $agentId = ($oRequest->agentId) ? $oRequest->agentId : '';
         $oResults = null;
         $aFilterParams = [
-            'agent_id'=>$agentId,
+            'agent_id' => $agentId,
             'id' => '',
             'first_name' => '',
             'last_name' => '',
@@ -277,11 +272,11 @@ class IbportalController extends Controller {
 
             $role = explode(',', Config::get('fxweb.client_default_role'));
 
-            $oResults = $this->Users->getAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role,$agentId);
+            $oResults = $this->Users->getAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role, $agentId);
 
         }
 
-        return view('ibportal::admin.agent_users')  ->with('oResults', $oResults)
+        return view('ibportal::admin.agent_users')->with('oResults', $oResults)
             ->with('aFilterParams', $aFilterParams);
 
     }
@@ -290,7 +285,7 @@ class IbportalController extends Controller {
     {
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
-$agentId=($oRequest->agentId) ? $oRequest->agentId : '';
+        $agentId = ($oRequest->agentId) ? $oRequest->agentId : '';
         $oResults = null;
 
         $aFilterParams = [
@@ -307,48 +302,44 @@ $agentId=($oRequest->agentId) ? $oRequest->agentId : '';
             $aFilterParams['name'] = $oRequest->name;
 
 
-            $oResults = $this->Ibportal->getClientPlansByFilters($aFilterParams, false, $sOrder, $sSort,$agentId);
+            $oResults = $this->Ibportal->getClientPlansByFilters($aFilterParams, false, $sOrder, $sSort, $agentId);
 
 
         }
 
 
-  //      $userIbid=UserIbid::where('user_id',current_user()->getUser()->id)->first();
-
-
-            return view('ibportal::admin.agent_plan_list')
-                ->with('oResults', $oResults)
-
-                ->with('aFilterParams', $aFilterParams);
+        return view('ibportal::admin.agent_plan_list')
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
     }
 
     public function getAssignAgentPlan(Request $request)
     {
         $oPlanDetails = $this->Ibportal->getPlanDetails($request->planId);
-        $users= $this->Users->getUsersNames();
-        $selectedUsers=$this->Ibportal->getAgentAssignedUsers($request->agentId,$users);
+        $users = $this->Users->getUsersNames();
+        $selectedUsers = $this->Ibportal->getAgentAssignedUsers($request->agentId, $users);
 
         return view('ibportal::admin.assignAgentPlan')
-            ->with('planId',$request->planId)
-            ->with('agentId',$request->agentId)
-            ->with('oPlanDetails',$oPlanDetails->first())
-            ->with('users',$users)
-            ->with('selectedUsers',$selectedUsers);
+            ->with('planId', $request->planId)
+            ->with('agentId', $request->agentId)
+            ->with('oPlanDetails', $oPlanDetails->first())
+            ->with('users', $users)
+            ->with('selectedUsers', $selectedUsers);
     }
 
     public function postAssignAgentPlan(Request $request)
     {
-        $selectedUsers=$request->selectedUsers;
-        $planId=$request->planId;
-        $agentId=$request->agentId;
+        $selectedUsers = $request->selectedUsers;
+        $planId = $request->planId;
+        $agentId = $request->agentId;
 
-        $assignResult=$this->Ibportal->assignUsersToAgent($agentId,$planId,$selectedUsers);
+        $assignResult = $this->Ibportal->assignUsersToAgent($agentId, $planId, $selectedUsers);
 
-        if($assignResult){
-            return Redirect::to(route('admin.ibportal.agentPlans').'?agentId='.$agentId);
-        }else{
-// TODO translate this error
-            return redirect()->back()->withErrors('Error, please try again.');
+        if ($assignResult) {
+            return Redirect::to(route('admin.ibportal.agentPlans') . '?agentId=' . $agentId);
+        } else {
+
+            return redirect()->back()->withErrors(trans('ibportal::ibportal.error_please'));
         }
     }
 

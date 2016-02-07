@@ -8,7 +8,7 @@
                     <a href="{{ route('client.users.profile') }}" class="btn btn-xs btn-primary btn-outline dark">
                         <i class="fa fa-user"></i>
                     </a>
-                    <a href="{{ route('client.users.settings') }}" class="btn btn-xs btn-primary btn-outline dark">
+                    <a href="{{ route('clinet.editProfile') }}" class="btn btn-xs btn-primary btn-outline dark">
                         <i class="fa fa-cog"></i>
                     </a>
                     <a href="{{ route('client.auth.logout') }}" class="btn btn-xs btn-danger btn-outline dark">

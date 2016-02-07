@@ -34,7 +34,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('client.users.settings') }}">
+                                    <a href="{{ route('clinet.editProfile') }}">
                                         <i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;
                                         {{ Lang::get('general.Settings') }}
                                     </a>

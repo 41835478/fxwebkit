@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'ModuleTitle' => 'Aشسيسccount',
+    'ModuleTitle' => 'حسابات',
     'accountsList' => 'بشسيبAccounts List',
     'addAccount' => 'شسيبAdd Account',
     'asignMt4User' => 'سيبAssign MT4 User',
@@ -142,8 +142,4 @@ return [
     'un_assign'=>'UnAssignشسشس',
     'block_user'=>'Block يبشسUser',
     'unblock_user'=>'Unblock بيسUser',
-
-
-
-
 ];
