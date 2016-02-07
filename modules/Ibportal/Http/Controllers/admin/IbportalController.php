@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Redirect;
 use Modules\Mt4Configrations\Repositories\Mt4ConfigrationsContract as Mt4Configrations;
 
 use Modules\Ibportal\Repositories\IbportalContract as Ibportal;
+use Fxweb\Repositories\Admin\Mt4Group\Mt4GroupContract as Mt4Group;
+use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
 
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Illuminate\Support\Facades\Config;
@@ -22,14 +24,18 @@ class IbportalController extends Controller
     protected $Mt4Configrations;
     protected $Ibportal;
     protected $Users;
+    protected $oMt4Group;
+    protected $oMt4Trade;
 
     public function __construct(
-        Mt4Configrations $Mt4Configrations, Ibportal $Ibportal, Users $Users
+        Mt4Configrations $Mt4Configrations, Ibportal $Ibportal, Users $Users, Mt4Group $oMt4Group, Mt4Trade $oMt4Trade
     )
     {
         $this->Ibportal = $Ibportal;
         $this->Mt4Configrations = $Mt4Configrations;
         $this->Users = $Users;
+        $this->oMt4Group = $oMt4Group;
+        $this->oMt4Trade = $oMt4Trade;
     }
 
 
@@ -47,7 +53,7 @@ class IbportalController extends Controller
             'sort' => $sSort,
             'order' => $sOrder,
         ];
-        
+
         if ($oRequest->has('search')) {
 
             $aFilterParams['name'] = $oRequest->name;
@@ -341,6 +347,116 @@ class IbportalController extends Controller
 
             return redirect()->back()->withErrors(trans('ibportal::ibportal.error_please'));
         }
+    }
+
+    public function getAgentCommission(Request $oRequest)
+    {
+        $oGroups = $this->oMt4Group->getAllGroups();
+        $oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
+        $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
+        $sSort = $oRequest->sort;
+        $sOrder = $oRequest->order;
+        $aGroups = [];
+        $aSymbols = [];
+        $oResults = null;
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
+            'from_date' => '',
+            'to_date' => '',
+            'all_groups' => true,
+            'group' => '',
+            'all_symbols' => true,
+            'symbol' => '',
+            'type' => '',
+            'sort' => 'ASC',
+            'order' => 'TICKET',
+        ];
+
+        foreach ($oGroups as $oGroup) {
+            $aGroups[$oGroup->group] = $oGroup->group;
+        }
+
+        foreach ($oSymbols as $oSymbol) {
+            $aSymbols[$oSymbol->SYMBOL] = $oSymbol->SYMBOL;
+        }
+
+        foreach ($aTradeTypes as $sKey => $sValue) {
+            $aTradeTypes[$sKey] = trans('general.' . $sValue);
+        }
+
+        if ($oRequest->has('search')) {
+            $aFilterParams['from_login'] = $oRequest->from_login;
+            $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['from_date'] = $oRequest->from_date;
+            $aFilterParams['to_date'] = $oRequest->to_date;
+            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['group'] = $oRequest->group;
+            $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
+            $aFilterParams['symbol'] = $oRequest->symbol;
+            $aFilterParams['type'] = $oRequest->type;
+        }
+
+        if ($oRequest->has('export')) {
+            $oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams, true, $sOrder, $sSort);
+            $sOutput = $oRequest->export;
+            $aData = [];
+            $aHeaders = [
+                trans('reports::reports.Order#'),
+                trans('reports::reports.Login'),
+                trans('reports::reports.Symbol'),
+                trans('reports::reports.Type'),
+                trans('reports::reports.Lots'),
+                trans('reports::reports.OpenPrice'),
+                trans('reports::reports.SL'),
+                trans('reports::reports.TP'),
+                trans('reports::reports.Commission'),
+                trans('reports::reports.Swaps'),
+                trans('reports::reports.Price'),
+                trans('reports::reports.Profit'),
+            ];
+
+            foreach ($oResults as $oResult) {
+                $aData[] = [
+                    $oResult->TICKET,
+                    $oResult->LOGIN,
+                    $oResult->SYMBOL,
+                    $oResult->TYPE,
+                    $oResult->VOLUME,
+                    $oResult->OPEN_PRICE,
+                    $oResult->SL,
+                    $oResult->TP,
+                    $oResult->COMMISSION,
+                    $oResult->SWAPS,
+                    $oResult->CLOSE_PRICE,
+                    $oResult->PROFIT,
+                ];
+            }
+            $oExport = new Export($aHeaders, $aData);
+            return $oExport->export($sOutput);
+        }
+
+        if ($oRequest->has('search')) {
+            $oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams, false, $sOrder, $sSort);
+            $oResults->order = $aFilterParams['order'];
+            $oResults->sorts = $aFilterParams['sort'];
+        }
+
+        return view('reports::closedOrders')
+            ->with('aGroups', $aGroups)
+            ->with('aSymbols', $aSymbols)
+            ->with('aTradeTypes', $aTradeTypes)
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
+    }
+
+    public function getAgentName()
+    {
+        return 'AAA';
     }
 
 

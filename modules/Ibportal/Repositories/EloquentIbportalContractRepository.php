@@ -253,4 +253,9 @@ class EloquentIbportalContractRepository implements IbportalContract
         return $insertResult;
     }
 
+    public function agentName()
+    {
+
+    }
+
 }
