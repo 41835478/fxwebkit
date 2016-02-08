@@ -160,8 +160,8 @@ class EloquentIbportalContractRepository implements IbportalContract
             'operand' => $operand,
             'value' => $value]);
 
-    return ($result)? true:false;
-}
+        return ($result)? true:false;
+    }
 
     public function getPlanAssignedUsers($planId,&$users){
 
@@ -242,7 +242,7 @@ class EloquentIbportalContractRepository implements IbportalContract
     }
 
     public function generateUserIbId($userId){
-       $IbId= Hash::make($userId);
+        $IbId= Hash::make($userId);
         $insertResult=UserIbid::create(['user_id'=>$userId,'user_ibid'=>$IbId]);
         if(count($insertResult)){
             $planResult=Plan::where('public',true)->get();
@@ -268,20 +268,30 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     public function getPlansName($agents=[])
     {
-        $oResult = Plan::get();
+        $oResult =Plan::with('users')->whereHas('users',function($query) use($agents){
+            $query->whereIn('user_id',$agents);
+        });
+
+        $oResult=$oResult->get();
 
         $aPublicPlans=[];
-        foreach($oResult as $plan){
-            $aPublicPlans[$plan->id]=$plan->name;
+        if($oResult){
+            foreach($oResult as $plan){
+                $aPublicPlans[$plan->id]=$plan->name;
+            }
         }
-
         return $aPublicPlans;
     }
 
 
     public function getUsersName($plans=[])
     {
-        $oResult = User::get();
+        $oResult = User::with('users')->whereHas('users',function($query) use($plans){
+            $query->whereIn('plan_id',$plans);
+        });
+
+        $oResult=$oResult->get();
+
         $aPublicUsers=[];
         foreach($oResult as $Users){
             $aPublicUsers[$Users->id]=$Users->first_name.$Users->last_name;
@@ -291,7 +301,12 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     public function getMt4UsersName($users=[])
     {
-        $oResult = Mt4User::get();
+        $oResult = Mt4User::with('accounts')->whereHas('accounts',function($query) use($users){
+        $query->whereIn('id',$users);
+    });
+
+        $oResult=$oResult->get();
+
         $aPublicMt4Users=[];
         foreach($oResult as $mt4Users){
             $aPublicMt4Users[$mt4Users->LOGIN]=$mt4Users->NAME;
