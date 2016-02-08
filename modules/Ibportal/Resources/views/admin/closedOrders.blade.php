@@ -34,35 +34,20 @@
                 <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
                 <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div></li>
-                <li><div  class=" nav-input-div  ">
-
-                        <div class="input-group date datepicker-warpper">
-                            {!! Form::text('from_date', $aFilterParams['from_date'], ['placeholder'=>trans('reports::reports.FromDate'),'class'=>'form-control input-sm']) !!}
-                            <span class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </span>
-                        </div>
-                    </div></li>
 
 
-                <li><div  class=" nav-input-div  ">
-                        <div class="input-group date datepicker-warpper">
-                            {!! Form::text('to_date', $aFilterParams['to_date'], ['placeholder'=>trans('reports::reports.ToDate'),'class'=>'form-control input-sm']) !!}
-                            <span class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </span>
-                        </div>
-                    </div></li>
+
+
                 <li>
 
-                <li id="from_login_li" >
+                <li >
                     <div  class=" nav-input-div ">
                         {!! Form::select('agentName',$data['agentName'],[$agent_id],['onChange'=>'getSelectOptions("'.route('admin.ibportal.planName').'",$(this),"planName")','id'=>'agentName','multiple'=>'multiple','class'=>'form-control']) !!}
                     </div>
                 </li>
 
 
-                <li id="from_login_li" >
+                <li  >
                     <div  class=" nav-input-div ">
                         {!! Form::select('planName',$data['planName'],'',['onChange'=>'getSelectOptions("'.route('admin.ibportal.usersName').'",$(this),"usresName")','id'=>'planName','multiple'=>'multiple','class'=>'form-control']) !!}
                     </div>
@@ -70,14 +55,14 @@
 
 
 
-                <li id="from_login_li" >
+                <li  >
                     <div  class=" nav-input-div ">
                         {!! Form::select('usresName',$data['usresName'],'',['onChange'=>'getSelectOptions("'.route('admin.ibportal.mt4UsersName').'",$(this),"mt4UsresName")','id'=>'usresName','multiple'=>'multiple','class'=>'form-control']) !!}
                     </div>
                 </li>
 
 
-                <li id="from_login_li" >
+                <li  >
                     <div  class=" nav-input-div ">
                         {!! Form::select('mt4UsresName',$data['mt4UsresName'],'',['id'=>'mt4UsresName','multiple'=>'multiple','class'=>'form-control']) !!}
                     </div>
@@ -116,25 +101,8 @@
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('reports::reports.ClosedOrders') }}
+<div>{{ $totalCommission}}</div>
 
-                        @if (count($oResults))
-                        <div class="panel-heading-controls">
-                            <div class="btn-group btn-group-xs">
-                                <button data-toggle="dropdown" type="button" class="btn btn-success dropdown-toggle">
-                                    <span class="fa fa-cog"></span>&nbsp;
-                                    <span class="fa fa-caret-down"></span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li>
-                                        <a href="{{ Request::fullUrl() }}&export=xls">
-                                            <i class="dropdown-icon fa fa-camera-retro"></i>
-                                            {{ trans('reports::reports.export') }}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        @endif
 
                     </div>
                 </div>

@@ -2,6 +2,7 @@
    
 use Illuminate\Database\Eloquent\Model;
 
+
 class IbportalAgentsCommission extends Model {
 protected $table='ibportal_agents_commission';
     protected $fillable = ['id_rebate',
@@ -15,5 +16,10 @@ protected $table='ibportal_agents_commission';
         'conversion_rate',
         'conversion_usd'
 ];
+
+    public function trade(){
+
+        return $this->hasMany('Fxweb\Models\Mt4Trade','TICKET','ticket');
+    }
 
 }
