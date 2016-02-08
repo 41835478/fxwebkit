@@ -24,6 +24,9 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'ibportal', 'na
 		'getAgentCommission'=>'admin.ibportal.agentCommission',
 		'getAgentName'=>'admin.ibportal.agentName',
 		'postPlanName'=>'admin.ibportal.planName',
+		'getPlanName'=>'admin.ibportal.planName',
+		'getMt4UsersName'=>'admin.ibportal.mt4UsersName',
+		'getUsersName'=>'admin.ibportal.usersName',
 
 
 

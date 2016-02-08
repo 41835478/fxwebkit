@@ -447,20 +447,32 @@ class IbportalController extends Controller
             $oResults->sorts = $aFilterParams['sort'];
         }
 
+        $data = [
+            'agentName' => $this->Ibportal->getAgentName(),
+            'planName' => $this->Ibportal->getPlansName(),
+            'mt4UsresName' => $this->Ibportal->getMt4UsersName(),
+            'usresName' => $this->Ibportal->getUsersName(),
+
+
+        ];
+
         return view('ibportal::admin.closedOrders')
             ->with('aGroups', $aGroups)
             ->with('aSymbols', $aSymbols)
             ->with('aTradeTypes', $aTradeTypes)
             ->with('oResults', $oResults)
+            ->with('data', $data)
             ->with('aFilterParams', $aFilterParams);
     }
 
-    public function getAgentName()
+    public function postAgentName()
     {
-        return 'AAA';
+        $oResults = $this->Ibportal->getAgentName();
+        dd($oResults);
     }
 
     public function postPlanName(Request $oRequest)
+
     {
 
         if(isset($oRequest['plans']) ){
@@ -471,6 +483,19 @@ class IbportalController extends Controller
             }
         }
         dd();
+    }
+
+    public function getMt4UsersName()
+    {
+        $oResults = $this->Ibportal->getMt4UsersName();
+        dd($oResults);
+    }
+
+
+    public function getUsersName()
+    {
+        $oResults = $this->Ibportal->getUsersName();
+        dd($oResults);
     }
 
 

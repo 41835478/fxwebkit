@@ -10,6 +10,8 @@ use Modules\Ibportal\Entities\IbportalPlanUsers as PlanUsers;
 use Modules\Mt4configrations\Entities\ConfigrationsSymbols as Symbols;
 use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
 use Modules\Ibportal\Entities\IbportalAgentUser as AgentUser;
+use Fxweb\Models\Mt4User;
+use Fxweb\Models\User;
 use Config;
 
 class EloquentIbportalContractRepository implements IbportalContract
@@ -253,8 +255,14 @@ class EloquentIbportalContractRepository implements IbportalContract
         return $insertResult;
     }
 
-    public function agentName()
+    public function getAgentName()
     {
+        $oResult = User::get();
+        $aPublicUsers=[];
+        foreach($oResult as $Users){
+            $aPublicUsers[$Users->id]=$Users->first_name.$Users->last_name;
+        }
+        return($aPublicUsers);
 
     }
 
@@ -268,6 +276,27 @@ class EloquentIbportalContractRepository implements IbportalContract
         }
 
         return $aPublicPlans;
+    }
+
+    public function getMt4UsersName()
+    {
+        $oResult = Mt4User::get();
+        $aPublicMt4Users=[];
+        foreach($oResult as $mt4Users){
+            $aPublicMt4Users[$mt4Users->LOGIN]=$mt4Users->NAME;
+        }
+        return($aPublicMt4Users);
+    }
+
+
+    public function getUsersName()
+    {
+        $oResult = User::get();
+        $aPublicUsers=[];
+        foreach($oResult as $Users){
+            $aPublicUsers[$Users->id]=$Users->first_name.$Users->last_name;
+        }
+        return($aPublicUsers);
     }
 
 }
