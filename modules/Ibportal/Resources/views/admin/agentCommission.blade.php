@@ -111,18 +111,20 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.order#'), 'TICKET', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Login'), 'LOGIN', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.symbol'), 'SYMBOL', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.type'), 'CMD', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.lots'), 'VOLUME', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.open_Price'), 'OPEN_PRICE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.SL'), 'SL', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.TP'), 'TP', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Commission'), 'COMMISSION', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.swaps'), 'SWAPS', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.price'), 'CLOSE_PRICE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.profit'), 'PROFIT', $oResults) !!}</th>
+
+                            <th class="no-warp">{!! trans('ibportal::ibportal.order#') !!}</th>
+                            <th class="no-warp">{!!trans('ibportal::ibportal.Login')!!}</th>
+                            <th class="no-warp">{!!  trans('ibportal::ibportal.symbol') !!}</th>
+                            <th class="no-warp">{!! trans('ibportal::ibportal.type') !!}</th>
+                            <th class="no-warp">{!! trans('ibportal::ibportal.lots') !!}</th>
+                            <th class="no-warp">{!! trans('ibportal::ibportal.open_Price') !!}</th>
+                            <th class="no-warp">{!! trans('ibportal::ibportal.SL') !!}</th>
+                            <th class="no-warp">{!! trans('ibportal::ibportal.TP') !!}</th>
+                            <th class="no-warp">{!! trans('ibportal::ibportal.Commission')!!}</th>
+                            <th class="no-warp">{!! trans('ibportal::ibportal.swaps') !!}</th>
+                            <th class="no-warp">{!! trans('ibportal::ibportal.price') !!}</th>
+                            <th class="no-warp">{!! trans('ibportal::ibportal.profit') !!}</th>
+
 
 
                         </tr>
