@@ -120,9 +120,11 @@
                     <div class="table-caption">
                         {{ trans('ibportal::ibportal.agentCommission') }}
 
-                       <span class="panel-heading-text text-right" ><label>
+                        <div class="DT-lf-right">
 
-                            {{ trans('ibportal::ibportal.totalCommission') }} : {{ $totalCommission}}  </label></span>
+
+                            {{ trans('ibportal::ibportal.totalCommission') }} : {{ $totalCommission}}
+                            </div>
 
 
                     </div>
