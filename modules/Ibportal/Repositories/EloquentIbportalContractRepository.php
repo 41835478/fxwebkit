@@ -13,6 +13,8 @@ use Modules\Ibportal\Entities\IbportalAgentUser as AgentUser;
 use Fxweb\Models\Mt4User;
 use Fxweb\Models\User;
 use Config;
+use Modules\Ibportal\Entities\IbportalAgentsCommission as AgentsCommission;
+use Fxweb\Helpers\Fx;
 
 class EloquentIbportalContractRepository implements IbportalContract
 {
@@ -315,4 +317,79 @@ class EloquentIbportalContractRepository implements IbportalContract
         return($aPublicMt4Users);
     }
 
+
+    public function getAgentCommissionByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC') {
+
+      $oResult=AgentsCommission::with('trade');
+
+        /* =============== Login Filters =============== */
+        if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
+            $oResult = $oResult->where('id_mt4_user', $aFilters['login']);
+        } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
+
+            if (!empty($aFilters['from_login'])) {
+                $oResult = $oResult->where('id_mt4_user', '>=', $aFilters['from_login']);
+            }
+
+            if (!empty($aFilters['to_login'])) {
+                $oResult = $oResult->where('id_mt4_user', '<=', $aFilters['to_login']);
+            }
+        }
+
+        /*=================== agents=================*/
+        if(isset($aFilters['agentName']) && count($aFilters['agentName'])){
+            $oResult->whereIn('agent_id',$aFilters['agentName']);
+        }
+        /*=================== agents=================*/
+        if(isset($aFilters['planName']) && count($aFilters['planName'])){
+            $oResult->whereIn('plan_id',$aFilters['planName']);
+        }
+        /*=================== agents=================*/
+        if(isset($aFilters['usresName']) && count($aFilters['usresName'])){
+            $oResult->whereIn('id_user',$aFilters['usresName']);
+        }
+        /*=================== agents=================*/
+        if(isset($aFilters['mt4UsresName']) && count($aFilters['mt4UsresName'])){
+            $oResult->whereIn('id_mt4_user',$aFilters['mt4UsresName']);
+        }
+
+        $totalCommission=clone $oResult;
+
+        $totalCommission=$totalCommission->sum('commission_agent');
+        $oFxHelper = new Fx();
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+        }
+
+
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+            // Set CMD type
+$commission=$oValue->commission_agent;
+            $oResult[$dKey]=$oResult[$dKey]->trade->first();
+            $oValue=$oResult[$dKey];
+            $oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
+            $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
+
+            $oResult[$dKey]->COMMISSION = round($commission, 2);
+            $oResult[$dKey]->SWAPS = round($oResult[$dKey]->SWAPS, 2);
+            $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
+
+            //OPenPrice/SL/TP/CLOSED_PRICE
+            $digits = 5;//$oResult[$dKey]->Mt4Prices()->first()->DIGITS;
+            $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
+            $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
+            $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
+            $oResult[$dKey]->CLOSE_PRICE = round($oResult[$dKey]->CLOSE_PRICE, $digits);
+        }
+
+        return [$oResult,$totalCommission];
+    }
 }

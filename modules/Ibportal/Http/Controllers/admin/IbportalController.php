@@ -365,13 +365,10 @@ class IbportalController extends Controller
             'to_login' => '',
             'exactLogin' => false,
             'login' => '',
-            'from_date' => '',
-            'to_date' => '',
-            'all_groups' => true,
-            'group' => '',
-            'all_symbols' => true,
-            'symbol' => '',
-            'type' => '',
+            'agentName' => [],
+            'planName' => [],
+            'usresName' => [],
+            'mt4UsresName' => [],
             'sort' => 'ASC',
             'order' => 'TICKET',
         ];
@@ -393,60 +390,20 @@ class IbportalController extends Controller
             $aFilterParams['to_login'] = $oRequest->to_login;
             $aFilterParams['exactLogin'] = $oRequest->exactLogin;
             $aFilterParams['login'] = $oRequest->login;
-            $aFilterParams['from_date'] = $oRequest->from_date;
-            $aFilterParams['to_date'] = $oRequest->to_date;
-            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
-            $aFilterParams['group'] = $oRequest->group;
-            $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
-            $aFilterParams['symbol'] = $oRequest->symbol;
-            $aFilterParams['type'] = $oRequest->type;
+            $aFilterParams['agentName'] = $oRequest->agentName;
+            $aFilterParams['planName'] = $oRequest->planName;
+            $aFilterParams['usresName'] = $oRequest->usresName;
+            $aFilterParams['mt4UsresName'] = $oRequest->mt4UsresName;
+
         }
 
-        if ($oRequest->has('export')) {
-            $oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams, true, $sOrder, $sSort);
-            $sOutput = $oRequest->export;
-            $aData = [];
-            $aHeaders = [
-                trans('reports::reports.Order#'),
-                trans('reports::reports.Login'),
-                trans('reports::reports.Symbol'),
-                trans('reports::reports.Type'),
-                trans('reports::reports.Lots'),
-                trans('reports::reports.OpenPrice'),
-                trans('reports::reports.SL'),
-                trans('reports::reports.TP'),
-                trans('reports::reports.Commission'),
-                trans('reports::reports.Swaps'),
-                trans('reports::reports.Price'),
-                trans('reports::reports.Profit'),
-            ];
-
-            foreach ($oResults as $oResult) {
-                $aData[] = [
-                    $oResult->TICKET,
-                    $oResult->LOGIN,
-                    $oResult->SYMBOL,
-                    $oResult->TYPE,
-                    $oResult->VOLUME,
-                    $oResult->OPEN_PRICE,
-                    $oResult->SL,
-                    $oResult->TP,
-                    $oResult->COMMISSION,
-                    $oResult->SWAPS,
-                    $oResult->CLOSE_PRICE,
-                    $oResult->PROFIT,
-                ];
-            }
-            $oExport = new Export($aHeaders, $aData);
-            return $oExport->export($sOutput);
-        }
+        $totalCommission=0;
 
         if ($oRequest->has('search')) {
-            $oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams, false, $sOrder, $sSort);
+            list($oResults,$totalCommission) = $this->Ibportal->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults->order = $aFilterParams['order'];
             $oResults->sorts = $aFilterParams['sort'];
         }
-        $this->Ibportal->getUsersName([1]);
         $data = [
             'agentName' => $this->Ibportal->getAgentName(),
             'planName' => [],
@@ -462,6 +419,7 @@ class IbportalController extends Controller
             ->with('aTradeTypes', $aTradeTypes)
             ->with('oResults', $oResults)
             ->with('data', $data)
+            ->with('totalCommission',$totalCommission)
             ->with('aFilterParams', $aFilterParams);
     }
 
