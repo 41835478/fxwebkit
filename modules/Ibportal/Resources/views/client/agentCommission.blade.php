@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('client.layouts.main')
 @section('title', trans('ibportal::ibportal.agentCommission'))
 @section('content')
 
@@ -65,13 +65,7 @@
 
                 <li>
 
-                <li>
-                    <div class=" nav-input-div ">
 
-                        {!! Form::select('agentName[]',$data['agentName'],[$agent_id],['onChange'=>'getSelectOptions("'.route('admin.ibportal.planName').'",$(this),"planName")','id'=>'agentName','multiple'=>'multiple','class'=>'form-control']) !!}
-
-                    </div>
-                </li>
 
 
                 <li>
@@ -126,7 +120,9 @@
                     <div class="table-caption">
                         {{ trans('ibportal::ibportal.agentCommission') }}
 
-                        <div class="text-right"> {{ trans('ibportal::ibportal.totalCommission') }} : {{ $totalCommission}}</div>
+                       <span class="panel-heading-text text-right" ><label>
+
+                            {{ trans('ibportal::ibportal.totalCommission') }} : {{ $totalCommission}}  </label></span>
 
 
                     </div>

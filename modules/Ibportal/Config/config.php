@@ -33,6 +33,11 @@ return [
 			'route' => 'admin.ibportal.agentList',
 			'title' => 'agent',
 			'icon' => 'fa fa-user',
+		],
+		[
+			'route' => 'admin.ibportal.agentsCommission',
+			'title' => 'agentsCommission',
+			'icon' => 'fa fa-money',
 		]
 
 	],
@@ -45,6 +50,12 @@ return [
 			'route' => 'client.ibportal.agentUser',
 			'title' => 'agent',
 			'icon' => 'fa fa-user',
+		],
+
+		[
+			'route' => 'client.ibportal.agentCommission',
+			'title' => 'agentCommission',
+			'icon' => 'fa fa-money',
 		]
 	]
 

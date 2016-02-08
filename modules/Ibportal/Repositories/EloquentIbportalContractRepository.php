@@ -50,10 +50,12 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     }
 
-    public function getClientPlansByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC',$clientID)
+    public function getClientPlansByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $clientID)
     {
 
-        $oResult =Plan::with('users')->whereHas('users',function ($query)use($clientID){$query->where('user_id',$clientID);});
+        $oResult = Plan::with('users')->whereHas('users', function ($query) use ($clientID) {
+            $query->where('user_id', $clientID);
+        });
 
         if (isset($aFilters['name']) && !empty($aFilters['name'])) {
             $oResult = $oResult->where('name', 'like', '%' . $aFilters['name'] . '%');
@@ -162,73 +164,77 @@ class EloquentIbportalContractRepository implements IbportalContract
             'operand' => $operand,
             'value' => $value]);
 
-        return ($result)? true:false;
+        return ($result) ? true : false;
     }
 
-    public function getPlanAssignedUsers($planId,&$users){
+    public function getPlanAssignedUsers($planId, &$users)
+    {
 
-        $oResult= PlanUsers::select('user_id')->where('plan_id',$planId)->get();
+        $oResult = PlanUsers::select('user_id')->where('plan_id', $planId)->get();
 
-        $assignedUsers=[];
-        foreach($oResult as $result){
-            if(!isset($users[$result->user_id])) continue;
-            $assignedUsers[$result->user_id]=$users[$result->user_id];
+        $assignedUsers = [];
+        foreach ($oResult as $result) {
+            if (!isset($users[$result->user_id])) continue;
+            $assignedUsers[$result->user_id] = $users[$result->user_id];
             unset($users[$result->user_id]);
         }
         return $assignedUsers;
     }
 
-    public function getAgentAssignedUsers($agentId,&$users){
+    public function getAgentAssignedUsers($agentId, &$users)
+    {
 
-        $oResult= AgentUser::select('user_id')->where('agent_id',$agentId)->get();
+        $oResult = AgentUser::select('user_id')->where('agent_id', $agentId)->get();
 
-        $assignedUsers=[];
-        foreach($oResult as $result){
-            if(!isset($users[$result->user_id])) continue;
-            $assignedUsers[$result->user_id]=$users[$result->user_id];
+        $assignedUsers = [];
+        foreach ($oResult as $result) {
+            if (!isset($users[$result->user_id])) continue;
+            $assignedUsers[$result->user_id] = $users[$result->user_id];
             unset($users[$result->user_id]);
         }
         return $assignedUsers;
     }
 
-    public function assignUsersToPlan($planId,$selectedUsers){
-        $deleteResult=PlanUsers::where('plan_id',$planId)->delete();
-        $insertResult=false;
-        if(!empty($selectedUsers)){
-            $users=[];
-            foreach($selectedUsers as $user){
-                $users[]=['plan_id'=>$planId,'user_id'=>$user];
+    public function assignUsersToPlan($planId, $selectedUsers)
+    {
+        $deleteResult = PlanUsers::where('plan_id', $planId)->delete();
+        $insertResult = false;
+        if (!empty($selectedUsers)) {
+            $users = [];
+            foreach ($selectedUsers as $user) {
+                $users[] = ['plan_id' => $planId, 'user_id' => $user];
             }
 
-            $insertResult=PlanUsers::insert($users);
-        }else{
-            $insertResult=true;
+            $insertResult = PlanUsers::insert($users);
+        } else {
+            $insertResult = true;
         }
 
-        return ($insertResult)?true:false;
+        return ($insertResult) ? true : false;
     }
 
-    public function assignUsersToAgent($agentId,$planId,$selectedUsers){
+    public function assignUsersToAgent($agentId, $planId, $selectedUsers)
+    {
 
-        $deleteResult=AgentUser::where('agent_id',$agentId)->delete();
-        $insertResult=false;
-        if(!empty($selectedUsers)){
-            $users=[];
-            foreach($selectedUsers as $user){
-                $users[]=['agent_id'=>$agentId,'user_id'=>$user,'plan_id'=>$planId];
+        $deleteResult = AgentUser::where('agent_id', $agentId)->delete();
+        $insertResult = false;
+        if (!empty($selectedUsers)) {
+            $users = [];
+            foreach ($selectedUsers as $user) {
+                $users[] = ['agent_id' => $agentId, 'user_id' => $user, 'plan_id' => $planId];
             }
 
-            $insertResult=AgentUser::insert($users);
-        }else{
-            $insertResult=true;
+            $insertResult = AgentUser::insert($users);
+        } else {
+            $insertResult = true;
         }
 
-        return ($insertResult)?true:false;
+        return ($insertResult) ? true : false;
     }
 
 
-
-    public function getSymbols() {
+    public function getSymbols()
+    {
 
         $aSymbols = Symbols::select('name')->distinct()->get()->toArray();
 
@@ -243,16 +249,17 @@ class EloquentIbportalContractRepository implements IbportalContract
         return $symbolsJavaArray;
     }
 
-    public function generateUserIbId($userId){
-        $IbId= Hash::make($userId);
-        $insertResult=UserIbid::create(['user_id'=>$userId,'user_ibid'=>$IbId]);
-        if(count($insertResult)){
-            $planResult=Plan::where('public',true)->get();
-            $aPublicPlans=[];
-            foreach($planResult as $plan){
-                $aPublicPlans[]=['plan_id'=>$plan->id,'user_id'=>$userId];
+    public function generateUserIbId($userId)
+    {
+        $IbId = Hash::make($userId);
+        $insertResult = UserIbid::create(['user_id' => $userId, 'user_ibid' => $IbId]);
+        if (count($insertResult)) {
+            $planResult = Plan::where('public', true)->get();
+            $aPublicPlans = [];
+            foreach ($planResult as $plan) {
+                $aPublicPlans[] = ['plan_id' => $plan->id, 'user_id' => $userId];
             }
-            $assignPublicPlansResult=PlanUsers::insert($aPublicPlans);
+            $assignPublicPlansResult = PlanUsers::insert($aPublicPlans);
         }
         return $insertResult;
     }
@@ -260,73 +267,75 @@ class EloquentIbportalContractRepository implements IbportalContract
     public function getAgentName()
     {
         $oResult = User::get();
-        $aPublicUsers=[];
-        foreach($oResult as $Users){
-            $aPublicUsers[$Users->id]=$Users->first_name.$Users->last_name;
+        $aPublicUsers = [];
+        foreach ($oResult as $Users) {
+            $aPublicUsers[$Users->id] = $Users->first_name . $Users->last_name;
         }
-        return($aPublicUsers);
+        return ($aPublicUsers);
 
     }
 
-    public function getPlansName($agents=[])
+    public function getPlansName($agents = [])
     {
-        $oResult =Plan::with('users')->whereHas('users',function($query) use($agents){
-            $query->whereIn('user_id',$agents);
+        $oResult = Plan::with('users')->whereHas('users', function ($query) use ($agents) {
+            $query->whereIn('user_id', $agents);
         });
 
-        $oResult=$oResult->get();
+        $oResult = $oResult->get();
 
-        $aPublicPlans=[];
-        if($oResult){
-            foreach($oResult as $plan){
-                $aPublicPlans[$plan->id]=$plan->name;
+        $aPublicPlans = [];
+        if ($oResult) {
+            foreach ($oResult as $plan) {
+                $aPublicPlans[$plan->id] = $plan->name;
             }
         }
         return $aPublicPlans;
     }
 
 
-    public function getUsersName($agents=[],$plans=[])
+    public function getUsersName($agents = [], $plans = [])
     {
-        $oResult = User::with('agentPlan')->whereHas('agentPlan',function($query) use($plans,$agents){
-            $query->whereIn('plan_id',$plans);
-            $query->whereIn('agent_id',$agents);
+        $oResult = User::with('agentPlan')->whereHas('agentPlan', function ($query) use ($plans, $agents) {
+            $query->whereIn('plan_id', $plans);
+            $query->whereIn('agent_id', $agents);
         });
 
-        $oResult=$oResult->get();
+        $oResult = $oResult->get();
 
-        $aPublicUsers=[];
-        foreach($oResult as $Users){
-            $aPublicUsers[$Users->id]=$Users->first_name.$Users->last_name;
+        $aPublicUsers = [];
+        foreach ($oResult as $Users) {
+            $aPublicUsers[$Users->id] = $Users->first_name . $Users->last_name;
         }
-        return($aPublicUsers);
+        return ($aPublicUsers);
     }
 
-    public function getMt4UsersName($users=[])
+    public function getMt4UsersName($users = [])
     {
-        $oResult = Mt4User::with('accounts')->whereHas('accounts',function($query) use($users){
-        $query->whereIn('id',$users);
-    });
+        $oResult = Mt4User::with('accounts')->whereHas('accounts', function ($query) use ($users) {
+            $query->whereIn('id', $users);
+        });
 
-        $oResult=$oResult->get();
+        $oResult = $oResult->get();
 
-        $aPublicMt4Users=[];
-        foreach($oResult as $mt4Users){
-            $aPublicMt4Users[$mt4Users->LOGIN]=$mt4Users->NAME;
+        $aPublicMt4Users = [];
+        foreach ($oResult as $mt4Users) {
+            $aPublicMt4Users[$mt4Users->LOGIN] = $mt4Users->NAME;
         }
-        return($aPublicMt4Users);
+        return ($aPublicMt4Users);
     }
 
 
-    public function getAgentCommissionByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC') {
+    public function getAgentCommissionByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC')
+    {
 
-      $oResult=AgentsCommission::with('trade');
+        $oResult = AgentsCommission::with('trade');
 
         /* =============== Login Filters =============== */
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
             $oResult = $oResult->where('id_mt4_user', $aFilters['login']);
         } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
-            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+        ) {
 
             if (!empty($aFilters['from_login'])) {
                 $oResult = $oResult->where('id_mt4_user', '>=', $aFilters['from_login']);
@@ -338,25 +347,25 @@ class EloquentIbportalContractRepository implements IbportalContract
         }
 
         /*=================== agents=================*/
-        if(isset($aFilters['agentName']) && count($aFilters['agentName'])){
-            $oResult->whereIn('agent_id',$aFilters['agentName']);
+        if (isset($aFilters['agentName']) && count($aFilters['agentName'])) {
+            $oResult->whereIn('agent_id', $aFilters['agentName']);
         }
         /*=================== agents=================*/
-        if(isset($aFilters['planName']) && count($aFilters['planName'])){
-            $oResult->whereIn('plan_id',$aFilters['planName']);
+        if (isset($aFilters['planName']) && count($aFilters['planName'])) {
+            $oResult->whereIn('plan_id', $aFilters['planName']);
         }
         /*=================== agents=================*/
-        if(isset($aFilters['usresName']) && count($aFilters['usresName'])){
-            $oResult->whereIn('id_user',$aFilters['usresName']);
+        if (isset($aFilters['usresName']) && count($aFilters['usresName'])) {
+            $oResult->whereIn('id_user', $aFilters['usresName']);
         }
         /*=================== agents=================*/
-        if(isset($aFilters['mt4UsresName']) && count($aFilters['mt4UsresName'])){
-            $oResult->whereIn('id_mt4_user',$aFilters['mt4UsresName']);
+        if (isset($aFilters['mt4UsresName']) && count($aFilters['mt4UsresName'])) {
+            $oResult->whereIn('id_mt4_user', $aFilters['mt4UsresName']);
         }
 
-        $totalCommission=clone $oResult;
+        $totalCommission = clone $oResult;
 
-        $totalCommission=$totalCommission->sum('commission_agent');
+        $totalCommission = $totalCommission->sum('commission_agent');
         $oFxHelper = new Fx();
 
 
@@ -372,9 +381,9 @@ class EloquentIbportalContractRepository implements IbportalContract
         /* =============== Preparing Output  =============== */
         foreach ($oResult as $dKey => $oValue) {
             // Set CMD type
-$commission=$oValue->commission_agent;
-            $oResult[$dKey]=$oResult[$dKey]->trade->first();
-            $oValue=$oResult[$dKey];
+            $commission = $oValue->commission_agent;
+            $oResult[$dKey] = $oResult[$dKey]->trade->first();
+            $oValue = $oResult[$dKey];
             $oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
             $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
 
@@ -390,6 +399,66 @@ $commission=$oValue->commission_agent;
             $oResult[$dKey]->CLOSE_PRICE = round($oResult[$dKey]->CLOSE_PRICE, $digits);
         }
 
-        return [$oResult,$totalCommission];
+        return [$oResult, $totalCommission];
+    }
+
+    public function getClientAgentName()
+    {
+        $oResult = User::get();
+        $aPublicUsers = [];
+        foreach ($oResult as $Users) {
+            $aPublicUsers[$Users->id] = $Users->first_name . $Users->last_name;
+        }
+        return ($aPublicUsers);
+
+    }
+
+    public function getClientPlansName($agents = [])
+    {
+        $oResult = Plan::with('users')->whereHas('users', function ($query) use ($agents) {
+            $query->whereIn('user_id', $agents);
+        });
+
+        $oResult = $oResult->get();
+
+        $aPublicPlans = [];
+        if ($oResult) {
+            foreach ($oResult as $plan) {
+                $aPublicPlans[$plan->id] = $plan->name;
+            }
+        }
+        return $aPublicPlans;
+    }
+
+
+    public function getClientUsersName($agents = [], $plans = [])
+    {
+        $oResult = User::with('agentPlan')->whereHas('agentPlan', function ($query) use ($plans, $agents) {
+            $query->whereIn('plan_id', $plans);
+            $query->whereIn('agent_id', $agents);
+        });
+
+        $oResult = $oResult->get();
+
+        $aPublicUsers = [];
+        foreach ($oResult as $Users) {
+            $aPublicUsers[$Users->id] = $Users->first_name . $Users->last_name;
+        }
+        return ($aPublicUsers);
+    }
+
+    public function getClientMt4UsersName($users = [])
+    {
+        $oResult = Mt4User::with('accounts')->whereHas('accounts', function ($query) use ($users) {
+            $query->whereIn('id', $users);
+        });
+
+        $oResult = $oResult->get();
+
+        $aPublicMt4Users = [];
+        foreach ($oResult as $mt4Users) {
+            $aPublicMt4Users[$mt4Users->LOGIN] = $mt4Users->NAME;
+        }
+        return ($aPublicMt4Users);
     }
 }

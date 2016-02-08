@@ -68,7 +68,7 @@
                 <li>
                     <div class=" nav-input-div ">
 
-                        {!! Form::select('agentName[]',$data['agentName'],[$agent_id],['onChange'=>'getSelectOptions("'.route('admin.ibportal.planName').'",$(this),"planName")','id'=>'agentName','multiple'=>'multiple','class'=>'form-control']) !!}
+                        {!! Form::select('agentName[]',$data['agentName'],'',['onChange'=>'getSelectOptions("'.route('admin.ibportal.planName').'",$(this),"planName")','id'=>'agentName','multiple'=>'multiple','class'=>'form-control']) !!}
 
                     </div>
                 </li>
@@ -115,7 +115,7 @@
 
     <div class="mail-container ">
         <div class="mail-container-header">
-            {{ trans('ibportal::ibportal.agentCommission') }}
+            {{ trans('ibportal::ibportal.agentsCommission') }}
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
@@ -124,7 +124,7 @@
             <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
-                        {{ trans('ibportal::ibportal.agentCommission') }}
+                        {{ trans('ibportal::ibportal.agentsCommission') }}
 
                         <div class="text-right"> {{ trans('ibportal::ibportal.totalCommission') }} : {{ $totalCommission}}</div>
 

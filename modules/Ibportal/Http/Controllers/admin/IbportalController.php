@@ -396,15 +396,8 @@ class IbportalController extends Controller
             'usresName' =>[],
         ];
 
-<<<<<<< HEAD
         return view('ibportal::admin.agentCommission')
-            ->with('aGroups', $aGroups)
-            ->with('aSymbols', $aSymbols)
-            ->with('aTradeTypes', $aTradeTypes)
-=======
-        return view('ibportal::admin.closedOrders')
 
->>>>>>> 1bb03485940a5a18cfdbd32eb8208176ff2c33d2
             ->with('oResults', $oResults)
             ->with('agent_id',$oRequest->agentId)
             ->with('data', $data)
@@ -458,6 +451,61 @@ class IbportalController extends Controller
             }
         }
         dd();
+
+    }
+
+
+    public function getAgentsCommission(Request $oRequest)
+    {
+        $sSort = $oRequest->sort;
+        $sOrder = $oRequest->order;
+        $oResults = null;
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
+            'agentName' => [],
+            'planName' => [],
+            'usresName' => [],
+            'mt4UsresName' => [],
+            'sort' => 'ASC',
+            'order' => 'TICKET',
+        ];
+
+
+
+        if ($oRequest->has('search')) {
+            $aFilterParams['from_login'] = $oRequest->from_login;
+            $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['agentName'] = $oRequest->agentName;
+            $aFilterParams['planName'] = $oRequest->planName;
+            $aFilterParams['usresName'] = $oRequest->usresName;
+            $aFilterParams['mt4UsresName'] = $oRequest->mt4UsresName;
+
+        }
+
+        $totalCommission=0;
+
+        if ($oRequest->has('search')) {
+            list($oResults,$totalCommission) = $this->Ibportal->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
+            $oResults->order = $aFilterParams['order'];
+            $oResults->sorts = $aFilterParams['sort'];
+        }
+        $data = [
+            'agentName' => $this->Ibportal->getAgentName(),
+            'planName' => [],
+            'mt4UsresName' => [],
+            'usresName' =>[],
+        ];
+
+        return view('ibportal::admin.agentsCommission')
+            ->with('oResults', $oResults)
+            ->with('data', $data)
+            ->with('totalCommission',$totalCommission)
+            ->with('aFilterParams', $aFilterParams);
 
     }
 

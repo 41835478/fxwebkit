@@ -56,5 +56,27 @@ return [
     'error_please'=>'Error, please try again.',
 
 
+    'order#' => 'Order#',
+    'open_time' => 'Open Time',
+    'close_time' => 'Close Time',
+    'login' => 'Login',
+    'symbol' => 'Symbol',
+    'type' => 'Type',
+    'lots' => 'Lots',
+    'open_Price' => 'Open Price',
+    'SL' => 'SL',
+    'TP' => 'TP',
+    'Commission' => 'Commission',
+    'taxes' => 'Taxes',
+    'swaps' => 'Swaps',
+    'price' => 'Price',
+    'profit' => 'Profit',
+    'agentCommission'=>'Agent Commission',
+    'agentsCommission'=>'Agents Commission',
+    'FromLogin' => 'From Login',
+    'ToLogin' => 'To Login',
+    'Login' => 'Login',
+    'ExactLogin' => 'Exact Login',
+    'totalCommission'=>'Total Commission',
 
 ];

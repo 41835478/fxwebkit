@@ -26,6 +26,7 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'ibportal', 'na
 		'postPlanName'=>'admin.ibportal.planName',
 		'postMt4UsersName'=>'admin.ibportal.mt4UsersName',
 		'postUsersName'=>'admin.ibportal.usersName',
+		'getAgentsCommission'=>'admin.ibportal.agentsCommission',
 
 
 
@@ -41,6 +42,7 @@ Route::group(['middleware' => ['authenticate.client'],'prefix' => 'ibportal', 'n
 		'getDetailsPlan'=>'client.ibportal.detailsPlan',
 		'getAgreemmentPlan'=>'client.ibportal.agreemmentPlan',
 		'getAgentUsers'=>'client.ibportal.agentUser',
+		'getAgentCommission'=>'client.ibportal.agentCommission',
 
 	]);
 });

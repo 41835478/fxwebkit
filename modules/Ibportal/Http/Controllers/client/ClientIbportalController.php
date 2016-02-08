@@ -139,5 +139,112 @@ class ClientIbportalController extends Controller
     }
 
 
+    public function getAgentCommission(Request $oRequest)
+    {
+        $sSort = $oRequest->sort;
+        $sOrder = $oRequest->order;
+        $oResults = null;
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
+            'agentName' => [current_user()->getUser()->id],
+            'planName' => [],
+            'usresName' => [],
+            'mt4UsresName' => [],
+            'sort' => 'ASC',
+            'order' => 'TICKET',
+        ];
+
+
+
+        if ($oRequest->has('search')) {
+            $aFilterParams['from_login'] = $oRequest->from_login;
+            $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['agentName'] = [current_user()->getUser()->id];
+            $aFilterParams['planName'] = $oRequest->planName;
+            $aFilterParams['usresName'] = $oRequest->usresName;
+            $aFilterParams['mt4UsresName'] = $oRequest->mt4UsresName;
+
+        }
+
+        $totalCommission=0;
+
+        if ($oRequest->has('search')) {
+            list($oResults,$totalCommission) = $this->Ibportal->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
+            $oResults->order = $aFilterParams['order'];
+            $oResults->sorts = $aFilterParams['sort'];
+        }
+        $data = [
+            'agentName' => $this->Ibportal->getClientAgentName(),
+            'planName' => $this->Ibportal->getClientPlansName([current_user()->getUser()->id]),
+            'mt4UsresName' => [],
+            'usresName' =>[],
+        ];
+
+        return view('ibportal::client.agentCommission')
+
+            ->with('oResults', $oResults)
+            ->with('agent_id',$oRequest->agentId)
+            ->with('data', $data)
+            ->with('totalCommission',$totalCommission)
+            ->with('aFilterParams', $aFilterParams);
+    }
+
+
+    public function postAgentName(Request $oRequest)
+    {
+        $oResults = $this->Ibportal->getClientAgentName();
+        dd($oResults);
+    }
+
+    public function postPlanName(Request $oRequest)
+
+    {
+
+        if(isset($oRequest['agents']) ){
+            $oResults= $this->Ibportal->getClientPlansName($oRequest['agents']);
+
+            foreach($oResults as $key=>$result){
+                echo '<option value="'.$key.'">'.$result.'</option>';
+            }
+        }
+        dd();
+    }
+
+    public function postMt4UsersName(Request $oRequest)
+    {
+
+        if(isset($oRequest['users']) ){
+            $oResults= $this->Ibportal->getClientMt4UsersName($oRequest['users']);
+
+            foreach($oResults as $key=>$result){
+                echo '<option value="'.$key.'">'.$result.'</option>';
+            }
+        }
+        dd();
+
+    }
+
+
+    public function postUsersName(Request $oRequest)
+    {
+
+        if(isset($oRequest['plans']) && isset($oRequest['agents']) ){
+            $oResults= $this->Ibportal->getClientUsersName($oRequest['agents'],$oRequest['plans']);
+
+            foreach($oResults as $key=>$result){
+                echo '<option value="'.$key.'">'.$result.'</option>';
+            }
+        }
+        dd();
+
+    }
+
+
+
 
 }

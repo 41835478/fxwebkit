@@ -117,7 +117,7 @@
                                             <a href="{{ route('admin.ibportal.agentPlans').'?agentId='.$oResult->id }}"
                                                class="fa fa-link"></a>
                                             <a href="{{ route('admin.ibportal.agentCommission').'?agentId='.$oResult->id }}"
-                                               class="fa fa-link"></a>
+                                               class="fa fa-money"></a>
 
 
                                         </td>
