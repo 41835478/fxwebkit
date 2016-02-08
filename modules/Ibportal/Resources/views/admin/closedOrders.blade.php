@@ -295,7 +295,10 @@ function getSelectOptions(url,selectNode,targetSelectNode){
         type: 'post',
         url: url,
         data: {
-            'aData':selectNode.val(),
+            'agents':$('#agentName').val(),
+            'plans':$('#planName').val(),
+            'users':$('#usresName').val(),
+            'mt4Users':$('#mt4UsresName').val(),
             '_token':$('meta[name="_token"]').attr('content')
         },
         success: function (data) {

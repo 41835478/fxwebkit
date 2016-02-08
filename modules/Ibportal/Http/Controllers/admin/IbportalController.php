@@ -446,7 +446,7 @@ class IbportalController extends Controller
             $oResults->order = $aFilterParams['order'];
             $oResults->sorts = $aFilterParams['sort'];
         }
-
+        $this->Ibportal->getUsersName([1]);
         $data = [
             'agentName' => $this->Ibportal->getAgentName(),
             'planName' => [],
@@ -476,8 +476,8 @@ class IbportalController extends Controller
 
     {
 
-        if(isset($oRequest['aData']) ){
-            $oResults= $this->Ibportal->getPlansName($oRequest['aData']);
+        if(isset($oRequest['agents']) ){
+            $oResults= $this->Ibportal->getPlansName($oRequest['agents']);
 
             foreach($oResults as $key=>$result){
                 echo '<option value="'.$key.'">'.$result.'</option>';
@@ -489,8 +489,8 @@ class IbportalController extends Controller
     public function postMt4UsersName(Request $oRequest)
     {
 
-        if(isset($oRequest['aData']) ){
-            $oResults= $this->Ibportal->getMt4UsersName($oRequest['aData']);
+        if(isset($oRequest['users']) ){
+            $oResults= $this->Ibportal->getMt4UsersName($oRequest['users']);
 
             foreach($oResults as $key=>$result){
                 echo '<option value="'.$key.'">'.$result.'</option>';
@@ -504,8 +504,8 @@ class IbportalController extends Controller
     public function postUsersName(Request $oRequest)
     {
 
-        if(isset($oRequest['aData']) ){
-            $oResults= $this->Ibportal->getUsersName($oRequest['aData']);
+        if(isset($oRequest['plans']) && isset($oRequest['agents']) ){
+            $oResults= $this->Ibportal->getUsersName($oRequest['agents'],$oRequest['plans']);
 
             foreach($oResults as $key=>$result){
                 echo '<option value="'.$key.'">'.$result.'</option>';
