@@ -57,7 +57,7 @@
 
                 <li id="from_login_li" >
                     <div  class=" nav-input-div ">
-                        {!! Form::select('agentName',$data['agentName'],'',['onChange'=>'getSelectOptions("'.route('admin.ibportal.planName').'",$(this),"planName")','id'=>'agentName','multiple'=>'multiple','class'=>'form-control']) !!}
+                        {!! Form::select('agentName',$data['agentName'],[$agent_id],['onChange'=>'getSelectOptions("'.route('admin.ibportal.planName').'",$(this),"planName")','id'=>'agentName','multiple'=>'multiple','class'=>'form-control']) !!}
                     </div>
                 </li>
 

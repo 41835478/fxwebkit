@@ -26,11 +26,11 @@
             <span>{{ trans('user.SignInText') }}</span>
         </div>
         <div class="form-group w-icon">
-            {!! Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>trans('user.Email')]) !!}
+            {!! Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>trans('user.email')]) !!}
             <span class="fa fa-user signin-form-icon"></span>
         </div>
         <div class="form-group w-icon">
-            {!! Form::password('password', ['class'=>'form-control input-lg','placeholder'=>trans('user.Password')]) !!}
+            {!! Form::password('password', ['class'=>'form-control input-lg','placeholder'=>trans('user.password')]) !!}
             <span class="fa fa-lock signin-form-icon"></span>
         </div>
         <div class="form-actions">

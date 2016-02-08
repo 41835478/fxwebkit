@@ -452,16 +452,14 @@ class IbportalController extends Controller
             'planName' => [],
             'mt4UsresName' => [],
             'usresName' =>[],
-
-
         ];
-
 
         return view('ibportal::admin.closedOrders')
             ->with('aGroups', $aGroups)
             ->with('aSymbols', $aSymbols)
             ->with('aTradeTypes', $aTradeTypes)
             ->with('oResults', $oResults)
+            ->with('agent_id',$oRequest->agentId)
             ->with('data', $data)
             ->with('aFilterParams', $aFilterParams);
     }

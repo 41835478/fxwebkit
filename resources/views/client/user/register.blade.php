@@ -29,13 +29,13 @@
         </div>
 
         <div class="form-group w-icon">
-            {!! Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.Email')]) !!}
+            {!! Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.email')]) !!}
             <span class="fa fa-envelope signup-form-icon"></span>
         </div>
 
 
         <div class="form-group w-icon">
-            {!! Form::password('password',['class'=>'form-control input-lg','placeholder'=>Lang::get('user.Password')]) !!}
+            {!! Form::password('password',['class'=>'form-control input-lg','placeholder'=>Lang::get('user.password')]) !!}
             <span class="fa fa-lock signup-form-icon"></span>
         </div>
 
