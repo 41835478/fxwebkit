@@ -456,6 +456,7 @@ class IbportalController extends Controller
 
         ];
 
+
         return view('ibportal::admin.closedOrders')
             ->with('aGroups', $aGroups)
             ->with('aSymbols', $aSymbols)

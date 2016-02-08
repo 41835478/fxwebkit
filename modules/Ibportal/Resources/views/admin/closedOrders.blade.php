@@ -85,9 +85,11 @@
 
 
 
-                <li><div  class=" nav-input-div  ">
+                <li>
+                    <div  class=" nav-input-div  ">
                         {!! Form::submit(trans('reports::reports.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-                    </div></li>
+                    </div>
+                </li>
                 <li class="divider"></li>
             </ul>
 
