@@ -107,18 +107,18 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.open_Price'), 'OPEN_PRICE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.SL'), 'SL', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.TP'), 'TP', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.swaps'), 'SWAPS', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.price'), 'CLOSE_PRICE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.profit'), 'PROFIT', $oResults) !!}</th>
+                            <th class="no-warp">{!! trans('reports::reports.order#') !!}</th>
+                            <th class="no-warp">{!!trans('reports::reports.Login')!!}</th>
+                            <th class="no-warp">{!!  trans('reports::reports.symbol') !!}</th>
+                            <th class="no-warp">{!! trans('reports::reports.type') !!}</th>
+                            <th class="no-warp">{!! trans('reports::reports.lots') !!}</th>
+                            <th class="no-warp">{!! trans('reports::reports.open_Price') !!}</th>
+                            <th class="no-warp">{!! trans('reports::reports.SL') !!}</th>
+                            <th class="no-warp">{!! trans('reports::reports.TP') !!}</th>
+                            <th class="no-warp">{!! trans('reports::reports.Commission')!!}</th>
+                            <th class="no-warp">{!! trans('reports::reports.swaps') !!}</th>
+                            <th class="no-warp">{!! trans('reports::reports.price') !!}</th>
+                            <th class="no-warp">{!! trans('reports::reports.profit') !!}</th>
 
 
                         </tr>

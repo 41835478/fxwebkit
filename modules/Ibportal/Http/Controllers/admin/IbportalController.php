@@ -352,13 +352,8 @@ class IbportalController extends Controller
 
     public function getAgentCommission(Request $oRequest)
     {
-        $oGroups = $this->oMt4Group->getAllGroups();
-        $oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
-        $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
-        $aGroups = [];
-        $aSymbols = [];
         $oResults = null;
         $aFilterParams = [
             'from_login' => '',
@@ -373,17 +368,7 @@ class IbportalController extends Controller
             'order' => 'TICKET',
         ];
 
-        foreach ($oGroups as $oGroup) {
-            $aGroups[$oGroup->group] = $oGroup->group;
-        }
 
-        foreach ($oSymbols as $oSymbol) {
-            $aSymbols[$oSymbol->SYMBOL] = $oSymbol->SYMBOL;
-        }
-
-        foreach ($aTradeTypes as $sKey => $sValue) {
-            $aTradeTypes[$sKey] = trans('general.' . $sValue);
-        }
 
         if ($oRequest->has('search')) {
             $aFilterParams['from_login'] = $oRequest->from_login;
@@ -414,9 +399,7 @@ class IbportalController extends Controller
         ];
 
         return view('ibportal::admin.closedOrders')
-            ->with('aGroups', $aGroups)
-            ->with('aSymbols', $aSymbols)
-            ->with('aTradeTypes', $aTradeTypes)
+
             ->with('oResults', $oResults)
             ->with('data', $data)
             ->with('totalCommission',$totalCommission)
