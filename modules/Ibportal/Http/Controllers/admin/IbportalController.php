@@ -411,7 +411,7 @@ class IbportalController extends Controller
             'usresName' =>[],
         ];
 
-        return view('ibportal::admin.closedOrders')
+        return view('ibportal::admin.agentCommission')
             ->with('aGroups', $aGroups)
             ->with('aSymbols', $aSymbols)
             ->with('aTradeTypes', $aTradeTypes)

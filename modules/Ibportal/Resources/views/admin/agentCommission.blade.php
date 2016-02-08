@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('reports::reports.ClosedOrders'))
+@section('title', trans('ibportal::ibportal.agentCommission'))
 @section('content')
 
 <!-- ______________________________________-->
@@ -20,20 +20,20 @@
         <div class="navigation">
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections" >
-                <li class="active"><a href="#"> <i class="fa fa-search"></i>{{ trans('reports::reports.search') }}</a></li>
+                <li class="active"><a href="#"> <i class="fa fa-search"></i>{{ trans('ibportal::ibportal.search') }}</a></li>
                 <li>
                     <div class="   nav-input-div">
                         <div class="checkbox">
                             <label>
                                 {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
-                                <span class="lbl">{{ trans('reports::reports.ExactLogin') }}</span>
+                                <span class="lbl">{{ trans('ibportal::ibportal.ExactLogin') }}</span>
                             </label>
                         </div>
                     </div>
                 </li>
-                <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
-                <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
-                <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div></li>
+                <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('ibportal::ibportal.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
+                <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('ibportal::ibportal.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
+                <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('ibportal::ibportal.Login'),'class'=>'form-control input-sm']) !!}</div></li>
 
 
 
@@ -44,7 +44,7 @@
                     <div  class=" nav-input-div ">
 
                         {!! Form::select('agentName[]',$data['agentName'],'',['onChange'=>'getSelectOptions("'.route('admin.ibportal.planName').'",$(this),"planName")','id'=>'agentName','multiple'=>'multiple','class'=>'form-control']) !!}
->
+
                     </div>
                 </li>
 
@@ -74,7 +74,7 @@
 
                 <li>
                     <div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('reports::reports.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div>
                 </li>
                 <li class="divider"></li>
@@ -92,7 +92,7 @@
 
     <div class="mail-container " >
         <div class="mail-container-header">
-            {{ trans('reports::reports.ClosedOrders') }}
+            {{ trans('ibportal::ibportal.agentCommission') }}
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
@@ -102,7 +102,7 @@
             <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
-                        {{ trans('reports::reports.ClosedOrders') }}
+                        {{ trans('ibportal::ibportal.agentCommission') }}
 <div>{{ $totalCommission}}</div>
 
 
@@ -111,18 +111,18 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.open_Price'), 'OPEN_PRICE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.SL'), 'SL', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.TP'), 'TP', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.swaps'), 'SWAPS', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.price'), 'CLOSE_PRICE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.profit'), 'PROFIT', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.order#'), 'TICKET', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Login'), 'LOGIN', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.symbol'), 'SYMBOL', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.type'), 'CMD', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.lots'), 'VOLUME', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.open_Price'), 'OPEN_PRICE', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.SL'), 'SL', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.TP'), 'TP', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Commission'), 'COMMISSION', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.swaps'), 'SWAPS', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.price'), 'CLOSE_PRICE', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.profit'), 'PROFIT', $oResults) !!}</th>
 
 
                         </tr>
@@ -160,18 +160,18 @@
 
 
 
-                        {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('reports::reports.page'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('ibportal::ibportal.page'),'class'=>'form-control input-sm']) !!}
 
 
 
-                        {!! Form::submit(trans('reports::reports.go'), ['class'=>'btn', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('ibportal::ibportal.go'), ['class'=>'btn', 'name' => 'search']) !!}
 
 
 
                     </div>
                     @endif
                     <div class="col-sm-3 ">
-                        <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oResults->firstItem() }} {{trans('reports::reports.to')}} {{ $oResults->lastItem() }} {{trans('reports::reports.of')}} {{ $oResults->total() }} {{trans('reports::reports.entries')}}</span>
+                        <span class="text-xs">{{trans('ibportal::ibportal.showing')}} {{ $oResults->firstItem() }} {{trans('ibportal::ibportal.to')}} {{ $oResults->lastItem() }} {{trans('ibportal::ibportal.of')}} {{ $oResults->total() }} {{trans('ibportal::ibportal.entries')}}</span>
                     </div>
                     @endif
                 </div>
