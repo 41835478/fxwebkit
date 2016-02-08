@@ -57,32 +57,29 @@
 
                 <li id="from_login_li" >
                     <div  class=" nav-input-div ">
-                        {!! Form::select('agentName',$data['agentName'],'',['id'=>'agentName','multiple'=>'multiple','class'=>'form-control']) !!}
+                        {!! Form::select('agentName',$data['agentName'],'',['onChange'=>'getSelectOptions("'.route('admin.ibportal.planName').'",$(this),"planName")','id'=>'agentName','multiple'=>'multiple','class'=>'form-control']) !!}
                     </div>
                 </li>
 
 
                 <li id="from_login_li" >
                     <div  class=" nav-input-div ">
-                        {!! Form::select('planName',$data['planName'],'',['id'=>'planName','multiple'=>'multiple','class'=>'form-control']) !!}
+                        {!! Form::select('planName',$data['planName'],'',['onChange'=>'getSelectOptions("'.route('admin.ibportal.usersName').'",$(this),"usresName")','id'=>'planName','multiple'=>'multiple','class'=>'form-control']) !!}
                     </div>
                 </li>
-                <li><div  class=" nav-input-div  ">{!! Form::select('symbol[]', $aSymbols, $aFilterParams['symbol'], ['onChange'=>'getSelectOptions("'.route('admin.ibportal.planName').'",$(this),"all-symbols-slc2")','multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-symbols-slc']) !!}</div></li>
-                <li><div  class=" nav-input-div  ">{!! Form::select('symbol[]', $aSymbols, $aFilterParams['symbol'], ['multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-symbols-slc2']) !!}</div></li>
-                <li><div  class=" nav-input-div  ">{!! Form::select('type', $aTradeTypes, $aFilterParams['type'], ['class'=>'form-control  input-sm']) !!}</div></li>
 
+
+
+                <li id="from_login_li" >
+                    <div  class=" nav-input-div ">
+                        {!! Form::select('usresName',$data['usresName'],'',['onChange'=>'getSelectOptions("'.route('admin.ibportal.mt4UsersName').'",$(this),"mt4UsresName")','id'=>'usresName','multiple'=>'multiple','class'=>'form-control']) !!}
+                    </div>
+                </li>
 
 
                 <li id="from_login_li" >
                     <div  class=" nav-input-div ">
                         {!! Form::select('mt4UsresName',$data['mt4UsresName'],'',['id'=>'mt4UsresName','multiple'=>'multiple','class'=>'form-control']) !!}
-                    </div>
-                </li>
-
-
-                <li id="from_login_li" >
-                    <div  class=" nav-input-div ">
-                        {!! Form::select('usresName',$data['usresName'],'',['id'=>'usresName','multiple'=>'multiple','class'=>'form-control']) !!}
                     </div>
                 </li>
 
@@ -296,7 +293,7 @@ function getSelectOptions(url,selectNode,targetSelectNode){
         type: 'post',
         url: url,
         data: {
-            'plans':selectNode.val(),
+            'aData':selectNode.val(),
             '_token':$('meta[name="_token"]').attr('content')
         },
         success: function (data) {

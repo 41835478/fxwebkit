@@ -266,7 +266,7 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     }
 
-    public function getPlansName($agents)
+    public function getPlansName($agents=[])
     {
         $oResult = Plan::get();
 
@@ -278,18 +278,8 @@ class EloquentIbportalContractRepository implements IbportalContract
         return $aPublicPlans;
     }
 
-    public function getMt4UsersName()
-    {
-        $oResult = Mt4User::get();
-        $aPublicMt4Users=[];
-        foreach($oResult as $mt4Users){
-            $aPublicMt4Users[$mt4Users->LOGIN]=$mt4Users->NAME;
-        }
-        return($aPublicMt4Users);
-    }
 
-
-    public function getUsersName()
+    public function getUsersName($plans=[])
     {
         $oResult = User::get();
         $aPublicUsers=[];
@@ -297,6 +287,16 @@ class EloquentIbportalContractRepository implements IbportalContract
             $aPublicUsers[$Users->id]=$Users->first_name.$Users->last_name;
         }
         return($aPublicUsers);
+    }
+
+    public function getMt4UsersName($users=[])
+    {
+        $oResult = Mt4User::get();
+        $aPublicMt4Users=[];
+        foreach($oResult as $mt4Users){
+            $aPublicMt4Users[$mt4Users->LOGIN]=$mt4Users->NAME;
+        }
+        return($aPublicMt4Users);
     }
 
 }

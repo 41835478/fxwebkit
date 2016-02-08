@@ -449,9 +449,9 @@ class IbportalController extends Controller
 
         $data = [
             'agentName' => $this->Ibportal->getAgentName(),
-            'planName' => $this->Ibportal->getPlansName(),
-            'mt4UsresName' => $this->Ibportal->getMt4UsersName(),
-            'usresName' => $this->Ibportal->getUsersName(),
+            'planName' => [],
+            'mt4UsresName' => [],
+            'usresName' =>[],
 
 
         ];
@@ -465,7 +465,7 @@ class IbportalController extends Controller
             ->with('aFilterParams', $aFilterParams);
     }
 
-    public function postAgentName()
+    public function postAgentName(Request $oRequest)
     {
         $oResults = $this->Ibportal->getAgentName();
         dd($oResults);
@@ -475,8 +475,8 @@ class IbportalController extends Controller
 
     {
 
-        if(isset($oRequest['plans']) ){
-            $oResults= $this->Ibportal->getPlansName($oRequest['plans']);
+        if(isset($oRequest['aData']) ){
+            $oResults= $this->Ibportal->getPlansName($oRequest['aData']);
 
             foreach($oResults as $key=>$result){
                 echo '<option value="'.$key.'">'.$result.'</option>';
@@ -485,17 +485,33 @@ class IbportalController extends Controller
         dd();
     }
 
-    public function getMt4UsersName()
+    public function postMt4UsersName(Request $oRequest)
     {
-        $oResults = $this->Ibportal->getMt4UsersName();
-        dd($oResults);
+
+        if(isset($oRequest['aData']) ){
+            $oResults= $this->Ibportal->getMt4UsersName($oRequest['aData']);
+
+            foreach($oResults as $key=>$result){
+                echo '<option value="'.$key.'">'.$result.'</option>';
+            }
+        }
+        dd();
+
     }
 
 
-    public function getUsersName()
+    public function postUsersName(Request $oRequest)
     {
-        $oResults = $this->Ibportal->getUsersName();
-        dd($oResults);
+
+        if(isset($oRequest['aData']) ){
+            $oResults= $this->Ibportal->getUsersName($oRequest['aData']);
+
+            foreach($oResults as $key=>$result){
+                echo '<option value="'.$key.'">'.$result.'</option>';
+            }
+        }
+        dd();
+
     }
 
 
