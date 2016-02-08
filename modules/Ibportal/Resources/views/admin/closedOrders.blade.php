@@ -42,14 +42,16 @@
 
                 <li >
                     <div  class=" nav-input-div ">
-                        {!! Form::select('agentName',$data['agentName'],[$agent_id],['onChange'=>'getSelectOptions("'.route('admin.ibportal.planName').'",$(this),"planName")','id'=>'agentName','multiple'=>'multiple','class'=>'form-control']) !!}
+
+                        {!! Form::select('agentName[]',$data['agentName'],'',['onChange'=>'getSelectOptions("'.route('admin.ibportal.planName').'",$(this),"planName")','id'=>'agentName','multiple'=>'multiple','class'=>'form-control']) !!}
+>
                     </div>
                 </li>
 
 
                 <li  >
                     <div  class=" nav-input-div ">
-                        {!! Form::select('planName',$data['planName'],'',['onChange'=>'getSelectOptions("'.route('admin.ibportal.usersName').'",$(this),"usresName")','id'=>'planName','multiple'=>'multiple','class'=>'form-control']) !!}
+                        {!! Form::select('planName[]',$data['planName'],'',['onChange'=>'getSelectOptions("'.route('admin.ibportal.usersName').'",$(this),"usresName")','id'=>'planName','multiple'=>'multiple','class'=>'form-control']) !!}
                     </div>
                 </li>
 
@@ -57,14 +59,14 @@
 
                 <li  >
                     <div  class=" nav-input-div ">
-                        {!! Form::select('usresName',$data['usresName'],'',['onChange'=>'getSelectOptions("'.route('admin.ibportal.mt4UsersName').'",$(this),"mt4UsresName")','id'=>'usresName','multiple'=>'multiple','class'=>'form-control']) !!}
+                        {!! Form::select('usresName[]',$data['usresName'],'',['onChange'=>'getSelectOptions("'.route('admin.ibportal.mt4UsersName').'",$(this),"mt4UsresName")','id'=>'usresName','multiple'=>'multiple','class'=>'form-control']) !!}
                     </div>
                 </li>
 
 
                 <li  >
                     <div  class=" nav-input-div ">
-                        {!! Form::select('mt4UsresName',$data['mt4UsresName'],'',['id'=>'mt4UsresName','multiple'=>'multiple','class'=>'form-control']) !!}
+                        {!! Form::select('mt4UsresName[]',$data['mt4UsresName'],'',['id'=>'mt4UsresName','multiple'=>'multiple','class'=>'form-control']) !!}
                     </div>
                 </li>
 
