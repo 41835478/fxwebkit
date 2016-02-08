@@ -447,7 +447,7 @@ class IbportalController extends Controller
             $oResults->sorts = $aFilterParams['sort'];
         }
 
-        return view('reports::closedOrders')
+        return view('ibportal::admin.closedOrders')
             ->with('aGroups', $aGroups)
             ->with('aSymbols', $aSymbols)
             ->with('aTradeTypes', $aTradeTypes)
@@ -460,11 +460,17 @@ class IbportalController extends Controller
         return 'AAA';
     }
 
-    public function getPlanName()
+    public function postPlanName(Request $oRequest)
     {
 
-        $oResults = $this->Ibportal->getPlansName();
-        dd($oResults);
+        if(isset($oRequest['plans']) ){
+            $oResults= $this->Ibportal->getPlansName($oRequest['plans']);
+
+            foreach($oResults as $key=>$result){
+                echo '<option value="'.$key.'">'.$result.'</option>';
+            }
+        }
+        dd();
     }
 
 

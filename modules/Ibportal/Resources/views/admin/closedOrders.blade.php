@@ -63,7 +63,8 @@
                         </div>
                     </div>
                 </li>
-                <li><div  class=" nav-input-div  ">{!! Form::select('symbol[]', $aSymbols, $aFilterParams['symbol'], ['multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-symbols-slc']) !!}</div></li>
+                <li><div  class=" nav-input-div  ">{!! Form::select('symbol[]', $aSymbols, $aFilterParams['symbol'], ['onChange'=>'getSelectOptions("'.route('admin.ibportal.planName').'",$(this),"all-symbols-slc2")','multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-symbols-slc']) !!}</div></li>
+                <li><div  class=" nav-input-div  ">{!! Form::select('symbol[]', $aSymbols, $aFilterParams['symbol'], ['multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-symbols-slc2']) !!}</div></li>
                 <li><div  class=" nav-input-div  ">{!! Form::select('type', $aTradeTypes, $aFilterParams['type'], ['class'=>'form-control  input-sm']) !!}</div></li>
 
 
@@ -145,7 +146,7 @@
                         {{-- */$class='';/* --}}
                         @foreach($oResults as $oResult)
                         {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                        <tr class='{{ $class }}'>  
+                        <tr class='{{ $class }}'>
                             <td>{{ $oResult->TICKET }}</td>
                             <td>{{ $oResult->LOGIN }}</td>
                             <td>{{ $oResult->SYMBOL }}</td>
@@ -250,5 +251,25 @@
             $("#login_li").hide();
         }
     });
+
+function getSelectOptions(url,selectNode,targetSelectNode){
+
+
+    $.ajax({
+        type: 'post',
+        url: url,
+        data: {
+            'plans':selectNode.val(),
+            '_token':$('meta[name="_token"]').attr('content')
+        },
+        success: function (data) {
+$('#'+targetSelectNode).html(data);
+        }, error: function () {
+
+        }, complete: function () {
+
+        }
+    });
+}
 </script>
 @stop

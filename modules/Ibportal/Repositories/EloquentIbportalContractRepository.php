@@ -258,13 +258,13 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     }
 
-    public function getPlansName()
+    public function getPlansName($agents)
     {
         $oResult = Plan::get();
 
         $aPublicPlans=[];
         foreach($oResult as $plan){
-            $aPublicPlans[]=['id'=>$plan->id,'name'=>$plan->name];
+            $aPublicPlans[$plan->id]=$plan->name;
         }
 
         return $aPublicPlans;
