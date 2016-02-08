@@ -284,10 +284,11 @@ class EloquentIbportalContractRepository implements IbportalContract
     }
 
 
-    public function getUsersName($plans=[])
+    public function getUsersName($agents=[],$plans=[])
     {
-        $oResult = User::with('users')->whereHas('users',function($query) use($plans){
+        $oResult = User::with('agentPlan')->whereHas('agentPlan',function($query) use($plans,$agents){
             $query->whereIn('plan_id',$plans);
+            $query->whereIn('agent_id',$agents);
         });
 
         $oResult=$oResult->get();
