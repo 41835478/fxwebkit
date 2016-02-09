@@ -19,40 +19,40 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
 
     <!-- Libs CSS -->
-    <link rel="stylesheet" href="{{ asset($asset_folder.'porto/') }}css/bootstrap.css">
-    <link rel="stylesheet" href="{{ asset($asset_folder.'porto/') }}css/fonts/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="{{ asset($asset_folder.'porto/') }}vendor/flexslider/flexslider.css" media="screen" />
-    <link rel="stylesheet" href="{{ asset($asset_folder.'porto/') }}vendor/fancybox/jquery.fancybox.css" media="screen" />
+    <link rel="stylesheet" href="{{ asset($asset_folder.'porto') }}/css/bootstrap.css">
+    <link rel="stylesheet" href="{{ asset($asset_folder.'porto') }}/css/fonts/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="{{ asset($asset_folder.'porto') }}/vendor/flexslider/flexslider.css" media="screen" />
+    <link rel="stylesheet" href="{{ asset($asset_folder.'porto') }}/vendor/fancybox/jquery.fancybox.css" media="screen" />
 
     <!-- Theme CSS -->
-    <link rel="stylesheet" href="{{ asset($asset_folder.'porto/') }}css/theme.css">
-    <link rel="stylesheet" href="{{ asset($asset_folder.'porto/') }}css/theme-elements.css">
+    <link rel="stylesheet" href="{{ asset($asset_folder.'porto') }}/css/theme.css">
+    <link rel="stylesheet" href="{{ asset($asset_folder.'porto') }}/css/theme-elements.css">
 
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="{{ asset($asset_folder.'porto/') }}css/bootstrap-responsive.css" />
-    <link rel="stylesheet" href="{{ asset($asset_folder.'porto/') }}css/theme-responsive.css" />
+    <link rel="stylesheet" href="{{ asset($asset_folder.'porto') }}/css/bootstrap-responsive.css" />
+    <link rel="stylesheet" href="{{ asset($asset_folder.'porto') }}/css/theme-responsive.css" />
 
     <!-- Current Page Styles -->
-    <link rel="stylesheet" href="{{ asset($asset_folder.'porto/') }}vendor/revolution-slider/css/settings.css" media="screen" />
-    <link rel="stylesheet" href="{{ asset($asset_folder.'porto/') }}vendor/revolution-slider/css/captions.css" media="screen" />
-    <link rel="stylesheet" href="{{ asset($asset_folder.'porto/') }}vendor/circle-flip-slideshow/css/component.css" media="screen" />
+    <link rel="stylesheet" href="{{ asset($asset_folder.'porto') }}/vendor/revolution-slider/css/settings.css" media="screen" />
+    <link rel="stylesheet" href="{{ asset($asset_folder.'porto') }}/vendor/revolution-slider/css/captions.css" media="screen" />
+    <link rel="stylesheet" href="{{ asset($asset_folder.'porto') }}/vendor/circle-flip-slideshow/css/component.css" media="screen" />
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="{{ asset($asset_folder.'porto/') }}img/favicon.ico">
-    <link rel="apple-touch-icon" href="{{ asset($asset_folder.'porto/') }}img/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset($asset_folder.'porto/') }}img/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset($asset_folder.'porto/') }}img/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset($asset_folder.'porto/') }}img/apple-touch-icon-144x144.png">
+    <link rel="shortcut icon" href="{{ asset($asset_folder.'porto') }}/img/favicon.ico">
+    <link rel="apple-touch-icon" href="{{ asset($asset_folder.'porto') }}/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset($asset_folder.'porto') }}/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset($asset_folder.'porto') }}/img/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset($asset_folder.'porto') }}/img/apple-touch-icon-144x144.png">
 
     <!-- Head Libs -->
-    <script src="{{ asset($asset_folder.'porto/') }}vendor/modernizr.js"></script>
+    <script src="{{ asset($asset_folder.'porto') }}/vendor/modernizr.js"></script>
 
     <!--[if IE]>
-    <link rel="stylesheet" href="{{ asset($asset_folder.'porto/') }}css/ie.css">
+    <link rel="stylesheet" href="{{ asset($asset_folder.'porto') }}/css/ie.css">
     <![endif]-->
 
     <!--[if lte IE 8]>
-    <script src="{{ asset($asset_folder.'porto/') }}vendor/respond.js"></script>
+    <script src="{{ asset($asset_folder.'porto') }}/vendor/respond.js"></script>
     <![endif]-->
 
     <!-- Facebook OpenGraph Tags -->
@@ -68,11 +68,12 @@
 <body>
 
 <div class="body">
-    <header>
+    <header id="position_2">
+
         <div class="container">
             <h1 class="logo">
                 <a href="index.html">
-                    <img alt="Porto Website Template" src="{{ asset($asset_folder.'porto/') }}img/logo.png">
+                    <img alt="Porto Website Template" src="{{ asset($asset_folder.'porto') }}/img/logo.png">
                 </a>
             </h1>
             <div class="search">
@@ -81,89 +82,16 @@
                     <button class="search" type="submit"><i class="icon-search"></i></button>
                 </form>
             </div>
-            <nav>
-                <ul class="nav nav-pills nav-top">
-                    <li>
-                        <a href="about-us.html"><i class="icon-angle-right"></i>About Us</a>
-                    </li>
-                    <li>
-                        <a href="contact-us.html"><i class="icon-angle-right"></i>Contact Us</a>
-                    </li>
-                    <li class="phone">
-                        <span><i class="icon-phone"></i>(123) 456-7890</span>
-                    </li>
-                </ul>
-            </nav>
-            <div class="social-icons">
-                <a href="http://www.facebook.com" target="_blank" title="Facebook" data-placement="bottom" rel="tooltip"><i class="icon-facebook"></i><span>Facebook</span></a>
-                <a href="http://www.twitter.com" title="Twitter" data-placement="bottom" rel="tooltip"><i class="icon-twitter"></i><span>Twitter</span></a>
-                <a href="http://www.linkedin.com" title="Linkedin" data-placement="bottom" rel="tooltip"><i class="icon-linkedin"></i><span>Linkedin</span></a>
-            </div>
-            <nav>
-                <ul class="nav nav-pills nav-main" id="mainMenu">
-                    <li class="active">
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="about-us.html">About Us</a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Features
-                            <i class="icon-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a href="#">Blog</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="blog-full-width.html">Blog Full Width</a></li>
-                                    <li><a href="blog-large-image.html">Blog Large Image</a></li>
-                                    <li><a href="blog-medium-image.html">Blog Medium Image</a></li>
-                                    <li><a href="blog-post.html">Single Post</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="feature-grid-system.html">Grid System</a></li>
-                            <li><a href="feature-pricing-tables.html">Pricing Tables</a></li>
-                            <li><a href="feature-icons.html">Icons</a></li>
-                            <li><a href="feature-elements.html">Elements</a></li>
-                            <li><a href="feature-typograpy.html">Typograpy</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Portfolio
-                            <i class="icon-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="portfolio-2-columns.html">2 Columns</a></li>
-                            <li><a href="portfolio-3-columns.html">3 Columns</a></li>
-                            <li><a href="portfolio-4-columns.html">4 Columns</a></li>
-                            <li><a href="portfolio-single-project.html">Single Project</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Pages
-                            <i class="icon-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="page-full-width.html">Full width</a></li>
-                            <li><a href="page-left-sidebar.html">Left sidebar</a></li>
-                            <li><a href="page-right-sidebar.html">Right sidebar</a></li>
-                            <li><a href="page-custom-header.html">Custom Header</a></li>
-                            <li><a href="page-404.html">404 Error</a></li>
-                            <li><a href="page-team.html">Team</a></li>
-                            <li><a href="page-services.html">Services</a></li>
-                            <li><a href="page-careers.html">Careers</a></li>
-                            <li><a href="page-faq.html">FAQ</a></li>
-                            <li><a href="sitemap.html">Sitemap</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="contact-us.html">Contact Us</a>
-                    </li>
-                </ul>
-            </nav>
+
+
+
+            @if(isset($positions["position_2"]) )
+                @foreach($positions['position_2'] as $position)
+                    {!! $position !!}
+                @endforeach
+            @endif
+
+
         </div>
     </header>
 
@@ -681,26 +609,26 @@
 
 <!-- Libs -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="{{ asset($asset_folder.'porto/') }}vendor/jquery.js"><\/script>')</script>
-<script src="{{ asset($asset_folder.'porto/') }}vendor/jquery.easing.js"></script>
-<script src="{{ asset($asset_folder.'porto/') }}vendor/jquery.cookie.js"></script>
-<script src="{{ asset($asset_folder.'porto/') }}master/style-switcher/style.switcher.js"></script> <!-- Style Switcher -->
-<script src="{{ asset($asset_folder.'porto/') }}vendor/bootstrap.js"></script>
-<script src="{{ asset($asset_folder.'porto/') }}vendor/selectnav.js"></script>
-<script src="{{ asset($asset_folder.'porto/') }}vendor/twitterjs/twitter.js"></script>
-<script src="{{ asset($asset_folder.'porto/') }}vendor/revolution-slider/js/jquery.themepunch.plugins.js"></script>
-<script src="{{ asset($asset_folder.'porto/') }}vendor/revolution-slider/js/jquery.themepunch.revolution.js"></script>
-<script src="{{ asset($asset_folder.'porto/') }}vendor/flexslider/jquery.flexslider.js"></script>
-<script src="{{ asset($asset_folder.'porto/') }}vendor/circle-flip-slideshow/js/jquery.flipshow.js"></script>
-<script src="{{ asset($asset_folder.'porto/') }}vendor/fancybox/jquery.fancybox.js"></script>
+<script>window.jQuery || document.write('<script src="{{ asset($asset_folder.'porto') }}/vendor/jquery.js"><\/script>')</script>
+<script src="{{ asset($asset_folder.'porto') }}/vendor/jquery.easing.js"></script>
+<script src="{{ asset($asset_folder.'porto') }}/vendor/jquery.cookie.js"></script>
+<script src="{{ asset($asset_folder.'porto') }}/master/style-switcher/style.switcher.js"></script> <!-- Style Switcher -->
+<script src="{{ asset($asset_folder.'porto') }}/vendor/bootstrap.js"></script>
+<script src="{{ asset($asset_folder.'porto') }}/vendor/selectnav.js"></script>
+<script src="{{ asset($asset_folder.'porto') }}/vendor/twitterjs/twitter.js"></script>
+<script src="{{ asset($asset_folder.'porto') }}/vendor/revolution-slider/js/jquery.themepunch.plugins.js"></script>
+<script src="{{ asset($asset_folder.'porto') }}/vendor/revolution-slider/js/jquery.themepunch.revolution.js"></script>
+<script src="{{ asset($asset_folder.'porto') }}/vendor/flexslider/jquery.flexslider.js"></script>
+<script src="{{ asset($asset_folder.'porto') }}/vendor/circle-flip-slideshow/js/jquery.flipshow.js"></script>
+<script src="{{ asset($asset_folder.'porto') }}/vendor/fancybox/jquery.fancybox.js"></script>
 
-<script src="{{ asset($asset_folder.'porto/') }}js/plugins.js"></script>
+<script src="{{ asset($asset_folder.'porto') }}/js/plugins.js"></script>
 
 <!-- Current Page Scripts -->
-<script src="{{ asset($asset_folder.'porto/') }}js/views/view.home.js"></script>
+<script src="{{ asset($asset_folder.'porto') }}/js/views/view.home.js"></script>
 
 <!-- Theme Initializer -->
-<script src="{{ asset($asset_folder.'porto/') }}js/theme.js"></script>
+<script src="{{ asset($asset_folder.'porto') }}/js/theme.js"></script>
 
 <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information. -->
 <!--

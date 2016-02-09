@@ -24,14 +24,16 @@ class Authenticate
 		}
 
 		$locale=($oRequest->has('locale'))? $oRequest->locale:false;
-        $this->setLocale($locale);
+        $back=$this->setLocale($locale);
 
+		if($back=='back'){return Redirect::back();}
 		return $fNext($oRequest);
 	}
 
 	private function setLocale($locale){
 if($locale ){
 	Session::put('locale',$locale);
+ return 'back';
 }
 		else if(!Session::has('locale'))
 		{
