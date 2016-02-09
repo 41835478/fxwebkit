@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="yes"?>
+<theme>
+    <rows>
+        <row>
+            <column class="col-xs-3" name="position_1"></column>
+            <column class="col-xs-9" name="position_2"></column>
+        </row>
+        <row>
+            <column class="col-xs-12" name="position_3"></column>
+        </row>
+        <row>
+            <column class="col-xs-12" name="position_4"></column>
+        </row>
+        <row>
+            <column class="col-xs-12" name="position_5"></column>
+        </row>
+        <row>
+            <column class="col-xs-12" name="position_6"></column>
+        </row>
+    </rows>
+</theme>
