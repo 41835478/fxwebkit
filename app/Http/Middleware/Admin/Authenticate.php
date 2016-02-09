@@ -1,7 +1,6 @@
 <?php namespace Fxweb\Http\Middleware\Admin;
 
-use Closure, Sentinel, Redirect,App;
-
+use Closure, Sentinel, Redirect,App,Session;
 /**
  * Class Authenticate
  * @package Fxweb\Http\Middleware\Admin
@@ -24,7 +23,22 @@ class Authenticate
 			}
 		}
 
-			App::setLocale('en');
+		$locale=($oRequest->has('locale'))? $oRequest->locale:false;
+        $this->setLocale($locale);
+
 		return $fNext($oRequest);
+	}
+
+	private function setLocale($locale){
+if($locale ){
+	Session::put('locale',$locale);
+}
+		else if(!Session::has('locale'))
+		{
+			Session::put('locale','en');
+		}
+
+		App::setLocale(Session::get('locale'));
+
 	}
 }
