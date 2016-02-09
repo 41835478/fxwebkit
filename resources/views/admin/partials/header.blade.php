@@ -12,6 +12,8 @@
                 </div>
                 {{ app_name() }}
             </a>
+
+
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse">
                 <i class="navbar-icon fa fa-bars"></i>
             </button>
@@ -21,6 +23,15 @@
             <div>
                 <div class="right clearfix">
                     <ul class="nav navbar-nav pull-right right-navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">language</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">First item</a></li>
+                                <li><a href="#">Second item</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Third item</a></li>
+                            </ul>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
                                 <img src="data:image/jpeg;base64,{{ current_user()->getAvatar() }}" alt="">
