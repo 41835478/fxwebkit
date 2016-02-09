@@ -24,10 +24,13 @@
                 <div class="right clearfix">
                     <ul class="nav navbar-nav pull-right right-navbar-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i> Language</a>
+
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>Language</a>
                             <ul class="dropdown-menu">
-                                <li><a href="?locale=en">English</a></li>
-                                <li><a href="?locale=ar"> Arabic </a></li>
+
+                                @foreach(config('app.language')as $key=>$language)
+                                <li><a href={{"?locale=".$key}}>{{$language}}</a></li>
+                                    @endforeach
 
                             </ul>
                         </li>
