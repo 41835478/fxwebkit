@@ -24,12 +24,11 @@
                 <div class="right clearfix">
                     <ul class="nav navbar-nav pull-right right-navbar-nav">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">language</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i> Language</a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">First item</a></li>
-                                <li><a href="#">Second item</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Third item</a></li>
+                                <li><a href="?locale=en">English</a></li>
+                                <li><a href="?locale=ar"> Arabic </a></li>
+
                             </ul>
                         </li>
                         <li class="dropdown">
