@@ -53,9 +53,7 @@ return [
 	*/
 
 	'locale' => 'en',
-	'language' => ['en'=>'English',
-		'ar'=>'Arabic'
-	],
+	'language' => ['en'=>'English','ar'=>'Arabic'],
 
 
 	/*

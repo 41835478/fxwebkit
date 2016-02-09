@@ -26,11 +26,13 @@
                         <li class="dropdown">
 
 
+
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i> Language</a>
                             <ul class="dropdown-menu">
                                 @foreach(config('app.language')  as $locale=>$name)
                                 <li><a href="?locale={{$locale}}">{{ $name }}</a></li>
 @endforeach
+
                             </ul>
                         </li>
                         <li class="dropdown">

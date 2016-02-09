@@ -22,6 +22,14 @@
                 <div class="right clearfix">
                     <ul class="nav navbar-nav pull-right right-navbar-nav">
                         <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i> Language</a>
+                            <ul class="dropdown-menu">
+                                @foreach(config('app.language')as $key=>$language)
+                                    <li><a href={{"?locale=".$key}}>{{$language}}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
                                 <img src="data:image/jpeg;base64,{{ current_user()->getAvatar() }}" alt="">
                                 <span>{{ current_user()->getName() }}</span>

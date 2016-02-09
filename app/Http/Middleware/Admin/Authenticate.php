@@ -1,6 +1,7 @@
 <?php namespace Fxweb\Http\Middleware\Admin;
 
-use Closure, Sentinel, Redirect,App,Session;
+use Closure, Sentinel, Redirect, App, Session;
+
 /**
  * Class Authenticate
  * @package Fxweb\Http\Middleware\Admin
@@ -40,7 +41,8 @@ if($locale ){
 			Session::put('locale','en');
 		}
 
-		App::setLocale(Session::get('locale'));
 
-	}
+        App::setLocale(Session::get('locale'));
+
+    }
 }
