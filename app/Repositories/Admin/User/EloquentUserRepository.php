@@ -161,6 +161,8 @@ class EloquentUserRepository implements UserContract
         $oActivation = Activation::create($oUser);
 
 
+
+
         $fullDetails = new UsersDetails();
 
         $fullDetails->users_id = $oUser->id;

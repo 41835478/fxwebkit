@@ -14,7 +14,8 @@
             </a>
 
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#main-navbar-collapse">
                 <i class="navbar-icon fa fa-bars"></i>
             </button>
         </div>
@@ -26,12 +27,12 @@
                         <li class="dropdown">
 
 
-
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i> Language</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>
+                                Language</a>
                             <ul class="dropdown-menu">
                                 @foreach(config('app.language')  as $locale=>$name)
-                                <li><a href="?locale={{$locale}}">{{ $name }}</a></li>
-@endforeach
+                                    <li><a href="?locale={{$locale}}">{{ $name }}</a></li>
+                                @endforeach
 
                             </ul>
                         </li>
