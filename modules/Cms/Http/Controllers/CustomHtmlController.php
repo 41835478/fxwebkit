@@ -39,7 +39,7 @@ class CustomHtmlController extends Controller
 
         } else if ($customHtml_id > 0 && $selected_language > 1) {
 
-            $edit_customHtml = cms_customHtml_languages::where(['cms_customHtml_id' => $customHtml_id, 'cms_languages_id' => $selected_language])->first();
+            $edit_customHtml = cms_customHtml_languages::where(['cms_customhtml_id' => $customHtml_id, 'cms_languages_id' => $selected_language])->first();
         }
 
         $asset_folder = Config::get('cms.asset_folder');
@@ -62,7 +62,7 @@ class CustomHtmlController extends Controller
         $id = Input::get('customHtml_id');
 
 
-        $translate = cms_customHtml_languages::where(['cms_languages_id' => $selected_language, 'cms_customHtml_id' => $id])->first();
+        $translate = cms_customHtml_languages::where(['cms_languages_id' => $selected_language, 'cms_customhtml_id' => $id])->first();
         if ($translate) {
             $translate->title = $translate_title;
             $translate->body = $translate_body;
@@ -72,7 +72,7 @@ class CustomHtmlController extends Controller
             $translate->title = $translate_title;
             $translate->body = $translate_body;
             $translate->cms_languages_id = $selected_language;
-            $translate->cms_customHtml_id = $id;
+            $translate->cms_customhtml_id = $id;
             $translate->save();
         }
 

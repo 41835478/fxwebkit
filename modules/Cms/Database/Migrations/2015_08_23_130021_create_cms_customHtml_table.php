@@ -12,7 +12,7 @@ class CreateCmsCustomHtmlTable extends Migration {
      */
     public function up()
     {
-        Schema::create('cms_customHtml', function(Blueprint $table)
+        Schema::create('cms_customhtml', function(Blueprint $table)
         {
             $table->increments('id');
 $table->string('title');
@@ -28,7 +28,7 @@ $table->text('body');
      */
     public function down()
     {
-        Schema::drop('cms_customHtml');
+        Schema::drop('cms_customhtml');
     }
 
 }

@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class cms_customHtml extends Model {
 
     protected $fillable = [];
-    protected $table = 'cms_customHtml';
+    protected $table = 'cms_customhtml';
     
 
 }
