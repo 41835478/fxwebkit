@@ -345,7 +345,8 @@ class PagesController extends Controller
        or
        (all_pages=1 and '$page_id' in(select pages_id from cms_pages_contents_pages where pages_contents_id=first_table.id and pages_id='$page_id') )
        or
-      (all_pages=2 and not '$page_id' in (select pages_id from cms_pages_contents_pages where pages_contents_id=first_table.id and pages_id=$page_id) ) ";
+      (all_pages=2 and not '$page_id' in (select pages_id from cms_pages_contents_pages where pages_contents_id=first_table.id and pages_id=$page_id) )
+       order by `order`";
 
         $page_modules = DB::select($query_string);
 
@@ -360,7 +361,8 @@ class PagesController extends Controller
             $float = ($page_module->float != 0) ? 'float:' . $float_array[$page_module->float] . ';' : '';
             $display = ($page_module->display != 0) ? 'display:' . $display_array[$page_module->display] . ';' : '';
 
-            $module_html = '<div module_id="' . $page_module->id . '"class="one_module_all_div" style="' . $float . $display . '">';
+           $module_html = '<div module_id="f' . $page_module->id . '"class="one_module_all_div" style="' . $float . $display . '">';
+            //  $module_html = '';
 
 
             switch ($page_module->type) {
@@ -378,7 +380,8 @@ class PagesController extends Controller
                         break;
                     $module_html .= $modules_list_controller->index($modules_list[$page_module->type], $page_module->module_id, $language);
             }
-            $module_html .= '</div>';
+           $module_html .= '</div>';
+            // $module_html .= '';
             array_push($positions[$page_module->position], $module_html);
         }
         return $positions;
