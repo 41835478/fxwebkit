@@ -97,7 +97,7 @@ class ModulesListController extends Controller
 
             ['name' => trans('cms::cms.customHtml'),
                 "type" => 'database',
-                "table" => 'cms_customHtml',
+                "table" => 'cms_customhtml',
                 "title_field" => 'title',
                 "html_field" => 'body',
                 "languages" => "multi"

@@ -121,14 +121,14 @@ INSERT INTO `cms_customhtml` (`id`, `title`, `body`, `created_at`, `updated_at`)
 
 CREATE TABLE IF NOT EXISTS `cms_customhtml_languages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `cms_customHtml_id` int(10) unsigned NOT NULL,
+  `cms_customhtml_id` int(10) unsigned NOT NULL,
   `cms_languages_id` int(10) unsigned NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `body` text COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
-  KEY `cms_customhtml_languages_cms_customhtml_id_foreign` (`cms_customHtml_id`),
+  KEY `cms_customhtml_languages_cms_customhtml_id_foreign` (`cms_customhtml_id`),
   KEY `cms_customhtml_languages_cms_languages_id_foreign` (`cms_languages_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -412,7 +412,7 @@ ALTER TABLE `cms_articles_languages`
 -- Constraints for table `cms_customhtml_languages`
 --
 ALTER TABLE `cms_customhtml_languages`
-  ADD CONSTRAINT `cms_customhtml_languages_cms_customhtml_id_foreign` FOREIGN KEY (`cms_customHtml_id`) REFERENCES `cms_customhtml` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `cms_customhtml_languages_cms_customhtml_id_foreign` FOREIGN KEY (`cms_customhtml_id`) REFERENCES `cms_customhtml` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `cms_customhtml_languages_cms_languages_id_foreign` FOREIGN KEY (`cms_languages_id`) REFERENCES `cms_languages` (`id`) ON DELETE CASCADE;
 
 --
