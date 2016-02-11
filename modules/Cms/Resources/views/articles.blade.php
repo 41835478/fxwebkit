@@ -25,16 +25,8 @@
     {!! Form::textarea('editor1',(isset($edit_article->body))?  $edit_article->body:'',['id'=>'editor1','placeholder'=>'title']) !!}
     {!! Form::hidden('article_id' ,$selected_id) !!}
 
-    <div style="width:250px;display: inline-block; ">
-        {!! Form::select('page_id',$pages,(isset($edit_article->page_id))?  $edit_article->page_id:0 ) !!}
-    </div>
-    {!! Form::submit(trans('cms::cms.insert_new_article'),["name"=>'insert_article_submit','id'=>'insert_article_submit','class'=>'btn btn-primary' ]) !!}
 
-    @if($selected_id > 0) 
-    {!! Form::hidden('edit_article_id',$selected_id) !!}
-    {!! Form::submit(trans('cms::cms.save_edits'),["name"=>'edit_article_submit','id'=>'edit_article_submit','class'=>'btn btn-primary' ]) !!}
 
-    @endif
 
     @if($errors->any())
     <div class="alert alert-danger alert-dark">
@@ -42,6 +34,21 @@
         <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
         @endforeach
     </div>
+    @endif
+</div>
+
+<div class="panel-footer">
+
+    <div style="width:250px;display: inline-block; ">
+        {!! Form::select('page_id',$pages,(isset($edit_article->page_id))?  $edit_article->page_id:0 ) !!}
+    </div>
+
+    {!! Form::submit(trans('cms::cms.insert_new_article'),["name"=>'insert_article_submit','id'=>'insert_article_submit','class'=>'btn btn-primary' ]) !!}
+
+    @if($selected_id > 0)
+        {!! Form::hidden('edit_article_id',$selected_id) !!}
+        {!! Form::submit(trans('cms::cms.save_edits'),["name"=>'edit_article_submit','id'=>'edit_article_submit','class'=>'btn btn-primary' ]) !!}
+
     @endif
 </div>
 {!! Form::close() !!}

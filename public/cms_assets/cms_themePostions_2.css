@@ -17,8 +17,8 @@
 
 #modules_list{ 
     
-    overflow: auto;
-    width: 20%;
+    /*overflow: auto;*/
+    width: 18%;
     float: left;
 
     scrollbar-face-color: #000000;
@@ -65,7 +65,7 @@ scrollbar-arrow-color: #C1C1D1;
 
 /*___________________________________________________________custom_scroll*/
 .fixed_modules_list{ 
-position:fixed;
+/*position:fixed;*/
 top:46px;
 left:255px;
 height:100vh;
