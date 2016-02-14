@@ -35,8 +35,8 @@ class ModulesListController extends Controller
 
             }
 
-            $original = (count($results)) ? $results[0]->$module_info['html_field'] : '';
-            $translate = ($translate_results !== 0 && count($translate_results)) ? $translate_results[0]->$module_info['html_field'] : '';
+            $original = (count($results)) ? $results[0]->{$module_info['html_field']} : '';
+            $translate = ($translate_results !== 0 && count($translate_results)) ? $translate_results[0]->{$module_info['html_field'] }: '';
             return ($translate !== '') ? $translate : $original;
         } else {
             if (!isset($module_info['class_name']))
@@ -77,7 +77,7 @@ class ModulesListController extends Controller
             $results = DB::select('select ' . $module_info['title_field'] . ' from ' . $module_info['table'] . ' where id = ?', [$variable]);
 
             if (count($results)) {
-                return $module_info['name'] . ' ( ' . $results[0]->$module_info['title_field'] . ' ) ';
+                return $module_info['name'] . ' ( ' . $results[0]->{$module_info['title_field']} . ' ) ';
             } else {
                 return '';
             }
