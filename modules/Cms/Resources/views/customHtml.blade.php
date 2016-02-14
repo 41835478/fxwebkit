@@ -18,20 +18,15 @@
     @if($selected_language == 1)
         {!! Form::open(['url'=>asset('cms/customHtml/insert-edit-custom-html'),'class'=>'panel form-horizontal']) !!}
         <div class="panel-heading">
+
             <span class="panel-title">{{ trans('cms::cms.custom_HTML')}}</span>
         </div>
         <div class="panel-body">
+
             {!! Form::text('title',(isset($edit_customHtml->title))?  $edit_customHtml->title:'',['id'=>'title','placeholder'=>trans('cms::cms.title'),'class'=>'form-control ']) !!}
             {!! Form::textarea('editor1',(isset($edit_customHtml->body))?  $edit_customHtml->body:'',['id'=>'editor1','placeholder'=>'title']) !!}
             {!! Form::hidden('customHtml_id' ,$selected_id) !!}
 
-            {!! Form::submit(trans('cms::cms.insert_new_custom_Html'),["name"=>'insert_customHtml_submit','id'=>'insert_customHtml_submit','class'=>'btn btn-primary' ]) !!}
-
-            @if($selected_id > 0)
-                {!! Form::hidden('edit_customHtml_id',$selected_id) !!}
-                {!! Form::submit(trans('cms::cms.save_edits'),["name"=>'edit_customHtml_submit','id'=>'edit_customHtml_submit','class'=>'btn btn-primary' ]) !!}
-
-            @endif
 
             @if($errors->any())
                 <div class="alert alert-danger alert-dark">
@@ -41,6 +36,17 @@
                 </div>
             @endif
         </div>
+
+        <div class="panel-footer">
+
+            {!! Form::submit(trans('cms::cms.insert_new_custom_Html'),["name"=>'insert_customHtml_submit','id'=>'insert_customHtml_submit','class'=>'btn btn-primary' ]) !!}
+
+            @if($selected_id > 0)
+                {!! Form::hidden('edit_customHtml_id',$selected_id) !!}
+                {!! Form::submit(trans('cms::cms.save_edits'),["name"=>'edit_customHtml_submit','id'=>'edit_customHtml_submit','class'=>'btn btn-primary' ]) !!}
+
+            @endif
+        </div>
         {!! Form::close() !!}
     @else
         {!! Form::open(['url'=>asset('/cms/customHtml/save-custom-html-translate'),'class'=>'panel form-horizontal']) !!}
@@ -48,6 +54,7 @@
             <span class="panel-title">{{ trans('cms::cms.article') }} </span>
         </div>
         <div class="panel-body">
+
             {!! Form::text('title',(isset($edit_customHtml->title))?  $edit_customHtml->title:'',['id'=>'title','placeholder'=>'title','class'=>'form-control ']) !!}
             {!! Form::textarea('editor1',(isset($edit_customHtml->body))?  $edit_customHtml->body:'',['id'=>'editor1','placeholder'=>'title']) !!}
             {!! Form::hidden('customHtml_id' ,$selected_id) !!}

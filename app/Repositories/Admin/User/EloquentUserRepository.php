@@ -55,6 +55,7 @@ class EloquentUserRepository implements UserContract
             $query->where('id', $role_id);
         });
 
+
         /* =============== id Filter  =============== */
         if (isset($aFilters['id']) && !empty($aFilters['id'])) {
             $oResult = $oResult->where('id', $aFilters['id']);
@@ -80,14 +81,17 @@ class EloquentUserRepository implements UserContract
 
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+
         } else {
             $oResult = $oResult->get();
+
         }
         /* =============== Preparing Output  =============== */
         foreach ($oResult as $dKey => $oValue) {
 
         }
         /* =============== Preparing Output  =============== */
+        dd($oResult);
         return $oResult;
     }
 
@@ -159,6 +163,8 @@ class EloquentUserRepository implements UserContract
 
         $oClientRole->users()->attach($oUser);
         $oActivation = Activation::create($oUser);
+
+
 
 
         $fullDetails = new UsersDetails();
