@@ -84,6 +84,7 @@ class ApiController extends Controller {
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=1|LOGIN='.$login.'|'.$password.'LEVERAGE='.$leverage.'|MANAGER=1';
 
+
                 return $this->getApiResponseMessage($this->sendApiMessage($message));
 	}
 
@@ -118,7 +119,8 @@ class ApiController extends Controller {
                 return $this->getApiResponseMessage($this->sendApiMessage($message));
 	}
         
-	private function getApiResponseMessage($result){     
+	private function getApiResponseMessage($result){
+
            
 		return (isset($this->returnMessages[$result]))? $this->returnMessages[$result]:$this->returnMessages['error'];
 	}

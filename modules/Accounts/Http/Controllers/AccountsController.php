@@ -588,6 +588,7 @@ class AccountsController extends Controller
             'leverage' => $oResults['LEVERAGE']];
 
 
+
         return view('accounts::addLeverage')
             ->with('Pssword', $Pssword)
             ->with('Result', $Result)
@@ -605,7 +606,7 @@ class AccountsController extends Controller
         $changeleverage = [
             'login' => '',
             'oldPassword' => '',
-
+            'leverage_array' => $Result,
             'leverage' => ''];
 
         $oApiController = new ApiController();
@@ -678,7 +679,7 @@ class AccountsController extends Controller
 
 
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
-
+        $oResults = $this->oMt4User->getUserInfo($oRequest->login);
 
         $internalTransfer = [
             'login' => '',
@@ -694,6 +695,7 @@ class AccountsController extends Controller
             ->withErrors($result)
             ->with('Pssword', $Pssword)
             ->with('internalTransfer', $internalTransfer)
+            ->with('oResults', $oResults)
             ->with('login', $oRequest->login);
     }
 

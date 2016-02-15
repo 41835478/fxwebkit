@@ -183,7 +183,7 @@ class Mt4ConfigrationsController extends Controller
         ];
 
 
-        $oResults = $this->Mt4Configrations->addSymbols();
+        $oResults = $this->Mt4Configrations->synchronizeSymbols();
 
 
         return Redirect::route('admin.mt4Configrations.symbolsList');
