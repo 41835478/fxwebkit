@@ -10,6 +10,7 @@ use Modules\Mt4configrations\Entities\ConfigrationsGroupsSecurities as GroupsSec
 use Modules\Mt4configrations\Entities\ConfigrationsSymbolGroup as SymbolGroup;
 use Modules\Mt4configrations\Entities\ConfigrationsSymbols as Symbols;
 use Modules\Mt4configrations\Entities\ConfigrationsSession as Session;
+use Modules\Ibportal\Entities\IbportalAliases as Aliases;
 use Config;
 
 class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsContract
@@ -209,9 +210,13 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
 
 if(isset($apiSymbols->result) && $apiSymbols->result==1 &&  isset($apiSymbols->data) && count($apiSymbols->data)){
     Symbols::truncate();
+    $emptyAliases=(Aliases::first())? false:true;
+$symbols=[];
+    $aliases=[];
+    $sessions=[];
 foreach($apiSymbols->data as $symbol){
 
-        $oAddFullSymbolsInfo = [
+    $symbols[] = [
 
             'name'=>'',
             'securities_id'=>'securities_id',
@@ -272,23 +277,31 @@ foreach($apiSymbols->data as $symbol){
             'unused'=>''];
 
 
-        Symbols::create($oAddFullSymbolsInfo);
 
     Session::truncate();
+    if(isset($symbol->sessions) && count($symbol->sessions)){
     foreach($symbol->sessions as $session){
 
-        Session::create(['symbol'=>$symbol->symbol,
+        $sessions[]=['symbol'=>$symbol->symbol,
            'quote'=>serialize($session->quote),
            'trade'=>serialize($session->trade),
            'quote_overnight'=>$session->quote_overnight,
            'trade_overnight'=>$session->trade_overnight,
           // 'reserved'=>$session->reserved
-       ]);
-
+       ];
+    }
 
 
     }
+
+    if($emptyAliases){
+        $aliases[]=['alias'=>$symbol->symbol,'operand'=>'Equals','value'=>$symbol->symbol];
+    }
 }
+
+    if(count($symbols))Symbols::insert($symbols);
+    if(count($sessions))Session::insert($sessions);
+    if(count($aliases))Aliases::insert($aliases);
     return true;
 
 
