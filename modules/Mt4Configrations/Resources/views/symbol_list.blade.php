@@ -71,9 +71,11 @@
                         <div class="table-caption">
                             {{ trans('mt4configrations::mt4configrations.symbols') }}
 
-                            {!! Form::open([ 'class'=>'form-bordered','style'=>'float:right']) !!}
-                            <button type="submit" class="btn btn-primary btn-flat"  name="edit_id" value="{{  0 }}">{{ trans('mt4configrations::mt4configrations.sync') }}</button>
-                            {!! Form::close() !!}
+
+                            <a href="{{ route('admin.mt4Configrations.syncSymbols') }}" style="float:right;">
+                                <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button"
+                                       value="{{ trans('mt4configrations::mt4configrations.sync') }}"> </a>
+
 
                         </div>
                     </div>

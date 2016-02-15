@@ -2,7 +2,7 @@
 
 return [
 
-    'ModuleTitle'=>'Mt4 Configrations',
+    'ModuleTitle'=>'Mt4 Configuration',
     'symbolsList'=>'Symbols List',
     'securitiesList'=>'Securities List',
     'groupsList'=>'Groups List',

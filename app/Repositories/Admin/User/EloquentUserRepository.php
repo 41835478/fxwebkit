@@ -91,7 +91,7 @@ class EloquentUserRepository implements UserContract
 
         }
         /* =============== Preparing Output  =============== */
-        dd($oResult);
+
         return $oResult;
     }
 

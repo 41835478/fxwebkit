@@ -3,7 +3,6 @@
 namespace Modules\Mt4Configrations\Repositories;
 
 
-
 use Modules\Mt4configrations\Entities\ConfigrationsGroups as Groups;
 use Modules\Mt4configrations\Entities\ConfigrationsGroupsMargin as GroupsMargin;
 use Modules\Mt4configrations\Entities\ConfigrationsGroupsSecurities as GroupsSecurities;
@@ -24,13 +23,12 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
     public function __construct()
     {
 
-        $this->mt4Host=Config('fxweb.mt4CheckHost');
-        $this->mt4Port=Config('fxweb.mt4CheckPort');
+        $this->mt4Host = Config('fxweb.mt4CheckHost');
+        $this->mt4Port = Config('fxweb.mt4CheckPort');
     }
 
-    private function sendApiMessage($message){
-
-
+    private function sendApiMessage($message)
+    {
 
 
         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
@@ -42,12 +40,12 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
 
 
         $result = socket_connect($socket, $this->mt4Host, $this->mt4Port);
-        $string='';
+        $string = '';
         if ($result === false) {
 
         } else {
-            echo "OK.\n".socket_strerror(socket_last_error());
-            socket_write($socket, $message. "\nQUIT\n", strlen($message. "\nQUIT\n"));
+            echo "OK.\n" . socket_strerror(socket_last_error());
+            socket_write($socket, $message . "\nQUIT\n", strlen($message . "\nQUIT\n"));
             while (socket_recv($socket, $data, 8192, 0)) {
                 $string .= $data;
             }
@@ -132,52 +130,52 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
     public function addGroups()
     {
         $oAddFullGroupInfo = [
-            'id'=>'',
-            'group'=>'group',
-            'enable'=>'enable',
-            'timeout'=>'timeout',
-            'otp_mode'=>'otp_mode',
-            'company'=>'company',
-            'signature'=>'signature',
-            'support_page'=>'support_page',
-            'smtp_server'=>'smtp_server',
-            'smtp_login'=>'smtp_login',
-            'smtp_password'=>'smtp_password',
-            'support_email'=>'support_email',
-            'templates'=>'templates',
-            'copies'=>'copies',
-            'reports'=>'reports',
-            'default_leverage'=>'default_leverage',
-            'default_deposit'=>'default_deposit',
-            'maxsecurities'=>'maxsecurities',
-            'ConGroupSec'=>'ConGroupSec',
-            'ConGroupMargin'=>'ConGroupMargin',
-            'secmargins_total'=>'secmargins_total',
-            'currency'=>'currency',
-            'credit'=>'credit',
-            'margin_call'=>'margin_call',
-            'margin_mode'=>'margin_mode',
-            'margin_stopout'=>'margin_stopout',
-            'interestrate'=>'interestrate',
-            'use_swap'=>'use_swap',
-            'news'=>'news',
-            'rights'=>'rights',
-            'check_ie_prices'=>'check_ie_prices',
-            'maxpositions'=>'maxpositions',
-            'close_reopen'=>'close_reopen',
-            'hedge_prohibited'=>'hedge_prohibited',
-            'close_fifo'=>'close_fifo',
-            'hedge_largeleg'=>'hedge_largeleg',
-            'unused_rights'=>'unused_rights',
-            'securities_hash'=>'securities_hash',
-            'margin_type'=>'margin_type',
-            'archive_period'=>'archive_period',
-            'archive_max_balance'=>'archive_max_balance',
-            'stopout_skip_hedged'=>'stopout_skip_hedged',
-            'archive_pending_period'=>'archive_pending_period',
-            'news_languages'=>'news_languages',
-            'news_languages_total'=>'news_languages_total',
-            'reserved'=>'reserved'];
+            'id' => '',
+            'group' => 'group',
+            'enable' => 'enable',
+            'timeout' => 'timeout',
+            'otp_mode' => 'otp_mode',
+            'company' => 'company',
+            'signature' => 'signature',
+            'support_page' => 'support_page',
+            'smtp_server' => 'smtp_server',
+            'smtp_login' => 'smtp_login',
+            'smtp_password' => 'smtp_password',
+            'support_email' => 'support_email',
+            'templates' => 'templates',
+            'copies' => 'copies',
+            'reports' => 'reports',
+            'default_leverage' => 'default_leverage',
+            'default_deposit' => 'default_deposit',
+            'maxsecurities' => 'maxsecurities',
+            'ConGroupSec' => 'ConGroupSec',
+            'ConGroupMargin' => 'ConGroupMargin',
+            'secmargins_total' => 'secmargins_total',
+            'currency' => 'currency',
+            'credit' => 'credit',
+            'margin_call' => 'margin_call',
+            'margin_mode' => 'margin_mode',
+            'margin_stopout' => 'margin_stopout',
+            'interestrate' => 'interestrate',
+            'use_swap' => 'use_swap',
+            'news' => 'news',
+            'rights' => 'rights',
+            'check_ie_prices' => 'check_ie_prices',
+            'maxpositions' => 'maxpositions',
+            'close_reopen' => 'close_reopen',
+            'hedge_prohibited' => 'hedge_prohibited',
+            'close_fifo' => 'close_fifo',
+            'hedge_largeleg' => 'hedge_largeleg',
+            'unused_rights' => 'unused_rights',
+            'securities_hash' => 'securities_hash',
+            'margin_type' => 'margin_type',
+            'archive_period' => 'archive_period',
+            'archive_max_balance' => 'archive_max_balance',
+            'stopout_skip_hedged' => 'stopout_skip_hedged',
+            'archive_pending_period' => 'archive_pending_period',
+            'news_languages' => 'news_languages',
+            'news_languages_total' => 'news_languages_total',
+            'reserved' => 'reserved'];
 
         Groups::create($oAddFullGroupInfo);
 
@@ -189,9 +187,9 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
     public function addSecurities()
     {
         $oAddFullSecuritieInfo = [
-            'id'=>'',
-            'name'=>'name',
-            'description'=>'description'];
+            'id' => '',
+            'name' => 'name',
+            'description' => 'description'];
 
         SymbolGroup::create($oAddFullSecuritieInfo);
 
@@ -199,7 +197,7 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
         return true;
     }
 
-    public function addSymbols()
+    public function synchronizeSymbols()
     {
 
 
@@ -305,12 +303,11 @@ foreach($apiSymbols->data as $symbol){
     return true;
 
 
-}
+
+        }
 
         return false;
     }
-
-
 
 
 }
