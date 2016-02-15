@@ -5,6 +5,7 @@ return [
 	'is_client' => 0,
 	'name' => 'Mt4Configrations',
 	'icon' => 'fa-info-circle',
+	'apiAdminPassword'=>'ADMINPASSWORD',
 	'route' => '',
 	'admin_menu' => [
 		[

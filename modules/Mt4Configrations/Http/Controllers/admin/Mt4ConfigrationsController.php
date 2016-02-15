@@ -1,9 +1,10 @@
 <?php namespace Modules\Mt4configrations\Http\Controllers\admin;
 
+//use Illuminate\Support\Facades\Config;
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-
+use Illuminate\Support\Facades\Config;
 use Modules\Mt4Configrations\Repositories\Mt4ConfigrationsContract as Mt4Configrations;
 
 class Mt4ConfigrationsController extends Controller
