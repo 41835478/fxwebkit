@@ -1,5 +1,6 @@
 <?php namespace Modules\Mt4configrations\Http\Controllers\admin;
 
+use Illuminate\Support\Facades\Config;
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -20,10 +21,12 @@ class Mt4ConfigrationsController extends Controller
 
     public function __construct(
         Mt4Configrations $Mt4Configrations
+
     )
     {
 
         $this->Mt4Configrations = $Mt4Configrations;
+
     }
 
 
@@ -48,6 +51,7 @@ class Mt4ConfigrationsController extends Controller
 
             $oResults = $this->Mt4Configrations->getSymbolsByFilters($aFilterParams, false, $sOrder, $sSort);
         }
+
 
 
         return view('mt4configrations::symbol_list')->with('oResults', $oResults)
