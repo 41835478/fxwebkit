@@ -168,9 +168,8 @@ class Mt4ConfigrationsController extends Controller
     }
 
 
-    public function postSymbolsList(Request $oRequest)
+    public function getSyncSymbols(Request $oRequest)
     {
-
 
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';

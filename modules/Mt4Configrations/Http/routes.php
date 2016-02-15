@@ -5,6 +5,7 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'mt4configratio
 
 	Route::controller('mt4Configrations', 'Mt4ConfigrationsController', [
 		'getSymbolsList' => 'admin.mt4Configrations.symbolsList',
+		'getSyncSymbols'=>'admin.mt4Configrations.syncSymbols',
 		'getSecuritiesList' => 'admin.mt4Configrations.securitiesList',
 		'getGroupsList' => 'admin.mt4Configrations.groupsList',
 	]);
