@@ -208,7 +208,7 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
 
 
 if(isset($apiSymbols->result) && $apiSymbols->result==1 &&  isset($apiSymbols->data) && count($apiSymbols->data)){
-
+    Symbols::truncate();
 foreach($apiSymbols->data as $symbol){
 
         $oAddFullSymbolsInfo = [
@@ -274,7 +274,9 @@ foreach($apiSymbols->data as $symbol){
 
         Symbols::create($oAddFullSymbolsInfo);
 
+    Session::truncate();
     foreach($symbol->sessions as $session){
+
         Session::create(['symbol'=>$symbol->symbol,
            'quote'=>serialize($session->quote),
            'trade'=>serialize($session->trade),
