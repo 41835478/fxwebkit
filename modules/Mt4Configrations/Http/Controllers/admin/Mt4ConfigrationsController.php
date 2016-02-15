@@ -1,6 +1,7 @@
 <?php namespace Modules\Mt4configrations\Http\Controllers\admin;
 
 use Illuminate\Support\Facades\Config;
+
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;

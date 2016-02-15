@@ -15,8 +15,9 @@ class CreateConfigrationsSessionTable extends Migration {
         Schema::create('configrations_session', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->integer('quote');
-            $table->integer('trade');
+            $table->char('symbol',12);
+            $table->json('quote');
+            $table->json('trade');
             $table->integer('quote_overnight');
             $table->integer('trade_overnight');
             $table->integer('reserved');

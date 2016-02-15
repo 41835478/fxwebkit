@@ -14,7 +14,10 @@ class CreateConfigrationsSessionsTable extends Migration {
     {
         Schema::create('configrations_sessions', function(Blueprint $table)
         {
-            $table->increments('open_hour');
+            $table->increments('id');
+            $table->char('symbol', 12);
+            $table->tinyInteger('quote_trade');
+            $table->integer('open_hour');
             $table->integer('open_min');
             $table->integer('close_hour');
             $table->integer('close_min');
