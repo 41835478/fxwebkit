@@ -10,6 +10,7 @@ use Modules\Mt4configrations\Entities\ConfigrationsSymbolGroup as SymbolGroup;
 use Modules\Mt4configrations\Entities\ConfigrationsSymbols as Symbols;
 use Modules\Mt4configrations\Entities\ConfigrationsSession as Session;
 use Modules\Ibportal\Entities\IbportalAliases as Aliases;
+
 use Config;
 
 class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsContract
@@ -32,19 +33,15 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
 
 
         $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-        if ($socket === false) {
-            echo "socket_create() failed: reason: " . socket_strerror(socket_last_error()) . "\n";
-        } else {
-            echo "OK.\n";
-        }
+        if ($socket === false) return false;
 
 
         $result = socket_connect($socket, $this->mt4Host, $this->mt4Port);
         $string = '';
         if ($result === false) {
-
+return false;
         } else {
-            echo "OK.\n" . socket_strerror(socket_last_error());
+
             socket_write($socket, $message . "\nQUIT\n", strlen($message . "\nQUIT\n"));
             while (socket_recv($socket, $data, 8192, 0)) {
                 $string .= $data;
@@ -129,72 +126,156 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
 
     public function addGroups()
     {
-        $oAddFullGroupInfo = [
-            'id' => '',
-            'group' => 'group',
-            'enable' => 'enable',
-            'timeout' => 'timeout',
-            'otp_mode' => 'otp_mode',
-            'company' => 'company',
-            'signature' => 'signature',
-            'support_page' => 'support_page',
-            'smtp_server' => 'smtp_server',
-            'smtp_login' => 'smtp_login',
-            'smtp_password' => 'smtp_password',
-            'support_email' => 'support_email',
-            'templates' => 'templates',
-            'copies' => 'copies',
-            'reports' => 'reports',
-            'default_leverage' => 'default_leverage',
-            'default_deposit' => 'default_deposit',
-            'maxsecurities' => 'maxsecurities',
-            'ConGroupSec' => 'ConGroupSec',
-            'ConGroupMargin' => 'ConGroupMargin',
-            'secmargins_total' => 'secmargins_total',
-            'currency' => 'currency',
-            'credit' => 'credit',
-            'margin_call' => 'margin_call',
-            'margin_mode' => 'margin_mode',
-            'margin_stopout' => 'margin_stopout',
-            'interestrate' => 'interestrate',
-            'use_swap' => 'use_swap',
-            'news' => 'news',
-            'rights' => 'rights',
-            'check_ie_prices' => 'check_ie_prices',
-            'maxpositions' => 'maxpositions',
-            'close_reopen' => 'close_reopen',
-            'hedge_prohibited' => 'hedge_prohibited',
-            'close_fifo' => 'close_fifo',
-            'hedge_largeleg' => 'hedge_largeleg',
-            'unused_rights' => 'unused_rights',
-            'securities_hash' => 'securities_hash',
-            'margin_type' => 'margin_type',
-            'archive_period' => 'archive_period',
-            'archive_max_balance' => 'archive_max_balance',
-            'stopout_skip_hedged' => 'stopout_skip_hedged',
-            'archive_pending_period' => 'archive_pending_period',
-            'news_languages' => 'news_languages',
-            'news_languages_total' => 'news_languages_total',
-            'reserved' => 'reserved'];
 
-        Groups::create($oAddFullGroupInfo);
+        $message='WMQADMINWEBAPI MASTER='.Config('mt4configrations.apiAdminPassword').'|MODE=3';
+
+        $apiGroups=json_decode(utf8_encode( $this->sendApiMessage($message)));
 
 
-        return true;
+        if(isset($apiGroups->result) && $apiGroups->result==1 &&  isset($apiGroups->data) && count($apiGroups->data)) {
+
+            $groups = [];
+            $groupSecs=[];
+            $groupMargins=[];
+            foreach ($apiGroups->data as $group) {
+                $groups[] = [
+
+                    'group' => $group->group,
+                    'enable' => $group->enable,
+                    'timeout' => $group->timeout,
+                    'otp_mode' => $group->otp_mode,
+                    'company' => $group->company,
+                    'signature' => $group->signature,
+                    'support_page' => $group->support_page,
+                    'smtp_server' => $group->smtp_server,
+                    'smtp_login' => $group->smtp_login,
+                    'smtp_password' => $group->smtp_password,
+                    'support_email' => $group->support_email,
+                    'templates' => $group->templates,
+                    'copies' => $group->copies,
+                    'reports' => $group->reports,
+                    'default_leverage' => $group->default_leverage,
+                    'default_deposit' => $group->default_deposit,
+                    'maxsecurities' => $group->maxsecurities,
+//                    'ConGroupSec' => $group->secgroups,
+//                    'ConGroupMargin' => $group->secmargins,
+                    'secmargins_total' => $group->secmargins_total,
+                    'currency' =>$group->currency,
+                    'credit' => $group->credit,
+                    'margin_call' => $group->margin_call,
+                    'margin_mode' => $group->margin_mode,
+                    'margin_stopout' => $group->margin_stopout,
+                    'interestrate' => $group->interestrate,
+                    'use_swap' => $group->use_swap,
+                    'news' => $group->news,
+                    'rights' => $group->rights,
+                    'check_ie_prices' => $group->check_ie_prices,
+                    'maxpositions' => $group->maxpositions,
+                    'close_reopen' => $group->close_reopen,
+                    'hedge_prohibited' => $group->hedge_prohibited,
+                    'close_fifo' => $group->close_fifo,
+                    'hedge_largeleg' =>$group->hedge_largeleg,
+                    'unused_rights' => '',
+                    'securities_hash' => $group->securities_hash,
+                    'margin_type' => $group->margin_type,
+                    'archive_period' => $group->archive_period,
+                    'archive_max_balance' => $group->archive_max_balance,
+                    'stopout_skip_hedged' => $group->stopout_skip_hedged,
+                    'archive_pending_period' => $group->archive_pending_period,
+                    'news_languages' => '',
+                    'news_languages_total' => '',
+                    'reserved' => ''];
+
+
+
+
+            if(count( $group->secgroups)){
+
+            foreach( $group->secgroups as $groupSec){
+                $groupSecs[]= [
+                'position'=>$groupSec->position,
+                'show'=>$groupSec->show,
+                'trade'=>$groupSec->trade,
+                'execution'=>$groupSec->execution,
+                'comm_base'=>$groupSec->comm_base,
+                'comm_type'=>$groupSec->comm_type,
+                'comm_lots'=>$groupSec->comm_lots,
+                'comm_agent'=>$groupSec->comm_agent,
+                'comm_agent_type'=>$groupSec->comm_agent_type,
+                'spread_diff'=>$groupSec->spread_diff,
+                'lot_min'=>$groupSec->lot_min,
+                'lot_max'=>$groupSec->lot_max,
+                'lot_step'=>$groupSec->lot_step,
+                'ie_deviation'=>$groupSec->ie_deviation,
+                'confirmation'=>$groupSec->confirmation,
+                'trade_rights'=>$groupSec->trade_rights,
+                'ie_quick_mode'=>$groupSec->ie_quick_mode,
+                'autocloseout_mode'=>$groupSec->autocloseout_mode,
+                'comm_tax'=>$groupSec->comm_tax,
+                'comm_agent_lots'=>$groupSec->comm_agent_lots,
+                'freemargin_mode'=>$groupSec->freemargin_mode,
+                'reserved'=>'']
+                ;
+            }
+        }
+            if(count( $group->secmargins)){
+
+                foreach( $group->secmargins as $groupMargin){
+                    $groupMargins[]= [
+                        'position'=>$groupMargin->position,
+                        'symbol'=>$groupMargin->symbol,
+                        'swap_long'=>$groupMargin->swap_long,
+                        'swap_short'=>$groupMargin->swap_short,
+                        'margin_divider'=>$groupMargin->margin_divider,
+                        'reserved'=>''
+
+                    ]
+                    ;
+                }
+            }
+            }
+
+            if(count($groups)){
+                Groups::truncate();
+                GroupsSecurities::truncate();
+                GroupsMargin::truncate();
+                Groups::insert($groups);
+                GroupsSecurities::insert($groupSecs);
+               
+                GroupsMargin::insert($groupMargins);
+                return true;
+            }
+        }
+
+        return false;
     }
 
 
     public function addSecurities()
     {
-        $oAddFullSecuritieInfo = [
-            'id' => '',
-            'name' => 'name',
-            'description' => 'description'];
 
-        SymbolGroup::create($oAddFullSecuritieInfo);
+        $message='WMQADMINWEBAPI MASTER='.Config('mt4configrations.apiAdminPassword').'|MODE=2';
+
+        $apiSecurity= json_decode($this->sendApiMessage($message));
+
+        if(isset($apiSecurity->result) && $apiSecurity->result==1 &&  isset($apiSecurity->data) && count($apiSecurity->data)){
+            SymbolGroup::truncate();
+        $groups=[];
+        foreach($apiSecurity->data as $security){
+
+            $groups[] = [
+            'name' => $security->name,
+            'description' =>  $security->description,
+            'position' =>  $security->position];
+
+        }
+        SymbolGroup::insert($groups);
 
 
         return true;
+        }
+
+        return false;
     }
 
     public function synchronizeSymbols()

@@ -10,6 +10,7 @@ class ConfigrationsSymbolGroup extends Model
     protected $fillable = [
         'id',
         'name',
-        'description'];
+        'description',
+        'position'];
 
 }

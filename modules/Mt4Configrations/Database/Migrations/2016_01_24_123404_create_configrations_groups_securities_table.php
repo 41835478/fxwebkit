@@ -15,7 +15,7 @@ class CreateConfigrationsGroupsSecuritiesTable extends Migration {
         Schema::create('configrations_groups_securities', function(Blueprint $table)
         {
             $table->increments('id');
-
+$table->integer('position');
             $table->integer('show');
 
             $table->integer('trade');

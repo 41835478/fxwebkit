@@ -16,6 +16,7 @@ class CreateConfigrationsGroupsMarginTable extends Migration {
         {
             $table->increments('id');
 
+            $table->tinyInteger('position');
             $table->char('symbol',12);
 
 

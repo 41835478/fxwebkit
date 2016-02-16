@@ -16,6 +16,7 @@ class CreateConfigrationsSymbolGroupTable extends Migration {
         {
             $table->increments('id');
 
+            $table->tinyInteger('position');
             $table->char('name',16);
             $table->char('description',64);
 
