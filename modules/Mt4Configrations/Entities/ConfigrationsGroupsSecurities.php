@@ -1,4 +1,4 @@
-<?php namespace Modules\Mt4configrations\Entities;
+<?php namespace Modules\Mt4Configrations\Entities;
    
 use Illuminate\Database\Eloquent\Model;
 
