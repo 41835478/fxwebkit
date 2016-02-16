@@ -15,7 +15,7 @@ class CreateConfigrationsSymbolsTable extends Migration {
         Schema::create('configrations_symbols', function(Blueprint $table)
         {
             $table->increments('id');
-            $table->string('name',50);
+       //     $table->string('name',50);
             $table->integer('securities_id');
 
 
@@ -38,7 +38,7 @@ class CreateConfigrationsSymbolsTable extends Migration {
             $table->integer('realtime');
             $table->timestamp('starting');
             $table->timestamp('expiration');
-            $table->string('sessions',7);
+        //    $table->string('sessions',7);
 
 
 
@@ -104,7 +104,7 @@ class CreateConfigrationsSymbolsTable extends Migration {
             $table->integer('quotes_delay');
             $table->integer('swap_openprice');
             $table->integer('swap_variation_margin');
-            $table->integer('unused');
+       //     $table->integer('unused');
            // $table->integer('unused',21);
 
 

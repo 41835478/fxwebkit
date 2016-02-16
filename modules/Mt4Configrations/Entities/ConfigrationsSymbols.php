@@ -7,7 +7,7 @@ class ConfigrationsSymbols extends Model {
     protected $table = 'configrations_symbols';
     public $timestamps = false;
     protected $fillable = ['id',
-        'name',
+       // 'name',
         'securities_id',
         'symbol',
         'description',
@@ -23,7 +23,7 @@ class ConfigrationsSymbols extends Model {
         'realtime',
         'starting',
         'expiration',
-        'sessions',
+   //     'sessions',
         'profit_mode',
         'profit_reserved',
         'filter',
@@ -63,6 +63,7 @@ class ConfigrationsSymbols extends Model {
         'quotes_delay',
         'swap_openprice',
         'swap_variation_margin',
-        'unused'];
+      //      'unused'
+    ];
 
 }

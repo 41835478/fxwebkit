@@ -66,6 +66,7 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
 
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+
         } else {
             $oResult = $oResult->get();
 
@@ -81,17 +82,22 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
 
         $oResult = new SymbolGroup();
 
+
         if (isset($aFilters['name']) && !empty($aFilters['name'])) {
+
             $oResult = $oResult->where('name', 'like', '%' . $aFilters['name'] . '%');
         }
-
+        $oResult = $oResult->where('name','!=','');
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
+
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+
         } else {
             $oResult = $oResult->get();
+
 
         }
 
@@ -107,6 +113,7 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
 
         if (isset($aFilters['name']) && !empty($aFilters['name'])) {
             $oResult = $oResult->where('name', 'like', '%' . $aFilters['name'] . '%');
+
         }
 
 
@@ -114,6 +121,7 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
 
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+
         } else {
             $oResult = $oResult->get();
 
@@ -267,6 +275,7 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
                     'description' =>  $security->description,
                     'position' =>  $security->position];
 
+
             }
             SymbolGroup::insert($groups);
 
@@ -296,7 +305,7 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
 
                 $symbols[] = [
 
-                    'name'=>'',
+           //         'name'=>'',
                     'securities_id'=>'securities_id',
                     'symbol'=>$symbol->symbol,
                     'description'=>$symbol->description,
@@ -352,7 +361,8 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
                     'quotes_delay'=>$symbol->quotes_delay,
                     'swap_openprice'=>$symbol->swap_openprice,
                     'swap_variation_margin'=>$symbol->swap_variation_margin,
-                    'unused'=>''];
+              //      'unused'=>''
+              ];
 
 
 

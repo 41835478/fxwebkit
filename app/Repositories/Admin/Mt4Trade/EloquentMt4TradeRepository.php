@@ -4,6 +4,7 @@ namespace Fxweb\Repositories\Admin\Mt4Trade;
 
 use Fxweb\Helpers\Fx;
 use Fxweb\Models\Mt4Trade;
+
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Illuminate\Support\Facades\DB;
 use Config;
