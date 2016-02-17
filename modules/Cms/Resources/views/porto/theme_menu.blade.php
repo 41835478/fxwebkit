@@ -1,4 +1,4 @@
-<nav>
+<nav style="    clear: right;">
     <ul class="nav nav-pills nav-main" id="mainMenu">
 
         @foreach($menu_array as $menu)
