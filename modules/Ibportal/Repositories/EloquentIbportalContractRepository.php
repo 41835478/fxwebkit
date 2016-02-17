@@ -77,12 +77,22 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     public function addPlan($planName, $planType, $public)
     {
+
+
+
         $planId = Plan::create([
             'name' => $planName,
             'type' => $planType,
             'public' => $public
         ]);
 
+
+        $agents= UserIbid::select('user_id')->all();
+        $assignPlanUsers=[];
+        foreach($agents as $agent){
+            $assignPlanUsers[]=['user_id'=>$agent->user_id,'plan_id'=>$planId->id];
+        }
+        PlanUsers::insert($assignPlanUsers);
         return $planId->id;
 
     }
