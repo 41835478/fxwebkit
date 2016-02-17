@@ -72,4 +72,5 @@ return [
     'of'=>'of',
     'to'=>'to',
     'showing'=>'showing',
+    'no_account_available'=>'No Account Available',
 ];
