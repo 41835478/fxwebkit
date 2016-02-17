@@ -461,4 +461,32 @@ class EloquentIbportalContractRepository implements IbportalContract
         }
         return ($aPublicMt4Users);
     }
+
+    public function editPlan($planId,$planName, $planType, $public)
+    {
+        $plan=Plan::find($planId);
+        $plan->name=$planName;
+        $plan->type=$planType;
+        $plan->public=$public;
+
+        $plan->save();
+        return $plan->id;
+
+    }
+
+
+    public function editPlanSymbols($planId, $symbols = [], $symbolsType = 0, $symbolsValue = 0)
+    {
+        PlanAliases::where('plan_id',$planId)->delete();
+
+        for ($i = 0; $i < count($symbols); $i++) {
+            PlanAliases::create([
+                'plan_id' => $planId,
+                'alias_id' => $symbols[$i],
+                'type' => $symbolsType[$i],
+                'value' => $symbolsValue[$i],
+            ]);
+        }
+
+    }
 }

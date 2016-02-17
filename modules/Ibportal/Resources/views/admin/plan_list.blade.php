@@ -99,13 +99,15 @@
                                     <td>{{ $oResult->type }}</td>
                                     <td>@if($oResult->public) {{trans('ibportal::ibportal.public') }}@endif </td>
                                     <td>
-
+                                        <a href="{{ route('admin.ibportal.editPlan').'?edit_id='.$oResult->id }}"
+                                           class="fa fa-edit"></a>
                                         <a href="{{ route('admin.ibportal.deletePlan').'?delete_id='.$oResult->id }}"
                                            class="fa fa-trash-o"></a>
                                         <a href="{{ route('admin.ibportal.detailPlan').'?edit_id='.$oResult->id }}"
                                            class="fa fa-file-text"></a>
                                         <a href="{{ route('admin.ibportal.assignPlan').'?planId='.$oResult->id }}"
                                            class="fa fa-link"></a>
+
                                     </td>
                                 </tr>
                             @endforeach

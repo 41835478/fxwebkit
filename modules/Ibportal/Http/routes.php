@@ -14,6 +14,7 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'ibportal', 'na
 		'getAddPlan' => 'admin.ibportal.addPlan',
 		'getDeletePlan'=>'admin.ibportal.deletePlan',
 		'getDetailPlan'=>'admin.ibportal.detailPlan',
+		'getEditPlan'=>'admin.ibportal.editPlan',
 		'getAssignPlan'=>'admin.ibportal.assignPlan',
 		'getAliasesList'=>'admin.ibportal.aliasesList',
 		'getAddAliases'=>'admin.ibportal.addAliases',

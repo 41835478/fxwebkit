@@ -509,5 +509,55 @@ class IbportalController extends Controller
 
     }
 
+    public function getEditPlan(Request $request)
+    {
+        $oPlanDetails = $this->Ibportal->getPlanDetails($request->edit_id);
+
+        $aliases=$this->Ibportal->getAliases();
+
+        foreach ($oPlanDetails->first()->aliases as $aliase) {
+
+            if (!isset($aliases[$aliase->id])) continue;
+            unset($aliases[$aliase->id]);
+        }
+
+
+
+        $data = [
+            'name' => '',
+            'planTypes' =>['Commission' => 'Commission', 'Rebate' => 'Rebate'],
+            'symbolTypes' => ['Money' => 'Money', 'Point' => 'Point', 'Percentage' => 'Percentage'],
+            'aliases' =>$aliases ,
+        ];
+
+
+        return view('ibportal::admin.editPlan')
+            ->with('oPlanDetails', $oPlanDetails->first())->with('data',$data);
+    }
+
+    public function postEditPlan(Request $request)
+    {
+        // TODO check validation
+        $planId=$request->plan_id;
+        $planName = $request->planName;
+        $planType = $request->planType;
+        $planPublic = ($request->has('public')) ? true : false;
+
+        $editResult=$this->Ibportal->editPlan($planId,$planName, $planType, $planPublic);
+
+        if ($request->has('selectedSymbols') && $editResult) {
+            $selectedSymbols = $request->selectedSymbols;
+            $symbolsType = $request->symbolsType;
+            $symbolsValue = $request->symbolsValue;
+            $this->Ibportal->editPlanSymbols($planId, $selectedSymbols, $symbolsType, $symbolsValue);
+        }
+
+        if ($planId > 0) {
+            return Redirect::route('admin.ibportal.plansList');
+        } else {
+            return redirect()->back()->withErrors(trans('ibportal::ibportal.no_thing_added'));
+        }
+    }
+
 
 }
