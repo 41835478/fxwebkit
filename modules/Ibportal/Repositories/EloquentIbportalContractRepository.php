@@ -7,7 +7,7 @@ use Modules\Ibportal\Entities\IbportalPlan as Plan;
 use Modules\Ibportal\Entities\IbportalPlanAliases as PlanAliases;
 use Modules\Ibportal\Entities\IbportalAliases as Aliases;
 use Modules\Ibportal\Entities\IbportalPlanUsers as PlanUsers;
-use Modules\Mt4configrations\Entities\ConfigrationsSymbols as Symbols;
+use Modules\Mt4Configrations\Entities\ConfigrationsSymbols as Symbols;
 use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
 use Modules\Ibportal\Entities\IbportalAgentUser as AgentUser;
 use Fxweb\Models\Mt4User;
