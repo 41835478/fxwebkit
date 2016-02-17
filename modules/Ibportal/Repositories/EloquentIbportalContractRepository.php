@@ -87,7 +87,7 @@ class EloquentIbportalContractRepository implements IbportalContract
         ]);
 
 
-        $agents= UserIbid::select('user_id')->all();
+        $agents= UserIbid::select('user_id')->get();
         $assignPlanUsers=[];
         foreach($agents as $agent){
             $assignPlanUsers[]=['user_id'=>$agent->user_id,'plan_id'=>$planId->id];
