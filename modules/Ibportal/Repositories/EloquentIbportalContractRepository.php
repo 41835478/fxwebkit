@@ -86,13 +86,14 @@ class EloquentIbportalContractRepository implements IbportalContract
             'public' => $public
         ]);
 
-
+if($public){
         $agents= UserIbid::select('user_id')->get();
         $assignPlanUsers=[];
         foreach($agents as $agent){
             $assignPlanUsers[]=['user_id'=>$agent->user_id,'plan_id'=>$planId->id];
         }
         PlanUsers::insert($assignPlanUsers);
+}
         return $planId->id;
 
     }
@@ -480,6 +481,18 @@ class EloquentIbportalContractRepository implements IbportalContract
         $plan->public=$public;
 
         $plan->save();
+
+
+        if($public){
+            $agents= UserIbid::select('user_id')->get();
+            $assignPlanUsers=[];
+            foreach($agents as $agent){
+                $assignPlanUsers[]=['user_id'=>$agent->user_id,'plan_id'=>$plan->id];
+            }
+            PlanUsers::insert($assignPlanUsers);
+        }else{
+            PlanUsers::where('plan_id',$plan->id)->delete();
+        }
         return $plan->id;
 
     }
