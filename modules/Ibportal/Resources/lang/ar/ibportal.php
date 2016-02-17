@@ -76,6 +76,7 @@ return [
     'Login' => 'Login',
     'ExactLogin' => 'Exact Login',
     'totalCommission'=>'Total Commission',
+    'editPlan'=>'Edit Plan',
 
 
 

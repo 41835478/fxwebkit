@@ -105,8 +105,10 @@
                                            class="fa fa-trash-o"></a>
                                         <a href="{{ route('admin.ibportal.detailPlan').'?edit_id='.$oResult->id }}"
                                            class="fa fa-file-text"></a>
+                                        @if(!$oResult->public)
                                         <a href="{{ route('admin.ibportal.assignPlan').'?planId='.$oResult->id }}"
                                            class="fa fa-link"></a>
+                                            @endif
 
                                     </td>
                                 </tr>
