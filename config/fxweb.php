@@ -19,18 +19,30 @@ return [
     'pagination_size' => env('PAGINATION_SIZE', 25),
     'mt4CheckHost'=>'192.168.15.10',
     'mt4CheckPort'=>443,
-    'Group'=>[
+    'GroupLive'=>[
            '1'=> '1',
             '2'=>'2',
             '3'=>'3',
             '4'=>'4',
         ],
-    'Deposit'=>[
+    'GroupDemo'=>[
+        '1'=> '10',
+        '2'=>'20',
+        '3'=>'30',
+        '4'=>'40',
+    ],
+    'DepositLive'=>[
            '1000'=> '1000',
             '5000'=>'5000',
             '10000'=>'10000',
             '100000'=>'100000',
         ],
+    'DepositDemo'=>[
+        '1000'=> '10',
+        '5000'=>'20',
+        '10000'=>'30',
+        '100000'=>'40',
+    ],
     'theme' => [
         'color' => env('THEME_COLOR', 'default'),
         'navbarFixed' => env('FIXED_NAVBAR', false),

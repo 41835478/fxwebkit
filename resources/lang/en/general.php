@@ -136,4 +136,6 @@ return [
     'leverage'=>'Leverage',
     'group'=>'Group',
     'submit'=>'Submit',
+    'mt4LiveAccount'=>'Mt4 Live Account',
+    'mt4DemoAccount'=>'Mt4 Demo Account',
 ];

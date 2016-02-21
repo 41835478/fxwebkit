@@ -16,8 +16,11 @@
             <li  >
                 <a href="{{ route('client.addMt4User')}}">{{ trans('general.assign_existing_mt4') }}</a>
             </li>
+            <li >
+                <a href="{{ route('client.mt4LiveAccount')}}" >{{ trans('general.mt4LiveAccount') }}</a>
+            </li>
             <li class="active">
-                <a href="{{ route('client.addMt4UserFullDetails')}}" >{{ trans('general.create_new_mt4') }}</a>
+                <a href="{{ route('client.mt4DemoAccount')}}" >{{ trans('general.mt4DemoAccount') }}</a>
             </li>
         </ul>
    

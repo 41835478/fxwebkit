@@ -4,8 +4,7 @@
 
 <div class="page-header">
     <h1>{{ trans('general.addMt4User') }}</h1>
-</div>  
-
+</div>
 <div class="panel">
     {!! Form::open(['class'=>'panel form-horizontal']) !!}
     <div class="panel-heading">
@@ -14,45 +13,82 @@
 
     <div class="panel-body">
         <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
-            <li class="active" >
-                <a href="#profile-tabs-board" data-toggle="tab">{{ trans('general.assign_existing_mt4') }}</a>
+            <li  >
+                <a href="{{ route('client.addMt4User')}}">{{ trans('general.assign_existing_mt4') }}</a>
             </li>
-            <li >
+            <li class="active">
                 <a href="{{ route('client.mt4LiveAccount')}}" >{{ trans('general.mt4LiveAccount') }}</a>
             </li>
             <li >
                 <a href="{{ route('client.mt4DemoAccount')}}" >{{ trans('general.mt4DemoAccount') }}</a>
             </li>
-
         </ul>
-  
-
+   
     <div class="row">
-        <div class="col-sm-6">
+        
+         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.Login') }}</label>
-                {!! Form::text('login',$userInfo['login'],['class'=>'form-control']) !!}
+                <label class="control-label">{{ trans('general.leverage') }}</label>
+                {!! Form::select('array_leverage',$array_leverage,'',['id'=>'jq-validation-select2','class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
+       
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('general.password') }}</label>
-                {!! Form::password("password",["class"=>"form-control","value"=>$userInfo['password']]) !!}
+                <label class="control-label">{{ trans('general.group') }}</label>
+                {!! Form::select('array_group',$array_group,'',['class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
     </div><!-- row -->
-      </div>
+
+    <div class="row">
+        
+        <div class="col-sm-6">
+            <div class="form-group no-margin-hr">
+                <label class="control-label">{{ trans('general.deposit') }}</label>
+                {!! Form::select('array_deposit',$array_deposit,'',['id'=>'jq-validation-select2','class'=>'form-control']) !!}
+            </div>
+        </div><!-- col-sm-6 -->
+        
+
+        <div class="col-sm-6">
+            <div class="form-group no-margin-hr">
+                <label class="control-label">{{ trans('general.password') }}</label>
+                {!! Form::password("password",["class"=>"form-control","value"=>$mt4_user_details['password']]) !!}
+
+            </div>
+        </div><!-- col-sm-6 -->
+
+    </div><!-- row -->
+
+    <div class="row">
+        
+       
+    </div><!-- row -->
+
+    <div class="row">
+        
+        <div class="col-sm-6">
+            <div class="form-group no-margin-hr">
+                <label class="control-label">{{ trans('general.investor') }}</label>
+                {!! Form::password("investor",["class"=>"form-control","value"=>$mt4_user_details['password']]) !!}
+            </div>
+        </div><!-- col-sm-6 -->
+
+    </div><!-- row -->
+
+    
+ </div>
 
 @if($errors->any())
 <div class="alert alert-danger alert-dark">
     @foreach($errors->all() as $key=>$error)
     <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
     @endforeach
-
 </div>
 @endif
 <div class="panel-footer text-right">
-    <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']  or 0 }}">{{ trans('general.assign') }}</button>
+    <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $mt4_user_details['edit_id']  or 0 }}">{{ trans('general.submit') }}</button>
 </div>
 </div>
 {!! Form::close() !!}
@@ -74,7 +110,6 @@
     $('#jq-validation-select2').select2({allowClear: true, placeholder: 'Select a country...'}).change(function () {
         $(this).valid();
     });
-    
 
 </script>
 @stop

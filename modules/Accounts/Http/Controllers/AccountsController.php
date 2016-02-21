@@ -265,6 +265,7 @@ class AccountsController extends Controller
     public function getAsignMt4Users(Request $oRequest)
     {
 
+
         $account_id = $oRequest->account_id;
 
         $oGroups = $this->oMt4User->getAllGroups();
@@ -533,9 +534,11 @@ class AccountsController extends Controller
     public function getClientAddMt4User(Request $oRequest)
     {
 
+
         $userInfo = [
             'login' => $oRequest['login'],
-            'password' => $oRequest['password']];
+            'password' => $oRequest['password']
+        ];
 
         return view('accounts::clientAddMt4User')->with('userInfo', $userInfo);
     }
@@ -586,7 +589,6 @@ class AccountsController extends Controller
             'oldPassword' => '',
             'leverage_array' => $Result,
             'leverage' => $oResults['LEVERAGE']];
-
 
 
         return view('accounts::addLeverage')

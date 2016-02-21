@@ -11,13 +11,18 @@ return [
         '100' => '1:100',
         '150' => '1:150',
     ],
+    'leverageDemo' => [
+        '50' => '1:50',
+        '100' => '1:100',
+        '150' => '1:150',
+    ],
     'operation' => [
         '0' => 'Credit In',
         '1' => 'Credit Out',
         '2' => 'Deposit',
         '3' => 'Withdraw',
     ],
-    'apiReqiredConfirmMt4Password' => true,
+    'apiReqiredConfirmMt4Password' => false,
     'apiMasterPassword' => 'PASSWORD',
     'allowTransferToUnsignedMT4' => false,
 
