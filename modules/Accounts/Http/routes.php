@@ -19,6 +19,9 @@ Route::group(['middleware' => ['authenticate.admin'], 'prefix' => 'accounts', 'n
         'getMt4ChangePassword' => 'accounts.mt4ChangePassword',
         'getMt4InternalTransfer' => 'accounts.mt4InternalTransfer',
         'getMt4Operation' => 'accounts.mt4Operation',
+        'getAllowLiveAccount' => 'accounts.allowLiveAccoun',
+        'getUnAllowedLiveAccount' => 'accounts.unAllowedLiveAccount',
+
     ]);
 });
 

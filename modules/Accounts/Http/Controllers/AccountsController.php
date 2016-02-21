@@ -576,6 +576,31 @@ class AccountsController extends Controller
     }
 
 
+    public function getAllowLiveAccount(Request $oRequest)
+    {
+        $user = Sentinel::findById($oRequest->account_id);
+
+        $role = Sentinel::findRoleByName('denyLiveAccount');
+        $role->users()->detach($user);
+
+        return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.allowCreatLiveMt4Account'));
+
+
+    }
+
+
+    public function getUnAllowedLiveAccount(Request $oRequest)
+    {
+        $user = Sentinel::findById($oRequest->account_id);
+
+        $role = Sentinel::findRoleByName('denyLiveAccount');
+        $role->users()->attach($user);
+
+        return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.denyCreatLiveMt4Account'));
+
+    }
+
+
     public function getMt4Leverage(Request $oRequest)
     {
 
