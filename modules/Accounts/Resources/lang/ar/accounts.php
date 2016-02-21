@@ -142,4 +142,6 @@ return [
     'un_assign'=>'UnAssignشسشس',
     'block_user'=>'Block يبشسUser',
     'unblock_user'=>'Unblock بيسUser',
+    'allowCreatLiveMt4Account'=>'Allow Creat Live Mt4 Account',
+    'denyCreatLiveMt4Account'=>'Deny Creat Live Mt4 Account',
 ];

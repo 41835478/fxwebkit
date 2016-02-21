@@ -265,6 +265,7 @@ class AccountsController extends Controller
     public function getAsignMt4Users(Request $oRequest)
     {
 
+
         $account_id = $oRequest->account_id;
 
         $oGroups = $this->oMt4User->getAllGroups();
@@ -533,9 +534,11 @@ class AccountsController extends Controller
     public function getClientAddMt4User(Request $oRequest)
     {
 
+
         $userInfo = [
             'login' => $oRequest['login'],
-            'password' => $oRequest['password']];
+            'password' => $oRequest['password']
+        ];
 
         return view('accounts::clientAddMt4User')->with('userInfo', $userInfo);
     }
@@ -573,6 +576,31 @@ class AccountsController extends Controller
     }
 
 
+    public function getAllowLiveAccount(Request $oRequest)
+    {
+        $user = Sentinel::findById($oRequest->account_id);
+
+        $role = Sentinel::findRoleByName('denyLiveAccount');
+        $role->users()->detach($user);
+
+        return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.allowCreatLiveMt4Account'));
+
+
+    }
+
+
+    public function getUnAllowedLiveAccount(Request $oRequest)
+    {
+        $user = Sentinel::findById($oRequest->account_id);
+
+        $role = Sentinel::findRoleByName('denyLiveAccount');
+        $role->users()->attach($user);
+
+        return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.denyCreatLiveMt4Account'));
+
+    }
+
+
     public function getMt4Leverage(Request $oRequest)
     {
 
@@ -586,7 +614,6 @@ class AccountsController extends Controller
             'oldPassword' => '',
             'leverage_array' => $Result,
             'leverage' => $oResults['LEVERAGE']];
-
 
 
         return view('accounts::addLeverage')

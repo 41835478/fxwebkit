@@ -72,4 +72,5 @@ return [
     'of'=>'oنتاf',
     'to'=>'tنo',
     'showing'=>'shoتانwing',
+    'no_account_available'=>'No Account Available',
 ];

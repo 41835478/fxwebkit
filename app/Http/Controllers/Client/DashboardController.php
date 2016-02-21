@@ -42,8 +42,11 @@ class DashboardController extends Controller
         */
         $clientId = Sentinel::getUser()->id;
 
+
         list($firstLogin, $aLoginList) = $this->oMt4User->getUsersMt4Users($clientId);
+
         $login = ($oRequest->has('login')) ? $oRequest->login : $firstLogin;
+
         list($horizontal_line_numbers, $growth_array, $averages_array, $statistics, $symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->oMt4Trade->getClinetGrowthChart($login);
 
 
@@ -64,6 +67,7 @@ class DashboardController extends Controller
     public function getBalanceChart(ClosedTradesRequest $oRequest)
     {
         $clientId = Sentinel::getUser()->id;
+
 
         list($firstLogin, $aLoginList) = $this->oMt4User->getUsersMt4Users($clientId);
         $login = ($oRequest->has('login')) ? $oRequest->login : $firstLogin;

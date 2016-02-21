@@ -31,7 +31,11 @@
         </div>
 
         <section id="chart_section">
-            <div id="growth_chart_all_div"></div>
+            @if(count($balance_array))
+                <div id="growth_chart_all_div"></div>
+            @else
+                <div class="text-center">{{ trans('user.no_account_available') }}</div>
+            @endif
         </section>
     </div>
 
@@ -43,7 +47,7 @@
                 <span class="panel-title">{{ trans('general.statistics') }}</span>
             </div>
 
-        </div>
+
         <table id='statistics_table' >
             <tbody>
             <tr> <th>{{ trans('general.trades') }}</th><td>{!! $statistics['trades'] !!}</td><th>{{ trans('general.recovery_factor') }}</th><td>{!! $statistics['recovery_factor'] !!}</td></tr>
@@ -93,10 +97,14 @@
             <div class="panel-heading">
                 <span class="panel-title">{{ trans('general.tradePopulation') }}</span>
             </div>
+            @if(count($symbols_pie_array))
             <div class="panel-body">
                 <div id="bar_negative_stack_all_div" class="col-xs-6"></div>
                 <div id="symbols_pie_chart_all_div" class="col-xs-6"></div>
             </div>
+            @else
+                <div class="text-center">{{ trans('user.no_account_available') }}</div>
+            @endif
         </div>
     </section>
 
