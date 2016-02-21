@@ -17,7 +17,7 @@ return [
         '2' => 'Deposit',
         '3' => 'Withdraw',
     ],
-    'apiReqiredConfirmMt4Password' => true,
+    'apiReqiredConfirmMt4Password' => false,
     'apiMasterPassword' => 'PASSWORD',
     'allowTransferToUnsignedMT4' => false,
 

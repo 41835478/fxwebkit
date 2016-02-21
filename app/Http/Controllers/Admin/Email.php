@@ -67,4 +67,103 @@ class Email extends Controller {
 
     }
 
+
+    public function newUserSignUp($info) {
+
+
+        $this->sendEmail('admin.email.templates.en.newUserSignUp',
+            [
+                'name' =>'',
+                'expiryHtml'=>''
+            ],
+            $info['email'],
+            'New User Sign Up');
+
+
+    }
+
+
+    public function activeAccount($info) {
+
+
+        $this->sendEmail('admin.email.templates.en.activeAccount',
+            [
+                'name' =>'',
+                'expiryHtml'=>''
+            ],
+            $info['email'],
+            'Active Account');
+
+
+    }
+
+    public function forgetPassword($info) {
+
+
+        $this->sendEmail('admin.email.templates.en.forgetPassword',
+            [
+                'name' =>'',
+                'expiryHtml'=>''
+            ],
+            $info['email'],
+            'Reset Password');
+
+
+    }
+
+
+
+    public function changeLeverage($info) {
+
+
+        $this->sendEmail('admin.email.templates.en.changeLeverage',
+            [
+                'name' =>'',
+                'expiryHtml'=>''
+            ],
+            $info['email'],
+            'User change leverage');
+
+
+    }
+
+
+
+    public function changeMt4Password($info) {
+
+
+        $this->sendEmail('admin.email.templates.en.changeMt4Password',
+            [
+                'name' =>'',
+                'expiryHtml'=>''
+            ],
+            $info['email'],
+            'Change Mt4 Password');
+
+
+    }
+
+
+    public function internalTransfers($info) {
+
+
+        $this->sendEmail('admin.email.templates.en.internalTransfers',
+            [
+                'name' =>'',
+                'expiryHtml'=>''
+            ],
+            $info['email'],
+            'Internal Transfers');
+
+
+    }
+
+
+
+
+//
+//Leverage
+//Change Password
+//Internal Transfer
+
 }
