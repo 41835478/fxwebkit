@@ -133,11 +133,14 @@
                                             @endif
 
                                             @if(!$oResult->inRole('denyLiveAccount'))
+
                                                 <a href="{{ route('accounts.unAllowedLiveAccount').'?account_id='.$oResult->id }}"
-                                                   class="fa fa-minus-square"></a>
+                                                   class="fa fa-circle-o"></a>
+
                                             @else
+
                                                 <a href="{{ route('accounts.allowLiveAccoun').'?account_id='.$oResult->id }}"
-                                                   class="fa fa-minus-square-o"></a>
+                                                   class="fa fa-check-circle-o"></a>
                                             @endif
 
 

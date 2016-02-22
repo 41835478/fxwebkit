@@ -14,7 +14,7 @@ return [
         '100' => 'type',
         '150' => 'type',
     ],
-    'title' => 'plans',
+    'agreemment'=>'Test',
     'admin_menu' => [
 
         [
@@ -37,7 +37,13 @@ return [
             'route' => 'admin.ibportal.agentsCommission',
             'title' => 'agentsCommission',
             'icon' => 'fa fa-money',
+        ],
+        [
+            'route' => 'admin.ibportal.ibportalSettings',
+            'title' => 'settings',
+            'icon' => 'fa fa-gears',
         ]
+
 
     ],
     'client_menu' => [

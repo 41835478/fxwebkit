@@ -77,23 +77,20 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     public function addPlan($planName, $planType, $public)
     {
-
-
-
         $planId = Plan::create([
             'name' => $planName,
             'type' => $planType,
             'public' => $public
         ]);
 
-if($public){
-        $agents= UserIbid::select('user_id')->get();
-        $assignPlanUsers=[];
-        foreach($agents as $agent){
-            $assignPlanUsers[]=['user_id'=>$agent->user_id,'plan_id'=>$planId->id];
+        if ($public) {
+            $agents = UserIbid::select('user_id')->get();
+            $assignPlanUsers = [];
+            foreach ($agents as $agent) {
+                $assignPlanUsers[] = ['user_id' => $agent->user_id, 'plan_id' => $planId->id];
+            }
+            PlanUsers::insert($assignPlanUsers);
         }
-        PlanUsers::insert($assignPlanUsers);
-}
         return $planId->id;
 
     }
@@ -473,25 +470,25 @@ if($public){
         return ($aPublicMt4Users);
     }
 
-    public function editPlan($planId,$planName, $planType, $public)
+    public function editPlan($planId, $planName, $planType, $public)
     {
-        $plan=Plan::find($planId);
-        $plan->name=$planName;
-        $plan->type=$planType;
-        $plan->public=$public;
+        $plan = Plan::find($planId);
+        $plan->name = $planName;
+        $plan->type = $planType;
+        $plan->public = $public;
 
         $plan->save();
 
 
-        if($public){
-            $agents= UserIbid::select('user_id')->get();
-            $assignPlanUsers=[];
-            foreach($agents as $agent){
-                $assignPlanUsers[]=['user_id'=>$agent->user_id,'plan_id'=>$plan->id];
+        if ($public) {
+            $agents = UserIbid::select('user_id')->get();
+            $assignPlanUsers = [];
+            foreach ($agents as $agent) {
+                $assignPlanUsers[] = ['user_id' => $agent->user_id, 'plan_id' => $plan->id];
             }
             PlanUsers::insert($assignPlanUsers);
-        }else{
-            PlanUsers::where('plan_id',$plan->id)->delete();
+        } else {
+            PlanUsers::where('plan_id', $plan->id)->delete();
         }
         return $plan->id;
 
@@ -500,7 +497,7 @@ if($public){
 
     public function editPlanSymbols($planId, $symbols = [], $symbolsType = 0, $symbolsValue = 0)
     {
-        PlanAliases::where('plan_id',$planId)->delete();
+        PlanAliases::where('plan_id', $planId)->delete();
 
         for ($i = 0; $i < count($symbols); $i++) {
             PlanAliases::create([
@@ -511,5 +508,10 @@ if($public){
             ]);
         }
 
+    }
+
+    public function ibportalSettings($ibportalSetting)
+    {
+     //   dd($ibportalSetting);
     }
 }
