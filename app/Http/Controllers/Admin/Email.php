@@ -67,4 +67,107 @@ class Email extends Controller {
 
     }
 
+
+    public function newUserSignUp($info) {
+
+
+        $this->sendEmail('admin.email.templates.en.newUserSignUp',
+            [
+                'name' =>'',
+                'expiryHtml'=>''
+            ],
+            $info['email'],
+            'New User Sign Up');
+
+
+    }
+
+
+    public function activeAccount($info) {
+
+
+        $this->sendEmail('admin.email.templates.en.activeAccount',
+            [
+                'name' =>'',
+                'expiryHtml'=>''
+            ],
+            $info['email'],
+            'Active Account');
+
+
+    }
+
+    public function forgetPassword($info) {
+
+
+        $this->sendEmail('admin.email.templates.en.forgetPassword',
+            [
+                'userEmail' =>$info['userEmail'],
+                'code'=>$info['code'],
+                'website'=>$info['website'],
+                'userId'=>$info['userId']
+            ],
+            $info['userEmail'],
+            'Reset Password');
+
+
+    }
+
+
+
+    public function changeLeverage($info) {
+
+
+        $this->sendEmail('admin.email.templates.en.changeLeverage',
+            [
+                'login' =>$info['login'],
+                'leverage'=>$info['leverage']
+            ],
+            $info['email'],
+            'User change leverage');
+
+
+    }
+
+
+
+    public function changeMt4Password($info) {
+
+
+        $this->sendEmail('admin.email.templates.en.changeMt4Password',
+            [
+                'login'=>$info['login'],
+                'newPassword'=>$info['newPassword']
+
+            ],
+            $info['email'],
+            'Change Mt4 Password');
+
+
+    }
+
+
+    public function internalTransfers($info) {
+
+
+        $this->sendEmail('admin.email.templates.en.internalTransfers',
+            [
+                'login1'=>$info['login1'],
+                'login2'=>$info['login2'],
+                'amount'=>$info['amount']
+            ],
+            $info['email'],
+            'Internal Transfers');
+
+
+    }
+
+
+
+
+//
+//Leverage
+//Change Password
+//Internal Transfer
+
 }

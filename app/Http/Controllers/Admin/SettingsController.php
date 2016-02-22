@@ -43,7 +43,14 @@ class SettingsController extends Controller
             'newContract' => 'New Contract',
             'massMailler' => 'Mass Mailler',
             'newAgentNotify' => 'New Agent Notify',
-            'withdrawRequest' => 'Withdraw Request'
+            'withdrawRequest' => 'Withdraw Request',
+            'changeLeverage' => 'User Change Leverage',
+            'newUserSignUp'=>'New User Sign Up',
+            'activeAccount'=>'Active Account',
+            'forgetPassword'=>'Forget Password',
+            'changeMt4Password'=>'Mt4 User Change Password',
+            'internalTransfers'=>'Internal Transfers'
+
         ];
     }
 

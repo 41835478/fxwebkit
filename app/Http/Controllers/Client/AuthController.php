@@ -29,6 +29,8 @@ use Fxweb\Repositories\Admin\User\UserContract;
 use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
 use Modules\Ibportal\Entities\IbportalAgentUser as AgentUser;
 
+use Cartalyst\Sentinel\Laravel\Facades\Reminder;
+
 class AuthController extends Controller
 {
 
@@ -188,8 +190,72 @@ class AuthController extends Controller
 
     public function getRecover()
     {
-        //
+
+        return view('client.user.forgetPassword')
+            ->with('random', rand(1, 8));
     }
+
+    public function postRecover(Request $oRequest)
+    {
+
+        /* TODO[moaid] translate page with forgetPassword blade and resetPassword blade */
+$message=trans('PleaseTryAgain');
+        $credentials = [
+            'login' => $oRequest->email,
+        ];
+
+        $user = Sentinel::findByCredentials($credentials);
+
+
+        if($user) {
+            $oReminder = Reminder::create($user);
+
+            if($oReminder){
+
+                $oEmail=new Email();
+                $oEmail->forgetPassword([
+                    'userEmail'=> $oRequest->email,
+                    'code'=>$oReminder->code,
+                    'userId'=>$user->id,
+                    'website'=>$oRequest->root()
+                ]);
+
+                $message=trans('checkEmailResetPassword');
+            }
+
+        }else{
+$message=trans('userNotExist');
+        }
+        return view('client.user.forgetPassword')
+            ->with('random', rand(1, 8))
+            ->withErrors($message);
+    }
+    function getResetForgetPassword($userId,$code){
+
+        return view('client.user.resetForgetPassword')
+            ->with('random', rand(1, 8));
+    }
+    function postResetForgetPassword(Request $oRequest,$userId,$code){
+        $message=trans('PleaseTryAgain');
+        $user = Sentinel::findById($userId);
+
+        /* TODO validate password and confirm from Request not from code */
+     if($oRequest->password ==$oRequest->confirmPassword && count($oRequest->password) > 7){
+        if ($reminder = Reminder::complete($user, $code, 'new_password_here'))
+        {
+            // Reminder was successfull
+            return Redirect::route('client.auth.login');
+        }
+     }else{
+         $message=trans('invalidPassord');
+     }
+
+
+        return view('client.user.resetForgetPassword')
+            ->with('random', rand(1, 8))
+            ->withErrors($message);
+    }
+
 
     public function getFacebookLogin()
     {

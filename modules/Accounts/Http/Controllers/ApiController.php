@@ -1,5 +1,6 @@
 <?php namespace Modules\Accounts\Http\Controllers;
 
+use Fxweb\Http\Controllers\admin\Email;
 use Pingpong\Modules\Routing\Controller;
 
 class ApiController extends Controller {
@@ -75,7 +76,13 @@ class ApiController extends Controller {
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=2|LOGIN='.$login.'|'.$password.'NPASS='.$newPassword.'|TYPE=0|MANAGER=1';
-		         return $this->getApiResponseMessage($this->sendApiMessage($message));
+		$result=$this->sendApiMessage($message);
+
+		if($result =='OK' ){
+			$email=new Email();
+			$email->changeMt4Password(['email'=>config('fxweb.adminEmail'),'login'=>$login,'newPassword'=>$newPassword]);
+		}
+		return $this->getApiResponseMessage($result);
 	}
 
 	public function changeMt4Leverage($login,$leverage,$oldPassword=null){
@@ -84,8 +91,13 @@ class ApiController extends Controller {
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=1|LOGIN='.$login.'|'.$password.'LEVERAGE='.$leverage.'|MANAGER=1';
 
+		$result=$this->sendApiMessage($message);
 
-                return $this->getApiResponseMessage($this->sendApiMessage($message));
+		if($result =='OK' ){
+			$email=new Email();
+			$email->changeLeverage(['email'=>config('fxweb.adminEmail'),'login'=>$login,'leverage'=>$leverage]);
+		}
+                return $this->getApiResponseMessage($result);
 	}
 
 	public function internalTransfer($login1,$login2,$amount,$oldPassword=null){
@@ -94,7 +106,14 @@ class ApiController extends Controller {
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=4|LOGIN='.$login1.'|'.$password.'TOACC='.$login2.'|AMOUNT='.$amount.'|MANAGER=1';
 
-                return $this->getApiResponseMessage($this->sendApiMessage($message));
+
+		$result=$this->sendApiMessage($message);
+
+		if($result =='OK' ){
+			$email=new Email();
+			$email->internalTransfers(['email'=>config('fxweb.adminEmail'),'login1'=>$login1,'login2'=>$login2,'amount'=>$amount]);
+		}
+		return $this->getApiResponseMessage($result);
 	}
         
         public function operation($login,$amount,$mode,$oldPassword=null){
@@ -102,6 +121,7 @@ class ApiController extends Controller {
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE='.$mode.'|'.'LOGIN='.$login.'|'.$password.'AMOUNT='.$amount.'|COMMENT=ONLINE';
+
 
                 return $this->getApiResponseMessage($this->sendApiMessage($message));
 	}

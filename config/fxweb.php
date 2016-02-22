@@ -12,13 +12,18 @@
  */
 
 return [
-    'app_name' => env('APP_NAME', 'FxWebKit'),
+  'app_name' => env('APP_NAME', 'FxWebKit'),
+    //   'app_name' => 'FxWebKit',
     'admin_roles' => env('ADMIN_ROLES', 'admin'),
     'client_default_role' => env('CLIENT_DEFAULT_ROLE'),
     'auto_activate_client' => env('CLIENT_AUTO_ACTIVATE',true),
     'pagination_size' => env('PAGINATION_SIZE', 25),
     'mt4CheckHost'=>'192.168.15.10',
     'mt4CheckPort'=>443,
+
+    'adminEmail'=>'taylorsuccessor@gmail.com',
+    'Group'=>[
+],
     'GroupLive'=>[
            '1'=> '1',
             '2'=>'2',
@@ -76,5 +81,6 @@ return [
         
     ],'client_menu' => [
         
-    ]
+    ],
+    'mohammd'=>'not'
 ];
