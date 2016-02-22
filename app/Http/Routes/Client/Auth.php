@@ -42,7 +42,18 @@ Route::get('recover', [
     'as' => 'client.auth.recover',
     'uses' => 'AuthController@getRecover'
 ]);
-
+Route::post('recover', [
+    'as' => 'client.auth.recover',
+    'uses' => 'AuthController@postRecover'
+]);
+Route::get('resetForgetPassword/{userId}/{code}', [
+    'as' => 'client.auth.resetForgetPassword',
+    'uses' => 'AuthController@getResetForgetPassword'
+]);
+Route::post('resetForgetPassword/{userId}/{code}', [
+    'as' => 'client.auth.resetForgetPassword',
+    'uses' => 'AuthController@postResetForgetPassword'
+]);
 
 Route::get('facebook-login', [
     'as' => 'client.facebook.login',

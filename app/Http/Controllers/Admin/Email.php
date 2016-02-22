@@ -102,10 +102,12 @@ class Email extends Controller {
 
         $this->sendEmail('admin.email.templates.en.forgetPassword',
             [
-                'name' =>'',
-                'expiryHtml'=>''
+                'userEmail' =>$info['userEmail'],
+                'code'=>$info['code'],
+                'website'=>$info['website'],
+                'userId'=>$info['userId']
             ],
-            $info['email'],
+            $info['userEmail'],
             'Reset Password');
 
 
@@ -118,8 +120,8 @@ class Email extends Controller {
 
         $this->sendEmail('admin.email.templates.en.changeLeverage',
             [
-                'name' =>'',
-                'expiryHtml'=>''
+                'login' =>$info['login'],
+                'leverage'=>$info['leverage']
             ],
             $info['email'],
             'User change leverage');
@@ -134,8 +136,9 @@ class Email extends Controller {
 
         $this->sendEmail('admin.email.templates.en.changeMt4Password',
             [
-                'name' =>'',
-                'expiryHtml'=>''
+                'login'=>$info['login'],
+                'newPassword'=>$info['newPassword']
+
             ],
             $info['email'],
             'Change Mt4 Password');
@@ -149,8 +152,9 @@ class Email extends Controller {
 
         $this->sendEmail('admin.email.templates.en.internalTransfers',
             [
-                'name' =>'',
-                'expiryHtml'=>''
+                'login1'=>$info['login1'],
+                'login2'=>$info['login2'],
+                'amount'=>$info['amount']
             ],
             $info['email'],
             'Internal Transfers');
