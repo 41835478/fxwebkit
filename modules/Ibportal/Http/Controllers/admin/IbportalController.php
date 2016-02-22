@@ -369,7 +369,6 @@ class IbportalController extends Controller
         ];
 
 
-
         if ($oRequest->has('search')) {
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
@@ -382,10 +381,10 @@ class IbportalController extends Controller
 
         }
 
-        $totalCommission=0;
+        $totalCommission = 0;
 
         if ($oRequest->has('search')) {
-            list($oResults,$totalCommission) = $this->Ibportal->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
+            list($oResults, $totalCommission) = $this->Ibportal->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults->order = $aFilterParams['order'];
             $oResults->sorts = $aFilterParams['sort'];
         }
@@ -393,15 +392,14 @@ class IbportalController extends Controller
             'agentName' => $this->Ibportal->getAgentName(),
             'planName' => [],
             'mt4UsresName' => [],
-            'usresName' =>[],
+            'usresName' => [],
         ];
 
         return view('ibportal::admin.agentCommission')
-
             ->with('oResults', $oResults)
-            ->with('agent_id',$oRequest->agentId)
+            ->with('agent_id', $oRequest->agentId)
             ->with('data', $data)
-            ->with('totalCommission',$totalCommission)
+            ->with('totalCommission', $totalCommission)
             ->with('aFilterParams', $aFilterParams);
     }
 
@@ -415,11 +413,11 @@ class IbportalController extends Controller
 
     {
 
-        if(isset($oRequest['agents']) ){
-            $oResults= $this->Ibportal->getPlansName($oRequest['agents']);
+        if (isset($oRequest['agents'])) {
+            $oResults = $this->Ibportal->getPlansName($oRequest['agents']);
 
-            foreach($oResults as $key=>$result){
-                echo '<option value="'.$key.'">'.$result.'</option>';
+            foreach ($oResults as $key => $result) {
+                echo '<option value="' . $key . '">' . $result . '</option>';
             }
         }
         dd();
@@ -428,11 +426,11 @@ class IbportalController extends Controller
     public function postMt4UsersName(Request $oRequest)
     {
 
-        if(isset($oRequest['users']) ){
-            $oResults= $this->Ibportal->getMt4UsersName($oRequest['users']);
+        if (isset($oRequest['users'])) {
+            $oResults = $this->Ibportal->getMt4UsersName($oRequest['users']);
 
-            foreach($oResults as $key=>$result){
-                echo '<option value="'.$key.'">'.$result.'</option>';
+            foreach ($oResults as $key => $result) {
+                echo '<option value="' . $key . '">' . $result . '</option>';
             }
         }
         dd();
@@ -443,11 +441,11 @@ class IbportalController extends Controller
     public function postUsersName(Request $oRequest)
     {
 
-        if(isset($oRequest['plans']) && isset($oRequest['agents']) ){
-            $oResults= $this->Ibportal->getUsersName($oRequest['agents'],$oRequest['plans']);
+        if (isset($oRequest['plans']) && isset($oRequest['agents'])) {
+            $oResults = $this->Ibportal->getUsersName($oRequest['agents'], $oRequest['plans']);
 
-            foreach($oResults as $key=>$result){
-                echo '<option value="'.$key.'">'.$result.'</option>';
+            foreach ($oResults as $key => $result) {
+                echo '<option value="' . $key . '">' . $result . '</option>';
             }
         }
         dd();
@@ -474,7 +472,6 @@ class IbportalController extends Controller
         ];
 
 
-
         if ($oRequest->has('search')) {
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
@@ -487,10 +484,10 @@ class IbportalController extends Controller
 
         }
 
-        $totalCommission=0;
+        $totalCommission = 0;
 
         if ($oRequest->has('search')) {
-            list($oResults,$totalCommission) = $this->Ibportal->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
+            list($oResults, $totalCommission) = $this->Ibportal->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults->order = $aFilterParams['order'];
             $oResults->sorts = $aFilterParams['sort'];
         }
@@ -498,13 +495,13 @@ class IbportalController extends Controller
             'agentName' => $this->Ibportal->getAgentName(),
             'planName' => [],
             'mt4UsresName' => [],
-            'usresName' =>[],
+            'usresName' => [],
         ];
 
         return view('ibportal::admin.agentsCommission')
             ->with('oResults', $oResults)
             ->with('data', $data)
-            ->with('totalCommission',$totalCommission)
+            ->with('totalCommission', $totalCommission)
             ->with('aFilterParams', $aFilterParams);
 
     }
@@ -513,7 +510,7 @@ class IbportalController extends Controller
     {
         $oPlanDetails = $this->Ibportal->getPlanDetails($request->edit_id);
 
-        $aliases=$this->Ibportal->getAliases();
+        $aliases = $this->Ibportal->getAliases();
 
         foreach ($oPlanDetails->first()->aliases as $aliase) {
 
@@ -522,28 +519,27 @@ class IbportalController extends Controller
         }
 
 
-
         $data = [
             'name' => '',
-            'planTypes' =>['Commission' => 'Commission', 'Rebate' => 'Rebate'],
+            'planTypes' => ['Commission' => 'Commission', 'Rebate' => 'Rebate'],
             'symbolTypes' => ['Money' => 'Money', 'Point' => 'Point', 'Percentage' => 'Percentage'],
-            'aliases' =>$aliases ,
+            'aliases' => $aliases,
         ];
 
 
         return view('ibportal::admin.editPlan')
-            ->with('oPlanDetails', $oPlanDetails->first())->with('data',$data);
+            ->with('oPlanDetails', $oPlanDetails->first())->with('data', $data);
     }
 
     public function postEditPlan(Request $request)
     {
         // TODO check validation
-        $planId=$request->plan_id;
+        $planId = $request->plan_id;
         $planName = $request->planName;
         $planType = $request->planType;
         $planPublic = ($request->has('public')) ? true : false;
 
-        $editResult=$this->Ibportal->editPlan($planId,$planName, $planType, $planPublic);
+        $editResult = $this->Ibportal->editPlan($planId, $planName, $planType, $planPublic);
 
         if ($request->has('selectedSymbols') && $editResult) {
             $selectedSymbols = $request->selectedSymbols;
@@ -557,6 +553,22 @@ class IbportalController extends Controller
         } else {
             return redirect()->back()->withErrors(trans('ibportal::ibportal.no_thing_added'));
         }
+    }
+
+    public function getIbportalSettings(Request $oRequest)
+    {
+
+        $ibportalSetting = [
+
+            'agreemment' => Config('ibportal.agreemment'),
+
+
+        ];
+
+        $this->Ibportal->ibportalSettings($ibportalSetting);
+
+        return view('ibportal::admin.ibportalSetting')->with('ibportalSetting', $ibportalSetting);
+
     }
 
 
