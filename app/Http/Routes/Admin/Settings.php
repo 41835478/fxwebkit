@@ -13,7 +13,8 @@ Route::group(['middleware' => ['authenticate.admin']], function () {
         'getMt4UsersDetails' => 'admin.mt4UsersDetails',
         'getEmailTemplates' => 'admin.addEmailTemplates',
         'getDeleteUser' => 'admin.deleteUser',
-        'getMassMailer' => 'admin.massMailer'
+        'getMassMailer' => 'admin.massMailer',
+        'getSettings'=>'admin.settings'
     ]);
 });
 

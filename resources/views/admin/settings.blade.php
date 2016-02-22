@@ -12,46 +12,47 @@
         <span class="panel-title">{{ trans('accounts::accounts.settings') }}</span>
     </div>
 
+    <!-- TODO[moaid] translate this page check design of input and add adminpixel design like edit user profile page -->
 <div class="panel-body">
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                {!! Form::checkbox('showMt4Leverage',1,$accountsSetting['showMt4Leverage'],[]) !!}
-                <label class="control-label">{{ trans('accounts::accounts.showMt4Leverage') }}</label>
+                {!! Form::text('mt4CheckHost',config('fxweb.mt4CheckHost'),[]) !!}
+                <label class="control-label">{{ trans('general.mt4CheckHost') }}</label>
 
             </div>
-        </div><!-- col-sm-6 -->
-
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-                {!! Form::checkbox('showMt4ChangePassword',1,$accountsSetting['showMt4ChangePassword'],[]) !!}
-                <label class="control-label">{{ trans('accounts::accounts.showMt4ChangePassword') }}</label>
-            </div>
-        </div><!-- col-sm-6 -->
-    </div><!-- row -->
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-                {!! Form::checkbox('showMt4Transfer',1,$accountsSetting['showMt4Transfer'],[]) !!}
-                <label class="control-label">{{ trans('accounts::accounts.showMt4Transfer') }}</label>
-            </div>
-        </div><!-- col-sm-6 -->
-    </div><!-- row -->
-<hr>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-                {!! Form::checkbox('denyLiveAccount',1,config('accounts.denyLiveAccount'),[]) !!}
-                <label class="control-label">{{ trans('accounts::accounts.denyLiveAccount') }}</label>
-            </div>
-        </div><!-- col-sm-6 -->
-    </div><!-- row -->
-
-
 </div>
 
+
+        <div class="col-sm-6">
+            <div class="form-group no-margin-hr">
+                {!! Form::text('mt4CheckPort',config('fxweb.mt4CheckPort'),[]) !!}
+                <label class="control-label">{{ trans('general.mt4CheckPort') }}</label>
+
+            </div>
+        </div>
+
+</div>
+<hr>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group no-margin-hr">
+                {!! Form::text('mt4CheckDemoHost',config('fxweb.mt4CheckDemoHost'),[]) !!}
+                <label class="control-label">{{ trans('general.mt4CheckDemoHost') }}</label>
+
+            </div>
+        </div>
+
+
+        <div class="col-sm-6">
+            <div class="form-group no-margin-hr">
+                {!! Form::text('mt4CheckDemoPort',config('fxweb.mt4CheckDemoPort'),[]) !!}
+                <label class="control-label">{{ trans('general.mt4CheckDemoPort') }}</label>
+
+            </div>
+        </div>
+
+    </div>
 
 @if($errors->any())
 <div class="alert alert-danger alert-dark">

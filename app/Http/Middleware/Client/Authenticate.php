@@ -10,6 +10,10 @@ class Authenticate
 		if ($oUser = Sentinel::check()  && Sentinel::inRole('client') ) {
 			// User is logged in and assigned to the $oUser variable.
 			// Check if the user has the right role
+			if(Sentinel::inRole('block')){
+				/* TODO send block message to login blade */
+				return Redirect::route('client.auth.login');
+			}
 		} else {
 			// User is not logged in
 			if ($oRequest->ajax()) {

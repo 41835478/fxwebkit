@@ -809,16 +809,19 @@ class AccountsController extends Controller
         $showMt4Leverage= ($oRequest->showMt4Leverage) ? true : false;
         $showMt4ChangePassword= ($oRequest->showMt4ChangePassword) ? true : false;
         $showMt4Transfer= ($oRequest->showMt4Transfer) ? true : false;
+        $denyLiveAccount= ($oRequest->denyLiveAccount) ? true : false;
 
 
         $accountsSetting = [
 
             'showMt4Leverage' =>$showMt4Leverage,
             'showMt4ChangePassword'=>$showMt4ChangePassword,
-            'showMt4Transfer'=>$showMt4Transfer
+            'showMt4Transfer'=>$showMt4Transfer,
+            'denyLiveAccount'=>$denyLiveAccount
 
         ];
 
+        /* TODO[moaid] this function should not be in user repository change it*/
         $this->oUsers->accountsSettings($accountsSetting);
 
         return view('accounts::accountsSetting')->with('accountsSetting', $accountsSetting);

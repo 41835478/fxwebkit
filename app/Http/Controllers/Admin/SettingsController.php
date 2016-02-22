@@ -341,4 +341,36 @@ class SettingsController extends Controller
 
 
     }
+
+
+    public function getSettings(Request $oRequest)
+    {
+        return view('admin.settings');
+
+    }
+
+    /**
+     * @param Request $oRequest
+     * @return $this
+     */
+    public function postSettings(Request $oRequest)
+    {
+
+
+
+        $aSetting = [
+
+    'mt4CheckHost'=>$oRequest->mt4CheckHost,
+    'mt4CheckPort'=>$oRequest->mt4CheckPort,
+    'mt4CheckDemoHost'=>$oRequest->mt4CheckDemoHost,
+    'mt4CheckDemoPort'=>$oRequest->mt4CheckDemoPort,
+
+        ];
+
+        /* TODO[moaid] this function should not be in user repository change it*/
+        $this->oUser->setConfigSettings($aSetting);
+
+        return Redirect::route('admin.settings');
+
+    }
 }
