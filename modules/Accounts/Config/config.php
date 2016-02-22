@@ -28,7 +28,7 @@ return [
     'showMt4Leverage'=>true,
     'showMt4ChangePassword'=>false,
     'showMt4Transfer'=>false,
-    
+
     'admin_menu' => [
         [
             'route' => 'accounts.accountsList',

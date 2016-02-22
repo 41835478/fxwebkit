@@ -73,6 +73,7 @@ return [
     'to'=>'to',
     'showing'=>'showing',
     'no_account_available'=>'No Account Available',
+
     'resetPasswordText'=>'Reset Password',
     'sendRestEmeail'=>'Reset Password Email',
     'PleaseTryAgain'=>'Please Try Again',
@@ -82,5 +83,8 @@ return [
     'confirmPassword'=>'Confirm Password',
     'reset'=>'Reset',
     'resetPassword'=>'Reset Password',
+
+
+    'resend'=>'Resend'
 
 ];

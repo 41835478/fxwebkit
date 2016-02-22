@@ -73,10 +73,10 @@ class Email extends Controller {
 
         $this->sendEmail('admin.email.templates.en.newUserSignUp',
             [
-                'name' =>'',
-                'expiryHtml'=>''
+                'first_name' => $info['first_name'],
+                'last_name' => $info['last_name']
             ],
-            $info['email'],
+            $info['adminEmail'],
             'New User Sign Up');
 
 
@@ -88,8 +88,9 @@ class Email extends Controller {
 
         $this->sendEmail('admin.email.templates.en.activeAccount',
             [
-                'name' =>'',
-                'expiryHtml'=>''
+              'code'=>$info['code'],
+                'userId'=>$info['userId'],
+                'website'=>$info['website']
             ],
             $info['email'],
             'Active Account');
