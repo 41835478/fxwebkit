@@ -1,12 +1,6 @@
 <?php
 
 
-//$config = new Larapack\ConfigWriter\Repository('modules/Accounts/Config/config.php'); // loading the config from config/app.php
-$config = new Larapack\ConfigWriter\Repository('Config/fxweb.php'); // loading the config from config/app.php
-
-//$config->set('app_name', 675675); // set the config you wish
-//dd($config);
-$config->save();
 Route::group(['middleware' => ['authenticate.admin'], 'prefix' => 'accounts', 'namespace' => 'Modules\Accounts\Http\Controllers'], function () {
     Route::controller('accounts', 'AccountsController', [
         'getAccountsList' => 'accounts.accountsList',
