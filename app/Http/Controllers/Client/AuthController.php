@@ -240,13 +240,14 @@ $message=trans('userNotExist');
         $user = Sentinel::findById($userId);
 
         /* TODO validate password and confirm from Request not from code */
-     if($oRequest->password ==$oRequest->confirmPassword && count($oRequest->password) > 7){
-        if ($reminder = Reminder::complete($user, $code, 'new_password_here'))
+     if($oRequest->password ==$oRequest->confirmPassword && strlen($oRequest->password) > 7){
+        if ($reminder = Reminder::complete($user, $code, $oRequest->password))
         {
             // Reminder was successfull
             return Redirect::route('client.auth.login');
         }
      }else{
+
          $message=trans('invalidPassord');
      }
 

@@ -4,8 +4,8 @@ return [
 
     'is_admin' => 1,
     'is_client' => 1,
-    'route' => 'admin.ibportal.planList',
-    'icon' => 'fa-briefcase',
+    'route' => '',
+    'icon' => 'fa-user',
     'name' => 'Ibportal',
     'icon' => 'fa-user',
     'route' => '',
@@ -14,7 +14,7 @@ return [
         '100' => 'type',
         '150' => 'type',
     ],
-    'agreemment'=>'Test',
+    'agreemment'=>'Testdfgdfg',
     'admin_menu' => [
 
         [

@@ -565,6 +565,20 @@ class IbportalController extends Controller
 
         ];
 
+        return view('ibportal::admin.ibportalSetting')->with('ibportalSetting', $ibportalSetting);
+
+    }
+
+    public function postIbportalSettings(Request $oRequest)
+    {
+
+        $ibportalSetting = [
+
+            'agreemment' =>$oRequest->agreemment,
+
+
+        ];
+
         $this->Ibportal->ibportalSettings($ibportalSetting);
 
         return view('ibportal::admin.ibportalSetting')->with('ibportalSetting', $ibportalSetting);

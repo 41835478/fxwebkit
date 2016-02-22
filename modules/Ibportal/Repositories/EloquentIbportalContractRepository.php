@@ -27,6 +27,20 @@ class EloquentIbportalContractRepository implements IbportalContract
     }
 
 
+    function editConfigFile($filePath,$variables){
+
+//$config = new Larapack\ConfigWriter\Repository('modules/Accounts/Config/config.php'); // loading the config from config/app.php
+//        $config = new Larapack\ConfigWriter\Repository('Config/fxweb.php'); // loading the config from config/app.php
+        $config = new \Larapack\ConfigWriter\Repository($filePath); // loading the config from config/app.php
+
+        if(count($variables)){
+            foreach($variables as $key=>$value){
+$config->set($key, $value); // set the config you wish
+            }
+        }
+        $config->save();
+    }
+
     public function getPlansByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
     {
 
@@ -512,6 +526,6 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     public function ibportalSettings($ibportalSetting)
     {
-     //   dd($ibportalSetting);
+        $this->editConfigFile('modules/Ibportal/Config/config.php', $ibportalSetting);
     }
 }
