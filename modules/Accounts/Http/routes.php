@@ -21,6 +21,7 @@ Route::group(['middleware' => ['authenticate.admin'], 'prefix' => 'accounts', 'n
         'getMt4Operation' => 'accounts.mt4Operation',
         'getAllowLiveAccount' => 'accounts.allowLiveAccoun',
         'getUnAllowedLiveAccount' => 'accounts.unAllowedLiveAccount',
+        'getAccountsSettings'=>'accounts.accountsSettings',
 
     ]);
 });

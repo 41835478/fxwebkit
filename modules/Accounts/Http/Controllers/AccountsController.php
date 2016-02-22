@@ -784,4 +784,45 @@ class AccountsController extends Controller
             ->with('login', $oRequest->login);
     }
 
+    public function getAccountsSettings(Request $oRequest)
+    {
+        $accountsSetting = [
+
+            'showMt4Leverage' => Config('accounts.showMt4Leverage'),
+            'showMt4ChangePassword'=>Config('accounts.showMt4ChangePassword'),
+            'showMt4Transfer'=>Config('accounts.showMt4Transfer'),
+        ];
+
+
+
+        return view('accounts::accountsSetting')->with('accountsSetting', $accountsSetting);
+
+    }
+
+    /**
+     * @param Request $oRequest
+     * @return $this
+     */
+    public function postAccountsSettings(Request $oRequest)
+    {
+
+        $showMt4Leverage= ($oRequest->showMt4Leverage) ? true : false;
+        $showMt4ChangePassword= ($oRequest->showMt4ChangePassword) ? true : false;
+        $showMt4Transfer= ($oRequest->showMt4Transfer) ? true : false;
+
+
+        $accountsSetting = [
+
+            'showMt4Leverage' =>$showMt4Leverage,
+            'showMt4ChangePassword'=>$showMt4ChangePassword,
+            'showMt4Transfer'=>$showMt4Transfer
+
+        ];
+
+        $this->oUsers->accountsSettings($accountsSetting);
+
+        return view('accounts::accountsSetting')->with('accountsSetting', $accountsSetting);
+
+    }
+
 }

@@ -79,5 +79,8 @@ return [
     'userNotExist'=>'User Not Exist',
     'checkEmailResetPassword'=>'Check Email Reset Password',
     'invalidPassord'=>'Invalid Passord',
+    'confirmPassword'=>'Confirm Password',
+    'reset'=>'Reset',
+    'resetPassword'=>'Reset Password',
 
 ];

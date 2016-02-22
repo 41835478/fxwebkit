@@ -144,6 +144,10 @@ return [
     'unblock_user'=>'Unblock User',
     'allowCreatLiveMt4Account'=>'Allow Creat Live Mt4 Account',
     'denyCreatLiveMt4Account'=>'Deny Creat Live Mt4 Account',
+    'settings'=>'Settings',
+    'showMt4Leverage'=>'Show Mt4 Leverage',
+    'showMt4ChangePassword'=>'Show Mt4 Change Password',
+    'showMt4Transfer'=>'Show Mt4 Transfer',
 
 
 

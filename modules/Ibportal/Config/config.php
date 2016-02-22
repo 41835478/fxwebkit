@@ -14,7 +14,7 @@ return [
         '100' => 'type',
         '150' => 'type',
     ],
-    'agreemment'=>'Testdfgdfg',
+    'agreemment'=>'Testdfgdfgjmgj',
     'admin_menu' => [
 
         [
