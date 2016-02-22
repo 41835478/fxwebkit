@@ -4,6 +4,7 @@ namespace Fxweb\Http\Controllers\Client;
 
 use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
+
 //use Cartalyst\Sentinel\Users;
 //use Guzzle\Http\Message\Request;
 use Modules\Accounts\Entities\Users;
@@ -96,14 +97,14 @@ class AuthController extends Controller
         $dt->subYears(18);
         $country_array = $this->oUserRepostry->getCountry(null);
 
-        $ibid=($request->has('ibid'))? $request->ibid:'';
-        $planId=($request->has('planId'))? $request->planId:'';
+        $ibid = ($request->has('ibid')) ? $request->ibid : '';
+        $planId = ($request->has('planId')) ? $request->planId : '';
 
         return view('client.user.register')
             ->with('default_birthday', $dt->format('Y/m/d'))
             ->with('country_array', $country_array)
-            ->with('ibid',$ibid)
-            ->with('planId',$planId)
+            ->with('ibid', $ibid)
+            ->with('planId', $planId)
             ->with('random', rand(1, 8));
     }
 
@@ -119,8 +120,8 @@ class AuthController extends Controller
             'password' => $oRequest->password,
         ];
 
-        $ibid=($oRequest->has('ibid'))? $oRequest->ibid:'';
-        $planId=($oRequest->has('planId'))? $oRequest->planId:'';
+        $ibid = ($oRequest->has('ibid')) ? $oRequest->ibid : '';
+        $planId = ($oRequest->has('planId')) ? $oRequest->planId : '';
 
 
         if ($bAutoActivate) {
@@ -128,7 +129,7 @@ class AuthController extends Controller
             $oUser = Sentinel::registerAndActivate($aCredentials);
             $oClientRole->users()->attach($oUser);
             Sentinel::login($oUser);
-            $this->assignNewUserToAgent($ibid,$oUser->id,$planId);
+            $this->assignNewUserToAgent($ibid, $oUser->id, $planId);
             $aCredentialsFullDetails = [
                 'users_id' => $oUser->id,
                 'nickname' => $oRequest->nickname,
@@ -140,7 +141,6 @@ class AuthController extends Controller
                 'zip_code' => $oRequest->zip_code,
                 'gender' => $oRequest->gender
             ];
-
 
 
             $details = new UsersDetails($aCredentialsFullDetails);
@@ -155,7 +155,7 @@ class AuthController extends Controller
             $oClientRole->users()->attach($oUser);
             $oActivation = Activation::create($oUser);
 
-            $this->assignNewUserToAgent($ibid,$oUser->id,$planId);
+            $this->assignNewUserToAgent($ibid, $oUser->id, $planId);
 
             $aCredentialsFullDetails = [
                 'users_id' => $oUser->id,
@@ -184,14 +184,15 @@ class AuthController extends Controller
         }
     }
 
-    private function assignNewUserToAgent($ibid,$newUserId,$planId){
-        if($ibid != ''){
-            $oAgent=UserIbid::where('user_ibid',$ibid)->first();
-            if($oAgent){
+    private function assignNewUserToAgent($ibid, $newUserId, $planId)
+    {
+        if ($ibid != '') {
+            $oAgent = UserIbid::where('user_ibid', $ibid)->first();
+            if ($oAgent) {
                 AgentUser::create([
-                    'agent_id'=>$oAgent->user_id,
-                    'user_id'=>$newUserId,
-                    'plan_id'=>$planId]);
+                    'agent_id' => $oAgent->user_id,
+                    'user_id' => $newUserId,
+                    'plan_id' => $planId]);
             }
         }
 
@@ -205,9 +206,7 @@ class AuthController extends Controller
 
     public function postRecover(Request $oRequest)
     {
-
-        /* TODO[moaid] translate page with forgetPassword blade and resetPassword blade */
-$message=trans('PleaseTryAgain');
+        $message = trans('user.PleaseTryAgain');
         $credentials = [
             'login' => $oRequest->email,
         ];
@@ -215,39 +214,44 @@ $message=trans('PleaseTryAgain');
         $user = Sentinel::findByCredentials($credentials);
 
 
-        if($user) {
+        if ($user) {
             $oReminder = Reminder::create($user);
 
-            if($oReminder){
+            if ($oReminder) {
 
-                $oEmail=new Email();
+                $oEmail = new Email();
                 $oEmail->forgetPassword([
-                    'userEmail'=> $oRequest->email,
-                    'code'=>$oReminder->code,
-                    'userId'=>$user->id,
-                    'website'=>$oRequest->root()
+                    'userEmail' => $oRequest->email,
+                    'code' => $oReminder->code,
+                    'userId' => $user->id,
+                    'website' => $oRequest->root()
                 ]);
 
-                $message=trans('checkEmailResetPassword');
+                $message = trans('user.checkEmailResetPassword');
             }
 
-        }else{
-$message=trans('userNotExist');
+        } else {
+            $message = trans('user.userNotExist');
         }
         return view('client.user.forgetPassword')
             ->with('random', rand(1, 8))
             ->withErrors($message);
     }
-    function getResetForgetPassword($userId,$code){
+
+    function getResetForgetPassword($userId, $code)
+    {
 
         return view('client.user.resetForgetPassword')
             ->with('random', rand(1, 8));
     }
-    function postResetForgetPassword(Request $oRequest,$userId,$code){
-        $message=trans('PleaseTryAgain');
+
+    function postResetForgetPassword(Request $oRequest, $userId, $code)
+    {
+        $message = trans('user.PleaseTryAgain');
         $user = Sentinel::findById($userId);
 
         /* TODO validate password and confirm from Request not from code */
+
      if($oRequest->password ==$oRequest->confirmPassword && strlen($oRequest->password) > 7){
         if ($reminder = Reminder::complete($user, $code, $oRequest->password))
         {
@@ -258,6 +262,7 @@ $message=trans('userNotExist');
 
          $message=trans('invalidPassord');
      }
+
 
 
         return view('client.user.resetForgetPassword')

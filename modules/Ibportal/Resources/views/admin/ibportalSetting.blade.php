@@ -32,7 +32,7 @@
 </div>
 @endif
 <div class="panel-footer text-right">
-     <a href="{{ route('accounts.detailsAccount') }}">
+
          <button type="submit" class="btn btn-primary" name="edit_id" value="0">{{ trans('ibportal::ibportal.save') }}</button></a>
          
 {!! Form::close() !!}

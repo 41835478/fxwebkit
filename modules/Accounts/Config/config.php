@@ -25,7 +25,13 @@ return [
     'apiReqiredConfirmMt4Password' => false,
     'apiMasterPassword' => 'PASSWORD',
     'allowTransferToUnsignedMT4' => false,
+
 'denyLiveAccount'=>false,
+
+    'showMt4Leverage'=>true,
+    'showMt4ChangePassword'=>false,
+    'showMt4Transfer'=>false,
+
     'admin_menu' => [
         [
             'route' => 'accounts.accountsList',
@@ -36,7 +42,13 @@ return [
             'route' => 'accounts.Mt4UsersList',
             'title' => 'mt4UsersList',
             'icon' => 'fa fa-users',
+        ],
+        [
+            'route' => 'accounts.accountsSettings',
+            'title' => 'settings',
+            'icon' => 'fa fa-gears',
         ]
+
     ],
     'client_menu' => [
 
