@@ -25,7 +25,7 @@ return [
     'apiReqiredConfirmMt4Password' => false,
     'apiMasterPassword' => 'PASSWORD',
     'allowTransferToUnsignedMT4' => false,
-
+'denyLiveAccount'=>false,
     'admin_menu' => [
         [
             'route' => 'accounts.accountsList',
