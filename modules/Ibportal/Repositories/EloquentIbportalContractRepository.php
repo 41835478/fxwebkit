@@ -31,11 +31,11 @@ class EloquentIbportalContractRepository implements IbportalContract
 
 //$config = new Larapack\ConfigWriter\Repository('modules/Accounts/Config/config.php'); // loading the config from config/app.php
 //        $config = new Larapack\ConfigWriter\Repository('Config/fxweb.php'); // loading the config from config/app.php
-        $config = new \Larapack\ConfigWriter\Repository($filePath); // loading the config from config/app.php
+        $config = new \Larapack\ConfigWriter\Repository($filePath);
 
         if(count($variables)){
             foreach($variables as $key=>$value){
-$config->set($key, $value); // set the config you wish
+$config->set($key, $value);
             }
         }
         $config->save();
