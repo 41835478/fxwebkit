@@ -526,6 +526,8 @@ $config->set($key, $value);
 
     public function ibportalSettings($ibportalSetting)
     {
+
+        /* TODO validate if progress going will */
         $this->editConfigFile('modules/Ibportal/Config/config.php', $ibportalSetting);
     }
 }

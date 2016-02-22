@@ -9,7 +9,9 @@
 
     <div class="panel">
         <div class="panel-heading">
-
+            @if($denyLiveAccount)
+            <div class="alert alert-info alert-dark" >{{ trans('user.fillFullDetailsToAllowLive') }} </div>
+            @endif
             <span class="panel-title">{{ trans('general.performance') }}</span>
             {!! Form::open(['method'=>'get','class'=>'col-xs-3','id'=>'select_login_form','style'=>'float:right;margin:0px;']) !!}
             {!! Form::select('login',$aLogin,$login,['class'=>'form-control','onChange'=>'$("#select_login_form").submit();']) !!}

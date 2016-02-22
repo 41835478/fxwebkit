@@ -55,6 +55,19 @@ Route::post('resetForgetPassword/{userId}/{code}', [
     'uses' => 'AuthController@postResetForgetPassword'
 ]);
 
+
+Route::get('activateAccount/{userId}/{code}', [
+    'as' => 'client.auth.activateAccount',
+    'uses' => 'AuthController@getActivateAccount'
+]);
+
+Route::post('activateAccount/{userId}/{code}', [
+    'as' => 'client.auth.activateAccount',
+    'uses' => 'AuthController@postResendActivateEmail'
+]);
+
+
+
 Route::get('facebook-login', [
     'as' => 'client.facebook.login',
     'uses' => 'AuthController@getFacebookLogin'

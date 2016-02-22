@@ -147,6 +147,7 @@ class AuthController extends Controller
             $details->save();
             $oEmail = new Email;
             @$oEmail->signUpWelcome($aCredentials + $aCredentialsFullDetails);
+           @$oEmail->newUserSignUp(['adminEmail'=>config('fxweb.adminEmail')]+$aCredentials + $aCredentialsFullDetails);
             return redirect()->route('clinet.editProfile');
         } else {
 
@@ -170,6 +171,14 @@ class AuthController extends Controller
 
             $details = new UsersDetails($aCredentialsFullDetails);
             $details->save();
+            /* TODO[moaid] test sign up with auto activate and not auto activate from .env CLIENT_AUTO_ACTIVATE and check activate email*/
+            $oEmail = new Email;
+            @$oEmail->activeAccount(['email'=>$oRequest->email,
+                'code'=>$oActivation->code,
+                'userId'=>$oUser->id,
+            'website'=>$oRequest->root()
+            ]);
+            @$oEmail->newUserSignUp(['adminEmail'=>config('fxweb.adminEmail')]+$aCredentials + $aCredentialsFullDetails);
 
             return redirect()->route('client.auth.login');
         }
@@ -190,7 +199,6 @@ class AuthController extends Controller
 
     public function getRecover()
     {
-
         return view('client.user.forgetPassword')
             ->with('random', rand(1, 8));
     }
@@ -255,6 +263,41 @@ $message=trans('userNotExist');
         return view('client.user.resetForgetPassword')
             ->with('random', rand(1, 8))
             ->withErrors($message);
+    }
+
+
+    function getActivateAccount(Request $oRequest,$userId,$code){
+        $message=trans('PleaseTryAgain');
+        $user = Sentinel::findById($userId);
+
+        if (Activation::complete($user,$code)) {
+            // Reminder was successfull
+            return Redirect::route('client.auth.login');
+        }
+
+
+
+        return view('client.user.activateAccountResult')
+            ->with('random', rand(1, 8))
+            ->withErrors($message);
+    }
+
+    function postResendActivateEmail(Request $oRequest,$userId,$code){
+
+        $oUser = Sentinel::findById($userId);
+        $oActivation = Activation::create($oUser);
+
+
+
+        $oEmail = new Email;
+        @$oEmail->activeAccount(['email'=>$oUser->email,
+            'code'=>$oActivation->code,
+            'userId'=>$userId,
+            'website'=>$oRequest->root()
+        ]);
+
+        return view('client.user.activateAccountResult')
+            ->with('random', rand(1, 8));
     }
 
 

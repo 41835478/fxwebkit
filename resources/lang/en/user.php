@@ -73,4 +73,5 @@ return [
     'to'=>'to',
     'showing'=>'showing',
     'no_account_available'=>'No Account Available',
+    'resend'=>'Resend'
 ];

@@ -40,7 +40,8 @@ class DashboardController extends Controller
         $growth_array = [0.00, 50.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
        $averages_array = [50.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
         */
-        $clientId = Sentinel::getUser()->id;
+        $oUser=Sentinel::getUser();
+        $clientId = $oUser->id;
 
 
         list($firstLogin, $aLoginList) = $this->oMt4User->getUsersMt4Users($clientId);
@@ -48,7 +49,7 @@ class DashboardController extends Controller
         $login = ($oRequest->has('login')) ? $oRequest->login : $firstLogin;
 
         list($horizontal_line_numbers, $growth_array, $averages_array, $statistics, $symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->oMt4Trade->getClinetGrowthChart($login);
-
+        $denyLiveAccount=($oUser->inRole('denyLiveAccount'))? true:false;
 
         return view('client.dashboard')
             ->with('horizontal_line_numbers', $horizontal_line_numbers)
@@ -60,7 +61,8 @@ class DashboardController extends Controller
             ->with('sell_buy_horizontal_line_numbers', $sell_buy_horizontal_line_numbers)
             ->with('symbols_pie_array', $symbols_pie_array)
             ->with('sell_array', $sell_array)
-            ->with('buy_array', $buy_array);;
+            ->with('buy_array', $buy_array)
+            ->with('denyLiveAccount',$denyLiveAccount);
 
     }
 
