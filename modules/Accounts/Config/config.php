@@ -26,7 +26,7 @@ return [
     'apiMasterPassword' => 'PASSWORD',
     'allowTransferToUnsignedMT4' => false,
 
-'denyLiveAccount'=>false,
+'denyLiveAccount'=>true,
 
     'showMt4Leverage'=>true,
     'showMt4ChangePassword'=>false,

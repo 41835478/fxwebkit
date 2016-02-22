@@ -109,6 +109,7 @@ class ClientAccountsController extends Controller
             ];
         }
 
+
         return view('accounts::client.accountStatement')
             ->with('aGroups', $aGroups)
             ->with('oResults', $oResults)

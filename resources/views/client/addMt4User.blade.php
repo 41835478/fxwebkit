@@ -14,12 +14,14 @@
 
     <div class="panel-body">
         <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+          @if(!$denyLiveAccount)
             <li class="active" >
                 <a href="#profile-tabs-board" data-toggle="tab">{{ trans('general.assign_existing_mt4') }}</a>
             </li>
             <li >
                 <a href="{{ route('client.mt4LiveAccount')}}" >{{ trans('general.mt4LiveAccount') }}</a>
             </li>
+            @endif
             <li >
                 <a href="{{ route('client.mt4DemoAccount')}}" >{{ trans('general.mt4DemoAccount') }}</a>
             </li>

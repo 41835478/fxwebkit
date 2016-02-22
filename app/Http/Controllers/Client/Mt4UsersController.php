@@ -34,13 +34,18 @@ class Mt4UsersController extends Controller
     public function getAddMt4User(Request $oRequest)
     {
 
-
         $userInfo = [
             'login' => $oRequest['login'],
             'password' => $oRequest['password']
         ];
 
-        return view('client.addMt4User')->with('userInfo', $userInfo);
+        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount') && config('accounts.denyLiveAccount'))? true:false;
+
+if($denyLiveAccount){
+    return Redirect::route('client.mt4DemoAccount');
+}
+        return view('client.addMt4User')->with('userInfo', $userInfo)
+            ->with('denyLiveAccount',$denyLiveAccount);
     }
 
     public function postAddMt4User(Request $oRequest)
@@ -57,9 +62,14 @@ class Mt4UsersController extends Controller
             $asign_result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$oRequest['login']]);
             return Redirect::route('clients.reports.accounts');
         }
+
+
+        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount') && config('accounts.denyLiveAccount'))? true:false;
+
+
         return view('client.addMt4User')
             ->with('userInfo', ['login' => $oRequest['login'], 'password' => $oRequest['password']])
-            ->withErrors('Error, Please try again later!');
+            ->withErrors('Error, Please try again later!')->with('denyLiveAccount',$denyLiveAccount);
     }
 
 
@@ -94,11 +104,14 @@ class Mt4UsersController extends Controller
             'array_leverage' => $array_leverage,
         ];
 
+        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount') && config('accounts.denyLiveAccount'))? true:false;
+
+
         return view('client.mt4DemoAccount')
             ->with('mt4_user_details', $mt4_user_details)
             ->with('array_group', $array_group)
             ->with('array_leverage', $array_leverage)
-            ->with('array_deposit', $array_deposit);
+            ->with('array_deposit', $array_deposit)->with('denyLiveAccount',$denyLiveAccount);
     }
 
     public function postMt4DemoAccount(Request $oRequest)
@@ -138,7 +151,8 @@ class Mt4UsersController extends Controller
         $oApiController = new ApiController();
         $result = $oApiController->mt4UserFullDetails($mt4_user_details);
 
-        return Redirect::route('client.mt4DemoAccount')->withErrors($result);
+
+        return Redirect::route('client.mt4DemoAccount')->withErrors($result) ;
 
     }
 
@@ -175,11 +189,14 @@ class Mt4UsersController extends Controller
         ];
 
 
+        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount') && config('accounts.denyLiveAccount'))? true:false;
+
+
         return view('client.mt4LiveAccount')
             ->with('mt4_user_details', $mt4_user_details)
             ->with('array_group', $array_group)
             ->with('array_leverage', $array_leverage)
-            ->with('array_deposit', $array_deposit);
+            ->with('array_deposit', $array_deposit)->with('denyLiveAccount',$denyLiveAccount);
     }
 
     public function postMt4LiveAccount(Request $oRequest)

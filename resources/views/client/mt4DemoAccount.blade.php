@@ -8,17 +8,22 @@
 <div class="panel">
     {!! Form::open(['class'=>'panel form-horizontal']) !!}
     <div class="panel-heading">
+        @if($denyLiveAccount)
+            <div class="alert alert-info alert-dark" >{{ trans('user.fillFullDetailsToAllowLive') }} </div>
+        @endif
         <span class="panel-title">{{ trans('general.user_details') }}</span>
     </div>
 
     <div class="panel-body">
         <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+            @if(!$denyLiveAccount)
             <li  >
                 <a href="{{ route('client.addMt4User')}}">{{ trans('general.assign_existing_mt4') }}</a>
             </li>
             <li >
                 <a href="{{ route('client.mt4LiveAccount')}}" >{{ trans('general.mt4LiveAccount') }}</a>
             </li>
+            @endif
             <li class="active">
                 <a href="{{ route('client.mt4DemoAccount')}}" >{{ trans('general.mt4DemoAccount') }}</a>
             </li>
