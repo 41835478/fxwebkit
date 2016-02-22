@@ -29,8 +29,8 @@ return [
 'denyLiveAccount'=>true,
 
     'showMt4Leverage'=>true,
-    'showMt4ChangePassword'=>false,
-    'showMt4Transfer'=>false,
+    'showMt4ChangePassword'=>true,
+    'showMt4Transfer'=>true,
 
     'admin_menu' => [
         [

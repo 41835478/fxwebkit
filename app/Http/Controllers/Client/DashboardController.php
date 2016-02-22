@@ -49,7 +49,7 @@ class DashboardController extends Controller
         $login = ($oRequest->has('login')) ? $oRequest->login : $firstLogin;
 
         list($horizontal_line_numbers, $growth_array, $averages_array, $statistics, $symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->oMt4Trade->getClinetGrowthChart($login);
-        $denyLiveAccount=($oUser->inRole('denyLiveAccount') && config('accounts.denyLiveAccount'))? true:false;
+        $denyLiveAccount=($oUser->inRole('denyLiveAccount') )? true:false;
 
         return view('client.dashboard')
             ->with('horizontal_line_numbers', $horizontal_line_numbers)

@@ -114,7 +114,10 @@ class ClientAccountsController extends Controller
             ->with('aGroups', $aGroups)
             ->with('oResults', $oResults)
             ->with('aSummery', $aSummery)
-            ->with('aFilterParams', $aFilterParams);
+            ->with('aFilterParams', $aFilterParams)
+            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
     public function getMt4Leverage(Request $oRequest)
@@ -128,11 +131,15 @@ class ClientAccountsController extends Controller
             'oldPassword' => '',
             'leverage' => ''];
 
+
         return view('accounts::client.addLeverage')
             ->with('Pssword', $Pssword)
             ->with('Result', $Result)
             ->with('changeleverage', $changeleverage)
-            ->with('login', $oRequest->login);
+            ->with('login', $oRequest->login)
+            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
     public function postMt4Leverage(Request $oRequest)
@@ -171,7 +178,10 @@ class ClientAccountsController extends Controller
         return view('accounts::client.changePassword')
             ->with('Password', $Password)
             ->with('changePassword', $changePassword)
-            ->with('login', $oRequest->login);
+            ->with('login', $oRequest->login)
+            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
     public function postMt4ChangePassword(Request $oRequest)
@@ -206,7 +216,10 @@ class ClientAccountsController extends Controller
         return view('accounts::client.internalTransfer')
             ->with('Pssword', $Pssword)
             ->with('internalTransfer', $internalTransfer)
-            ->with('login', $oRequest->login);
+            ->with('login', $oRequest->login)
+            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
     public function postMt4InternalTransfer(Request $oRequest)
