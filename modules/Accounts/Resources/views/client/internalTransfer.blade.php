@@ -15,18 +15,26 @@
 
         <div class="panel-body">
             <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+
                 <li>
                     <a href="{{ route('clients.accounts.mt4UserDetails').'?login='.$login}}&from_date=&to_date=&search=Search&sort=asc&order=login">{{ trans('accounts::accounts.summry') }}</a>
                 </li>
+                @if($showMt4Leverage)
                 <li>
                     <a href="{{ route('clients.accounts.mt4Leverage').'?login='.$login}}">{{ trans('accounts::accounts.leverage') }}</a>
                 </li>
+                @endif
+                @if($showMt4ChangePassword)
                 <li>
                     <a href="{{ route('clients.accounts.mt4ChangePassword').'?login='.$login}} ">{{ trans('accounts::accounts.changePassword') }}</a>
                 </li>
+                @endif
+                @if($showMt4Transfer)
                 <li class="active">
                     <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$login}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
                 </li>
+                @endif
+
             </ul>
 
 

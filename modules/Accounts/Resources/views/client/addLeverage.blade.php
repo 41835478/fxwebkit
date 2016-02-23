@@ -18,16 +18,21 @@
                 <li>
                     <a href="{{ route('clients.accounts.mt4UserDetails').'?login='.$login}}&from_date=&to_date=&search=Search&sort=asc&order=login">{{ trans('accounts::accounts.summry') }}</a>
                 </li>
-                <li class="active">
-
-                    <a href="{{ route('clients.accounts.mt4Leverage').'?login='.$login}}">{{ trans('accounts::accounts.leverage') }}</a>
-                </li>
-                <li>
-                    <a href="{{ route('clients.accounts.mt4ChangePassword').'?login='.$login}} ">{{ trans('accounts::accounts.changePassword') }}</a>
-                </li>
-                <li>
-                    <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$login}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
-                </li>
+                @if($showMt4Leverage)
+                    <li class="active">
+                        <a href="{{ route('clients.accounts.mt4Leverage').'?login='.$login}}">{{ trans('accounts::accounts.leverage') }}</a>
+                    </li>
+                @endif
+                @if($showMt4ChangePassword)
+                    <li>
+                        <a href="{{ route('clients.accounts.mt4ChangePassword').'?login='.$login}} ">{{ trans('accounts::accounts.changePassword') }}</a>
+                    </li>
+                @endif
+                @if($showMt4Transfer)
+                    <li>
+                        <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$login}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
+                    </li>
+                @endif
             </ul>
 
 

@@ -39,7 +39,7 @@ class Mt4UsersController extends Controller
             'password' => $oRequest['password']
         ];
 
-        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount') && config('accounts.denyLiveAccount'))? true:false;
+        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount') )? true:false;
 
 if($denyLiveAccount){
     return Redirect::route('client.mt4DemoAccount');
@@ -64,7 +64,7 @@ if($denyLiveAccount){
         }
 
 
-        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount') && config('accounts.denyLiveAccount'))? true:false;
+        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount'))? true:false;
 
 
         return view('client.addMt4User')
@@ -104,7 +104,7 @@ if($denyLiveAccount){
             'array_leverage' => $array_leverage,
         ];
 
-        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount') && config('accounts.denyLiveAccount'))? true:false;
+        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount') )? true:false;
 
 
         return view('client.mt4DemoAccount')
@@ -189,7 +189,7 @@ if($denyLiveAccount){
         ];
 
 
-        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount') && config('accounts.denyLiveAccount'))? true:false;
+        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount'))? true:false;
 
 
         return view('client.mt4LiveAccount')

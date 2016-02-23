@@ -45,6 +45,12 @@ class EloquentUserRepository implements UserContract
         $this->editConfigFile('modules/Accounts/Config/config.php', $accountsSetting);
     }
 
+    public function setConfigSettings($aSetting)
+    {
+
+        $this->editConfigFile('Config/fxweb.php', $aSetting);
+    }
+
     public function getLoginsInGroup($aGroups, $sOrderBy = 'LOGIN', $sSort = 'ASC')
     {
         if (is_string($aGroups)) {
