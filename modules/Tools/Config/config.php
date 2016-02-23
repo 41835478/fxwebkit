@@ -27,6 +27,11 @@ return ['is_admin' => 1,
 			'route' => 'tools.holiday',
 			'title' => 'holiday',
 			'icon' => 'fa fa-home',
+		],
+		[
+			'route' => 'tools.toolsSettings',
+			'title' => 'settings',
+			'icon' => 'fa fa-gears',
 		]
 ],
 

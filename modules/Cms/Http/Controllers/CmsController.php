@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 //use App\Http\Controllers\DB;
 use Illuminate\Support\Facades\DB;
+use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
+use Illuminate\Http\Request;
 
 class CmsController extends Controller
 {
@@ -524,6 +526,33 @@ $page_modules=DB::select( $query_string);
         $files = File::allFiles(public_path() . '/files/');
 
         return view('cms::file_browser', ['files' => $files, 'funnum' => $funnum]);
+    }
+
+    public function getCmsSettings()
+    {
+
+        return view('cms::cmsSettings');
+    }
+
+    public function postCmsSettings(Request $oRequest)
+    {
+
+        $aSetting = [
+
+            'asset_folder'=>$oRequest->asset_folder,
+            'admin_theme'=>$oRequest->admin_theme,
+            'theme_folder'=>$oRequest->theme_folder,
+
+        ];
+
+
+
+        $editConfig = new EditConfig();
+
+        $editConfig->editConfigFile('modules/Cms/Config/config.php', $aSetting);
+
+        return Redirect::route('cms.cmsSettings');
+
     }
 
 

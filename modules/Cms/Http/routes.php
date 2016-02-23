@@ -10,6 +10,7 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespa
         Route::controller('customHtml','CustomHtmlController',['getCustomHtmlList'=>'cms.customHtmlList']);
         Route::controller('themes','ThemesController',['getThemesList'=>'cms.themesList']);
         Route::controller('languages','LanguagesController',['getLanguagesList'=>'cms.languagesList']);
+        Route::controller('settings','CmsController',['getCmsSettings'=>'cms.cmsSettings']);
 
         Route::controller('modules', 'ModulesListController');
 });

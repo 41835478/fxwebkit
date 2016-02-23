@@ -30,4 +30,7 @@ return [
     'to'=>'to',
     'showing'=>'showing',
     'sync'=>'Sync',
+    'settings'=>'Settings',
+    'apiAdminPassword'=>'API Admin Password',
+    'save'=>'Save',
 ];

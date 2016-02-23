@@ -22,9 +22,10 @@ return [
         '2' => 'Deposit',
         '3' => 'Withdraw',
     ],
+
     'apiReqiredConfirmMt4Password' => false,
     'apiMasterPassword' => 'PASSWORD',
-    'allowTransferToUnsignedMT4' => false,
+    'allowTransferToUnsignedMT4' => true,
 
 
     'denyLiveAccount' => false,

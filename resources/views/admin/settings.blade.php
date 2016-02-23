@@ -12,59 +12,89 @@
             <span class="panel-title">{{ trans('general.settings') }}</span>
         </div>
 
-        <!-- TODO[moaid] translate this page check design of input and add adminpixel design like edit user profile page -->
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group no-margin-hr">
-                        {!! Form::text('mt4CheckHost',config('fxweb.mt4CheckHost'),[]) !!}
-                        <label class="control-label">{{ trans('general.mt4CheckHost') }}</label>
 
-                    </div>
-                </div>
+            <div class="panel-body">
+
+                <div class="panel-group" id="accordion-example">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-example" href="#collapseOne">
+                                Collapsible Group Item #1
+                            </a>
+                        </div> <!-- / .panel-heading -->
+                        <div id="collapseOne" class="panel-collapse in">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">{{ trans('general.mt4CheckHost') }}</label>
+                                            {!! Form::text('mt4CheckHost',config('fxweb.mt4CheckHost'),['class'=>'form-control']) !!}
+                                        </div>
+                                    </div>
 
 
-                <div class="col-sm-6">
-                    <div class="form-group no-margin-hr">
-                        {!! Form::text('mt4CheckPort',config('fxweb.mt4CheckPort'),[]) !!}
-                        <label class="control-label">{{ trans('general.mt4CheckPort') }}</label>
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">{{ trans('general.mt4CheckPort') }}</label>
+                                            {!! Form::text('mt4CheckPort',config('fxweb.mt4CheckPort'),['class'=>'form-control']) !!}
+                                        </div>
+                                    </div>
 
-                    </div>
-                </div>
+                                </div>
+                            </div> <!-- / .panel-body -->
+                        </div> <!-- / .collapse -->
+                    </div> <!-- / .panel -->
+
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example" href="#collapseTwo">
+                                Collapsible Group Item #2
+                            </a>
+                        </div> <!-- / .panel-heading -->
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">{{ trans('general.mt4CheckDemoHost') }}</label>
+                                            {!! Form::text('mt4CheckDemoHost',config('fxweb.mt4CheckDemoHost'),['class'=>'form-control']) !!}
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">{{ trans('general.mt4CheckDemoPort') }}</label>
+                                            {!! Form::text('mt4CheckDemoPort',config('fxweb.mt4CheckDemoPort'),['class'=>'form-control']) !!}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div> <!-- / .panel-body -->
+                        </div> <!-- / .collapse -->
+                    </div> <!-- / .panel -->
+
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example" href="#collapseThree">
+                                Collapsible Group Item #3
+                            </a>
+                        </div> <!-- / .panel-heading -->
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">{{ trans('general.adminEmail') }}</label>
+                                            {!! Form::text('adminEmail',config('fxweb.adminEmail'),['class'=>'form-control']) !!}
+                                        </div>
+                                    </div>
+                            </div> <!-- / .panel-body -->
+                        </div> <!-- / .collapse -->
+                    </div> <!-- / .panel -->
+                </div> <!-- / .panel-group -->
 
             </div>
-            <hr>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group no-margin-hr">
-                        {!! Form::text('mt4CheckDemoHost',config('fxweb.mt4CheckDemoHost'),[]) !!}
-                        <label class="control-label">{{ trans('general.mt4CheckDemoHost') }}</label>
-
-                    </div>
-                </div>
-
-
-                <div class="col-sm-6">
-                    <div class="form-group no-margin-hr">
-                        {!! Form::text('mt4CheckDemoPort',config('fxweb.mt4CheckDemoPort'),[]) !!}
-                        <label class="control-label">{{ trans('general.mt4CheckDemoPort') }}</label>
-
-                    </div>
-                </div>
-
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group no-margin-hr">
-                        {!! Form::text('adminEmail',config('fxweb.adminEmail'),[]) !!}
-                        <label class="control-label">{{ trans('general.adminEmail') }}</label>
-
-                    </div>
-                </div>
-
-            </div>
-
 
             @if($errors->any())
                 <div class="alert alert-danger alert-dark">
@@ -77,7 +107,7 @@
             <div class="panel-footer text-right">
                 <a href="{{ route('accounts.detailsAccount') }}">
                     <button type="submit" class="btn btn-primary" name="edit_id"
-                            value="0">{{ trans('accounts::accounts.save') }}</button>
+                            value="0">{{ trans('general.save') }}</button>
                 </a>
 
                 {!! Form::close() !!}

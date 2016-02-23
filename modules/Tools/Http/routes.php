@@ -15,6 +15,7 @@
             'getDeleteHoliday'=>'tools.deleteHoliday',
             'getHolidayDetails'=>'tools.holidayDetails',
             'getDeleteSymbol'=>'tools.deleteSymbol',
+            'getToolsSettings'=>'tools.toolsSettings'
 
             ]);
 });

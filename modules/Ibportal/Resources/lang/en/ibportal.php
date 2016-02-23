@@ -82,5 +82,6 @@ return [
     'settings'=>'Settings',
     'agreemment'=>'Agreemment',
     'save'=>'Save',
+    'is_client'=>'Show This Module To Client',
 
 ];

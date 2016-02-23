@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Config;
 
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
+use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
 
 class IbportalController extends Controller
 {
@@ -561,6 +562,7 @@ class IbportalController extends Controller
         $ibportalSetting = [
 
             'agreemment' => Config('ibportal.agreemment'),
+            'is_client' => Config('ibportal.is_client'),
 
 
         ];
@@ -571,15 +573,17 @@ class IbportalController extends Controller
 
     public function postIbportalSettings(Request $oRequest)
     {
-
+        $is_client = ($oRequest->is_client) ? 1 : 0;
         $ibportalSetting = [
 
             'agreemment' =>$oRequest->agreemment,
+            'is_client' => $is_client,
 
 
         ];
 
-        $this->Ibportal->ibportalSettings($ibportalSetting);
+        $editConfig = new EditConfig();
+        $editConfig->editConfigFile('modules/Ibportal/Config/config.php', $ibportalSetting);
 
         return view('ibportal::admin.ibportalSetting')->with('ibportalSetting', $ibportalSetting);
 

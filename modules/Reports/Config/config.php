@@ -41,6 +41,11 @@ return [
 			'route' => 'admin.reports.accountant',
 			'title' => 'accountant',
 			'icon' => 'fa fa-money',
+		],
+		[
+			'route' => 'admin.reports.reportsSettings',
+			'title' => 'settings',
+			'icon' => 'fa fa-gears',
 		]
             
 	],

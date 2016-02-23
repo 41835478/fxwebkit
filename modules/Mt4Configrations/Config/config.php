@@ -23,6 +23,11 @@ return [
 			'title' => 'groupsList',
 			'icon' => 'fa fa-group',
 		],
+		[
+			'route' => 'admin.mt4Configrations.mt4ConfigrationsSettings',
+			'title' => 'settings',
+			'icon' => 'fa fa-gears',
+		]
 
 
 
