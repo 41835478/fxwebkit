@@ -508,6 +508,7 @@ class AccountsController extends Controller
 
         if ($oRequest->has('search')) {
             $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['server_id'] = $oRequest->server_id;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['sort'] = $oRequest->sort;
@@ -620,7 +621,8 @@ class AccountsController extends Controller
             ->with('Pssword', $Pssword)
             ->with('Result', $Result)
             ->with('changeleverage', $changeleverage)
-            ->with('login', $oRequest->login);
+            ->with('login', $oRequest->login)
+            ->with('server_id', $oRequest->server_id);
     }
 
     public function postMt4Leverage(Request $oRequest)
@@ -637,6 +639,10 @@ class AccountsController extends Controller
             'leverage' => ''];
 
         $oApiController = new ApiController();
+        if($oRequest['sever_id']==1){
+            $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
+            $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+        }
         $result = $oApiController->changeMt4Leverage($oRequest['login'], $oRequest['leverage'], $oRequest['oldPassword']);
 
 
@@ -660,7 +666,8 @@ class AccountsController extends Controller
         return view('accounts::changePassword')
             ->with('Password', $Password)
             ->with('changePassword', $changePassword)
-            ->with('login', $oRequest->login);
+            ->with('login', $oRequest->login)
+            ->with('server_id', $oRequest->server_id);
     }
 
     public function postMt4ChangePassword(Request $oRequest)
@@ -673,6 +680,10 @@ class AccountsController extends Controller
             'newPassword' => ''];
 
         $mT4ChangePassword = new ApiController();
+        if($oRequest['sever_id']==1){
+            $mT4ChangePassword->mt4Host=Config('fxweb.mt4CheckDemoHost');
+            $mT4ChangePassword->mt4Port=Config('fxweb.mt4CheckDemoPort');
+        }
         $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'], $oRequest['oldPassword']);
 
         return view('accounts::changePassword')
@@ -698,7 +709,8 @@ class AccountsController extends Controller
             ->with('Pssword', $Pssword)
             ->with('internalTransfer', $internalTransfer)
             ->with('oResults', $oResults)
-            ->with('login', $oRequest->login);
+            ->with('login', $oRequest->login)
+            ->with('server_id', $oRequest->server_id)   ;
     }
 
     public function postMt4InternalTransfer(Request $oRequest)
@@ -715,6 +727,10 @@ class AccountsController extends Controller
             'amount' => ''];
 
         $oApiController = new ApiController();
+        if($oRequest['sever_id']==1){
+            $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
+            $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+        }
         $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['oldPassword'], $oRequest['amount']);
 
 
@@ -786,12 +802,14 @@ class AccountsController extends Controller
 
     public function getAccountsSettings(Request $oRequest)
     {
+
         $accountsSetting = [
 
             'showMt4Leverage' => Config('accounts.showMt4Leverage'),
             'showMt4ChangePassword' => Config('accounts.showMt4ChangePassword'),
             'showMt4Transfer' => Config('accounts.showMt4Transfer'),
             'denyLiveAccount' => Config('accounts.denyLiveAccount'),
+            'is_client' => Config('accounts.is_client'),
         ];
 
 
@@ -810,6 +828,8 @@ class AccountsController extends Controller
         $showMt4ChangePassword = ($oRequest->showMt4ChangePassword) ? true : false;
         $showMt4Transfer = ($oRequest->showMt4Transfer) ? true : false;
         $denyLiveAccount = ($oRequest->denyLiveAccount) ? true : false;
+        $is_client = ($oRequest->is_client) ? 1 : 0;
+
 
 
         $accountsSetting = [
@@ -817,7 +837,8 @@ class AccountsController extends Controller
             'showMt4Leverage' => $showMt4Leverage,
             'showMt4ChangePassword' => $showMt4ChangePassword,
             'showMt4Transfer' => $showMt4Transfer,
-            'denyLiveAccount' => $denyLiveAccount
+            'denyLiveAccount' => $denyLiveAccount,
+            'is_client' => $is_client,
 
         ];
 

@@ -151,7 +151,8 @@ return [
     'denyLiveAccount'=>'Deny Live Account',
     'liveDemo'=>'Live/Demo',
     'demo'=>'Demo',
-    'live'=>'Live'
+    'live'=>'Live',
+    'is_client'=>'Show This Module To Client',
 
 
 

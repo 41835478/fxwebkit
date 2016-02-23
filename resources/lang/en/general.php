@@ -143,4 +143,5 @@ return [
     'mt4CheckPort'=>'Mt4 Check Port',
     'mt4CheckDemoHost'=>'Mt4 Check Demo Host',
     'mt4CheckDemoPort'=>'Mt4 Check Demo Port',
+    'adminEmail'=>'Admin Email',
 ];

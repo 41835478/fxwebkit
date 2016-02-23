@@ -89,5 +89,4 @@ return [
     ],'client_menu' => [
         
     ],
-    'mohammd'=>'not'
 ];

@@ -81,7 +81,7 @@
                             <td>{{ $oResult->REGDATE }}</td>
                             <td>{{ $oResult->LASTDATE }}</td>         
                             <td>{{ $oResult->LEVERAGE }}</td>
-                            <td><a href="{{ route('accounts.mt4UserDetails').'?login='. $oResult->LOGIN }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text"></a></td>
+                            <td><a href="{{ route('accounts.mt4UserDetails').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text"></a></td>
                         </tr>
                         @endforeach
                         @endif
