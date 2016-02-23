@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Carbon\Carbon;
 use Modules\Accounts\Http\Controllers\ApiController;
+use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
 
 class AccountsController extends Controller
 {
@@ -32,7 +33,6 @@ class AccountsController extends Controller
     )
     {
         $this->oUsers = $oUsers;
-
         $this->oMt4Trade = $oMt4Trade;
         $this->oMt4User = $oMt4User;
     }
@@ -789,10 +789,10 @@ class AccountsController extends Controller
         $accountsSetting = [
 
             'showMt4Leverage' => Config('accounts.showMt4Leverage'),
-            'showMt4ChangePassword'=>Config('accounts.showMt4ChangePassword'),
-            'showMt4Transfer'=>Config('accounts.showMt4Transfer'),
+            'showMt4ChangePassword' => Config('accounts.showMt4ChangePassword'),
+            'showMt4Transfer' => Config('accounts.showMt4Transfer'),
+            'denyLiveAccount' => Config('accounts.denyLiveAccount'),
         ];
-
 
 
         return view('accounts::accountsSetting')->with('accountsSetting', $accountsSetting);
@@ -806,24 +806,24 @@ class AccountsController extends Controller
     public function postAccountsSettings(Request $oRequest)
     {
 
-        $showMt4Leverage= ($oRequest->showMt4Leverage) ? true : false;
-        $showMt4ChangePassword= ($oRequest->showMt4ChangePassword) ? true : false;
-        $showMt4Transfer= ($oRequest->showMt4Transfer) ? true : false;
-        $denyLiveAccount= ($oRequest->denyLiveAccount) ? true : false;
+        $showMt4Leverage = ($oRequest->showMt4Leverage) ? true : false;
+        $showMt4ChangePassword = ($oRequest->showMt4ChangePassword) ? true : false;
+        $showMt4Transfer = ($oRequest->showMt4Transfer) ? true : false;
+        $denyLiveAccount = ($oRequest->denyLiveAccount) ? true : false;
 
 
         $accountsSetting = [
 
-            'showMt4Leverage' =>$showMt4Leverage,
-            'showMt4ChangePassword'=>$showMt4ChangePassword,
-            'showMt4Transfer'=>$showMt4Transfer,
-            'denyLiveAccount'=>$denyLiveAccount
+            'showMt4Leverage' => $showMt4Leverage,
+            'showMt4ChangePassword' => $showMt4ChangePassword,
+            'showMt4Transfer' => $showMt4Transfer,
+            'denyLiveAccount' => $denyLiveAccount
 
         ];
 
-        /* TODO[moaid] this function should not be in user repository change it*/
-        $this->oUsers->accountsSettings($accountsSetting);
 
+        $editConfig = new EditConfig();
+        $editConfig->editConfigFile('modules/Accounts/Config/config.php', $accountsSetting);
         return view('accounts::accountsSetting')->with('accountsSetting', $accountsSetting);
 
     }

@@ -148,6 +148,7 @@ return [
     'showMt4Leverage'=>'Show Mt4 Leverage',
     'showMt4ChangePassword'=>'Show Mt4 Change Password',
     'showMt4Transfer'=>'Show Mt4 Transfer',
+    'denyLiveAccount'=>'Deny Live Account',
 
 
 

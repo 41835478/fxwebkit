@@ -138,4 +138,9 @@ return [
     'submit'=>'Submit',
     'mt4LiveAccount'=>'Mt4 Live Account',
     'mt4DemoAccount'=>'Mt4 Demo Account',
+    'settings'=>'Settings',
+    'mt4CheckHost'=>'Mt4 Check Host',
+    'mt4CheckPort'=>'Mt4 Check Port',
+    'mt4CheckDemoHost'=>'Mt4 Check Demo Host',
+    'mt4CheckDemoPort'=>'Mt4 Check Demo Port',
 ];

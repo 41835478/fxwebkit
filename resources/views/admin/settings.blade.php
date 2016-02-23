@@ -1,15 +1,15 @@
 @extends('admin.layouts.main')
-@section('title', trans('accounts::accounts.settings'))
+@section('title', trans('general.settings'))
 @section('content')
 
 <div class="page-header">
-		<h1>{{ trans('accounts::accounts.settings') }}</h1>
+		<h1>{{ trans('general.settings') }}</h1>
 	</div>
 
 <div class="panel">
     {!! Form::open(['class'=>'panel form-horizontal']) !!}
     <div class="panel-heading">
-        <span class="panel-title">{{ trans('accounts::accounts.settings') }}</span>
+        <span class="panel-title">{{ trans('general.settings') }}</span>
     </div>
 
     <!-- TODO[moaid] translate this page check design of input and add adminpixel design like edit user profile page -->

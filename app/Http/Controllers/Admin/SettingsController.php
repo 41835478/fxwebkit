@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use File;
 use Fxweb\Http\Controllers\admin\Email;
+use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
 
 class SettingsController extends Controller
 {
@@ -345,7 +346,9 @@ class SettingsController extends Controller
 
     public function getSettings(Request $oRequest)
     {
+
         return view('admin.settings');
+
 
     }
 
@@ -356,8 +359,6 @@ class SettingsController extends Controller
     public function postSettings(Request $oRequest)
     {
 
-
-
         $aSetting = [
 
     'mt4CheckHost'=>$oRequest->mt4CheckHost,
@@ -367,8 +368,10 @@ class SettingsController extends Controller
 
         ];
 
-        /* TODO[moaid] this function should not be in user repository change it*/
-        $this->oUser->setConfigSettings($aSetting);
+
+        $editConfig = new EditConfig();
+
+        $editConfig->editConfigFile('Config/fxweb.php', $aSetting);
 
         return Redirect::route('admin.settings');
 

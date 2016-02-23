@@ -43,7 +43,8 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                {!! Form::checkbox('denyLiveAccount',1,config('accounts.denyLiveAccount'),[]) !!}
+
+                {!! Form::checkbox('denyLiveAccount',1,$accountsSetting['denyLiveAccount'],[]) !!}
                 <label class="control-label">{{ trans('accounts::accounts.denyLiveAccount') }}</label>
             </div>
         </div><!-- col-sm-6 -->

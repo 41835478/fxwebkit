@@ -27,11 +27,10 @@ return [
     'allowTransferToUnsignedMT4' => false,
 
 
-'denyLiveAccount'=>false,
-
-    'showMt4Leverage'=>true,
-    'showMt4ChangePassword'=>true,
-    'showMt4Transfer'=>true,
+    'denyLiveAccount' => false,
+    'showMt4Leverage' => true,
+    'showMt4ChangePassword' => true,
+    'showMt4Transfer' => true,
 
 
     'admin_menu' => [
