@@ -100,7 +100,7 @@ class ClientAccountsController extends Controller
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-            $oResults = $this->oMt4User->getUserInfo($aFilterParams['login']);
+            $oResults = $this->oMt4User->getUserInfo($aFilterParams['login'],$aFilterParams['server_id']);
 
             $aSummery = [
                 'deposit' => $this->oMt4Trade->getDepositByLogin($aFilterParams),
@@ -170,7 +170,11 @@ class ClientAccountsController extends Controller
             ->with('Pssword', $Pssword)
             ->with('login', $oRequest->login)
             ->with('changeleverage', $changeleverage)
-            ->withErrors($result);
+            ->withErrors($result)
+            ->with('server_id', $oRequest->server_id)
+            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
     public function getMt4ChangePassword(Request $oRequest)
@@ -213,7 +217,11 @@ class ClientAccountsController extends Controller
             ->withErrors($result)
             ->with('Password', $Password)
             ->with('changePassword', $changePassword)
-            ->with('login', $oRequest->login);
+            ->with('login', $oRequest->login)
+            ->with('server_id', $oRequest->server_id)
+            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
     public function getMt4InternalTransfer(Request $oRequest)
@@ -287,7 +295,11 @@ class ClientAccountsController extends Controller
             ->withErrors($result)
             ->with('Pssword', $Pssword)
             ->with('internalTransfer', $internalTransfer)
-            ->with('login', $oRequest->login);
+            ->with('login', $oRequest->login)
+            ->with('server_id', $oRequest->server_id)
+            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
 }
