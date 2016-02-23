@@ -55,6 +55,7 @@
                     <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Login'), 'LOGIN', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.liveDemo'), 'server_id', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.reg_date'), 'REGDATE', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.last_date'), 'LASTDATE', $oResults) !!}</th>
@@ -70,6 +71,8 @@
                         {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                         <tr class='{{ $class }}'>
                             <td>{{ $oResult->LOGIN }}</td>
+
+                            <td>{{ ($oResult->server_id)? trans('demo'):trans('live') }}</td>
                             <td>{{ $oResult->NAME }}</td>
                             <td>{{ $oResult->REGDATE }}</td>
                             <td>{{ $oResult->LASTDATE }}</td>         

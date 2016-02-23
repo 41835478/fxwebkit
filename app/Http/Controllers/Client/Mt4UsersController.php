@@ -41,9 +41,9 @@ class Mt4UsersController extends Controller
 
         $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount') )? true:false;
 
-if($denyLiveAccount){
-    return Redirect::route('client.mt4DemoAccount');
-}
+        if($denyLiveAccount){
+            return Redirect::route('client.mt4DemoAccount');
+        }
         return view('client.addMt4User')->with('userInfo', $userInfo)
             ->with('denyLiveAccount',$denyLiveAccount);
     }
@@ -149,6 +149,10 @@ if($denyLiveAccount){
 
 
         $oApiController = new ApiController();
+
+        $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
+        $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+
         $result = $oApiController->mt4UserFullDetails($mt4_user_details);
 
 

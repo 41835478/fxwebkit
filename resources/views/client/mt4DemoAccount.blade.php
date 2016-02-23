@@ -93,6 +93,8 @@
 </div>
 @endif
 <div class="panel-footer text-right">
+
+    <!-- TODO[moaid] convert this button to Form::button -->
     <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $mt4_user_details['edit_id']  or 0 }}">{{ trans('general.submit') }}</button>
 </div>
 </div>
