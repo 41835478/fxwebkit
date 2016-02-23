@@ -12,7 +12,10 @@
                 </div>
                 {{ app_name() }}
             </a>
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse">
+
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#main-navbar-collapse">
                 <i class="navbar-icon fa fa-bars"></i>
             </button>
         </div>
@@ -21,6 +24,18 @@
             <div>
                 <div class="right clearfix">
                     <ul class="nav navbar-nav pull-right right-navbar-nav">
+                        <li class="dropdown">
+
+
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>
+                                Language</a>
+                            <ul class="dropdown-menu">
+                                @foreach(config('app.language')  as $locale=>$name)
+                                    <li><a href="?locale={{$locale}}">{{ $name }}</a></li>
+                                @endforeach
+
+                            </ul>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
                                 <img src="data:image/jpeg;base64,{{ current_user()->getAvatar() }}" alt="">
@@ -34,7 +49,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ route('admin.editProfile') }}">
                                         <i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;
                                         {{ trans('general.Settings') }}
                                     </a>

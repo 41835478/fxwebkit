@@ -14,81 +14,87 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Config;
 use Modules\Cms\Http\Requests\CreateCustomHtmlRequest;
 
-class CustomHtmlController extends Controller {
+class CustomHtmlController extends Controller
+{
     /* ________________________________________________articles */
 
-    public function getCustomHtml($customHtml_id = 0) {
+    public function getCustomHtml($customHtml_id = 0)
+    {
 
         $pages = cms_pages::lists('title', 'id');
         $customHtmls = cms_customHtml::lists('title', 'id');
-        if ($customHtml_id == 0) {$customHtml_id = (Input::get('customHtml_id') !== null) ? Input::get('customHtml_id') : 0;}
-        
-
-        
-        $languages=  cms_languages::lists('name','id');
-         $selected_language=(Input::get('selected_language')!=null)? Input::get('selected_language'):1;
+        if ($customHtml_id == 0) {
+            $customHtml_id = (Input::get('customHtml_id') !== null) ? Input::get('customHtml_id') : 0;
+        }
 
 
-      
+        $languages = cms_languages::lists('name', 'id');
+        $selected_language = (Input::get('selected_language') != null) ? Input::get('selected_language') : 1;
+
+
         $edit_customHtml = '';
-        if ($customHtml_id > 0 && $selected_language ==1) {
-            
-            $edit_customHtml = cms_customHtml::find($customHtml_id); 
-            
-        }else if($customHtml_id > 0 && $selected_language >1){
-            
-            $edit_customHtml = cms_customHtml_languages::where(['cms_customHtml_id'=>$customHtml_id,'cms_languages_id'=>$selected_language])->first();
+        if ($customHtml_id > 0 && $selected_language == 1) {
+
+            $edit_customHtml = cms_customHtml::find($customHtml_id);
+
+        } else if ($customHtml_id > 0 && $selected_language > 1) {
+
+            $edit_customHtml = cms_customHtml_languages::where(['cms_customhtml_id' => $customHtml_id, 'cms_languages_id' => $selected_language])->first();
         }
 
         $asset_folder = Config::get('cms.asset_folder');
         return view('cms::customHtml', [
-            'selected_id' => $customHtml_id,
-            'customHtmls' => $customHtmls,
-            'edit_customHtml' => $edit_customHtml,
-            'languages'=>$languages,
-            'selected_language'=>$selected_language,
-            'asset_folder' => $asset_folder,
-                ]
+                'selected_id' => $customHtml_id,
+                'customHtmls' => $customHtmls,
+                'edit_customHtml' => $edit_customHtml,
+                'languages' => $languages,
+                'selected_language' => $selected_language,
+                'asset_folder' => $asset_folder,
+            ]
         );
     }
 
-    public function postSaveCustomHtmlTranslate(){
-        $translate_title=Input::get('title');
-        $translate_body=Input::get('editor1');
-        $selected_language=Input::get('selected_language');
-        $id=Input::get('customHtml_id');
-        
-            
-            $translate=cms_customHtml_languages::where(['cms_languages_id'=>$selected_language,'cms_customHtml_id'=>$id])->first();
-            if($translate){
-                $translate->title=$translate_title;
-                $translate->body=$translate_body;
-                $translate->save();
-            }else{
-                $translate=new cms_customHtml_languages;
-                $translate->title=$translate_title;
-                $translate->body=$translate_body;
-                $translate->cms_languages_id=$selected_language;
-                $translate->cms_customHtml_id=$id;
-                $translate->save();
-            }
-            
-        
+    public function postSaveCustomHtmlTranslate()
+    {
+        $translate_title = Input::get('title');
+        $translate_body = Input::get('editor1');
+        $selected_language = Input::get('selected_language');
+        $id = Input::get('customHtml_id');
+
+
+        $translate = cms_customHtml_languages::where(['cms_languages_id' => $selected_language, 'cms_customhtml_id' => $id])->first();
+        if ($translate) {
+            $translate->title = $translate_title;
+            $translate->body = $translate_body;
+            $translate->save();
+        } else {
+            $translate = new cms_customHtml_languages;
+            $translate->title = $translate_title;
+            $translate->body = $translate_body;
+            $translate->cms_languages_id = $selected_language;
+            $translate->cms_customhtml_id = $id;
+            $translate->save();
+        }
+
+
         return $this->getCustomHtml($id);
-    }   
-    public function getCustomHtmlList() {
+    }
+
+    public function getCustomHtmlList()
+    {
         //  $selected_id = (Input::get('selected_id') !== null) ? Input::get('selected_id') : 1;
         $customHtmls = cms_customHtml::lists('title', 'id');
 
         $asset_folder = Config::get('cms.asset_folder');
 
         return view("cms::customHtmlList", ['customHtmls' => $customHtmls,
-            'asset_folder' => $asset_folder
-                ]
+                'asset_folder' => $asset_folder
+            ]
         );
     }
 
-    public function postCustomHtml() {
+    public function postCustomHtml()
+    {
         if (null !== Input::get('new_customHtml_submit')) {
             return $this->getCustomHtml();
         }
@@ -106,7 +112,8 @@ class CustomHtmlController extends Controller {
         return $this->getCustomHtml();
     }
 
-    public function postInsertEditCustomHtml(CreateCustomHtmlRequest $request) {
+    public function postInsertEditCustomHtml(CreateCustomHtmlRequest $request)
+    {
 
 
         if (null !== Input::get('insert_customHtml_submit')) {

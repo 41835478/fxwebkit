@@ -7,10 +7,10 @@ return ['is_admin' => 1,
 	'route' => '',
 	'city_array'=>[
 		['Local', 6, -1, 'realOffset'],
-		["Sydney Time", 22, 9, 2],
+		["Sydney Time", 22, 9, 17],
 		["Tokyo  Time", 24, 9, 1],
 		["London  Time", 8, 9, 4],
-		["New Yourk  Time", 13, 9, 1]
+		["New York  Time", 13, 9, 1]
 	],
 	'admin_menu' => [
 		[
@@ -19,11 +19,22 @@ return ['is_admin' => 1,
 			'icon' => 'fa fa-suitcase',
 		],
 		[
-			'route' => 'tools.marketWatch',
-			'title' => 'marketWatch',
-			'icon' => 'fa fa-shopping-cart',
-		]
+		'route' => 'tools.marketWatch',
+		'title' => 'marketWatch',
+		'icon' => 'fa fa-shopping-cart',
 	],
+		[
+			'route' => 'tools.holiday',
+			'title' => 'holiday',
+			'icon' => 'fa fa-home',
+		],
+		[
+			'route' => 'tools.toolsSettings',
+			'title' => 'settings',
+			'icon' => 'fa fa-gears',
+		]
+],
+
     'client_menu' => [
 		
          [
@@ -35,6 +46,11 @@ return ['is_admin' => 1,
 			'route' => 'client.tools.marketWatch',
 			'title' => 'marketWatch',
 			'icon' => 'fa fa-shopping-cart',
+		],
+		[
+			'route' => 'client.tools.holiday',
+			'title' => 'holiday',
+			'icon' => 'fa fa-home',
 		]
         ]
 ];

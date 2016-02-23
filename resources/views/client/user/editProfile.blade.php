@@ -1,5 +1,5 @@
 @extends('client.layouts.main')
-@section('title', trans('accounts.addAccount'))
+@section('title', trans('user.addAccount'))
 @section('content')
 
 
@@ -7,7 +7,11 @@
 		<h1>{{ trans('user.edit_user') }}</h1>
 	</div>
 
-{!! Form::open(['class'=>'panel form-horizontal']) !!}
+<div class="panel">
+    {!! Form::open(['class'=>'panel form-horizontal']) !!}
+    <div class="panel-heading">
+        <span class="panel-title">{{ trans('user.edit_user') }}</span>
+    </div>
 
 
 
@@ -63,7 +67,7 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.Birthday') }}</label>
+                <label class="control-label">{{ trans('user.BirthDay') }}</label>
                 {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
@@ -128,10 +132,10 @@
 
 <div class="panel-footer text-right">
      <a href="{{ route('client.users.profile')}}">
-         <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']}}">{{ trans('general.save') }}</button></a>
+         <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']}}">{{ trans('user.save') }}</button></a>
 </div>
 {!! Form::close() !!}
-
+</div>
 @stop
 @section("script")
 @parent

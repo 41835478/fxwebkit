@@ -1,5 +1,5 @@
 @extends('client.layouts.main')
-@section('title', trans('tools::tools.tools'))
+@section('title', trans('tools::tools.futureContract'))
 @section('content')
 <style type="text/css">
     #content-wrapper{ padding: 0px; margin: 0px;}
@@ -20,11 +20,6 @@
             <ul class="sections">
                 <li class="active"><a href="#"> <i class="fa fa-search"></i> {{ trans('tools::tools.search') }} </a></li>
 
-                <li  >
-                    <div  class=" nav-input-div  ">
-                        {!! Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('tools::tools.id'),'class'=>'form-control input-sm']) !!}
-                    </div>
-                </li>
                 <li  >
                     <div  class=" nav-input-div  ">
                         {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('tools::tools.name'),'class'=>'form-control input-sm']) !!}
@@ -72,12 +67,11 @@
         <div class="center_page_all_div">
             @include('admin.partials.messages')
 
-            <div class="table-info">
-              
+            <div class="table-light">
+                <div class="table-header">{{ trans('tools::tools.futureContract') }}</div>
                 <table class="table table-bordered table-striped">
                     <thead>
-                        <tr>
-                           <th class="no-warp">{!! th_sort(trans('tools::tools.id'), 'id', $oResults) !!}</th>
+                        <tr>                     
                             <th class="no-warp">{!! th_sort(trans('tools::tools.name'), 'name', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.symbol'), 'symbol', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.exchange'), 'exchange', $oResults) !!}</th>
@@ -85,9 +79,7 @@
                             <th class="no-warp">{!! th_sort(trans('tools::tools.year'), 'year', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.start_date'), 'start_date', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.expiry_date'), 'expiry_date', $oResults) !!}</th>
-
-                          
-                        </tr>
+                   </tr>
                     </thead>
                     <tbody>
                         @if (count($oResults))
@@ -95,9 +87,7 @@
                         {{-- */$class='';/* --}}
                         @foreach($oResults as $oResult)
                         {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                        <tr class='{{ $class }}'>
-
-                            <td>{{ $oResult->id }}</td>
+                        <tr class='{{ $class }}'>     
                             <td>{{ $oResult->name }}</td>
                             <td>{{ $oResult->symbol }}</td>
                             <td>{{ $oResult->exchange }}</td>
@@ -115,7 +105,7 @@
 
                 </table>
 
-                <div class="table-footer text-right">
+                <div class="table-footer">
 
                     
                     @if (count($oResults))
@@ -124,15 +114,15 @@
 
                     <div class="DT-lf-right change_page_all_div" >
 
-                        {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
+                        {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('tools::tools.page'),'class'=>'form-control input-sm']) !!}
 
                         {!! Form::submit(trans('tools::tools.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
 
                     </div>
                     @endif
 
-                    <div class="col-sm-3  padding-xs-vr">
-                        <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
+                    <div class="col-sm-3">
+                        <span class="text-xs">{{trans('tools::tools.showing')}} {{ $oResults->firstItem() }} {{trans('tools::tools.to')}} {{ $oResults->lastItem() }} {{trans('tools::tools.of')}} {{ $oResults->total() }} {{trans('tools::tools.entries')}}</span>
                     </div>
                     @endif
                 </div>

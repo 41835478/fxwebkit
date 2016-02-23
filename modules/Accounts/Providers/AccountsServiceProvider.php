@@ -41,7 +41,7 @@ class AccountsServiceProvider extends ServiceProvider {
 	protected function registerConfig()
 	{
 		$this->publishes([
-		    __DIR__.'/../Config/config.php' => config_path('accounts.php'),
+		    __DIR__.'/../Config/config.php' => config_path('ibportal.php'),
 		]);
 		$this->mergeConfigFrom(
 		    __DIR__.'/../Config/config.php', 'accounts'

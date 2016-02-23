@@ -29,13 +29,13 @@
         </div>
 
         <div class="form-group w-icon">
-            {!! Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.Email')]) !!}
+            {!! Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.email')]) !!}
             <span class="fa fa-envelope signup-form-icon"></span>
         </div>
 
 
         <div class="form-group w-icon">
-            {!! Form::password('password',['class'=>'form-control input-lg','placeholder'=>Lang::get('user.Password')]) !!}
+            {!! Form::password('password',['class'=>'form-control input-lg','placeholder'=>Lang::get('user.password')]) !!}
             <span class="fa fa-lock signup-form-icon"></span>
         </div>
 
@@ -82,13 +82,13 @@
                 <div class=" col-xs-3">
                     <label class='radio gender_radio_0'>
                         {!! Form::radio('gender', 0,true,['id'=>'gender_radio_0','class'=>'px']) !!}
-                        <span class="lbl">Male</span>
+                        <span class="lbl">{{ trans('user.male') }}</span>
                     </label>
                 </div>
                 <div class=" col-xs-3">
                     <label class='radio gender_radio_1'>
                         {!! Form::radio('gender', 1,false,['id'=>'gender_radio_1','class'=>'px']) !!}
-                        <span class="lbl">Female</span>
+                        <span class="lbl">{{ trans('user.female') }}</span>
                     </label>
                 </div>
             </div>
@@ -102,6 +102,8 @@
         </div>
 
         <div class="form-actions">
+            {!! Form::hidden('ibid',$ibid) !!}
+            {!! Form::hidden('planId',$planId) !!}
             {!! Form::submit(Lang::get('user.SignUp'), ['class'=>'signup-btn bg-primary']) !!}
         </div>
         </form>

@@ -81,7 +81,7 @@
 @endif
 <div class="panel-footer text-right">
     <a href="{{ route('tools.futureContract') }}">
-        <button type="submit" class="btn btn-primary" name="id" value="{{ $contractInfo['id']}}">{{ trans('general.save') }}</button></a>
+        <button type="submit" class="btn btn-primary" name="id" value="{{ $contractInfo['id']}}">{{ trans('tools::tools.save') }}</button></a>
 
     {!! Form::close() !!}
     @stop

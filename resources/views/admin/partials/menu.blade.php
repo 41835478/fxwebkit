@@ -5,10 +5,10 @@
                 <div class="text-bg"><span class="text-slim">{{ trans('general.Welcome') }},</span> <span class="text-semibold"> {{ current_user()->getFirstName() }} </span></div>
                 <img src="data:image/jpeg;base64,{{ current_user()->getAvatar() }}" alt="" class="">
                 <div class="btn-group">
-                    <a href="#" class="btn btn-xs btn-primary btn-outline dark">
+                    <a href="{{ route('admin.users.profile') }}" class="btn btn-xs btn-primary btn-outline dark">
                         <i class="fa fa-user"></i>
                     </a>
-                    <a href="#" class="btn btn-xs btn-primary btn-outline dark">
+                    <a href="{{ route('admin.editProfile') }}" class="btn btn-xs btn-primary btn-outline dark">
                         <i class="fa fa-cog"></i>
                     </a>
                     <a href="{{ route('admin.auth.logout') }}" class="btn btn-xs btn-danger btn-outline dark">
@@ -21,7 +21,7 @@
             <li>
                 <a href="{{ route('admin.index') }}">
                     <i class="menu-icon fa fa-dashboard"></i>
-                    <span class="mm-text">Dashboard</span>
+                    <span class="mm-text">{{ trans('dashboard.PageTitle') }}</span>
                 </a>
             </li>
             {{--*/ $aAdminMenu = get_admin_menu() /*--}}

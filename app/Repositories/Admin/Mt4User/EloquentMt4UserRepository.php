@@ -56,8 +56,8 @@ class EloquentMt4UserRepository implements Mt4UserContract {
      * @param int $login
      * @return array
      */
-    public function getUserInfo($login) {
-        $oResult = Mt4User::where('LOGIN', '=', $login);
+    public function getUserInfo($login,$server_id=0) {
+        $oResult = Mt4User::where('LOGIN', '=', $login)->where('server_id', '=', $server_id);
         $oResult = $oResult->get();
         /* =============== Preparing Output  =============== */
         foreach ($oResult as $dKey => $oValue) {
@@ -74,8 +74,10 @@ class EloquentMt4UserRepository implements Mt4UserContract {
     public function getUsersByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC') {
         //$oResult = new Mt4User();
         /* ===============================check admin or user================ */
+    
         $oResult = new Mt4User();
-        if ($user = Sentinel::getUser()) {
+        
+        if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
                 $oResult = Mt4User::with('accounts')->whereHas('accounts', function($query) use($account_id) {
@@ -128,6 +130,7 @@ class EloquentMt4UserRepository implements Mt4UserContract {
             $oResult[$dKey]->LEVERAGE = round($oResult[$dKey]->LEVERAGE, 2);
         }
         /* =============== Preparing Output  =============== */
+          
         return $oResult;
     }
 
@@ -238,5 +241,4 @@ class EloquentMt4UserRepository implements Mt4UserContract {
         }
         return [$firstLogin,$aResult];
     }
-
 }

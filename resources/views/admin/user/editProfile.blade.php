@@ -1,13 +1,17 @@
 @extends('admin.layouts.main')
-@section('title', trans('accounts.addAccount'))
+@section('title', trans('user.addAccount'))
 @section('content')
 
+
 <div class="page-header">
-    <h1>{{ trans('user.edit_user') }}</h1>
-</div>
+		<h1>{{ trans('user.edit_user') }}</h1>
+	</div>
 
-
-{!! Form::open(['class'=>'panel form-horizontal']) !!}
+<div class="panel">
+    {!! Form::open(['class'=>'panel form-horizontal']) !!}
+    <div class="panel-heading">
+        <span class="panel-title">{{ trans('user.edit_user') }}</span>
+    </div>
 
 
 
@@ -37,7 +41,7 @@
         </div><!-- col-sm-6 -->
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.Password') }}</label>
+                <label class="control-label">{{ trans('user.password') }}</label>
                 {!! Form::password('password',['class'=>'form-control','value'=>$userInfo['password']]) !!}
 
             </div>
@@ -63,7 +67,7 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('user.Birthday') }}</label>
+                <label class="control-label">{{ trans('user.BirthDay') }}</label>
                 {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->
@@ -101,13 +105,14 @@
             <label class="control-label " style="text-align: left;display: block;">{{ trans('user.gender') }}</label>
             <div class="radio col-xs-2">
                 <label class='gender_radio_0'>
-                    {!! Form::radio('gender', 0,!$userInfo['gender'],['id'=>'gender_radio_0','class'=>'px']) !!}
+               
+                    {!! Form::radio('gender',0,(!$userInfo['gender']),['id'=>'gender_radio_0','class'=>'px']) !!}
                     <span class="lbl">{{ trans('user.male') }}</span>
                 </label>
             </div>
             <div class="radio col-xs-2">
                 <label class='gender_radio_1'>
-
+                    
                     {!! Form::radio('gender',1,$userInfo['gender'],['id'=>'gender_radio_1','class'=>'px']) !!}
                     <span class="lbl">{{ trans('user.female') }}</span>
                 </label>
@@ -123,12 +128,14 @@
 
 </div>
 @endif
+
+
 <div class="panel-footer text-right">
-    <a href="{{ route('admin.users.profile')}}">
-        <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('general.save') }}</button></a>
+     <a href="{{ route('client.users.profile')}}">
+         <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']}}">{{ trans('user.save') }}</button></a>
 </div>
 {!! Form::close() !!}
-
+</div>
 @stop
 @section("script")
 @parent

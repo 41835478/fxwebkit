@@ -13,6 +13,9 @@ use Modules\Reports\Http\Requests\Admin\AccountsRequest;
 use Modules\Reports\Http\Requests\Admin\AccountStatementRequest;
 use Modules\Reports\Http\Requests\Admin\CommissionRequest;
 use Modules\Reports\Http\Requests\Admin\AccountantRequest;
+use Illuminate\Http\Request;
+use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
+
 class ReportsController extends Controller {
 
     /**
@@ -86,18 +89,18 @@ class ReportsController extends Controller {
             $sOutput = $oRequest->export;
             $aData = [];
             $aHeaders = [
-                trans('general.Order#'),
-                trans('general.Login'),
-                trans('general.Symbol'),
-                trans('general.Type'),
-                trans('general.Lots'),
-                trans('general.OpenPrice'),
-                trans('general.SL'),
-                trans('general.TP'),
-                trans('general.Commission'),
-                trans('general.Swaps'),
-                trans('general.Price'),
-                trans('general.Profit'),
+                trans('reports::reports.Order#'),
+                trans('reports::reports.Login'),
+                trans('reports::reports.Symbol'),
+                trans('reports::reports.Type'),
+                trans('reports::reports.Lots'),
+                trans('reports::reports.OpenPrice'),
+                trans('reports::reports.SL'),
+                trans('reports::reports.TP'),
+                trans('reports::reports.Commission'),
+                trans('reports::reports.Swaps'),
+                trans('reports::reports.Price'),
+                trans('reports::reports.Profit'),
             ];
 
             foreach ($oResults as $oResult) {
@@ -186,18 +189,18 @@ class ReportsController extends Controller {
             $sOutput = $oRequest->export;
             $aData = [];
             $aHeaders = [
-                trans('general.Order#'),
-                trans('general.Login'),
-                trans('general.Symbol'),
-                trans('general.Type'),
-                trans('general.Lots'),
-                trans('general.OpenPrice'),
-                trans('general.SL'),
-                trans('general.TP'),
-                trans('general.Commission'),
-                trans('general.Swaps'),
-                trans('general.Price'),
-                trans('general.Profit'),
+                trans('reports::reports.Order#'),
+                trans('reports::reports.Login'),
+                trans('reports::reports.Symbol'),
+                trans('reports::reports.Type'),
+                trans('reports::reports.Lots'),
+                trans('reports::reports.OpenPrice'),
+                trans('reports::reports.SL'),
+                trans('reports::reports.TP'),
+                trans('reports::reports.Commission'),
+                trans('reports::reports.Swaps'),
+                trans('reports::reports.Price'),
+                trans('reports::reports.Profit'),
             ];
 
             foreach ($oResults as $oResult) {
@@ -518,6 +521,33 @@ class ReportsController extends Controller {
                         ->with('aTradeTypes', $aTradeTypes)
                         ->with('oResults', $oResults)
                         ->with('aFilterParams', $aFilterParams);
+    }
+
+    public function getReportsSettings()
+    {
+        $reportsSetting = [
+
+            'is_client' => Config('reports.is_client'),
+
+
+        ];
+
+        return view('reports::reportsSetting')->with('reportsSetting', $reportsSetting);
+    }
+
+    public function postReportsSettings(Request $oRequest)
+    {
+        $is_client = ($oRequest->is_client) ? 1 : 0;
+        $reportsSetting = [
+            'is_client' => $is_client,
+        ];
+
+        $editConfig = new EditConfig();
+
+        $editConfig->editConfigFile('modules/Reports/Config/config.php', $reportsSetting);
+
+        return view('reports::reportsSetting')->with('reportsSetting', $reportsSetting);
+
     }
 
 }

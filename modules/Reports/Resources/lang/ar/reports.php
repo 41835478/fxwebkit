@@ -1,0 +1,100 @@
+<?php
+
+return [
+    'ModuleTitle' => 'Repسيبشبorts',
+    'OpenOrders' => 'Open Oسيبيrders',
+    'ClosedOrders' => 'Closeشسيبd Orders',
+    'accounts' => 'Accouبشسيبnts',
+    'accountStatement' => 'Accountشسيب Statement',
+    'SearchClosedOrders' => 'Search شسبClosed Orders',
+    'FromLogin' => 'From Lيسشبogin',
+    'ToLogin' => 'To Lشسيبogin',
+    'Login' => 'Logسشيبin',
+    'FromDate' => 'From سيشبDate',
+    'ToDate' => 'To Dسشبيate',
+    'AllGroups' => 'All Gسيشبroups',
+    'AllSymbols' => 'All شسيبSymbols',
+    'ExactLogin' => 'Exacسشيبt Login',
+    'search' => 'Seشسيبarch',
+
+
+
+    'Name' => 'Nشسبame',
+    'Group' => 'Gسيشبroup',
+    'Equity' => 'Eسيبشquity',
+    'Balance' => 'Balشسبance',
+    'Comments' => 'Comسيبments',
+
+
+
+
+    'Summary' => 'Sumقثصصثقmary',
+
+
+    'commission' => 'Commisصثقsion',
+    'agentCommission' => 'Agent بالبCommission',
+    'accountant' => 'Accouبالntant',
+    'AgentAccount' => 'Agenبلاt Account',
+    'Margin' => 'Marبلاgاin',
+    'MarginFree' => 'Margiسيشسيn Free',
+    'Leverage' => 'Leverبلاage',
+
+    'order#' => 'Ordبالer#',
+    'open_time' => 'Open باTime',
+    'close_time' => 'Cloبلابse Time',
+    'login' => 'Logبلاin',
+    'symbol' => 'Syبلاmbol',
+    'type' => 'Tyبلاpe',
+    'lots' => 'Loيبليts',
+    'open_Price' => 'Openيبل Price',
+    'SL' => 'يبلSL',
+    'TP' => 'TيبلP',
+    'Commission' => 'Commisيبلsion',
+    'taxes' => 'Taشسشxes',
+    'swaps' => 'Sرؤلاwaps',
+    'price' => 'Priضصثce',
+    'profit' => 'Profضصثit',
+
+    'entries'=>'enتالتtries',
+    'of'=>'oلاتf',
+    'to'=>'التto',
+    'showing'=>'shoتwing',
+    'export'=>'Exporلاتt',
+    'deposits'=>'Deالposits',
+    'withdraws'=>'Wiلتthdraws',
+    'credit_in'=>'CredلاتitIn',
+    'credit_out'=>'CredلتitOut',
+    'total'=>'Toلاتtal',
+    'page'=>'paلge',
+    'go'=>'Gلتo',
+    'ACCOUNTANT_TYPE_6_DEPOSITS' => 'Bلالبalance Operation',
+    'ACCOUNTANT_TYPE_7_CREDIT' => 'Creditابلاs Operation',
+
+    'registration_date'=>'Registrationليبل date :',
+    'name'=>'Naليبلme :',
+    'city'=>'Citيبلy :',
+    'state'=>'Stبيلate :',
+    'country'=>'Couيلntry :',
+    'address'=>'Addrيبلess :',
+    'zip_code'=>'Zipيبل Code :',
+    'phone'=>'Phيبلone :',
+    'email'=>'Emبيلail :',
+    'id_number'=>'Id Numيبلber :',
+    'status'=>'Statيلus :',
+    'leverage'=>'Levيبلerage :',
+    'tax'=>'Taليبx :',
+    'deposit_withdrawal'=>'Deposiيلt / Withdrawal :',
+    'credit_facility'=>'Creيلdit Facility :',
+    'closed_trade'=>'Cloيلsed Trade :',
+    'floating'=>'Floيلating :',
+    'margin'=>'Maيلrgin :',
+    'balance'=>'Balابance :',
+    'equity'=>'Eqبلاuity :',
+    'free_margin'=>'Freالتe Margin :',
+
+    'total_commission'=>'Totالتal Commission :',
+    'total_lots'=>'Total لاتLots :',
+    'account'=>'Accشسشount :',
+
+
+];

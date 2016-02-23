@@ -129,9 +129,9 @@ class EloquentFutureContractRepository implements FutureContract {
         $contract = EntitiesFutureContract::whereIn('id', $id)->delete();
 
         if ($contract) {
-            return ['deleted successfully.'];
+            return [trans('tools::tools.deleted_successfully_message')];
         } else {
-            return ['deleted faild please try again later.'];
+            return [trans('tools::tools.deleted_faild_message')];
         }
     }
 

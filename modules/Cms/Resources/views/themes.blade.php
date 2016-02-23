@@ -11,9 +11,9 @@
 {{-- @include('cms::'.Config::get('cms.theme_folder').'.theme') --}}
 
 <img src="{{ asset($asset_folder.Config::get('cms.theme_folder').'/'.Config::get('cms.theme_folder').'.png') }}" style="float:left; margin: 10px">
-<h3>theme name here </h3>
+<h3>{{ trans('cms::cms.theme_name_here') }} </h3>
 <p>
-    this image display an image of the web site theme
+    {{ trans('cms::cms.this_image_display') }}
 </p>
     
 

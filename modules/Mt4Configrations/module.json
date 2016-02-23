@@ -1,0 +1,15 @@
+{
+    "name": "Mt4Configrations",
+    "alias": "mt4configrations",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Mt4Configrations\\Providers\\Mt4ConfigrationsServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        "start.php"
+    ]
+}

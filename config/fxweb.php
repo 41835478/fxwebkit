@@ -12,25 +12,45 @@
  */
 
 return [
-    'app_name' => env('APP_NAME', 'FxWebKit'),
+  'app_name' => env('APP_NAME', 'FxWebKit'),
+    //   'app_name' => 'FxWebKit',
     'admin_roles' => env('ADMIN_ROLES', 'admin'),
     'client_default_role' => env('CLIENT_DEFAULT_ROLE'),
     'auto_activate_client' => env('CLIENT_AUTO_ACTIVATE',true),
     'pagination_size' => env('PAGINATION_SIZE', 25),
+
     'mt4CheckHost'=>'192.168.15.10',
-    'mt4CheckPort'=>443,
+    'mt4CheckPort'=>'443',
+    'mt4CheckDemoHost'=>'192.168.15.10',
+    'mt4CheckDemoPort'=>'443',
+
+    'adminEmail'=>'taylorsuccessor@gmail.com',
     'Group'=>[
+],
+    'GroupLive'=>[
            '1'=> '1',
             '2'=>'2',
             '3'=>'3',
             '4'=>'4',
         ],
-    'Deposit'=>[
+    'GroupDemo'=>[
+        '1'=> '10',
+        '2'=>'20',
+        '3'=>'30',
+        '4'=>'40',
+    ],
+    'DepositLive'=>[
            '1000'=> '1000',
             '5000'=>'5000',
             '10000'=>'10000',
             '100000'=>'100000',
         ],
+    'DepositDemo'=>[
+        '1000'=> '10',
+        '5000'=>'20',
+        '10000'=>'30',
+        '100000'=>'40',
+    ],
     'theme' => [
         'color' => env('THEME_COLOR', 'default'),
         'navbarFixed' => env('FIXED_NAVBAR', false),
@@ -57,12 +77,16 @@ return [
                     'route' => 'admin.massMailer',
                     'title' => 'massMailler',
                     'icon' => 'fa fa-plus',
-                ]
-                
+                ],
+                [
+                    'route' => 'admin.settings',
+        'title' => 'settings',
+        'icon' => 'fa fa-gears',
+    ]
             ]
         ],
         
     ],'client_menu' => [
         
-    ]
+    ],
 ];

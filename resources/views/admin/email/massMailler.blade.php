@@ -7,11 +7,24 @@
             <h1>{{ trans('general.massMailler') }}</h1>
         </div>
     </div>
-
+<div class="panel">
+ 
+    <div class="panel-heading">
+        <span class="panel-title">{{ trans('general.massMailler') }}</span>
+    </div>
+    
     {!! Form::open(array('method'=>'get','id'=>'showTemplateForm')) !!}
     <fieldset>
 
         <div class="well">
+
+            <div class="col-sm-12">
+                <div class="form-group no-margin-hr">
+                    <label class="control-label">{{ trans('general.template') }}</label>
+                    {!! Form::select('name', $aTemplates, $sTemplate, array('class' => ' form-control', 'id' => 'template-name','onchange'=>'$("#showTemplateForm").submit()')) !!}
+                
+                </div>
+            </div><!-- col-sm-6 -->
 
 
             <div class="col-sm-12">

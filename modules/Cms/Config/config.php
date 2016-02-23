@@ -8,7 +8,7 @@ return [
 	'route' => '',
         'asset_folder'=>'cms_assets/',
         'admin_theme'=>'admin/layouts/main',//this theme contain section with name (content)
-        'theme_folder'=>'theme1',//this folder should contain (theme.blade.php & theme_menu.blade.php)
+        'theme_folder'=>'porto',//this folder should contain (theme.blade.php & theme_menu.blade.php $ theme setting xml)
 	'admin_menu' => [
 		[
 			'route' => 'cms.pagesList',
@@ -39,6 +39,11 @@ return [
 			'route' => 'cms.languagesList',
 			'title' => 'languages',
 			'icon' => 'fa fa-globe',
+		],
+		[
+			'route' => 'cms.cmsSettings',
+			'title' => 'settings',
+			'icon' => 'fa fa-gears',
 		]
 	]
 ];

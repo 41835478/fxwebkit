@@ -29,6 +29,12 @@ class UsersTableSeeder extends Seeder {
             'slug' => 'block',
         ];
         Sentinel::getRoleRepository()->createModel()->fill($cRole)->save();
+        $denyLiveAccount = Sentinel::getRoleRepository()->findBySlug($cRole['slug']);
+        $cRole = [
+            'name' => 'DenyLiveAccount',
+            'slug' => 'denyLiveAccount',
+        ];
+        Sentinel::getRoleRepository()->createModel()->fill($cRole)->save();
         $clientRole = Sentinel::getRoleRepository()->findBySlug($cRole['slug']);
 
         $admin = [

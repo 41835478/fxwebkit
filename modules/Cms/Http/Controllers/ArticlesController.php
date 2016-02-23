@@ -14,14 +14,16 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Config;
 use Modules\Cms\Http\Requests\CreateEditArticle;
 
-class ArticlesController extends Controller {
+class ArticlesController extends Controller
+{
     /* ________________________________________________articles */
 
-    public function getArticle($artilce_id = 0) {
+    public function getArticle($artilce_id = 0)
+    {
 
         $pages = cms_pages::lists('title', 'id');
         $pages[0] = 'no page';
-                
+
         $articles = cms_articles::lists('title', 'id');
         if ($artilce_id == 0) {
             $artilce_id = (Input::get('article_id') !== null) ? Input::get('article_id') : 0;
@@ -29,8 +31,6 @@ class ArticlesController extends Controller {
 
         $languages = cms_languages::lists('name', 'id');
         $selected_language = (Input::get('selected_language') != null) ? Input::get('selected_language') : 1;
-
-
 
 
         $edit_article = '';
@@ -42,18 +42,19 @@ class ArticlesController extends Controller {
 
         $asset_folder = Config::get('cms.asset_folder');
         return view('cms::articles', [
-            'pages' => $pages,
-            'selected_id' => $artilce_id,
-            'articles' => $articles,
-            'edit_article' => $edit_article,
-            'languages' => $languages,
-            'selected_language' => $selected_language,
-            'asset_folder' => $asset_folder,
-                ]
+                'pages' => $pages,
+                'selected_id' => $artilce_id,
+                'articles' => $articles,
+                'edit_article' => $edit_article,
+                'languages' => $languages,
+                'selected_language' => $selected_language,
+                'asset_folder' => $asset_folder,
+            ]
         );
     }
 
-    public function postSaveArticleTranslate() {
+    public function postSaveArticleTranslate()
+    {
         $translate_title = Input::get('title');
         $translate_body = Input::get('editor1');
         $selected_language = Input::get('selected_language');
@@ -78,11 +79,11 @@ class ArticlesController extends Controller {
         return $this->getArticle($id);
     }
 
-    public function getArticlesList() {
+    public function getArticlesList()
+    {
         //  $selected_id = (Input::get('selected_id') !== null) ? Input::get('selected_id') : 1;
         $articles = cms_articles::all();
         $pages = cms_pages::lists('title', 'id');
-
 
 
         $asset_folder = Config::get('cms.asset_folder');
@@ -90,20 +91,20 @@ class ArticlesController extends Controller {
 
         $pages[0] = 'no page';
         return view("cms::articlesList", ['articles' => $articles,
-            'pages' => $pages,
-            'asset_folder' => $asset_folder
-                ]
+                'pages' => $pages,
+                'asset_folder' => $asset_folder
+            ]
         );
     }
 
-    public function postArticles() {
+    public function postArticles()
+    {
         if (null !== Input::get('new_article_submit')) {
             return $this->getArticle();
         }
         if (null !== Input::get('edit_article_page')) {
             return $this->getArticle(Input::get('edit_article_page'));
         }
-
 
 
         if (null !== Input::get('delete_article_submit')) {
@@ -132,7 +133,8 @@ class ArticlesController extends Controller {
         return $this->getArticle();
     }
 
-    public function postInsertEditArticle(CreateEditArticle $request) {
+    public function postInsertEditArticle(CreateEditArticle $request)
+    {
 
 
         if (null !== Input::get('insert_article_submit')) {
@@ -153,7 +155,8 @@ class ArticlesController extends Controller {
 
     /* _________________________________________upload_image */
 
-    public function postUploadImage() {
+    public function postUploadImage()
+    {
         $file = Input::file('upload');
         $allowed_ext = ["png", "jpg", "jpeg", "gif", "bmp", "svg"];
         $fileExt = strtolower($file->getClientOriginalExtension());
@@ -174,15 +177,16 @@ class ArticlesController extends Controller {
 
 //function upload_image() 
 
-    public function getFileBrowser() {
+    public function getFileBrowser()
+    {
         $funnum = Input::get('CKEditorFuncNum');
         $asset_folder = Config::get('cms.asset_folder');
         $files = File::allFiles($asset_folder . '/files/');
         return view('cms::file_browser', [
-            'files' => $files,
-            'funnum' => $funnum,
-            'asset_folder' => $asset_folder
-                ]
+                'files' => $files,
+                'funnum' => $funnum,
+                'asset_folder' => $asset_folder
+            ]
         );
     }
 

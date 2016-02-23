@@ -10,21 +10,23 @@ use Redirect;
 
 class UserController extends Controller
 {
-	protected $oUsers;
+    protected $oUsers;
 
     public function __construct(
-    Users $oUsers
-    ) {
+        Users $oUsers
+    )
+    {
         $this->oUsers = $oUsers;
     }
 
-    public function getProfiles(Request $oRequest) {
+    public function getProfiles(Request $oRequest)
+    {
 
-        $user = Sentinel::getUser();
+        $user = current_user()->getUser();
         $oResult = $this->oUsers->getUserDetails($user->id);
 
         $user_details = [
-            'id' =>  $user->id,
+            'id' => $user->id,
             'first_name' => $oResult['first_name'],
             'last_name' => $oResult['last_name'],
             'email' => $oResult['email'],
@@ -41,9 +43,10 @@ class UserController extends Controller
         return view('client.user.detailsProfile')->with('user_details', $user_details);
     }
 
-    public function getEditProfile(Request $oRequest) {
+    public function getEditProfile(Request $oRequest)
+    {
 
-        $user = Sentinel::getUser();
+        $user = current_user()->getUser();
         $oResult = $this->oUsers->getUserDetails($user->id);
 
         $country_array = $this->oUsers->getCountry(null);
@@ -68,17 +71,18 @@ class UserController extends Controller
         return view('client.user.editProfile')->with('userInfo', $userInfo);
     }
 
-    public function postEditProfile(EditUserRequest $oRequest) {
+    public function postEditProfile(EditUserRequest $oRequest)
+    {
         $result = 0;
 
-            $oRequest->edit_id = Sentinel::getUser()->id;
-            $result = $this->oUsers->updateUser($oRequest);
-                
-        if ($result > 0) {    
-           return Redirect::route('client.users.profile'); 
-        } else {   
-            return Redirect::route('clinet.editProfile')->withErrors($result);                  
+        $oRequest->edit_id = current_user()->getUser()->id;
+        $result = $this->oUsers->updateUser($oRequest);
+
+        if ($result > 0) {
+            return Redirect::route('client.users.profile');
+        } else {
+            return Redirect::route('clinet.editProfile')->withErrors($result);
         }
     }
-        
+
 }

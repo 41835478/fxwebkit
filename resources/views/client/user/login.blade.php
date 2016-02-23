@@ -26,11 +26,11 @@
 					<span>{{ Lang::get('user.SignInText') }}</span>
 				</div>
 				<div class="form-group w-icon">
-					{!! Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.Email')]) !!}
+					{!! Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.email')]) !!}
 					<span class="fa fa-user signin-form-icon"></span>
 				</div>
 				<div class="form-group w-icon">
-					{!! Form::password('password', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.Password')]) !!}
+					{!! Form::password('password', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.password')]) !!}
 					<span class="fa fa-lock signin-form-icon"></span>
 				</div>
 				<div class="form-actions">

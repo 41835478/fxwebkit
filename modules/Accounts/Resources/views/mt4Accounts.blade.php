@@ -2,25 +2,18 @@
 @section('title', trans('accounts::accounts.mt4UsersList'))
 @section('content')
 <style type="text/css">
+
+
     #content-wrapper{ padding: 0px; margin: 0px;}
-    .nav-input-div{padding:7px;}
-    .mail-container-header{
-        border-bottom: 1px solid #ccc;
-        margin-bottom: 7px;
-        padding: 5px !important;
-    }
-    .theme-default .page-mail{ overflow: visible;height: auto; min-height: 800px;}
-    .center_page_all_div{ padding: 0px 10px;}
-    .mail-nav .navigation{margin-top: 35px;}
 </style>
 <div class="  theme-default page-mail" >
     <div class="mail-nav" >
         <div class="navigation">
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections">
-                <li class="active"><a href="#"> <i class="fa fa-search"></i> search </a></li>
+                <li class="active"><a href="#"> <i class="fa fa-search"></i> {{ trans('accounts::accounts.search') }} </a></li>
                 <li>
-                    <div class="   nav-input-div">
+                    <div class="nav-input-div">
                         <div class="checkbox">
                             <label>
                                 {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
@@ -33,26 +26,15 @@
                 <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('accounts::accounts.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']) !!}</div></li>
+
                 <li>
-
-                    <div class=" nav-input-div form-group ">
-                        <div class="checkbox">
-                            <label>
-                                {!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
-                                <span class="lbl">{{ trans('accounts::accounts.AllGroups') }}</span>
-                            </label>
-                        </div>
-                        {!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','id'=>'all-groups-slc']) !!}
+                    <div class=" nav-input-div  ">
+                        {!! Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div>
-
                 </li>
-
-
-                <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('accounts::accounts.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-                    </div></li>
                 <li class="divider"></li>
             </ul>
+
 
 
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
@@ -69,50 +51,43 @@
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
-            <div class="table-info">
+            <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('accounts::accounts.mt4Users') }}  
                     </div>
                 </div>
                
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Login'), 'LOGIN', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Equity'), 'EQUITY', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Balance'), 'BALANCE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.AgentAccount'), 'AGENT_ACCOUNT', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Margin'), 'MARGIN', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.MarginFree'), 'MARGIN_FREE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.Leverage'), 'LEVERAGE', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.reg_date'), 'REGDATE', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.last_date'), 'LASTDATE', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.leverage'), 'LEVERAGE', $oResults) !!}</th>
                             <th class="no-warp"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if (count($oResults))
+                          @if (count($oResults))
+                        {{-- */$i=0;/* --}}
+                        {{-- */$class='';/* --}}
                         @foreach($oResults as $oResult)
-                        <tr>
+                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                        <tr class='{{ $class }}'>
                             <td>{{ $oResult->LOGIN }}</td>
                             <td>{{ $oResult->NAME }}</td>
-                            <td>{{ $oResult->GROUP }}</td>
-                            <td>{{ $oResult->EQUITY }}</td>
-                            <td>{{ $oResult->BALANCE }}</td>
-
-                            <td>{{ $oResult->AGENT_ACCOUNT }}</td>
-                            <td>{{ $oResult->MARGIN }}</td>
-                            <td>{{ $oResult->MARGIN_FREE }}</td>
+                            <td>{{ $oResult->REGDATE }}</td>
+                            <td>{{ $oResult->LASTDATE }}</td>         
                             <td>{{ $oResult->LEVERAGE }}</td>
-                           <td><a href="{{ route('accounts.mt4UserDetails').'?login='. $oResult->LOGIN }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text"></a></td>
-
+                            <td><a href="{{ route('accounts.mt4UserDetails').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text"></a></td>
                         </tr>
                         @endforeach
                         @endif
                     </tbody>
                 </table>
-                <div class="table-footer text-right">
+                <div class="table-footer ">
                     @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
                     
@@ -125,15 +100,15 @@
                     
                             
                                
-                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn', 'name' => 'search']) !!}
                                
                             
                    
                     </div>
                     @endif
                     
-                    <div class="col-sm-3  padding-xs-vr">
-                        <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
+                    <div class="col-sm-3 ">
+                        <span class="text-xs">{{trans('accounts::accounts.showing')}} {{ $oResults->firstItem() }} {{trans('accounts::accounts.to')}} {{ $oResults->lastItem() }} {{trans('accounts::accounts.of')}} {{ $oResults->total() }} {{trans('accounts::accounts.entries')}}</span>
                     </div>
                     @endif
                 </div>

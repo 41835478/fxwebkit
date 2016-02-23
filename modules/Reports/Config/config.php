@@ -4,7 +4,7 @@ return [
 	'is_admin' => 1,
 	'is_client' => 1,
 	'name' => 'Reports',
-	'icon' => 'fa-info-circle',
+	'icon' => 'fa-file-text-o',
 	'route' => '',
 	'admin_menu' => [
 		[
@@ -41,6 +41,11 @@ return [
 			'route' => 'admin.reports.accountant',
 			'title' => 'accountant',
 			'icon' => 'fa fa-money',
+		],
+		[
+			'route' => 'admin.reports.reportsSettings',
+			'title' => 'settings',
+			'icon' => 'fa fa-gears',
 		]
             
 	],

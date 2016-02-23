@@ -1,5 +1,10 @@
+body{background: #fff !important}
 .overflow-a{overflow:auto}
-.table th a{color:#FFF}
+.table th a{color:#000;
+    font-size: 14px;
+    font-weight: normal;}
+.table td{
+    font-size: 11px;}
 .no-warp{white-space:nowrap}
 #jq-datatables-example_filter input{width: 50px;}
 .DT-search{width:70px !important;}
@@ -16,3 +21,97 @@
     float: left;
     margin: -8px;
 }
+
+
+#content-wrapper{
+    min-height: 800px;
+}
+.nav-input-div{
+    padding:7px;
+}
+.mail-container-header{
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 7px;
+    padding: 5px !important;
+}
+.theme-default .page-mail{
+    overflow: visible;
+    height: auto;
+    min-height: 800px !important;
+}
+.center_page_all_div{
+    padding: 0px 10px;
+}
+.mail-nav .navigation{
+    margin-top: -30px;
+}
+.mail-nav li.active a{
+    text-align: center;
+    padding-top:15px !important;
+    padding-left:0px !important;
+    height:55px;
+
+    /*border-bottom:1px solid #DBDBDB;*/}
+
+.table-light a.fa{
+    color:#C7C4C4 !important;
+}
+/*
+ .table-light  li.active span{background-color:#C7C4C4 !important;
+ border-color: #C7C4C4  !important;
+ }
+
+ .mail-nav{
+       display:none;
+   }
+ .page-mail .mail-container{
+       margin-left:0 !important;
+   }*/
+.table-light th{
+    border-top: 3px solid #DBDBDB !important;
+}
+.center_page_all_div{
+    background: #fff;
+}
+#main-wrapper{
+    background: #fff;
+}
+.mail-container-header{
+    background: #fff !important;
+}
+.page-header{
+    background: none !important
+}
+.panel{
+    margin-bottom:0px
+}
+.mail-nav .navigation{
+    margin-top:-20px !important;
+}
+
+#main-wrapper {
+    padding-top:2px;
+}
+
+.new_symbol_tr{border-top:2px solid #ccc;}
+
+
+/*________________________________________ibportal*/
+.twitter-typeahead{display: block !important}
+
+/*_____________________assign_users*/
+#assignUsersAllDiv{
+
+}
+#assignUsersAllDiv button{
+    width:48%;
+    width:calc(50% - 2px);
+}
+#selectedUsers,#usersList{
+    min-height:300px;
+}
+
+/*___________________End__assign_users*/
+/*_____________________________________End___ibportal*/
+
+.insert_customHtml_submit{margin-top: 10px;}

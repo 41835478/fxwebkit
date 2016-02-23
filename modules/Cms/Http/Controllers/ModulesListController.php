@@ -15,10 +15,11 @@ use Modules\Cms\Entities\CmsMenus;
   use Modules\cms\Http\Controllers\MenusController;
   /* End dinamic */
 
-class ModulesListController extends Controller {
+class ModulesListController extends Controller
+{
 
-    public function index($module_info, $variable = '',$language=0) {
-
+    public function index($module_info, $variable = '', $language = 0)
+    {
 
 
         if (isset($module_info['type']) && $module_info['type'] == 'files') {
@@ -28,15 +29,15 @@ class ModulesListController extends Controller {
         } else if (isset($module_info['type']) && $module_info['type'] == 'database') {
 
             $results = DB::select('select ' . $module_info['html_field'] . ' from ' . $module_info['table'] . ' where id = ?', [$variable]);
-            $translate_results=0;
-if ($language > 0 && isset($module_info['languages']) &&  $module_info['languages']=='multi') {
-     $translate_results = DB::select('select ' . $module_info['html_field'] . ' from ' . $module_info['table'] . '_languages where ' . $module_info['table'] . '_id= ? and cms_languages_id= ?', [$variable,$language]);
-    
-}
-                
-$original= (count($results))? $results[0]->$module_info['html_field']:'';
-$translate= ($translate_results!==0 && count($translate_results))? $translate_results[0]->$module_info['html_field']:'';
-      return ($translate !=='')? $translate:$original;
+            $translate_results = 0;
+            if ($language > 0 && isset($module_info['languages']) && $module_info['languages'] == 'multi') {
+                $translate_results = DB::select('select ' . $module_info['html_field'] . ' from ' . $module_info['table'] . '_languages where ' . $module_info['table'] . '_id= ? and cms_languages_id= ?', [$variable, $language]);
+
+            }
+
+            $original = (count($results)) ? $results[0]->{$module_info['html_field']} : '';
+            $translate = ($translate_results !== 0 && count($translate_results)) ? $translate_results[0]->{$module_info['html_field'] }: '';
+            return ($translate !== '') ? $translate : $original;
         } else {
             if (!isset($module_info['class_name']))
                 return '';
@@ -44,12 +45,13 @@ $translate= ($translate_results!==0 && count($translate_results))? $translate_re
             try {
                 return eval('$module1 = @new ' . $module_info['class_name'] . ';RETURN @$module1->' . $module_info['class_method'] . '(' . $variable . ');');
             } catch (\Exception $e) {
-                return"";
+                return "";
             }
         }
     }
 
-    public function getPageModulesName($module_type, $variable = '') {
+    public function getPageModulesName($module_type, $variable = '')
+    {
 
         switch ($module_type) {
 
@@ -75,7 +77,7 @@ $translate= ($translate_results!==0 && count($translate_results))? $translate_re
             $results = DB::select('select ' . $module_info['title_field'] . ' from ' . $module_info['table'] . ' where id = ?', [$variable]);
 
             if (count($results)) {
-                return $module_info['name'] . ' ( ' . $results[0]->$module_info['title_field'] . ' ) ';
+                return $module_info['name'] . ' ( ' . $results[0]->{$module_info['title_field']} . ' ) ';
             } else {
                 return '';
             }
@@ -84,38 +86,39 @@ $translate= ($translate_results!==0 && count($translate_results))? $translate_re
         }
     }
 
-    public function modules_list($module_index = null) {
+    public function modules_list($module_index = null)
+    {
         $modules_list = [
 
 //            ['name' => 'blog',
 //                'class_name' => 'Modules\Blog\Http\Controllers\BlogController',
 //                'class_method' => 'index'
 //            ],
-            
-            ['name' => 'customHtml',
+
+            ['name' => trans('cms::cms.customHtml'),
                 "type" => 'database',
-                "table" => 'cms_customHtml',
+                "table" => 'cms_customhtml',
                 "title_field" => 'title',
                 "html_field" => 'body',
-                "languages"=>"multi"
+                "languages" => "multi"
             ],
-    ['name' => 'static_pages',
+            ['name' => trans('cms::cms.static_pages'),
                 "type" => 'files',
                 "folder" => 'static_pages'
-                
+
             ],
-            ['name' => 'files',
+            ['name' => trans('cms::cms.files'),
                 "type" => 'files',
                 "folder" => 'modules_view'
             ],
-            ['name' => 'articles',
+            ['name' => trans('cms::cms.articles'),
                 "type" => 'database',
                 "table" => 'cms_articles',
                 "title_field" => 'title',
                 "html_field" => 'body',
-                "languages"=>"multi"
+                "languages" => "multi"
             ],
-            ['name' => 'language',
+            ['name' => trans('cms::cms.language'),
                 'class_name' => "Modules\Cms\Http\Controllers\LanguagesController",
                 'class_method' => 'getLanguagesSelectNode'
             ]
@@ -128,11 +131,13 @@ $translate= ($translate_results!==0 && count($translate_results))? $translate_re
         }
     }
 
-    public function static_html() {
+    public function static_html()
+    {
         return 7;
     }
 
-    public function getModuleOptions($id = 0) {
+    public function getModuleOptions($id = 0)
+    {
 
 
         $id = Input::get('module_id');
@@ -159,7 +164,7 @@ $translate= ($translate_results!==0 && count($translate_results))? $translate_re
             foreach ($files as $file) {
                 $base_name = basename($file);
                 $name_array = explode('.', $base_name);
-                $options_html.='<option value="' . $name_array[0] . '">' . $name_array[0] . '</option>';
+                $options_html .= '<option value="' . $name_array[0] . '">' . $name_array[0] . '</option>';
             }
             return $options_html;
         } else if (isset($module['type']) && $module['type'] == 'database') {
@@ -167,13 +172,14 @@ $translate= ($translate_results!==0 && count($translate_results))? $translate_re
             $results = DB::select('select id,' . $module['title_field'] . ' from ' . $module['table'] . ' ', []);
             $options_html = '';
             foreach ($results as $result) {
-                $options_html.='<option value="' . $result->id . '">' . $result->title . '</option>';
+                $options_html .= '<option value="' . $result->id . '">' . $result->title . '</option>';
             }
             return $options_html;
         }
     }
 
-    public function getModuleOptionsList($id = 0) {
+    public function getModuleOptionsList($id = 0)
+    {
 
 
         $id = Input::get('module_id');
@@ -214,13 +220,14 @@ $translate= ($translate_results!==0 && count($translate_results))? $translate_re
 
         $options_html = '';
         foreach ($results as $result) {
-            $options_html.='<div id="' . $id . '" content_id="0" float="0" all_pages="0" selected_pages="" class="dragable sub_module_list_button"  value="' . $result['id'] . '" draggable="true">' . $result['title'] . '</div>';
+            $options_html .= '<div id="' . $id . '" content_id="0" float="0" all_pages="0" selected_pages="" class="dragable sub_module_list_button"  value="' . $result['id'] . '" draggable="true">' . $result['title'] . '</div>';
         }
         return $options_html;
     }
 
 // get_module_options($id){
-    public function getModuleOptionsList2($id = 0) {
+    public function getModuleOptionsList2($id = 0)
+    {
 
 
         $id = Input::get('module_id');
@@ -242,7 +249,7 @@ $translate= ($translate_results!==0 && count($translate_results))? $translate_re
 
             $module = $module_list[$id];
             if (isset($module['type']) && $module['type'] == 'files') {
-                $files = File::allFiles(base_path('modules/Cms/Resources/views/'. $module['folder']));
+                $files = File::allFiles(base_path('modules/Cms/Resources/views/' . $module['folder']));
 
                 foreach ($files as $file) {
                     $base_name = basename($file);
@@ -263,7 +270,7 @@ $translate= ($translate_results!==0 && count($translate_results))? $translate_re
 
         $options_html = '';
         foreach ($results as $result) {
-            $options_html.='<option  value="' . $result['id'] . '" >' . $result['title'] . '</option>';
+            $options_html .= '<option  value="' . $result['id'] . '" >' . $result['title'] . '</option>';
         }
         return $options_html;
     }

@@ -4,6 +4,10 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
+	config.allowedContent = true;
+	config.extraAllowedContent = 'p(*)[*]{*};div(*)[*]{*};li(*)[*]{*};ul(*)[*]{*}';
+	CKEDITOR.dtd.$removeEmpty.i = 0;
+	//config.removeFormatAttributes = '';
 	// Define changes to default configuration here.
 	// For complete reference see:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config

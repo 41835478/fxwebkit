@@ -9,27 +9,36 @@ use Illuminate\Support\Facades\Redirect;
 use Modules\Tools\Http\Requests\EditContractRequest;
 use Modules\Tools\Http\Requests\AddContractRequest;
 use Modules\Tools\Repositories\FutureContract as Future;
+use Modules\Tools\Repositories\HolidayContract as Holiday;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Fxweb\Http\Controllers\admin\Email;
+use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
+use Carbon\Carbon;
 
-class ToolsController extends Controller {
+class ToolsController extends Controller
+{
 
-    public function index() {
+    public function index()
+    {
         return view('tools::index');
     }
 
     protected $oFuture;
-     protected $oUsers;
+    protected $oUsers;
+    protected $oHoliday;
 
     public function __construct(
-    Future $oFuture, Users $oUsers
-    ) {
+        Future $oFuture, Users $oUsers, Holiday $oHoliday
+    )
+    {
         $this->oFuture = $oFuture;
-         $this->oUsers = $oUsers;
+        $this->oUsers = $oUsers;
+        $this->oHoliday = $oHoliday;
     }
 
-    public function getFutureContract(Request $oRequest) {
-        
+    public function getFutureContract(Request $oRequest)
+    {
+
 
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
@@ -49,36 +58,37 @@ class ToolsController extends Controller {
             'order' => $sOrder,
         ];
 
-          if ($oRequest->has('deleteContract')) {
-              
-              $result = $this->oFuture->deleteContract($oRequest->contract_checkbox);
-              
-              return Redirect::route('tools.futureContract')->withErrors($result);
+        if ($oRequest->has('deleteContract')) {
+
+            $result = $this->oFuture->deleteContract($oRequest->contract_checkbox);
+
+            return Redirect::route('tools.futureContract')->withErrors($result);
         }
-        
+
         if ($oRequest->has('search')) {
             $aFilterParams['id'] = $oRequest->id;
             $aFilterParams['name'] = $oRequest->name;
             $aFilterParams['symbol'] = $oRequest->symbol;
             $aFilterParams['exchange'] = $oRequest->exchange;
-             $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
 
             $role = explode(',', Config::get('fxweb.client_default_role'));
             $oResults = $this->oFuture->getContractByFilter($aFilterParams, false, $sOrder, $sSort, $role);
-            
+
         }
-  
+
 
         return view('tools::future_contract')
-                        ->with('oResults', $oResults)
-                        ->with('aFilterParams', $aFilterParams);
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
     }
-    
-    public function getSendExpiryDate(Request $oRequest){
- 
-      
+
+    public function getSendExpiryDate(Request $oRequest)
+    {
+
+
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
         $aGroups = [];
@@ -97,63 +107,57 @@ class ToolsController extends Controller {
             'order' => $sOrder,
         ];
 
-          if ($oRequest->has('deleteContract')) {
-              
-              $result = $this->oFuture->deleteContract($oRequest->contract_checkbox);
-              
-              return Redirect::route('tools.futureContract')->withErrors($result);
+        if ($oRequest->has('deleteContract')) {
+
+            $result = $this->oFuture->deleteContract($oRequest->contract_checkbox);
+
+            return Redirect::route('tools.futureContract')->withErrors($result);
         }
-        
-            $aFilterParams['id'] = $oRequest->id;
-            $aFilterParams['name'] = $oRequest->name;
-            $aFilterParams['symbol'] = $oRequest->symbol;
-            $aFilterParams['exchange'] = $oRequest->exchange;
-            $aFilterParams['all_groups'] = (($oRequest->has('all_groups')) ? true : false);
-            $aFilterParams['sort'] = $oRequest->sort;
-            $aFilterParams['order'] = $oRequest->order;
-            
 
-            $role = explode(',', Config::get('fxweb.client_default_role'));
-            $expiryResults = $this->oFuture->sendExpiryNotificationsEmail();
-            $userResults = $this->oUsers->getUsersEmail();
+        $aFilterParams['id'] = $oRequest->id;
+        $aFilterParams['name'] = $oRequest->name;
+        $aFilterParams['symbol'] = $oRequest->symbol;
+        $aFilterParams['exchange'] = $oRequest->exchange;
+        $aFilterParams['all_groups'] = (($oRequest->has('all_groups')) ? true : false);
+        $aFilterParams['sort'] = $oRequest->sort;
+        $aFilterParams['order'] = $oRequest->order;
 
-            $userArray = [];
-            $expiryArray = [];
-            
-             $tabelHtml='';
-             foreach ($expiryResults as $expiry)
-             {
-            
-                $tabelHtml.='<tr><td>'.$expiry['expiry_date'].'</td><td>'.$expiry['symbol'].'</td></tr>';  
-             }
-                
-           //     $email->newContract(['email'=>'maggalya09@gmail.com','name'=>'taylor','expiryHtml'=>$tabelHtml]);
-         
-             foreach ($userResults as $user)
-             {  
-                 //dd($user['email']);
-                 $email=new Email();
-             $email->newContract(['email'=>$user['email'],'name'=>$user['first_name'],'expiryHtml'=>$tabelHtml]);
-             }
-          
-//        return view('tools::future_contract')
-//                        ->with('oResults', $oResults)
-//                        ->with('aFilterParams', $aFilterParams);
-        
+
+        $role = explode(',', Config::get('fxweb.client_default_role'));
+        $expiryResults = $this->oFuture->sendExpiryNotificationsEmail();
+        $userResults = $this->oUsers->getUsersEmail();
+
+        $userArray = [];
+        $expiryArray = [];
+
+        $tabelHtml = '';
+        foreach ($expiryResults as $expiry) {
+
+            $tabelHtml .= '<tr><td>' . $expiry['expiry_date'] . '</td><td>' . $expiry['symbol'] . '</td></tr>';
+        }
+
+        foreach ($userResults as $user) {
+            //dd($user['email']);
+            $email = new Email();
+            $email->newContract(['email' => $user['email'], 'name' => $user['first_name'], 'expiryHtml' => $tabelHtml]);
+        }
+
     }
 
-        public function getMarketWatch() {
-            return view('tools::marketWatch');
+    public function getMarketWatch()
+    {
+        return view('tools::marketWatch');
     }
-     
-    public function getAddContract(Request $oRequest) {
-        
-         $month_array = $this->oFuture->getMonth(null);
+
+    public function getAddContract(Request $oRequest)
+    {
+
+        $month_array = $this->oFuture->getMonth(null);
         $exchange_array = $this->oFuture->getExchange();
         $name_array = $this->oFuture->getName();
-        
 
-        $contractInfo = [ 'edit_id' => 0,
+
+        $contractInfo = ['edit_id' => 0,
             'name' => '',
             'symbol' => '',
             'exchange' => '',
@@ -162,8 +166,8 @@ class ToolsController extends Controller {
             'year' => '',
             'start_date' => '',
             'expiry_date' => '',
-            'aExchange'=>$exchange_array,
-            'aName'=>$name_array,
+            'aExchange' => $exchange_array,
+            'aName' => $name_array,
         ];
 
         if ($oRequest->has('edit_id')) {
@@ -181,21 +185,22 @@ class ToolsController extends Controller {
                 'year' => $oResult['year'],
                 'start_date' => $oResult['start_date'],
                 'expiry_date' => $oResult['expiry_date'],
-                'aExchange'=>$exchange_array,
-                 'aName'=>$name_array,
+                'aExchange' => $exchange_array,
+                'aName' => $name_array,
             ];
         }
         return view('tools::addContract')->with('contractInfo', $contractInfo);
     }
 
-    public function postAddContract(AddContractRequest $oRequest) {
+    public function postAddContract(AddContractRequest $oRequest)
+    {
 
         $result = 0;
-        
+
         $result = $this->oFuture->addContract($oRequest);
-        
+
         if ($result > 0) {
-               
+
             $oRequest->edit_id = $result;
 
             $oResult = $this->oFuture->getContractDetails($oRequest->edit_id);
@@ -211,19 +216,20 @@ class ToolsController extends Controller {
                 'expiry_date' => $oResult['expiry_date'],
             ];
 
-        return Redirect::route('tools.futureContract');
+            return Redirect::route('tools.futureContract');
         }
     }
 
-    public function getEditContract(Request $oRequest) {
-        
+    public function getEditContract(Request $oRequest)
+    {
+
         $month_array = $this->oFuture->getMonth(null);
         $exchange_array = $this->oFuture->getExchange();
         $name_array = $this->oFuture->getName();
-        
-        
-        $contractInfo = [ 'id' => '',
-             'name' => '',
+
+
+        $contractInfo = ['id' => '',
+            'name' => '',
             'symbol' => '',
             'exchange' => '',
             'month' => '',
@@ -231,8 +237,8 @@ class ToolsController extends Controller {
             'year' => '',
             'start_date' => '',
             'expiry_date' => '',
-            'aExchange'=>$exchange_array,
-            'aName'=>$name_array,
+            'aExchange' => $exchange_array,
+            'aName' => $name_array,
         ];
 
         if ($oRequest->has('edit_id')) {
@@ -242,7 +248,7 @@ class ToolsController extends Controller {
 
             $contractInfo = [
                 'id' => $oRequest->edit_id,
-               'name' => $oResult['name'],
+                'name' => $oResult['name'],
                 'symbol' => $oResult['symbol'],
                 'exchange' => $oResult['exchange'],
                 'month' => $oResult['month'],
@@ -250,14 +256,15 @@ class ToolsController extends Controller {
                 'year' => $oResult['year'],
                 'start_date' => $oResult['start_date'],
                 'expiry_date' => $oResult['expiry_date'],
-                'aExchange'=>$exchange_array,
-                 'aName'=>$name_array,
+                'aExchange' => $exchange_array,
+                'aName' => $name_array,
             ];
         }
         return view('tools::editContract')->with('contractInfo', $contractInfo);
     }
 
-    public function postEditContract(EditContractRequest $oRequest) {
+    public function postEditContract(EditContractRequest $oRequest)
+    {
 
         $result = 0;
 
@@ -281,13 +288,263 @@ class ToolsController extends Controller {
                 'expiry_date' => $oResult['expiry_date'],
             ];
 
-         return Redirect::route('tools.futureContract');
+            return Redirect::route('tools.futureContract');
         }
     }
 
-    public function getDeleteContract(Request $oRequest) {
+    public function getDeleteContract(Request $oRequest)
+    {
         $result = $this->oFuture->deleteContract($oRequest->delete_id);
         return Redirect::route('tools.futureContract')->withErrors($result);
     }
+
+    public function getHoliday(Request $oRequest)
+    {
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+
+        $oResults = null;
+
+        $aFilterParams = [
+            'id' => '',
+            'name' => '',
+            'start_date' => '',
+            'end_date' => '',
+            'sort' => $sSort,
+            'order' => $sOrder,
+        ];
+
+
+        if ($oRequest->has('search')) {
+
+            $aFilterParams['id'] = $oRequest->id;
+            $aFilterParams['name'] = $oRequest->name;
+            $aFilterParams['start_date'] = $oRequest->start_date;
+            $aFilterParams['end_date'] = $oRequest->end_date;
+            $aFilterParams['sort'] = $oRequest->sort;
+            $aFilterParams['order'] = $oRequest->order;
+
+
+            $oResults = $this->oHoliday->getHolidayByFilter($aFilterParams, false, $sOrder, $sSort);
+
+        }
+
+
+        return view('tools::holiday')
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
+    }
+
+
+    public function getAddHoliday(Request $oRequest)
+    {
+
+        $holidayInfo = ['edit_id' => 0,
+            'name' => '',
+            'start_date' => '',
+            'end_date' => ''
+        ];
+
+        if ($oRequest->has('edit_id')) {
+
+            $oResult = $this->oHoliday->getHolidyDetails($oRequest->edit_id);
+
+
+            $holidayInfo = [
+                'id' => $oRequest->edit_id,
+                'name' => $oResult['name'],
+                'start_date' => $oResult['start_date'],
+                'end_date' => $oResult['end_date']
+            ];
+        }
+        return view('tools::addHoliday')->with('holidayInfo', $holidayInfo);
+    }
+
+    public function postAddHoliday(Request $oRequest)
+    {
+
+        $result = 0;
+        $holiday_details = [
+            'id' => $oRequest->edit_id,
+            'name' => $oRequest->name,
+            'start_date' => $oRequest->start_date,
+            'end_date' => $oRequest->end_date,
+        ];
+        $result = $this->oHoliday->addHoliday($holiday_details);
+
+        if ($result > 0) {
+
+            $oRequest->edit_id = $result;
+
+            $oResult = $this->oHoliday->getHolidayDetails($oRequest->edit_id);
+
+            $holiday_details = [
+                'id' => $oRequest->edit_id,
+                'name' => $oResult['name'],
+                'start_date' => $oResult['start_date'],
+                'end_date' => $oResult['expiry_date'],
+            ];
+
+            return Redirect::to(route('tools.addSymbolHoliday') . '?holiday_id=' . $oResult->id);
+        }
+    }
+
+    public function getEditHoliday(Request $oRequest)
+    {
+
+
+        $oResult = $this->oHoliday->getHolidayDetails($oRequest->edit_id);
+
+
+        $holidayInfo = [
+            'id' => $oRequest->edit_id,
+            'name' => $oResult['name'],
+            'start_date' => $oResult['start_date'],
+            'end_date' => $oResult['end_date']
+        ];
+
+        return view('tools::editHoliday')->with('holidayInfo', $holidayInfo);
+    }
+
+    public function postEditHoliday(Request $oRequest)
+    {
+
+        $oResult = $this->oHoliday->getUpdateholiday($oRequest);
+
+        $holidayInfo = [
+            'id' => $oRequest->edit_id,
+            'name' => $oResult['name'],
+            'start_date' => $oResult['start_date'],
+            'end_date' => $oResult['expiry_date'],
+        ];
+
+        return Redirect::route('tools.holiday');
+
+    }
+
+    public function getDeleteHoliday(Request $oRequest)
+    {
+        $result = $this->oHoliday->deleteHoliday($oRequest->delete_id);
+        return Redirect::route('tools.holiday')->withErrors($result);
+    }
+
+    /**
+     * @param Request $oRequest
+     * @param string $message
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getAddSymbolHoliday(Request $oRequest, $message = '')
+    {
+        $carbon = new Carbon();
+        $dt = $carbon->now();
+
+
+        $oResult = $this->oHoliday->getHolidayDetails($oRequest->holiday_id);
+
+
+        $holidayInfo = [
+            'id' => $oRequest->holiday_id,
+
+            'name' => $oResult['name'],
+            'date' => $oResult['start_date'],
+            'start_hour' => $dt->format('H:i'),
+            'end_hour' => $dt->format('H:i'),
+        ];
+
+
+        $oResults = $this->oHoliday->getSymbols();
+
+        $view = view('tools::addSymbolHoliday');
+        $view->with('holidayInfo', $holidayInfo);
+        $view->with('oResults', $oResults);
+        if ($message != '') {
+            $view->withErrors($message);
+        }
+
+
+        return $view;
+
+    }
+
+
+    public function postAddSymbolHoliday(Request $oRequest)
+    {
+        if ($oRequest->start_hour >= $oRequest->end_hour) {
+
+
+            return $this->getAddSymbolHoliday($oRequest, trans('tools::tools.start_hour_message'));
+        }
+
+
+        $result = $this->oHoliday->addSymbolsHoliday($oRequest->symbols,
+            $oRequest->holiday_id,
+            $oRequest->start_hour,
+            $oRequest->end_hour,
+            $oRequest->date);
+
+
+        $message = ($result == false) ? trans('tools::tools.no_thing_message') : '';
+        return $this->getAddSymbolHoliday($oRequest, $message);
+    }
+
+
+    public function getHolidayDetails(Request $oRequest)
+    {
+
+        $holiday_id = ($oRequest->has('holiday_id')) ? $oRequest->holiday_id : 0;
+        $oResult = $this->oHoliday->getHolidayDetails($holiday_id);
+
+
+        $holidayInfo = [
+            'id' => $holiday_id,
+            'name' => $oResult['name'],
+            'start_date' => $oResult['start_date'],
+            'end_date' => $oResult['start_date'],
+
+        ];
+        $date = ($oRequest->has('date')) ? $oRequest->date : '';
+        list($aSymbolsHours, $aDates, $date) = $this->oHoliday->getHolidaySymbolsDetails($holiday_id, $date);
+
+        return view('tools::holidayDetails')
+            ->with('holidayInfo', $holidayInfo)
+            ->with('aSymbolsHours', $aSymbolsHours)
+            ->with('aDates', $aDates)
+            ->with('date', $date);
+    }
+
+    public function getDeleteSymbol(Request $oRequest)
+    {
+        $result = $this->oHoliday->deleteSymbol($oRequest->delete_id);
+        // todo[mohammad] check if there anther way (to(route) to send var with route
+        return Redirect::to(route('tools.holidayDetails') . '?holiday_id=' . $oRequest->holiday_id . '&date=' . $oRequest->date)->withErrors($result);
+    }
+
+    public function getToolsSettings()
+    {
+        $toolsSetting = [
+
+            'is_client' => Config('tools.is_client'),
+
+
+        ];
+
+        return view('reports::reportsSetting')->with('reportsSetting', $toolsSetting);
+    }
+
+    public function postToolsSettings(Request $oRequest)
+    {
+        $is_client = ($oRequest->is_client) ? 1 : 0;
+        $toolsSetting = [
+            'is_client' => $is_client,
+        ];
+
+        $editConfig = new EditConfig();
+
+        $editConfig->editConfigFile('modules/Tools/Config/config.php', $toolsSetting);
+
+        return view('reports::reportsSetting')->with('reportsSetting', $toolsSetting);
+
+    }
+
 
 }

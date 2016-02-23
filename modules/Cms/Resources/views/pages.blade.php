@@ -2,16 +2,17 @@
 
 @section('content')
 
-	<div class="page-header">
-		<h1>{{ trans('cms::cms.pageBuilder') }}</h1>
-	</div>
+    <div class="page-header">
+        <h1>{{ trans('cms::cms.pageBuilder') }}</h1>
+    </div>
 
-@if($page_id)
+    @if($page_id)
 
-{{-- @include('cms::'.Config::get('cms.theme_folder').'.theme') --}}
+        {{-- @include('cms::'.Config::get('cms.theme_folder').'.theme') --}}
 
 
-<iframe  src="{{ asset('cms/pages/develop-theme-view/'.$page_id) }}" name="Stack" width="100%"   frameborder="0" scrolling="yes" id="iframe" onload='javascript:resizeIframe(this);'></iframe>
+        <iframe src="{{ asset('cms/pages/develop-theme-view/'.$page_id) }}" name="Stack" width="100%" frameborder="0"
+                scrolling="yes" id="iframe" onload='javascript:resizeIframe(this);'></iframe>
 
 
 
@@ -23,4 +24,4 @@
     <script src="{{ asset($asset_folder.'jquery-2.1.1.min.js') }}"></script>
     <script src="{{ asset($asset_folder.'cms_pages.js') }}"></script>
 
-    @stop
+@stop

@@ -20,7 +20,7 @@
         <div class="navigation">
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections" >
-                <li class="active"><a href="#"> <i class="fa fa-search"></i> search </a></li>
+                <li class="active"><a href="#"> <i class="fa fa-search"></i> {{ trans('reports::reports.search') }} </a></li>
                 <li>
                     <div class="   nav-input-div">
                         <div class="checkbox">
@@ -53,17 +53,6 @@
                             </span>
                         </div>
                     </div></li>
-                <li>
-                    <div class="   nav-input-div">
-                        <div class="checkbox">
-                            <label>
-                                {!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
-                                <span class="lbl">{{ trans('reports::reports.AllGroups') }}</span>
-                            </label>
-                        </div>
-                    </div>
-                </li>
-                <li><div  class=" nav-input-div  "> {!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-groups-slc']) !!}</div></li>
 
                 <li><div  class=" nav-input-div  ">{!! Form::select('type', $aTradeTypes, $aFilterParams['type'], ['class'=>'form-control  input-sm']) !!}</div></li>
 
@@ -71,7 +60,7 @@
 
 
                 <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('reports::reports.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>
                 <li class="divider"></li>
             </ul>
@@ -79,7 +68,7 @@
 
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
             {!! Form::hidden('order', $aFilterParams['order']) !!}
-
+            {!! Form::close() !!}
 
         </div>
     </div>
@@ -93,39 +82,9 @@
         <div class="center_page_all_div">
             @include('admin.partials.messages')
 
-            @if (count($oResults[0]))
-            <div class="stat-panel no-margin-b">
-                <div class="stat-row">
-                    <div class="stat-counters bg-info no-padding text-center">
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Total Results {{ $oResults[0]->total() }}</span>
-                        </div>
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Results From {{ $oResults[0]->firstItem() }} to {{ $oResults[0]->lastItem() }}</span>
-                        </div>
-                        <div class="stat-cell col-xs-4 padding-xs-vr">
-                            <span class="text-xs">Page {{ $oResults[0]->currentPage() }} of {{ $oResults[0]->lastPage() }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="padding-xs-vr"></div>
 
-            <!-- ___________________________________chart__________________________________-->
-            <div id="total_accountant_chart" style="min-width: 310px; max-width: 700px; height: 300px; margin: 0 auto"></div>
-
-            <style type="text/css">
-                #total_accountant_chart { padding-bottom: -50px;}
-                /*.highcharts-title,*/
-                .highcharts-yaxis-title,.highcharts-button{ display: none ;}
-                #total_accountant_chart svg>text:last-child{ display: none !important;}
-                .highcharts-legend-item{
-                }
-            </style>
-            <!-- ______________________________END_____chart__________________________________-->
-            @endif
-            <!-- ________________________________tables______________--
-            <div class="table-info">
+            <!-- ________________________________tables______________-->
+            <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('reports::reports.accountant') }}
@@ -141,7 +100,7 @@
                                     <li>
                                         <a href="{{ Request::fullUrl() }}&export=xls">
                                             <i class="dropdown-icon fa fa-camera-retro"></i>
-                                            {{ trans('general.Export') }}
+                                            {{ trans('reports::reports.export') }}
                                         </a>
                                     </li>
                                 </ul>
@@ -154,10 +113,10 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!!  trans('general.Deposits') !!}</th>
-                            <th class="no-warp">{!!  trans('general.Withdraws') !!}</th>
-                            <th class="no-warp">{!!  trans('general.CreditIn')  !!}</th>
-                            <th class="no-warp">{!!  trans('general.CreditOut')  !!}</th>
+                            <th class="no-warp">{!!  trans('reports::reports.deposits') !!}</th>
+                            <th class="no-warp">{!!  trans('reports::reports.withdraws') !!}</th>
+                            <th class="no-warp">{!!  trans('reports::reports.credit_in')  !!}</th>
+                            <th class="no-warp">{!!  trans('reports::reports.credit_out')  !!}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -171,13 +130,13 @@
                         </tr>
 
                         <tr>
-                            <td colspan="2" style="text-align:center"> {!!  trans('general.Total')  !!} : {{ $oResults[1]['deposits']+$oResults[1]['withdraws'] }}</td>
+                            <td colspan="2" style="text-align:center"> {!!  trans('reports::reports.total')  !!} : {{ $oResults[1]['deposits']+$oResults[1]['withdraws'] }}</td>
 
-                            <td colspan="2" style="text-align:center">{!!  trans('general.Total')  !!} :  {{ $oResults[1]['creditIn']+ $oResults[1]['creditOut']  }}</td>
+                            <td colspan="2" style="text-align:center">{!!  trans('reports::reports.total')  !!} :  {{ $oResults[1]['creditIn']+ $oResults[1]['creditOut']  }}</td>
 
                         </tr>
                         <tr>
-                            <td colspan="4" style="text-align:center">{!!  trans('general.Total')  !!} : {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}</td>
+                            <td colspan="4" style="text-align:center">{!!  trans('reports::reports.total')  !!} : {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}</td>
 
                         </tr>
                         @endif
@@ -190,7 +149,7 @@
                 </div>
             </div>
             <!-- _______________________table_____________________-->
-            <div class="table-info">
+            <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('reports::reports.accountant') }}
@@ -206,7 +165,7 @@
                                     <li>
                                         <a href="{{ Request::fullUrl() }}&export=xls">
                                             <i class="dropdown-icon fa fa-camera-retro"></i>
-                                            {{ trans('general.Export') }}
+                                            {{ trans('reports::reports.export') }}
                                         </a>
                                     </li>
                                 </ul>
@@ -216,20 +175,23 @@
 
                     </div>
                 </div>
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('general.Order#'), 'TICKET', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Login'), 'LOGIN', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Type'), 'CMD', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.Total'), 'PROFIT', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('general.CloseTime'), 'CLOSE_TIME', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.login'), 'LOGIN', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.total'), 'PROFIT', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.close_time'), 'CLOSE_TIME', $oResults[0]) !!}</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if (count($oResults[0]))
+                        {{-- */$i=0;/* --}}
+                        {{-- */$class='';/* --}}
                         @foreach($oResults[0] as $oResult)
-                        <tr>
+                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                        <tr class='{{ $class }}'> 
                             <td>{{ $oResult->TICKET }}</td>
                             <td>{{ $oResult->LOGIN }}</td>
                             <td>{{ $oResult->TYPE }}</td>
@@ -243,27 +205,18 @@
                 <div class="table-footer text-right">
                     @if (count($oResults[0]))
                     {!! str_replace('/?', '?', $oResults[0]->appends(Input::except('page'))->render()) !!}
-                    
+
                     @if($oResults[0]->total()>25)
-                       <div class="DT-lf-right change_page_all_div" >
-                  
-                           
-                              
-                                    {!! Form::text('page',$oResults[0]->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
-                    
-                            
-                               
-                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-                               
-                            
-                   
+                    <div class="DT-lf-right change_page_all_div" >
+                        {!! Form::text('page',$oResults[0]->currentPage(), ['type'=>'number', 'placeholder'=>trans('reports::reports.page'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::submit(trans('reports::reports.go'), ['class'=>'btn', 'name' => 'search']) !!}
                     </div>
                     @endif
-                    
+
                     <div class="col-sm-3  padding-xs-vr">
-                        <span class="text-xs">Showing {{ $oResults[0]->firstItem() }} to {{ $oResults[0]->lastItem() }} of {{ $oResults[0]->total() }} entries</span>
+                        <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oResults[0]->firstItem() }} {{trans('reports::reports.to')}} {{ $oResults[0]->lastItem() }} {{trans('reports::reports.of')}} {{ $oResults[0]->total() }} {{trans('reports::reports.entries')}}</span>
                     </div>
-                    
+
                     @endif
                 </div>
             </div>
@@ -271,7 +224,6 @@
     </div>
 </div>
 </div>
-{!! Form::close() !!}
 <script>
     init.push(function () {
         var options = {
@@ -357,7 +309,7 @@
              trans('general.CreditOut') 
              *  {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}
              */
-            categories: ['{!!  trans('general.ACCOUNTANT_TYPE_6_DEPOSITS') !!}', '{!!  trans('general.ACCOUNTANT_TYPE_7_CREDIT') !!}']
+            categories: ['{!!  trans('reports::reports.ACCOUNTANT_TYPE_6_DEPOSITS') !!}', '{!!  trans('reports::reports.ACCOUNTANT_TYPE_7_CREDIT') !!}']
             },
             yAxis: {
             min: 0,
@@ -374,16 +326,16 @@
             }
             },
             series: [{
-            name: ['{!!  trans('general.Deposits') !!}'],
+            name: ['{!!  trans('reports::reports.deposits') !!}'],
                     data: [{!! $oResults[1]['deposits'] + $oResults[1]['withdraws'] !!}, 0]
             }, {
-            name: ['{!! trans('general.CreditIn') !!}'],
+            name: ['{!! trans('reports::reports.credit_in') !!}'],
                     data: [0, {!! $oResults[1]['creditIn'] + $oResults[1]['creditOut'] !!}]
             }, {
-            name: ['{!!  trans('general.Withdraws') !!}'],
+            name: ['{!!  trans('reports::reports.withdraws') !!}'],
                     data: [{!! $oResults[1]['withdraws'] * - 1 !!}, 0]
             }, {
-            name: ['{!! trans('general.CreditOut') !!}'],
+            name: ['{!! trans('reports::reports.credit_out') !!}'],
                     data: [0, {!! $oResults[1]['creditOut'] * - 1 !!}]
             }]
     });

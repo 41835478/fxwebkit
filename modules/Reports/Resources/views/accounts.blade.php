@@ -18,7 +18,7 @@
         <div class="navigation">
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections">
-                <li class="active"><a href="#"> <i class="fa fa-search"></i> search </a></li>
+                <li class="active"><a href="#"> <i class="fa fa-search"></i> {{ trans('reports::reports.search') }} </a></li>
                 <li>
                     <div class="   nav-input-div">
                         <div class="checkbox">
@@ -33,23 +33,11 @@
                 <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}</div></li>
-                <li>
 
-                    <div class=" nav-input-div form-group ">
-                        <div class="checkbox">
-                            <label>
-                                {!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
-                                <span class="lbl">{{ trans('reports::reports.AllGroups') }}</span>
-                            </label>
-                        </div>
-                        {!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','id'=>'all-groups-slc']) !!}
-                    </div>
-
-                </li>
 
 
                 <li><div  class=" nav-input-div  ">
-                        {!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('reports::reports.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>
                 <li class="divider"></li>
             </ul>
@@ -57,7 +45,7 @@
 
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
             {!! Form::hidden('order', $aFilterParams['order']) !!}
-        
+            {!! Form::close() !!}
 
 
         </div>
@@ -71,7 +59,8 @@
             @include('admin.partials.messages')
 
 
-            <div class="table-info">
+
+            <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('reports::reports.accounts') }}
@@ -87,7 +76,7 @@
                                     <li>
                                         <a href="{{ Request::fullUrl() }}&export=xls">
                                             <i class="dropdown-icon fa fa-camera-retro"></i>
-                                            {{ trans('general.Export') }}
+                                            {{ trans('reports::reports.export') }}
                                         </a>
                                     </li>
                                 </ul>
@@ -97,15 +86,13 @@
 
                     </div>
                 </div>
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Name'), 'NAME', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Group'), 'GROUP', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Equity'), 'EQUITY', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Balance'), 'BALANCE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.AgentAccount'), 'AGENT_ACCOUNT', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Margin'), 'MARGIN', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.MarginFree'), 'MARGIN_FREE', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Leverage'), 'LEVERAGE', $oResults) !!}</th>
@@ -114,47 +101,46 @@
                     </thead>
                     <tbody>
                         @if (count($oResults))
+                        {{-- */$i=0;/* --}}
+                        {{-- */$class='';/* --}}
                         @foreach($oResults as $oResult)
-                        <tr>
+                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                        <tr class='{{ $class }}'> 
                             <td>{{ $oResult->LOGIN }}</td>
                             <td>{{ $oResult->NAME }}</td>
-                            <td>{{ $oResult->GROUP }}</td>
                             <td>{{ $oResult->EQUITY }}</td>
-                            <td>{{ $oResult->BALANCE }}</td>
-
-                            <td>{{ $oResult->AGENT_ACCOUNT }}</td>
+                            <td>{{ $oResult->BALANCE }}</td>          
                             <td>{{ $oResult->MARGIN }}</td>
                             <td>{{ $oResult->MARGIN_FREE }}</td>
                             <td>{{ $oResult->LEVERAGE }}</td>
-                          <td><a href="{{ route('accounts.mt4UserDetails').'?login='. $oResult->LOGIN }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text"></a></td>
+                            <td><a href="{{ asset('client/reports/account-statement?login='. $oResult->LOGIN .'&from_date=&to_date=&search=Search&sort=asc&order=login')  }}" class="fa fa-file-text"></a></td>
                         </tr>
                         @endforeach
                         @endif
                     </tbody>
                 </table>
-                <div class="table-footer text-right">
+                <div class="table-footer">
                     @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
-                  
+
                     @if($oResults->total()>25)
-                    
-                      <div class="DT-lf-right change_page_all_div" >
-                  
-                           
-                              
-                                    {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}                 
-                    
-                            
-                               
-                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-                               
-                            
-                   
+                    <div class="DT-lf-right change_page_all_div" >
+
+
+
+                        {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('reports::reports.page'),'class'=>'form-control input-sm']) !!}
+
+
+
+                        {!! Form::submit(trans('reports::reports.go'), ['class'=>'btn', 'name' => 'search']) !!}
+
+
+
                     </div>
-                    
+
                     @endif
-                    <div class="col-sm-3  padding-xs-vr">
-                        <span class="text-xs">Showing {{ $oResults->firstItem() }} to {{ $oResults->lastItem() }} of {{ $oResults->total() }} entries</span>
+                    <div class="col-sm-3">
+                        <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oResults->firstItem() }} {{trans('reports::reports.to')}} {{ $oResults->lastItem() }} {{trans('reports::reports.of')}} {{ $oResults->total() }} {{trans('reports::reports.entries')}}</span>
                     </div>
                     @endif
                 </div>
@@ -163,7 +149,6 @@
     </div>
 </div>
 </div>
-    {!! Form::close() !!}
 <script>
     init.push(function () {
 

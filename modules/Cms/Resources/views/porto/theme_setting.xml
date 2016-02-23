@@ -1,0 +1,33 @@
+<?xml version="1.0" standalone="yes"?>
+<theme>
+    <rows>
+        <row>
+            <column class="col-xs-12" name="position_2"></column>
+        </row>
+        <row>
+            <column class="col-xs-12" name="position_3"></column>
+        </row>
+        <row>
+            <column class="col-xs-12" name="position_4"></column>
+        </row>
+        <row>
+            <column class="col-xs-8" name="position_10"></column>
+            <column class="col-xs-4" name="position_11"></column>
+        </row>
+        <row>
+            <column class="col-xs-12" name="position_5"></column>
+        </row>
+        <row>
+            <column class="col-xs-12" name="position_6"></column>
+        </row>
+        <row>
+            <column class="col-xs-12" name="position_7"></column>
+        </row>
+        <row>
+            <column class="col-xs-12" name="position_8"></column>
+        </row>
+        <row>
+            <column class="col-xs-12" name="position_9"></column>
+        </row>
+    </rows>
+</theme>
