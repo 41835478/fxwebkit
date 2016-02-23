@@ -786,12 +786,14 @@ class AccountsController extends Controller
 
     public function getAccountsSettings(Request $oRequest)
     {
+
         $accountsSetting = [
 
             'showMt4Leverage' => Config('accounts.showMt4Leverage'),
             'showMt4ChangePassword' => Config('accounts.showMt4ChangePassword'),
             'showMt4Transfer' => Config('accounts.showMt4Transfer'),
             'denyLiveAccount' => Config('accounts.denyLiveAccount'),
+            'is_client' => Config('accounts.is_client'),
         ];
 
 
@@ -810,6 +812,8 @@ class AccountsController extends Controller
         $showMt4ChangePassword = ($oRequest->showMt4ChangePassword) ? true : false;
         $showMt4Transfer = ($oRequest->showMt4Transfer) ? true : false;
         $denyLiveAccount = ($oRequest->denyLiveAccount) ? true : false;
+        $is_client = ($oRequest->is_client) ? 1 : 0;
+
 
 
         $accountsSetting = [
@@ -817,7 +821,8 @@ class AccountsController extends Controller
             'showMt4Leverage' => $showMt4Leverage,
             'showMt4ChangePassword' => $showMt4ChangePassword,
             'showMt4Transfer' => $showMt4Transfer,
-            'denyLiveAccount' => $denyLiveAccount
+            'denyLiveAccount' => $denyLiveAccount,
+            'is_client' => $is_client,
 
         ];
 

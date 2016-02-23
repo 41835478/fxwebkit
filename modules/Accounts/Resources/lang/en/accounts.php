@@ -149,6 +149,7 @@ return [
     'showMt4ChangePassword'=>'Show Mt4 Change Password',
     'showMt4Transfer'=>'Show Mt4 Transfer',
     'denyLiveAccount'=>'Deny Live Account',
+    'is_client'=>'Show This Module To Client',
 
 
 

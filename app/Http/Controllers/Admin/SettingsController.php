@@ -365,6 +365,7 @@ class SettingsController extends Controller
     'mt4CheckPort'=>$oRequest->mt4CheckPort,
     'mt4CheckDemoHost'=>$oRequest->mt4CheckDemoHost,
     'mt4CheckDemoPort'=>$oRequest->mt4CheckDemoPort,
+            'adminEmail'=>$oRequest->adminEmail,
 
         ];
 
