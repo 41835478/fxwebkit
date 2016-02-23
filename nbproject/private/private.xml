@@ -3,22 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/wamp/www/fxwebkit/resources/views/admin/email/addEmailTemplates.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/Mt4User/EloquentMt4UserRepository.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/resources/views/client/addMt4User.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Http/Routes/Admin/Settings.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Http/Controllers/Client/AuthController.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/config/fxweb.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/User/EloquentUserRepository.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/resources/views/admin/user/addUser.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Http/routes.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/resources/lang/en/general.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Http/Controllers/Admin/Email.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/config/mail.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Repositories/Admin/Mt4Trade/EloquentMt4TradeRepository.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/.env</file>
-            <file>file:/F:/wamp/www/fxwebkit/modules/Cms/Resources/views/articles.blade.php</file>
-            <file>file:/F:/wamp/www/fxwebkit/app/Http/Controllers/Admin/SettingsController.php</file>
+            <file>file:/E:/wamp/www/fxwebkit/resources/views/client/balanceChart.blade.php</file>
         </group>
     </open-files>
 </project-private>
