@@ -17,17 +17,17 @@
         <div class="panel-body">
             <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                 <li>
-                    <a href="{{ route('accounts.mt4UserDetails').'?login='.$login}}&from_date=&to_date=&search=Search&sort=asc&order=login">{{ trans('accounts::accounts.summry') }}</a>
+                    <a href="{{ route('accounts.mt4UserDetails').'?login='.$login.'&server_id='.$server_id}}&from_date=&to_date=&search=Search&sort=asc&order=login">{{ trans('accounts::accounts.summry') }}</a>
                 </li>
                 <li >
 
-                    <a href="{{ route('accounts.mt4Leverage').'?login='.$login}}">{{ trans('accounts::accounts.leverage') }}</a>
+                    <a href="{{ route('accounts.mt4Leverage').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.leverage') }}</a>
                 </li>
                 <li class="active">
-                    <a href="{{ route('accounts.mt4ChangePassword').'?login='.$login}} ">{{ trans('accounts::accounts.changePassword') }}</a>
+                    <a href="{{ route('accounts.mt4ChangePassword').'?login='.$login.'&server_id='.$server_id}} ">{{ trans('accounts::accounts.changePassword') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('accounts.mt4InternalTransfer').'?login='.$login}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
+                    <a href="{{ route('accounts.mt4InternalTransfer').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
                 </li>
             </ul>
 
@@ -60,6 +60,7 @@
 
             <div class="panel-footer text-right">
                 {!! Form::hidden('login',$login)!!}
+                {!! Form::hidden('server_id',$server_id)!!}
                 {!! Form::submit(trans('accounts::accounts.submit'), ['class'=>'btn btn-info btn-sm', 'name' => 'save']) !!}
             </div>
         </div>

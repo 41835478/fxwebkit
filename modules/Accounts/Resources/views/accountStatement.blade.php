@@ -17,13 +17,13 @@
                  <a href="#profile-tabs-board" data-toggle="tab">{{ trans('accounts::accounts.summry') }}</a>
             </li>
             <li class="">
-                <a href="{{ route('accounts.mt4Leverage').'?login='.$oResults->LOGIN}}" >{{ trans('accounts::accounts.leverage') }}</a>
+                <a href="{{ route('accounts.mt4Leverage').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}" >{{ trans('accounts::accounts.leverage') }}</a>
             </li>
             <li class="">
-                <a href="{{ route('accounts.mt4ChangePassword').'?login='.$oResults->LOGIN}} ">{{ trans('accounts::accounts.changePassword') }}</a>
+                <a href="{{ route('accounts.mt4ChangePassword').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}} ">{{ trans('accounts::accounts.changePassword') }}</a>
             </li> 
             <li class="">
-              <a href="{{ route('accounts.mt4InternalTransfer').'?login='.$oResults->LOGIN}}" >{{ trans('accounts::accounts.internalTransfer') }}</a>
+              <a href="{{ route('accounts.mt4InternalTransfer').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}" >{{ trans('accounts::accounts.internalTransfer') }}</a>
             </li> 
         </ul>
     </div>
