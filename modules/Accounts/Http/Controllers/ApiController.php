@@ -7,8 +7,8 @@ class ApiController extends Controller {
 
 	private $apiReqiredConfirmMt4Password;
 	private $apiMasterPassword;
-	private $mt4Host;
-	private $mt4Port;
+	public $mt4Host;
+	public $mt4Port;
         private $returnMessages=[
 	'NOK01'=>'Invalid Data',
 	'NOK02'=>'Internal Error',

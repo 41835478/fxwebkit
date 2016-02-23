@@ -19,17 +19,17 @@
 
             @if($showMt4Leverage)
                 <li>
-                    <a href="{{ route('clients.accounts.mt4Leverage').'?login='.$oResults->LOGIN}}">{{ trans('accounts::accounts.leverage') }}</a>
+                    <a href="{{ route('clients.accounts.mt4Leverage').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}">{{ trans('accounts::accounts.leverage') }}</a>
                 </li>
             @endif
             @if($showMt4ChangePassword)
                 <li>
-                    <a href="{{ route('clients.accounts.mt4ChangePassword').'?login='.$oResults->LOGIN}} ">{{ trans('accounts::accounts.changePassword') }}</a>
+                    <a href="{{ route('clients.accounts.mt4ChangePassword').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}} ">{{ trans('accounts::accounts.changePassword') }}</a>
                 </li>
             @endif
             @if($showMt4Transfer)
                 <li >
-                    <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$oResults->LOGIN}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
+                    <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
                 </li>
             @endif
         </ul>

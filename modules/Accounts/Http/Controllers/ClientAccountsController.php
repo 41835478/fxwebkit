@@ -95,6 +95,7 @@ class ClientAccountsController extends Controller
 
         if ($oRequest->has('search')) {
             $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['server_id'] = $oRequest->server_id;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['sort'] = $oRequest->sort;
@@ -137,6 +138,7 @@ class ClientAccountsController extends Controller
             ->with('Result', $Result)
             ->with('changeleverage', $changeleverage)
             ->with('login', $oRequest->login)
+            ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
             ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
             ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
@@ -155,6 +157,11 @@ class ClientAccountsController extends Controller
             'leverage' => ''];
 
         $oApiController = new ApiController();
+
+        if($oRequest['sever_id']==1){
+            $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
+            $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+        }
         $result = $oApiController->changeMt4Leverage($oRequest['login'], $oRequest['leverage'], $oRequest['oldPassword']);
 
 
@@ -179,6 +186,7 @@ class ClientAccountsController extends Controller
             ->with('Password', $Password)
             ->with('changePassword', $changePassword)
             ->with('login', $oRequest->login)
+            ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
             ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
             ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
@@ -194,6 +202,11 @@ class ClientAccountsController extends Controller
             'newPassword' => ''];
 
         $mT4ChangePassword = new ApiController();
+
+        if($oRequest['sever_id']==1){
+            $mT4ChangePassword->mt4Host=Config('fxweb.mt4CheckDemoHost');
+            $mT4ChangePassword->mt4Port=Config('fxweb.mt4CheckDemoPort');
+        }
         $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'], $oRequest['oldPassword']);
 
         return view('accounts::client.changePassword')
@@ -217,6 +230,7 @@ class ClientAccountsController extends Controller
             ->with('Pssword', $Pssword)
             ->with('internalTransfer', $internalTransfer)
             ->with('login', $oRequest->login)
+            ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
             ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
             ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
@@ -260,6 +274,10 @@ class ClientAccountsController extends Controller
         $result = '';
         if ($allowed) {
             $oApiController = new ApiController();
+            if($oRequest['sever_id']==1){
+                $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
+                $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+            }
             $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['oldPassword'], $oRequest['amount']);
         } else {
             $result = 'The Admin does not allowed to transfer to unsigned Mt4 users';
