@@ -26,11 +26,10 @@ return [
     'apiMasterPassword' => 'PASSWORD',
     'allowTransferToUnsignedMT4' => false,
 
-'denyLiveAccount'=>true,
-
-    'showMt4Leverage'=>true,
-    'showMt4ChangePassword'=>false,
-    'showMt4Transfer'=>false,
+    'denyLiveAccount' => false,
+    'showMt4Leverage' => true,
+    'showMt4ChangePassword' => false,
+    'showMt4Transfer' => true,
 
     'admin_menu' => [
         [
