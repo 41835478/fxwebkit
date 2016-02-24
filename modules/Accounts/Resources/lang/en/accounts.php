@@ -153,6 +153,9 @@ return [
     'demo'=>'Demo',
     'live'=>'Live',
     'is_client'=>'Show This Module To Client',
+    'apiMasterPassword'=>'API Master Password',
+    'apiReqiredConfirmMt4Password'=>'API Reqired Confirm Mt4 Password',
+    'allowTransferToUnsignedMT4'=>'Allow Transfer To Unsigned MT4',
 
 
 

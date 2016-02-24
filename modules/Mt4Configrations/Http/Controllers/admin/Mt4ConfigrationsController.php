@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 use Modules\Mt4Configrations\Repositories\Mt4ConfigrationsContract as Mt4Configrations;
+use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
 
 class Mt4ConfigrationsController extends Controller
 {
@@ -52,7 +53,6 @@ class Mt4ConfigrationsController extends Controller
 
             $oResults = $this->Mt4Configrations->getSymbolsByFilters($aFilterParams, false, $sOrder, $sSort);
         }
-
 
 
         return view('mt4configrations::symbol_list')->with('oResults', $oResults)
@@ -137,7 +137,7 @@ class Mt4ConfigrationsController extends Controller
         ];
 
 
-            $oResults = $this->Mt4Configrations->addGroups();
+        $oResults = $this->Mt4Configrations->addGroups();
 
 
         return Redirect::route('admin.mt4Configrations.groupsList');
@@ -187,6 +187,39 @@ class Mt4ConfigrationsController extends Controller
 
 
         return Redirect::route('admin.mt4Configrations.symbolsList');
+
+    }
+
+    public function getMt4ConfigrationsSettings()
+    {
+        $mt4ConfigurationsSetting = [
+
+            'apiAdminPassword' => Config('mt4configrations.apiAdminPassword'),
+
+
+
+        ];
+
+        return view('mt4configrations::mt4ConfigurationsSetting')->with('mt4ConfigurationsSetting', $mt4ConfigurationsSetting);
+    }
+
+    public function postMt4ConfigrationsSettings(Request $oRequest)
+    {
+
+
+        $mt4ConfigurationsSetting = [
+
+            'apiAdminPassword' =>$oRequest->apiAdminPassword,
+
+
+
+        ];
+
+        $editConfig = new EditConfig();
+
+        $editConfig->editConfigFile('modules/Mt4configrations/Config/config.php', $mt4ConfigurationsSetting);
+
+        return view('mt4configrations::mt4ConfigurationsSetting')->with('mt4ConfigurationsSetting', $mt4ConfigurationsSetting);
 
     }
 }

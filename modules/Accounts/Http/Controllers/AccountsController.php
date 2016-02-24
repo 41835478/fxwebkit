@@ -809,7 +809,11 @@ class AccountsController extends Controller
             'showMt4ChangePassword' => Config('accounts.showMt4ChangePassword'),
             'showMt4Transfer' => Config('accounts.showMt4Transfer'),
             'denyLiveAccount' => Config('accounts.denyLiveAccount'),
+            'apiReqiredConfirmMt4Password' => Config('accounts.apiReqiredConfirmMt4Password'),
+            'allowTransferToUnsignedMT4' => Config('accounts.allowTransferToUnsignedMT4'),
+
             'is_client' => Config('accounts.is_client'),
+
         ];
 
 
@@ -828,6 +832,8 @@ class AccountsController extends Controller
         $showMt4ChangePassword = ($oRequest->showMt4ChangePassword) ? true : false;
         $showMt4Transfer = ($oRequest->showMt4Transfer) ? true : false;
         $denyLiveAccount = ($oRequest->denyLiveAccount) ? true : false;
+        $apiReqiredConfirmMt4Password = ($oRequest->apiReqiredConfirmMt4Password) ? true : false;
+        $allowTransferToUnsignedMT4 = ($oRequest->allowTransferToUnsignedMT4) ? true : false;
         $is_client = ($oRequest->is_client) ? 1 : 0;
 
 
@@ -838,6 +844,9 @@ class AccountsController extends Controller
             'showMt4ChangePassword' => $showMt4ChangePassword,
             'showMt4Transfer' => $showMt4Transfer,
             'denyLiveAccount' => $denyLiveAccount,
+            'apiReqiredConfirmMt4Password'=>$apiReqiredConfirmMt4Password,
+            'allowTransferToUnsignedMT4'=>$allowTransferToUnsignedMT4,
+            'apiMasterPassword'=>$oRequest->apiMasterPassword,
             'is_client' => $is_client,
 
         ];
@@ -845,7 +854,7 @@ class AccountsController extends Controller
 
         $editConfig = new EditConfig();
         $editConfig->editConfigFile('modules/Accounts/Config/config.php', $accountsSetting);
-        return view('accounts::accountsSetting')->with('accountsSetting', $accountsSetting);
+        return  Redirect::route('accounts.accountsSettings')->with('accountsSetting', $accountsSetting);
 
     }
 

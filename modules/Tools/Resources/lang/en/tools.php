@@ -56,7 +56,12 @@ return [
     'start_hour_message'=>'start hour should be less than end hour.',
     'no_thing_message'=>'No thing added !!!',
     'deleted_successfully_message'=>'deleted successfully.',
-    'deleted_faild_message'=>'deleted faild please try again later.'
+    'deleted_faild_message'=>'deleted faild please try again later.',
+
+    'settings'=>'Settings',
+
+
+    'is_client'=>'Show This Module To Client',
 
 
 ];

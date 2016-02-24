@@ -39,6 +39,11 @@ return [
 			'route' => 'cms.languagesList',
 			'title' => 'languages',
 			'icon' => 'fa fa-globe',
+		],
+		[
+			'route' => 'cms.cmsSettings',
+			'title' => 'settings',
+			'icon' => 'fa fa-gears',
 		]
 	]
 ];

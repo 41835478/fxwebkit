@@ -1,15 +1,15 @@
 @extends('admin.layouts.main')
-@section('title', trans('ibportal::ibportal.settings'))
+@section('title', trans('mt4configrations::mt4configrations.settings'))
 @section('content')
 
     <div class="page-header">
-        <h1>{{ trans('ibportal::ibportal.settings') }}</h1>
+        <h1>{{ trans('mt4configrations::mt4configrations.settings') }}</h1>
     </div>
 
     <div class="panel">
         {!! Form::open(['class'=>'panel form-horizontal']) !!}
         <div class="panel-heading">
-            <span class="panel-title">{{ trans('ibportal::ibportal.settings') }}</span>
+            <span class="panel-title">{{ trans('mt4configrations::mt4configrations.settings') }}</span>
         </div>
 
         <div class="panel-body">
@@ -28,21 +28,8 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
-                                        <label class="control-label">{{ trans('ibportal::ibportal.agreemment') }}</label>
-                                        {!! Form::text('agreemment',$ibportalSetting['agreemment'],['class'=>'form-control']) !!}
-                                    </div>
-                                </div>
-                                <!-- col-sm-6 -->
-                                </div>
-                                <!-- col-sm-6 -->
-
-
-                            <div class="row">
-
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-                                        <label class="control-label">{{ trans('ibportal::ibportal.is_client') }}</label>
-                                        {!! Form::checkbox('is_client',1,$ibportalSetting['is_client'],[]) !!}
+                                        <label class="control-label">{{ trans('mt4configrations::mt4configrations.apiAdminPassword') }}</label>
+                                        {!! Form::text('apiAdminPassword',$mt4ConfigurationsSetting['apiAdminPassword'],['class'=>'form-control']) !!}
                                     </div>
                                 </div>
                                 <!-- col-sm-6 -->
@@ -72,7 +59,7 @@
     <div class="panel-footer text-right">
 
         <button type="submit" class="btn btn-primary" name="edit_id"
-                value="0">{{ trans('ibportal::ibportal.save') }}</button>
+                value="0">{{ trans('mt4configrations::mt4configrations.save') }}</button>
         </a>
 
         {!! Form::close() !!}

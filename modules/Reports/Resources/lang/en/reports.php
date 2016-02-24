@@ -96,4 +96,9 @@ return [
     'total_lots'=>'Total Lots :',
     'account'=>'Account :',
 
+    'settings'=>'Settings',
+
+    'save'=>'Save',
+    'is_client'=>'Show This Module To Client',
+
 ];

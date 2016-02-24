@@ -8,5 +8,6 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'mt4configratio
 		'getSyncSymbols'=>'admin.mt4Configrations.syncSymbols',
 		'getSecuritiesList' => 'admin.mt4Configrations.securitiesList',
 		'getGroupsList' => 'admin.mt4Configrations.groupsList',
+		'getMt4ConfigrationsSettings'=>'admin.mt4Configrations.mt4ConfigrationsSettings',
 	]);
 });
