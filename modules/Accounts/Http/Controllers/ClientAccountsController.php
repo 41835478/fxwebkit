@@ -32,7 +32,6 @@ class ClientAccountsController extends Controller
 
     public function getMt4UsersList(Request $oRequest)
     {
-
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
         $aGroups = [];
@@ -61,6 +60,7 @@ class ClientAccountsController extends Controller
         $aFilterParams['sort'] = $oRequest->sort;
         $aFilterParams['order'] = $oRequest->order;
         $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
+
 
 
         return view('accounts::client.mt4Accounts')

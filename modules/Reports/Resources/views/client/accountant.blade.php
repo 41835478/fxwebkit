@@ -180,6 +180,7 @@
                     <tr>
                         <th class="no-warp">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults[0]) !!}</th>
                         <th class="no-warp">{!! th_sort(trans('reports::reports.login'), 'LOGIN', $oResults[0]) !!}</th>
+                        <th class="no-warp">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults[0]) !!}</th>
                         <th class="no-warp">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults[0]) !!}</th>
                         <th class="no-warp">{!! th_sort(trans('reports::reports.total'), 'PROFIT', $oResults[0]) !!}</th>
                         <th class="no-warp">{!! th_sort(trans('reports::reports.close_time'), 'CLOSE_TIME', $oResults[0]) !!}</th>
@@ -194,6 +195,7 @@
                             <tr class='{{ $class }}'>
                                 <td>{{ $oResult->TICKET }}</td>
                                 <td>{{ $oResult->LOGIN }}</td>
+                                <td>{{ ($oResult->server_id)? trans('demo'):trans('live') }}</td>
                                 <td>{{ $oResult->TYPE }}</td>
                                 <td>{{ $oResult->PROFIT }}</td>
                                 <td>{{ $oResult->CLOSE_TIME }}</td>

@@ -29,7 +29,7 @@ class ReportsController extends Controller {
 
     public function getClosedOrders(ClosedTradesRequest $oRequest) {
        
-        
+
         $oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
        
         $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();

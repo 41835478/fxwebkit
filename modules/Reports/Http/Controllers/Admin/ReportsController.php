@@ -34,8 +34,10 @@ class ReportsController extends Controller {
     }
 
     public function getClosedOrders(ClosedTradesRequest $oRequest) {
+
         $oGroups = $this->oMt4Group->getAllGroups();
         $oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
+
         $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
@@ -71,13 +73,14 @@ class ReportsController extends Controller {
         }
 
         if ($oRequest->has('search')) {
+
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
             $aFilterParams['exactLogin'] = $oRequest->exactLogin;
             $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
-            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['all_groups'] = true;
             $aFilterParams['group'] = $oRequest->group;
             $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
             $aFilterParams['symbol'] = $oRequest->symbol;
@@ -103,6 +106,7 @@ class ReportsController extends Controller {
                 trans('reports::reports.Profit'),
             ];
 
+
             foreach ($oResults as $oResult) {
                 $aData[] = [
                     $oResult->TICKET,
@@ -125,9 +129,11 @@ class ReportsController extends Controller {
 
         if ($oRequest->has('search')) {
             $oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams, false, $sOrder, $sSort);
+         //   dd($aFilterParams);
             $oResults->order = $aFilterParams['order'];
             $oResults->sorts = $aFilterParams['sort'];
         }
+
 
         return view('reports::closedOrders')
                         ->with('aGroups', $aGroups)
@@ -177,7 +183,7 @@ class ReportsController extends Controller {
             $aFilterParams['to_login'] = $oRequest->to_login;
             $aFilterParams['exactLogin'] = $oRequest->exactLogin;
             $aFilterParams['login'] = $oRequest->login;
-            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['all_groups'] = true;
             $aFilterParams['group'] = $oRequest->group;
             $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
             $aFilterParams['symbol'] = $oRequest->symbol;
@@ -265,7 +271,7 @@ class ReportsController extends Controller {
             $aFilterParams['exactLogin'] = $oRequest->exactLogin;
             $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['name'] = $oRequest->name;
-            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['all_groups'] = true;
             $aFilterParams['group'] = $oRequest->group;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
@@ -389,7 +395,7 @@ class ReportsController extends Controller {
             $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
-            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['all_groups'] = true;
             $aFilterParams['group'] = $oRequest->group;
         }
 
@@ -440,7 +446,7 @@ class ReportsController extends Controller {
             $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
-            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['all_groups'] = true;
             $aFilterParams['group'] = $oRequest->group;
         }
 
@@ -501,7 +507,7 @@ class ReportsController extends Controller {
             $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
-            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['all_groups'] = true;
             $aFilterParams['group'] = $oRequest->group;
             $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
             $aFilterParams['symbol'] = $oRequest->symbol;
