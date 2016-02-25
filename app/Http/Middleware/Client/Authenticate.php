@@ -11,7 +11,7 @@ class Authenticate
 			// User is logged in and assigned to the $oUser variable.
 			// Check if the user has the right role
 			if(Sentinel::inRole('block')){
-				
+
 				return Redirect::route('client.auth.login')->withErrors([trans('user.userBlock')]);
 			}
 		} else {

@@ -20,7 +20,7 @@ class Authenticate
             if ($oRequest->ajax()) {
                 return response('Needs Login', 401);
             } else {
-                return Redirect::route('admin.auth.login');
+                return Redirect::route('admin.auth.login')->withErrors([trans('user.InvalidLogin')]);
             }
         }
 
