@@ -116,7 +116,7 @@
                             <td>{{ $oResult->MARGIN }}</td>
                             <td>{{ $oResult->MARGIN_FREE }}</td>
                             <td>{{ $oResult->LEVERAGE }}</td>
-                            <td><a href="{{ asset('client/reports/account-statement?login='. $oResult->LOGIN .'&from_date=&to_date=&search=Search&sort=asc&order=login')  }}" class="fa fa-file-text"></a></td>
+                            <td><a href="{{ route('admin.reports.accountStatement').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text"></a></td>
                         </tr>
                         @endforeach
                         @endif

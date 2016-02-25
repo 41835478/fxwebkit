@@ -333,16 +333,18 @@ class ReportsController extends Controller
 
     public function getAccountStatement(AccountStatementRequest $oRequest)
     {
+
         $oGroups = $this->oMt4User->getAllGroups();
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
-
+        $serverTypes = $this->oMt4Trade->getServerTypes();
         $aGroups = [];
         $oResults = null;
         $oOpenResults = null;
         $oCloseResults = null;
         $aFilterParams = [
             'login' => '',
+            'server_id'=>'',
             'from_date' => '',
             'to_date' => '',
 
@@ -357,7 +359,9 @@ class ReportsController extends Controller
         ];
 
         if ($oRequest->has('search')) {
+
             $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['server_id'] = $oRequest->server_id;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['sort'] = $oRequest->sort;
@@ -382,6 +386,7 @@ class ReportsController extends Controller
             ->with('oOpenResults', $oOpenResults)
             ->with('oCloseResults', $oCloseResults)
             ->with('aSummery', $aSummery)
+            ->with('serverTypes', $serverTypes)
             ->with('aFilterParams', $aFilterParams);
     }
 
