@@ -62,6 +62,9 @@
                     <div class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('ibportal::ibportal.Login'),'class'=>'form-control input-sm']) !!}</div>
                 </li>
 
+                <li id="login_li">
+                    <div  class=" nav-input-div  ">{!! Form::select('server_id', $serverTypes, $aFilterParams['server_id'], ['class'=>'form-control  input-sm']) !!}</div></li>
+                </li>
 
                 <li>
 
@@ -165,7 +168,7 @@
                             <tr class='{{ $class }}'>
                                 <td>{{ $oResult->TICKET }}</td>
                                 <td>{{ $oResult->LOGIN }}</td>
-                                <td>{{ ($oResult->server_id)? trans('demo'):trans('live') }}</td>
+                                <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
                                 <td>{{ $oResult->SYMBOL }}</td>
                                 <td>{{ $oResult->TYPE }}</td>
                                 <td>{{ $oResult->VOLUME }}</td>

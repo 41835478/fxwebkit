@@ -356,6 +356,7 @@ class IbportalController extends Controller
 
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
+        $serverTypes = $this->oMt4Trade->getServerTypes();
         $oResults = null;
         $aFilterParams = [
             'from_login' => '',
@@ -366,6 +367,7 @@ class IbportalController extends Controller
             'planName' => [],
             'usresName' => [],
             'mt4UsresName' => [],
+            'server_id'=>'',
             'sort' => 'ASC',
             'order' => 'TICKET',
         ];
@@ -381,6 +383,7 @@ class IbportalController extends Controller
             $aFilterParams['planName'] = $oRequest->planName;
             $aFilterParams['usresName'] = $oRequest->usresName;
             $aFilterParams['mt4UsresName'] = $oRequest->mt4UsresName;
+            $aFilterParams['server_id'] = $oRequest->server_id;
 
         }
 
@@ -403,6 +406,7 @@ class IbportalController extends Controller
             ->with('oResults', $oResults)
             ->with('agent_id', $oRequest->agentId)
             ->with('data', $data)
+            ->with('serverTypes',$serverTypes)
             ->with('totalCommission', $totalCommission)
             ->with('aFilterParams', $aFilterParams);
     }
@@ -462,6 +466,7 @@ class IbportalController extends Controller
 
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
+        $serverTypes = $this->oMt4Trade->getServerTypes();
         $oResults = null;
         $aFilterParams = [
             'from_login' => '',
@@ -472,6 +477,7 @@ class IbportalController extends Controller
             'planName' => [],
             'usresName' => [],
             'mt4UsresName' => [],
+            'server_id'=>'',
             'sort' => 'ASC',
             'order' => 'TICKET',
         ];
@@ -487,6 +493,7 @@ class IbportalController extends Controller
             $aFilterParams['planName'] = $oRequest->planName;
             $aFilterParams['usresName'] = $oRequest->usresName;
             $aFilterParams['mt4UsresName'] = $oRequest->mt4UsresName;
+            $aFilterParams['server_id'] = $oRequest->server_id;
 
         }
 
@@ -509,6 +516,7 @@ class IbportalController extends Controller
             ->with('oResults', $oResults)
             ->with('data', $data)
             ->with('totalCommission', $totalCommission)
+            ->with('serverTypes',$serverTypes)
             ->with('aFilterParams', $aFilterParams);
 
     }

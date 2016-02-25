@@ -19,7 +19,7 @@
                     <div class="panel-heading">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-example"
                            href="#collapseOne">
-                            Collapsible Group Item #1
+                            {{ trans('tools::tools.clientSettings') }}
                         </a>
                     </div>
                     <!-- / .panel-heading -->

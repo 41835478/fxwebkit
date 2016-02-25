@@ -83,6 +83,7 @@ return [
     'right_to_lift'=>'right to lift',
     'settings'=>'Sttings',
     'asset_folder'=>'Asset Folder',
-    'admin_theme'=>'AdminT heme',
+    'admin_theme'=>'Admin Theme',
     'theme_folder'=>'Theme Folder',
+    'themeSettings'=>'Theme Settings',
 ];

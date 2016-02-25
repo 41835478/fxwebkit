@@ -71,7 +71,7 @@
                         {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                         <tr class='{{ $class }}'>
                             <td>{{ $oResult->LOGIN }}</td>
-                            <td>{{ ($oResult->server_id)? trans('demo'):trans('live') }}</td>
+                            <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
                             <td>{{ $oResult->NAME }}</td>
                             <td>{{ $oResult->REGDATE }}</td>
                             <td>{{ $oResult->LASTDATE }}</td>         

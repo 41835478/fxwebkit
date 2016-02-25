@@ -159,7 +159,7 @@
                             <tr class='{{ $class }}'>
                                 <td>{{ $oResult->TICKET }}</td>
                                 <td>{{ $oResult->LOGIN }}</td>
-                                <td>{{ ($oResult->server_id)? trans('demo'):trans('live') }}</td>
+                                <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
                                 <td>{{ $oResult->SYMBOL }}</td>
                                 <td>{{ $oResult->TYPE }}</td>
                                 <td>{{ $oResult->VOLUME }}</td>

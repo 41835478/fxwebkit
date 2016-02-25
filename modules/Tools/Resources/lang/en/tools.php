@@ -62,6 +62,7 @@ return [
 
 
     'is_client'=>'Show This Module To Client',
+    'clientSettings'=>'Client Settings',
 
 
 ];

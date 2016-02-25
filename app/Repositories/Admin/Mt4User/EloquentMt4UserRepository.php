@@ -101,6 +101,11 @@ class EloquentMt4UserRepository implements Mt4UserContract {
                 $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
             }
         }
+
+        if (isset($aFilters['server_id']) &&in_array($aFilters['server_id'],[0,1])) {
+
+            $oResult = $oResult->where('server_id',$aFilters['server_id']);
+        }
         /* =============== Nmae Filter  =============== */
         if (isset($aFilters['name']) && !empty($aFilters['name'])) {
             $oResult = $oResult->where('name', 'like', '%' . $aFilters['name'] . '%');

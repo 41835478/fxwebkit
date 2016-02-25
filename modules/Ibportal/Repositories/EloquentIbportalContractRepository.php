@@ -370,6 +370,13 @@ class EloquentIbportalContractRepository implements IbportalContract
             }
         }
 
+        /* =============== Server Id Filter  =============== */
+
+//        if (isset($aFilters['server_id']) &&in_array($aFilters['server_id'],[0,1])) {
+//
+//            $oResult = $oResult->where('server_id',$aFilters['server_id']);
+//        }
+
         /*=================== agents=================*/
         if (isset($aFilters['agentName']) && count($aFilters['agentName'])) {
             $oResult->whereIn('agent_id', $aFilters['agentName']);

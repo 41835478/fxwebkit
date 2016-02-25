@@ -156,6 +156,9 @@ return [
     'apiMasterPassword'=>'API Master Password',
     'apiReqiredConfirmMt4Password'=>'API Reqired Confirm Mt4 Password',
     'allowTransferToUnsignedMT4'=>'Allow Transfer To Unsigned MT4',
+    'clientSettings'=>'Client Setting',
+    'operationsSettings'=>'Operations Settings',
+    'apiSettings'=>'API Settings',
 
 
 

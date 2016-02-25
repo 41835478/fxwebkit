@@ -19,7 +19,7 @@
                     <div class="panel-heading">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-example"
                            href="#collapseOne">
-                            Collapsible Group Item #1
+                            {{ trans('ibportal::ibportal.agreemment') }}
                         </a>
                     </div>
                     <!-- / .panel-heading -->
@@ -36,7 +36,7 @@
                                 </div>
                                 <!-- col-sm-6 -->
 
-
+<hr>
                             <div class="row">
 
                                 <div class="col-sm-6">

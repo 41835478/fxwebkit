@@ -103,5 +103,6 @@ return [
     'demo'=>'Demo',
     'live'=>'Live',
     'liveDemo'=>'Live/Demo',
+    'clientSettings'=>'Client Settings',
 
 ];

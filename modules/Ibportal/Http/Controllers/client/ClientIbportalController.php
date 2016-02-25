@@ -6,6 +6,7 @@ use Modules\Mt4Configrations\Repositories\Mt4ConfigrationsContract as Mt4Configr
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 
 use Modules\Ibportal\Repositories\IbportalContract as Ibportal;
+use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
 use Illuminate\Support\Facades\Config;
 
 use Pingpong\Modules\Routing\Controller;
@@ -23,13 +24,15 @@ class ClientIbportalController extends Controller
     protected $Mt4Configrations;
     protected $Ibportal;
     protected $Users;
+    protected $oMt4Trade;
     public function __construct(
-        Mt4Configrations $Mt4Configrations,Ibportal $Ibportal,Users $Users
+        Mt4Configrations $Mt4Configrations,Ibportal $Ibportal,Users $Users, Mt4Trade $oMt4Trade
     )
     {
         $this->Ibportal=$Ibportal;
         $this->Mt4Configrations = $Mt4Configrations;
         $this->Users=$Users;
+        $this->oMt4Trade = $oMt4Trade;
     }
 
 
@@ -141,8 +144,10 @@ class ClientIbportalController extends Controller
 
     public function getAgentCommission(Request $oRequest)
     {
+
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
+        $serverTypes = $this->oMt4Trade->getServerTypes();
         $oResults = null;
         $aFilterParams = [
             'from_login' => '',
@@ -153,6 +158,7 @@ class ClientIbportalController extends Controller
             'planName' => [],
             'usresName' => [],
             'mt4UsresName' => [],
+            'server_id'=>'',
             'sort' => 'ASC',
             'order' => 'TICKET',
         ];
@@ -168,6 +174,7 @@ class ClientIbportalController extends Controller
             $aFilterParams['planName'] = $oRequest->planName;
             $aFilterParams['usresName'] = $oRequest->usresName;
             $aFilterParams['mt4UsresName'] = $oRequest->mt4UsresName;
+            $aFilterParams['server_id'] = $oRequest->server_id;
 
         }
 
@@ -190,6 +197,7 @@ class ClientIbportalController extends Controller
             ->with('oResults', $oResults)
             ->with('agent_id',$oRequest->agentId)
             ->with('data', $data)
+            ->with('serverTypes',$serverTypes)
             ->with('totalCommission',$totalCommission)
             ->with('aFilterParams', $aFilterParams);
     }

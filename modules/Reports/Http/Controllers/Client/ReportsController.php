@@ -12,7 +12,9 @@ use Modules\Reports\Http\Requests\Admin\AccountsRequest;
 use Modules\Reports\Http\Requests\Admin\AccountStatementRequest;
 use Modules\Reports\Http\Requests\Admin\CommissionRequest;
 use Modules\Reports\Http\Requests\Admin\AccountantRequest;
-class ReportsController extends Controller {
+
+class ReportsController extends Controller
+{
 
     /**
      * @var Mt4Group
@@ -21,19 +23,21 @@ class ReportsController extends Controller {
     protected $oMt4User;
 
     public function __construct(
-     Mt4Trade $oMt4Trade, Mt4User $oMt4User
-    ) {
+        Mt4Trade $oMt4Trade, Mt4User $oMt4User
+    )
+    {
         $this->oMt4Trade = $oMt4Trade;
         $this->oMt4User = $oMt4User;
     }
 
-    public function getClosedOrders(ClosedTradesRequest $oRequest) {
-       
+    public function getClosedOrders(ClosedTradesRequest $oRequest)
+    {
+
 
         $oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
-       
+
         $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
-        
+        $serverTypes = $this->oMt4Trade->getServerTypes();
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
         $aSymbols = [];
@@ -50,6 +54,7 @@ class ReportsController extends Controller {
             'all_symbols' => true,
             'symbol' => '',
             'type' => '',
+            'server_id' => '',
             'sort' => 'ASC',
             'order' => 'TICKET',
         ];
@@ -74,6 +79,7 @@ class ReportsController extends Controller {
             $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
             $aFilterParams['symbol'] = $oRequest->symbol;
             $aFilterParams['type'] = $oRequest->type;
+            $aFilterParams['server_id'] = $oRequest->server_id;
         }
 
         if ($oRequest->has('export')) {
@@ -123,15 +129,18 @@ class ReportsController extends Controller {
         }
 
         return view('reports::client.closedOrders')
-                        ->with('aSymbols', $aSymbols)
-                        ->with('aTradeTypes', $aTradeTypes)
-                        ->with('oResults', $oResults)
-                        ->with('aFilterParams', $aFilterParams);
+            ->with('aSymbols', $aSymbols)
+            ->with('aTradeTypes', $aTradeTypes)
+            ->with('oResults', $oResults)
+            ->with('serverTypes', $serverTypes)
+            ->with('aFilterParams', $aFilterParams);
     }
 
-    public function getOpenOrders(OpenTradesRequest $oRequest) {
+    public function getOpenOrders(OpenTradesRequest $oRequest)
+    {
         $oSymbols = $this->oMt4Trade->getOpenTradesSymbols();
         $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
+        $serverTypes = $this->oMt4Trade->getServerTypes();
         $aSymbols = [];
         $oResults = null;
         $sSort = $oRequest->sort;
@@ -146,6 +155,7 @@ class ReportsController extends Controller {
             'all_symbols' => true,
             'symbol' => '',
             'type' => '',
+            'server_id' => '',
             'sort' => 'ASC',
             'order' => 'TICKET'
         ];
@@ -169,6 +179,7 @@ class ReportsController extends Controller {
             $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
             $aFilterParams['symbol'] = $oRequest->symbol;
             $aFilterParams['type'] = $oRequest->type;
+            $aFilterParams['server_id'] = $oRequest->server_id;
         }
 
         if ($oRequest->has('export')) {
@@ -215,16 +226,19 @@ class ReportsController extends Controller {
         }
 
         return view('reports::client.openOrders')
-                        ->with('aSymbols', $aSymbols)
-                        ->with('aTradeTypes', $aTradeTypes)
-                        ->with('oResults', $oResults)
-                        ->with('aFilterParams', $aFilterParams);
+            ->with('aSymbols', $aSymbols)
+            ->with('aTradeTypes', $aTradeTypes)
+            ->with('serverTypes', $serverTypes)
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
     }
 
-    public function getAccounts(AccountsRequest $oRequest) {
-        
+    public function getAccounts(AccountsRequest $oRequest)
+    {
+
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
+        $serverTypes = $this->oMt4Trade->getServerTypes();
         $oResults = null;
         $aFilterParams = [
             'from_login' => '',
@@ -234,23 +248,23 @@ class ReportsController extends Controller {
             'name' => '',
             'all_groups' => true,
             'group' => '',
+            'server_id' => '',
             'sort' => $sSort,
             'order' => $sOrder,
         ];
 
 
-        
-            $aFilterParams['from_login'] = $oRequest->from_login;
-            $aFilterParams['to_login'] = $oRequest->to_login;
-            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
-            $aFilterParams['login'] = $oRequest->login;
-            $aFilterParams['name'] = $oRequest->name;
-            $aFilterParams['all_groups'] = true;
-            $aFilterParams['group'] = [];
-            $aFilterParams['sort'] = $oRequest->sort;
-            $aFilterParams['order'] = $oRequest->order;
-            $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
-        
+        $aFilterParams['from_login'] = $oRequest->from_login;
+        $aFilterParams['to_login'] = $oRequest->to_login;
+        $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+        $aFilterParams['login'] = $oRequest->login;
+        $aFilterParams['name'] = $oRequest->name;
+        $aFilterParams['all_groups'] = true;
+        $aFilterParams['group'] = [];
+        $aFilterParams['server_id'] = $oRequest->server_id;
+        $aFilterParams['sort'] = $oRequest->sort;
+        $aFilterParams['order'] = $oRequest->order;
+        $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
 
 
         if ($oRequest->has('export')) {
@@ -281,12 +295,14 @@ class ReportsController extends Controller {
         }
 
         return view('reports::client.accounts')
-                        ->with('oResults', $oResults)
-                        ->with('aFilterParams', $aFilterParams);
+            ->with('oResults', $oResults)
+            ->with('serverTypes', $serverTypes)
+            ->with('aFilterParams', $aFilterParams);
     }
 
-    public function getAccountStatement(AccountStatementRequest $oRequest) {
-   
+    public function getAccountStatement(AccountStatementRequest $oRequest)
+    {
+
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
         $oResults = null;
@@ -307,8 +323,8 @@ class ReportsController extends Controller {
         ];
 
         if ($oRequest->has('search')) {
-         
-            
+
+
             $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
@@ -327,16 +343,16 @@ class ReportsController extends Controller {
         }
 
 
-
         return view('reports::client.accountStatement')
-                        ->with('oResults', $oResults)
-                        ->with('oOpenResults', $oOpenResults)
-                        ->with('oCloseResults', $oCloseResults)
-                        ->with('aSummery', $aSummery)
-                        ->with('aFilterParams', $aFilterParams);
+            ->with('oResults', $oResults)
+            ->with('oOpenResults', $oOpenResults)
+            ->with('oCloseResults', $oCloseResults)
+            ->with('aSummery', $aSummery)
+            ->with('aFilterParams', $aFilterParams);
     }
 
-    public function getCommission(CommissionRequest $oRequest) {
+    public function getCommission(CommissionRequest $oRequest)
+    {
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
         $aGroups = [];
@@ -373,13 +389,13 @@ class ReportsController extends Controller {
         }
 
         return view('reports::client.commission')
-                        ->with('oResults', $oResults)
-                        ->with('aFilterParams', $aFilterParams);
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
     }
 
-    
-    
-    public function getAgentCommission(CommissionRequest $oRequest) {
+
+    public function getAgentCommission(CommissionRequest $oRequest)
+    {
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
         $oResults = null;
@@ -397,7 +413,6 @@ class ReportsController extends Controller {
         ];
 
 
-
         if ($oRequest->has('search')) {
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
@@ -406,7 +421,7 @@ class ReportsController extends Controller {
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['all_groups'] = true;
-            $aFilterParams['group'] =[];
+            $aFilterParams['group'] = [];
         }
 
         if ($oRequest->has('search')) {
@@ -416,15 +431,16 @@ class ReportsController extends Controller {
         }
 
         return view('reports::client.agentCommission')
-                        ->with('oResults', $oResults)
-                        ->with('aFilterParams', $aFilterParams);
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
     }
 
-    
-    
-    public function getAccountant(AccountantRequest $oRequest) {
+
+    public function getAccountant(AccountantRequest $oRequest)
+    {
         $oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
         $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getAccountantTypes();
+        $serverTypes = $this->oMt4Trade->getServerTypes();
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
         $aGroups = [];
@@ -442,11 +458,11 @@ class ReportsController extends Controller {
             'all_symbols' => true,
             'symbol' => '',
             'type' => '',
+            'server_id' => '',
             'sort' => 'ASC',
             'order' => 'TICKET',
         ];
 
-        
 
         foreach ($oSymbols as $oSymbol) {
             $aSymbols[$oSymbol->SYMBOL] = $oSymbol->SYMBOL;
@@ -468,9 +484,10 @@ class ReportsController extends Controller {
             $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
             $aFilterParams['symbol'] = $oRequest->symbol;
             $aFilterParams['type'] = $oRequest->type;
+            $aFilterParams['server_id'] = $oRequest->server_id;
         }
 
-      
+
         if ($oRequest->has('search')) {
             $oResults = $this->oMt4Trade->getAccountantByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults[0]->order = $aFilterParams['order'];
@@ -478,10 +495,11 @@ class ReportsController extends Controller {
         }
 
         return view('reports::client.accountant')
-                        ->with('aSymbols', $aSymbols)
-                        ->with('aTradeTypes', $aTradeTypes)
-                        ->with('oResults', $oResults)
-                        ->with('aFilterParams', $aFilterParams);
+            ->with('aSymbols', $aSymbols)
+            ->with('aTradeTypes', $aTradeTypes)
+            ->with('oResults', $oResults)
+            ->with('serverTypes', $serverTypes)
+            ->with('aFilterParams', $aFilterParams);
     }
 
 }

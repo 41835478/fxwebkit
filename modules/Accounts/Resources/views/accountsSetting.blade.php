@@ -7,186 +7,192 @@
     </div>
 
 
-        {!! Form::open(['class'=>'panel form-horizontal']) !!}
-        <div class="panel-heading">
-            <span class="panel-title">{{ trans('accounts::accounts.settings') }}</span>
-        </div>
+    {!! Form::open(['class'=>'panel form-horizontal']) !!}
+    <div class="panel-heading">
+        <span class="panel-title">{{ trans('accounts::accounts.settings') }}</span>
+    </div>
 
-        <div class="panel-body">
+    <div class="panel-body">
 
-            <div class="panel-group" id="accordion-example">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-example"
-                           href="#collapseOne">
-                            Collapsible Group Item #1
-                        </a>
-                    </div>
-                    <!-- / .panel-heading -->
-                    <div id="collapseOne" class="panel-collapse in">
-                        <div class="panel-body">
-
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-                                        {!! Form::checkbox('is_client',1,$accountsSetting['is_client'],[]) !!}
-                                        <label class="control-label">{{ trans('accounts::accounts.is_client') }}</label>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <!-- / .panel-body -->
-                    </div>
-                    <!-- / .collapse -->
+        <div class="panel-group" id="accordion-example">
+            <div class="panel">
+                <div class="panel-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-example"
+                       href="#collapseOne">
+                        {{ trans('accounts::accounts.clientSettings') }}
+                    </a>
                 </div>
-                <!-- / .panel -->
+                <!-- / .panel-heading -->
+                <div id="collapseOne" class="panel-collapse in">
+                    <div class="panel-body">
 
-                <div class="panel">
-                    <div class="panel-heading">
-                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
-                           href="#collapseTwo">
-                            Collapsible Group Item #2
-                        </a>
-                    </div>
-                    <!-- / .panel-heading -->
-                    <div id="collapseTwo" class="panel-collapse collapse">
-                        <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    {!! Form::checkbox('is_client',1,$accountsSetting['is_client'],[]) !!}
+                                    <label class="control-label">{{ trans('accounts::accounts.is_client') }}</label>
 
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-                                        {!! Form::checkbox('denyLiveAccount',1,$accountsSetting['denyLiveAccount'],[]) !!}
-                                        <label class="control-label">{{ trans('accounts::accounts.denyLiveAccount') }}</label>
-
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- / .panel-body -->
+
+
                     </div>
-                    <!-- / .collapse -->
+                    <!-- / .panel-body -->
                 </div>
-                <!-- / .panel -->
-
-                <div class="panel">
-                    <div class="panel-heading">
-                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example" href="#collapseThree">
-                            Collapsible Group Item #3
-                        </a>
-                    </div>
-                    <!-- / .panel-heading -->
-                    <div id="collapseThree" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-                                        {!! Form::checkbox('showMt4Leverage',1,$accountsSetting['showMt4Leverage'],[]) !!}
-                                        <label class="control-label">{{ trans('accounts::accounts.showMt4Leverage') }}</label>
-
-                                    </div>
-                                </div>
-                                <!-- col-sm-6 -->
-
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-                                        {!! Form::checkbox('showMt4ChangePassword',1,$accountsSetting['showMt4ChangePassword'],[]) !!}
-                                        <label class="control-label">{{ trans('accounts::accounts.showMt4ChangePassword') }}</label>
-                                    </div>
-                                </div>
-                                <!-- col-sm-6 -->
-                            </div>
-                            <!-- row -->
-                            <hr>
-                            <div class="row">
-
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-                                        <label class="control-label">{{ trans('accounts::accounts.apiMasterPassword') }}</label>
-                                        {!! Form::text('apiMasterPassword',config('accounts.apiMasterPassword'),['class'=>'form-control']) !!}
-
-                                    </div>
-                                </div>
-
-                                <!-- col-sm-6 -->
-                            </div>
-                            <!-- row -->
-                        </div>
-                        <!-- / .panel-body -->
-                    </div>
-                    <!-- / .collapse -->
-                </div>
-                <!-- / .panel -->
-
-                <div class="panel">
-                    <div class="panel-heading">
-                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example" href="#collapseFour">
-                            Collapsible Group Item #4
-                        </a>
-                    </div>
-                    <!-- / .panel-heading -->
-                    <div id="collapseFour" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-                                        {!! Form::checkbox('apiReqiredConfirmMt4Password',1,$accountsSetting['apiReqiredConfirmMt4Password'],[]) !!}
-                                        <label class="control-label">{{ trans('accounts::accounts.apiReqiredConfirmMt4Password') }}</label>
-
-                                    </div>
-                                </div>
-                                <!-- col-sm-6 -->
-
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-                                        {!! Form::checkbox('allowTransferToUnsignedMT4',1,$accountsSetting['allowTransferToUnsignedMT4'],[]) !!}
-                                        <label class="control-label">{{ trans('accounts::accounts.allowTransferToUnsignedMT4') }}</label>
-                                    </div>
-                                </div>
-                                <!-- col-sm-6 -->
-                            </div>
-                            <!-- row -->
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-                                        {!! Form::checkbox('showMt4Transfer',1,$accountsSetting['showMt4Transfer'],[]) !!}
-                                        <label class="control-label">{{ trans('accounts::accounts.showMt4Transfer') }}</label>
-                                    </div>
-                                </div>
-                                <!-- col-sm-6 -->
-                            </div>
-                            <!-- row -->
-                        </div>
-                        <!-- / .panel-body -->
-                    </div>
-                    <!-- / .collapse -->
-                </div>
-                <!-- / .panel -->
+                <!-- / .collapse -->
             </div>
-            <!-- / .panel-group -->
+            <!-- / .panel -->
 
-        </div>
+            <div class="panel">
+                <div class="panel-heading">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
+                       href="#collapseTwo">
+                        {{ trans('accounts::accounts.denyLiveAccount') }}
+                    </a>
+                </div>
+                <!-- / .panel-heading -->
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
 
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    {!! Form::checkbox('denyLiveAccount',1,$accountsSetting['denyLiveAccount'],[]) !!}
+                                    <label class="control-label">{{ trans('accounts::accounts.denyLiveAccount') }}</label>
 
-        @if($errors->any())
-            <div class="alert alert-danger alert-dark">
-                @foreach($errors->all() as $key=>$error)
-                    <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>
-                @endforeach
-
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- / .panel-body -->
+                </div>
+                <!-- / .collapse -->
             </div>
-        @endif
-        <div class="panel-footer text-right">
-            <a href="{{ route('accounts.detailsAccount') }}">
-                <button type="submit" class="btn btn-primary" name="edit_id"
-                        value="0">{{ trans('accounts::accounts.save') }}</button>
-            </a>
+            <!-- / .panel -->
 
-            {!! Form::close() !!}
+            <div class="panel">
+                <div class="panel-heading">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
+                       href="#collapseThree">
+                        {{ trans('accounts::accounts.operationsSettings') }}
+                    </a>
+                </div>
+                <!-- / .panel-heading -->
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    {!! Form::checkbox('showMt4Leverage',1,$accountsSetting['showMt4Leverage'],[]) !!}
+                                    <label class="control-label">{{ trans('accounts::accounts.showMt4Leverage') }}</label>
+
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    {!! Form::checkbox('showMt4ChangePassword',1,$accountsSetting['showMt4ChangePassword'],[]) !!}
+                                    <label class="control-label">{{ trans('accounts::accounts.showMt4ChangePassword') }}</label>
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+                        </div>
+                        <!-- row -->
+                        <hr>
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    {!! Form::checkbox('allowTransferToUnsignedMT4',1,$accountsSetting['allowTransferToUnsignedMT4'],[]) !!}
+                                    <label class="control-label">{{ trans('accounts::accounts.allowTransferToUnsignedMT4') }}</label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    {!! Form::checkbox('showMt4Transfer',1,$accountsSetting['showMt4Transfer'],[]) !!}
+                                    <label class="control-label">{{ trans('accounts::accounts.showMt4Transfer') }}</label>
+                                </div>
+                            </div>
+
+                            <!-- col-sm-6 -->
+                        </div>
+                        <!-- row -->
+                    </div>
+                    <!-- / .panel-body -->
+                </div>
+                <!-- / .collapse -->
+            </div>
+            <!-- / .panel -->
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
+                       href="#collapseFour">
+                        {{ trans('accounts::accounts.apiSettings') }}
+                    </a>
+                </div>
+                <!-- / .panel-heading -->
+                <div id="collapseFour" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row">
+
+                            <!-- col-sm-6 -->
+
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label">{{ trans('accounts::accounts.apiMasterPassword') }}</label>
+                                    {!! Form::text('apiMasterPassword',config('accounts.apiMasterPassword'),['class'=>'form-control']) !!}
+
+                                </div>
+                            </div>
+
+
+                            <!-- col-sm-6 -->
+                        </div>
+                        <!-- row -->
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    {!! Form::checkbox('apiReqiredConfirmMt4Password',1,$accountsSetting['apiReqiredConfirmMt4Password'],[]) !!}
+                                    <label class="control-label">{{ trans('accounts::accounts.apiReqiredConfirmMt4Password') }}</label>
+
+                                </div>
+                            </div>
+                            <!-- col-sm-6 -->
+                        </div>
+                        <!-- row -->
+                    </div>
+                    <!-- / .panel-body -->
+                </div>
+                <!-- / .collapse -->
+            </div>
+            <!-- / .panel -->
         </div>
+        <!-- / .panel-group -->
+
+    </div>
+
+
+    @if($errors->any())
+        <div class="alert alert-danger alert-dark">
+            @foreach($errors->all() as $key=>$error)
+                <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>
+            @endforeach
+
+        </div>
+    @endif
+    <div class="panel-footer text-right">
+        <a href="{{ route('accounts.detailsAccount') }}">
+            <button type="submit" class="btn btn-primary" name="edit_id"
+                    value="0">{{ trans('accounts::accounts.save') }}</button>
+        </a>
+
+        {!! Form::close() !!}
+    </div>
 
 @stop
 @section("script")
