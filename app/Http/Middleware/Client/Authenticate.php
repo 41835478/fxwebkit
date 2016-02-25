@@ -11,15 +11,15 @@ class Authenticate
 			// User is logged in and assigned to the $oUser variable.
 			// Check if the user has the right role
 			if(Sentinel::inRole('block')){
-				/* TODO send block message to login blade */
-				return Redirect::route('client.auth.login');
+				
+				return Redirect::route('client.auth.login')->withErrors([trans('user.userBlock')]);
 			}
 		} else {
 			// User is not logged in
 			if ($oRequest->ajax()) {
 				return response('Needs Login', 401);
 			} else {
-				return Redirect::route('client.auth.login');
+				return Redirect::route('client.auth.login')->withErrors([trans('user.InvalidLogin')]);
 			}
 		}
 		$locale = ($oRequest->has('locale')) ? $oRequest->locale : false;
