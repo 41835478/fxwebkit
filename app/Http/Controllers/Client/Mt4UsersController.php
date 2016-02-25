@@ -60,7 +60,7 @@ class Mt4UsersController extends Controller
         }
         if (preg_match('#^Balance: #', $result) === 1) {
             $asign_result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$oRequest['login']]);
-            return Redirect::route('clients.reports.accounts');
+            return Redirect::route('clients.accounts.Mt4UsersList');
         }
 
 

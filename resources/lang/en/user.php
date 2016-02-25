@@ -81,6 +81,7 @@ return [
     'checkEmailResetPassword'=>'Check Your Email to Reset Password',
     'invalidPassord'=>'Invalid Passord',
     'confirmPassword'=>'Confirm Password',
+    'userBlock'=>'The user has been blocked',
     'reset'=>'Reset',
     'resetPassword'=>'Reset Password',
     'newpassword'=>'New Password',

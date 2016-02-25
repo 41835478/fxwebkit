@@ -210,7 +210,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
 
             //OPenPrice/SL/TP/CLOSED_PRICE
-            $digits = $oResult[$dKey]->Mt4Prices()->first()->DIGITS;
+
+            $price=$oResult[$dKey]->Mt4Prices()->first();
+            $digits = ($price)?$price->DIGITS:5;
             $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
             $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
             $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
