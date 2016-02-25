@@ -200,6 +200,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             $oResult[$dKey]->CLOSE_PRICE = round($oResult[$dKey]->CLOSE_PRICE, $digits);
         }
 
+
         return $oResult;
     }
 

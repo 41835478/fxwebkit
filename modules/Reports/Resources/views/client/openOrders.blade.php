@@ -105,6 +105,7 @@
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oResults) !!}</th>
@@ -126,6 +127,7 @@
                                 <tr class='{{ $class }}'>
                                     <td>{{ $oResult->TICKET }}</td>
                                     <td>{{ $oResult->LOGIN }}</td>
+                                    <td>{{ ($oResult->server_id)? trans('demo'):trans('live') }}</td>
                                     <td>{{ $oResult->SYMBOL }}</td>
                                     <td>{{ $oResult->TYPE }}</td>
                                     <td>{{ $oResult->VOLUME }}</td>

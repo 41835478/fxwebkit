@@ -353,6 +353,7 @@ class IbportalController extends Controller
 
     public function getAgentCommission(Request $oRequest)
     {
+
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
         $oResults = null;
@@ -371,6 +372,7 @@ class IbportalController extends Controller
 
 
         if ($oRequest->has('search')) {
+
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
             $aFilterParams['exactLogin'] = $oRequest->exactLogin;
@@ -385,6 +387,7 @@ class IbportalController extends Controller
         $totalCommission = 0;
 
         if ($oRequest->has('search')) {
+
             list($oResults, $totalCommission) = $this->Ibportal->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults->order = $aFilterParams['order'];
             $oResults->sorts = $aFilterParams['sort'];
@@ -456,6 +459,7 @@ class IbportalController extends Controller
 
     public function getAgentsCommission(Request $oRequest)
     {
+
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
         $oResults = null;
@@ -474,6 +478,7 @@ class IbportalController extends Controller
 
 
         if ($oRequest->has('search')) {
+
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
             $aFilterParams['exactLogin'] = $oRequest->exactLogin;
@@ -488,6 +493,7 @@ class IbportalController extends Controller
         $totalCommission = 0;
 
         if ($oRequest->has('search')) {
+
             list($oResults, $totalCommission) = $this->Ibportal->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults->order = $aFilterParams['order'];
             $oResults->sorts = $aFilterParams['sort'];

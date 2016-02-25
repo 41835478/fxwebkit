@@ -100,5 +100,8 @@ return [
 
     'save'=>'Save',
     'is_client'=>'Show This Module To Client',
+    'demo'=>'Demo',
+    'live'=>'Live',
+    'liveDemo'=>'Live/Demo',
 
 ];
