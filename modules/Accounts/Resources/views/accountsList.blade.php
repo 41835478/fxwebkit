@@ -124,7 +124,7 @@
                                             <a href="{{ route('accounts.asignMt4Users').'?account_id='.$oResult->id }}"
                                                class="fa fa-link"></a>
 
-                                            @if(!$oResult->inRole('block'))
+                                            @if(!$oResult->hasAnyAccess('user.block'))
                                                 <a href="{{ route('accounts.blockAccount').'?account_id='.$oResult->id }}"
                                                    class="fa fa-lock"></a>
                                             @else
@@ -132,7 +132,7 @@
                                                    class="fa fa-unlock"></a>
                                             @endif
 
-                                            @if(!$oResult->inRole('denyLiveAccount'))
+                                            @if(!$oResult->hasAnyAccess('user.denyLiveAccount'))
 
                                                 <a href="{{ route('accounts.unAllowedLiveAccount').'?account_id='.$oResult->id }}"
                                                    class="fa fa-circle-o"></a>
