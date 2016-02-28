@@ -159,6 +159,15 @@ return [
     'clientSettings'=>'Client Setting',
     'operationsSettings'=>'Operations Settings',
     'apiSettings'=>'API Settings',
+    'unBlockAccount'=>'Un Block Account',
+    'blockAccount'=>'Block Account',
+    'allowLiveAccoun'=>'Allow Live Accoun',
+    'unAllowedLiveAccount'=>'Deny Live Account',
+    'editAccount'=>'Edit Account',
+    'deleteAccount'=>'Delete Account',
+    'detailsAccount'=>'Details Account',
+    'asignMt4Users'=>'Assign Mt4 Users',
+    'mt4UserDetails'=>'User Details',
 
 
 

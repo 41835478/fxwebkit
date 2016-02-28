@@ -259,12 +259,12 @@ class EloquentIbportalContractRepository implements IbportalContract
     public function getSymbols()
     {
 
-        $aSymbols = Symbols::select('name')->distinct()->get()->toArray();
+        $aSymbols = Symbols::select('symbol')->distinct()->get()->toArray();
 
         $symbolsJavaArray = [];
         foreach ($aSymbols as $key => $symbols) {
 
-            $symbolsJavaArray[] = '"' . $symbols['name'] . '"';
+            $symbolsJavaArray[] = '"' . $symbols['symbol'] . '"';
         }
 
         $symbolsJavaArray = join(',', $symbolsJavaArray);

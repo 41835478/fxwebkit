@@ -113,11 +113,11 @@
                                         <td>{{ $oResult->email }}</td>
                                         <td>
                                             <a href="{{ route('admin.ibportal.agentUsres').'?agentId='.$oResult->id }}"
-                                               class="fa fa-users"></a>
+                                               class="fa fa-users tooltip_number" data-original-title="{{trans('ibportal::ibportal.agentUsres')}}"></a>
                                             <a href="{{ route('admin.ibportal.agentPlans').'?agentId='.$oResult->id }}"
-                                               class="fa fa-link"></a>
+                                               class="fa fa-link tooltip_number" data-original-title="{{trans('ibportal::ibportal.agentPlans')}}"></a>
                                             <a href="{{ route('admin.ibportal.agentCommission').'?agentId='.$oResult->id }}"
-                                               class="fa fa-money"></a>
+                                               class="fa fa-money tooltip_number" data-original-title="{{trans('ibportal::ibportal.agentCommission')}}"></a>
 
 
                                         </td>
@@ -157,6 +157,8 @@
     <script>
         init.push(function () {
 
+
+            $('.tooltip_number').tooltip();
 
             $('#all-groups-chx').change(function () {
 

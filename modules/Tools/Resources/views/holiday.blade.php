@@ -112,16 +112,16 @@
                                     <td>{{ $oResult->end_date }}</td>
                                     <td>
                                         <a href="{{ route('tools.editHoliday').'?edit_id='.$oResult->id }}"
-                                           class="fa fa-edit"></a>
+                                           class="fa fa-edit tooltip_number" data-original-title="{{trans('tools::tools.editHoliday')}}"></a>
                                         <a href="{{ route('tools.deleteHoliday').'?delete_id='.$oResult->id }}"
-                                           class="fa fa-trash-o"></a>
+                                           class="fa fa-trash-o tooltip_number" data-original-title="{{trans('tools::tools.deleteHoliday')}}"></a>
 
 
                                         <a href="{{ route('tools.addSymbolHoliday').'?holiday_id='.$oResult->id }}"
-                                           class="fa fa-plus-square"></a>
+                                           class="fa fa-plus-square tooltip_number" data-original-title="{{trans('tools::tools.addSymbolHoliday')}}"></a>
 
                                         <a href="{{ route('tools.holidayDetails').'?holiday_id='.$oResult->id }}"
-                                           class="fa fa-file-text-o"></a>
+                                           class="fa fa-file-text-o tooltip_number" data-original-title="{{trans('tools::tools.holidayDetails')}}"></a>
 
                                     </td>
 
@@ -161,5 +161,13 @@
         </div>
     </div>
     {!! Form::close() !!}
+
+    <script>
+        init.push(function () {
+
+
+            $('.tooltip_number').tooltip();
+        });
+    </script>
 
 @stop

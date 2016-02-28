@@ -88,7 +88,7 @@
                             <td>{{ $oResult->end_date }}</td>
                             <td>
 
-                                <a href="{{ route('client.tools.holidayDetails').'?holiday_id='.$oResult->id }}" class="fa fa-file-text-o"></a>
+                                <a href="{{ route('client.tools.holidayDetails').'?holiday_id='.$oResult->id }}" class="fa fa-file-text-o tooltip_number" data-original-title="{{trans('tools::tools.holidayDetails')}}"></a>
 
                             </td>
 
@@ -128,5 +128,12 @@
     </div>
 </div>
 {!! Form::close() !!}
+<script>
+    init.push(function () {
+
+
+        $('.tooltip_number').tooltip();
+    });
+</script>
 
 @stop

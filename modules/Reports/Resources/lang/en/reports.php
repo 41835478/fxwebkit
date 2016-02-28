@@ -104,5 +104,6 @@ return [
     'live'=>'Live',
     'liveDemo'=>'Live/Demo',
     'clientSettings'=>'Client Settings',
+    'accountStatement'=>'Account Statement',
 
 ];
