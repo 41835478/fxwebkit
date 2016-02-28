@@ -125,11 +125,11 @@
                                                class="fa fa-link"></a>
 
                                             @if(!$oResult->hasAnyAccess('user.block'))
-                                                <a href="{{ route('accounts.blockAccount').'?account_id='.$oResult->id }}"
-                                                   class="fa fa-lock"></a>
-                                            @else
                                                 <a href="{{ route('accounts.unBlockAccount').'?account_id='.$oResult->id }}"
                                                    class="fa fa-unlock"></a>
+                                            @else
+                                                <a href="{{ route('accounts.blockAccount').'?account_id='.$oResult->id }}"
+                                                   class="fa fa-lock"></a>
                                             @endif
 
                                             @if(!$oResult->hasAnyAccess('user.denyLiveAccount'))

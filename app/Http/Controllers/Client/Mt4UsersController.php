@@ -104,7 +104,7 @@ class Mt4UsersController extends Controller
             'array_leverage' => $array_leverage,
         ];
 
-        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount') )? true:false;
+        $denyLiveAccount=(current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount']) )? true:false;
 
 
         return view('client.mt4DemoAccount')

@@ -561,11 +561,10 @@ class AccountsController extends Controller
 
     public function getBlockAccount(Request $oRequest)
     {
+
+
         $user = Sentinel::findById($oRequest->account_id);
-        $user->permissions = [
-            'user.block' => true
-        ];
-        $user->save();
+        $user->removePermission('user.block')->save();
 
 //        $role = Sentinel::findRoleByName('block');
 //        $role->users()->attach($user);
@@ -577,7 +576,10 @@ class AccountsController extends Controller
     public function getUnBlockAccount(Request $oRequest)
     {
         $user = Sentinel::findById($oRequest->account_id);
-        $user->removePermission('user.block')->save();
+        $user->permissions = [
+            'user.block' => true
+        ];
+        $user->save();
 //        $role = Sentinel::findRoleByName('block');
 //        $role->users()->detach($user);
 
