@@ -562,9 +562,13 @@ class AccountsController extends Controller
     public function getBlockAccount(Request $oRequest)
     {
         $user = Sentinel::findById($oRequest->account_id);
+        $user->permissions = [
+            'user.block' => true
+        ];
+        $user->save();
 
-        $role = Sentinel::findRoleByName('block');
-        $role->users()->attach($user);
+//        $role = Sentinel::findRoleByName('block');
+//        $role->users()->attach($user);
 
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.unblock_user'));
     }
@@ -573,9 +577,9 @@ class AccountsController extends Controller
     public function getUnBlockAccount(Request $oRequest)
     {
         $user = Sentinel::findById($oRequest->account_id);
-
-        $role = Sentinel::findRoleByName('block');
-        $role->users()->detach($user);
+        $user->removePermission('user.block')->save();
+//        $role = Sentinel::findRoleByName('block');
+//        $role->users()->detach($user);
 
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.block_user'));
     }
@@ -585,8 +589,9 @@ class AccountsController extends Controller
     {
         $user = Sentinel::findById($oRequest->account_id);
 
-        $role = Sentinel::findRoleByName('denyLiveAccount');
-        $role->users()->detach($user);
+        $user->removePermission('user.denyLiveAccount')->save();
+//        $role = Sentinel::findRoleByName('denyLiveAccount');
+//        $role->users()->detach($user);
 
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.allowCreatLiveMt4Account'));
 
@@ -598,9 +603,12 @@ class AccountsController extends Controller
     {
         $user = Sentinel::findById($oRequest->account_id);
 
-        $role = Sentinel::findRoleByName('denyLiveAccount');
-        $role->users()->attach($user);
-
+//        $role = Sentinel::findRoleByName('denyLiveAccount');
+//        $role->users()->attach($user);
+        $user->permissions = [
+            'user.denyLiveAccount' => true
+        ];
+        $user->save();
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.denyCreatLiveMt4Account'));
 
     }

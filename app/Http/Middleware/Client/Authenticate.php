@@ -10,7 +10,7 @@ class Authenticate
 		if ($oUser = Sentinel::check()  && Sentinel::inRole('client') ) {
 			// User is logged in and assigned to the $oUser variable.
 			// Check if the user has the right role
-			if(Sentinel::inRole('block')){
+			if($oUser->hasAnyAccess(['user.denyLiveAccount']) ){
 
 				return Redirect::route('client.auth.login')->withErrors([trans('user.userBlock')]);
 			}
