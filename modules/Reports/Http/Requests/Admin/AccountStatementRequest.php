@@ -23,7 +23,7 @@ class AccountStatementRequest  extends Request {
 	{
 		return [
                     
-                    
+
 			'from_date' => 'date',
 			'to_date' => 'date',
 		];

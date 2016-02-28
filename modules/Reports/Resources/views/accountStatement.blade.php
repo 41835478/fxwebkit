@@ -2,28 +2,50 @@
 @section('title', trans('reports::reports.accounts'))
 @section('content')
     <style type="text/css">
-        #content-wrapper{ padding: 0px; margin: 0px;}
-        .nav-input-div{padding:7px;}
-        .mail-container-header{
+        #content-wrapper {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .nav-input-div {
+            padding: 7px;
+        }
+
+        .mail-container-header {
             border-bottom: 1px solid #ccc;
             margin-bottom: 7px;
             padding: 5px !important;
         }
-        .center_page_all_div{ padding: 0px 10px;}
-        .mail-nav .navigation{margin-top: 35px;}
-        .user-info-table th{ text-align: right;}
-        .user-info-table td{ text-align: left;}
+
+        .center_page_all_div {
+            padding: 0px 10px;
+        }
+
+        .mail-nav .navigation {
+            margin-top: 35px;
+        }
+
+        .user-info-table th {
+            text-align: right;
+        }
+
+        .user-info-table td {
+            text-align: left;
+        }
     </style>
-    <div class="theme-default page-mail" >
-        <div class="mail-nav" >
+    <div class="theme-default page-mail">
+        <div class="mail-nav">
             <div class="navigation">
                 {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
                 <ul class="sections">
-                    <li class="active"><a href="#"> <i class="fa fa-search"></i> Search </a></li>
+                    <li class="active"><a href="#"> <i class="fa fa-search"></i> {{trans('reports::reports.search') }}</a></li>
 
-                    <li><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div> </li>
+                    <li>
+                        <div class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div>
+                    </li>
 
-                    <li><div  class=" nav-input-div  ">
+                    <li>
+                        <div class=" nav-input-div  ">
 
                             <div class="input-group date datepicker-warpper">
                                 {!! Form::text('from_date', $aFilterParams['from_date'], ['placeholder'=>trans('reports::reports.FromDate'),'class'=>'form-control input-sm']) !!}
@@ -31,20 +53,29 @@
                                 <i class="fa fa-calendar"></i>
                             </span>
                             </div>
-                        </div></li>
+                        </div>
+                    </li>
 
 
-                    <li><div  class=" nav-input-div  ">
+                    <li>
+                        <div class=" nav-input-div  ">
                             <div class="input-group date datepicker-warpper">
                                 {!! Form::text('to_date', $aFilterParams['to_date'], ['placeholder'=>trans('reports::reports.ToDate'),'class'=>'form-control input-sm']) !!}
                                 <span class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </span>
                             </div>
-                        </div></li>
-                    <li><div  class=" nav-input-div  ">
+                        </div>
+                    </li>
+
+                    <li>
+                    <li><div  class=" nav-input-div  ">{!! Form::select('server_id', $serverTypes, $aFilterParams['server_id'], ['class'=>'form-control  input-sm']) !!}</div></li>
+                    </li>
+                    <li>
+                        <div class=" nav-input-div  ">
                             {!! Form::submit(trans('reports::reports.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-                        </div></li>
+                        </div>
+                    </li>
                     <li class="divider"></li>
                 </ul>
 
@@ -57,7 +88,7 @@
             </div>
         </div>
 
-        <div class="mail-container " >
+        <div class="mail-container ">
             <div class="mail-container-header">
                 {{ trans('reports::reports.accounts') }}
             </div>
@@ -93,7 +124,8 @@
                             @if (count($oOpenResults))
                                 <div class="panel-heading-controls">
                                     <div class="btn-group btn-group-xs">
-                                        <button data-toggle="dropdown" type="button" class="btn btn-success dropdown-toggle">
+                                        <button data-toggle="dropdown" type="button"
+                                                class="btn btn-success dropdown-toggle">
                                             <span class="fa fa-cog"></span>&nbsp;
                                             <span class="fa fa-caret-down"></span>
                                         </button>
@@ -158,7 +190,6 @@
                 <!-- ___________________close_order______________-->
 
 
-
                 <div class="table-light">
                     <div class="table-header">
                         <div class="table-caption">
@@ -167,7 +198,8 @@
                             @if (count($oCloseResults))
                                 <div class="panel-heading-controls">
                                     <div class="btn-group btn-group-xs">
-                                        <button data-toggle="dropdown" type="button" class="btn btn-success dropdown-toggle">
+                                        <button data-toggle="dropdown" type="button"
+                                                class="btn btn-success dropdown-toggle">
                                             <span class="fa fa-cog"></span>&nbsp;
                                             <span class="fa fa-caret-down"></span>
                                         </button>
@@ -241,48 +273,70 @@
                         </div>
                         <table class="table table-bordered user-info-table">
                             <tr>
-                                <th colspan="3">{{ trans('reports::reports.registration_date') }}</th><td>{{ $oResults->REGDATE }}</td>
-                                <th >{{ trans('reports::reports.name') }} </th><td colspan="3">{{ $oResults->NAME }}</td>
+                                <th colspan="3">{{ trans('reports::reports.registration_date') }}</th>
+                                <td>{{ $oResults->REGDATE }}</td>
+                                <th>{{ trans('reports::reports.name') }} </th>
+                                <td colspan="3">{{ $oResults->NAME }}</td>
                             </tr>
 
                             <tr>
-                                <th >{{ trans('reports::reports.city') }} </th><td >{{ $oResults->CITY }}</td>
-                                <th >{{ trans('reports::reports.state') }} </th><td >{{ $oResults->STATE }}</td>
-                                <th  >{{ trans('reports::reports.country') }} </th><td>{{ $oResults->COUNTRY }}</td>
+                                <th>{{ trans('reports::reports.city') }} </th>
+                                <td>{{ $oResults->CITY }}</td>
+                                <th>{{ trans('reports::reports.state') }} </th>
+                                <td>{{ $oResults->STATE }}</td>
+                                <th>{{ trans('reports::reports.country') }} </th>
+                                <td>{{ $oResults->COUNTRY }}</td>
                             </tr>
                             <tr>
-                                <th >{{ trans('reports::reports.address') }} </th><td  colspan="3">{{ $oResults->ADDRESS }}</td>
-                                <th >{{ trans('reports::reports.zip_code') }} </th><td >{{ $oResults->ZIPCODE }}</td>
+                                <th>{{ trans('reports::reports.address') }} </th>
+                                <td colspan="3">{{ $oResults->ADDRESS }}</td>
+                                <th>{{ trans('reports::reports.zip_code') }} </th>
+                                <td>{{ $oResults->ZIPCODE }}</td>
                             </tr>
                             <tr>
-                                <th >{{ trans('reports::reports.phone') }} </th><td >{{ $oResults->PHONE }}</td>
-                                <th >{{ trans('reports::reports.email') }}</th><td  colspan="3">{{ $oResults->EMAIL }}</td>
+                                <th>{{ trans('reports::reports.phone') }} </th>
+                                <td>{{ $oResults->PHONE }}</td>
+                                <th>{{ trans('reports::reports.email') }}</th>
+                                <td colspan="3">{{ $oResults->EMAIL }}</td>
                             </tr>
                             <tr>
-                                <th >{{ trans('reports::reports.id_number') }} </th><td >{{ $oResults->ID }}</td>
-                                <th >{{ trans('reports::reports.status') }} </th><td >{{ $oResults->STATUS }}</td>
+                                <th>{{ trans('reports::reports.id_number') }} </th>
+                                <td>{{ $oResults->ID }}</td>
+                                <th>{{ trans('reports::reports.status') }} </th>
+                                <td>{{ $oResults->STATUS }}</td>
 
                             </tr>
 
                             <tr>
-                                <th >{{ trans('reports::reports.leverage') }}</th><td >{{ $oResults->LEVERAGE }}</td>
-                                <th >{{ trans('reports::reports.tax') }} </th><td >{{ $oResults->TAXES }}%</td>
+                                <th>{{ trans('reports::reports.leverage') }}</th>
+                                <td>{{ $oResults->LEVERAGE }}</td>
+                                <th>{{ trans('reports::reports.tax') }} </th>
+                                <td>{{ $oResults->TAXES }}%</td>
 
                             </tr>
                             <tr>
-                                <th class="no-warp"></th><td></td>
-                                <th class="no-warp">{{ trans('reports::reports.deposit_withdrawal') }}</th><td>{{ $aSummery['deposit'] }}</td>
-                                <th class="no-warp">{{ trans('reports::reports.credit_facility') }}</th><td>{{ $aSummery['credit_facility'] }}</td>
+                                <th class="no-warp"></th>
+                                <td></td>
+                                <th class="no-warp">{{ trans('reports::reports.deposit_withdrawal') }}</th>
+                                <td>{{ $aSummery['deposit'] }}</td>
+                                <th class="no-warp">{{ trans('reports::reports.credit_facility') }}</th>
+                                <td>{{ $aSummery['credit_facility'] }}</td>
                             </tr>
                             <tr>
-                                <th class="no-warp">{{ trans('reports::reports.closed_trade') }} </th><td>{{ $aSummery['closed_trade'] }}</td>
-                                <th class="no-warp">{{ trans('reports::reports.floating') }} </th><td>{{ $aSummery['floating'] }}</td>
-                                <th class="no-warp">{{ trans('reports::reports.margin') }} </th><td>{{ $oResults->MARGIN }}</td>
+                                <th class="no-warp">{{ trans('reports::reports.closed_trade') }} </th>
+                                <td>{{ $aSummery['closed_trade'] }}</td>
+                                <th class="no-warp">{{ trans('reports::reports.floating') }} </th>
+                                <td>{{ $aSummery['floating'] }}</td>
+                                <th class="no-warp">{{ trans('reports::reports.margin') }} </th>
+                                <td>{{ $oResults->MARGIN }}</td>
                             </tr>
                             <tr>
-                                <th class="no-warp">{{ trans('reports::reports.balance') }} </th><td>{{ $oResults->BALANCE }}</td>
-                                <th class="no-warp">{{ trans('reports::reports.equity') }} </th><td>{{ $oResults->EQUITY }}</td>
-                                <th class="no-warp">{{ trans('reports::reports.free_margin') }} </th><td>{{ $oResults->MARGIN_FREE }}</td>
+                                <th class="no-warp">{{ trans('reports::reports.balance') }} </th>
+                                <td>{{ $oResults->BALANCE }}</td>
+                                <th class="no-warp">{{ trans('reports::reports.equity') }} </th>
+                                <td>{{ $oResults->EQUITY }}</td>
+                                <th class="no-warp">{{ trans('reports::reports.free_margin') }} </th>
+                                <td>{{ $oResults->MARGIN_FREE }}</td>
                             </tr>
                         </table>
 

@@ -231,7 +231,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         /* =============== Login Filters =============== */
         //if ((isset($aFilters['login']) && !empty($aFilters['login'])) ) {
 
-        $oResult = $oResult->where('LOGIN', '=', $aFilters['login']);
+        $oResult = $oResult->where('LOGIN', '=', $aFilters['login'])->where('server_id', '=', $aFilters['server_id']);
 
 
         //}
@@ -298,7 +298,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         /* =============== Login Filters =============== */
         //if ((isset($aFilters['login']) && !empty($aFilters['login'])) ) {
 
-        $oResult = $oResult->where('LOGIN', '=', $aFilters['login']);
+        $oResult = $oResult->where('LOGIN', '=', $aFilters['login'])->where('server_id', '=', $aFilters['server_id']);
         //}
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||

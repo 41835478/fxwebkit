@@ -305,6 +305,7 @@ class ReportsController extends Controller
 
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
+        $serverTypes = $this->oMt4Trade->getServerTypes();
         $oResults = null;
         $oOpenResults = null;
         $oCloseResults = null;
@@ -312,6 +313,7 @@ class ReportsController extends Controller
             'login' => '',
             'from_date' => '',
             'to_date' => '',
+
             'sort' => $sSort,
             'order' => $sOrder,
         ];
@@ -326,6 +328,7 @@ class ReportsController extends Controller
 
 
             $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['server_id'] = $oRequest->server_id;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['sort'] = $oRequest->sort;
@@ -348,6 +351,7 @@ class ReportsController extends Controller
             ->with('oOpenResults', $oOpenResults)
             ->with('oCloseResults', $oCloseResults)
             ->with('aSummery', $aSummery)
+            ->with('serverTypes', $serverTypes)
             ->with('aFilterParams', $aFilterParams);
     }
 
