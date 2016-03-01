@@ -2,6 +2,7 @@
 
 use Fxweb\Http\Controllers\admin\Email;
 use Pingpong\Modules\Routing\Controller;
+use Modules\Request\Http\Controllers\RequestController as RequestLog;
 
 class ApiController extends Controller {
 
@@ -101,7 +102,10 @@ class ApiController extends Controller {
 	}
 
 	public function internalTransfer($login1,$login2,$amount,$oldPassword=null){
-
+		$requestLog =new RequestLog();
+		if(Config('account.directOrderToMt4Server')==true){
+			$requestLog->insertInternalTransferRequest()
+		}
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=4|LOGIN='.$login1.'|'.$password.'TOACC='.$login2.'|AMOUNT='.$amount.'|MANAGER=1';
@@ -114,6 +118,8 @@ class ApiController extends Controller {
 			$email->internalTransfers(['email'=>config('fxweb.adminEmail'),'login1'=>$login1,'login2'=>$login2,'amount'=>$amount]);
 		}
 		return $this->getApiResponseMessage($result);
+
+
 	}
         
         public function operation($login,$amount,$mode,$oldPassword=null){
