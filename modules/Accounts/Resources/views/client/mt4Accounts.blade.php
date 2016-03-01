@@ -76,7 +76,7 @@
                             <td>{{ $oResult->REGDATE }}</td>
                             <td>{{ $oResult->LASTDATE }}</td>         
                             <td>{{ $oResult->LEVERAGE }}</td>
-                            <td><a href="{{ route('clients.accounts.mt4UserDetails').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text"></a></td>
+                            <td><a href="{{ route('clients.accounts.mt4UserDetails').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text tooltip_number" data-original-title="{{trans('accounts::accounts.mt4UserDetails')}}"></a></td>
                         </tr>
                         @endforeach
                         @endif
@@ -108,6 +108,8 @@
 {!! Form::close() !!}
 <script>
     init.push(function () {
+
+        $('.tooltip_number').tooltip();
 
 
         $('#all-groups-chx').change(function () {

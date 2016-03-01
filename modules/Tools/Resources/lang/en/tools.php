@@ -64,5 +64,10 @@ return [
     'is_client'=>'Show This Module To Client',
     'clientSettings'=>'Client Settings',
 
+    'editHoliday'=>'Edit Holiday',
+    'deleteHoliday'=>'Delete Holiday',
+    'addSymbolHoliday'=>'Add Symbol Holiday',
+    'holidayDetails'=>'Holiday Details',
+
 
 ];

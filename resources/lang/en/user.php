@@ -87,5 +87,8 @@ return [
     'newpassword'=>'New Password',
     'resend'=>'Resend',
     'fillFullDetailsToAllowLive'=>'Fill Full Details To Allow Live',
+    'editUser'=>'Edit User',
+    'userDetails'=>'User Details',
+    'deleteUser'=>'Delete User',
 
 ];
