@@ -27,6 +27,8 @@
                     <div class="panel-body">
 
                         <div class="row">
+
+
                             <div class="col-sm-6">
                                 <div class="form-group no-margin-hr">
                                     {!! Form::checkbox('is_client',1,$accountsSetting['is_client'],[]) !!}
@@ -34,6 +36,8 @@
 
                                 </div>
                             </div>
+
+
                         </div>
 
 
@@ -115,7 +119,25 @@
                                     {!! Form::checkbox('showMt4Transfer',1,$accountsSetting['showMt4Transfer'],[]) !!}
                                     <label class="control-label">{{ trans('accounts::accounts.showMt4Transfer') }}</label>
                                 </div>
+
                             </div>
+
+                            <!-- col-sm-6 -->
+                        </div>
+
+                        <hr>
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    {!! Form::checkbox('directOrderToMt4Server',1,$accountsSetting['directOrderToMt4Server'],[]) !!}
+                                    <label class="control-label">{{ trans('accounts::accounts.directOrderToMt4Server') }}</label>
+
+                                </div>
+                            </div>
+
+
+
 
                             <!-- col-sm-6 -->
                         </div>

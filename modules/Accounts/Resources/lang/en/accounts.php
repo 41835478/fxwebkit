@@ -169,6 +169,7 @@ return [
     'asignMt4Users'=>'Assign Mt4 Users',
     'mt4UserDetails'=>'User Details',
     'withDrawal'=>'Withdrawal',
+    'directOrderToMt4Server'=>'Direct Order To Mt4 Server',
 
 
 

@@ -879,12 +879,12 @@ class AccountsController extends Controller
             'denyLiveAccount' => Config('accounts.denyLiveAccount'),
             'apiReqiredConfirmMt4Password' => Config('accounts.apiReqiredConfirmMt4Password'),
             'allowTransferToUnsignedMT4' => Config('accounts.allowTransferToUnsignedMT4'),
+            'directOrderToMt4Server' => Config('accounts.directOrderToMt4Server'),
 
             'is_client' => Config('accounts.is_client'),
 
         ];
-
-
+        
         return view('accounts::accountsSetting')->with('accountsSetting', $accountsSetting);
 
     }
@@ -902,6 +902,7 @@ class AccountsController extends Controller
         $denyLiveAccount = ($oRequest->denyLiveAccount) ? true : false;
         $apiReqiredConfirmMt4Password = ($oRequest->apiReqiredConfirmMt4Password) ? true : false;
         $allowTransferToUnsignedMT4 = ($oRequest->allowTransferToUnsignedMT4) ? true : false;
+        $directOrderToMt4Server = ($oRequest->directOrderToMt4Server) ? true : false;
         $is_client = ($oRequest->is_client) ? 1 : 0;
 
 
@@ -914,6 +915,7 @@ class AccountsController extends Controller
             'denyLiveAccount' => $denyLiveAccount,
             'apiReqiredConfirmMt4Password'=>$apiReqiredConfirmMt4Password,
             'allowTransferToUnsignedMT4'=>$allowTransferToUnsignedMT4,
+            'directOrderToMt4Server'=>$directOrderToMt4Server,
             'apiMasterPassword'=>$oRequest->apiMasterPassword,
             'is_client' => $is_client,
 

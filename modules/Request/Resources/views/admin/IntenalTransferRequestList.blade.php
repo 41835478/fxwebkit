@@ -63,7 +63,7 @@
         <div class="mail-container ">
 
             <div class="mail-container-header">
-                {{ trans('request::request.internalTrasfer') }}
+                {{ trans('request::request.internalTransfer') }}
             </div>
             <div class="center_page_all_div">
                 @include('admin.partials.messages')
@@ -72,7 +72,7 @@
                     <div class="table-header">
                         <div class="table-caption">
 
-                            {{ trans('request::request.internalTrasfer') }}
+                            {{ trans('request::request.internalTransfer') }}
 
                         </div>
                     </div>
@@ -121,15 +121,15 @@
 
                                 <div class="DT-lf-right change_page_all_div">
 
-                                    {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('ibportal::ibportal.page'),'class'=>'form-control input-sm']) !!}
+                                    {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('request::request.page'),'class'=>'form-control input-sm']) !!}
 
-                                    {!! Form::submit(trans('ibportal::ibportal.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                                    {!! Form::submit(trans('request::request.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
 
                                 </div>
                             @endif
 
                             <div class="col-sm-3">
-                                <span class="text-xs">{{trans('ibportal::ibportal.showing')}} {{ $oResults->firstItem() }} {{trans('ibportal::ibportal.to')}} {{ $oResults->lastItem() }} {{trans('ibportal::ibportal.of')}} {{ $oResults->total() }} {{trans('ibportal::ibportal.entries')}}</span>
+                                <span class="text-xs">{{trans('request::request.showing')}} {{ $oResults->firstItem() }} {{trans('request::request.to')}} {{ $oResults->lastItem() }} {{trans('request::request.of')}} {{ $oResults->total() }} {{trans('request::request.entries')}}</span>
                             </div>
                         @endif
                     </div>

@@ -2,7 +2,7 @@
 
 return [
     'is_admin' => 1,
-    'is_client' => 1,
+    'is_client' => 0,
     'route' => '',
     'icon' => 'fa-user',
     'name' => 'Request',
