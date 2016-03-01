@@ -1,9 +1,12 @@
 <?php namespace Modules\Request\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Pingpong\Modules\Routing\Controller;
 
 use Modules\Request\Repositories\RequestContract as RequestLog;
+use Modules\Accounts\Http\Controllers\ApiController;
+use Modules\Request\Entities\RequestInternalTransfer;
 
 class RequestController extends Controller {
 
@@ -42,5 +45,23 @@ class RequestController extends Controller {
 
 
 		return view('request::admin/intenalTransferRequestList')->with('oResults', $oResults)->with('aFilterParams', $aFilterParams);
+	}
+
+	public function getForwordIntenalTransferRequest(Request $oRequest){
+$logId=$oRequest->logId;
+
+		$requestInternalTransfer=RequestInternalTransfer::find($logId);
+
+		$apiController= new ApiController();
+		$forwordResult=$apiController->adminForwordInternalTransfer(
+			$logId,
+			$requestInternalTransfer->from_login,
+			$requestInternalTransfer->to_login,
+			$requestInternalTransfer->amount,
+			$requestInternalTransfer->comment,
+			$requestInternalTransfer->reason,
+			$requestInternalTransfer->status);
+
+		return Redirect::route('admin.request.internalTransfer')->withErrors($forwordResult);
 	}
 }

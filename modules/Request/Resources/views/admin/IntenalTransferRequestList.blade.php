@@ -102,7 +102,7 @@
                                     <td>{{ $oResult->reason }}</td>
                                     <td>{{ $oResult->status }}</td>
                                     <td>
-                                        <a href="{{ '?edit_id='.$oResult->id }}"
+                                        <a href="{{ route('admin.request.ForwordInternalTransfer').'?logId='.$oResult->id }}"
                                            class="fa fa-edit"></a>
 
                                     </td>

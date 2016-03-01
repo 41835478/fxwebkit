@@ -10,7 +10,8 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'request', 'nam
 {
 
 	Route::controller('request', 'RequestController', [
-		'getIntenalTransferRequestList'=>'admin.request.internalTransfer'
+		'getIntenalTransferRequestList'=>'admin.request.internalTransfer',
+		'getForwordIntenalTransferRequest'=>'admin.request.ForwordInternalTransfer'
 
 
 	]);
