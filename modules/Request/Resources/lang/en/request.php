@@ -17,6 +17,7 @@ return [
 
     'page'=>'page',
     'go'=>'Go',
+    'login'=>'Login',
 
 
 ];
