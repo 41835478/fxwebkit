@@ -168,6 +168,7 @@ return [
     'detailsAccount'=>'Details Account',
     'asignMt4Users'=>'Assign Mt4 Users',
     'mt4UserDetails'=>'User Details',
+    'withDrawal'=>'Withdrawal',
 
 
 

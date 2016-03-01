@@ -24,7 +24,10 @@
             </li> 
             <li class="">
               <a href="{{ route('accounts.mt4InternalTransfer').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}" >{{ trans('accounts::accounts.internalTransfer') }}</a>
-            </li> 
+            </li>
+            <li class="">
+                <a href="{{ route('accounts.withDrawal').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}" >{{ trans('accounts::accounts.withDrawal') }}</a>
+            </li>
         </ul>
     </div>
 

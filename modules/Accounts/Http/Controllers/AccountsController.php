@@ -648,6 +648,7 @@ class AccountsController extends Controller
 
         $changeleverage = [
             'login' => '',
+            'sever_id'=>'',
             'oldPassword' => '',
             'leverage_array' => $Result,
             'leverage' => ''];
@@ -664,6 +665,7 @@ class AccountsController extends Controller
             ->with('Result', $Result)
             ->with('Pssword', $Pssword)
             ->with('login', $oRequest->login)
+            ->with('server_id', $oRequest->server_id)
             ->with('changeleverage', $changeleverage)
             ->withErrors($result);
     }
@@ -704,6 +706,7 @@ class AccountsController extends Controller
             ->withErrors($result)
             ->with('Password', $Password)
             ->with('changePassword', $changePassword)
+            ->with('server_id', $oRequest->server_id)
             ->with('login', $oRequest->login);
     }
 
@@ -753,6 +756,57 @@ class AccountsController extends Controller
             ->with('Pssword', $Pssword)
             ->with('internalTransfer', $internalTransfer)
             ->with('oResults', $oResults)
+            ->with('server_id', $oRequest->server_id)
+            ->with('login', $oRequest->login);
+    }
+
+    public function getWithDrawal(Request $oRequest)
+    {
+        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $oResults = $this->oMt4User->getUserInfo($oRequest->login);
+
+
+        $internalTransfer = [
+            'login1' => '',
+            'oldPassword' => '',
+            'login2' => '',
+            'amount' => ''];
+
+        return view('accounts::withDrawal')
+            ->with('Pssword', $Pssword)
+            ->with('internalTransfer', $internalTransfer)
+            ->with('oResults', $oResults)
+            ->with('login', $oRequest->login)
+            ->with('server_id', $oRequest->server_id)   ;
+    }
+
+    public function postWithDrawal(Request $oRequest)
+    {
+
+
+        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $oResults = $this->oMt4User->getUserInfo($oRequest->login);
+
+        $internalTransfer = [
+            'login' => '',
+            'oldPassword' => '',
+            'login2' => '',
+            'amount' => ''];
+
+        $oApiController = new ApiController();
+        if($oRequest['sever_id']==1){
+            $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
+            $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+        }
+        $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['oldPassword'], $oRequest['amount']);
+
+
+        return view('accounts::withDrawal')
+            ->withErrors($result)
+            ->with('Pssword', $Pssword)
+            ->with('internalTransfer', $internalTransfer)
+            ->with('oResults', $oResults)
+            ->with('server_id', $oRequest->server_id)
             ->with('login', $oRequest->login);
     }
 
