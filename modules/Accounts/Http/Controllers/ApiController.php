@@ -135,7 +135,7 @@ class ApiController extends Controller {
 
 	public function adminForwordInternalTransfer($logId,$login1,$login2,$amount,$oldPassword=null){
 		$requestLog =new RequestLog();
-
+		/* TODO check oldpassword and insert it in log InternalTransfer to re send it to this function */
 
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
