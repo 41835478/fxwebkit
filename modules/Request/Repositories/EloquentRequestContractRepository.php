@@ -55,20 +55,33 @@ class EloquentRequestContractRepository implements RequestContract
 
     }
 
-    public function insertInternalTransferRequest($fromLogin,$toLogin,$amount,$comment,$reason,$status){
-       $log= new InternalTransfer();
-
-        $log->insert([
-            'from_login'=>$fromLogin,
-            'to_login'=>$toLogin,
-            'amount'=>$amount,
-            'comment'=>$comment,
-            'reason'=>$reason,
-            'status'=>$status
-        ]);
-        return ture;
-
-    }
+//    public function insertInternalTransferRequest($fromLogin,$toLogin,$amount,$comment,$reason,$status){
+//       $log= new InternalTransfer();
+//
+//        $log->insert([
+//            'from_login'=>$fromLogin,
+//            'to_login'=>$toLogin,
+//            'amount'=>$amount,
+//            'comment'=>$comment,
+//            'reason'=>$reason,
+//            'status'=>$status
+//        ]);
+//        return true;
+//
+//    }
+//
+//public function updateInternalTransferRequest($logId,$fromLogin,$toLogin,$amount,$comment,$reason,$status){
+//$log= InternalTransfer::find($logId);
+//
+//$log->from_login=$fromLogin;
+//    $log->to_login=$toLogin;
+//$log->amount=$amount;
+//$log->comment=$comment;
+//$log->reason=$reason;
+//$log->status=$status;
+//
+//return true;
+//}
 
 
 }
