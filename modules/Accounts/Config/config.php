@@ -6,6 +6,7 @@ return [
     'name' => 'accounts',
     'icon' => 'fa fa-user',
     'route' => '',
+    'directOrderToMt4Server'=>false,
     'leverage' => [
         '50' => '1:50',
         '100' => '1:100',
