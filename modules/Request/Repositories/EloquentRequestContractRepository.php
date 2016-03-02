@@ -55,6 +55,32 @@ class EloquentRequestContractRepository implements RequestContract
 
     }
 
+    public function getInternalTransferById($logId)
+    {
+
+        $oResult =InternalTransfer::find($logId);
+
+        return $oResult;
+
+    }
+
+
+    public function internalTransferEdit($internalTransfer)
+    {
+
+        $log= InternalTransfer::find($internalTransfer['logId']);
+
+
+        $log->comment=$internalTransfer['comment'];
+        $log->reason=$internalTransfer['reason'];
+        $log->save();
+        /* TODO before return true please check if the record saved correctly */
+
+
+        return true;
+
+    }
+
 //    public function insertInternalTransferRequest($fromLogin,$toLogin,$amount,$comment,$reason,$status){
 //       $log= new InternalTransfer();
 //

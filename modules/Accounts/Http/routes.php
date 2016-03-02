@@ -24,7 +24,6 @@ Route::group(['middleware' => ['authenticate.admin'], 'prefix' => 'accounts', 'n
         'getAccountsSettings'=>'accounts.accountsSettings',
         'getWithDrawal'=>'accounts.withDrawal',
 
-
     ]);
 });
 

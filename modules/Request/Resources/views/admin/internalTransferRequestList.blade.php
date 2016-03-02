@@ -44,13 +44,13 @@
 
                     <li>
                         <div class=" nav-input-div  ">
-                            {!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('request::request.login'),'class'=>'form-control input-sm']) !!}
+                            {!! Form::text('login', '', ['placeholder'=>trans('request::request.login'),'class'=>'form-control input-sm']) !!}
                         </div>
                     </li>
 
                     <li>
                         <div class=" nav-input-div  ">
-                            {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                            {!! Form::submit(trans('request::request.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                         </div>
                     </li>
                     <li class="divider"></li>
@@ -108,6 +108,9 @@
                                         @endif
                                     </td>
                                     <td>
+
+                                        <a href="{{ route('admin.request.intenalTransferEdit').'?logId='.$oResult->id }}"
+                                           class="fa fa-edit"></a>
 
                                     </td>
                                 </tr>
