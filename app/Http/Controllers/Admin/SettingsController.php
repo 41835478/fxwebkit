@@ -50,7 +50,8 @@ class SettingsController extends Controller
             'activeAccount' => 'Active Account',
             'forgetPassword' => 'Forget Password',
             'changeMt4Password' => 'Mt4 User Change Password',
-            'internalTransfers' => 'Internal Transfers'
+            'internalTransfers' => 'Internal Transfers',
+            'withDrawal'=>'With Drawal'
 
         ];
     }

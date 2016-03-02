@@ -3,6 +3,7 @@
 use Pingpong\Modules\Routing\Controller;
 
 use Modules\Request\Entities\RequestInternalTransfer as InternalTransfer;
+use Modules\Request\Entities\RequestWithdrawal as Withdrawal;
 
 class RequestController extends Controller {
 
@@ -33,15 +34,17 @@ class RequestController extends Controller {
 
 
 		//$this->RequestLog->insertInternalTransferRequest($fromLogin,$toLogin,$amount,$comment,$reason,$status);
-		$log= new InternalTransfer();
+
+		$log= new Withdrawal();
 
 		$log->insert([
-			'from_login'=>$login,
+			'login'=>$login,
 			'amount'=>$amount,
-			'comment'=>$comment,
-			'reason'=>$reason,
+		//	'comment'=>$comment,
+		//	'reason'=>$reason,
 			'status'=>$status
 		]);
+
 		return true;
 
 
@@ -66,5 +69,21 @@ class RequestController extends Controller {
 
 	}
 
+	public function updateWithDrawalRequest($logId,$login,$amount=0,$comment='',$reason='',$status=0){
+
+
+		//	$this->RequestLog->updateInternalTransferRequest($fromLogin,$toLogin,$amount,$comment,$reason,$status);
+		$log= Withdrawal::find($logId);
+
+
+		$log->login=$login;
+		$log->amount=$amount;
+		$log->status=$status;
+		$log->save();
+		return true;
+
+
+
+	}
 
 }

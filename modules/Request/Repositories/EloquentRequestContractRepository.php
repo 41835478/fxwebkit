@@ -3,6 +3,7 @@
 namespace Modules\Request\Repositories;
 
 use Modules\Request\Entities\RequestInternalTransfer as InternalTransfer;
+use Modules\Request\Entities\RequestWithdrawal as WithDrawal;
 use Config;
 
 
@@ -55,6 +56,29 @@ class EloquentRequestContractRepository implements RequestContract
 
     }
 
+    public function getWithDrawalRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
+    {
+
+        $oResult = new WithDrawal();
+
+        if (isset($aFilters['login']) && !empty($aFilters['login'])) {
+            $oResult = $oResult->where('from_login', 'like', '%' . $aFilters['login'] . '%');
+        }
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+
+        }
+
+        return $oResult;
+
+    }
+
     public function getInternalTransferById($logId)
     {
 
@@ -73,6 +97,33 @@ class EloquentRequestContractRepository implements RequestContract
 
         $log->comment=$internalTransfer['comment'];
         $log->reason=$internalTransfer['reason'];
+        $log->save();
+        /* TODO before return true please check if the record saved correctly */
+
+
+        return true;
+
+    }
+
+
+    public function getWithDrawalById($logId)
+    {
+
+        $oResult =WithDrawal::find($logId);
+
+        return $oResult;
+
+    }
+
+
+    public function withDrawalEdit($withDrawal)
+    {
+
+        $log= WithDrawal::find($withDrawal['logId']);
+
+
+        $log->comment=$withDrawal['comment'];
+        $log->reason=$withDrawal['reason'];
         $log->save();
         /* TODO before return true please check if the record saved correctly */
 

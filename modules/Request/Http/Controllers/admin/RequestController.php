@@ -7,6 +7,7 @@ use Pingpong\Modules\Routing\Controller;
 use Modules\Request\Repositories\RequestContract as RequestLog;
 use Modules\Accounts\Http\Controllers\ApiController;
 use Modules\Request\Entities\RequestInternalTransfer;
+use Modules\Request\Entities\RequestWithdrawal;
 
 class RequestController extends Controller
 {
@@ -70,6 +71,30 @@ class RequestController extends Controller
         return Redirect::route('admin.request.internalTransfer')->withErrors($forwordResult);
     }
 
+    public function getForwordWithDrawalRequest(Request $oRequest)
+    {
+        $logId = $oRequest->logId;
+
+
+
+        $requestWithDrawal = RequestWithdrawal::find($logId);
+
+        $apiController = new ApiController();
+
+        $forwordResult = $apiController->adminForwordWithDrawal(
+            $logId,
+            $requestWithDrawal->login,
+            $requestWithDrawal->amount,
+            $requestWithDrawal->comment,
+            $requestWithDrawal->reason,
+            $requestWithDrawal->status);
+
+
+
+
+        return Redirect::route('admin.request.withDrawal')->withErrors($forwordResult);
+    }
+
 
     public function getIntenalTransferEdit(Request $oRequest)
     {
@@ -108,8 +133,64 @@ class RequestController extends Controller
     }
 
 
-    public function getWithDrawalList()
+    public function getWithDrawalList(Request $oRequest)
     {
-        dd(21645);
+
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+
+        /* TODO[moaid]  translate this array in language file then in the .blade.php file insert trans() method */
+        $aRequestStatus=config('request.requestStatus');
+
+        $oResults = null;
+
+
+        if ($oRequest->has('search')) {
+
+            $aFilterParams['id'] = $oRequest->id;
+
+
+            $oResults = $this->RequestLog->getWithDrawalRequestByFilters($aFilterParams, false, $sOrder, $sSort);
+
+        }
+
+
+        return view('request::admin/withDrawalRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus);
+    }
+
+    public function getWithDrawalEdit(Request $oRequest)
+    {
+
+
+        $oResults = $this->RequestLog->getWithDrawalById($oRequest->logId);
+
+        $withDrawal=[
+            'logId'=>$oRequest->logId,
+            'comment'=>$oResults->comment,
+            'reason'=>$oResults->reason
+        ];
+
+
+        return view('request::admin.withDrawalEdit')->with('intenalTransfer',$withDrawal);
+    }
+
+    public function postWithDrawalEdit(Request $oRequest)
+    {
+
+
+
+        $withDrawal=[
+            'logId'=>$oRequest->logId,
+            'comment'=>$oRequest->comment,
+            'reason'=>$oRequest->reason,
+        ];
+
+        $oResults = $this->RequestLog->withDrawalEdit($withDrawal);
+
+
+
+        return Redirect::route('admin.request.withDrawal');
+
+
     }
 }

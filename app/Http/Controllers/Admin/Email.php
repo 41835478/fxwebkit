@@ -163,6 +163,20 @@ class Email extends Controller {
 
     }
 
+    public function withDrawal($info) {
+
+
+        $this->sendEmail('admin.email.templates.en.withDrawal',
+            [
+                'login'=>$info['login'],
+                'amount'=>$info['amount']
+            ],
+            $info['email'],
+            'With Drawal');
+
+
+    }
+
 
 
 
