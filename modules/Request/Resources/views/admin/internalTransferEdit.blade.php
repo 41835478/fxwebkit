@@ -1,9 +1,9 @@
 @extends('admin.layouts.main')
-@section('title', trans('request::request.addAccount'))
+@section('title', trans('request::request.internalTransfer'))
 @section('content')
 
     <div class="page-header">
-        <h1>{{ trans('accounts::accounts.addAccount') }}</h1>
+        <h1>{{ trans('request::request.internalTransfer') }}</h1>
     </div>
     {!! Form::open(['class'=>'panel form-horizontal']) !!}
     <div class="panel-body">

@@ -1,9 +1,9 @@
 @extends('admin.layouts.main')
-@section('title', trans('request::request.addAccount'))
+@section('title', trans('request::request.withDrawal'))
 @section('content')
 
     <div class="page-header">
-        <h1>{{ trans('accounts::accounts.addAccount') }}</h1>
+        <h1>{{ trans('request::request.withDrawal') }}</h1>
     </div>
     {!! Form::open(['class'=>'panel form-horizontal']) !!}
     <div class="panel-body">
