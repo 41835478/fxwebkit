@@ -47,7 +47,7 @@ class RequestController extends Controller {
 		}
 
 
-		return view('request::admin/intenalTransferRequestList')
+		return view('request::admin/internalTransferRequestList')
 			->with('aRequestStatus',$aRequestStatus)
 			->with('oResults', $oResults)->with('aFilterParams', $aFilterParams);
 	}
