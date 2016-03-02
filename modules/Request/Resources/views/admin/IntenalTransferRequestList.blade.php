@@ -50,7 +50,7 @@
 
                     <li>
                         <div class=" nav-input-div  ">
-                            {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                            {!! Form::submit(trans('request::request.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                         </div>
                     </li>
                     <li class="divider"></li>
@@ -102,7 +102,7 @@
                                     <td>{{ $oResult->reason }}</td>
                                     <td>{{ $oResult->status }}</td>
                                     <td>
-                                        <a href="{{ route('admin.request.ForwordInternalTransfer').'?logId='.$oResult->id }}"
+                                        <a href="{{ route('admin.request.intenalTransferEdit').'?logId='.$oResult->id }}"
                                            class="fa fa-edit"></a>
 
                                     </td>

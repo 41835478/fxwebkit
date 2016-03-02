@@ -14,6 +14,7 @@ return [
     'of'=>'of',
     'to'=>'to',
     'showing'=>'showing',
+    'save'=>'Save',
 
     'page'=>'page',
     'go'=>'Go',
