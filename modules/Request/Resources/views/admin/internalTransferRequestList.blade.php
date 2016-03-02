@@ -44,7 +44,7 @@
 
                     <li>
                         <div class=" nav-input-div  ">
-                            {!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('request::request.login'),'class'=>'form-control input-sm']) !!}
+                            {!! Form::text('login', '', ['placeholder'=>trans('request::request.login'),'class'=>'form-control input-sm']) !!}
                         </div>
                     </li>
 
@@ -100,8 +100,15 @@
                                     <td>{{ $oResult->amount }}</td>
                                     <td>{{ $oResult->comment }}</td>
                                     <td>{{ $oResult->reason }}</td>
-                                    <td>{{ $oResult->status }}</td>
+                                    <td>{{ $aRequestStatus[$oResult->status] }}
+                                    @if($oResult->status != 1)
+
+                                            <a href="{{ route('admin.request.ForwordInternalTransfer').'?logId='.$oResult->id }}"
+                                               class="fa fa-mail-forward"></a>
+                                        @endif
+                                    </td>
                                     <td>
+
                                         <a href="{{ route('admin.request.intenalTransferEdit').'?logId='.$oResult->id }}"
                                            class="fa fa-edit"></a>
 

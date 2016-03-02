@@ -38,7 +38,7 @@ class EloquentRequestContractRepository implements RequestContract
         $oResult = new InternalTransfer();
 
         if (isset($aFilters['login']) && !empty($aFilters['login'])) {
-            $oResult = $oResult->where('login', 'like', '%' . $aFilters['login'] . '%');
+            $oResult = $oResult->where('from_login', 'like', '%' . $aFilters['login'] . '%');
         }
 
 

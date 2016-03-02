@@ -37,10 +37,10 @@ class RequestController extends Controller {
 		$log->from_login=$fromLogin;
 		$log->to_login=$toLogin;
 		$log->amount=$amount;
-		$log->comment=$comment;
-		$log->reason=$reason;
+	//	$log->comment=$comment;
+	//	$log->reason=$reason;
 		$log->status=$status;
-
+		$log->save();
 		return true;
 
 
