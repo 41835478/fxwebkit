@@ -36,17 +36,10 @@
 
 
             <div class="row">
+
                 <div class="col-sm-6">
                     <div class="form-group no-margin-hr">
-                        <label class="control-label">{{ trans('accounts::accounts.toMt4Account') }}</label>
-                        {!! Form::text("login2",$internalTransfer['login2'],["class"=>"form-control"]) !!}
-                    </div>
-                </div>
-                <!-- col-sm-6 -->
-                <!-- col-sm-6 -->
-                <div class="col-sm-6">
-                    <div class="form-group no-margin-hr">
-                        <label class="control-label">{{ trans('accounts::accounts.transferAmount') }}</label>
+                        <label class="control-label">{{ trans('accounts::accounts.amount') }}</label>
                         {!! Form::text('amount',$internalTransfer['amount'],['class'=>'form-control']) !!}
                     </div>
                 </div>

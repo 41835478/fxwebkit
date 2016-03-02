@@ -28,6 +28,25 @@ class RequestController extends Controller {
 
 
 	}
+
+	public function insertWithDrawalRequest($login,$amount=0,$comment='',$reason='',$status=0){
+
+
+		//$this->RequestLog->insertInternalTransferRequest($fromLogin,$toLogin,$amount,$comment,$reason,$status);
+		$log= new InternalTransfer();
+
+		$log->insert([
+			'from_login'=>$login,
+			'amount'=>$amount,
+			'comment'=>$comment,
+			'reason'=>$reason,
+			'status'=>$status
+		]);
+		return true;
+
+
+
+	}
 	public function updateInternalTransferRequest($logId,$fromLogin,$toLogin,$amount=0,$comment='',$reason='',$status=0){
 
 

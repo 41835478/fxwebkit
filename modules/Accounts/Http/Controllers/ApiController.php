@@ -158,6 +158,38 @@ class ApiController extends Controller {
 
 
 	}
+
+	public function withDrawal($login1,$amount,$oldPassword=null){
+
+		$requestLog =new RequestLog();
+		if(Config('accounts.directOrderToMt4Server')==false){
+			$requestLog->insertInternalTransferRequest($login1,$amount);
+			/* TODO[moaid] please translate this message */
+			return trans('accounts::accounts.the_request');
+		}
+
+		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
+
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=4|LOGIN='.$login1.'|'.$password.'TOACC='.$login2.'|AMOUNT='.$amount.'|MANAGER=1';
+
+
+		$result=$this->sendApiMessage($message);
+
+		if($result =='OK' ){
+			/* TODO comment and reason should be from addmin not $result,$result  */
+			$requestLog->insertInternalTransferRequest($login1,$login2,$amount,$result,$result,1);
+
+			$email=new Email();
+			$email->internalTransfers(['email'=>config('fxweb.adminEmail'),'login1'=>$login1,'login2'=>$login2,'amount'=>$amount]);
+
+		}else{
+
+			$requestLog->insertInternalTransferRequest($login1,$login2,$amount,$result,$result,2);
+		}
+		return $this->getApiResponseMessage($result);
+
+
+	}
         
         public function operation($login,$amount,$mode,$oldPassword=null){
 

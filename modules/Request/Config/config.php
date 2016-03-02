@@ -19,6 +19,11 @@ return [
 			'route' => 'admin.request.internalTransfer',
 			'title' => 'internalTransfer',
 			'icon' => 'fa-briefcase',
+		],
+		[
+			'route' => 'admin.request.withDrawal',
+			'title' => 'withDrawal',
+			'icon' => 'fa-briefcase',
 		]
 
 	],

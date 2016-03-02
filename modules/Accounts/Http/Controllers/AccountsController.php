@@ -798,7 +798,7 @@ class AccountsController extends Controller
             $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
             $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
         }
-        $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['oldPassword'], $oRequest['amount']);
+        $result = $oApiController->withDrawal($oRequest['login'], $oRequest['oldPassword'], $oRequest['amount']);
 
 
         return view('accounts::withDrawal')

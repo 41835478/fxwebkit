@@ -12,7 +12,8 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'request', 'nam
 	Route::controller('request', 'RequestController', [
 		'getIntenalTransferRequestList'=>'admin.request.internalTransfer',
 		'getForwordIntenalTransferRequest'=>'admin.request.ForwordInternalTransfer',
-		'getIntenalTransferEdit'=>'admin.request.intenalTransferEdit'
+		'getIntenalTransferEdit'=>'admin.request.intenalTransferEdit',
+		'getWithDrawalList'=>'admin.request.withDrawal',
 
 
 	]);
