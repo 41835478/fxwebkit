@@ -170,6 +170,7 @@ return [
     'mt4UserDetails'=>'User Details',
     'withDrawal'=>'Withdrawal',
     'directOrderToMt4Server'=>'Direct Order To Mt4 Server',
+    'the_request'=>'the request has been sent to admin please wait his answer',
 
 
 

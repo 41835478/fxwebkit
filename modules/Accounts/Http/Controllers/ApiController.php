@@ -107,8 +107,9 @@ class ApiController extends Controller {
 		if(Config('accounts.directOrderToMt4Server')==false){
 			$requestLog->insertInternalTransferRequest($login1,$login2,$amount);
 			/* TODO[moaid] please translate this message */
-			return 'the request has been sent to admin please wait his answer ';
+			return trans('accounts::accounts.the_request');
 		}
+
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=4|LOGIN='.$login1.'|'.$password.'TOACC='.$login2.'|AMOUNT='.$amount.'|MANAGER=1';
@@ -139,16 +140,18 @@ class ApiController extends Controller {
 
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
-		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=4|LOGIN='.$login1.'|'.$password.'TOACC='.$login2.'|AMOUNT='.$amount.'|MANAGER=1';
 
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=4|LOGIN='.$login1.'|'.$password.'TOACC='.$login2.'|AMOUNT='.$amount.'|MANAGER=1';
 
 		$result=$this->sendApiMessage($message);
 
 		if($result =='OK' ){
+
 			$requestLog->updateInternalTransferRequest($logId,$login1,$login2,$amount,$result,$result,1);
 
 		}else{
 			$requestLog->updateInternalTransferRequest($logId,$login1,$login2,$amount,$result,$result,2);
+
 
 		}
 		return $this->getApiResponseMessage($result);
