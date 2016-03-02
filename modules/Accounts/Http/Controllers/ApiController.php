@@ -104,8 +104,7 @@ class ApiController extends Controller {
 	public function internalTransfer($login1,$login2,$amount,$oldPassword=null){
 
 		$requestLog =new RequestLog();
-
-		if(Config('account.directOrderToMt4Server')==false){
+		if(Config('accounts.directOrderToMt4Server')==false){
 			$requestLog->insertInternalTransferRequest($login1,$login2,$amount);
 			/* TODO[moaid] please translate this message */
 			return 'the request has been sent to admin please wait his answer ';
@@ -118,14 +117,15 @@ class ApiController extends Controller {
 		$result=$this->sendApiMessage($message);
 
 		if($result =='OK' ){
-			$requestLog->insertInternalTransferRequest($login1,$login2,$amount,$result,$result,$result);
+			/* TODO comment and reason should be from addmin not $result,$result  */
+			$requestLog->insertInternalTransferRequest($login1,$login2,$amount,$result,$result,1);
 
 			$email=new Email();
 			$email->internalTransfers(['email'=>config('fxweb.adminEmail'),'login1'=>$login1,'login2'=>$login2,'amount'=>$amount]);
 
 		}else{
 
-			$requestLog->insertInternalTransferRequest($login1,$login2,$amount,$result,$result,$result);
+			$requestLog->insertInternalTransferRequest($login1,$login2,$amount,$result,$result,2);
 		}
 		return $this->getApiResponseMessage($result);
 
@@ -145,10 +145,10 @@ class ApiController extends Controller {
 		$result=$this->sendApiMessage($message);
 
 		if($result =='OK' ){
-			$requestLog->updateInternalTransferRequest($logId,$login1,$login2,$amount,$result,$result,$result);
+			$requestLog->updateInternalTransferRequest($logId,$login1,$login2,$amount,$result,$result,1);
 
 		}else{
-			$requestLog->updateInternalTransferRequest($logId,$login1,$login2,$amount,$result,'admin forword',$result);
+			$requestLog->updateInternalTransferRequest($logId,$login1,$login2,$amount,$result,$result,2);
 
 		}
 		return $this->getApiResponseMessage($result);

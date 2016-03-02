@@ -8,6 +8,11 @@ return [
     'name' => 'Request',
     'icon' => 'fa-user',
     'route' => '',
+	'requestStatus'=>[
+		0=>'pending',
+		1=>'complete',
+		2=>'fail'
+	],
 	'admin_menu' => [
 
 		[

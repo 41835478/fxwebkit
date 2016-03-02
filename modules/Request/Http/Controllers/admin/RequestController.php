@@ -26,6 +26,9 @@ class RequestController extends Controller {
 		$sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
 		$sOrder = ($oRequest->order) ? $oRequest->order : 'id';
 
+		/* TODO[moaid]  translate this array in language file then in the .blade.php file insert trans() method */
+		$aRequestStatus=config('request.requestStatus');
+
 		$oResults = null;
 
 		$aFilterParams = [
@@ -44,11 +47,14 @@ class RequestController extends Controller {
 		}
 
 
-		return view('request::admin/intenalTransferRequestList')->with('oResults', $oResults)->with('aFilterParams', $aFilterParams);
+		return view('request::admin/intenalTransferRequestList')
+			->with('aRequestStatus',$aRequestStatus)
+			->with('oResults', $oResults)->with('aFilterParams', $aFilterParams);
 	}
 
 	public function getForwordIntenalTransferRequest(Request $oRequest){
 $logId=$oRequest->logId;
+
 
 		$requestInternalTransfer=RequestInternalTransfer::find($logId);
 
@@ -62,6 +68,7 @@ $logId=$oRequest->logId;
 			$requestInternalTransfer->reason,
 			$requestInternalTransfer->status);
 
-		return Redirect::route('admin.request.internalTransfer')->withErrors($forwordResult);
+		return Redirect::route('admin.request.internalTransfer')
+			->withErrors($forwordResult);
 	}
 }

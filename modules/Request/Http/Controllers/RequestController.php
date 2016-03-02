@@ -40,7 +40,7 @@ class RequestController extends Controller {
 		$log->comment=$comment;
 		$log->reason=$reason;
 		$log->status=$status;
-
+		$log->save();
 		return true;
 
 
