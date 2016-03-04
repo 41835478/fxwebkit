@@ -116,31 +116,34 @@
                                         <td>{{ $oResult->email }}</td>
                                         <td>
                                             <a href="{{ route('accounts.editAccount').'?edit_id='.$oResult->id }}"
-                                               class="fa fa-edit"></a>
+                                               class="fa fa-edit tooltip_number" data-original-title="{{trans('accounts::accounts.editAccount')}}"></a>
                                             <a href="{{ route('accounts.deleteAccount').'?delete_id='.$oResult->id }}"
-                                               class="fa fa-trash-o"></a>
+                                               class="fa fa-trash-o tooltip_number" data-original-title="{{trans('accounts::accounts.deleteAccount')}}"></a>
                                             <a href="{{ route('accounts.detailsAccount').'?edit_id='.$oResult->id }}"
-                                               class="fa fa-file-text"></a>
+                                               class="fa fa-file-text tooltip_number" data-original-title="{{trans('accounts::accounts.detailsAccount')}}"></a>
                                             <a href="{{ route('accounts.asignMt4Users').'?account_id='.$oResult->id }}"
-                                               class="fa fa-link"></a>
+                                               class="fa fa-link tooltip_number" data-original-title="{{trans('accounts::accounts.asignMt4Users')}}"></a>
 
-                                            @if(!$oResult->inRole('block'))
-                                                <a href="{{ route('accounts.blockAccount').'?account_id='.$oResult->id }}"
-                                                   class="fa fa-lock"></a>
-                                            @else
+                                            @if(!$oResult->hasAnyAccess('user.block'))
+
                                                 <a href="{{ route('accounts.unBlockAccount').'?account_id='.$oResult->id }}"
-                                                   class="fa fa-unlock"></a>
+                                                   class="fa fa-unlock tooltip_number"  data-original-title="{{trans('accounts::accounts.blockAccount')}}"></a>
+
+                                            @else
+
+                                                <a  href="{{ route('accounts.blockAccount').'?account_id='.$oResult->id }}"
+                                                   class="fa fa-lock tooltip_number" data-original-title= "{{trans('accounts::accounts.unBlockAccount')}}">  </a>
                                             @endif
 
-                                            @if(!$oResult->inRole('denyLiveAccount'))
+                                            @if(!$oResult->hasAnyAccess('user.denyLiveAccount'))
 
                                                 <a href="{{ route('accounts.unAllowedLiveAccount').'?account_id='.$oResult->id }}"
-                                                   class="fa fa-circle-o"></a>
+                                                   class="fa fa-circle-o tooltip_number" data-original-title= "{{trans('accounts::accounts.unAllowedLiveAccount')}}"></a>
 
                                             @else
 
                                                 <a href="{{ route('accounts.allowLiveAccoun').'?account_id='.$oResult->id }}"
-                                                   class="fa fa-check-circle-o"></a>
+                                                   class="fa fa-check-circle-o tooltip_number" data-original-title= "{{trans('accounts::accounts.allowLiveAccoun')}}"></a>
                                             @endif
 
 
@@ -177,9 +180,15 @@
             </div>
         </div>
     </div>
+
     {!! Form::close() !!}
     <script>
         init.push(function () {
+
+
+
+                $('.tooltip_number').tooltip();
+
 
 
             $('#all-groups-chx').change(function () {

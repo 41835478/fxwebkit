@@ -22,6 +22,7 @@ Route::group(['middleware' => ['authenticate.admin'], 'prefix' => 'accounts', 'n
         'getAllowLiveAccount' => 'accounts.allowLiveAccoun',
         'getUnAllowedLiveAccount' => 'accounts.unAllowedLiveAccount',
         'getAccountsSettings'=>'accounts.accountsSettings',
+        'getWithDrawal'=>'accounts.withDrawal',
 
     ]);
 });

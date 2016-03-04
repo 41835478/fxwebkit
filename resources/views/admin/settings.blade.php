@@ -19,7 +19,7 @@
                     <div class="panel">
                         <div class="panel-heading">
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-example" href="#collapseOne">
-                                Collapsible Group Item #1
+                                {{ trans('general.liveServerConfig') }}
                             </a>
                         </div> <!-- / .panel-heading -->
                         <div id="collapseOne" class="panel-collapse in">
@@ -41,6 +41,16 @@
                                     </div>
 
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">{{ trans('general.name ') }}</label>
+                                            {!! Form::text('liveServerName',config('fxweb.liveServerName'),['class'=>'form-control']) !!}
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div> <!-- / .panel-body -->
                         </div> <!-- / .collapse -->
                     </div> <!-- / .panel -->
@@ -48,7 +58,7 @@
                     <div class="panel">
                         <div class="panel-heading">
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example" href="#collapseTwo">
-                                Collapsible Group Item #2
+                                {{ trans('general.demoServerConfig') }}
                             </a>
                         </div> <!-- / .panel-heading -->
                         <div id="collapseTwo" class="panel-collapse collapse">
@@ -70,6 +80,16 @@
                                     </div>
 
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">{{ trans('general.name ') }}</label>
+                                            {!! Form::text('demoServerName',config('fxweb.demoServerName'),['class'=>'form-control']) !!}
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div> <!-- / .panel-body -->
                         </div> <!-- / .collapse -->
                     </div> <!-- / .panel -->
@@ -77,7 +97,7 @@
                     <div class="panel">
                         <div class="panel-heading">
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example" href="#collapseThree">
-                                Collapsible Group Item #3
+                                {{ trans('general.adminInformation') }}
                             </a>
                         </div> <!-- / .panel-heading -->
                         <div id="collapseThree" class="panel-collapse collapse">

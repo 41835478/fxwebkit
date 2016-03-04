@@ -33,7 +33,7 @@
                 <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
                 <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div></li>
-
+                <li><div  class=" nav-input-div  ">{!! Form::select('server_id', $serverTypes, $aFilterParams['server_id'], ['class'=>'form-control  input-sm']) !!}</div></li>
                 <li class="divider"></li>
 
                 <li>
@@ -105,6 +105,7 @@
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oResults) !!}</th>
@@ -126,6 +127,7 @@
                         <tr class='{{ $class }}'> 
                             <td>{{ $oResult->TICKET }}</td>
                             <td>{{ $oResult->LOGIN }}</td>
+                            <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
                             <td>{{ $oResult->SYMBOL }}</td>
                             <td>{{ $oResult->TYPE }}</td>
                             <td>{{ $oResult->VOLUME }}</td>

@@ -97,9 +97,9 @@
                             <td>{{ $oResult->last_name }}</td>
                             <td>{{ $oResult->email }}</td>
                             <td>
-                                <a href="{{ route('general.editUser').'?edit_id='.$oResult->id }}" class="fa fa-edit"></a>
-                                <a href="{{ route('general.userDetails').'?edit_id='.$oResult->id }}" class="fa fa-file-text"></a>
-                                <a href="{{ route('admin.deleteUser').'?delete_id='.$oResult->id }}" class="fa fa-trash-o"></a>
+                                <a href="{{ route('general.editUser').'?edit_id='.$oResult->id }}" class="fa fa-edit tooltip_number" data-original-title="{{trans('user.editUser')}}"></a>
+                                <a href="{{ route('general.userDetails').'?edit_id='.$oResult->id }}" class="fa fa-file-text tooltip_number"  data-original-title="{{trans('user.userDetails')}}"></a>
+                                <a href="{{ route('admin.deleteUser').'?delete_id='.$oResult->id }}" class="fa fa-trash-o tooltip_number"  data-original-title="{{trans('user.deleteUser')}}"></a>
                             </td>
                         </tr>
                         @endforeach
@@ -139,6 +139,8 @@
 {!! Form::close() !!}
 <script>
     init.push(function () {
+
+        $('.tooltip_number').tooltip();
 
 
         $('#all-groups-chx').change(function () {

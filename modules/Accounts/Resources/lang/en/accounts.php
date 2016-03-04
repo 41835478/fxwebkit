@@ -156,6 +156,21 @@ return [
     'apiMasterPassword'=>'API Master Password',
     'apiReqiredConfirmMt4Password'=>'API Reqired Confirm Mt4 Password',
     'allowTransferToUnsignedMT4'=>'Allow Transfer To Unsigned MT4',
+    'clientSettings'=>'Client Setting',
+    'operationsSettings'=>'Operations Settings',
+    'apiSettings'=>'API Settings',
+    'unBlockAccount'=>'Un Block Account',
+    'blockAccount'=>'Block Account',
+    'allowLiveAccoun'=>'Allow Live Accoun',
+    'unAllowedLiveAccount'=>'Deny Live Account',
+    'editAccount'=>'Edit Account',
+    'deleteAccount'=>'Delete Account',
+    'detailsAccount'=>'Details Account',
+    'asignMt4Users'=>'Assign Mt4 Users',
+    'mt4UserDetails'=>'User Details',
+    'withDrawal'=>'Withdrawal',
+    'directOrderToMt4Server'=>'Direct Order To Mt4 Server',
+    'the_request'=>'the request has been sent to admin please wait his answer',
 
 
 

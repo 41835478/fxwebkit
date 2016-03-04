@@ -144,4 +144,7 @@ return [
     'mt4CheckDemoHost'=>'Mt4 Check Demo Host',
     'mt4CheckDemoPort'=>'Mt4 Check Demo Port',
     'adminEmail'=>'Admin Email',
+    'liveServerConfig'=>'Live Server Configuration',
+    'demoServerConfig'=>'Demo Server Configuration',
+    'adminInformation'=>'Admin Information',
 ];

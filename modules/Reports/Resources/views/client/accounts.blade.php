@@ -32,8 +32,9 @@
                     <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
                     <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
                     <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}</div></li>
-                    <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}</div></li>
 
+                    <li><div  class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}</div></li>
+                    <li><div  class=" nav-input-div  ">{!! Form::select('server_id', $serverTypes, $aFilterParams['server_id'], ['class'=>'form-control  input-sm']) !!}</div></li>
 
 
                     <li><div  class=" nav-input-div  ">
@@ -90,6 +91,7 @@
                         <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Name'), 'NAME', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Equity'), 'EQUITY', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Balance'), 'BALANCE', $oResults) !!}</th>
@@ -107,13 +109,14 @@
                                 {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                                 <tr class='{{ $class }}'>
                                     <td>{{ $oResult->LOGIN }}</td>
+                                    <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
                                     <td>{{ $oResult->NAME }}</td>
                                     <td>{{ $oResult->EQUITY }}</td>
                                     <td>{{ $oResult->BALANCE }}</td>
                                     <td>{{ $oResult->MARGIN }}</td>
                                     <td>{{ $oResult->MARGIN_FREE }}</td>
                                     <td>{{ $oResult->LEVERAGE }}</td>
-                                    <td><a href="{{ asset('client/reports/account-statement?login='. $oResult->LOGIN .'&from_date=&to_date=&search=Search&sort=asc&order=login')  }}" class="fa fa-file-text"></a></td>
+                                    <td><a href="{{ route('clients.reports.accountStatement').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text tooltip_number" data-original-title="{{trans('reports::reports.accountStatement')}}"></a></td>
                                 </tr>
                             @endforeach
                         @endif
@@ -152,6 +155,7 @@
     <script>
         init.push(function () {
 
+            $('.tooltip_number').tooltip();
 
             $('#all-groups-chx').change(function () {
 

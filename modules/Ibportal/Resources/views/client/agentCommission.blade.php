@@ -135,6 +135,7 @@
 
                         <th class="no-warp">{!! trans('ibportal::ibportal.order#') !!}</th>
                         <th class="no-warp">{!!trans('ibportal::ibportal.Login')!!}</th>
+                        <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.liveDemo'), 'server_id', $oResults) !!}</th>
                         <th class="no-warp">{!!  trans('ibportal::ibportal.symbol') !!}</th>
                         <th class="no-warp">{!! trans('ibportal::ibportal.type') !!}</th>
                         <th class="no-warp">{!! trans('ibportal::ibportal.lots') !!}</th>
@@ -158,6 +159,7 @@
                             <tr class='{{ $class }}'>
                                 <td>{{ $oResult->TICKET }}</td>
                                 <td>{{ $oResult->LOGIN }}</td>
+                                <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
                                 <td>{{ $oResult->SYMBOL }}</td>
                                 <td>{{ $oResult->TYPE }}</td>
                                 <td>{{ $oResult->VOLUME }}</td>

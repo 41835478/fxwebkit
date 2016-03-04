@@ -442,6 +442,7 @@ class AccountsController extends Controller
         $oGroups = $this->oMt4User->getAllGroups();
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
+        $serverTypes = $this->oMt4Trade->getServerTypes();
         $aGroups = [];
         $oResults = null;
         $aFilterParams = [
@@ -452,6 +453,7 @@ class AccountsController extends Controller
             'name' => '',
             'all_groups' => true,
             'group' => '',
+            'server_id'=>'',
             'sort' => $sSort,
             'order' => $sOrder,
         ];
@@ -470,6 +472,7 @@ class AccountsController extends Controller
             $aFilterParams['name'] = $oRequest->name;
             $aFilterParams['all_groups'] = true;
             $aFilterParams['group'] = $oRequest->group;
+            $aFilterParams['server_id'] = $oRequest->server_id;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
             $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
@@ -479,6 +482,7 @@ class AccountsController extends Controller
         return view('accounts::mt4Accounts')
             ->with('aGroups', $aGroups)
             ->with('oResults', $oResults)
+            ->with('serverTypes',$serverTypes)
             ->with('aFilterParams', $aFilterParams);
     }
 
@@ -557,10 +561,13 @@ class AccountsController extends Controller
 
     public function getBlockAccount(Request $oRequest)
     {
-        $user = Sentinel::findById($oRequest->account_id);
 
-        $role = Sentinel::findRoleByName('block');
-        $role->users()->attach($user);
+
+        $user = Sentinel::findById($oRequest->account_id);
+        $user->removePermission('user.block')->save();
+
+//        $role = Sentinel::findRoleByName('block');
+//        $role->users()->attach($user);
 
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.unblock_user'));
     }
@@ -569,9 +576,12 @@ class AccountsController extends Controller
     public function getUnBlockAccount(Request $oRequest)
     {
         $user = Sentinel::findById($oRequest->account_id);
-
-        $role = Sentinel::findRoleByName('block');
-        $role->users()->detach($user);
+        $user->permissions = [
+            'user.block' => true
+        ];
+        $user->save();
+//        $role = Sentinel::findRoleByName('block');
+//        $role->users()->detach($user);
 
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.block_user'));
     }
@@ -581,8 +591,9 @@ class AccountsController extends Controller
     {
         $user = Sentinel::findById($oRequest->account_id);
 
-        $role = Sentinel::findRoleByName('denyLiveAccount');
-        $role->users()->detach($user);
+        $user->removePermission('user.denyLiveAccount')->save();
+//        $role = Sentinel::findRoleByName('denyLiveAccount');
+//        $role->users()->detach($user);
 
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.allowCreatLiveMt4Account'));
 
@@ -594,9 +605,12 @@ class AccountsController extends Controller
     {
         $user = Sentinel::findById($oRequest->account_id);
 
-        $role = Sentinel::findRoleByName('denyLiveAccount');
-        $role->users()->attach($user);
-
+//        $role = Sentinel::findRoleByName('denyLiveAccount');
+//        $role->users()->attach($user);
+        $user->permissions = [
+            'user.denyLiveAccount' => true
+        ];
+        $user->save();
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.denyCreatLiveMt4Account'));
 
     }
@@ -634,6 +648,7 @@ class AccountsController extends Controller
 
         $changeleverage = [
             'login' => '',
+            'sever_id'=>'',
             'oldPassword' => '',
             'leverage_array' => $Result,
             'leverage' => ''];
@@ -650,6 +665,7 @@ class AccountsController extends Controller
             ->with('Result', $Result)
             ->with('Pssword', $Pssword)
             ->with('login', $oRequest->login)
+            ->with('server_id', $oRequest->server_id)
             ->with('changeleverage', $changeleverage)
             ->withErrors($result);
     }
@@ -690,6 +706,7 @@ class AccountsController extends Controller
             ->withErrors($result)
             ->with('Password', $Password)
             ->with('changePassword', $changePassword)
+            ->with('server_id', $oRequest->server_id)
             ->with('login', $oRequest->login);
     }
 
@@ -731,7 +748,7 @@ class AccountsController extends Controller
             $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
             $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
         }
-        $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['oldPassword'], $oRequest['amount']);
+        $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['amount'], $oRequest['oldPassword']);
 
 
         return view('accounts::internalTransfer')
@@ -739,6 +756,57 @@ class AccountsController extends Controller
             ->with('Pssword', $Pssword)
             ->with('internalTransfer', $internalTransfer)
             ->with('oResults', $oResults)
+            ->with('server_id', $oRequest->server_id)
+            ->with('login', $oRequest->login);
+    }
+
+    public function getWithDrawal(Request $oRequest)
+    {
+        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $oResults = $this->oMt4User->getUserInfo($oRequest->login);
+
+
+        $internalTransfer = [
+            'login1' => '',
+            'oldPassword' => '',
+            'login2' => '',
+            'amount' => ''];
+
+        return view('accounts::withDrawal')
+            ->with('Pssword', $Pssword)
+            ->with('internalTransfer', $internalTransfer)
+            ->with('oResults', $oResults)
+            ->with('login', $oRequest->login)
+            ->with('server_id', $oRequest->server_id)   ;
+    }
+
+    public function postWithDrawal(Request $oRequest)
+    {
+
+
+        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $oResults = $this->oMt4User->getUserInfo($oRequest->login);
+
+        $internalTransfer = [
+            'login' => '',
+            'oldPassword' => '',
+            'amount' => ''];
+
+        $oApiController = new ApiController();
+        if($oRequest['sever_id']==1){
+            $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
+            $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+        }
+
+        $result = $oApiController->withDrawal($oRequest['login'], $oRequest['amount'],$oRequest['oldPassword']);
+
+
+        return view('accounts::withDrawal')
+            ->withErrors($result)
+            ->with('Pssword', $Pssword)
+            ->with('internalTransfer', $internalTransfer)
+            ->with('oResults', $oResults)
+            ->with('server_id', $oRequest->server_id)
             ->with('login', $oRequest->login);
     }
 
@@ -811,12 +879,12 @@ class AccountsController extends Controller
             'denyLiveAccount' => Config('accounts.denyLiveAccount'),
             'apiReqiredConfirmMt4Password' => Config('accounts.apiReqiredConfirmMt4Password'),
             'allowTransferToUnsignedMT4' => Config('accounts.allowTransferToUnsignedMT4'),
+            'directOrderToMt4Server' => Config('accounts.directOrderToMt4Server'),
 
             'is_client' => Config('accounts.is_client'),
 
         ];
-
-
+        
         return view('accounts::accountsSetting')->with('accountsSetting', $accountsSetting);
 
     }
@@ -834,6 +902,7 @@ class AccountsController extends Controller
         $denyLiveAccount = ($oRequest->denyLiveAccount) ? true : false;
         $apiReqiredConfirmMt4Password = ($oRequest->apiReqiredConfirmMt4Password) ? true : false;
         $allowTransferToUnsignedMT4 = ($oRequest->allowTransferToUnsignedMT4) ? true : false;
+        $directOrderToMt4Server = ($oRequest->directOrderToMt4Server) ? true : false;
         $is_client = ($oRequest->is_client) ? 1 : 0;
 
 
@@ -846,6 +915,7 @@ class AccountsController extends Controller
             'denyLiveAccount' => $denyLiveAccount,
             'apiReqiredConfirmMt4Password'=>$apiReqiredConfirmMt4Password,
             'allowTransferToUnsignedMT4'=>$allowTransferToUnsignedMT4,
+            'directOrderToMt4Server'=>$directOrderToMt4Server,
             'apiMasterPassword'=>$oRequest->apiMasterPassword,
             'is_client' => $is_client,
 

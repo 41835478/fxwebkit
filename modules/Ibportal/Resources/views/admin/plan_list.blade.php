@@ -100,14 +100,14 @@
                                     <td>@if($oResult->public) {{trans('ibportal::ibportal.public') }}@endif </td>
                                     <td>
                                         <a href="{{ route('admin.ibportal.editPlan').'?edit_id='.$oResult->id }}"
-                                           class="fa fa-edit"></a>
+                                           class="fa fa-edit tooltip_number" data-original-title="{{trans('ibportal::ibportal.editPlan')}}"></a>
                                         <a href="{{ route('admin.ibportal.deletePlan').'?delete_id='.$oResult->id }}"
-                                           class="fa fa-trash-o"></a>
+                                           class="fa fa-trash-o tooltip_number" data-original-title="{{trans('ibportal::ibportal.deletePlan')}}"></a>
                                         <a href="{{ route('admin.ibportal.detailPlan').'?edit_id='.$oResult->id }}"
-                                           class="fa fa-file-text"></a>
+                                           class="fa fa-file-text tooltip_number" data-original-title="{{trans('ibportal::ibportal.detailPlan')}}"></a>
                                         @if(!$oResult->public)
                                         <a href="{{ route('admin.ibportal.assignPlan').'?planId='.$oResult->id }}"
-                                           class="fa fa-link"></a>
+                                           class="fa fa-link tooltip_number" data-original-title="{{trans('ibportal::ibportal.assignPlan')}}"></a>
                                             @endif
 
                                     </td>
@@ -148,6 +148,8 @@
     <script>
         init.push(function () {
 
+
+            $('.tooltip_number').tooltip();
 
             $('#all-groups-chx').change(function () {
 

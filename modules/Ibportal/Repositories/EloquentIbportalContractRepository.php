@@ -259,12 +259,12 @@ class EloquentIbportalContractRepository implements IbportalContract
     public function getSymbols()
     {
 
-        $aSymbols = Symbols::select('name')->distinct()->get()->toArray();
+        $aSymbols = Symbols::select('symbol')->distinct()->get()->toArray();
 
         $symbolsJavaArray = [];
         foreach ($aSymbols as $key => $symbols) {
 
-            $symbolsJavaArray[] = '"' . $symbols['name'] . '"';
+            $symbolsJavaArray[] = '"' . $symbols['symbol'] . '"';
         }
 
         $symbolsJavaArray = join(',', $symbolsJavaArray);
@@ -353,6 +353,7 @@ class EloquentIbportalContractRepository implements IbportalContract
 
         $oResult = AgentsCommission::with('trade');
 
+
         /* =============== Login Filters =============== */
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
             $oResult = $oResult->where('id_mt4_user', $aFilters['login']);
@@ -368,6 +369,13 @@ class EloquentIbportalContractRepository implements IbportalContract
                 $oResult = $oResult->where('id_mt4_user', '<=', $aFilters['to_login']);
             }
         }
+
+        /* =============== Server Id Filter  =============== */
+
+//        if (isset($aFilters['server_id']) &&in_array($aFilters['server_id'],[0,1])) {
+//
+//            $oResult = $oResult->where('server_id',$aFilters['server_id']);
+//        }
 
         /*=================== agents=================*/
         if (isset($aFilters['agentName']) && count($aFilters['agentName'])) {
@@ -388,22 +396,28 @@ class EloquentIbportalContractRepository implements IbportalContract
 
         $totalCommission = clone $oResult;
 
+
         $totalCommission = $totalCommission->sum('commission_agent');
         $oFxHelper = new Fx();
 
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
+
+
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+
         } else {
             $oResult = $oResult->get();
+
         }
 
 
         /* =============== Preparing Output  =============== */
         foreach ($oResult as $dKey => $oValue) {
             // Set CMD type
+
             $commission = $oValue->commission_agent;
             $oResult[$dKey] = $oResult[$dKey]->trade->first();
             $oValue = $oResult[$dKey];
@@ -420,6 +434,7 @@ class EloquentIbportalContractRepository implements IbportalContract
             $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
             $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
             $oResult[$dKey]->CLOSE_PRICE = round($oResult[$dKey]->CLOSE_PRICE, $digits);
+
         }
 
         return [$oResult, $totalCommission];
@@ -525,10 +540,4 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     }
 
-    public function ibportalSettings($ibportalSetting)
-    {
-
-        /* TODO validate if progress going will */
-        $this->editConfigFile('modules/Ibportal/Config/config.php', $ibportalSetting);
-    }
 }

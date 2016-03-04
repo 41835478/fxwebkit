@@ -353,8 +353,10 @@ class IbportalController extends Controller
 
     public function getAgentCommission(Request $oRequest)
     {
+
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
+        $serverTypes = $this->oMt4Trade->getServerTypes();
         $oResults = null;
         $aFilterParams = [
             'from_login' => '',
@@ -365,12 +367,14 @@ class IbportalController extends Controller
             'planName' => [],
             'usresName' => [],
             'mt4UsresName' => [],
+            'server_id'=>'',
             'sort' => 'ASC',
             'order' => 'TICKET',
         ];
 
 
         if ($oRequest->has('search')) {
+
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
             $aFilterParams['exactLogin'] = $oRequest->exactLogin;
@@ -379,12 +383,14 @@ class IbportalController extends Controller
             $aFilterParams['planName'] = $oRequest->planName;
             $aFilterParams['usresName'] = $oRequest->usresName;
             $aFilterParams['mt4UsresName'] = $oRequest->mt4UsresName;
+            $aFilterParams['server_id'] = $oRequest->server_id;
 
         }
 
         $totalCommission = 0;
 
         if ($oRequest->has('search')) {
+
             list($oResults, $totalCommission) = $this->Ibportal->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults->order = $aFilterParams['order'];
             $oResults->sorts = $aFilterParams['sort'];
@@ -400,6 +406,7 @@ class IbportalController extends Controller
             ->with('oResults', $oResults)
             ->with('agent_id', $oRequest->agentId)
             ->with('data', $data)
+            ->with('serverTypes',$serverTypes)
             ->with('totalCommission', $totalCommission)
             ->with('aFilterParams', $aFilterParams);
     }
@@ -456,8 +463,10 @@ class IbportalController extends Controller
 
     public function getAgentsCommission(Request $oRequest)
     {
+
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
+        $serverTypes = $this->oMt4Trade->getServerTypes();
         $oResults = null;
         $aFilterParams = [
             'from_login' => '',
@@ -468,12 +477,14 @@ class IbportalController extends Controller
             'planName' => [],
             'usresName' => [],
             'mt4UsresName' => [],
+            'server_id'=>'',
             'sort' => 'ASC',
             'order' => 'TICKET',
         ];
 
 
         if ($oRequest->has('search')) {
+
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
             $aFilterParams['exactLogin'] = $oRequest->exactLogin;
@@ -482,12 +493,14 @@ class IbportalController extends Controller
             $aFilterParams['planName'] = $oRequest->planName;
             $aFilterParams['usresName'] = $oRequest->usresName;
             $aFilterParams['mt4UsresName'] = $oRequest->mt4UsresName;
+            $aFilterParams['server_id'] = $oRequest->server_id;
 
         }
 
         $totalCommission = 0;
 
         if ($oRequest->has('search')) {
+
             list($oResults, $totalCommission) = $this->Ibportal->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults->order = $aFilterParams['order'];
             $oResults->sorts = $aFilterParams['sort'];
@@ -503,6 +516,7 @@ class IbportalController extends Controller
             ->with('oResults', $oResults)
             ->with('data', $data)
             ->with('totalCommission', $totalCommission)
+            ->with('serverTypes',$serverTypes)
             ->with('aFilterParams', $aFilterParams);
 
     }

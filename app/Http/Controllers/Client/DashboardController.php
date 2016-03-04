@@ -43,13 +43,32 @@ class DashboardController extends Controller
         $oUser=Sentinel::getUser();
         $clientId = $oUser->id;
 
+        /*_____________________________test*
+
+//        $oUser->permissions = [
+//            'user.create' => false,
+//            'user.delete' => true,
+//        ];
+//
+//        //$user->removePermission('user.delete')->save();
+//        $oUser->save();
+
+        if ($oUser->hasAnyAccess(['user.create', 'user.delete']))
+        {
+          dd($oUser);  // Execute this code if the user has permission
+        }
+        else
+        {
+            dd(5); // Execute this code if the permission check failed
+        }
+        /*___________________________END__test*/
 
         list($firstLogin, $aLoginList) = $this->oMt4User->getUsersMt4Users($clientId);
 
         $login = ($oRequest->has('login')) ? $oRequest->login : $firstLogin;
 
         list($horizontal_line_numbers, $growth_array, $averages_array, $statistics, $symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->oMt4Trade->getClinetGrowthChart($login);
-        $denyLiveAccount=($oUser->inRole('denyLiveAccount') )? true:false;
+        $denyLiveAccount=($oUser->hasAnyAccess(['user.denyLiveAccount']) )? true:false;
 
         return view('client.dashboard')
             ->with('horizontal_line_numbers', $horizontal_line_numbers)

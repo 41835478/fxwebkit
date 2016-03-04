@@ -28,6 +28,9 @@
                 <li>
                     <a href="{{ route('accounts.mt4InternalTransfer').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
                 </li>
+                <li class="">
+                    <a href="{{ route('accounts.withDrawal').'?login='.$login.'&server_id='.$server_id}}" >{{ trans('accounts::accounts.withDrawal') }}</a>
+                </li>
             </ul>
 
 

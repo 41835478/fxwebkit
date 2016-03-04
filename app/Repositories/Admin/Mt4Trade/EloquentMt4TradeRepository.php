@@ -64,10 +64,21 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      */
     public function getTradesTypes() {
         return [
-            1 => 'ACTUAL_TRADES',
-            2 => 'PENDING_TRADES',
+            0 => 'ACTUAL_TRADES',
+            1 => 'PENDING_TRADES',
         ];
     }
+
+
+    public function getServerTypes() {
+        return [
+            -1=>'All',
+            0 => config('fxweb.liveServerName'),
+            1 => config('fxweb.demoServerName'),
+        ];
+    }
+
+
 
     /**
      * Gets the accountant types
@@ -132,6 +143,14 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             }
         }
 
+
+        /* =============== Server Id Filter  =============== */
+
+        if (isset($aFilters['server_id']) &&in_array($aFilters['server_id'],[0,1])) {
+
+                $oResult = $oResult->where('server_id',$aFilters['server_id']);
+        }
+
         /* =============== Groups Filter  =============== */
         if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
             $aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
@@ -191,12 +210,15 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
 
             //OPenPrice/SL/TP/CLOSED_PRICE
-            $digits = $oResult[$dKey]->Mt4Prices()->first()->DIGITS;
+
+            $price=$oResult[$dKey]->Mt4Prices()->first();
+            $digits = ($price)?$price->DIGITS:5;
             $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
             $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
             $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
             $oResult[$dKey]->CLOSE_PRICE = round($oResult[$dKey]->CLOSE_PRICE, $digits);
         }
+
 
         return $oResult;
     }
@@ -209,7 +231,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         /* =============== Login Filters =============== */
         //if ((isset($aFilters['login']) && !empty($aFilters['login'])) ) {
 
-        $oResult = $oResult->where('LOGIN', '=', $aFilters['login']);
+        $oResult = $oResult->where('LOGIN', '=', $aFilters['login'])->where('server_id', '=', $aFilters['server_id']);
+
+
         //}
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
@@ -232,6 +256,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         } else {
             $oResult = $oResult->get();
         }
+
+
+
 
         /* =============== Preparing Output  =============== */
         foreach ($oResult as $dKey => $oValue) {
@@ -271,7 +298,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         /* =============== Login Filters =============== */
         //if ((isset($aFilters['login']) && !empty($aFilters['login'])) ) {
 
-        $oResult = $oResult->where('LOGIN', '=', $aFilters['login']);
+        $oResult = $oResult->where('LOGIN', '=', $aFilters['login'])->where('server_id', '=', $aFilters['server_id']);
         //}
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
@@ -353,6 +380,13 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             if (!empty($aFilters['to_login'])) {
                 $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
             }
+        }
+
+        /* =============== Server Id Filter  =============== */
+
+        if (isset($aFilters['server_id']) &&in_array($aFilters['server_id'],[0,1])) {
+
+            $oResult = $oResult->where('server_id',$aFilters['server_id']);
         }
 
         /* =============== Groups Filter  =============== */
@@ -775,6 +809,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             if (!empty($aFilters['to_login'])) {
                 $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
             }
+        }
+
+        if (isset($aFilters['server_id']) &&in_array($aFilters['server_id'],[0,1])) {
+
+            $oResult = $oResult->where('server_id',$aFilters['server_id']);
         }
 
         /* =============== Groups Filter  =============== */

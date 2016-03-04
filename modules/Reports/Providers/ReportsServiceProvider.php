@@ -41,7 +41,7 @@ class ReportsServiceProvider extends ServiceProvider {
 	protected function registerConfig()
 	{
 		$this->publishes([
-		    __DIR__.'/../Config/config.php' => config_path('reports.php'),
+		    __DIR__.'/../Config/config.php' => config_path('request.php'),
 		]);
 		$this->mergeConfigFrom(
 		    __DIR__.'/../Config/config.php', 'reports'

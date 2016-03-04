@@ -75,16 +75,20 @@ return [
     'no_account_available'=>'No Account Available',
 
     'resetPasswordText'=>'Reset Password',
-    'sendRestEmeail'=>'Reset Password Email',
+    'sendRestEmeail'=>'Send Reset Password Email',
     'PleaseTryAgain'=>'Please Try Again',
     'userNotExist'=>'User Not Exist',
-    'checkEmailResetPassword'=>'Check Email Reset Password',
+    'checkEmailResetPassword'=>'Check Your Email to Reset Password',
     'invalidPassord'=>'Invalid Passord',
     'confirmPassword'=>'Confirm Password',
+    'userBlock'=>'The user has been blocked',
     'reset'=>'Reset',
     'resetPassword'=>'Reset Password',
-
-
-    'resend'=>'Resend'
+    'newpassword'=>'New Password',
+    'resend'=>'Resend',
+    'fillFullDetailsToAllowLive'=>'Fill Full Details To Allow Live',
+    'editUser'=>'Edit User',
+    'userDetails'=>'User Details',
+    'deleteUser'=>'Delete User',
 
 ];

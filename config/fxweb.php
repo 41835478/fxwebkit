@@ -21,8 +21,11 @@ return [
 
     'mt4CheckHost'=>'192.168.15.10',
     'mt4CheckPort'=>'443',
+    'liveServerName'=>'liveAAAAA',
     'mt4CheckDemoHost'=>'192.168.15.10',
     'mt4CheckDemoPort'=>'443',
+    'demoServerName'=>'demo',
+
 
     'adminEmail'=>'taylorsuccessor@gmail.com',
     'Group'=>[

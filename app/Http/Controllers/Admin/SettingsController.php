@@ -46,11 +46,12 @@ class SettingsController extends Controller
             'newAgentNotify' => 'New Agent Notify',
             'withdrawRequest' => 'Withdraw Request',
             'changeLeverage' => 'User Change Leverage',
-            'newUserSignUp'=>'New User Sign Up',
-            'activeAccount'=>'Active Account',
-            'forgetPassword'=>'Forget Password',
-            'changeMt4Password'=>'Mt4 User Change Password',
-            'internalTransfers'=>'Internal Transfers'
+            'newUserSignUp' => 'New User Sign Up',
+            'activeAccount' => 'Active Account',
+            'forgetPassword' => 'Forget Password',
+            'changeMt4Password' => 'Mt4 User Change Password',
+            'internalTransfers' => 'Internal Transfers',
+            'withDrawal'=>'With Drawal'
 
         ];
     }
@@ -361,11 +362,13 @@ class SettingsController extends Controller
 
         $aSetting = [
 
-    'mt4CheckHost'=>$oRequest->mt4CheckHost,
-    'mt4CheckPort'=>$oRequest->mt4CheckPort,
-    'mt4CheckDemoHost'=>$oRequest->mt4CheckDemoHost,
-    'mt4CheckDemoPort'=>$oRequest->mt4CheckDemoPort,
-            'adminEmail'=>$oRequest->adminEmail,
+            'mt4CheckHost' => $oRequest->mt4CheckHost,
+            'mt4CheckPort' => $oRequest->mt4CheckPort,
+            'liveServerName' => $oRequest->liveServerName,
+            'mt4CheckDemoHost' => $oRequest->mt4CheckDemoHost,
+            'mt4CheckDemoPort' => $oRequest->mt4CheckDemoPort,
+            'adminEmail' => $oRequest->adminEmail,
+            'demoServerName' => $oRequest->demoServerName,
 
         ];
 

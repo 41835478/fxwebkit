@@ -83,5 +83,15 @@ return [
     'agreemment'=>'Agreemment',
     'save'=>'Save',
     'is_client'=>'Show This Module To Client',
+    'demo'=>'Demo',
+    'live'=>'Live',
+    'liveDemo'=>'Live/Demo',
+    'editPlan'=>'Edit Plan',
+    'deletePlan'=>'Delete Plan',
+    'detailPlan'=>'Detail Plan',
+    'assignPlan'=>'Assign Plan',
+    'agentUsres'=>'Agent Usres',
+    'agentPlans'=>'Agent Plans',
+    'agentCommission'=>'Agent Commission',
 
 ];

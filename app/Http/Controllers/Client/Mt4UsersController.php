@@ -39,7 +39,7 @@ class Mt4UsersController extends Controller
             'password' => $oRequest['password']
         ];
 
-        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount') )? true:false;
+        $denyLiveAccount=(current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount'])  )? true:false;
 
         if($denyLiveAccount){
             return Redirect::route('client.mt4DemoAccount');
@@ -60,11 +60,11 @@ class Mt4UsersController extends Controller
         }
         if (preg_match('#^Balance: #', $result) === 1) {
             $asign_result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$oRequest['login']]);
-            return Redirect::route('clients.reports.accounts');
+            return Redirect::route('clients.accounts.Mt4UsersList');
         }
 
 
-        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount'))? true:false;
+        $denyLiveAccount=(current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount']) )? true:false;
 
 
         return view('client.addMt4User')
@@ -104,7 +104,7 @@ class Mt4UsersController extends Controller
             'array_leverage' => $array_leverage,
         ];
 
-        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount') )? true:false;
+        $denyLiveAccount=(current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount']) )? true:false;
 
 
         return view('client.mt4DemoAccount')
@@ -193,7 +193,7 @@ class Mt4UsersController extends Controller
         ];
 
 
-        $denyLiveAccount=(current_user()->getUser()->inRole('denyLiveAccount'))? true:false;
+        $denyLiveAccount=(current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount']) )? true:false;
 
 
         return view('client.mt4LiveAccount')

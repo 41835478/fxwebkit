@@ -2,6 +2,7 @@
 
 use Fxweb\Http\Controllers\admin\Email;
 use Pingpong\Modules\Routing\Controller;
+use Modules\Request\Http\Controllers\RequestController as RequestLog;
 
 class ApiController extends Controller {
 
@@ -67,7 +68,7 @@ class ApiController extends Controller {
 			fclose($fp);
 		}
 
-		return $result;
+		return preg_replace('/\s+/', '', $result);
 
 	}
 
@@ -102,6 +103,13 @@ class ApiController extends Controller {
 
 	public function internalTransfer($login1,$login2,$amount,$oldPassword=null){
 
+		$requestLog =new RequestLog();
+		if(Config('accounts.directOrderToMt4Server')==false){
+			$requestLog->insertInternalTransferRequest($login1,$login2,$amount);
+			/* TODO[moaid] please translate this message */
+			return trans('accounts::accounts.the_request');
+		}
+
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=4|LOGIN='.$login1.'|'.$password.'TOACC='.$login2.'|AMOUNT='.$amount.'|MANAGER=1';
@@ -110,10 +118,105 @@ class ApiController extends Controller {
 		$result=$this->sendApiMessage($message);
 
 		if($result =='OK' ){
+			/* TODO comment and reason should be from addmin not $result,$result  */
+			$requestLog->insertInternalTransferRequest($login1,$login2,$amount,$result,$result,1);
+
 			$email=new Email();
 			$email->internalTransfers(['email'=>config('fxweb.adminEmail'),'login1'=>$login1,'login2'=>$login2,'amount'=>$amount]);
+
+		}else{
+
+			$requestLog->insertInternalTransferRequest($login1,$login2,$amount,$result,$result,2);
 		}
 		return $this->getApiResponseMessage($result);
+
+
+	}
+
+
+	public function adminForwordInternalTransfer($logId,$login1,$login2,$amount,$oldPassword=null){
+
+		$requestLog =new RequestLog();
+		/* TODO check oldpassword and insert it in log InternalTransfer to re send it to this function */
+
+		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
+
+
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=4|LOGIN='.$login1.'|'.$password.'TOACC='.$login2.'|AMOUNT='.$amount.'|MANAGER=1';
+
+		$result=$this->sendApiMessage($message);
+
+		if($result =='OK' ){
+
+			$requestLog->updateInternalTransferRequest($logId,$login1,$login2,$amount,$result,$result,1);
+
+		}else{
+			$requestLog->updateInternalTransferRequest($logId,$login1,$login2,$amount,$result,$result,2);
+
+
+		}
+		return $this->getApiResponseMessage($result);
+
+
+	}
+
+	public function withDrawal($login1,$amount,$oldPassword=null){
+
+		$requestLog =new RequestLog();
+		if(Config('accounts.directOrderToMt4Server')==false){
+			$requestLog->insertWithDrawalRequest($login1,$amount);
+			/* TODO[moaid] please translate this message */
+			return trans('accounts::accounts.the_request');
+		}
+
+		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
+
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=3|LOGIN='.$login1.'|'.$password.'|AMOUNT='.'-'.$amount.'|COMMENT=ONLINE'.'|MANAGER=1';
+
+
+		$result=$this->sendApiMessage($message);
+
+
+		if($result =='OK' ){
+			/* TODO comment and reason should be from addmin not $result,$result  */
+			$requestLog->insertWithDrawalRequest($login1,$amount,$result,$result,1);
+
+			$email=new Email();
+			$email->withDrawal(['email'=>config('fxweb.adminEmail'),'login'=>$login1,'amount'=>$amount]);
+
+		}else{
+
+			$requestLog->insertWithDrawalRequest($login1,$amount,$result,$result,2);
+		}
+		return $this->getApiResponseMessage($result);
+
+
+	}
+
+	public function adminForwordWithDrawal($logId,$login1,$amount,$oldPassword=null){
+
+		$requestLog =new RequestLog();
+		/* TODO check oldpassword and insert it in log InternalTransfer to re send it to this function */
+
+		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
+
+
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=3|LOGIN='.$login1.'|'.$password.'|AMOUNT='.'-'.$amount.'|COMMENT=ONLINE'.'|MANAGER=1';
+
+		$result=$this->sendApiMessage($message);
+
+		if($result =='OK' ){
+
+			$requestLog->updateWithDrawalRequest($logId,$login1,$amount,$result,$result,1);
+
+		}else{
+			$requestLog->updateWithDrawalRequest($logId,$login1,$amount,$result,$result,2);
+
+
+		}
+		return $this->getApiResponseMessage($result);
+
+
 	}
         
         public function operation($login,$amount,$mode,$oldPassword=null){

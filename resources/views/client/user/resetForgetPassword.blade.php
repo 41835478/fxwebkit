@@ -26,7 +26,7 @@
 					<span>{{ Lang::get('user.resetPassword') }}</span>
 				</div>
 			<div class="form-group w-icon">
-				{!! Form::password('password', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.password')]) !!}
+				{!! Form::password('password', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.newpassword')]) !!}
 				<span class="fa fa-lock signin-form-icon"></span>
 			</div>
 				<div class="form-group w-icon">

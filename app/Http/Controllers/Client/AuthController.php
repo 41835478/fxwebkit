@@ -151,8 +151,10 @@ class AuthController extends Controller
 
 
             if(config('accounts.denyLiveAccount')){
-                $role = Sentinel::findRoleByName('denyLiveAccount');
-                $role->users()->attach($oUser);}
+               $oUser->permissions = [
+                   'user.denyLiveAccount' => true
+               ];
+                $oUser->save();}
             return redirect()->route('clinet.editProfile');
         } else {
 
@@ -186,8 +188,10 @@ class AuthController extends Controller
             @$oEmail->newUserSignUp(['adminEmail'=>config('fxweb.adminEmail')]+$aCredentials + $aCredentialsFullDetails);
 
             if(config('accounts.denyLiveAccount')){
-            $role = Sentinel::findRoleByName('denyLiveAccount');
-            $role->users()->attach($oUser);}
+            $oUser->permissions = [
+                'user.denyLiveAccount' => true
+            ];
+                $oUser->save();}
             return redirect()->route('client.auth.login');
         }
     }
