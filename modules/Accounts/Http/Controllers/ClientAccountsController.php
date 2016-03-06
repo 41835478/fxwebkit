@@ -169,7 +169,7 @@ class ClientAccountsController extends Controller
         }
         $result = $oApiController->changeMt4Leverage($oRequest['login'], $oRequest['leverage'], $oRequest['oldPassword']);
 
-
+        /* TODO with success */
         return view('accounts::client.addLeverage')
             ->with('Result', $Result)
             ->with('Pssword', $Pssword)
@@ -217,7 +217,7 @@ class ClientAccountsController extends Controller
             $mT4ChangePassword->mt4Port=Config('fxweb.mt4CheckDemoPort');
         }
         $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'], $oRequest['oldPassword']);
-
+        /* TODO with success */
         return view('accounts::client.changePassword')
             ->withErrors($result)
             ->with('Password', $Password)
@@ -295,7 +295,7 @@ class ClientAccountsController extends Controller
         } else {
             $result = 'The Admin does not allowed to transfer to unsigned Mt4 users';
         }
-
+        /* TODO with success */
         return view('accounts::client.internalTransfer')
             ->withErrors($result)
             ->with('Pssword', $Pssword)

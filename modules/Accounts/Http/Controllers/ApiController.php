@@ -165,7 +165,7 @@ class ApiController extends Controller {
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
 			$requestLog->insertWithDrawalRequest($login1,$amount);
-			/* TODO[moaid] please translate this message */
+
 			return trans('accounts::accounts.the_request');
 		}
 

@@ -150,6 +150,7 @@ class SettingsController extends Controller
     {
 
         $result = $this->oUser->deleteUser($oRequest->delete_id);
+        /* TODO with success */
         return Redirect::route('admin.adminsList')->withErrors($result);
     }
 

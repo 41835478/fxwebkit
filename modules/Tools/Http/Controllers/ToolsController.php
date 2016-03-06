@@ -61,7 +61,7 @@ class ToolsController extends Controller
         if ($oRequest->has('deleteContract')) {
 
             $result = $this->oFuture->deleteContract($oRequest->contract_checkbox);
-
+            /* TODO with success */
             return Redirect::route('tools.futureContract')->withErrors($result);
         }
 
@@ -110,7 +110,7 @@ class ToolsController extends Controller
         if ($oRequest->has('deleteContract')) {
 
             $result = $this->oFuture->deleteContract($oRequest->contract_checkbox);
-
+            /* TODO with success */
             return Redirect::route('tools.futureContract')->withErrors($result);
         }
 
@@ -295,6 +295,7 @@ class ToolsController extends Controller
     public function getDeleteContract(Request $oRequest)
     {
         $result = $this->oFuture->deleteContract($oRequest->delete_id);
+        /* TODO with success */
         return Redirect::route('tools.futureContract')->withErrors($result);
     }
 
@@ -425,6 +426,7 @@ class ToolsController extends Controller
     public function getDeleteHoliday(Request $oRequest)
     {
         $result = $this->oHoliday->deleteHoliday($oRequest->delete_id);
+        /* TODO with success */
         return Redirect::route('tools.holiday')->withErrors($result);
     }
 

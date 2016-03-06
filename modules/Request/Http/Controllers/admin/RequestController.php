@@ -66,7 +66,7 @@ class RequestController extends Controller
             $requestInternalTransfer->status);
 
 
-
+        /* TODO with success */
 
         return Redirect::route('admin.request.internalTransfer')->withErrors($forwordResult);
     }
@@ -91,7 +91,7 @@ class RequestController extends Controller
 
 
 
-
+        /* TODO with success */
         return Redirect::route('admin.request.withDrawal')->withErrors($forwordResult);
     }
 

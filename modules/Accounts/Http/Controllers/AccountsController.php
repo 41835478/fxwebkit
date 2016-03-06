@@ -82,6 +82,7 @@ class AccountsController extends Controller
     public function getDeleteAccount(Request $oRequest)
     {
         $result = $this->oUsers->deleteUser($oRequest->delete_id);
+     /* TODO with success */
         return Redirect::route('accounts.accountsList')->withErrors($result);
     }
 
@@ -136,11 +137,6 @@ class AccountsController extends Controller
 
     public function getEditAccount(Request $oRequest)
     {
-
-        if ($oRequest->has('delete_id')) {
-            $result = $this->oUsers->deleteUser($oRequest->delete_id);
-            return Redirect::route('accounts.accountsList')->withErrors($result);
-        }
 
         $carbon = new Carbon();
         $dt = $carbon->now();
@@ -568,7 +564,7 @@ class AccountsController extends Controller
 
 //        $role = Sentinel::findRoleByName('block');
 //        $role->users()->attach($user);
-
+        /* TODO with success */
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.unblock_user'));
     }
 
@@ -582,7 +578,7 @@ class AccountsController extends Controller
         $user->save();
 //        $role = Sentinel::findRoleByName('block');
 //        $role->users()->detach($user);
-
+        /* TODO with success */
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.block_user'));
     }
 
@@ -594,7 +590,7 @@ class AccountsController extends Controller
         $user->removePermission('user.denyLiveAccount')->save();
 //        $role = Sentinel::findRoleByName('denyLiveAccount');
 //        $role->users()->detach($user);
-
+        /* TODO with success */
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.allowCreatLiveMt4Account'));
 
 
@@ -611,6 +607,7 @@ class AccountsController extends Controller
             'user.denyLiveAccount' => true
         ];
         $user->save();
+        /* TODO with success */
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.denyCreatLiveMt4Account'));
 
     }
@@ -660,7 +657,7 @@ class AccountsController extends Controller
         }
         $result = $oApiController->changeMt4Leverage($oRequest['login'], $oRequest['leverage'], $oRequest['oldPassword']);
 
-
+        /* TODO with success */
         return view('accounts::addLeverage')
             ->with('Result', $Result)
             ->with('Pssword', $Pssword)
@@ -701,7 +698,7 @@ class AccountsController extends Controller
             $mT4ChangePassword->mt4Port=Config('fxweb.mt4CheckDemoPort');
         }
         $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'], $oRequest['oldPassword']);
-
+        /* TODO with success */
         return view('accounts::changePassword')
             ->withErrors($result)
             ->with('Password', $Password)
@@ -750,7 +747,7 @@ class AccountsController extends Controller
         }
         $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['amount'], $oRequest['oldPassword']);
 
-
+        /* TODO with success */
         return view('accounts::internalTransfer')
             ->withErrors($result)
             ->with('Pssword', $Pssword)
@@ -800,7 +797,7 @@ class AccountsController extends Controller
 
         $result = $oApiController->withDrawal($oRequest['login'], $oRequest['amount'],$oRequest['oldPassword']);
 
-
+        /* TODO with success */
         return view('accounts::withDrawal')
             ->withErrors($result)
             ->with('Pssword', $Pssword)
@@ -859,7 +856,7 @@ class AccountsController extends Controller
 
         $oApiController = new ApiController();
         $result = $oApiController->operation($oRequest['login'], $amount, $operation);
-
+        /* TODO with success */
         return view('accounts::operation')
             ->withErrors($result)
             ->with('Pssword', $Pssword)

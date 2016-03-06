@@ -293,7 +293,6 @@ class AuthController extends Controller
         }
 
 
-
         return view('client.user.activateAccountResult')
             ->with('random', rand(1, 8))
             ->withErrors($message);
