@@ -14,7 +14,8 @@ return [
         '100' => 'type',
         '150' => 'type',
     ],
-    'agreemment'=>'Testdfgdfgjmgj',
+    'agreemment'=>'<p>please agee to the agreement to be agent</p>
+',
     'admin_menu' => [
 
         [

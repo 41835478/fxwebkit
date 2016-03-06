@@ -4,6 +4,8 @@ namespace Modules\Request\Repositories;
 
 use Modules\Request\Entities\RequestInternalTransfer as InternalTransfer;
 use Modules\Request\Entities\RequestWithdrawal as WithDrawal;
+use Modules\Request\Entities\RequestChangeLeverage as ChangeLeverage;
+use Modules\Request\Entities\RequestChangePassword as ChangePassword;
 use Config;
 
 
@@ -78,6 +80,52 @@ class EloquentRequestContractRepository implements RequestContract
         return $oResult;
 
     }
+    public function getChangeLeverageRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
+    {
+
+        $oResult = new  ChangeLeverage();
+
+        if (isset($aFilters['login']) && !empty($aFilters['login'])) {
+            $oResult = $oResult->where('login', 'like', '%' . $aFilters['login'] . '%');
+        }
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+
+        }
+
+        return $oResult;
+
+    }
+
+    public function getChangePasswordRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
+    {
+
+        $oResult = new  ChangePassword();
+
+        if (isset($aFilters['login']) && !empty($aFilters['login'])) {
+            $oResult = $oResult->where('login', 'like', '%' . $aFilters['login'] . '%');
+        }
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+
+        }
+
+        return $oResult;
+
+    }
+
 
     public function getInternalTransferById($logId)
     {

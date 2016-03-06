@@ -16,7 +16,8 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'request', 'nam
 		'getIntenalTransferEdit'=>'admin.request.intenalTransferEdit',
 		'getWithDrawalEdit'=>'admin.request.withDrawalEdit',
 		'getWithDrawalList'=>'admin.request.withDrawal',
-
+		'getChangeLeverageRequestList'=>'admin.request.changeLeverage',
+		'getChangePasswordRequestList'=>'admin.request.changePassword'
 
 	]);
 });

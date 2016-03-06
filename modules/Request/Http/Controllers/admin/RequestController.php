@@ -71,6 +71,102 @@ class RequestController extends Controller
         return Redirect::route('admin.request.internalTransfer')->withErrors($forwordResult);
     }
 
+
+    public function getChangeLeverageRequestList(Request $oRequest)
+    {
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+
+        /* TODO[moaid]  translate this array in language file then in the .blade.php file insert trans() method */
+        $aRequestStatus=config('request.requestStatus');
+
+        $oResults = null;
+
+
+        if ($oRequest->has('search')) {
+
+            $aFilterParams['login'] = $oRequest->login;
+
+            $oResults = $this->RequestLog->getChangeLeverageRequestByFilters($aFilterParams, false, $sOrder, $sSort);
+
+
+        }
+
+
+        return view('request::admin/changeLeverageRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus);
+    }
+
+
+    public function getForwordChangeLeverageRequest(Request $oRequest)
+    {
+        $logId = $oRequest->logId;
+
+
+        $requestInternalTransfer = RequestChangeLeverage::find($logId);
+
+        $apiController = new ApiController();
+        $forwordResult = $apiController->adminForwordChangeLeverage(
+            $logId,
+            $requestInternalTransfer->login,
+            $requestInternalTransfer->leverage,
+            $requestInternalTransfer->comment,
+            $requestInternalTransfer->reason,
+            $requestInternalTransfer->status);
+
+
+        /* TODO with success */
+
+        return Redirect::route('admin.request.changeLeverage')->withErrors($forwordResult);
+    }
+
+
+    public function getChangePasswordRequestList(Request $oRequest)
+    {
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+
+        /* TODO[moaid]  translate this array in language file then in the .blade.php file insert trans() method */
+        $aRequestStatus=config('request.requestStatus');
+
+        $oResults = null;
+
+
+        if ($oRequest->has('search')) {
+
+            $aFilterParams['login'] = $oRequest->login;
+
+            $oResults = $this->RequestLog->getChangePasswordRequestByFilters($aFilterParams, false, $sOrder, $sSort);
+
+
+        }
+
+
+        return view('request::admin/changePasswordRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus);
+    }
+
+
+    public function getForwordChangePasswordRequest(Request $oRequest)
+    {
+        $logId = $oRequest->logId;
+
+
+        $requestInternalTransfer = RequestChangePassword::find($logId);
+
+        $apiController = new ApiController();
+        $forwordResult = $apiController->adminForwordChangeLeverage(
+            $logId,
+            $requestInternalTransfer->login,
+            $requestInternalTransfer->newPassword,
+            $requestInternalTransfer->comment,
+            $requestInternalTransfer->reason,
+            $requestInternalTransfer->status);
+
+
+        /* TODO with success */
+
+        return Redirect::route('admin.request.changePassword')->withErrors($forwordResult);
+    }
+
     public function getForwordWithDrawalRequest(Request $oRequest)
     {
         $logId = $oRequest->logId;
