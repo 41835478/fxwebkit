@@ -74,31 +74,110 @@ class ApiController extends Controller {
 
 	public function changeMt4Password($login,$newPassword,$oldPassword=null){
 
+		$requestLog =new RequestLog();
+		if(Config('accounts.directOrderToMt4Server')==false){
+			$requestLog->insertChangePasswordRequest($login,$newPassword);
+			/* TODO[moaid] please translate this message */
+			return trans('accounts::accounts.the_request');
+		}
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=2|LOGIN='.$login.'|'.$password.'NPASS='.$newPassword.'|TYPE=0|MANAGER=1';
 		$result=$this->sendApiMessage($message);
 
+
+
+
 		if($result =='OK' ){
+			/* TODO comment and reason should be from addmin not $result,$result  */
+			$requestLog->insertChangePasswordRequest($login,$newPassword,$result,$result,1);
+
 			$email=new Email();
 			$email->changeMt4Password(['email'=>config('fxweb.adminEmail'),'login'=>$login,'newPassword'=>$newPassword]);
+
+		}else{
+
+			$requestLog->insertChangePasswordRequest($login,$newPassword,$result,$result,2);
+		}
+		return $this->getApiResponseMessage($result);
+	}
+
+	public function adminForwordChangeMt4Password($login,$newPassword,$oldPassword=null){
+
+		$requestLog =new RequestLog();
+
+		/* TODO[Galya] when the admin forword the request allows there will be no password  please tell me if this logic is right */
+		$password="";
+
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=2|LOGIN='.$login.'|'.$password.'NPASS='.$newPassword.'|TYPE=0|MANAGER=1';
+		$result=$this->sendApiMessage($message);
+
+
+
+
+		if($result =='OK' ){
+			/* TODO comment and reason should be from addmin not $result,$result  */
+			$requestLog->updateChangePasswordRequest($login,$newPassword,$result,$result,1);
+
+		}else{
+
+			$requestLog->updateChangePasswordRequest($login,$newPassword,$result,$result,2);
 		}
 		return $this->getApiResponseMessage($result);
 	}
 
 	public function changeMt4Leverage($login,$leverage,$oldPassword=null){
 
+		$requestLog =new RequestLog();
+		if(Config('accounts.directOrderToMt4Server')==false){
+			$requestLog->insertChangeLeverageRequest($login,$leverage);
+			/* TODO[moaid] please translate this message */
+			return trans('accounts::accounts.the_request');
+		}
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=1|LOGIN='.$login.'|'.$password.'LEVERAGE='.$leverage.'|MANAGER=1';
 
 		$result=$this->sendApiMessage($message);
 
+
+
 		if($result =='OK' ){
+			/* TODO comment and reason should be from addmin not $result,$result  */
+			$requestLog->insertChangeLeverageRequest($login,$leverage,$result,$result,1);
+
 			$email=new Email();
 			$email->changeLeverage(['email'=>config('fxweb.adminEmail'),'login'=>$login,'leverage'=>$leverage]);
+
+		}else{
+
+			$requestLog->insertChangeLeverageRequest($login,$leverage,$result,$result,2);
 		}
-                return $this->getApiResponseMessage($result);
+		return $this->getApiResponseMessage($result);
+	}
+
+	public function adminForwordChangeMt4Leverage($login,$leverage,$oldPassword=null){
+
+		$requestLog =new RequestLog();
+
+		$password="";
+
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=1|LOGIN='.$login.'|'.$password.'LEVERAGE='.$leverage.'|MANAGER=1';
+
+		$result=$this->sendApiMessage($message);
+
+
+
+		if($result =='OK' ){
+			/* TODO comment and reason should be from addmin not $result,$result  */
+			$requestLog->updateChangeLeverageRequest($login,$leverage,$result,$result,1);
+
+
+		}else{
+
+			$requestLog->updateChangeLeverageRequest($login,$leverage,$result,$result,2);
+		}
+		return $this->getApiResponseMessage($result);
 	}
 
 	public function internalTransfer($login1,$login2,$amount,$oldPassword=null){
@@ -139,7 +218,7 @@ class ApiController extends Controller {
 		$requestLog =new RequestLog();
 		/* TODO check oldpassword and insert it in log InternalTransfer to re send it to this function */
 
-		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
+		$password="";
 
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=4|LOGIN='.$login1.'|'.$password.'TOACC='.$login2.'|AMOUNT='.$amount.'|MANAGER=1';
@@ -198,7 +277,7 @@ class ApiController extends Controller {
 		$requestLog =new RequestLog();
 		/* TODO check oldpassword and insert it in log InternalTransfer to re send it to this function */
 
-		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
+		$password="";
 
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=3|LOGIN='.$login1.'|'.$password.'|AMOUNT='.'-'.$amount.'|COMMENT=ONLINE'.'|MANAGER=1';

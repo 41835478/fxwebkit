@@ -26,10 +26,10 @@
                     <div id="collapseOne" class="panel-collapse in">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('ibportal::ibportal.agreemment') }}</label>
-                                        {!! Form::text('agreemment',$ibportalSetting['agreemment'],['class'=>'form-control']) !!}
+                                        {!! Form::textarea('agreemment',$ibportalSetting['agreemment'],['class'=>'form-control','id'=>'editor1']) !!}
                                     </div>
                                 </div>
                                 <!-- col-sm-6 -->
@@ -81,6 +81,7 @@
 @stop
 @section("script")
     @parent
+    <script src="/cms_assets/ckeditor/ckeditor.js"></script>
     <script>
         init.push(function () {
             var options = {
@@ -97,5 +98,10 @@
             $(this).valid();
         });
 
+        //CKEDITOR.replace( textarea );
+        CKEDITOR.replace('editor1', {
+            filebrowserBrowseUrl: " {{ asset('/cms/articles/file-browser') }}",
+            filebrowserUploadUrl: "{{ asset('/cms/articles/upload-image' ).'?_token='. csrf_token() }}"
+        });
     </script>
 @stop

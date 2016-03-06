@@ -4,6 +4,7 @@ use Pingpong\Modules\Routing\Controller;
 
 use Modules\Request\Entities\RequestInternalTransfer as InternalTransfer;
 use Modules\Request\Entities\RequestWithdrawal as Withdrawal;
+use Modules\Request\Entities\RequestChangeLeverage as ChangeLeverage;
 
 class RequestController extends Controller {
 
@@ -78,6 +79,71 @@ class RequestController extends Controller {
 
 		$log->login=$login;
 		$log->amount=$amount;
+		$log->status=$status;
+		$log->save();
+		return true;
+
+
+
+	}
+
+
+	public function insertChangeLeverageRequest($login,$leverage,$comment='',$reason='',$status=0){
+
+		$log= new ChangeLeverage();
+
+		$log->insert([
+			'login'=>$login,
+			'leverage'=>$leverage,
+			//	'comment'=>$comment,
+			//	'reason'=>$reason,
+			'status'=>$status
+		]);
+
+		return true;
+	}
+
+	public function updateChangeLeverageRequest($logId,$login,$leverage=0,$comment='',$reason='',$status=0){
+
+
+		//	$this->RequestLog->updateInternalTransferRequest($fromLogin,$toLogin,$amount,$comment,$reason,$status);
+		$log= ChangeLeverage::find($logId);
+
+
+		$log->login=$login;
+		$log->leverage=$leverage;
+		$log->status=$status;
+		$log->save();
+		return true;
+
+
+
+	}
+
+
+	public function insertChangePasswordRequest($login,$newPassword,$comment='',$reason='',$status=0){
+
+		$log= new ChangeLeverage();
+
+		$log->insert([
+			'login'=>$login,
+			'newPassword'=>$newPassword,
+			//	'comment'=>$comment,
+			//	'reason'=>$reason,
+			'status'=>$status
+		]);
+
+		return true;
+	}
+
+	public function updateChangePasswordRequest($logId,$login,$newPassword=0,$comment='',$reason='',$status=0){
+
+
+		$log= ChangeLeverage::find($logId);
+
+
+		$log->login=$login;
+		$log->newPassword=$newPassword;
 		$log->status=$status;
 		$log->save();
 		return true;
