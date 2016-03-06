@@ -147,4 +147,14 @@ return [
     'liveServerConfig'=>'Live Server Configuration',
     'demoServerConfig'=>'Demo Server Configuration',
     'adminInformation'=>'Admin Information',
+    'facebook'=>'API Facebook Settings',
+    'google'=>'API Google Settings',
+    'linkedin'=>'API Linkedin Settings',
+
+    'provider'=>'Provider',
+    'callback'=>'Callback',
+    'driver'=>'Driver',
+    'identifier'=>'Identifier',
+    'secret'=>'Secret',
+    'app_id'=>'Application Id',
 ];

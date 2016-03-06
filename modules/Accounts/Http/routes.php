@@ -35,5 +35,8 @@ Route::group(['middleware' => ['authenticate.client'], 'prefix' => 'accounts', '
         'getMt4Leverage' => 'clients.accounts.mt4Leverage',
         'getMt4ChangePassword' => 'clients.accounts.mt4ChangePassword',
         'getMt4InternalTransfer' => 'clients.accounts.mt4InternalTransfer',
+        'getAddMt4User' => 'client.accounts.addMt4User',
+        'getMt4DemoAccount' => 'client.accounts.mt4DemoAccount',
+        'getMt4LiveAccount' => 'client.accounts.mt4LiveAccount',
     ]);
 });

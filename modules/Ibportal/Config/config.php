@@ -53,7 +53,7 @@ return [
             'icon' => 'fa-briefcase',
         ], [
             'route' => 'client.ibportal.agentUser',
-            'title' => 'agent',
+            'title' => 'agent_users',
             'icon' => 'fa fa-user',
         ],
 

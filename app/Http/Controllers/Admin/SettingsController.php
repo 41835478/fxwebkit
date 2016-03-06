@@ -370,6 +370,24 @@ class SettingsController extends Controller
             'mt4CheckDemoPort' => $oRequest->mt4CheckDemoPort,
             'adminEmail' => $oRequest->adminEmail,
             'demoServerName' => $oRequest->demoServerName,
+            'facebookLoginCallback'=>$oRequest->facebookLoginCallback,
+            'facebookLoginProvider'=>$oRequest->facebookLoginProvider,
+            'facebookLoginDriver'=>$oRequest->facebookLoginDriver,
+            'facebookLoginIdentifier'=>$oRequest->facebookLoginIdentifier,
+            'facebookLoginApp_id'=>$oRequest->facebookLoginApp_id,
+            'facebookLoginSecret'=>$oRequest->facebookLoginSecret,
+
+            'googleCallback'=>$oRequest->googleCallback,
+            'googleProvider'=>$oRequest->googleProvider,
+            'googleDriver'=>$oRequest->googleDriver,
+            'googleIdentifier'=>$oRequest->googleIdentifier,
+            'googleSecret'=>$oRequest->googleSecret,
+
+            'linkedinCallback'=>$oRequest->linkedinCallback,
+            'linkedinProvider'=>$oRequest->linkedinProvider,
+            'linkedinDriver'=>$oRequest->linkedinDriver,
+            'linkedinIdentifier'=>$oRequest->linkedinIdentifier,
+            'linkedinSecret'=>$oRequest->linkedinSecret,
 
         ];
 

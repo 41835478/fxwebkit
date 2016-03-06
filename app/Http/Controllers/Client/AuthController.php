@@ -319,15 +319,16 @@ class AuthController extends Controller
 
     public function getFacebookLogin()
     {
-        Social::addConnection('facebook', [
-                'driver' => 'Facebook',
-                'identifier' => '1647542828861678',
-                'app_id' => '1647542828861678',
-                'secret' => '98ed8a842470ba1eed8ee1902bfec749',
+
+        Social::addConnection(Config('fxweb.facebookLoginProvider'), [
+                'driver' => Config('fxweb.facebookLoginDriver'),
+                'identifier' => Config('fxweb.facebookLoginIdentifier'),
+                'app_id' => Config('fxweb.facebookLoginApp_id'),
+                'secret' => Config('fxweb.facebookLoginSecret'),
                 'scopes' => ['email'],
             ]
         );
-        $callback = 'http://localhost:8000/client/facebook-callback-login';
+        $callback =Config('fxweb.facebookLoginCallback');
         $url = Social::getAuthorizationUrl('facebook', $callback);
         header('Location: ' . $url);
         exit;
@@ -336,12 +337,12 @@ class AuthController extends Controller
     public function getFacebookLoginCallback(\Illuminate\Support\Facades\Request $oRequest)
     {
 
-        $callback = 'http://localhost:8000/client/facebook-callback-login';
-        Social::addConnection('facebook', [
-                'driver' => 'Facebook',
-                'identifier' => '1647542828861678',
-                'app_id' => '1647542828861678',
-                'secret' => '98ed8a842470ba1eed8ee1902bfec749',
+        $callback =Config('fxweb.facebookLoginCallback');
+        Social::addConnection(Config('fxweb.facebookLoginProvider'), [
+                'driver' => Config('fxweb.facebookLoginDriver'),
+                'identifier' => Config('fxweb.facebookLoginIdentifier'),
+                'app_id' => Config('fxweb.facebookLoginApp_id'),
+                'secret' => Config('fxweb.facebookLoginSecret'),
                 'scopes' => ['email'],
             ]
         );
@@ -386,15 +387,15 @@ class AuthController extends Controller
     public function getGoogleLogin()
     {
 
-        Social::addConnection('google', [
-                'driver' => 'google',
-                'identifier' => '153369653879-grpme2quc1398mjf57q8gl4s7g48o8kg.apps.googleusercontent.com',
-                'secret' => 'M6gqHVqK-t3CC55g3aH63zGM',
+        Social::addConnection(Config('fxweb.googleProvider'), [
+                'driver' => Config('fxweb.googleDriver'),
+                'identifier' => Config('fxweb.googleIdentifier'),
+                'secret' => Config('fxweb.googleSecret'),
                 'scopes' => ['email'],
             ]
         );
 
-        $callback = 'http://localhost:8000/client/google-callback-login';
+        $callback =Config('fxweb.googleCallback');
         $url = Social::getAuthorizationUrl('google', $callback);
 
 
@@ -405,11 +406,11 @@ class AuthController extends Controller
     public function getGoogleLoginCallback(\Illuminate\Support\Facades\Request $oRequest)
     {
 
-        $callback = 'http://localhost:8000/client/google-callback-login';
-        Social::addConnection('google', [
-                'driver' => 'google',
-                'identifier' => '153369653879-grpme2quc1398mjf57q8gl4s7g48o8kg.apps.googleusercontent.com',
-                'secret' => 'M6gqHVqK-t3CC55g3aH63zGM',
+        $callback = Config('fxweb.googleCallback');
+        Social::addConnection(Config('fxweb.googleProvider'), [
+                'driver' => Config('fxweb.googleDriver'),
+                'identifier' => Config('fxweb.googleIdentifier'),
+                'secret' => Config('fxweb.googleSecret'),
                 'scopes' => ['email'],
             ]
         );
@@ -455,14 +456,14 @@ class AuthController extends Controller
     {
 
 
-        Social::addConnection('linkedin', [
-                'driver' => 'linkedin',
-                'identifier' => '779y8ism8ovwns',
-                'secret' => 'l9paUw3eQJgtYRRV',
+        Social::addConnection(Config('fxweb.linkedinProvider'), [
+                'driver' => Config('fxweb.linkedinDriver'),
+                'identifier' =>Config('fxweb.linkedinIdentifier'),
+                'secret' => Config('fxweb.linkedinSecret'),
             ]
         );
 
-        $callback = 'http://localhost:8000/client/linkedin-callback-login';
+        $callback = Config('fxweb.linkedinCallback');
         $url = Social::getAuthorizationUrl('linkedin', $callback);
         header('Location: ' . $url);
         exit;
@@ -471,13 +472,13 @@ class AuthController extends Controller
     public function getLinkedinLoginCallback(\Illuminate\Support\Facades\Request $oRequest)
     {
 
-        $callback = 'http://localhost:8000/client/linkedin-callback-login';
+        $callback = Config('fxweb.linkedinCallback');
 
 
-        Social::addConnection('linkedin', [
-                'driver' => 'linkedin',
-                'identifier' => '779y8ism8ovwns',
-                'secret' => 'l9paUw3eQJgtYRRV',
+        Social::addConnection(Config('fxweb.linkedinProvider'), [
+                'driver' => Config('fxweb.linkedinDriver'),
+                'identifier' =>Config('fxweb.linkedinIdentifier'),
+                'secret' => Config('fxweb.linkedinSecret'),
             ]
         );
         try {

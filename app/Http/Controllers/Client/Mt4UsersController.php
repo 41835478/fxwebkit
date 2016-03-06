@@ -30,7 +30,7 @@ class Mt4UsersController extends Controller
     {
         $this->oUsers = $oUsers;
     }
-
+/*
     public function getAddMt4User(Request $oRequest)
     {
 
@@ -243,5 +243,6 @@ class Mt4UsersController extends Controller
         return Redirect::route('client.mt4LiveAccount')->withErrors($result);
 
     }
+*/
 
 }

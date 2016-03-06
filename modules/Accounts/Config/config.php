@@ -56,7 +56,7 @@ return [
     'client_menu' => [
 
         [
-            'route' => 'client.addMt4User',
+            'route' => 'client.accounts.addMt4User',
             'title' => 'addMt4User',
             'icon' => 'fa fa-plus',
         ],

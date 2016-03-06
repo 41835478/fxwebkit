@@ -172,6 +172,19 @@ return [
     'directOrderToMt4Server'=>'Direct Order To Mt4 Server',
     'the_request'=>'the request has been sent to admin please wait his answer',
 
+    'leverage'=>'Leverage',
+    'group'=>'Group',
+    'submit'=>'Submit',
+    'mt4LiveAccount'=>'Mt4 Live Account',
+    'mt4DemoAccount'=>'Mt4 Demo Account',
+
+    'assign_existing_mt4' => 'Assign Existing MT4',
+    'create_new_mt4' => 'Create New MT4',
+    'investor' => 'Investor',
+    'deposit' => 'Deposit',
+    'assign' => 'Assign',
+    'fillFullDetailsToAllowLive'=>'Fill Full Details To Allow Live',
+
 
 
 
