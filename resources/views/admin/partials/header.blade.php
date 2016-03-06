@@ -6,7 +6,7 @@
 
     <div class="navbar-inner">
         <div class="navbar-header">
-            <a href="index.html" class="navbar-brand">
+            <a href="/" class="navbar-brand">
                 <div>
                     {!! HTML::image('assets/img/logo.png') !!}
                 </div>

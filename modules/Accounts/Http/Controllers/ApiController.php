@@ -231,6 +231,7 @@ class ApiController extends Controller {
 
         
         public function mt4UserFullDetails($mt4_user_details,$oldPassword=null){
+
             
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
@@ -239,6 +240,7 @@ class ApiController extends Controller {
                         .'|PASSWORD='.$mt4_user_details['password'].'|INVESTOR='.$mt4_user_details['investor'].'|EMAIL='.$mt4_user_details['email'].'|COUNTRY='.$mt4_user_details['country']
                         .'|CITY='.$mt4_user_details['city'].'|ADDRESS='.$mt4_user_details['address'].'|COMMENT='.'|PHONE='.$mt4_user_details['phone'].'|ZIPCODE='.$mt4_user_details['phone']
                         .'|LEVERAGE='.$mt4_user_details['array_leverage'].'|SEND_REPORTS=1'.'|DEPOSIT='.$mt4_user_details['array_deposit'];
+
 
                 return $this->getApiResponseMessage($this->sendApiMessage($message));
 	}

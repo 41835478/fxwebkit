@@ -3,7 +3,7 @@
 @section('content')
 <div class="signup-container">
     <div class="signup-header">
-        <a href="" class="logo">
+        <a href="/" class="logo">
             {!! HTML::image('assets/img/logo.png', '', ['style' => 'margin-top: -5px']) !!}&nbsp;
             {{ app_name() }}
         </a>
@@ -36,6 +36,11 @@
 
         <div class="form-group w-icon">
             {!! Form::password('password',['class'=>'form-control input-lg','placeholder'=>Lang::get('user.password')]) !!}
+            <span class="fa fa-lock signup-form-icon"></span>
+        </div>
+
+        <div class="form-group w-icon">
+            {!! Form::password('password_confirmation',['class'=>'form-control input-lg','placeholder'=>Lang::get('user.confirmPassword')]) !!}
             <span class="fa fa-lock signup-form-icon"></span>
         </div>
 
@@ -97,7 +102,7 @@
         <div class="form-group" style="margin-top: 20px;margin-bottom: 20px;">
             <label class="checkbox-inline">
                 {!! Form::checkbox('agreement', 1, false, ['class'=>'px']) !!}
-                <span class="lbl">{{ Lang::get('user.IAgreeWithThe') }} <a href="#" data-toggle="modal" data-target="#terms-and-conditions-modal">{{ Lang::get('user.TermsAndConditions') }}</a></span>
+                <span class="lbl">{{ Lang::get('user.IAgreeWithThe') }}</span>
             </label>
         </div>
 
@@ -108,14 +113,11 @@
         </div>
         </form>
         <div class="signup-with">
-            <a href="{{ route('client.auth.register') }}" class="signup-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">
-                {{ Lang::get('user.SignUpWith') }} <span>{{ Lang::get('user.Facebook') }}</span>
+            <a href="{{ route('client.auth.login') }}" class="signup-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">
+                <span>{{ Lang::get('user.AlreadyHaveAnAccount') }}</span>    {{ trans('user.PageTitleSignIn') }}
             </a>
         </div>
 
-    </div>
-    <div class="have-account">
-        {{ Lang::get('user.AlreadyHaveAnAccount') }}? <a href="{{ route('client.auth.login') }}">Sign In</a>
     </div>
 
     <div id="terms-and-conditions-modal" class="modal fade modal-blur" tabindex="-1" role="dialog" style="display: none;">

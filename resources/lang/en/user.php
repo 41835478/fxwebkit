@@ -28,7 +28,7 @@ return [
     'FirstName' => 'First Name',
     'LastName' => 'Last Name',
     'TermsAndConditions' => 'Terms and Conditions',
-    'IAgreeWithThe' => 'I agree with the',
+    'IAgreeWithThe' => 'I agree with the Terms and Conditions',
     'SignUpWith' => 'Sign up with',
     'AlreadyHaveAnAccount' => 'Already have an account',
     'SignUp' => 'Sign Up',

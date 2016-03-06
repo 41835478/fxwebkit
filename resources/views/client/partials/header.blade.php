@@ -6,7 +6,7 @@
 
     <div class="navbar-inner">
         <div class="navbar-header">
-            <a href="index.html" class="navbar-brand">
+            <a href="/" class="navbar-brand">
                 <div>
                     {!! HTML::image('assets/img/logo.png') !!}
                 </div>
@@ -42,12 +42,7 @@
                                         {{ Lang::get('general.Profile') }}
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="{{ route('clinet.editProfile') }}">
-                                        <i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;
-                                        {{ Lang::get('general.Settings') }}
-                                    </a>
-                                </li>
+
                                 <li class="divider"></li>
                                 <li>
                                     <a href="{{ route('client.auth.logout') }}">
