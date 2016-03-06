@@ -310,7 +310,7 @@ class ApiController extends Controller {
 
         
         public function mt4UserFullDetails($mt4_user_details,$oldPassword=null){
-
+dd($mt4_user_details);
             
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
