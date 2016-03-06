@@ -24,8 +24,17 @@ return [
 			'route' => 'admin.request.withDrawal',
 			'title' => 'withDrawal',
 			'icon' => 'fa-briefcase',
-		]
-
+		],
+		[
+			'route' => 'admin.request.changeLeverage',
+			'title' => 'changeLeverage',
+			'icon' => 'fa-briefcase',
+		],
+		[
+		'route' => 'admin.request.changePassword',
+		'title' => 'changePassword',
+		'icon' => 'fa-briefcase',
+	]
 	],
 	'client_menu' => [
 
