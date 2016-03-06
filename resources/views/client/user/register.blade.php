@@ -92,13 +92,19 @@
                     </label>
                 </div>
             </div>
-        
+
 
         <div class="form-group" style="margin-top: 20px;margin-bottom: 20px;">
             <label class="checkbox-inline">
                 {!! Form::checkbox('agreement', 1, false, ['class'=>'px']) !!}
                 <span class="lbl">{{ Lang::get('user.IAgreeWithThe') }} <a href="#" data-toggle="modal" data-target="#terms-and-conditions-modal">{{ Lang::get('user.TermsAndConditions') }}</a></span>
             </label>
+        </div>
+
+        <div class="form-group" style="margin-top: 20px;margin-bottom: 20px;">
+            <label class="checkbox-inline">
+                {!! Recaptcha::render() !!}
+              </label>
         </div>
 
         <div class="form-actions">

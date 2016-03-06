@@ -32,7 +32,7 @@
         "Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider",
         "Maatwebsite\\Excel\\ExcelServiceProvider",
         "Pingpong\\Modules\\ModulesServiceProvider",
-        "Cartalyst\\Sentinel\\Addons\\Social\\Laravel\\SocialServiceProvider"
+        "Greggilbert\\Recaptcha\\RecaptchaServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -54,7 +54,8 @@
         "Fxweb\\Providers\\FxWebKitServiceProvider",
         "Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider",
         "Maatwebsite\\Excel\\ExcelServiceProvider",
-        "Pingpong\\Modules\\ModulesServiceProvider"
+        "Pingpong\\Modules\\ModulesServiceProvider",
+        "Greggilbert\\Recaptcha\\RecaptchaServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
@@ -139,11 +140,7 @@
         "translator": "Illuminate\\Translation\\TranslationServiceProvider",
         "translation.loader": "Illuminate\\Translation\\TranslationServiceProvider",
         "html": "Illuminate\\Html\\HtmlServiceProvider",
-        "form": "Illuminate\\Html\\HtmlServiceProvider",
-        "sentinel.addons.social.repository": "Cartalyst\\Sentinel\\Addons\\Social\\Laravel\\SocialServiceProvider",
-        "sentinel.addons.social.request": "Cartalyst\\Sentinel\\Addons\\Social\\Laravel\\SocialServiceProvider",
-        "sentinel.addons.social.session": "Cartalyst\\Sentinel\\Addons\\Social\\Laravel\\SocialServiceProvider",
-        "sentinel.addons.social": "Cartalyst\\Sentinel\\Addons\\Social\\Laravel\\SocialServiceProvider"
+        "form": "Illuminate\\Html\\HtmlServiceProvider"
     },
     "when": {
         "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider": [],
@@ -157,7 +154,6 @@
         "Illuminate\\Redis\\RedisServiceProvider": [],
         "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider": [],
         "Illuminate\\Translation\\TranslationServiceProvider": [],
-        "Illuminate\\Html\\HtmlServiceProvider": [],
-        "Cartalyst\\Sentinel\\Addons\\Social\\Laravel\\SocialServiceProvider": []
+        "Illuminate\\Html\\HtmlServiceProvider": []
     }
 }

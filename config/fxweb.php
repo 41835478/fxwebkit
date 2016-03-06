@@ -28,6 +28,38 @@ return [
 
 
     'adminEmail'=>'taylorsuccessor@gmail.com',
+
+    'facebookLoginCallback'=>'http://localhost:8000/client/facebook-callback-login',
+    'facebookLoginProvider'=>'facebook',
+    'facebookLoginDriver' => 'Facebook',
+    'facebookLoginIdentifier' => '1647542828861678',
+    'facebookLoginApp_id' => '1647542828861678',
+    'facebookLoginSecret' => '98ed8a842470ba1eed8ee1902bfec749',
+    'facebookLoginScopes' => ['email'],
+
+
+
+
+
+
+
+    'googleProvider'=>'google',
+    'googleDriver' => 'google',
+    'googleIdentifier' => '153369653879-grpme2quc1398mjf57q8gl4s7g48o8kg.apps.googleusercontent.com',
+    'googleSecret' => 'M6gqHVqK-t3CC55g3aH63zGM',
+    'googleScopes' => ['email'],
+    'googleCallback' => 'http://localhost:8000/client/google-callback-login',
+
+
+
+
+    'linkedinProvider'=>'linkedin',
+    'linkedinDriver' => 'linkedin',
+    'linkedinIdentifier' => '779y8ism8ovwns',
+    'linkedinSecret' => 'l9paUw3eQJgtYRRV',
+
+
+    'linkedinCallback' => 'http://localhost:8000/client/linkedin-callback-login',
     'Group'=>[
 ],
     'GroupLive'=>[

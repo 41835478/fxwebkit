@@ -14,6 +14,7 @@ use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
+use \Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
@@ -68,8 +69,14 @@ class DashboardController extends Controller
         $login = ($oRequest->has('login')) ? $oRequest->login : $firstLogin;
 
         list($horizontal_line_numbers, $growth_array, $averages_array, $statistics, $symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->oMt4Trade->getClinetGrowthChart($login);
-        $denyLiveAccount=($oUser->hasAnyAccess(['user.denyLiveAccount']) )? true:false;
 
+        if($oUser->hasAnyAccess(['user.denyLiveAccount']) ){
+            Session::flash('flash_info',trans('user.fillFullDetailsToAllowLive'));
+        }
+
+
+
+       // dd( \Illuminate\Support\Facades\Session::get('flash_success'));
         return view('client.dashboard')
             ->with('horizontal_line_numbers', $horizontal_line_numbers)
             ->with('growth_array', $growth_array)
@@ -80,8 +87,8 @@ class DashboardController extends Controller
             ->with('sell_buy_horizontal_line_numbers', $sell_buy_horizontal_line_numbers)
             ->with('symbols_pie_array', $symbols_pie_array)
             ->with('sell_array', $sell_array)
-            ->with('buy_array', $buy_array)
-            ->with('denyLiveAccount',$denyLiveAccount);
+            ->with('buy_array', $buy_array) ;
+
 
     }
 
