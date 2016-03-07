@@ -10,21 +10,21 @@ class ApiController extends Controller {
 	private $apiMasterPassword;
 	public $mt4Host;
 	public $mt4Port;
-        private $returnMessages=[
-	'NOK01'=>'Invalid Data',
-	'NOK02'=>'Internal Error',
-	'NOK03'=>'General Error',
-	'NOK04'=>'No Change',
-	'NOK05'=>'Invalid Login',
-	'NOK06'=>'No Enough Money',
-	'NOK07'=>'Client is not related to this agent',
-	'NOK08'=>'Client Credit is less than credit out amount',
-	'NOK09'=>'Simple password, should contain numbers and letters',
-        'NOK10'=>'Exsiting User',
-        'NOK11'=>'Faild To create account',
-	'OK'=>'Success',
-	'error'=>'Internal Error,Please try again later'
-];
+	private $returnMessages=[
+		'NOK01'=>'Invalid Data',
+		'NOK02'=>'Internal Error',
+		'NOK03'=>'General Error',
+		'NOK04'=>'No Change',
+		'NOK05'=>'Invalid Login',
+		'NOK06'=>'No Enough Money',
+		'NOK07'=>'Client is not related to this agent',
+		'NOK08'=>'Client Credit is less than credit out amount',
+		'NOK09'=>'Simple password, should contain numbers and letters',
+		'NOK10'=>'Exsiting User',
+		'NOK11'=>'Faild To create account',
+		'OK'=>'Success',
+		'error'=>'Internal Error,Please try again later'
+	];
 	public function __construct()
 	{
 		$this->apiReqiredConfirmMt4Password=Config('accounts.apiReqiredConfirmMt4Password');
@@ -34,7 +34,7 @@ class ApiController extends Controller {
 	}
 
 	private function sendApiMessage($message){
-	//	echo('<div style="position:fixed; bottom:0px; left:0px; background:#ccc; color:#fff; width:100%; text-align:right; padding:10px;">'.$message.'</div>');
+		//	echo('<div style="position:fixed; bottom:0px; left:0px; background:#ccc; color:#fff; width:100%; text-align:right; padding:10px;">'.$message.'</div>');
 
 
 
@@ -297,36 +297,36 @@ class ApiController extends Controller {
 
 
 	}
-        
-        public function operation($login,$amount,$mode,$oldPassword=null){
+
+	public function operation($login,$amount,$mode,$oldPassword=null){
 
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE='.$mode.'|'.'LOGIN='.$login.'|'.$password.'AMOUNT='.$amount.'|COMMENT=ONLINE';
 
 
-                return $this->getApiResponseMessage($this->sendApiMessage($message));
+		return $this->getApiResponseMessage($this->sendApiMessage($message));
 	}
 
-        
-        public function mt4UserFullDetails($mt4_user_details,$oldPassword=null){
 
-            
+	public function mt4UserFullDetails($mt4_user_details,$oldPassword=null){
+
+
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=6'.'|'.'GROUP='.$mt4_user_details['array_group'].'|NAME='.$mt4_user_details['first_name'].' '.$mt4_user_details['last_name']
-                        .'|PASSWORD='.$mt4_user_details['password'].'|INVESTOR='.$mt4_user_details['investor'].'|EMAIL='.$mt4_user_details['email'].'|COUNTRY='.$mt4_user_details['country']
-                        .'|CITY='.$mt4_user_details['city'].'|ADDRESS='.$mt4_user_details['address'].'|COMMENT='.'|PHONE='.$mt4_user_details['phone'].'|ZIPCODE='.$mt4_user_details['phone']
-                        .'|LEVERAGE='.$mt4_user_details['array_leverage'].'|SEND_REPORTS=1'.'|DEPOSIT='.$mt4_user_details['array_deposit'];
+			.'|PASSWORD='.$mt4_user_details['password'].'|INVESTOR='.$mt4_user_details['investor'].'|EMAIL='.$mt4_user_details['email'].'|COUNTRY='.$mt4_user_details['country']
+			.'|CITY='.$mt4_user_details['city'].'|ADDRESS='.$mt4_user_details['address'].'|COMMENT='.'|PHONE='.$mt4_user_details['phone'].'|ZIPCODE='.$mt4_user_details['phone']
+			.'|LEVERAGE='.$mt4_user_details['array_leverage'].'|SEND_REPORTS=1'.'|DEPOSIT='.$mt4_user_details['array_deposit'];
 
 
-                return $this->getApiResponseMessage($this->sendApiMessage($message));
+		return $this->getApiResponseMessage($this->sendApiMessage($message));
 	}
-        
+
 	private function getApiResponseMessage($result){
 
-           
+
 		return (isset($this->returnMessages[$result]))? $this->returnMessages[$result]:$this->returnMessages['error'];
 	}
 

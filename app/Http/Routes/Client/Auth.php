@@ -18,10 +18,12 @@ Route::group(['middleware' => ['authorize.client']], function () {
  * Unprotected Client Routes
  */
 Route::get('login', [
+    'before'=>'changeLanguage',
     'as' => 'client.auth.login',
     'uses' => 'AuthController@getLogin'
 ]);
 Route::post('login', [
+    'before'=>'changeLanguage',
     'uses' => 'AuthController@postLogin'
 ]);
 
@@ -31,10 +33,27 @@ Route::get('logout', [
 ]);
 
 Route::get('register', [
+    'before'=>'changeLanguage',
     'as' => 'client.auth.register',
     'uses' => 'AuthController@getRegister'
 ]);
+
+Route::Filter('changeLanguage',function($route, $oRequest){
+    if ($oRequest->has('locale')) {
+        Session::put('locale',$oRequest['locale']);
+        return Redirect::back();
+    } else if (!Session::has('locale')) {
+        Session::put('locale', 'en');
+    }
+
+
+    App::setLocale(Session::get('locale'));
+
+
+});
+
 Route::post('register', [
+    'before'=>'changeLanguage',
     'uses' => 'AuthController@postRegister'
 ]);
 

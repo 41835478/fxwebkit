@@ -16,10 +16,23 @@
 				<li><i class="fa fa-file-text-o signin-icon"></i> {{ Lang::get('user.Feature2') }}</li>
 				<li><i class="fa fa-outdent signin-icon"></i> {{ Lang::get('user.Feature3') }}</li>
 				<li><i class="fa fa-heart signin-icon"></i> {{ Lang::get('user.Feature4') }}</li>
+
+
 			</ul>
+
+
+
+
+
 		</div>
 
 		<div class="signin-form">
+
+			@foreach(config('app.language')  as $locale=>$name)
+				<a href="?locale={{$locale}}">  {{ $name }}  </a>|
+			@endforeach
+
+			<br><hr>
 			@include('client.partials.messages')
 			{!! Form::open(['id'=>'signin-form_id']) !!}
 				<div class="signin-text">
@@ -34,8 +47,11 @@
 					<span class="fa fa-lock signin-form-icon"></span>
 				</div>
 				<div class="form-actions">
+
 					{!! Form::submit(Lang::get('user.SignIn'), ['class'=>'signin-btn bg-primary']) !!}
 					<a href="{{ route('client.auth.recover') }}" class="forgot-password">{{ Lang::get('user.ForgotYourPassword') }}?</a>
+
+
 				</div>
 			{!! Form::close() !!}
 

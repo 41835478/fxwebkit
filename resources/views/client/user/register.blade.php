@@ -16,7 +16,9 @@
         {!! Form::open(['id'=>'signup-form_id']) !!}
         <div class="signup-text">
             <span>{{ Lang::get('user.SignUpText') }}</span>
+
         </div>
+
 
         <div class="form-group w-icon">
             {!! Form::text('first_name', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.FirstName')]) !!}
@@ -118,11 +120,30 @@
             {!! Form::submit(Lang::get('user.SignUp'), ['class'=>'signup-btn bg-primary']) !!}
         </div>
         </form>
+
+
+
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>
+                Language</a>
+            <ul class="dropdown-menu">
+                @foreach(config('app.language')  as $locale=>$name)
+                    <li><a href="?locale={{$locale}}">{{ $name }}</a></li>
+                @endforeach
+
+            </ul>
+        </div>
+
+
+
         <div class="signup-with">
             <a href="{{ route('client.auth.login') }}" class="signup-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">
                 <span>{{ Lang::get('user.AlreadyHaveAnAccount') }}</span>    {{ trans('user.PageTitleSignIn') }}
             </a>
         </div>
+
+
+
 
     </div>
 
