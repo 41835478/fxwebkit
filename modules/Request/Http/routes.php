@@ -19,7 +19,11 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'request', 'nam
 		'getChangeLeverageRequestList'=>'admin.request.changeLeverage',
 		'getChangePasswordRequestList'=>'admin.request.changePassword',
 		'getAddAccountList'=>'admin.request.addAccount',
-		'getForwordAddAccountRequest'=>'admin.request.forwordAddAccount'
+		'getForwordAddAccountRequest'=>'admin.request.forwordAddAccount',
+
+		'getAssignAccountRequestList'=>'admin.request.assignAccount',
+		'getForwordAssignAccountRequest'=>'admin.request.forwordAssignAccount',
+
 
 	]);
 });

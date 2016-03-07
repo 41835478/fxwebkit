@@ -329,25 +329,26 @@ class ClientAccountsController extends Controller
     public function postAddMt4User(Request $oRequest)
     {
 
-        $fp = @fsockopen(config('fxweb.mt4CheckHost'), config('fxweb.mt4CheckPort'));
-        $result = 'Invalid';
-        if ($fp) {
-            fwrite($fp, "WWAPUSER-" . $oRequest['login'] . "|" . $oRequest['password'] . "\nQUIT\n");
-            $result = fgets($fp, 1024);
-            fclose($fp);
-        }
-        if (preg_match('#^Balance: #', $result) === 1) {
-            $asign_result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$oRequest['login']]);
-            return Redirect::route('clients.accounts.Mt4UsersList');
-        }
 
 
         $denyLiveAccount=(current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount']) )? true:false;
 
 
-        return view('accounts::client.addMt4User')
-            ->with('userInfo', ['login' => $oRequest['login'], 'password' => $oRequest['password']])
-            ->withErrors('Error, Please try again later!')->with('denyLiveAccount',$denyLiveAccount);
+
+
+        $oApiController = new ApiController();
+
+
+        $result = $oApiController->AssignMt4User($oRequest['login'],$oRequest['password']);
+        if($result){
+            $asign_result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$oRequest['login']]);
+            return Redirect::route('clients.accounts.Mt4UsersList') ->withErrors('The User has been assigned successfully');
+
+        }else{
+            return view('accounts::client.addMt4User')
+                ->with('userInfo', ['login' => $oRequest['login'], 'password' => $oRequest['password']])
+                ->withErrors($result)->with('denyLiveAccount',$denyLiveAccount);
+        }
     }
 
 

@@ -84,6 +84,8 @@
             @include('admin.partials.messages')
 
 
+
+                    <div id="total_accountant_chart"></div>
                     <!-- ________________________________tables______________-->
             <div class="table-light">
                 <div class="table-header">

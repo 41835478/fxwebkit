@@ -381,11 +381,69 @@ class ApiController extends Controller {
 	}
 
 
-	private function getApiResponseMessage($result){
 
 
-		return (isset($this->returnMessages[$result]))? $this->returnMessages[$result]:$this->returnMessages['error'];
+
+//	private function assignMt4User($result){
+//
+//
+//		return (isset($this->returnMessages[$result]))? $this->returnMessages[$result]:$this->returnMessages['error'];
+//	}
+
+
+	public function AssignAccount($login,$password){
+
+		$requestLog =new RequestLog();
+		if(Config('accounts.directOrderToMt4Server')==false){
+			$requestLog->insertAssignAccountRequest($login,$password);
+			/* TODO[moaid] please translate this message */
+			return trans('accounts::accounts.the_request');
+		}
+
+
+		$message="WWAPUSER-" . $login. "|" . $password;
+
+		$result=$this->sendApiMessage($message);
+
+
+
+		if(preg_match('#^Balance: #', $result) === 1){
+			/* TODO comment and reason should be from addmin not $result,$result  */
+			$requestLog->insertAssignAccountRequest($login,$password,$result,$result,1);
+
+			/* TODO[moaid]  please translate messages in this page every where */
+			return true;
+		}else{
+
+			$requestLog->insertAssignAccountRequest($login,$password,$result,$result,2);
+
+			/* TODO[moaid]  please translate messages in this page every where */
+			return 'Error, Please try again later.';
+		}
+
 	}
 
+	public function adminForwordAssignAccount($logId,$login,$password){
+
+		$requestLog =new RequestLog();
+
+
+		$message="WWAPUSER-" . $login. "|" . $password;
+
+		$result=$this->sendApiMessage($message);
+
+
+
+		if(preg_match('#^Balance: #', $result) === 1){
+			$requestLog->updateAssignAccountRequest($logId,$login,$password,$result,$result,1);
+
+			return true;
+		}else{
+
+			$requestLog->updateAssignAccountRequest($logId,$login,$password,$result,$result,2);
+return false;
+		}
+
+	}
 
 }

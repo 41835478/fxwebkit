@@ -6,7 +6,7 @@ use Modules\Request\Entities\RequestInternalTransfer as InternalTransfer;
 use Modules\Request\Entities\RequestWithdrawal as Withdrawal;
 use Modules\Request\Entities\RequestChangeLeverage as ChangeLeverage;
 use Modules\Request\Entities\RequestAddAccount as addAccount;
-
+use Modules\Request\Entities\RequestAssignAccount as AssignAccount;
 
 class RequestController extends Controller
 {
@@ -209,6 +209,40 @@ class RequestController extends Controller
         $log->address=$mt4_user_details['address'];
         $log->zip_code=$mt4_user_details['zip_code'];
         $log->status=$status;
+        $log->save();
+        return true;
+
+
+    }
+
+    public function insertAssignAccountRequest($login, $password, $comment = '', $reason = '', $status = 0)
+    {
+        $user = current_user()->getUser();
+        $log = new AssignAccount();
+
+        $log->insert([
+            'accountId'=>$user->id,
+            'name'=>$user->first_name,
+            'login' => $login,
+
+            'password' => $password,
+            //	'comment'=>$comment,
+            //	'reason'=>$reason,
+            'status' => $status
+        ]);
+
+        return true;
+    }
+
+    public function updateAssignAccountRequest($logId, $login,$password, $comment = '', $reason = '', $status = 0)
+    {
+
+
+        $log = AssignAccount::find($logId);
+
+        $log->login = $login;
+        $log->password = $password;
+        $log->status = $status;
         $log->save();
         return true;
 

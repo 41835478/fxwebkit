@@ -9,6 +9,7 @@ use Modules\Request\Entities\RequestChangePassword as ChangePassword;
 use Config;
 
 use Modules\Request\Entities\RequestAddAccount as AddAccount;
+use Modules\Request\Entities\RequestAssignAccount as AssignAccount;
 
 class EloquentRequestContractRepository implements RequestContract
 {
@@ -230,4 +231,26 @@ public function getAddAccountRequestByFilters($aFilters, $bFullSet = false, $sOr
 
 }
 
+    public function getAssignAccountRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
+    {
+
+        $oResult = new  AssignAccount();
+
+        if (isset($aFilters['login']) && !empty($aFilters['login'])) {
+            $oResult = $oResult->where('login', 'like', '%' . $aFilters['login'] . '%');
+        }
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+
+        }
+
+        return $oResult;
+
+    }
 }
