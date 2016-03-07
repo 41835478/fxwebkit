@@ -80,7 +80,9 @@
                         <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('request::request.login'), 'login', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.leverage'), 'leverage', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.password'), 'password', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.accountId'), 'accountId', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.name'), 'name', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.reason'), 'reason', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.status'), 'status', $oResults) !!}</th>
@@ -96,6 +98,8 @@
                                 <tr class='{{ $class }}'>
                                     <td>{{ $oResult->login }}</td>
                                     <td>{{ $oResult->password }}</td>
+                                    <td>{{ $oResult->accountId }}</td>
+                                    <td>{{ $oResult->name }}</td>
                                     <td>{{ $oResult->comment }}</td>
                                     <td>{{ $oResult->reason }}</td>
                                     <td>{{ $aRequestStatus[$oResult->status] }}

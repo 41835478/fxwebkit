@@ -339,8 +339,8 @@ class ClientAccountsController extends Controller
         $oApiController = new ApiController();
 
 
-        $result = $oApiController->AssignMt4User($oRequest['login'],$oRequest['password']);
-        if($result){
+        $result = $oApiController->AssignAccount($oRequest['login'],$oRequest['password']);
+        if($result===true){
             $asign_result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$oRequest['login']]);
             return Redirect::route('clients.accounts.Mt4UsersList') ->withErrors('The User has been assigned successfully');
 

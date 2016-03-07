@@ -407,7 +407,8 @@ class ApiController extends Controller {
 
 
 
-		if(preg_match('#^Balance: #', $result) === 1){
+
+		if(preg_match('#^Balance:#', $result) === 1){
 			/* TODO comment and reason should be from addmin not $result,$result  */
 			$requestLog->insertAssignAccountRequest($login,$password,$result,$result,1);
 
@@ -433,15 +434,15 @@ class ApiController extends Controller {
 		$result=$this->sendApiMessage($message);
 
 
-
-		if(preg_match('#^Balance: #', $result) === 1){
+		if(preg_match('#^Balance:#', $result) === 1){
 			$requestLog->updateAssignAccountRequest($logId,$login,$password,$result,$result,1);
 
-			return true;
+			/* TODO please trans() */
+			return 'This user has been assigned successfully';
 		}else{
 
 			$requestLog->updateAssignAccountRequest($logId,$login,$password,$result,$result,2);
-return false;
+return 'error please try again.';
 		}
 
 	}
