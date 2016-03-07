@@ -15,10 +15,21 @@ class CreateRequestAddDemoAccountTable extends Migration {
         Schema::create('request_add_demo_account', function(Blueprint $table)
         {
             $table->increments('id');
-
-            $table->text('comment');
-            $table->text('reason');
-            $table->tinyInteger('status');
+            $table->string('first_name', 100)->nullable();
+            $table->string('last_name', 100)->nullable();
+            $table->string('email', 100)->nullable();
+            $table->string('password', 100);
+            $table->string('investor', 100);
+            $table->date('birthday', 50)->nullable();
+            $table->integer('leverage');
+            $table->integer('array_deposit');
+            $table->integer('array_group');
+            $table->string('phone', 14)->nullable();
+            $table->string('country', 50)->nullable();
+            $table->string('city', 50)->nullable();
+            $table->string('address', 50)->nullable();
+            $table->string('zip_code', 16)->nullable();
+            $table->tinyInteger('type');
             $table->timestamps();
         });
     }

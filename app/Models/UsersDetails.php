@@ -18,6 +18,5 @@ class UsersDetails extends Model
         'city',
         'zip_code',
         'gender',
-            
             ];
 }

@@ -15,9 +15,8 @@ class CreateRequestChangePasswordTable extends Migration {
         Schema::create('request_change_password', function(Blueprint $table)
         {
             $table->increments('id');
-
             $table->integer('login');
-            $table->integer('newPassword');
+            $table->string('newPassword', 100);
             $table->text('comment');
             $table->text('reason');
             $table->tinyInteger('status');

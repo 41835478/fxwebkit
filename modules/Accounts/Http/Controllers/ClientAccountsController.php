@@ -364,7 +364,6 @@ class ClientAccountsController extends Controller
 
 
         $mt4_user_details = [
-            'edit_id' => $oRequest->edit_id,
             'first_name' => $oResult['first_name'],
             'last_name' => $oResult['last_name'],
             'array_group' => $array_group,
@@ -408,7 +407,6 @@ class ClientAccountsController extends Controller
         $country_name = preg_replace("/ \((.*)\)/", "", $country_array);
 
         $mt4_user_details = [
-            'edit_id' => $oRequest->edit_id,
             'first_name' => $oResult['first_name'],
             'last_name' => $oResult['last_name'],
             'array_group' => $oRequest['array_group'],
@@ -452,7 +450,6 @@ class ClientAccountsController extends Controller
 
 
         $mt4_user_details = [
-            'edit_id' => $oRequest->edit_id,
             'first_name' => $oResult['first_name'],
             'last_name' => $oResult['last_name'],
             'array_group' => $array_group,
@@ -497,7 +494,6 @@ class ClientAccountsController extends Controller
         $country_name = preg_replace("/ \((.*)\)/", "", $country_array);
 
         $mt4_user_details = [
-            'edit_id' => $oRequest->edit_id,
             'first_name' => $oResult['first_name'],
             'last_name' => $oResult['last_name'],
             'array_group' => $oRequest['array_group'],

@@ -312,6 +312,16 @@ class ApiController extends Controller {
 	public function mt4UserFullDetails($mt4_user_details,$oldPassword=null){
 
 
+
+
+			$requestLog =new RequestLog();
+			if(Config('accounts.directOrderToMt4Server')==false){
+
+				$requestLog->insertMt4UserFullDetailsRequest($mt4_user_details);
+
+				return trans('accounts::accounts.the_request');
+			}
+
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
 
@@ -319,6 +329,19 @@ class ApiController extends Controller {
 			.'|PASSWORD='.$mt4_user_details['password'].'|INVESTOR='.$mt4_user_details['investor'].'|EMAIL='.$mt4_user_details['email'].'|COUNTRY='.$mt4_user_details['country']
 			.'|CITY='.$mt4_user_details['city'].'|ADDRESS='.$mt4_user_details['address'].'|COMMENT='.'|PHONE='.$mt4_user_details['phone'].'|ZIPCODE='.$mt4_user_details['phone']
 			.'|LEVERAGE='.$mt4_user_details['array_leverage'].'|SEND_REPORTS=1'.'|DEPOSIT='.$mt4_user_details['array_deposit'];
+
+			$result=$this->sendApiMessage($message);
+
+			if($result =='OK' ){
+				/* TODO comment and reason should be from addmin not $result,$result  */
+				$requestLog->insertMt4UserFullDetailsRequest($mt4_user_details);
+
+
+			}else{
+
+				$requestLog->insertMt4UserFullDetailsRequest($mt4_user_details);
+			}
+			return $this->getApiResponseMessage($result);
 
 
 		return $this->getApiResponseMessage($this->sendApiMessage($message));
