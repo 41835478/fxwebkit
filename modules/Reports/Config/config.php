@@ -75,11 +75,11 @@ return [
 			'title' => 'commission',
 			'icon' => 'fa fa-money',
 		],
-		[
-			'route' => 'clients.reports.agentCommission',
-			'title' => 'agentCommission',
-			'icon' => 'fa fa-money',
-		],
+	//	[
+	//		'route' => 'clients.reports.agentCommission',
+	//		'title' => 'agentCommission',
+	//		'icon' => 'fa fa-money',
+	//	],
 		[
 			'route' => 'clients.reports.accountant',
 			'title' => 'accountant',

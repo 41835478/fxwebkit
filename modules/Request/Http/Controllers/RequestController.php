@@ -5,6 +5,7 @@ use Pingpong\Modules\Routing\Controller;
 use Modules\Request\Entities\RequestInternalTransfer as InternalTransfer;
 use Modules\Request\Entities\RequestWithdrawal as Withdrawal;
 use Modules\Request\Entities\RequestChangeLeverage as ChangeLeverage;
+use Modules\Request\Entities\RequestChangePassword as ChangePassword;
 use Modules\Request\Entities\RequestAddAccount as addAccount;
 use Modules\Request\Entities\RequestAssignAccount as AssignAccount;
 
@@ -127,7 +128,7 @@ class RequestController extends Controller
     public function insertChangePasswordRequest($login, $newPassword, $comment = '', $reason = '', $status = 0)
     {
 
-        $log = new ChangeLeverage();
+        $log = new ChangePassword();
 
         $log->insert([
             'login' => $login,
@@ -144,7 +145,7 @@ class RequestController extends Controller
     {
 
 
-        $log = ChangeLeverage::find($logId);
+        $log = ChangePassword::find($logId);
 
 
         $log->login = $login;
@@ -171,7 +172,7 @@ class RequestController extends Controller
             'password' => $mt4_user_details['password'],
             'investor' => $mt4_user_details['investor'],
             'birthday' => $mt4_user_details['birthday'],
-            'leverage' => $mt4_user_details['leverage'],
+            'leverage' => $mt4_user_details['array_leverage'],
             'array_deposit' => $mt4_user_details['array_deposit'],
             'array_group' => $mt4_user_details['array_group'],
             'phone' => $mt4_user_details['phone'],
@@ -179,6 +180,8 @@ class RequestController extends Controller
             'city' => $mt4_user_details['city'],
             'address' => $mt4_user_details['address'],
             'zip_code' => $mt4_user_details['zip_code'],
+            //	'comment'=>$comment,
+            //	'reason'=>$reason,
             'status'=>$status
         ]);
 

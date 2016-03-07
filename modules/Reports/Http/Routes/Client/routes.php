@@ -14,7 +14,7 @@ Route::group(['middleware' => ['authenticate.client'], 'namespace' => 'Http\Cont
 		'getAccounts' => 'clients.reports.accounts',
 		'getAccountStatement' => 'clients.reports.accountStatement',
 		'getCommission' => 'clients.reports.commission',
-		'getAgentCommission' => 'clients.reports.agentCommission',
+	//	'getAgentCommission' => 'clients.reports.agentCommission',
 		'getAccountant' => 'clients.reports.accountant',
             
 	]);

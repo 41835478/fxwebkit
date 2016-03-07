@@ -27,6 +27,16 @@
             </div>
         </div>
         <!-- row -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group no-margin-hr">
+
+                    <label class="control-label">{{ trans('accounts::accounts.Country') }}</label>
+                    {!! Form::select('status',$intenalTransfer['status_array'],$intenalTransfer['status'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
+                </div>
+            </div><!-- col-sm-6 -->
+        </div>
     </div>
     @if($errors->any())
         <div class="alert alert-danger alert-dark">

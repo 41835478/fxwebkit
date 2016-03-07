@@ -101,13 +101,13 @@
                                     <td>{{ $aRequestStatus[$oResult->status] }}
                                     @if($oResult->status != 1)
 
-                                            <a href="{{ route('admin.request.ForwordChangePassword').'?logId='.$oResult->id }}"
+                                            <a href="{{ route('admin.request.forwordChangePassword').'?logId='.$oResult->id }}"
                                                class="fa fa-mail-forward"></a>
                                         @endif
                                     </td>
                                     <td>
 
-                                        <a href="{{ '?logId='.$oResult->id }}"
+                                        <a href="{{  route('admin.request.changePasswordEdit').'?logId='.$oResult->id }}"
                                            class="fa fa-edit"></a>
 
                                     </td>
