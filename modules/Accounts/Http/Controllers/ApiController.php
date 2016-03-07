@@ -148,6 +148,7 @@ class ApiController extends Controller {
 
 			$email=new Email();
 			$email->changeLeverage(['email'=>config('fxweb.adminEmail'),'login'=>$login,'leverage'=>$leverage]);
+			$email->changeLeverage(['email'=>current_user()->getUser()->email,'login'=>$login,'leverage'=>$leverage]);
 
 		}else{
 
