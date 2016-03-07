@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('request::request.withDrawal'))
+@section('title', trans('request::request.changeLeverage'))
 @section('content')
     <style type="text/css">
         #content-wrapper {
@@ -63,7 +63,7 @@
         <div class="mail-container ">
 
             <div class="mail-container-header">
-                {{ trans('request::request.withDrawal') }}
+                {{ trans('request::request.changeLeverage') }}
             </div>
             <div class="center_page_all_div">
                 @include('admin.partials.messages')
@@ -72,7 +72,7 @@
                     <div class="table-header">
                         <div class="table-caption">
 
-                            {{ trans('request::request.withDrawal') }}
+                            {{ trans('request::request.changeLeverage') }}
 
                         </div>
                     </div>
@@ -101,13 +101,13 @@
                                     <td>{{ $aRequestStatus[$oResult->status] }}
                                     @if($oResult->status != 1)
 
-                                            <a href="{{ route('admin.request.ForwordChangeLeverage').'?logId='.$oResult->id }}"
+                                            <a href="{{ route('admin.request.forwordChangeLeverage').'?logId='.$oResult->id }}"
                                                class="fa fa-mail-forward"></a>
                                         @endif
                                     </td>
                                     <td>
 
-                                        <a href="{{ '?logId='.$oResult->id }}"
+                                        <a href="{{ route('admin.request.changeLeveragetEdit').'?logId='.$oResult->id }}"
                                            class="fa fa-edit"></a>
 
                                     </td>

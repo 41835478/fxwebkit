@@ -136,8 +136,17 @@ class ClientIbportalController extends Controller
 
         }
 
-        return view('ibportal::client.agent_users')  ->with('oResults', $oResults)
-            ->with('aFilterParams', $aFilterParams);
+
+        $userIbid=UserIbid::where('user_id',current_user()->getUser()->id)->first();
+
+        if(count($userIbid)){
+            return view('ibportal::client.agent_users')  ->with('oResults', $oResults)
+                ->with('aFilterParams', $aFilterParams);
+        }else{
+            return $this->getAgreemmentPlan();
+        }
+
+
 
     }
 
@@ -192,14 +201,22 @@ class ClientIbportalController extends Controller
             'usresName' =>[],
         ];
 
-        return view('ibportal::client.agentCommission')
 
-            ->with('oResults', $oResults)
-            ->with('agent_id',$oRequest->agentId)
-            ->with('data', $data)
-            ->with('serverTypes',$serverTypes)
-            ->with('totalCommission',$totalCommission)
-            ->with('aFilterParams', $aFilterParams);
+        $userIbid=UserIbid::where('user_id',current_user()->getUser()->id)->first();
+
+        if(count($userIbid)){
+            return view('ibportal::client.agentCommission')
+                ->with('oResults', $oResults)
+                ->with('agent_id',$oRequest->agentId)
+                ->with('data', $data)
+                ->with('serverTypes',$serverTypes)
+                ->with('totalCommission',$totalCommission)
+                ->with('aFilterParams', $aFilterParams);
+        }else{
+            return $this->getAgreemmentPlan();
+        }
+
+
     }
 
 

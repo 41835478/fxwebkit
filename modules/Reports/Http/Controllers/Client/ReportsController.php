@@ -397,7 +397,7 @@ class ReportsController extends Controller
             ->with('aFilterParams', $aFilterParams);
     }
 
-
+/*
     public function getAgentCommission(CommissionRequest $oRequest)
     {
         $sSort = $oRequest->sort;
@@ -439,7 +439,7 @@ class ReportsController extends Controller
             ->with('aFilterParams', $aFilterParams);
     }
 
-
+*/
     public function getAccountant(AccountantRequest $oRequest)
     {
         $oSymbols = $this->oMt4Trade->getClosedTradesSymbols();

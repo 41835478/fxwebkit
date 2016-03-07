@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('request::request.withDrawal'))
+@section('title', trans('request::request.addAccount'))
 @section('content')
     <style type="text/css">
         #content-wrapper {
@@ -63,7 +63,7 @@
         <div class="mail-container ">
 
             <div class="mail-container-header">
-                {{ trans('request::request.withDrawal') }}
+                {{ trans('request::request.addAccount') }}
             </div>
             <div class="center_page_all_div">
                 @include('admin.partials.messages')
@@ -72,15 +72,20 @@
                     <div class="table-header">
                         <div class="table-caption">
 
-                            {{ trans('request::request.withDrawal') }}
+                            {{ trans('request::request.addAccount') }}
 
                         </div>
                     </div>
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('request::request.login'), 'login', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.amount'), 'amount', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.first_name'), 'first_name', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.email'), 'email', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.leverage'), 'leverage', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.array_deposit'), 'array_deposit', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.array_group'), 'array_group', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.phone'), 'phone', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.country'), 'country', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.reason'), 'reason', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.status'), 'status', $oResults) !!}</th>
@@ -94,8 +99,13 @@
                             @foreach($oResults as $oResult)
                                 {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                                 <tr class='{{ $class }}'>
-                                    <td>{{ $oResult->login }}</td>
-                                    <td>{{ $oResult->amount }}</td>
+                                    <td>{{ $oResult->first_name.' '.$oResult->last_name }}</td>
+                                    <td>{{ $oResult->email }}</td>
+                                    <td>{{ $oResult->leverage }}</td>
+                                    <td>{{ $oResult->array_deposit }}</td>
+                                    <td>{{ $oResult->array_group }}</td>
+                                    <td>{{ $oResult->phone }}</td>
+                                    <td>{{ $oResult->country }}</td>
                                     <td>{{ $oResult->comment }}</td>
                                     <td>{{ $oResult->reason }}</td>
                                     <td>{{ $aRequestStatus[$oResult->status] }}
@@ -107,7 +117,7 @@
                                     </td>
                                     <td>
 
-                                        <a href="{{ '?logId='.$oResult->id }}"
+                                        <a href="{{ route('admin.request.addAccountEdit').'?logId='.$oResult->id }}"
                                            class="fa fa-edit"></a>
 
                                     </td>

@@ -12,14 +12,24 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'request', 'nam
 	Route::controller('request', 'RequestController', [
 		'getIntenalTransferRequestList'=>'admin.request.internalTransfer',
 		'getForwordIntenalTransferRequest'=>'admin.request.ForwordInternalTransfer',
-		'getForwordWithDrawalRequest'=>'admin.request.ForwordWithDrawal',
 		'getIntenalTransferEdit'=>'admin.request.intenalTransferEdit',
+
+		'getForwordWithDrawalRequest'=>'admin.request.ForwordWithDrawal',
 		'getWithDrawalEdit'=>'admin.request.withDrawalEdit',
 		'getWithDrawalList'=>'admin.request.withDrawal',
+
 		'getChangeLeverageRequestList'=>'admin.request.changeLeverage',
+		'getForwordChangeLeverageRequest'=>'admin.request.forwordChangeLeverage',
+		'getChangeLeverageEdit'=>'admin.request.changeLeveragetEdit',
+
 		'getChangePasswordRequestList'=>'admin.request.changePassword',
+		'getForwordChangePasswordRequest'=>'admin.request.forwordChangePassword',
+		'getChangePasswordEdit'=>'admin.request.changePasswordEdit',
+
+
 		'getAddAccountList'=>'admin.request.addAccount',
-		'getForwordAddAccountRequest'=>'admin.request.forwordAddAccount'
+		'getForwordAddAccountRequest'=>'admin.request.forwordAddAccount',
+		'getAddAccountEdit'=>'admin.request.addAccountEdit',
 
 	]);
 });

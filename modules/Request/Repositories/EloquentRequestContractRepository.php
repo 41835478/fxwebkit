@@ -146,6 +146,7 @@ class EloquentRequestContractRepository implements RequestContract
 
         $log->comment=$internalTransfer['comment'];
         $log->reason=$internalTransfer['reason'];
+        $log->status=$internalTransfer['status'];
         $log->save();
         /* TODO before return true please check if the record saved correctly */
 
@@ -164,6 +165,33 @@ class EloquentRequestContractRepository implements RequestContract
 
     }
 
+    public function getAddAccountById($logId)
+    {
+
+        $oResult =AddAccount::find($logId);
+
+        return $oResult;
+
+    }
+
+    public function getChangeLeverageById($logId)
+    {
+
+        $oResult =ChangeLeverage::find($logId);
+
+        return $oResult;
+
+    }
+
+    public function getChangePasswordById($logId)
+    {
+
+        $oResult =ChangePassword::find($logId);
+
+        return $oResult;
+
+    }
+
 
     public function withDrawalEdit($withDrawal)
     {
@@ -173,6 +201,60 @@ class EloquentRequestContractRepository implements RequestContract
 
         $log->comment=$withDrawal['comment'];
         $log->reason=$withDrawal['reason'];
+        $log->status=$withDrawal['status'];
+        $log->save();
+        /* TODO before return true please check if the record saved correctly */
+
+
+        return true;
+
+    }
+
+    public function addAccountEdit($addAccount)
+    {
+
+        $log= AddAccount::find($addAccount['logId']);
+
+
+        $log->comment=$addAccount['comment'];
+        $log->reason=$addAccount['reason'];
+        $log->status=$addAccount['status'];
+        $log->save();
+        /* TODO before return true please check if the record saved correctly */
+
+
+        return true;
+
+    }
+
+
+    public function changePasswordEdit($changePassword)
+    {
+
+        $log= ChangePassword::find($changePassword['logId']);
+
+
+        $log->comment=$changePassword['comment'];
+        $log->reason=$changePassword['reason'];
+        $log->status=$changePassword['status'];
+        $log->save();
+        /* TODO before return true please check if the record saved correctly */
+
+
+        return true;
+
+    }
+
+
+    public function changeLeverageEdit($changeLeverage)
+    {
+
+        $log= ChangeLeverage::find($changeLeverage['logId']);
+
+
+        $log->comment=$changeLeverage['comment'];
+        $log->reason=$changeLeverage['reason'];
+        $log->status=$changeLeverage['status'];
         $log->save();
         /* TODO before return true please check if the record saved correctly */
 
@@ -212,6 +294,7 @@ public function getAddAccountRequestByFilters($aFilters, $bFullSet = false, $sOr
 
     $oResult = new  AddAccount();
 
+
     if (isset($aFilters['first_name']) && !empty($aFilters['first_name'])) {
         $oResult = $oResult->where('first_name', 'like', '%' . $aFilters['first_name'] . '%');
     }
@@ -219,8 +302,10 @@ public function getAddAccountRequestByFilters($aFilters, $bFullSet = false, $sOr
 
     $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
+
     if (!$bFullSet) {
         $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+
     } else {
         $oResult = $oResult->get();
 
