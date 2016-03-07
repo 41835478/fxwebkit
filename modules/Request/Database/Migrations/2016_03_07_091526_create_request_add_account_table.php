@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequestAddLiveAccountTable extends Migration {
+class CreateRequestAddAccountTable extends Migration {
 
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateRequestAddLiveAccountTable extends Migration {
      */
     public function up()
     {
-        Schema::create('request_add_live_account', function(Blueprint $table)
+        Schema::create('request_add_account', function(Blueprint $table)
         {
             $table->increments('id');
             $table->string('first_name', 100)->nullable();
@@ -40,7 +40,7 @@ class CreateRequestAddLiveAccountTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('request_add_live_account');
+        Schema::drop('request_add_account');
     }
 
 }

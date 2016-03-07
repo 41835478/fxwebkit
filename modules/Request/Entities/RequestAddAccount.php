@@ -2,8 +2,9 @@
    
 use Illuminate\Database\Eloquent\Model;
 
-class RequestAddLiveAccount extends Model {
-protected $table='request_add_live_account';
+class RequestAddAccount extends Model {
+
+    protected $table = 'request_add_account';
     protected $fillable = ['id',
         'first_name',
         'last_name',
@@ -18,6 +19,7 @@ protected $table='request_add_live_account';
         'country',
         'city',
         'address',
-        'zip_code',];
+        'zip_code',
+    ];
 
 }
