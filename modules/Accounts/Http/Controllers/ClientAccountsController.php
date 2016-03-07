@@ -292,6 +292,7 @@ class ClientAccountsController extends Controller
                 $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
                 $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
             }
+
             $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['oldPassword'], $oRequest['amount']);
         } else {
             $result = 'The Admin does not allowed to transfer to unsigned Mt4 users';

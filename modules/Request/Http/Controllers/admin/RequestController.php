@@ -513,5 +513,5 @@ class RequestController extends Controller
 
         return Redirect::route('admin.request.assignAccount')->withErrors($forwordResult);
     }
-    
+
 }

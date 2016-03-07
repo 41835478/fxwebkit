@@ -181,7 +181,7 @@ class ApiController extends Controller {
 		return $this->getApiResponseMessage($result);
 	}
 
-	public function internalTransfer($login1,$login2,$amount,$oldPassword=null){
+	public function internalTransfer($login1,$login2,$oldPassword=null,$amount){
 
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
@@ -189,6 +189,7 @@ class ApiController extends Controller {
 			/* TODO[moaid] please translate this message */
 			return trans('accounts::accounts.the_request');
 		}
+
 
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
