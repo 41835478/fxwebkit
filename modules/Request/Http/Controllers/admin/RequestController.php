@@ -10,6 +10,10 @@ use Modules\Request\Entities\RequestInternalTransfer;
 use Modules\Request\Entities\RequestWithdrawal;
 use Modules\Request\Entities\RequestAddAccount as AddAccount;
 
+
+
+use Modules\Request\Entities\RequestAssignAccount as AssignAccount;
+
 class RequestController extends Controller
 {
 
@@ -427,6 +431,7 @@ class RequestController extends Controller
         return Redirect::route('admin.request.addAccount')->withErrors($forwordResult);
     }
 
+
     public function getAddAccountEdit(Request $oRequest)
     {
 
@@ -464,4 +469,49 @@ class RequestController extends Controller
 
     }
 
+
+    public function getAssignAccountRequestList(Request $oRequest)
+    {
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+
+        /* TODO[moaid]  translate this array in language file then in the .blade.php file insert trans() method */
+        $aRequestStatus=config('request.requestStatus');
+
+        $oResults = null;
+
+
+        if ($oRequest->has('search')) {
+
+            $aFilterParams['login'] = $oRequest->login;
+
+            $oResults = $this->RequestLog->getAssignAccountRequestByFilters($aFilterParams, false, $sOrder, $sSort);
+
+
+        }
+
+
+        return view('request::admin/assignAccountRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus);
+    }
+
+
+    public function getForwordAssignAccountRequest(Request $oRequest)
+    {
+        $logId = $oRequest->logId;
+
+
+        $requestAssignAccount = AssignAccount::find($logId);
+
+        $apiController = new ApiController();
+        $forwordResult = $apiController->adminForwordAssignAccount(
+            $logId,
+            $requestAssignAccount->login,
+            $requestAssignAccount->password);
+
+
+        /* TODO with success */
+
+        return Redirect::route('admin.request.assignAccount')->withErrors($forwordResult);
+    }
+    
 }

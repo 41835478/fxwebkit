@@ -31,6 +31,11 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'request', 'nam
 		'getForwordAddAccountRequest'=>'admin.request.forwordAddAccount',
 		'getAddAccountEdit'=>'admin.request.addAccountEdit',
 
+
+		'getAssignAccountRequestList'=>'admin.request.assignAccount',
+		'getForwordAssignAccountRequest'=>'admin.request.forwordAssignAccount',
+
+
 	]);
 });
 

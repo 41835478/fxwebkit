@@ -16,6 +16,8 @@ class CreateRequestAssignAccountTable extends Migration {
         {
             $table->increments('id');
 
+            $table->integer('accountId');
+            $table->string('name',100);
             $table->string('login',100);
             $table->string('password',100);
             $table->text('comment');

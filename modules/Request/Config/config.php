@@ -39,7 +39,14 @@ return [
 			'route' => 'admin.request.addAccount',
 			'title' => 'addAccount',
 			'icon' => 'fa-briefcase',
+		],
+		[
+			'route' => 'admin.request.assignAccount',
+			'title' => 'assignAccount',
+			'icon' => 'fa-briefcase',
 		]
+
+
 	],
 	'client_menu' => [
 
