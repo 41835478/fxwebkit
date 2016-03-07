@@ -34,25 +34,24 @@ class SettingsController extends Controller
         $this->oMt4User = $oMt4User;
         $this->oUser = $oUser;
         $this->aTemplates = [
-            'signUpWelcome' => 'Sign Up Welcome',
-            'accountAssign' => 'Account Assign',
+            'signUpWelcome' => 'Client Sign Up Welcome',
+            'recoverPassword' => 'Client Recover Password',
+            'newContract' => 'Client New Contract',
+            'massMailler' => 'Client Mass Mailler',
+            'activeAccount' => 'Clent Active Account',
+            'forgetPassword' => 'Client Forget Password',
             'agentActivation' => 'Agent Activation',
-            'newAgent' => 'New Agent',
-            'newPassword' => 'New Password',
-            'recoverPassword' => 'Recover Password',
-            'withdrawResult' => 'Withdraw Result',
-            'newContract' => 'New Contract',
-            'massMailler' => 'Mass Mailler',
-            'newAgentNotify' => 'New Agent Notify',
-            'withdrawRequest' => 'Withdraw Request',
-            'changeLeverage' => 'User Change Leverage',
-            'newUserSignUp' => 'New User Sign Up',
-            'activeAccount' => 'Active Account',
-            'forgetPassword' => 'Forget Password',
-            'changeMt4Password' => 'Mt4 User Change Password',
-            'internalTransfers' => 'Internal Transfers',
-            'withDrawal'=>'With Drawal'
-
+            'accountAssign' => 'admin Account Assign',
+            'newAgent' => 'Admin New Agent',
+            'newPassword' => 'Admin New Password',
+            'changeMt4Password' => 'Admin Mt4 User Change Password',
+            'internalTransfers' => 'Admin Internal Transfers',
+            'withDrawal'=>'Admin With Drawal',
+            'withdrawResult' => 'Admin Withdraw Result',
+            'newAgentNotify' => 'Admin New Agent Notify',
+            'withdrawRequest' => 'Admin Withdraw Request',
+            'changeLeverage' => 'Admin User Change Leverage',
+            'newUserSignUp' => 'Admin New User Sign Up',
         ];
     }
 
