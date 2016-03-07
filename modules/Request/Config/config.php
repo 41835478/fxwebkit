@@ -31,10 +31,15 @@ return [
 			'icon' => 'fa-briefcase',
 		],
 		[
-		'route' => 'admin.request.changePassword',
-		'title' => 'changePassword',
-		'icon' => 'fa-briefcase',
-	]
+			'route' => 'admin.request.changePassword',
+			'title' => 'changePassword',
+			'icon' => 'fa-briefcase',
+		],
+		[
+			'route' => 'admin.request.addAccount',
+			'title' => 'addAccount',
+			'icon' => 'fa-briefcase',
+		]
 	],
 	'client_menu' => [
 

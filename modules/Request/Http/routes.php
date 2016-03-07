@@ -17,7 +17,9 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'request', 'nam
 		'getWithDrawalEdit'=>'admin.request.withDrawalEdit',
 		'getWithDrawalList'=>'admin.request.withDrawal',
 		'getChangeLeverageRequestList'=>'admin.request.changeLeverage',
-		'getChangePasswordRequestList'=>'admin.request.changePassword'
+		'getChangePasswordRequestList'=>'admin.request.changePassword',
+		'getAddAccountList'=>'admin.request.addAccount',
+		'getForwordAddAccountRequest'=>'admin.request.forwordAddAccount'
 
 	]);
 });

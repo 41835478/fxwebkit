@@ -334,18 +334,52 @@ class ApiController extends Controller {
 
 			if($result =='OK' ){
 				/* TODO comment and reason should be from addmin not $result,$result  */
-				$requestLog->insertMt4UserFullDetailsRequest($mt4_user_details);
+				$requestLog->insertMt4UserFullDetailsRequest($mt4_user_details,1);
 
 
 			}else{
 
-				$requestLog->insertMt4UserFullDetailsRequest($mt4_user_details);
+				$requestLog->insertMt4UserFullDetailsRequest($mt4_user_details,2);
 			}
 			return $this->getApiResponseMessage($result);
 
 
 		return $this->getApiResponseMessage($this->sendApiMessage($message));
 	}
+
+	public function adminForwordMt4UserFullDetails($logId,$mt4_user_details){
+
+
+
+
+		$requestLog =new RequestLog();
+
+
+		$password="";
+
+
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=6'.'|'.'GROUP='.$mt4_user_details['array_group'].'|NAME='.$mt4_user_details['first_name'].' '.$mt4_user_details['last_name']
+			.'|PASSWORD='.$mt4_user_details['password'].'|INVESTOR='.$mt4_user_details['investor'].'|EMAIL='.$mt4_user_details['email'].'|COUNTRY='.$mt4_user_details['country']
+			.'|CITY='.$mt4_user_details['city'].'|ADDRESS='.$mt4_user_details['address'].'|COMMENT='.'|PHONE='.$mt4_user_details['phone'].'|ZIPCODE='.$mt4_user_details['phone']
+			.'|LEVERAGE='.$mt4_user_details['array_leverage'].'|SEND_REPORTS=1'.'|DEPOSIT='.$mt4_user_details['array_deposit'];
+
+		$result=$this->sendApiMessage($message);
+
+		if($result =='OK' ){
+			/* TODO comment and reason should be from addmin not $result,$result  */
+			$requestLog->updateMt4UserFullDetailsRequest($logId,$mt4_user_details,1);
+
+
+		}else{
+
+			$requestLog->updateMt4UserFullDetailsRequest($logId,$mt4_user_details,2);
+		}
+		return $this->getApiResponseMessage($result);
+
+
+		return $this->getApiResponseMessage($this->sendApiMessage($message));
+	}
+
 
 	private function getApiResponseMessage($result){
 

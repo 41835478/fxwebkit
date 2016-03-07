@@ -8,7 +8,7 @@ use Modules\Request\Repositories\RequestContract as RequestLog;
 use Modules\Accounts\Http\Controllers\ApiController;
 use Modules\Request\Entities\RequestInternalTransfer;
 use Modules\Request\Entities\RequestWithdrawal;
-
+use Modules\Request\Entities\RequestAddAccount as AddAccount;
 class RequestController extends Controller
 {
 
@@ -289,4 +289,68 @@ class RequestController extends Controller
 
 
     }
+
+
+    public function getAddAccountList(Request $oRequest)
+    {
+
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+
+        /* TODO[moaid]  translate this array in language file then in the .blade.php file insert trans() method */
+        $aRequestStatus=config('request.requestStatus');
+
+        $oResults = null;
+
+
+        if ($oRequest->has('search')) {
+
+            $aFilterParams['first_name'] = $oRequest->first_name;
+
+
+            $oResults = $this->RequestLog->getAddAccountRequestByFilters($aFilterParams, false, $sOrder, $sSort);
+
+        }
+
+
+        return view('request::admin/addAccountRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus);
+    }
+
+
+    public function getForwordAddAccountRequest(Request $oRequest)
+    {
+        $logId = $oRequest->logId;
+
+
+
+        $requestAddAccount = RequestWithdrawal::find($logId);
+
+        $apiController = new ApiController();
+
+        $forwordResult = $apiController->adminForwordMt4UserFullDetails(
+            $logId,
+            [
+                'first_name' => $requestAddAccount->first_name,
+                'last_name' =>  $requestAddAccount->last_name,
+                'email' =>  $requestAddAccount->email,
+                'password' =>  $requestAddAccount->password,
+                'investor' =>  $requestAddAccount->investor,
+                'birthday' =>  $requestAddAccount->birthday,
+                'leverage' =>  $requestAddAccount->leverage,
+                'array_deposit' =>  $requestAddAccount->array_deposit,
+                'array_group' =>  $requestAddAccount->array_group,
+                'phone' =>  $requestAddAccount->phone,
+                'country' =>  $requestAddAccount->country,
+                'city' =>  $requestAddAccount->city,
+                'address' =>  $requestAddAccount->address,
+                'zip_code' => $requestAddAccount->zip_code,
+
+            ]);
+
+
+
+        /* TODO with success */
+        return Redirect::route('admin.request.addAccount')->withErrors($forwordResult);
+    }
+
 }

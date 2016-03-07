@@ -157,7 +157,7 @@ class RequestController extends Controller
     }
 
 
-    public function insertMt4UserFullDetailsRequest($mt4_user_details)
+    public function insertMt4UserFullDetailsRequest($mt4_user_details,$status=0)
     {
 
         //$this->RequestLog->insertInternalTransferRequest($fromLogin,$toLogin,$amount,$comment,$reason,$status);
@@ -165,20 +165,21 @@ class RequestController extends Controller
         $log = new addAccount();
 
         $log->insert([
-            'first_name' => $mt4_user_details[first_name],
-            'last_name' => $mt4_user_details[last_name],
-            'email' => $mt4_user_details[email],
-            'password' => $mt4_user_details[password],
-            'investor' => $mt4_user_details[investor],
-            'birthday' => $mt4_user_details[birthday],
-            'leverage' => $mt4_user_details[leverage],
-            'array_deposit' => $mt4_user_details[array_deposit],
-            'array_group' => $mt4_user_details[array_group],
-            'phone' => $mt4_user_details[phone],
-            'country' => $mt4_user_details[country],
-            'city' => $mt4_user_details[city],
-            'address' => $mt4_user_details[address],
-            'zip_code' => $mt4_user_details[zip_code],
+            'first_name' => $mt4_user_details['first_name'],
+            'last_name' => $mt4_user_details['last_name'],
+            'email' => $mt4_user_details['email'],
+            'password' => $mt4_user_details['password'],
+            'investor' => $mt4_user_details['investor'],
+            'birthday' => $mt4_user_details['birthday'],
+            'leverage' => $mt4_user_details['leverage'],
+            'array_deposit' => $mt4_user_details['array_deposit'],
+            'array_group' => $mt4_user_details['array_group'],
+            'phone' => $mt4_user_details['phone'],
+            'country' => $mt4_user_details['country'],
+            'city' => $mt4_user_details['city'],
+            'address' => $mt4_user_details['address'],
+            'zip_code' => $mt4_user_details['zip_code'],
+            'status'=>$status
         ]);
 
         return true;
@@ -187,26 +188,27 @@ class RequestController extends Controller
     }
 
 
-    public function updateMt4UserFullDetailsRequest($mt4_user_details)
+    public function updateMt4UserFullDetailsRequest($logId,$mt4_user_details,$status)
     {
 
 
         $log = addAccount::find($logId);
 
-        $log->$mt4_user_details[first_name];
-        $log->$mt4_user_details[last_name];
-        $log->$mt4_user_details[email];
-        $log->$mt4_user_details[password];
-        $log->$mt4_user_details[investor];
-        $log->$mt4_user_details[birthday];
-        $log->$mt4_user_details[leverage];
-        $log->$mt4_user_details[array_deposit];
-        $log->$mt4_user_details[array_group];
-        $log->$mt4_user_details[phone];
-        $log->$mt4_user_details[country];
-        $log->$mt4_user_details[city];
-        $log->$mt4_user_details[address];
-        $log->$mt4_user_details[zip_code];
+        $log->first_name=$mt4_user_details['first_name'];
+        $log->last_name=$mt4_user_details['last_name'];
+        $log->email=$mt4_user_details['email'];
+        $log->password=$mt4_user_details['password'];
+        $log->investor=$mt4_user_details['investor'];
+        $log->birthday=$mt4_user_details['birthday'];
+        $log->leverage=$mt4_user_details['leverage'];
+        $log->array_deposit=$mt4_user_details['array_deposit'];
+        $log->array_group=$mt4_user_details['array_group'];
+        $log->phone=$mt4_user_details['phone'];
+        $log->country=$mt4_user_details['country'];
+        $log->city=$mt4_user_details['city'];
+        $log->address=$mt4_user_details['address'];
+        $log->zip_code=$mt4_user_details['zip_code'];
+        $log->status=$status;
         $log->save();
         return true;
 

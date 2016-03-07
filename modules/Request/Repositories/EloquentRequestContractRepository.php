@@ -8,6 +8,7 @@ use Modules\Request\Entities\RequestChangeLeverage as ChangeLeverage;
 use Modules\Request\Entities\RequestChangePassword as ChangePassword;
 use Config;
 
+use Modules\Request\Entities\RequestAddAccount as AddAccount;
 
 class EloquentRequestContractRepository implements RequestContract
 {
@@ -207,6 +208,26 @@ class EloquentRequestContractRepository implements RequestContract
 //
 //return true;
 //}
+public function getAddAccountRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'id', $sSort = 'ASC'){
 
+    $oResult = new  AddAccount();
+
+    if (isset($aFilters['first_name']) && !empty($aFilters['first_name'])) {
+        $oResult = $oResult->where('first_name', 'like', '%' . $aFilters['first_name'] . '%');
+    }
+
+
+    $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+    if (!$bFullSet) {
+        $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+    } else {
+        $oResult = $oResult->get();
+
+    }
+
+    return $oResult;
+
+}
 
 }
