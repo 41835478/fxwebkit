@@ -401,7 +401,7 @@ class RequestController extends Controller
         $logId = $oRequest->logId;
 
 
-        $requestAddAccount = RequestAddAccount::find($logId);
+        $requestAddAccount = AddAccount::find($logId);
 
         $apiController = new ApiController();
 

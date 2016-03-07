@@ -29,6 +29,9 @@ class CreateRequestAddAccountTable extends Migration {
             $table->string('city', 50)->nullable();
             $table->string('address', 50)->nullable();
             $table->string('zip_code', 16)->nullable();
+            $table->text('comment');
+            $table->text('reason');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
