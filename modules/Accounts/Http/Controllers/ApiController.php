@@ -386,11 +386,11 @@ class ApiController extends Controller {
 
 
 
-//	private function assignMt4User($result){
-//
-//
-//		return (isset($this->returnMessages[$result]))? $this->returnMessages[$result]:$this->returnMessages['error'];
-//	}
+	private function getApiResponseMessage($result){
+
+
+		return (isset($this->returnMessages[$result]))? $this->returnMessages[$result]:$this->returnMessages['error'];
+	}
 
 
 	public function AssignAccount($login,$password){
