@@ -220,14 +220,14 @@ class RequestController extends Controller
 
     public function insertAssignAccountRequest($login, $password, $comment = '', $reason = '', $status = 0)
     {
+
         $user = current_user()->getUser();
         $log = new AssignAccount();
 
         $log->insert([
-            'accountId'=>$user->id,
-            'name'=>$user->first_name,
+         //   'accountId'=>$user->id,
+       //     'name'=>$user->first_name,
             'login' => $login,
-
             'password' => $password,
             //	'comment'=>$comment,
             //	'reason'=>$reason,

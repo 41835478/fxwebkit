@@ -40,5 +40,9 @@ return [
     'changeLeverage'=>'Change Leverage',
     'changePassword'=>'Change Password',
     'newPassord'=>'New Passord',
+    'assignAccount'=>'Assign Account',
+    'password'=>'Password',
+    'accountId'=>'Account Id',
+    'name'=>'Name',
 
 ];

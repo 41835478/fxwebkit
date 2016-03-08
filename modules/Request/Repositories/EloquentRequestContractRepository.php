@@ -193,6 +193,15 @@ class EloquentRequestContractRepository implements RequestContract
 
     }
 
+    public function getAssignAccountById($logId)
+    {
+
+        $oResult =AssignAccount::find($logId);
+
+        return $oResult;
+
+    }
+
 
     public function withDrawalEdit($withDrawal)
     {
@@ -203,6 +212,23 @@ class EloquentRequestContractRepository implements RequestContract
         $log->comment=$withDrawal['comment'];
         $log->reason=$withDrawal['reason'];
         $log->status=$withDrawal['status'];
+        $log->save();
+        /* TODO before return true please check if the record saved correctly */
+
+
+        return true;
+
+    }
+
+    public function assignAccountEdit($assignAccount)
+    {
+
+        $log= AssignAccount::find($assignAccount['logId']);
+
+
+        $log->comment=$assignAccount['comment'];
+        $log->reason=$assignAccount['reason'];
+        $log->status=$assignAccount['status'];
         $log->save();
         /* TODO before return true please check if the record saved correctly */
 

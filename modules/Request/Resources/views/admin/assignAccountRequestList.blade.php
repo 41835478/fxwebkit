@@ -110,7 +110,7 @@
                                     </td>
                                     <td>
 
-                                        <a href="{{ '?logId='.$oResult->id }}" class="fa fa-edit"></a>
+                                        <a href="{{ route('admin.request.assignAccountEdit').'?logId='.$oResult->id }}" class="fa fa-edit"></a>
 
                                     </td>
                                 </tr>

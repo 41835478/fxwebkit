@@ -510,8 +510,45 @@ class RequestController extends Controller
 
 
         /* TODO with success */
-
         return Redirect::route('admin.request.assignAccount')->withErrors($forwordResult);
+    }
+
+
+    public function getAssignAccountEdit(Request $oRequest)
+    {
+
+        $oResults = $this->RequestLog->getAssignAccountById($oRequest->logId);
+        $aRequestStatus = config('request.requestStatus');
+
+        $assignAccount = [
+            'logId' => $oRequest->logId,
+            'status'=>$oResults['status'],
+            'status_array'=>$aRequestStatus,
+            'comment' => $oResults->comment,
+            'reason' => $oResults->reason
+        ];
+
+
+        return view('request::admin.assignAccountEdit')->with('assignAccount', $assignAccount);
+    }
+
+    public function postAssignAccountEdit(Request $oRequest)
+    {
+
+
+        $assignAccount = [
+            'logId' => $oRequest->logId,
+            'comment' => $oRequest->comment,
+            'status'=>$oRequest->status,
+            'reason' => $oRequest->reason,
+        ];
+
+        $oResults = $this->RequestLog->assignAccountEdit($assignAccount);
+
+
+        return Redirect::route('admin.request.assignAccount');
+
+
     }
 
 }

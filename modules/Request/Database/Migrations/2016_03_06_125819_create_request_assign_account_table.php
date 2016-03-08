@@ -15,7 +15,6 @@ class CreateRequestAssignAccountTable extends Migration {
         Schema::create('request_assign_account', function(Blueprint $table)
         {
             $table->increments('id');
-
             $table->integer('accountId');
             $table->string('name',100);
             $table->string('login',100);

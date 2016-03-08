@@ -398,7 +398,6 @@ class ApiController extends Controller {
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
 			$requestLog->insertAssignAccountRequest($login,$password);
-			/* TODO[moaid] please translate this message */
 			return trans('accounts::accounts.the_request');
 		}
 
