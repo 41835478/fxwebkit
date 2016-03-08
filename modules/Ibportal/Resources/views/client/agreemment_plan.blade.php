@@ -17,7 +17,7 @@
             <div class="form-group no-margin-hr">
 
                 <label class="text-center">
-                    {{ Config('ibportal.agreemment') }}
+                    {!! Config('ibportal.agreemment') !!}
                 </label>
             </div>
         </div>

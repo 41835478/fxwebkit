@@ -62,21 +62,23 @@ class LanguagesController extends Controller
 
     public function postSetLanguage()
     {
-        Session::put('cms.language', Input::get('languses_select'));
+        Session::put('locale', Input::get('languses_select'));
         return Redirect::back();
     }
 
     public function postGetLanguage()
     {
-        $language = cms_languages::find(Session::get('cms.language'));
-        return ($language) ? $language : 0;
+       // $language=(Session::get('locale') !=null)? Session::get('locale'):'en';
+        $language = cms_languages::where('code',Session::get('locale'))->first();
+
+        return ($language) ? $language : cms_languages::first();
     }
 
     //http://localhost:8000/cms/languages/languages-select-node
     public function getLanguagesSelectNode()
     {
         $form_html = FormFacade::open(['url' => '/cms/languages/set-language']);
-        $form_html .= FormFacade::select('languses_select', cms_languages::lists('name', 'id'), @$this->postGetLanguage()->id, ['onchange' => 'this.parentNode.submit();']);
+        $form_html .= FormFacade::select('languses_select', cms_languages::lists('name', 'code'), @$this->postGetLanguage()->code, ['onchange' => 'this.parentNode.submit();']);
         $form_html .= FormFacade::close();
         return $form_html;
     }
