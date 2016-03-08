@@ -81,7 +81,7 @@ return [
     'create_new_language'=>'create new language',
     'left_to_right'=>'left to right',
     'right_to_lift'=>'right to lift',
-    'settings'=>'Sttings',
+    'settings'=>'Settings',
     'asset_folder'=>'Asset Folder',
     'admin_theme'=>'Admin Theme',
     'theme_folder'=>'Theme Folder',

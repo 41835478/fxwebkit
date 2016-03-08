@@ -530,8 +530,16 @@ $page_modules=DB::select( $query_string);
 
     public function getCmsSettings()
     {
+        $aSetting= [
 
-        return view('cms::cmsSettings');
+            'is_client' => Config('tools.is_client'),
+
+
+        ];
+
+
+        return view('cms::cmsSetting')->with('aSetting',$aSetting);
+
     }
 
     public function postCmsSettings(Request $oRequest)
