@@ -530,7 +530,7 @@ class ToolsController extends Controller
 
         ];
 
-        return view('reports::reportsSetting')->with('reportsSetting', $toolsSetting);
+        return view('tools::toolsSetting')->with('toolsSetting', $toolsSetting);
     }
 
     public function postToolsSettings(Request $oRequest)
