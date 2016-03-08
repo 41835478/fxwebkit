@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('request::request.withDrawal'))
+@section('title', trans('request::request.assignAccount'))
 @section('content')
     <style type="text/css">
         #content-wrapper {
@@ -63,7 +63,7 @@
         <div class="mail-container ">
 
             <div class="mail-container-header">
-                {{ trans('request::request.withDrawal') }}
+                {{ trans('request::request.assignAccount') }}
             </div>
             <div class="center_page_all_div">
                 @include('admin.partials.messages')
@@ -72,7 +72,7 @@
                     <div class="table-header">
                         <div class="table-caption">
 
-                            {{ trans('request::request.withDrawal') }}
+                            {{ trans('request::request.assignAccount') }}
 
                         </div>
                     </div>

@@ -225,8 +225,8 @@ class RequestController extends Controller
         $log = new AssignAccount();
 
         $log->insert([
-         //   'accountId'=>$user->id,
-       //     'name'=>$user->first_name,
+            'accountId'=>$user->id,
+            'name'=>$user->first_name,
             'login' => $login,
             'password' => $password,
             //	'comment'=>$comment,

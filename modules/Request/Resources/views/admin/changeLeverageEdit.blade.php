@@ -1,9 +1,9 @@
 @extends('admin.layouts.main')
-@section('title', trans('request::request.addAccount'))
+@section('title', trans('request::request.changeLeverage'))
 @section('content')
 
     <div class="page-header">
-        <h1>{{ trans('request::request.addAccount') }}</h1>
+        <h1>{{ trans('request::request.changeLeverage') }}</h1>
     </div>
     {!! Form::open(['class'=>'panel form-horizontal']) !!}
     <div class="panel-body">
