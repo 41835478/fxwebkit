@@ -157,4 +157,5 @@ return [
     'identifier'=>'Identifier',
     'secret'=>'Secret',
     'app_id'=>'Application Id',
+    'webTrader'=>'Web Trader',
 ];

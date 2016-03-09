@@ -43,7 +43,7 @@
                                 </div>
 
                             </div>
-<hr>
+                            <hr>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
@@ -87,7 +87,7 @@
                                 </div>
 
                             </div>
-<hr>
+                            <hr>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
@@ -203,10 +203,12 @@
 
                 <div class="panel">
                     <div class="panel-heading">
-                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example" href="#collapseFive">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
+                           href="#collapseFive">
                             {{ trans('general.google') }}
                         </a>
-                    </div> <!-- / .panel-heading -->
+                    </div>
+                    <!-- / .panel-heading -->
                     <div id="collapseFive" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="row">
@@ -224,7 +226,8 @@
                                     </div>
                                 </div>
 
-                            </div> <!-- / .panel-body -->
+                            </div>
+                            <!-- / .panel-body -->
                             <hr>
 
                             <div class="row">
@@ -242,7 +245,8 @@
                                     </div>
                                 </div>
 
-                            </div> <!-- / .panel-body -->
+                            </div>
+                            <!-- / .panel-body -->
                             <hr>
 
                             <div class="row">
@@ -252,20 +256,19 @@
                                         {!! Form::text('googleSecret',config('fxweb.googleSecret'),['class'=>'form-control']) !!}
                                     </div>
                                 </div>
-
-                            </div> <!-- / .panel-body -->
-                        </div> <!-- / .collapse -->
+                            </div>
+                        </div>
                     </div>
-
-
-                    </div>
+                </div>
 
                 <div class="panel">
                     <div class="panel-heading">
-                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example" href="#collapseSix">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
+                           href="#collapseSix">
                             {{ trans('general.linkedin') }}
                         </a>
-                    </div> <!-- / .panel-heading -->
+                    </div>
+                    <!-- / .panel-heading -->
                     <div id="collapseSix" class="panel-collapse collapse">
                         <div class="panel-body">
                             <div class="row">
@@ -283,7 +286,8 @@
                                     </div>
                                 </div>
 
-                            </div> <!-- / .panel-body -->
+                            </div>
+                            <!-- / .panel-body -->
                             <hr>
 
                             <div class="row">
@@ -301,7 +305,8 @@
                                     </div>
                                 </div>
 
-                            </div> <!-- / .panel-body -->
+                            </div>
+                            <!-- / .panel-body -->
                             <hr>
 
                             <div class="row">
@@ -312,9 +317,39 @@
                                     </div>
                                 </div>
 
-                            </div> <!-- / .panel-body -->
-                        </div> <!-- / .collapse -->
+                            </div>
+                            <!-- / .panel-body -->
+                        </div>
+                        <!-- / .collapse -->
                     </div>
+                    </div>
+
+
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
+                               href="#collapseSeven">
+                                {{ trans('general.webTrader') }}
+                            </a>
+                        </div>
+                        <!-- / .panel-heading -->
+                        <div id="collapseSeven" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+
+
+                                            {!! Form::checkbox('EnableLinkTradeForUser',1,config('fxweb.EnableLinkTradeForUser'),[]) !!}
+                                            <label class="control-label">{{ trans('general.webTrader') }}</label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
 
                 </div>
