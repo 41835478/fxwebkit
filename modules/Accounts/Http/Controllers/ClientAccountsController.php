@@ -167,6 +167,7 @@ class ClientAccountsController extends Controller
         if($oRequest['sever_id']==1){
             $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
             $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+            $oApiController->server_id=1;
         }
         $result = $oApiController->changeMt4Leverage($oRequest['login'], $oRequest['leverage'], $oRequest['oldPassword']);
 

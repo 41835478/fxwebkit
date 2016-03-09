@@ -251,7 +251,7 @@
                      trans('general.CreditOut')
                      *  {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}
              */
-                    categories: ['{!!  trans('reports::reports.ACCOUNTANT_TYPE_6_DEPOSITS') !!}', '{!!  trans('reports::reports.ACCOUNTANT_TYPE_7_CREDIT') !!}']
+                    categories: ['{!! trans('reports::reports.deposits') !!}', '{!!  trans('reports::reports.credit_in') !!}','{!!   trans('reports::reports.withdraws') !!}', '{!!   trans('reports::reports.credit_out') !!}']
                 },
                 yAxis: {
                     min: 0,
@@ -269,16 +269,16 @@
                 },
                 series: [{
                     name: ['{!!  trans('reports::reports.deposits') !!}'],
-                    data: [{!! $oResults[1]['deposits'] + $oResults[1]['withdraws'] !!}, 0]
+                    data: [{!! $oResults[1]['deposits']  !!}, 0,0,0]
                 }, {
                     name: ['{!! trans('reports::reports.credit_in') !!}'],
-                    data: [0, {!! $oResults[1]['creditIn'] + $oResults[1]['creditOut'] !!}]
+                    data: [0, {!! $oResults[1]['creditIn']  !!},0,0]
                 }, {
                     name: ['{!!  trans('reports::reports.withdraws') !!}'],
-                    data: [{!! $oResults[1]['withdraws'] * - 1 !!}, 0]
+                    data: [0,0,{!! $oResults[1]['withdraws'] * - 1 !!}, 0]
                 }, {
                     name: ['{!! trans('reports::reports.credit_out') !!}'],
-                    data: [0, {!! $oResults[1]['creditOut'] * - 1 !!}]
+                    data: [0,0,0, {!! $oResults[1]['creditOut'] * - 1 !!}]
                 }]
             });
         }

@@ -50,7 +50,7 @@ class AuthController extends Controller
     public function getLogin()
     {
         return view('client.user.login')
-            ->with('random', rand(1, 8));
+            ->with('random', rand(1, 3));
     }
 
     public function postLogin(LoginRequest $oRequest)
@@ -105,7 +105,7 @@ class AuthController extends Controller
             ->with('country_array', $country_array)
             ->with('ibid', $ibid)
             ->with('planId', $planId)
-            ->with('random', rand(1, 8));
+            ->with('random', rand(1, 3));
     }
 
     public function postRegister(RegisterRequest $oRequest)
@@ -213,7 +213,7 @@ class AuthController extends Controller
     public function getRecover()
     {
         return view('client.user.forgetPassword')
-            ->with('random', rand(1, 8));
+            ->with('random', rand(1, 3));
     }
 
     public function postRecover(Request $oRequest)
@@ -246,7 +246,7 @@ class AuthController extends Controller
             $message = trans('user.userNotExist');
         }
         return view('client.user.forgetPassword')
-            ->with('random', rand(1, 8))
+            ->with('random', rand(1, 3))
             ->withErrors($message);
     }
 
@@ -254,7 +254,7 @@ class AuthController extends Controller
     {
 
         return view('client.user.resetForgetPassword')
-            ->with('random', rand(1, 8));
+            ->with('random', rand(1, 3));
     }
 
     function postResetForgetPassword(Request $oRequest, $userId, $code)
@@ -278,7 +278,7 @@ class AuthController extends Controller
 
 
         return view('client.user.resetForgetPassword')
-            ->with('random', rand(1, 8))
+            ->with('random', rand(1, 3))
             ->withErrors($message);
     }
 
@@ -294,7 +294,7 @@ class AuthController extends Controller
 
 
         return view('client.user.activateAccountResult')
-            ->with('random', rand(1, 8))
+            ->with('random', rand(1, 3))
             ->withErrors($message);
     }
 
@@ -313,7 +313,7 @@ class AuthController extends Controller
         ]);
 
         return view('client.user.activateAccountResult')
-            ->with('random', rand(1, 8));
+            ->with('random', rand(1, 3));
     }
 
 
