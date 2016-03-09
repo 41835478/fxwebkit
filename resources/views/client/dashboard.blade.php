@@ -46,8 +46,8 @@
                 <!-- Extra large text -->
                 <span class="text-xlg"><span class="text-lg text-slim"></span><strong> {{$oneLogin}} </strong></span><br>
                 <!-- Big text -->
-                <span class="text-bg">Growth : @if($oneLogin ==$login ) {{ $growth }}  @else Click here  @endif % </span><br>  <!-- Big text -->
-                <span class="text-bg">Profit : @if($oneLogin ==$login ){{$statistics['profit']}} @else Click here @endif </span><br>
+                <span class="text-bg">{{ trans('user.growth') }} @if($oneLogin ==$login ) {{ $growth }}  @else Click here  @endif % </span><br>  <!-- Big text -->
+                <span class="text-bg">{{ trans('user.profit') }} @if($oneLogin ==$login ){{$statistics['profit']}} @else Click here @endif </span><br>
                 <!-- Small text -->
                 <span class="text-sm"></span>
             </a> <!-- /.stat-cell -->

@@ -360,6 +360,8 @@ class SettingsController extends Controller
     public function postSettings(Request $oRequest)
     {
 
+        $enableLinkTradeForUser = ($oRequest->EnableLinkTradeForUser) ? true : false;
+
         $aSetting = [
 
             'mt4CheckHost' => $oRequest->mt4CheckHost,
@@ -387,6 +389,7 @@ class SettingsController extends Controller
             'linkedinDriver'=>$oRequest->linkedinDriver,
             'linkedinIdentifier'=>$oRequest->linkedinIdentifier,
             'linkedinSecret'=>$oRequest->linkedinSecret,
+            'EnableLinkTradeForUser'=>$enableLinkTradeForUser,
 
         ];
 

@@ -90,5 +90,8 @@ return [
     'editUser'=>'Edit User',
     'userDetails'=>'User Details',
     'deleteUser'=>'Delete User',
+    'growth'=>'Growth :',
+    'profit'=>'Profit :',
+    'balance'=>'Balance :',
 
 ];
