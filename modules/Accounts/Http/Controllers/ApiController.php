@@ -167,7 +167,7 @@ public function changeServer($server_id){
 			$email->changeLeverage(['email'=>config('fxweb.adminEmail'),'login'=>$login,'leverage'=>$leverage]);
 
 			$mt4User=Mt4User::select('EMAIL')->where('LOGIN',$login)->where('server_id',$this->server_id)->get();
-			$sendToEmail=($mt4User && $mt4User->EMAIL !='')? $mt4User->EMAIL :current_user()->getUser()->email;
+			$sendToEmail=(isset($mt4User->EMAIL) && $mt4User->EMAIL !='')? $mt4User->EMAIL :current_user()->getUser()->email;
 			$email->changeLeverage(['email'=>$sendToEmail,'login'=>$login,'leverage'=>$leverage]);
 
 		}else{
