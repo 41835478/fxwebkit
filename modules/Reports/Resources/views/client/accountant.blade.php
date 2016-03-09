@@ -86,71 +86,8 @@
 
 
                     <div id="total_accountant_chart"></div>
-                    <!-- ________________________________tables______________-->
-            <div class="table-light">
-                <div class="table-header">
-                    <div class="table-caption">
-                        {{ trans('reports::reports.accountant') }}
 
-                        @if (count($oResults[0]))
-                            <div class="panel-heading-controls">
-                                <div class="btn-group btn-group-xs">
-                                    <button data-toggle="dropdown" type="button" class="btn btn-success dropdown-toggle">
-                                        <span class="fa fa-cog"></span>&nbsp;
-                                        <span class="fa fa-caret-down"></span>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <a href="{{ Request::fullUrl() }}&export=xls">
-                                                <i class="dropdown-icon fa fa-camera-retro"></i>
-                                                {{ trans('reports::reports.export') }}
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        @endif
 
-                    </div>
-                </div>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th class="no-warp">{!!  trans('reports::reports.deposits') !!}</th>
-                        <th class="no-warp">{!!  trans('reports::reports.withdraws') !!}</th>
-                        <th class="no-warp">{!!  trans('reports::reports.credit_in')  !!}</th>
-                        <th class="no-warp">{!!  trans('reports::reports.credit_out')  !!}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if (count($oResults[1]))
-
-                        <tr>
-                            <td style="text-align:center">{{ $oResults[1]['deposits'] }}</td>
-                            <td style="text-align:center">{{ $oResults[1]['withdraws'] }}</td>
-                            <td style="text-align:center">{{ $oResults[1]['creditIn'] }}</td>
-                            <td style="text-align:center">{{ $oResults[1]['creditOut'] }}</td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="2" style="text-align:center"> {!!  trans('reports::reports.total')  !!} : {{ $oResults[1]['deposits']+$oResults[1]['withdraws'] }}</td>
-
-                            <td colspan="2" style="text-align:center">{!!  trans('reports::reports.total')  !!} :  {{ $oResults[1]['creditIn']+ $oResults[1]['creditOut']  }}</td>
-
-                        </tr>
-                        <tr>
-                            <td colspan="4" style="text-align:center">{!!  trans('reports::reports.total')  !!} : {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}</td>
-
-                        </tr>
-                    @endif
-                    </tbody>
-                </table>
-                <div class="table-footer text-center">
-                    @if (count($oResults[1]))
-
-                    @endif
-                </div>
-            </div>
             <!-- _______________________table_____________________-->
             <div class="table-light">
                 <div class="table-header">

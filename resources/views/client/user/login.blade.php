@@ -5,6 +5,7 @@
 
 		<div class="signin-info">
 			<a href="" class="logo">
+			<!-- TODO Change the style -->
 				{!! HTML::image('assets/img/logo.png', '', ['style' => 'margin-top: -5px']) !!}&nbsp;
 				{{ app_name() }}
 			</a>

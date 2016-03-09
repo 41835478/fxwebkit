@@ -132,9 +132,11 @@
                         <th class="no-warp">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oResults) !!}</th>
                         <th class="no-warp">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults) !!}</th>
                         <th class="no-warp">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oResults) !!}</th>
+                        <th class="no-warp">{!! th_sort(trans('reports::reports.open_time'), 'open_time', $oResults) !!}</th>
                         <th class="no-warp">{!! th_sort(trans('reports::reports.open_Price'), 'OPEN_PRICE', $oResults) !!}</th>
                         <th class="no-warp">{!! th_sort(trans('reports::reports.SL'), 'SL', $oResults) !!}</th>
                         <th class="no-warp">{!! th_sort(trans('reports::reports.TP'), 'TP', $oResults) !!}</th>
+                        <th class="no-warp">{!! th_sort(trans('reports::reports.close_time'), 'close_time', $oResults) !!}</th>
                         <th class="no-warp">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oResults) !!}</th>
                         <th class="no-warp">{!! th_sort(trans('reports::reports.swaps'), 'SWAPS', $oResults) !!}</th>
                         <th class="no-warp">{!! th_sort(trans('reports::reports.price'), 'CLOSE_PRICE', $oResults) !!}</th>
@@ -156,9 +158,11 @@
                                 <td>{{ $oResult->SYMBOL }}</td>
                                 <td>{{ $oResult->TYPE }}</td>
                                 <td>{{ $oResult->VOLUME }}</td>
+                                <td>{{ $oResult->OPEN_TIME }}</td>
                                 <td>{{ $oResult->OPEN_PRICE }}</td>
                                 <td>{{ $oResult->SL }}</td>
                                 <td>{{ $oResult->TP }}</td>
+                                <td>{{ $oResult->CLOSE_TIME }}</td>
                                 <td>{{ $oResult->COMMISSION }}</td>
                                 <td>{{ $oResult->SWAPS }}</td>
                                 <td>{{ $oResult->CLOSE_PRICE }}</td>

@@ -8,6 +8,7 @@
         <div class="navbar-header">
             <a href="/" class="navbar-brand">
                 <div>
+                    <!-- TODO Change the style -->
                     {!! HTML::image('assets/img/logo.png') !!}
                 </div>
                 {{ app_name() }}

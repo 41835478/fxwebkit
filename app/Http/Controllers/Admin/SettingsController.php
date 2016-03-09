@@ -34,24 +34,24 @@ class SettingsController extends Controller
         $this->oMt4User = $oMt4User;
         $this->oUser = $oUser;
         $this->aTemplates = [
-            'signUpWelcome' => 'Client Sign Up Welcome',
-            'recoverPassword' => 'Client Recover Password',
-            'newContract' => 'Client New Contract',
-            'massMailler' => 'Client Mass Mailler',
-            'activeAccount' => 'Clent Active Account',
-            'forgetPassword' => 'Client Forget Password',
-            'agentActivation' => 'Agent Activation',
-            'accountAssign' => 'admin Account Assign',
-            'newAgent' => 'Admin New Agent',
-            'newPassword' => 'Admin New Password',
-            'changeMt4Password' => 'Admin Mt4 User Change Password',
-            'internalTransfers' => 'Admin Internal Transfers',
-            'withDrawal'=>'Admin With Drawal',
-            'withdrawResult' => 'Admin Withdraw Result',
-            'newAgentNotify' => 'Admin New Agent Notify',
-            'withdrawRequest' => 'Admin Withdraw Request',
-            'changeLeverage' => 'Admin User Change Leverage',
-            'newUserSignUp' => 'Admin New User Sign Up',
+            'signUpWelcome' => 'Client-Sign Up Welcome',
+            'recoverPassword' => 'Client-Recover Password',
+            'newContract' => 'Client-New Contract',
+            'massMailler' => 'Client-Mass Mailler',
+            'activeAccount' => 'Client-Active Account',
+            'forgetPassword' => 'Client-Forget Password',
+            'agentActivation' => 'Agent-Activation',
+            'accountAssign' => 'Admin-Account Assign',
+            'newAgent' => 'Admin-New Agent',
+            'newPassword' => 'Admin-New Password',
+            'changeMt4Password' => 'Admin-Mt4 User Change Password',
+            'internalTransfers' => 'Admin-Internal Transfers',
+            'withDrawal'=>'Admin-With Drawal',
+            'withdrawResult' => 'Admin-Withdraw Result',
+            'newAgentNotify' => 'Admin-New Agent Notify',
+            'withdrawRequest' => 'Admin-Withdraw Request',
+            'changeLeverage' => 'Admin-User Change Leverage',
+            'newUserSignUp' => 'Admin-New User Sign Up',
         ];
     }
 
@@ -393,7 +393,7 @@ class SettingsController extends Controller
 
         $editConfig = new EditConfig();
 
-        $editConfig->editConfigFile('Config/fxweb.php', $aSetting);
+        $editConfig->editConfigFile('config/fxweb.php', $aSetting);
 
         return Redirect::route('admin.settings');
 
