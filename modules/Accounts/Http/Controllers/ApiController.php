@@ -35,7 +35,20 @@ class ApiController extends Controller {
 		$this->mt4Port=Config('fxweb.mt4CheckPort');
 		$this->server_id=0;
 	}
+public function changeServer($server_id){
+	if($server_id==1){
+		$this->mt4Host=Config('fxweb.mt4CheckDemoHost');
+		$this->mt4Port=Config('fxweb.mt4CheckDemoPort');
+		$this->server_id=1;
+	}else{
+		$this->mt4Host=Config('fxweb.mt4CheckHost');
+		$this->mt4Port=Config('fxweb.mt4CheckPort');
+		$this->server_id=$server_id;
 
+	}
+
+
+}
 	private function sendApiMessage($message){
 		//	echo('<div style="position:fixed; bottom:0px; left:0px; background:#ccc; color:#fff; width:100%; text-align:right; padding:10px;">'.$message.'</div>');
 
@@ -79,7 +92,7 @@ class ApiController extends Controller {
 
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
-			$requestLog->insertChangePasswordRequest($login,$newPassword);
+			$requestLog->insertChangePasswordRequest($login,$this->server_id,$newPassword);
 			/* TODO[moaid] please translate this message */
 			return trans('accounts::accounts.the_request');
 		}
@@ -93,20 +106,21 @@ class ApiController extends Controller {
 
 		if($result =='OK' ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
-			$requestLog->insertChangePasswordRequest($login,$newPassword,$result,$result,1);
+			$requestLog->insertChangePasswordRequest($login,$this->server_id,$newPassword,$result,$result,1);
 
 			$email=new Email();
 			$email->changeMt4Password(['email'=>config('fxweb.adminEmail'),'login'=>$login,'newPassword'=>$newPassword]);
 
 		}else{
 
-			$requestLog->insertChangePasswordRequest($login,$newPassword,$result,$result,2);
+			$requestLog->insertChangePasswordRequest($login,$this->server_id,$newPassword,$result,$result,2);
 		}
 		return $this->getApiResponseMessage($result);
 	}
 
-	public function adminForwordChangeMt4Password($login,$newPassword,$oldPassword=null){
+	public function adminForwordChangeMt4Password($logId,$login,$server_id,$newPassword,$oldPassword=null){
 
+		$this->changeServer($server_id);
 		$requestLog =new RequestLog();
 
 		/* TODO[Galya] when the admin forword the request allows there will be no password  please tell me if this logic is right */
@@ -120,11 +134,11 @@ class ApiController extends Controller {
 
 		if($result =='OK' ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
-			$requestLog->updateChangePasswordRequest($login,$newPassword,$result,$result,1);
+			$requestLog->updateChangePasswordRequest($logId,$login,$newPassword,$result,$result,1);
 
 		}else{
 
-			$requestLog->updateChangePasswordRequest($login,$newPassword,$result,$result,2);
+			$requestLog->updateChangePasswordRequest($logId,$login,$newPassword,$result,$result,2);
 		}
 		return $this->getApiResponseMessage($result);
 	}
@@ -133,7 +147,7 @@ class ApiController extends Controller {
 
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
-			$requestLog->insertChangeLeverageRequest($login,$leverage);
+			$requestLog->insertChangeLeverageRequest($login,$this->server_id,$leverage);
 			/* TODO[moaid] please translate this message */
 			return trans('accounts::accounts.the_request');
 		}
@@ -147,7 +161,7 @@ class ApiController extends Controller {
 
 		if($result =='OK' ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
-			$requestLog->insertChangeLeverageRequest($login,$leverage,$result,$result,1);
+			$requestLog->insertChangeLeverageRequest($login,$this->server_id,$leverage,$result,$result,1);
 
 			$email=new Email();
 			$email->changeLeverage(['email'=>config('fxweb.adminEmail'),'login'=>$login,'leverage'=>$leverage]);
@@ -158,13 +172,13 @@ class ApiController extends Controller {
 
 		}else{
 
-			$requestLog->insertChangeLeverageRequest($login,$leverage,$result,$result,2);
+			$requestLog->insertChangeLeverageRequest($login,$this->server_id,$leverage,$result,$result,2);
 		}
 		return $this->getApiResponseMessage($result);
 	}
 
-	public function adminForwordChangeMt4Leverage($login,$leverage,$oldPassword=null){
-
+	public function adminForwordChangeMt4Leverage($logId,$login,$server_id,$leverage,$oldPassword=null){
+$this->changeServer($server_id);
 		$requestLog =new RequestLog();
 
 		$password="";
@@ -177,7 +191,7 @@ class ApiController extends Controller {
 
 		if($result =='OK' ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
-			$requestLog->updateChangeLeverageRequest($login,$leverage,$result,$result,1);
+			$requestLog->updateChangeLeverageRequest($logId,$login,$leverage,$result,$result,1);
 
 			$email=new Email();
 			$email->changeLeverage(['email'=>config('fxweb.adminEmail'),'login'=>$login,'leverage'=>$leverage]);
@@ -187,7 +201,7 @@ class ApiController extends Controller {
 			$email->changeLeverage(['email'=>$sendToEmail,'login'=>$login,'leverage'=>$leverage]);
 		}else{
 
-			$requestLog->updateChangeLeverageRequest($login,$leverage,$result,$result,2);
+			$requestLog->updateChangeLeverageRequest($logId,$login,$leverage,$result,$result,2);
 		}
 		return $this->getApiResponseMessage($result);
 	}
@@ -196,7 +210,7 @@ class ApiController extends Controller {
 
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
-			$requestLog->insertInternalTransferRequest($login1,$login2,$amount);
+			$requestLog->insertInternalTransferRequest($login1,$login2,$this->server_id,$amount);
 			/* TODO[moaid] please translate this message */
 			return trans('accounts::accounts.the_request');
 		}
@@ -211,14 +225,14 @@ class ApiController extends Controller {
 
 		if($result =='OK' ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
-			$requestLog->insertInternalTransferRequest($login1,$login2,$amount,$result,$result,1);
+			$requestLog->insertInternalTransferRequest($login1,$login2,$this->server_id,$amount,$result,$result,1);
 
 			$email=new Email();
 			$email->internalTransfers(['email'=>config('fxweb.adminEmail'),'login1'=>$login1,'login2'=>$login2,'amount'=>$amount]);
 
 		}else{
 
-			$requestLog->insertInternalTransferRequest($login1,$login2,$amount,$result,$result,2);
+			$requestLog->insertInternalTransferRequest($login1,$login2,$this->server_id,$amount,$result,$result,2);
 		}
 		return $this->getApiResponseMessage($result);
 
@@ -226,8 +240,8 @@ class ApiController extends Controller {
 	}
 
 
-	public function adminForwordInternalTransfer($logId,$login1,$login2,$amount,$oldPassword=null){
-
+	public function adminForwordInternalTransfer($logId,$login1,$login2,$server_id,$amount,$oldPassword=null){
+$this->changeServer($server_id);
 		$requestLog =new RequestLog();
 		/* TODO check oldpassword and insert it in log InternalTransfer to re send it to this function */
 
@@ -256,7 +270,7 @@ class ApiController extends Controller {
 
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
-			$requestLog->insertWithDrawalRequest($login1,$amount);
+			$requestLog->insertWithDrawalRequest($login1,$this->server_id,$amount);
 
 			return trans('accounts::accounts.the_request');
 		}
@@ -271,22 +285,22 @@ class ApiController extends Controller {
 
 		if($result =='OK' ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
-			$requestLog->insertWithDrawalRequest($login1,$amount,$result,$result,1);
+			$requestLog->insertWithDrawalRequest($login1,$this->server_id,$amount,$result,$result,1);
 
 			$email=new Email();
 			$email->withDrawal(['email'=>config('fxweb.adminEmail'),'login'=>$login1,'amount'=>$amount]);
 
 		}else{
 
-			$requestLog->insertWithDrawalRequest($login1,$amount,$result,$result,2);
+			$requestLog->insertWithDrawalRequest($login1,$this->server_id,$amount,$result,$result,2);
 		}
 		return $this->getApiResponseMessage($result);
 
 
 	}
 
-	public function adminForwordWithDrawal($logId,$login1,$amount,$oldPassword=null){
-
+	public function adminForwordWithDrawal($logId,$login1,$server_id,$amount,$oldPassword=null){
+$this->changeServer($server_id);
 		$requestLog =new RequestLog();
 		/* TODO check oldpassword and insert it in log InternalTransfer to re send it to this function */
 
@@ -330,7 +344,7 @@ class ApiController extends Controller {
 			$requestLog =new RequestLog();
 			if(Config('accounts.directOrderToMt4Server')==false){
 
-				$requestLog->insertMt4UserFullDetailsRequest($mt4_user_details);
+				$requestLog->insertMt4UserFullDetailsRequest($this->server_id,$mt4_user_details);
 
 				return trans('accounts::accounts.the_request');
 			}
@@ -347,12 +361,12 @@ class ApiController extends Controller {
 
 			if($result =='OK' ){
 				/* TODO comment and reason should be from addmin not $result,$result  */
-				$requestLog->insertMt4UserFullDetailsRequest($mt4_user_details,1);
+				$requestLog->insertMt4UserFullDetailsRequest($this->server_id,$mt4_user_details,1);
 
 
 			}else{
 
-				$requestLog->insertMt4UserFullDetailsRequest($mt4_user_details,2);
+				$requestLog->insertMt4UserFullDetailsRequest($this->server_id,$mt4_user_details,2);
 			}
 			return $this->getApiResponseMessage($result);
 
@@ -360,8 +374,8 @@ class ApiController extends Controller {
 		return $this->getApiResponseMessage($this->sendApiMessage($message));
 	}
 
-	public function adminForwordMt4UserFullDetails($logId,$mt4_user_details){
-
+	public function adminForwordMt4UserFullDetails($logId,$server_id,$mt4_user_details){
+$this->changeServer($server_id);
 
 
 
@@ -408,7 +422,7 @@ class ApiController extends Controller {
 
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
-			$requestLog->insertAssignAccountRequest($login,$password);
+			$requestLog->insertAssignAccountRequest($login,$this->server_id,$password);
 			return trans('accounts::accounts.the_request');
 		}
 
@@ -422,13 +436,13 @@ class ApiController extends Controller {
 
 		if(preg_match('#^Balance:#', $result) === 1){
 			/* TODO comment and reason should be from addmin not $result,$result  */
-			$requestLog->insertAssignAccountRequest($login,$password,$result,$result,1);
+			$requestLog->insertAssignAccountRequest($login,$this->server_id,$password,$result,$result,1);
 
 			/* TODO[moaid]  please translate messages in this page every where */
 			return true;
 		}else{
 
-			$requestLog->insertAssignAccountRequest($login,$password,$result,$result,2);
+			$requestLog->insertAssignAccountRequest($login,$this->server_id,$password,$result,$result,2);
 
 			/* TODO[moaid]  please translate messages in this page every where */
 			return 'Error, Please try again later.';
@@ -436,8 +450,8 @@ class ApiController extends Controller {
 
 	}
 
-	public function adminForwordAssignAccount($logId,$login,$password){
-
+	public function adminForwordAssignAccount($logId,$login,$server_id,$password){
+$this->changeServer($server_id);
 		$requestLog =new RequestLog();
 
 
