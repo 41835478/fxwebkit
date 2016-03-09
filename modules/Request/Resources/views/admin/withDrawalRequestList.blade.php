@@ -101,7 +101,7 @@
                                     <td>{{ $aRequestStatus[$oResult->status] }}
                                     @if($oResult->status != 1)
 
-                                            <a href="{{ route('admin.request.ForwordWithDrawal').'?logId='.$oResult->id }}"
+                                            <a href="{{ route('admin.request.forwordWithDrawal').'?logId='.$oResult->id }}"
                                                class="fa fa-mail-forward"></a>
                                         @endif
                                     </td>

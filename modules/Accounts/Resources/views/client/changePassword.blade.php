@@ -34,6 +34,11 @@
                         <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
                     </li>
                 @endif
+                @if($showMt4Transfer)
+                    <li >
+                        <a href="{{ route('client.accounts.withDrawal').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}">{{ trans('accounts::accounts.withDrawal') }}</a>
+                    </li>
+                @endif
             </ul>
 
 

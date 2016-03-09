@@ -116,7 +116,7 @@ class RequestController extends Controller
 
 
         $log->login = $login;
-        $log->leverage = $leverage;
+      //  $log->leverage = $leverage;
         $log->status = $status;
         $log->save();
         return true;
@@ -149,7 +149,7 @@ class RequestController extends Controller
 
 
         $log->login = $login;
-        $log->newPassword = $newPassword;
+     //   $log->newPassword = $newPassword;
         $log->status = $status;
         $log->save();
         return true;

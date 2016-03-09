@@ -218,6 +218,7 @@ class ClientAccountsController extends Controller
             $mT4ChangePassword->mt4Host=Config('fxweb.mt4CheckDemoHost');
             $mT4ChangePassword->mt4Port=Config('fxweb.mt4CheckDemoPort');
         }
+
         $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'], $oRequest['oldPassword']);
         /* TODO with success */
         return view('accounts::client.changePassword')
@@ -519,6 +520,57 @@ class ClientAccountsController extends Controller
 
         return Redirect::route('client.accounts.mt4LiveAccount')->withErrors($result);
 
+    }
+
+
+    public function getWithDrawal(Request $oRequest)
+    {
+        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $oResults = $this->oMt4User->getUserInfo($oRequest->login);
+
+
+        $internalTransfer = [
+            'login1' => '',
+            'oldPassword' => '',
+            'login2' => '',
+            'amount' => ''];
+
+        return view('accounts::client.withDrawal')
+            ->with('Pssword', $Pssword)
+            ->with('internalTransfer', $internalTransfer)
+            ->with('oResults', $oResults)
+            ->with('login', $oRequest->login)
+            ->with('server_id', $oRequest->server_id)   ;
+    }
+
+    public function postWithDrawal(Request $oRequest)
+    {
+
+
+        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $oResults = $this->oMt4User->getUserInfo($oRequest->login);
+
+        $internalTransfer = [
+            'login' => '',
+            'oldPassword' => '',
+            'amount' => ''];
+
+        $oApiController = new ApiController();
+        if($oRequest['sever_id']==1){
+            $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
+            $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+        }
+
+        $result = $oApiController->withDrawal($oRequest['login'], $oRequest['amount'],$oRequest['oldPassword']);
+
+        /* TODO with success */
+        return view('accounts::client.withDrawal')
+            ->withErrors($result)
+            ->with('Pssword', $Pssword)
+            ->with('internalTransfer', $internalTransfer)
+            ->with('oResults', $oResults)
+            ->with('server_id', $oRequest->server_id)
+            ->with('login', $oRequest->login);
     }
 
 }

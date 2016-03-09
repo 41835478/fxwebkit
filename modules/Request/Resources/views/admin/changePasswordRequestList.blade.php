@@ -95,7 +95,7 @@
                                 {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                                 <tr class='{{ $class }}'>
                                     <td>{{ $oResult->login }}</td>
-                                    <td>{{ $oResult->newPassord }}</td>
+                                    <td>{{ $oResult->newPassword }}</td>
                                     <td>{{ $oResult->comment }}</td>
                                     <td>{{ $oResult->reason }}</td>
                                     <td>{{ $aRequestStatus[$oResult->status] }}

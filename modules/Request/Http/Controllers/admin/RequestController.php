@@ -8,11 +8,10 @@ use Modules\Request\Repositories\RequestContract as RequestLog;
 use Modules\Accounts\Http\Controllers\ApiController;
 use Modules\Request\Entities\RequestInternalTransfer;
 use Modules\Request\Entities\RequestWithdrawal;
+use Modules\Request\Entities\RequestChangePassword;
+use Modules\Request\Entities\RequestChangeLeverage;
+use Modules\Request\Entities\RequestAssignAccount;
 use Modules\Request\Entities\RequestAddAccount as AddAccount;
-
-
-
-use Modules\Request\Entities\RequestAssignAccount as AssignAccount;
 
 class RequestController extends Controller
 {
@@ -107,16 +106,16 @@ class RequestController extends Controller
         $logId = $oRequest->logId;
 
 
-        $requestInternalTransfer = RequestChangeLeverage::find($logId);
+        $requestChangeLeverage = RequestChangeLeverage::find($logId);
 
         $apiController = new ApiController();
-        $forwordResult = $apiController->adminForwordChangeLeverage(
+        $forwordResult = $apiController->adminForwordChangeMt4Leverage(
             $logId,
-            $requestInternalTransfer->login,
-            $requestInternalTransfer->leverage,
-            $requestInternalTransfer->comment,
-            $requestInternalTransfer->reason,
-            $requestInternalTransfer->status);
+            $requestChangeLeverage->login,
+            $requestChangeLeverage->leverage,
+            $requestChangeLeverage->comment,
+            $requestChangeLeverage->reason,
+            $requestChangeLeverage->status);
 
 
         /* TODO with success */
@@ -192,16 +191,16 @@ class RequestController extends Controller
         $logId = $oRequest->logId;
 
 
-        $requestInternalTransfer = RequestChangePassword::find($logId);
+        $requestChangePassword = RequestChangePassword::find($logId);
 
         $apiController = new ApiController();
-        $forwordResult = $apiController->adminForwordChangeLeverage(
+        $forwordResult = $apiController->adminForwordChangeMt4Password(
             $logId,
-            $requestInternalTransfer->login,
-            $requestInternalTransfer->newPassword,
-            $requestInternalTransfer->comment,
-            $requestInternalTransfer->reason,
-            $requestInternalTransfer->status);
+            $requestChangePassword->login,
+            $requestChangePassword->newPassword,
+            $requestChangePassword->comment,
+            $requestChangePassword->reason,
+            $requestChangePassword->status);
 
 
         /* TODO with success */
@@ -500,7 +499,7 @@ class RequestController extends Controller
         $logId = $oRequest->logId;
 
 
-        $requestAssignAccount = AssignAccount::find($logId);
+        $requestAssignAccount = RequestAssignAccount::find($logId);
 
         $apiController = new ApiController();
         $forwordResult = $apiController->adminForwordAssignAccount(

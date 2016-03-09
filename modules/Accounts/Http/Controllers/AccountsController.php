@@ -670,6 +670,7 @@ class AccountsController extends Controller
 
     public function getMt4ChangePassword(Request $oRequest)
     {
+
         $Password = Config('accounts.apiReqiredConfirmMt4Password');
 
         $changePassword = [
@@ -686,6 +687,7 @@ class AccountsController extends Controller
 
     public function postMt4ChangePassword(Request $oRequest)
     {
+
         $Password = Config('accounts.apiReqiredConfirmMt4Password');
 
         $changePassword = [
@@ -698,6 +700,7 @@ class AccountsController extends Controller
             $mT4ChangePassword->mt4Host=Config('fxweb.mt4CheckDemoHost');
             $mT4ChangePassword->mt4Port=Config('fxweb.mt4CheckDemoPort');
         }
+
         $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'], $oRequest['oldPassword']);
         /* TODO with success */
         return view('accounts::changePassword')
