@@ -80,6 +80,7 @@
                         <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('request::request.first_name'), 'first_name', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.email'), 'email', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.leverage'), 'leverage', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.array_deposit'), 'array_deposit', $oResults) !!}</th>
@@ -100,6 +101,7 @@
                                 {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                                 <tr class='{{ $class }}'>
                                     <td>{{ $oResult->first_name.' '.$oResult->last_name }}</td>
+                                    <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
                                     <td>{{ $oResult->email }}</td>
                                     <td>{{ $oResult->leverage }}</td>
                                     <td>{{ $oResult->array_deposit }}</td>

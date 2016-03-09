@@ -80,6 +80,7 @@
                         <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('request::request.login'), 'login', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.password'), 'password', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.accountId'), 'accountId', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.name'), 'name', $oResults) !!}</th>
@@ -97,6 +98,7 @@
                                 {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                                 <tr class='{{ $class }}'>
                                     <td>{{ $oResult->login }}</td>
+                                    <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
                                     <td>{{ $oResult->password }}</td>
                                     <td>{{ $oResult->accountId }}</td>
                                     <td>{{ $oResult->name }}</td>

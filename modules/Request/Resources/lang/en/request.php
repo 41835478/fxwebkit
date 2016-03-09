@@ -44,5 +44,8 @@ return [
     'password'=>'Password',
     'accountId'=>'Account Id',
     'name'=>'Name',
+    'liveDemo'=>'Live/Demo',
+    'demo'=>'Demo',
+    'live'=>'Live',
 
 ];
