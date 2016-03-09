@@ -5,7 +5,7 @@ body {
 
 body {
 	background-color: #FFF;
-	color: #777;
+	color: #908C8C;
 	font-family: "Open Sans", Arial, sans-serif;
 	font-size: 14px;
 	line-height: 22px;
@@ -136,7 +136,7 @@ header nav ul.nav-main li.dropdown.open a.dropdown-toggle {
 header nav ul.nav-main ul.dropdown-menu,
 header nav ul.nav-main li.dropdown.open a.dropdown-toggle,
 header nav ul.nav-main li.active a {
-	background-color: #CCC;
+	background-color: #7AC1EF;
 }
 
 header nav ul.nav-main ul.dropdown-menu {
@@ -344,7 +344,7 @@ div.slider-container div.bottom-label {
 
 /* Home Intro */
 div.home-intro {
-	background-color: #171717;
+	background-color: #1D8BD2;
 	margin-bottom: 60px;
 	overflow: hidden;
 	padding: 20px 0 10px 0;
@@ -387,7 +387,7 @@ div.home-intro p {
 }
 
 div.home-intro p span {
-	color: #999;
+	color: #FFF;
 	display: block;
 	font-size: 0.8em;
 	padding-top: 5px;
@@ -489,9 +489,9 @@ div.home-concept span.cloud {
 
 /* Page Top */
 section.page-top {
-	background-color: #171717;
-	border-bottom: 5px solid #CCC;
-	border-top: 5px solid #384045;
+	background-color: #1d89cf;
+	border-bottom: 5px solid #7AC1EF;
+	border-top: 5px solid #1a7ab9;
 	margin-bottom: 35px;
 	margin-top: 15px;
 	min-height: 50px;
@@ -512,7 +512,7 @@ section.page-top ul.breadcrumb > li {
 }
 
 section.page-top h2 {
-	border-bottom: 5px solid #CCC;
+	border-bottom: 5px solid #42A2E2;
 	color: #FFF;
 	display: inline-block;
 	font-weight: 200;
@@ -696,7 +696,7 @@ footer h3,
 footer h4,
 footer h5,
 footer a {
-	color: #FFF !important;
+	color: #33B8FF !important;
 }
 
 footer a:hover {
