@@ -183,6 +183,7 @@ class ClientAccountsController extends Controller
             ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
             ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal',config('accounts.showWithDrawal'))
             ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
