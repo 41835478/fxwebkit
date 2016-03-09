@@ -18,19 +18,26 @@
                 <li>
                     <a href="{{ route('clients.accounts.mt4UserDetails').'?login='.$login.'&server_id='.$server_id}}&from_date=&to_date=&search=Search&sort=asc&order=login">{{ trans('accounts::accounts.summry') }}</a>
                 </li>
+                @if($showMt4Leverage)
                 <li >
-
                     <a href="{{ route('clients.accounts.mt4Leverage').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.leverage') }}</a>
                 </li>
+                @endif
+                @if($showMt4ChangePassword)
                 <li>
                     <a href="{{ route('clients.accounts.mt4ChangePassword').'?login='.$login.'&server_id='.$server_id}} ">{{ trans('accounts::accounts.changePassword') }}</a>
                 </li>
+                @endif
+                @if($showMt4Transfer)
                 <li >
                     <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
                 </li>
+                @endif
+                @if($showWithDrawal)
                 <li class="active">
                     <a href="{{ route('client.accounts.withDrawal').'?login='.$login.'&server_id='.$server_id}}" >{{ trans('accounts::accounts.withDrawal') }}</a>
                 </li>
+                @endif
             </ul>
 
 

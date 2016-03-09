@@ -124,6 +124,7 @@ class ClientAccountsController extends Controller
             ->with('aFilterParams', $aFilterParams)
             ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
             ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal',config('accounts.showWithDrawal'))
             ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
@@ -147,6 +148,7 @@ class ClientAccountsController extends Controller
             ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
             ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal',config('accounts.showWithDrawal'))
             ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
@@ -200,6 +202,7 @@ class ClientAccountsController extends Controller
             ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
             ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal',config('accounts.showWithDrawal'))
             ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
@@ -230,6 +233,7 @@ class ClientAccountsController extends Controller
             ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
             ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal',config('accounts.showWithDrawal'))
             ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
@@ -250,6 +254,7 @@ class ClientAccountsController extends Controller
             ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
             ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal',config('accounts.showWithDrawal'))
             ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
@@ -309,6 +314,7 @@ class ClientAccountsController extends Controller
             ->with('login', $oRequest->login)
             ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
+            ->with('showWithDrawal',config('accounts.showWithDrawal'))
             ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
             ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
@@ -542,7 +548,11 @@ class ClientAccountsController extends Controller
             ->with('internalTransfer', $internalTransfer)
             ->with('oResults', $oResults)
             ->with('login', $oRequest->login)
-            ->with('server_id', $oRequest->server_id)   ;
+            ->with('server_id', $oRequest->server_id)
+            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal',config('accounts.showWithDrawal'))
+            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
     public function postWithDrawal(Request $oRequest)
@@ -572,7 +582,11 @@ class ClientAccountsController extends Controller
             ->with('internalTransfer', $internalTransfer)
             ->with('oResults', $oResults)
             ->with('server_id', $oRequest->server_id)
-            ->with('login', $oRequest->login);
+            ->with('login', $oRequest->login)
+            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal',config('accounts.showWithDrawal'))
+            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
 }

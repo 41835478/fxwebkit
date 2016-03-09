@@ -184,6 +184,7 @@ return [
     'deposit' => 'Deposit',
     'assign' => 'Assign',
     'fillFullDetailsToAllowLive'=>'Fill Full Details To Allow Live',
+    'showWithDrawal'=>'Show Withdrawal',
 
 
 

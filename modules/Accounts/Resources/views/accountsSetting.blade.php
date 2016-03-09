@@ -137,7 +137,13 @@
                             </div>
 
 
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    {!! Form::checkbox('showWithDrawal',1,$accountsSetting['showWithDrawal'],[]) !!}
+                                    <label class="control-label">{{ trans('accounts::accounts.showWithDrawal') }}</label>
 
+                                </div>
+                            </div>
 
                             <!-- col-sm-6 -->
                         </div>

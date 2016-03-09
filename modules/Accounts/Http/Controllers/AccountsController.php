@@ -884,7 +884,7 @@ class AccountsController extends Controller
             'apiReqiredConfirmMt4Password' => Config('accounts.apiReqiredConfirmMt4Password'),
             'allowTransferToUnsignedMT4' => Config('accounts.allowTransferToUnsignedMT4'),
             'directOrderToMt4Server' => Config('accounts.directOrderToMt4Server'),
-
+            'showWithDrawal' => Config('accounts.showWithDrawal'),
             'is_client' => Config('accounts.is_client'),
 
         ];
@@ -907,6 +907,7 @@ class AccountsController extends Controller
         $apiReqiredConfirmMt4Password = ($oRequest->apiReqiredConfirmMt4Password) ? true : false;
         $allowTransferToUnsignedMT4 = ($oRequest->allowTransferToUnsignedMT4) ? true : false;
         $directOrderToMt4Server = ($oRequest->directOrderToMt4Server) ? true : false;
+        $showWithDrawal = ($oRequest->showWithDrawal) ? true : false;
         $is_client = ($oRequest->is_client) ? 1 : 0;
 
 
@@ -920,6 +921,7 @@ class AccountsController extends Controller
             'apiReqiredConfirmMt4Password'=>$apiReqiredConfirmMt4Password,
             'allowTransferToUnsignedMT4'=>$allowTransferToUnsignedMT4,
             'directOrderToMt4Server'=>$directOrderToMt4Server,
+            'showWithDrawal'=>$showWithDrawal,
             'apiMasterPassword'=>$oRequest->apiMasterPassword,
             'is_client' => $is_client,
 
