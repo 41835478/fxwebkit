@@ -20,7 +20,7 @@ return [
     'pagination_size' => env('PAGINATION_SIZE', 25),
     'LinkTradeForUser'=>'ASDV',
     'EnableLinkTradeForUser'=>true,
-    'mt4CheckHost'=>'192.168.15.10000',
+    'mt4CheckHost'=>'192.168.15.10',
     'mt4CheckPort'=>'443',
     'liveServerName'=>'liveAAAAA',
     'mt4CheckDemoHost'=>'192.168.15.10',
