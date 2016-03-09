@@ -697,6 +697,7 @@ class AccountsController extends Controller
         if($oRequest['sever_id']==1){
             $mT4ChangePassword->mt4Host=Config('fxweb.mt4CheckDemoHost');
             $mT4ChangePassword->mt4Port=Config('fxweb.mt4CheckDemoPort');
+            $oApiController->server_id=1;
         }
         $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'], $oRequest['oldPassword']);
         /* TODO with success */
@@ -745,6 +746,7 @@ class AccountsController extends Controller
         if($oRequest['sever_id']==1){
             $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
             $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+            $oApiController->server_id=1;
         }
         $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['amount'], $oRequest['oldPassword']);
 
@@ -794,6 +796,7 @@ class AccountsController extends Controller
         if($oRequest['sever_id']==1){
             $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
             $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+            $oApiController->server_id=1;
         }
 
         $result = $oApiController->withDrawal($oRequest['login'], $oRequest['amount'],$oRequest['oldPassword']);
