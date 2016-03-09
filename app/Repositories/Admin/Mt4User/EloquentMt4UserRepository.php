@@ -57,6 +57,7 @@ class EloquentMt4UserRepository implements Mt4UserContract {
      * @return array
      */
     public function getUserInfo($login,$server_id=0) {
+
         $oResult = Mt4User::where('LOGIN', '=', $login)->where('server_id', '=', $server_id);
         $oResult = $oResult->get();
         /* =============== Preparing Output  =============== */
@@ -68,6 +69,7 @@ class EloquentMt4UserRepository implements Mt4UserContract {
             $oResult[$dKey]->MARGIN_FREE = round($oResult[$dKey]->MARGIN_FREE, 2);
             $oResult[$dKey]->LEVERAGE = round($oResult[$dKey]->LEVERAGE, 2);
         }
+
         return (count($oResult)) ? $oResult[0] : null;
     }
 

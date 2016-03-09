@@ -99,7 +99,6 @@
                                 <th class="no-warp">{!! th_sort(trans('accounts::accounts.first_name'), 'first_name', $oResults) !!}</th>
                                 <th class="no-warp">{!! th_sort(trans('accounts::accounts.last_name'), 'last_name', $oResults) !!}</th>
                                 <th class="no-warp">{!! th_sort(trans('accounts::accounts.Email'), 'email', $oResults) !!}</th>
-
                                 <th class="no-warp"></th>
                             </tr>
                             </thead>
@@ -145,8 +144,6 @@
                                                 <a href="{{ route('accounts.allowLiveAccoun').'?account_id='.$oResult->id }}"
                                                    class="fa fa-check-circle-o tooltip_number" data-original-title= "{{trans('accounts::accounts.allowLiveAccoun')}}"></a>
                                             @endif
-
-
                                         </td>
                                     </tr>
                                 @endforeach

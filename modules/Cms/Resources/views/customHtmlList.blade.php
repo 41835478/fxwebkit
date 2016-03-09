@@ -34,10 +34,8 @@
                 {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                 <tr class='{{ $class }}'>
 
-
                     <td>{{ $key }}</td>
                     <td>{{ $customHtml }}</td>
-
 
                     <td>
                         {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_customHtml_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete custom html with its links")) return false;','class'=>'icon_button red_icon','type'=>'submit','value'=>$key ]) !!}

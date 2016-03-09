@@ -166,7 +166,9 @@ class ClientAccountsController extends Controller
 
         $oApiController = new ApiController();
 
-        if($oRequest['sever_id']==1){
+
+        if($oRequest['server_id']==1){
+
             $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
             $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
             $oApiController->server_id=1;
@@ -218,7 +220,7 @@ class ClientAccountsController extends Controller
 
         $mT4ChangePassword = new ApiController();
 
-        if($oRequest['sever_id']==1){
+        if($oRequest['server_id']==1){
             $mT4ChangePassword->mt4Host=Config('fxweb.mt4CheckDemoHost');
             $mT4ChangePassword->mt4Port=Config('fxweb.mt4CheckDemoPort');
             $mT4ChangePassword->server_id=1;
@@ -297,7 +299,7 @@ class ClientAccountsController extends Controller
         $result = '';
         if ($allowed) {
             $oApiController = new ApiController();
-            if($oRequest['sever_id']==1){
+            if($oRequest['server_id']==1){
                 $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
                 $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
                 $oApiController->server_id=1;
@@ -441,6 +443,7 @@ class ClientAccountsController extends Controller
 
         $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
         $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+        $oApiController->server_id=1;
 
         $result = $oApiController->mt4UserFullDetails($mt4_user_details);
 
@@ -569,9 +572,10 @@ class ClientAccountsController extends Controller
             'amount' => ''];
 
         $oApiController = new ApiController();
-        if($oRequest['sever_id']==1){
+        if($oRequest['server_id']==1){
             $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
             $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+            $oApiController->server_id=1;
         }
 
         $result = $oApiController->withDrawal($oRequest['login'], $oRequest['amount'],$oRequest['oldPassword']);
