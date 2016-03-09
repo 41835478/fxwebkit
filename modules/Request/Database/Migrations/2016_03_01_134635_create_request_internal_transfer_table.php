@@ -17,6 +17,8 @@ class CreateRequestInternalTransferTable extends Migration {
             $table->increments('id');
 $table->integer('from_login');
             $table->integer('to_login');
+            $table->tinyInteger('server_id');
+
             $table->double('amount');
             $table->text('comment');
             $table->text('reason');

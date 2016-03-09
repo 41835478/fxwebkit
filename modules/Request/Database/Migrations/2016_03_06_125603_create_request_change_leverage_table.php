@@ -16,6 +16,7 @@ class CreateRequestChangeLeverageTable extends Migration {
         {
             $table->increments('id');
             $table->integer('login');
+            $table->tinyInteger('server_id');
             $table->integer('leverage');
             $table->text('comment');
             $table->text('reason');

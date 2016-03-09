@@ -15,6 +15,7 @@ class CreateRequestAddAccountTable extends Migration {
         Schema::create('request_add_account', function(Blueprint $table)
         {
             $table->increments('id');
+            $table->tinyInteger('server_id');
             $table->string('first_name', 100)->nullable();
             $table->string('last_name', 100)->nullable();
             $table->string('email', 100)->nullable();
