@@ -50,7 +50,7 @@ class ClientIbportalController extends Controller
         ];
 
 
-        if ($oRequest->has('search')) {
+
 
 
             $aFilterParams['name'] = $oRequest->name;
@@ -59,7 +59,6 @@ class ClientIbportalController extends Controller
             $oResults = $this->Ibportal->getClientPlansByFilters($aFilterParams, false, $sOrder, $sSort,current_user()->getUser()->id);
 
 
-        }
 
 
         $userIbid=UserIbid::where('user_id',current_user()->getUser()->id)->first();

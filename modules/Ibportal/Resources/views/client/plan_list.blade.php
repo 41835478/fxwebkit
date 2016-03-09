@@ -30,35 +30,15 @@
         .mail-nav .navigation {
             margin-top: 35px;
         }
+
+
+        .mail-nav{display:none;}
+        .page-mail .mail-container{margin-left:0 !important;}
+        #content-wrapper{ padding: 0px; margin: 0px;}
+
     </style>
     <div class="  theme-default page-mail">
-        <div class="mail-nav">
-            <div class="navigation">
-                {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
 
-
-                <ul class="sections">
-                    <li class="active"><a href="#"> <i
-                                    class="fa fa-search"></i> {{ trans('ibportal::ibportal.search') }} </a></li>
-
-
-                    <li>
-                        <div class=" nav-input-div  ">
-                            {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('ibportal::ibportal.plan'),'class'=>'form-control input-sm']) !!}
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class=" nav-input-div  ">
-                            {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-                        </div>
-                    </li>
-                    <li class="divider"></li>
-                </ul>
-                {!! Form::close() !!}
-
-            </div>
-        </div>
 
         <div class="mail-container ">
 
