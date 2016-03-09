@@ -3,6 +3,7 @@
 use Fxweb\Http\Controllers\admin\Email;
 use Pingpong\Modules\Routing\Controller;
 use Modules\Request\Http\Controllers\RequestController as RequestLog;
+use Fxweb\Models\Mt4User;
 
 class ApiController extends Controller {
 
@@ -25,12 +26,14 @@ class ApiController extends Controller {
 		'OK'=>'Success',
 		'error'=>'Internal Error,Please try again later'
 	];
+	public $server_id;
 	public function __construct()
 	{
 		$this->apiReqiredConfirmMt4Password=Config('accounts.apiReqiredConfirmMt4Password');
 		$this->apiMasterPassword=Config('accounts.apiMasterPassword');
 		$this->mt4Host=Config('fxweb.mt4CheckHost');
 		$this->mt4Port=Config('fxweb.mt4CheckPort');
+		$this->server_id=0;
 	}
 
 	private function sendApiMessage($message){
@@ -148,7 +151,10 @@ class ApiController extends Controller {
 
 			$email=new Email();
 			$email->changeLeverage(['email'=>config('fxweb.adminEmail'),'login'=>$login,'leverage'=>$leverage]);
-			$email->changeLeverage(['email'=>current_user()->getUser()->email,'login'=>$login,'leverage'=>$leverage]);
+
+			$mt4User=Mt4User::select('EMAIL')->where('LOGIN',$login)->where('server_id',$this->server_id)->get();
+			$sendToEmail=($mt4User && $mt4User->EMAIL !='')? $mt4User->EMAIL :current_user()->getUser()->email;
+			$email->changeLeverage(['email'=>$sendToEmail,'login'=>$login,'leverage'=>$leverage]);
 
 		}else{
 

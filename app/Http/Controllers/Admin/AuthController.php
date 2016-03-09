@@ -9,7 +9,7 @@ class AuthController extends Controller
 	public function getLogin()
 	{
 		return view('admin.user.login')
-			->with('random', rand(1, 8));
+			->with('random', rand(1, 3));
 	}
 
 	public function postLogin(LoginRequest $oRequest)
