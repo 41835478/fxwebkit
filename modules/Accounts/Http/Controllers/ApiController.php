@@ -179,7 +179,12 @@ class ApiController extends Controller {
 			/* TODO comment and reason should be from addmin not $result,$result  */
 			$requestLog->updateChangeLeverageRequest($login,$leverage,$result,$result,1);
 
+			$email=new Email();
+			$email->changeLeverage(['email'=>config('fxweb.adminEmail'),'login'=>$login,'leverage'=>$leverage]);
 
+			$mt4User=Mt4User::select('EMAIL')->where('LOGIN',$login)->where('server_id',$this->server_id)->get();
+			$sendToEmail=($mt4User && $mt4User->EMAIL !='')? $mt4User->EMAIL :current_user()->getUser()->email;
+			$email->changeLeverage(['email'=>$sendToEmail,'login'=>$login,'leverage'=>$leverage]);
 		}else{
 
 			$requestLog->updateChangeLeverageRequest($login,$leverage,$result,$result,2);
