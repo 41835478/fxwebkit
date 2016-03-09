@@ -13,7 +13,7 @@ class RequestController extends Controller
 {
 
 
-    public function insertInternalTransferRequest($fromLogin, $toLogin, $amount = 0, $comment = '', $reason = '', $status = 0)
+    public function insertInternalTransferRequest($fromLogin, $toLogin,$server_id, $amount = 0, $comment = '', $reason = '', $status = 0)
     {
 
 
@@ -23,6 +23,7 @@ class RequestController extends Controller
         $log->insert([
             'from_login' => $fromLogin,
             'to_login' => $toLogin,
+            'server_id'=>$server_id,
             'amount' => $amount,
             'comment' => $comment,
             'reason' => $reason,
@@ -33,7 +34,7 @@ class RequestController extends Controller
 
     }
 
-    public function insertWithDrawalRequest($login, $amount = 0, $comment = '', $reason = '', $status = 0)
+    public function insertWithDrawalRequest($login,$server_id, $amount = 0, $comment = '', $reason = '', $status = 0)
     {
 
 
@@ -43,6 +44,7 @@ class RequestController extends Controller
 
         $log->insert([
             'login' => $login,
+            'server_id'=>$server_id,
             'amount' => $amount,
             //	'comment'=>$comment,
             //	'reason'=>$reason,
@@ -91,13 +93,14 @@ class RequestController extends Controller
     }
 
 
-    public function insertChangeLeverageRequest($login, $leverage, $comment = '', $reason = '', $status = 0)
+    public function insertChangeLeverageRequest($login,$server_id, $leverage, $comment = '', $reason = '', $status = 0)
     {
 
         $log = new ChangeLeverage();
 
         $log->insert([
             'login' => $login,
+            'server_id'=>$server_id,
             'leverage' => $leverage,
             //	'comment'=>$comment,
             //	'reason'=>$reason,
@@ -125,13 +128,14 @@ class RequestController extends Controller
     }
 
 
-    public function insertChangePasswordRequest($login, $newPassword, $comment = '', $reason = '', $status = 0)
+    public function insertChangePasswordRequest($login,$server_id, $newPassword, $comment = '', $reason = '', $status = 0)
     {
 
         $log = new ChangePassword();
 
         $log->insert([
             'login' => $login,
+            'server_id' => $server_id,
             'newPassword' => $newPassword,
             //	'comment'=>$comment,
             //	'reason'=>$reason,
@@ -158,7 +162,7 @@ class RequestController extends Controller
     }
 
 
-    public function insertMt4UserFullDetailsRequest($mt4_user_details,$status=0)
+    public function insertMt4UserFullDetailsRequest($server_id,$mt4_user_details,$status=0)
     {
 
         //$this->RequestLog->insertInternalTransferRequest($fromLogin,$toLogin,$amount,$comment,$reason,$status);
@@ -166,6 +170,7 @@ class RequestController extends Controller
         $log = new addAccount();
 
         $log->insert([
+            'server_id'=>$server_id,
             'first_name' => $mt4_user_details['first_name'],
             'last_name' => $mt4_user_details['last_name'],
             'email' => $mt4_user_details['email'],
@@ -218,7 +223,7 @@ class RequestController extends Controller
 
     }
 
-    public function insertAssignAccountRequest($login, $password, $comment = '', $reason = '', $status = 0)
+    public function insertAssignAccountRequest($login,$server_id, $password, $comment = '', $reason = '', $status = 0)
     {
 
         $user = current_user()->getUser();
@@ -228,6 +233,7 @@ class RequestController extends Controller
             'accountId'=>$user->id,
             'name'=>$user->first_name,
             'login' => $login,
+            'server_id'=>$server_id,
             'password' => $password,
             //	'comment'=>$comment,
             //	'reason'=>$reason,

@@ -64,6 +64,7 @@ class RequestController extends Controller
             $logId,
             $requestInternalTransfer->from_login,
             $requestInternalTransfer->to_login,
+            $requestInternalTransfer->server_id,
             $requestInternalTransfer->amount,
             $requestInternalTransfer->comment,
             $requestInternalTransfer->reason,
@@ -112,6 +113,7 @@ class RequestController extends Controller
         $forwordResult = $apiController->adminForwordChangeMt4Leverage(
             $logId,
             $requestChangeLeverage->login,
+            $requestChangeLeverage->server_id,
             $requestChangeLeverage->leverage,
             $requestChangeLeverage->comment,
             $requestChangeLeverage->reason,
@@ -197,6 +199,7 @@ class RequestController extends Controller
         $forwordResult = $apiController->adminForwordChangeMt4Password(
             $logId,
             $requestChangePassword->login,
+            $requestChangePassword->server_id,
             $requestChangePassword->newPassword,
             $requestChangePassword->comment,
             $requestChangePassword->reason,
@@ -256,6 +259,7 @@ class RequestController extends Controller
         $forwordResult = $apiController->adminForwordWithDrawal(
             $logId,
             $requestWithDrawal->login,
+            $requestWithDrawal->server_id,
             $requestWithDrawal->amount,
             $requestWithDrawal->comment,
             $requestWithDrawal->reason,
@@ -406,6 +410,7 @@ class RequestController extends Controller
 
         $forwordResult = $apiController->adminForwordMt4UserFullDetails(
             $logId,
+            $requestAddAccount->server_id,
             [
                 'first_name' => $requestAddAccount->first_name,
                 'last_name' => $requestAddAccount->last_name,
@@ -505,6 +510,7 @@ class RequestController extends Controller
         $forwordResult = $apiController->adminForwordAssignAccount(
             $logId,
             $requestAssignAccount->login,
+            $requestAssignAccount->server_id,
             $requestAssignAccount->password);
 
 

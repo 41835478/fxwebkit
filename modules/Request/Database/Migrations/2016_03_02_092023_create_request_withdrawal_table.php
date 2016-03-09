@@ -17,6 +17,7 @@ class CreateRequestWithdrawalTable extends Migration {
             $table->increments('id');
 
             $table->integer('login');
+            $table->tinyInteger('server_id');
             $table->double('amount');
             $table->text('comment');
             $table->text('reason');
