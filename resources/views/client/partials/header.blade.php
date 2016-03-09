@@ -7,11 +7,10 @@
     <div class="navbar-inner">
         <div class="navbar-header">
             <a href="/" class="navbar-brand">
-                <div>
+
                     <!-- TODO Change the style -->
-                    {!! HTML::image('assets/img/logo.png') !!}
-                </div>
-                {{ app_name() }}
+                    {!! HTML::image('assets/img/logo.png',app_name(),['style'=>'width:90px;height:28px;']) !!}
+
             </a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse">
                 <i class="navbar-icon fa fa-bars"></i>

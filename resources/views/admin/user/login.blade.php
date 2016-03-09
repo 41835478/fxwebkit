@@ -6,8 +6,12 @@
     <div class="signin-info">
         <a href="" class="logo">
             <!-- TODO Change the style -->
-            {!! HTML::image('assets/img/logo.png', '', ['style' => 'margin-top: -5px']) !!}&nbsp;
-            {{ app_name() }}
+            {!! HTML::image('assets/img/logo.png', '', ['style' => 'margin-top: -5px;width:90px;height:28px;']) !!}&nbsp;
+        <style type="text/css">
+            .theme-default.page-signin .signin-info{
+                background: rgb(113, 153, 179);
+            }
+        </style>
         </a>
         <div class="slogan">
             {{ trans('user.Slogan') }}
