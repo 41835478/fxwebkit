@@ -7,6 +7,7 @@
 			<a href="" class="logo">
 			<!-- TODO Change the style -->
 				{!! HTML::image('assets/img/logo.png', '', ['style' => 'margin-top: -5px;width:90px;height:28px;']) !!}&nbsp;
+				<!-- todo put this style in css file do not leave  it here please -->
 				<style type="text/css">
 					.theme-default.page-signin .signin-info{
 						background: rgb(113, 153, 179);
