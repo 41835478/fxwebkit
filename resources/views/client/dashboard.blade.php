@@ -33,13 +33,36 @@
 
 <section id="chart_section">
    @if(count($growth_array))
-   <div id="growth_chart_all_div"></div>
-       @else
-       <div class="text-center">{{ trans('user.no_account_available') }}</div>
-   @endif
+        <div id="growth_chart_all_div" class="col-xs-12 col-sm-8"></div>
+    @else
+        <div  class="col-xs-12 col-sm-8">{{ trans('user.no_account_available') }}</div>
+    @endif
+        <div class="col-xs-12 col-sm-4" style="height:400px; overflow-y: auto;">
+
+           @foreach($aLogin as $oneLogin)
+            <a  href="?login={{$oneLogin}}" class="stat-cell @if($oneLogin ==$login ) bg-info @else bg-default @endif  valign-middle col-xs-12 ">
+                <!-- Stat panel bg icon -->
+                <i class="fa fa-user bg-icon"></i>
+                <!-- Extra large text -->
+                <span class="text-xlg"><span class="text-lg text-slim"></span><strong> {{$oneLogin}} </strong></span><br>
+                <!-- Big text -->
+                <span class="text-bg">Growth : @if($oneLogin ==$login ) {{ $growth }}  @else Click here  @endif % </span><br>  <!-- Big text -->
+                <span class="text-bg">Profit : @if($oneLogin ==$login ){{$statistics['profit']}} @else Click here @endif </span><br>
+                <!-- Small text -->
+                <span class="text-sm"></span>
+            </a> <!-- /.stat-cell -->
+          @endforeach
+
+
+        </div>
+       <div class="clearfix"></div>
+
 </section>
+        <div class="clearfix"></div>
 </div>
 
+
+    <div class="clearfix"></div>
 <section id="statistics_section">
 
 
@@ -90,6 +113,11 @@
        .blue_font{ color:#1D89CF;}
        .red_font{ color:#f00;}
        .tooltip_number{cursor:pointer;}
+
+       g.highcharts-legend{display:none;}
+       .stat-cell {display:block !important; margin:5px 0px;}
+       .stat-cell.bg-info{ border-bottom:3px solid #25BAE6;}
+       .stat-cell.bg-default{border-bottom:3px solid #cfcece;}
    </style>
 
 </section>
@@ -153,7 +181,7 @@ $(function () {
        },
        legend: {
            layout: 'vertical',
-           align: 'right',
+           align: 'bottom',
            verticalAlign: 'middle',
            borderWidth: 0
        },

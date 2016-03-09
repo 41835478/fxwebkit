@@ -918,12 +918,14 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $lastBalance = 0;
         $pastBalance = 0;
         $i = 0;
+        $growth=0;
         foreach ($oGrowthResults as $row) {
             if ($row->CMD != 6 && $lastBalance != 0) {
                 $i++;
 
+                $growth=round((($pastK * $pastBalance / $lastBalance) - 1) * 100, 2);
+                $growth_array[] = $growth;
 
-                $growth_array[] = round((($pastK * $pastBalance / $lastBalance) - 1) * 100, 2);
                 $horizontal_line_numbers[] = $i;
             } else if ($row->CMD == 6) {
 
@@ -954,7 +956,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             $symbols_pie_array,
             $sell_array,
             $buy_array,
-            $sell_buy_horizontal_line_numbers];
+            $sell_buy_horizontal_line_numbers,
+            $growth
+        ];
     }
 
     public function getClinetBalanceChart($login) {
@@ -975,11 +979,13 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $pastBalance = 0;
         $i = 0;
+        $balance=0;
         foreach ($oGrowthResults as $row) {
 
 
             $pastBalance+=$row->netProfit;
-            $balance_array[] = round($pastBalance, 2);
+            $balance=round($pastBalance, 2);
+            $balance_array[] = $balance;
             $i++;
             $horizontal_line_numbers[] = $i;
         }
@@ -993,7 +999,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             $symbols_pie_array,
             $sell_array,
             $buy_array,
-            $sell_buy_horizontal_line_numbers];
+            $sell_buy_horizontal_line_numbers,
+            $balance];
     }
 
     public function getClinetSymbolsChart($login) {
@@ -1124,7 +1131,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $statistics['worst_trade'] = '<span class="' . (( $statistics['worst_trade'] < 0) ? 'red_font' : 'blue_font') . '">' . $statistics['worst_trade'] . '</span> ';
 
 
-        /* ==== gross_profit ==== */
+        /* ==== gross_profit ==== */   /* ==== gross_loss ==== */ /* ==== profit ==== */
 
         $gross_profit_result = Mt4Trade::select(['PROFIT', DB::raw('PROFIT+COMMISSION+SWAPS as total')])
             ->where('login', $login)
@@ -1136,11 +1143,10 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         //dd($gross_profit_result);
         $statistics['gross_profit'] = $gross_profit_result;
-        $statistics['gross_profit'] = '<span class="' . (( $statistics['gross_profit'] < 0) ? 'red_font' : 'blue_font') . '">' . $statistics['gross_profit'] . '</span> ';
 
 
 
-        /* ==== gross_loss ==== */
+
 
         $gross_loss_result = Mt4Trade::select(['PROFIT', DB::raw('PROFIT+COMMISSION+SWAPS as total')])
             ->where('login', $login)
@@ -1151,7 +1157,12 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             ->sum('PROFIT');
         $statistics['gross_loss'] = $gross_loss_result;
 
+
+        $statistics['profit'] =$statistics['gross_profit']+$statistics['gross_loss'] ;
+        $statistics['gross_profit'] = '<span class="' . (( $statistics['gross_profit'] < 0) ? 'red_font' : 'blue_font') . '">' . $statistics['gross_profit'] . '</span> ';
+
         $statistics['gross_loss'] = '<span class="' . (( $statistics['gross_loss'] < 0) ? 'red_font' : 'blue_font') . '">' . $statistics['gross_loss'] . '</span> ';
+
 
 
 

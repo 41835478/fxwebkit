@@ -68,7 +68,7 @@ class DashboardController extends Controller
 
         $login = ($oRequest->has('login')) ? $oRequest->login : $firstLogin;
 
-        list($horizontal_line_numbers, $growth_array, $averages_array, $statistics, $symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->oMt4Trade->getClinetGrowthChart($login);
+        list($horizontal_line_numbers, $growth_array, $averages_array, $statistics, $symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers,$growth) = $this->oMt4Trade->getClinetGrowthChart($login);
 
         if($oUser->hasAnyAccess(['user.denyLiveAccount']) ){
             Session::flash('flash_info',trans('user.fillFullDetailsToAllowLive'));
@@ -87,7 +87,8 @@ class DashboardController extends Controller
             ->with('sell_buy_horizontal_line_numbers', $sell_buy_horizontal_line_numbers)
             ->with('symbols_pie_array', $symbols_pie_array)
             ->with('sell_array', $sell_array)
-            ->with('buy_array', $buy_array) ;
+            ->with('buy_array', $buy_array)
+            ->with('growth', $growth) ;
 
 
     }
@@ -100,7 +101,7 @@ class DashboardController extends Controller
         list($firstLogin, $aLoginList) = $this->oMt4User->getUsersMt4Users($clientId);
         $login = ($oRequest->has('login')) ? $oRequest->login : $firstLogin;
 
-        list($horizontal_line_numbers, $balance_array, $statistics, $symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->oMt4Trade->getClinetBalanceChart($login);
+        list($horizontal_line_numbers, $balance_array, $statistics, $symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers,$balance) = $this->oMt4Trade->getClinetBalanceChart($login);
 
 
         return view('client.balanceChart')
@@ -112,7 +113,8 @@ class DashboardController extends Controller
             ->with('sell_buy_horizontal_line_numbers', $sell_buy_horizontal_line_numbers)
             ->with('symbols_pie_array', $symbols_pie_array)
             ->with('sell_array', $sell_array)
-            ->with('buy_array', $buy_array);
+            ->with('buy_array', $buy_array)
+            ->with('balance', $balance);
 
     }
 
