@@ -80,7 +80,7 @@ class EloquentUsersRepository implements Mt4UserContract
                $asign->mt4_users_id=$user_id;
                 $asign->save();
             }else{
-                $translate=new mt4_users_users;
+				$asign=new mt4_users_users;
 
                 $asign->users_id=$account_id;
                $asign->mt4_users_id=$user_id;
