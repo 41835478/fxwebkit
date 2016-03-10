@@ -6,7 +6,7 @@
 Route::group(['middleware' => ['authenticate.client']], function()
 {
 	Route::controller('webTrader','\Fxweb\Http\Controllers\client\WebTraderController',[
-		'getWebTrader'=>'client.webTrader'
+		'getWebTrader'=>'Client.webTrader'
 	]);
 });
 
