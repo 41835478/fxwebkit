@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 class UsersTableSeeder extends Seeder {
     public function run()
     {
+
+
+
         DB::table('users')->truncate();
         DB::table('roles')->truncate();
         DB::table('role_users')->truncate();
@@ -39,28 +42,48 @@ class UsersTableSeeder extends Seeder {
         Sentinel::getRoleRepository()->createModel()->fill($cRole)->save();
         $clientRole = Sentinel::getRoleRepository()->findBySlug($cRole['slug']);
 
-        $admin = [
-            'email'    => 'admin@example.com',
-            'password' => 'admin',
+        $admins = [
+            [
+                'first_name'=>'Mohammad',
+                'last_name'=>'Galya',
+                'email'    => 'admin@mqplanet.com',
+                'password' => 'admin'
+            ],
+            [
+                'first_name'=>'Mohammad',
+                'last_name'=>'Galya',
+                'email'    => 'Galya@mqplanet.com',
+                'password' => 'galya'
+            ]
         ];
+
+
+
+        foreach ($admins as $admin) {
+            $adminUser = Sentinel::registerAndActivate($admin);
+            $adminUser->roles()->attach($adminRole);
+        }
+
         $users = [
             [
-                'email'    => 'demo1@example.com',
-                'password' => 'demo1',
+                'first_name'=>'Mohammad',
+                'last_name'=>'Hashim',
+                'email'    => 'm.hashim@mqplanet.com',
+                'password' => 'm.hashim',
             ],
             [
-                'email'    => 'demo2@example.com',
-                'password' => 'demo2',
+                'first_name'=>'demo',
+                'last_name'=>'demo',
+                'email'    => 'demo@mqplanet.com',
+                'password' => 'demo',
             ],
             [
-                'email'    => 'demo3@example.com',
-                'password' => 'demo3',
+                'first_name'=>'Moayd',
+                'last_name'=>'Galya',
+                'email'    => 'mag@mqplanet.com',
+                'password' => 'mag',
             ],
         ];
-
-        $adminUser = Sentinel::registerAndActivate($admin);
-        $adminUser->roles()->attach($adminRole);
-
         foreach ($users as $user)
         {
             $clientUser = Sentinel::registerAndActivate($user);

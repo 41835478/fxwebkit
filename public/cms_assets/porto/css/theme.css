@@ -512,7 +512,7 @@ section.page-top ul.breadcrumb > li {
 }
 
 section.page-top h2 {
-	border-bottom: 5px solid #42A2E2;
+	/* border-bottom: 5px solid #42A2E2; */
 	color: #FFF;
 	display: inline-block;
 	font-weight: 200;

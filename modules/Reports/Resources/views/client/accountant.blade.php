@@ -83,10 +83,10 @@
         <div class="center_page_all_div">
             @include('admin.partials.messages')
 
-
+            @if (count($oResults[0]))
 
                     <div id="total_accountant_chart"></div>
-
+@endif
 
             <!-- _______________________table_____________________-->
             <div class="table-light">

@@ -83,9 +83,9 @@
         <div class="center_page_all_div">
             @include('admin.partials.messages')
 
-
-            <div id="total_accountant_chart"></div>
-
+            @if (count($oResults[0]))
+                <div id="total_accountant_chart"></div>
+                @endif
             <!-- _______________________table_____________________-->
             <div class="table-light">
                 <div class="table-header">
@@ -232,56 +232,56 @@
 
 
 
+
 <script >
     function buildHighCharts(){
-    $('#total_accountant_chart').highcharts({
-    chart: {
-    type: 'bar'
-    },
+        $('#total_accountant_chart').highcharts({
+            chart: {
+                type: 'bar'
+            },
             title: {
-            text: 'Accountant Total'
+                text: 'Accountant Total'
             },
             xAxis: {
-            /*
-             trans('general.Deposits') 
-             trans('general.Withdraws') 
-             trans('general.CreditIn')  
-             trans('general.CreditOut') 
-             *  {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}
+                /*
+                 trans('general.Deposits')
+                 trans('general.Withdraws')
+                 trans('general.CreditIn')
+                 trans('general.CreditOut')
+                 *  {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}
              */
-            categories: ['{!!  trans('reports::reports.ACCOUNTANT_TYPE_6_DEPOSITS') !!}', '{!!  trans('reports::reports.ACCOUNTANT_TYPE_7_CREDIT') !!}']
-
+                categories: ['{!! trans('reports::reports.deposits') !!}', '{!!  trans('reports::reports.credit_in') !!}','{!!   trans('reports::reports.withdraws') !!}', '{!!   trans('reports::reports.credit_out') !!}']
             },
             yAxis: {
-            min: 0,
-                    title: {
+                min: 0,
+                title: {
                     text: 'Total'
-                    }
+                }
             },
             legend: {
-            reversed: true
+                reversed: true
             },
             plotOptions: {
-            series: {
-            stacking: 'normal'
-            }
+                series: {
+                    stacking: 'normal'
+                }
             },
             series: [{
-            name: ['{!!  trans('reports::reports.deposits') !!}'],
-                    data: [{!! $oResults[1]['deposits'] + $oResults[1]['withdraws'] !!}, 0]
+                name: ['{!!  trans('reports::reports.deposits') !!}'],
+                data: [{!! $oResults[1]['deposits']  !!}, 0,0,0]
             }, {
-            name: ['{!! trans('reports::reports.credit_in') !!}'],
-                    data: [0, {!! $oResults[1]['creditIn'] + $oResults[1]['creditOut'] !!}]
+                name: ['{!! trans('reports::reports.credit_in') !!}'],
+                data: [0, {!! $oResults[1]['creditIn']  !!},0,0]
             }, {
-            name: ['{!!  trans('reports::reports.withdraws') !!}'],
-                    data: [{!! $oResults[1]['withdraws'] * - 1 !!}, 0]
+                name: ['{!!  trans('reports::reports.withdraws') !!}'],
+                data: [0,0,{!! $oResults[1]['withdraws'] * - 1 !!}, 0]
             }, {
-            name: ['{!! trans('reports::reports.credit_out') !!}'],
-                    data: [0, {!! $oResults[1]['creditOut'] * - 1 !!}]
+                name: ['{!! trans('reports::reports.credit_out') !!}'],
+                data: [0,0,0, {!! $oResults[1]['creditOut'] * - 1 !!}]
             }]
-    });
+        });
     }
     buildHighCharts();
-            $(".highcharts-legend-item").attr('onclick', 'return false;');
+    $(".highcharts-legend-item").attr('onclick', 'return false;');
 </script>
 @stop
