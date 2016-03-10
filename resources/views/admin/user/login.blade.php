@@ -18,11 +18,12 @@
                 <a href="?locale={{$locale}}"> | {{ $name }}  </a>
             @endforeach
         </div>
-        @include('admin.partials.messages')
+
         {!! Form::open(['id'=>'signin-form_id']) !!}
         <div class="signin-text">
             <span>{{ trans('user.SignInText') }}</span>
         </div>
+        @include('admin.partials.messages')
         <div class="form-group w-icon">
             {!! Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>trans('user.email')]) !!}
             <span class="fa fa-user signin-form-icon"></span>

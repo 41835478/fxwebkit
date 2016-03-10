@@ -19,11 +19,12 @@
             </div>
 
 
-            @include('client.partials.messages')
+
             {!! Form::open(['id'=>'signin-form_id']) !!}
             <div class="signin-text">
                 <span>{{ Lang::get('user.SignInText') }}</span>
             </div>
+            @include('client.partials.messages')
             <div class="form-group w-icon">
                 {!! Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.email')]) !!}
                 <span class="fa fa-user signin-form-icon"></span>
