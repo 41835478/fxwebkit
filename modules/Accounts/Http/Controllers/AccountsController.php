@@ -507,13 +507,14 @@ class AccountsController extends Controller
         ];
 
         if ($oRequest->has('search')) {
+
             $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['server_id'] = $oRequest->server_id;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-            $oResults = $this->oMt4User->getUserInfo($aFilterParams['login']);
+            $oResults = $this->oMt4User->getUserInfo($aFilterParams['login'],$aFilterParams['server_id']);
 
 
             $aSummery = [
@@ -645,13 +646,13 @@ class AccountsController extends Controller
 
         $changeleverage = [
             'login' => '',
-            'sever_id'=>'',
+            'server_id'=>'',
             'oldPassword' => '',
             'leverage_array' => $Result,
             'leverage' => ''];
 
         $oApiController = new ApiController();
-        if($oRequest['sever_id']==1){
+        if($oRequest['server_id']==1){
             $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
             $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
             $oApiController->server_id=1;
@@ -696,10 +697,10 @@ class AccountsController extends Controller
             'newPassword' => ''];
 
         $mT4ChangePassword = new ApiController();
-        if($oRequest['sever_id']==1){
+        if($oRequest['server_id']==1){
             $mT4ChangePassword->mt4Host=Config('fxweb.mt4CheckDemoHost');
             $mT4ChangePassword->mt4Port=Config('fxweb.mt4CheckDemoPort');
-            $oApiController->server_id=1;
+            $mT4ChangePassword->server_id=1;
         }
 
         $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'], $oRequest['oldPassword']);
@@ -746,12 +747,13 @@ class AccountsController extends Controller
             'amount' => ''];
 
         $oApiController = new ApiController();
-        if($oRequest['sever_id']==1){
+        if($oRequest['server_id']==1){
             $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
             $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
             $oApiController->server_id=1;
         }
-        $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['amount'], $oRequest['oldPassword']);
+
+        $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['oldPassword'], $oRequest['amount']);
 
         /* TODO with success */
         return view('accounts::internalTransfer')
@@ -796,7 +798,7 @@ class AccountsController extends Controller
             'amount' => ''];
 
         $oApiController = new ApiController();
-        if($oRequest['sever_id']==1){
+        if($oRequest['server_id']==1){
             $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
             $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
             $oApiController->server_id=1;

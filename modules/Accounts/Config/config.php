@@ -31,7 +31,7 @@ return [
 
     'denyLiveAccount' => false,
     'showMt4Leverage' => true,
-    'showWithDrawal' => false,
+    'showWithDrawal' => true,
     'showMt4ChangePassword' => true,
     'showMt4Transfer' => true,
 

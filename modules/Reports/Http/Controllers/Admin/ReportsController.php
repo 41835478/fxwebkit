@@ -334,6 +334,7 @@ class ReportsController extends Controller
     public function getAccountStatement(AccountStatementRequest $oRequest)
     {
 
+
         $oGroups = $this->oMt4User->getAllGroups();
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';

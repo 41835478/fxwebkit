@@ -36,13 +36,10 @@
             @foreach($articles as $article)
                 {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                 <tr class='{{ $class }}'>
-
-
                     <td>{!! Form::checkbox('articles_checkbox[]',$article->id,false,['class'=>'articles_checkbox']) !!}</td>
                     <td>{{ $article->id }}</td>
                     <td>{{ $article->title }}</td>
                     <td>{{ $pages[$article->page_id] }}</td>
-
                     </td>
                     <td>
                         {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_article_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete articles with its links")) return false;','class'=>'icon_button red_icon','type'=>'submit','value'=>$article->id ]) !!}

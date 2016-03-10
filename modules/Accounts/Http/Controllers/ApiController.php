@@ -93,7 +93,7 @@ public function changeServer($server_id){
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
 			$requestLog->insertChangePasswordRequest($login,$this->server_id,$newPassword);
-			/* TODO[moaid] please translate this message */
+
 			return trans('accounts::accounts.the_request');
 		}
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
@@ -147,6 +147,7 @@ public function changeServer($server_id){
 
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
+
 			$requestLog->insertChangeLeverageRequest($login,$this->server_id,$leverage);
 			/* TODO[moaid] please translate this message */
 			return trans('accounts::accounts.the_request');
@@ -270,6 +271,7 @@ $this->changeServer($server_id);
 
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
+
 			$requestLog->insertWithDrawalRequest($login1,$this->server_id,$amount);
 
 			return trans('accounts::accounts.the_request');
@@ -343,7 +345,6 @@ $this->changeServer($server_id);
 
 			$requestLog =new RequestLog();
 			if(Config('accounts.directOrderToMt4Server')==false){
-
 				$requestLog->insertMt4UserFullDetailsRequest($this->server_id,$mt4_user_details);
 
 				return trans('accounts::accounts.the_request');
