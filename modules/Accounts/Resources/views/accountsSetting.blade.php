@@ -198,21 +198,18 @@
                                 </div>
                             </div>
 
-                            </div>
-                            <!-- col-sm-6 -->
                         </div>
-                        <!-- row -->
+                        <!-- col-sm-6 -->
                     </div>
-                    <!-- / .panel-body -->
+                    <!-- row -->
                 </div>
-                <!-- / .collapse -->
+                <!-- / .panel-body -->
             </div>
-            <!-- / .panel -->
+            <!-- / .collapse -->
         </div>
-        <!-- / .panel-group -->
-
+        <!-- / .panel -->
     </div>
-
+    <!-- / .panel-group -->
 
     @if($errors->any())
         <div class="alert alert-danger alert-dark">

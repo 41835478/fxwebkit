@@ -159,4 +159,5 @@ return [
     'app_id'=>'Application Id',
     'webTrader'=>'Web Trader',
     'LinkTradeForUser'=>'Link Trade For User',
+    'EnableLinkTradeForUser'=>'Enable Link Trade For User',
 ];

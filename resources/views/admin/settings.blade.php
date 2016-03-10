@@ -349,11 +349,11 @@
 
                                 <hr>
                                 <div class="row">
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-4">
                                         <div class="checkbox">
                                             <label>
                                                 {!! Form::checkbox('EnableLinkTradeForUser', 1, config('fxweb.EnableLinkTradeForUser'), ['class'=>'px','id'=>'EnableLinkTradeForUser']) !!}
-                                                <span class="lbl">{{ trans('general.webTrader') }}</span>
+                                                <span class="lbl">{{ trans('general.EnableLinkTradeForUser') }}</span>
                                             </label>
                                     </div>
                                 </div>
