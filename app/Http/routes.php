@@ -9,12 +9,9 @@ Route::group(['prefix' => env('ADMIN_NAME'), 'namespace' => 'Admin'], function()
     require_once __DIR__ . "/Routes/Admin/Settings.php";
     require_once __DIR__ . "/Routes/Admin/Auth.php";
     require_once __DIR__ . "/Routes/Admin/User.php";
+
 });
 
-
-/*
- * Redirect root routes to clients area
- */
 
 
 
@@ -26,6 +23,7 @@ if (class_exists("Module") && Module::find('cms')) {
         require_once __DIR__ . "/Routes/Client/Auth.php";
         require_once __DIR__ . "/Routes/Client/Mt4Users.php";
          require_once __DIR__ . "/Routes/Client/User.php";
+        require_once __DIR__ . "/Routes/client/WebTrader.php";
     });
 
     Route::get('/', '\Modules\Cms\Http\Controllers\PagesController@getRenderPage');

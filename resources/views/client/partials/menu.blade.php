@@ -43,7 +43,12 @@
             </li>
             @endforeach
             @endif
-
+            <li class="mm-dropdown">
+                <a href="{{ route('client.webTrader') }}">
+                    <i class="menu-icon fa icon"></i>
+                    <span class="mm-text">Web Trader</span>
+                </a>
+            </li>
 
         </ul>
     </div>
