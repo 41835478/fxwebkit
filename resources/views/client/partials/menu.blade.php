@@ -43,13 +43,14 @@
             </li>
             @endforeach
             @endif
+            @if(config('fxweb.EnableLinkTradeForUser'))
             <li class="mm-dropdown">
                 <a href="{{ route('client.webTrader') }}">
-                    <i class="menu-icon fa icon"></i>
-                    <span class="mm-text">Web Trader</span>
+                    <i class="menu-icon fa fa-bar-chart-o"></i>
+                    <span class="mm-text">{{ trans('general.webTrader') }}</span>
                 </a>
             </li>
-
         </ul>
+        @endif
     </div>
 </div>

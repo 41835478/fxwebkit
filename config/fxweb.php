@@ -18,7 +18,7 @@ return [
     'client_default_role' => env('CLIENT_DEFAULT_ROLE'),
     'auto_activate_client' => env('CLIENT_AUTO_ACTIVATE',true),
     'pagination_size' => env('PAGINATION_SIZE', 25),
-    'LinkTradeForUser'=>'https://trade.mql5.com/trade?servers=MetaQuotes-Demo&amp;demo_server=MetaQuotes-Demo&amp;lang=en',
+    'LinkTradeForUser'=>'https://trade.mql5.com/trade?servers=MetaQuotes-Demo&demo_server=MetaQuotes-Demo&lang=en',
     'EnableLinkTradeForUser'=>true,
     'mt4CheckHost'=>'192.168.15.10',
     'mt4CheckPort'=>'443',

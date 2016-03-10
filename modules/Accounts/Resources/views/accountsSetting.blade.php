@@ -27,17 +27,14 @@
                     <div class="panel-body">
 
                         <div class="row">
-
-
-                            <div class="col-sm-6">
-                                <div class="form-group no-margin-hr">
-                                    {!! Form::checkbox('is_client',1,$accountsSetting['is_client'],[]) !!}
-                                    <label class="control-label">{{ trans('accounts::accounts.is_client') }}</label>
-
+                            <div class="col-sm-4">
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('is_client', 1, $accountsSetting['is_client'], ['class'=>'px','id'=>'is_client']) !!}
+                                        <span class="lbl">{{ trans('accounts::accounts.is_client') }}</span>
+                                    </label>
                                 </div>
                             </div>
-
-
                         </div>
 
 
@@ -60,11 +57,12 @@
                     <div class="panel-body">
 
                         <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group no-margin-hr">
-                                    {!! Form::checkbox('denyLiveAccount',1,$accountsSetting['denyLiveAccount'],[]) !!}
-                                    <label class="control-label">{{ trans('accounts::accounts.denyLiveAccount') }}</label>
-
+                            <div class="col-sm-3">
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('denyLiveAccount', 1, $accountsSetting['denyLiveAccount'], ['class'=>'px','id'=>'is_client']) !!}
+                                        <span class="lbl">{{ trans('accounts::accounts.denyLiveAccount') }}</span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -86,62 +84,68 @@
                 <div id="collapseThree" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group no-margin-hr">
-                                    {!! Form::checkbox('showMt4Leverage',1,$accountsSetting['showMt4Leverage'],[]) !!}
-                                    <label class="control-label">{{ trans('accounts::accounts.showMt4Leverage') }}</label>
-
-                                </div>
-                            </div>
-                            <!-- col-sm-6 -->
 
                             <div class="col-sm-6">
-                                <div class="form-group no-margin-hr">
-                                    {!! Form::checkbox('showMt4ChangePassword',1,$accountsSetting['showMt4ChangePassword'],[]) !!}
-                                    <label class="control-label">{{ trans('accounts::accounts.showMt4ChangePassword') }}</label>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('showMt4Leverage', 1, $accountsSetting['showMt4Leverage'], ['class'=>'px','id'=>'is_client']) !!}
+                                        <span class="lbl">{{ trans('accounts::accounts.showMt4Leverage') }}</span>
+                                    </label>
                                 </div>
                             </div>
+
                             <!-- col-sm-6 -->
+
+
+                            <div class="col-sm-6">
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('showMt4ChangePassword', 1, $accountsSetting['showMt4ChangePassword'], ['class'=>'px','id'=>'is_client']) !!}
+                                        <span class="lbl">{{ trans('accounts::accounts.showMt4ChangePassword') }}</span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         <!-- row -->
                         <hr>
                         <div class="row">
-
                             <div class="col-sm-6">
-                                <div class="form-group no-margin-hr">
-                                    {!! Form::checkbox('allowTransferToUnsignedMT4',1,$accountsSetting['allowTransferToUnsignedMT4'],[]) !!}
-                                    <label class="control-label">{{ trans('accounts::accounts.allowTransferToUnsignedMT4') }}</label>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('allowTransferToUnsignedMT4', 1, $accountsSetting['allowTransferToUnsignedMT4'], ['class'=>'px','id'=>'is_client']) !!}
+                                        <span class="lbl">{{ trans('accounts::accounts.allowTransferToUnsignedMT4') }}</span>
+                                    </label>
                                 </div>
                             </div>
-
                             <div class="col-sm-6">
-                                <div class="form-group no-margin-hr">
-                                    {!! Form::checkbox('showMt4Transfer',1,$accountsSetting['showMt4Transfer'],[]) !!}
-                                    <label class="control-label">{{ trans('accounts::accounts.showMt4Transfer') }}</label>
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('showMt4Transfer', 1, $accountsSetting['showMt4Transfer'], ['class'=>'px','id'=>'is_client']) !!}
+                                        <span class="lbl">{{ trans('accounts::accounts.showMt4Transfer') }}</span>
+                                    </label>
                                 </div>
-
                             </div>
-
                             <!-- col-sm-6 -->
                         </div>
 
                         <hr>
                         <div class="row">
 
-                            <div class="col-sm-6">
-                                <div class="form-group no-margin-hr">
-                                    {!! Form::checkbox('directOrderToMt4Server',1,$accountsSetting['directOrderToMt4Server'],[]) !!}
-                                    <label class="control-label">{{ trans('accounts::accounts.directOrderToMt4Server') }}</label>
 
+                            <div class="col-sm-6">
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('directOrderToMt4Server', 1, $accountsSetting['directOrderToMt4Server'], ['class'=>'px','id'=>'is_client']) !!}
+                                        <span class="lbl">{{ trans('accounts::accounts.directOrderToMt4Server') }}</span>
+                                    </label>
                                 </div>
                             </div>
-
-
                             <div class="col-sm-6">
-                                <div class="form-group no-margin-hr">
-                                    {!! Form::checkbox('showWithDrawal',1,$accountsSetting['showWithDrawal'],[]) !!}
-                                    <label class="control-label">{{ trans('accounts::accounts.showWithDrawal') }}</label>
-
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('showWithDrawal', 1, $accountsSetting['showWithDrawal'], ['class'=>'px','id'=>'is_client']) !!}
+                                        <span class="lbl">{{ trans('accounts::accounts.showWithDrawal') }}</span>
+                                    </label>
                                 </div>
                             </div>
 
@@ -183,12 +187,17 @@
                         <!-- row -->
                         <hr>
                         <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group no-margin-hr">
-                                    {!! Form::checkbox('apiReqiredConfirmMt4Password',1,$accountsSetting['apiReqiredConfirmMt4Password'],[]) !!}
-                                    <label class="control-label">{{ trans('accounts::accounts.apiReqiredConfirmMt4Password') }}</label>
 
+
+                            <div class="col-sm-6">
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('apiReqiredConfirmMt4Password', 1, $accountsSetting['apiReqiredConfirmMt4Password'], ['class'=>'px','id'=>'is_client']) !!}
+                                        <span class="lbl">{{ trans('accounts::accounts.apiReqiredConfirmMt4Password') }}</span>
+                                    </label>
                                 </div>
+                            </div>
+
                             </div>
                             <!-- col-sm-6 -->
                         </div>

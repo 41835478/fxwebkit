@@ -335,15 +335,26 @@
                         <!-- / .panel-heading -->
                         <div id="collapseSeven" class="panel-collapse collapse">
                             <div class="panel-body">
+
+
+
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
-
-
-                                            {!! Form::checkbox('EnableLinkTradeForUser',1,config('fxweb.EnableLinkTradeForUser'),[]) !!}
-                                            <label class="control-label">{{ trans('general.webTrader') }}</label>
-
+                                            <label class="control-label">{{ trans('general.LinkTradeForUser') }}</label>
+                                            {!! Form::text('LinkTradeForUser',config('fxweb.LinkTradeForUser'),['class'=>'form-control']) !!}
                                         </div>
+                                    </div>
+                                    </div>
+
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                {!! Form::checkbox('EnableLinkTradeForUser', 1, config('fxweb.EnableLinkTradeForUser'), ['class'=>'px','id'=>'EnableLinkTradeForUser']) !!}
+                                                <span class="lbl">{{ trans('general.webTrader') }}</span>
+                                            </label>
                                     </div>
                                 </div>
                             </div>

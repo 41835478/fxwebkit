@@ -158,4 +158,5 @@ return [
     'secret'=>'Secret',
     'app_id'=>'Application Id',
     'webTrader'=>'Web Trader',
+    'LinkTradeForUser'=>'Link Trade For User',
 ];
