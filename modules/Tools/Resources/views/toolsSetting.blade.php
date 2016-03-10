@@ -27,13 +27,16 @@
                         <div class="panel-body">
                             <div class="row">
 
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-                                        {!! Form::checkbox('is_client',1,$toolsSetting['is_client'],[]) !!}
-                                        <label class="control-label">{{ trans('tools::tools.is_client') }}</label>
+
+
+                                <div class="col-sm-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            {!! Form::checkbox('is_client', 1,$toolsSetting['is_client'], ['class'=>'px','id'=>'is_client']) !!}
+                                            <span class="lbl">{{ trans('tools::tools.is_client') }}</span>
+                                        </label>
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
                             </div>
                         </div>
                         <!-- / .panel-body -->

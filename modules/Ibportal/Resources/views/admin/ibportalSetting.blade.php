@@ -39,10 +39,13 @@
 <hr>
                             <div class="row">
 
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-                                        <label class="control-label">{{ trans('ibportal::ibportal.is_client') }}</label>
-                                        {!! Form::checkbox('is_client',1,$ibportalSetting['is_client'],[]) !!}
+
+                                <div class="col-sm-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            {!! Form::checkbox('is_client', 1,$ibportalSetting['is_client'], ['class'=>'px','id'=>'is_client']) !!}
+                                            <span class="lbl">{{ trans('ibportal::ibportal.is_client') }}</span>
+                                        </label>
                                     </div>
                                 </div>
                                 <!-- col-sm-6 -->

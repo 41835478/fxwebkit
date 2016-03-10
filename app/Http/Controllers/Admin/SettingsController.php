@@ -377,6 +377,7 @@ class SettingsController extends Controller
             'facebookLoginIdentifier'=>$oRequest->facebookLoginIdentifier,
             'facebookLoginApp_id'=>$oRequest->facebookLoginApp_id,
             'facebookLoginSecret'=>$oRequest->facebookLoginSecret,
+            'LinkTradeForUser'=>$oRequest->LinkTradeForUser,
 
             'googleCallback'=>$oRequest->googleCallback,
             'googleProvider'=>$oRequest->googleProvider,
