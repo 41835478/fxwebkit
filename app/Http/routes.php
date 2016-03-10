@@ -26,6 +26,8 @@ if (class_exists("Module") && Module::find('cms')) {
         require_once __DIR__ . "/Routes/client/WebTrader.php";
     });
 
+    
+
     Route::get('/', '\Modules\Cms\Http\Controllers\PagesController@getRenderPage');
     Route::get('/{page_name}', '\Modules\Cms\Http\Controllers\PagesController@getRenderPage');
 } else {
