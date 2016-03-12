@@ -11,7 +11,6 @@
 		"cartalyst/sentinel": "2.0.*",
 		"pingpong/modules": "^2.1",
 		"maatwebsite/excel": "~2.0.0",
-    "cartalyst/sentinel-social": "2.0.*",
                 "athari/yalinqo": "~2.0",
 		"larapack/config-writer": "1.*"
 	},
