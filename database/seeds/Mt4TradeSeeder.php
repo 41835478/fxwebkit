@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CmsSeeder extends Seeder
+class Mt4TradeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
