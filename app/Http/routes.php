@@ -23,7 +23,7 @@ if (class_exists("Module") && Module::find('cms')) {
         require_once __DIR__ . "/Routes/Client/Auth.php";
         require_once __DIR__ . "/Routes/Client/Mt4Users.php";
          require_once __DIR__ . "/Routes/Client/User.php";
-        require_once __DIR__ . "/Routes/client/WebTrader.php";
+        require_once __DIR__ . "/Routes/Client/WebTrader.php";
     });
 
 
