@@ -9,15 +9,7 @@ use Fxweb\Http\Controllers\Controller;
 
 class EditConfigController extends Controller
 {
-    protected $dropDownJs;
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function __construct(){
-        $this->dropDownJs='';
-    }
+
     public function index()
     {
         //
@@ -38,16 +30,42 @@ class EditConfigController extends Controller
         $config->save();
     }
 
-public  function getEditDropDownHtml($name){
+    public  function getEditDropDownHtml($name,$array){
+        $html='<div class="dropDownEditAllDiv">
+                                        <div class="row">
+                                            <div class="col-sm-6 nav-input-div ">
+
+                                                    <label class="control-label">'.trans('general.arrayName').' </label>
+                                          <select name="'.$name.'[]" id="select_'.$name.'" multiple="multiple" class="form-control">
+                                          ';
+        foreach($array as $key=>$value){$html.='<option onclick=" $(this).remove();"value="'.$key.','.$value.'">'.$value.'</option>';}
+
+                                          $html.= ' </select>
 
 
-    $this->dropDownJs.='';
-    return $name;
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-2 form-group no-margin-hr">
+                                            <input name="key" id="keyInput_'.$name.'" placeholder="'.trans('general.key').'  " class="form-control">
+
+                                            </div>
+
+                                            <div class="col-sm-2 form-group no-margin-hr">
+
+                                            <input name="value" id="valueInput_'.$name.'" placeholder="'.trans('general.value').'  " class="form-control">
+                                            </div>
+                                            <div class="col-sm-2 form-group no-margin-hr">
+                                            <button  type="button"class="add btn btn-primary"data-arrayname="'.$name.'" >'.trans('general.add').' </button>
+
+                                            </div>
+                                        </div>
+
+</div>';
+    return $html;
 
 }
-    public function getEditDropDownJs(){
 
-        return $this->dropDownJs;
-    }
 
 }

@@ -379,32 +379,32 @@
                                 <!-- / .panel-heading -->
                                 <div id="collapseE" class="panel-collapse collapse">
                                     <div class="panel-body">
-
+<div class="dropDownEditAllDiv">
                                         <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class=" nav-input-div ">
-                                                    <label class="control-label">{{ trans('general.demo') }}</label>
-                                                    {!! Form::select('symbols',config('fxweb.demoArray'),'',['id'=>'symbolsMultiSelect','multiple'=>'multiple','class'=>'form-control']) !!}
+                                            <div class="col-sm-6 nav-input-div ">
 
-                                                </div>
+                                                    <label class="control-label">{{ trans('general.arrayName') }}</label>
+                                                    {!! Form::select('arrayName',[],'',['id'=>'select_arrayName','multiple'=>'multiple','class'=>'form-control']) !!}
+
+
                                             </div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-sm-3">
-                                                <div class="form-group no-margin-hr">
-
-                                                    {!! Form::text('key',config('fxweb.key'),['placeholder'=>trans('general.key'),'class'=>'form-control']) !!}
-                                                </div>
+                                            <div class="col-sm-2 form-group no-margin-hr">
+                                                    {!! Form::text('key',config('fxweb.key'),['id'=>'keyInput_arrayName','placeholder'=>trans('general.key'),'class'=>'form-control']) !!}
                                             </div>
 
-                                            <div class="col-sm-3">
-                                                <div class="form-group no-margin-hr">
-
-                                                    {!! Form::text('value',config('fxweb.value'),['placeholder'=>trans('general.value'),'class'=>'form-control']) !!}
-                                                </div>
+                                            <div class="col-sm-2 form-group no-margin-hr">
+                                                {!! Form::text('value',config('fxweb.value'),['id'=>'valueInput_arrayName','placeholder'=>trans('general.value'),'class'=>'form-control']) !!}
+                                            </div>
+                                            <div class="col-sm-2 form-group no-margin-hr">
+                                                {!! Form::button('add',['class'=>'add btn btn-primary','data-arrayname'=>'arrayName']) !!}
                                             </div>
                                         </div>
+
+</div>
+                                        {!! $editGroupLive !!}
 
 
 
@@ -455,6 +455,21 @@
                     }).change(function () {
                         $(this).valid();
                     });
+
+
+
+                    $('.dropDownEditAllDiv .add').click(function(){
+                        var arrayName=$(this).data('arrayname');console.log(arrayName);
+                        var key=$('#keyInput_'+arrayName).val();
+                        var value=$('#valueInput_'+arrayName).val();
+
+                    $('#select_'+arrayName).append('<option value="'+key+','+value+'" onclick="$(this).remove();">'+value+'</option>');
+                        $('.dropDownEditAllDiv  option').attr('selected', 'selected');
+                    });
+                   $('button[type="submit"],input[type="submit"]').click(function(){
+                       $('.dropDownEditAllDiv  option').attr('selected', 'selected');
+                   });
+
 
                 </script>
 @stop

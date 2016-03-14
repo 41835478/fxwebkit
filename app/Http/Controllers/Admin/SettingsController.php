@@ -351,8 +351,8 @@ class SettingsController extends Controller
 
         return view('admin.settings',
         [
-            'editLiveGroups'=>$editConfig->getEditDropDownHtml('GroupLive'),
-            'editDropJs'=>$editConfig->getEditDropDownJs()
+            'editGroupLive'=>$editConfig->getEditDropDownHtml('GroupLive',config('fxweb.GroupLive')),
+
 
         ]
         );
@@ -366,7 +366,12 @@ class SettingsController extends Controller
      */
     public function postSettings(Request $oRequest)
     {
+        $aGroupLive=[];
+foreach($oRequest->GroupLive as$value){
+    $item=explode(',',$value);
+    $aGroupLive[$item[0]]=$item[1];
 
+}
         $enableLinkTradeForUser = ($oRequest->EnableLinkTradeForUser) ? true : false;
 
         $aSetting = [
@@ -399,9 +404,7 @@ class SettingsController extends Controller
             'linkedinIdentifier'=>$oRequest->linkedinIdentifier,
             'linkedinSecret'=>$oRequest->linkedinSecret,
 
-            'key'=>$oRequest->key,
-            'value'=>$oRequest->value,
-
+            'GroupLive'=>$aGroupLive,
             'EnableLinkTradeForUser'=>$enableLinkTradeForUser,
 
         ];

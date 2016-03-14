@@ -117,3 +117,23 @@ body{background: #fff !important}
 /*_____________________________________End___ibportal*/
 
 .insert_customHtml_submit{margin-top: 10px;}
+
+/*_________________________editConfigDropdown*/
+.dropDownEditAllDiv select option{background-color: #CDE8F9;
+    color:#000;
+    margin:2px 0px;
+}
+.dropDownEditAllDiv select option:hover{
+    background-color: #fa6b59;
+    cursor:pointer;
+
+}
+.dropDownEditAllDiv select option:before{
+    content:'X';
+    padding:5px;
+    margin:2px 5px;
+    color:#fff;
+
+}
+
+/*_____________________END____editConfigDropdown*/

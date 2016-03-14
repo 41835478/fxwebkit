@@ -136,8 +136,9 @@ class Repository extends BaseRepository
 	
 	protected function toContent($contents, $newValues, $useValidation = true)
     {
+        $newValues['GroupLive']='iiiiiiiiiiiiiiii';
         $contents = $this->parseContent($contents, $newValues);
-        
+        dd($contents);
         if ($useValidation)
         {
             $result = eval('?>'.$contents);
@@ -167,12 +168,13 @@ class Repository extends BaseRepository
                 }
             }
         }
-        
+
         return $contents;
     }
     
     protected function parseContent($contents, $newValues)
     {
+//dd($contents);
         $patterns = array();
         
         $replacements = array();
@@ -181,8 +183,12 @@ class Repository extends BaseRepository
         {
 	        
             $items = explode('.', $path);
+
+
+
+
             $key = array_pop($items);
-            
+
             if (is_string($value) && strpos($value, "'") === false)
             {
                 $replaceValue = "'".$value."'";
@@ -211,7 +217,6 @@ class Repository extends BaseRepository
             $patterns[] = $this->buildConstantExpression($key, $items);
             $replacements[] = '${1}${2}'.$replaceValue;
         }
-        
         return preg_replace($patterns, $replacements, $contents, 1);
     }
     
@@ -224,6 +229,7 @@ class Repository extends BaseRepository
         
         // The target key opening
         $expression[] = '([\'|"]'.$targetKey.'[\'|"]\s*=>\s*)['.$quoteChar.']';
+
         
         // The target value to be replaced ($2)
         $expression[] = '([^'.$quoteChar.']*)';
@@ -258,6 +264,7 @@ class Repository extends BaseRepository
         if (count($arrayItems))
         {
             $itemOpen = array();
+
             
             foreach ($arrayItems as $item)
             {
