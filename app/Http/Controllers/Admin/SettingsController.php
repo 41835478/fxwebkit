@@ -379,6 +379,7 @@ class SettingsController extends Controller
             'facebookLoginSecret'=>$oRequest->facebookLoginSecret,
             'LinkTradeForUser'=>$oRequest->LinkTradeForUser,
 
+
             'googleCallback'=>$oRequest->googleCallback,
             'googleProvider'=>$oRequest->googleProvider,
             'googleDriver'=>$oRequest->googleDriver,
@@ -390,6 +391,10 @@ class SettingsController extends Controller
             'linkedinDriver'=>$oRequest->linkedinDriver,
             'linkedinIdentifier'=>$oRequest->linkedinIdentifier,
             'linkedinSecret'=>$oRequest->linkedinSecret,
+
+            'key'=>$oRequest->key,
+            'value'=>$oRequest->value,
+
             'EnableLinkTradeForUser'=>$enableLinkTradeForUser,
 
         ];

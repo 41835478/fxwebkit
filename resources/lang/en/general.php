@@ -160,4 +160,7 @@ return [
     'webTrader'=>'Web Trader',
     'LinkTradeForUser'=>'Link Trade For User',
     'EnableLinkTradeForUser'=>'Enable Link Trade For User',
+    'key'=>'Key',
+    'value'=>'Value',
+    'demo'=>'Demo',
 ];
