@@ -68,7 +68,15 @@ class DashboardController extends Controller
 
         $login = ($oRequest->has('login')) ? $oRequest->login : $firstLogin;
 
-        list($horizontal_line_numbers, $growth_array, $averages_array, $statistics, $symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers,$growth) = $this->oMt4Trade->getClinetGrowthChart($login);
+        list($horizontal_line_numbers,
+            $growth_array,
+            $averages_array,
+            $statistics,
+            $symbols_pie_array,
+            $sell_array,
+            $buy_array,
+            $sell_buy_horizontal_line_numbers,
+            $growth) = $this->oMt4Trade->getClientGrowthChart($login);
 
         if($oUser->hasAnyAccess(['user.denyLiveAccount']) ){
             Session::flash('flash_info',trans('user.fillFullDetailsToAllowLive'));
