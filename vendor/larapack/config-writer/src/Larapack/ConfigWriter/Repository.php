@@ -265,7 +265,7 @@ class Repository extends BaseRepository
         {
             $itemOpen = array();
 
-            
+
             foreach ($arrayItems as $item)
             {
                 // The left hand array assignment

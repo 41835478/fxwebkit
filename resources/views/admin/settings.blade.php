@@ -121,6 +121,23 @@
                                         {!! Form::text('adminEmail',config('fxweb.adminEmail'),['class'=>'form-control']) !!}
                                     </div>
                                 </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group no-margin-hr">
+                                        <label class="control-label">{{ trans('general.senderEmail') }}</label>
+                                        {!! Form::text('senderEmail',config('fxweb.senderEmail'),['class'=>'form-control']) !!}
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group no-margin-hr">
+                                        <label class="control-label">{{ trans('general.displayName') }}</label>
+                                        {!! Form::text('displayName',config('fxweb.displayName'),['class'=>'form-control']) !!}
+                                    </div>
+                                </div>
                             </div>
                             <!-- / .panel-body -->
                         </div>

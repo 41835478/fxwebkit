@@ -354,9 +354,15 @@ class SettingsController extends Controller
             'editGroupLive'=>$editConfig->getEditDropDownHtml('GroupLive',config('fxweb.GroupLive')),
 
 
-        ]
-        );
 
+
+
+
+        ]
+
+    );
+
+        return view('admin.settings');
 
     }
 
@@ -379,17 +385,23 @@ foreach($oRequest->GroupLive as$value){
             'mt4CheckHost' => $oRequest->mt4CheckHost,
             'mt4CheckPort' => $oRequest->mt4CheckPort,
             'liveServerName' => $oRequest->liveServerName,
+
             'mt4CheckDemoHost' => $oRequest->mt4CheckDemoHost,
             'mt4CheckDemoPort' => $oRequest->mt4CheckDemoPort,
-            'adminEmail' => $oRequest->adminEmail,
             'demoServerName' => $oRequest->demoServerName,
+
+            'adminEmail' => $oRequest->adminEmail,
+            'senderEmail'=>$oRequest->senderEmail,
+            'displayName'=>$oRequest->displayName,
+
+
             'facebookLoginCallback'=>$oRequest->facebookLoginCallback,
             'facebookLoginProvider'=>$oRequest->facebookLoginProvider,
             'facebookLoginDriver'=>$oRequest->facebookLoginDriver,
             'facebookLoginIdentifier'=>$oRequest->facebookLoginIdentifier,
             'facebookLoginApp_id'=>$oRequest->facebookLoginApp_id,
             'facebookLoginSecret'=>$oRequest->facebookLoginSecret,
-            'LinkTradeForUser'=>$oRequest->LinkTradeForUser,
+
 
 
             'googleCallback'=>$oRequest->googleCallback,
@@ -403,8 +415,10 @@ foreach($oRequest->GroupLive as$value){
             'linkedinDriver'=>$oRequest->linkedinDriver,
             'linkedinIdentifier'=>$oRequest->linkedinIdentifier,
             'linkedinSecret'=>$oRequest->linkedinSecret,
-
             'GroupLive'=>$aGroupLive,
+
+            
+            'LinkTradeForUser'=>$oRequest->LinkTradeForUser,
             'EnableLinkTradeForUser'=>$enableLinkTradeForUser,
 
         ];

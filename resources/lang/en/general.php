@@ -163,4 +163,6 @@ return [
     'key'=>'Key',
     'value'=>'Value',
     'demo'=>'Demo',
+    'senderEmail'=>'Sender Email',
+    'displayName'=>'Display Name',
 ];
