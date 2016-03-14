@@ -3,7 +3,7 @@
 namespace Fxweb\Repositories\Admin\Mt4Trade;
 
 use Fxweb\Helpers\Fx;
-use Fxweb\Models\Mt4Trade;
+//use Fxweb\Models\Mt4Trade;
 
 use Fxweb\Models\Mt4ClosedActual;
 use Fxweb\Models\Mt4ClosedBalance;
@@ -49,7 +49,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      */
     public function getClosedTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC') {
         /* TODO[Galya] we will delete this table where we should get symbols */
-        return Mt4Trade::distinct()
+        return Mt4Closed::distinct()
             ->select('SYMBOL')
             ->where('CLOSE_TIME', '!=', '1970-01-01')
             ->where('CMD', '<', '6')
@@ -67,7 +67,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
     public function getOpenTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC') {
         /* TODO[Galya] we will delete this table where we should get symbols */
 
-        return Mt4Trade::distinct()
+        return Mt4Closed::distinct()
             ->select('SYMBOL')
             ->where('CLOSE_TIME', '=', '1970-01-01')
             ->where('CMD', '<', '6')
@@ -465,18 +465,18 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      * @return integer
      */
     public function getDepositByLogin($aFilters) {
-/* Todo[Galya] which tables we have to get data from */
+/* Todo[Galya] which tables we have to get data from  ( I've use Mt4ClosedBalance where cmd =6)*/
         // $oResult = Mt4Trade::select('PROFIT')->where('CMD', '=', 6);
         /* ===============================check admin or user================ */
         $oResult = '';
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
-                $oResult = Mt4Trade::with('users')->whereHas('users', function($query) use($account_id) {
+                $oResult = Mt4ClosedBalance::with('users')->whereHas('users', function($query) use($account_id) {
                     $query->where('users_id', $account_id);
                 })->select('PROFIT')->where('CMD', '=', 6);
             } else {
-                $oResult = Mt4Trade::select('PROFIT')->where('CMD', '=', 6);
+                $oResult = Mt4ClosedBalance::select('PROFIT')->where('CMD', '=', 6);
             }
         }
         $oResult->where('LOGIN', '=', $aFilters['login']);
@@ -506,18 +506,18 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      */
     public function getCreditFacilityByLogin($aFilters) {
 
-        /* Todo[Galya] which tables we have to get data from */
+        /* Todo[Galya] which tables we have to get data from   ( I've used Mt4ClosedBalance where cmd =7)*/
         //$oResult = Mt4Trade::select('PROFIT')->where('CMD', '=', 7);
         /* ===============================check admin or user================ */
         $oResult = '';
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
-                $oResult = Mt4Trade::with('users')->whereHas('users', function($query) use($account_id) {
+                $oResult = Mt4ClosedBalance::with('users')->whereHas('users', function($query) use($account_id) {
                     $query->where('users_id', $account_id);
                 })->select('PROFIT')->where('CMD', '=', 7);
             } else {
-                $oResult = Mt4Trade::select('PROFIT')->where('CMD', '=', 7);
+                $oResult = Mt4ClosedBalance::select('PROFIT')->where('CMD', '=', 7);
             }
         }
 
@@ -796,18 +796,18 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      */
     public function getAccountantByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC') {
         $oFxHelper = new Fx();
-        $oResult = new Mt4Trade();
+        $oResult = new Mt4ClosedBalance();
         $aSummury = [];
         /* ===============================check admin or user================ */
-        $oResult = new Mt4Trade();
+        $oResult = new Mt4ClosedBalance();
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
-                $oResult = Mt4Trade::with('users')->whereHas('users', function($query) use($account_id) {
+                $oResult = Mt4ClosedBalance::with('users')->whereHas('users', function($query) use($account_id) {
                     $query->where('users_id', $account_id);
                 });
             } else {
-                $oResult = new Mt4Trade();
+                $oResult = new Mt4ClosedBalance();
             }
         }
 
