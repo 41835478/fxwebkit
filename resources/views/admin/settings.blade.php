@@ -325,43 +325,91 @@
                     </div>
 
 
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
-                               href="#collapseSeven">
-                                {{ trans('general.webTrader') }}
-                            </a>
-                        </div>
-                        <!-- / .panel-heading -->
-                        <div id="collapseSeven" class="panel-collapse collapse">
-                            <div class="panel-body">
 
 
 
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group no-margin-hr">
-                                            <label class="control-label">{{ trans('general.LinkTradeForUser') }}</label>
-                                            {!! Form::text('LinkTradeForUser',config('fxweb.LinkTradeForUser'),['class'=>'form-control']) !!}
+
+
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
+                                   href="#collapseSeven">
+                                    {{ trans('general.webTrader') }}
+                                </a>
+                            </div>
+                            <!-- / .panel-heading -->
+                            <div id="collapseSeven" class="panel-collapse collapse">
+                                <div class="panel-body">
+
+
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group no-margin-hr">
+                                                <label class="control-label">{{ trans('general.LinkTradeForUser') }}</label>
+                                                {!! Form::text('LinkTradeForUser',config('fxweb.LinkTradeForUser'),['class'=>'form-control']) !!}
+                                            </div>
                                         </div>
                                     </div>
-                                    </div>
 
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="checkbox">
-                                            <label>
-                                                {!! Form::checkbox('EnableLinkTradeForUser', 1, config('fxweb.EnableLinkTradeForUser'), ['class'=>'px','id'=>'EnableLinkTradeForUser']) !!}
-                                                <span class="lbl">{{ trans('general.EnableLinkTradeForUser') }}</span>
-                                            </label>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="checkbox">
+                                                <label>
+                                                    {!! Form::checkbox('EnableLinkTradeForUser', 1, config('fxweb.EnableLinkTradeForUser'), ['class'=>'px','id'=>'EnableLinkTradeForUser']) !!}
+                                                    <span class="lbl">{{ trans('general.EnableLinkTradeForUser') }}</span>
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+
+
                         </div>
-                    </div>
+                            <div class="panel">
+                                <div class="panel-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
+                                       href="#collapseE">
+                                        {{ trans('general.demo') }}
+                                    </a>
+                                </div>
+                                <!-- / .panel-heading -->
+                                <div id="collapseE" class="panel-collapse collapse">
+                                    <div class="panel-body">
+
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class=" nav-input-div ">
+                                                    <label class="control-label">{{ trans('general.demo') }}</label>
+                                                    {!! Form::select('symbols',config('fxweb.demoArray'),'',['id'=>'symbolsMultiSelect','multiple'=>'multiple','class'=>'form-control']) !!}
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="form-group no-margin-hr">
+
+                                                    {!! Form::text('key',config('fxweb.key'),['placeholder'=>trans('general.key'),'class'=>'form-control']) !!}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group no-margin-hr">
+
+                                                    {!! Form::text('value',config('fxweb.value'),['placeholder'=>trans('general.value'),'class'=>'form-control']) !!}
+                                                </div>
+                                            </div>
+                                        </div>
 
 
+
+                                    </div>
+                                </div>
 
                 </div>
 
@@ -388,6 +436,9 @@
                 @parent
                 <script>
                     init.push(function () {
+
+
+
                         var options = {
                             format: "yyyy-mm-dd",
                             todayBtn: "linked",
