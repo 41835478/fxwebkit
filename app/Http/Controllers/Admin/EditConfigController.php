@@ -9,11 +9,15 @@ use Fxweb\Http\Controllers\Controller;
 
 class EditConfigController extends Controller
 {
+    protected $dropDownJs;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->dropDownJs='';
+    }
     public function index()
     {
         //
@@ -32,6 +36,18 @@ class EditConfigController extends Controller
             }
         }
         $config->save();
+    }
+
+public  function getEditDropDownHtml($name){
+
+
+    $this->dropDownJs.='';
+    return $name;
+
+}
+    public function getEditDropDownJs(){
+
+        return $this->dropDownJs;
     }
 
 }

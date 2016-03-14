@@ -28,6 +28,7 @@ class Email extends Controller {
         Mail::send($sTemplate, $aTemplateVariables, function ($message) use ($info) {
             $message->from(config('fxweb.senderEmail'), config('fxweb.displayName'));
             $message->to($info['to'])->subject($info['subject']);
+            $message->getHeaders()->addTextHeader('Content-type', 'text/html');
         });
     }
 
@@ -61,6 +62,7 @@ class Email extends Controller {
 
             $message->from(config('fxweb.senderEmail'), config('fxweb.displayName'));
 
+            $message->getHeaders()->addTextHeader('Content-type', 'text/html');
             $message->to($info['email']);
         });
 
