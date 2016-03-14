@@ -75,16 +75,39 @@ public function changeServer($server_id){
 //			}
 //		}
 //return $string;
-		$fp =@fsockopen($this->mt4Host,$this->mt4Port,$error,$error2,10);
-		$result = 'error';
-		if ($fp) {
-			fwrite($fp, $message. "\nQUIT\n");
-			$result= fgets($fp, 1024);
+/*
+		$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+		if ($socket === false) return 'error';
 
-			fclose($fp);
+
+		$result = socket_connect($socket, $this->mt4Host, $this->mt4Port);
+		$string = '';
+		if ($result === false) {
+			return 'error';
+		} else {
+
+			socket_write($socket, $message . "\nQUIT\n", strlen($message . "\nQUIT\n"));
+			while (socket_recv($socket, $data, 1024, 0)) {
+				$string = $data;
+			}
 		}
 
-		return preg_replace('/\s+/', '', $result);
+		die(var_dump($string));
+		return json_encode($string);
+*/
+
+		$fp =@fsockopen($this->mt4Host,$this->mt4Port,$error,$error2,10);
+		$result = '';
+		if ($fp) {
+			fwrite($fp, $message. "\nQUIT\n");
+		while(!feof($fp)){
+		$result .= fgets($fp, 1024);
+		}
+			fclose($fp);
+		}
+		$result=preg_replace('/\s+/', '', $result);
+die(var_dump(json_decode(  $result)));
+		return preg_replace('/\s+/', '', $result);/**/
 
 	}
 
@@ -97,6 +120,8 @@ public function changeServer($server_id){
 			return trans('accounts::accounts.the_request');
 		}
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
+
+
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=2|LOGIN='.$login.'|'.$password.'NPASS='.$newPassword.'|TYPE=0|MANAGER=1';
 		$result=$this->sendApiMessage($message);
@@ -428,9 +453,10 @@ $this->changeServer($server_id);
 		}
 
 
-		$message="WWAPUSER-" . $login. "|" . $password;
 
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=7|LOGIN='.$login.'|CPASS='.$password;
 		$result=$this->sendApiMessage($message);
+		dd($result->result);
 
 
 
