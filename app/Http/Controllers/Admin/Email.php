@@ -5,6 +5,7 @@ namespace Fxweb\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use Fxweb\Http\Requests;
 use Fxweb\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Config;
 use Mail;
 
 class Email extends Controller {
@@ -25,7 +26,7 @@ class Email extends Controller {
             'fromName' => $this->fromName,
         ];
         Mail::send($sTemplate, $aTemplateVariables, function ($message) use ($info) {
-            $message->from('m.hashim@mqplanet.com', 'Mqplanet');
+            $message->from(config('fxweb.senderEmail'), config('fxweb.displayName'));
             $message->to($info['to'])->subject($info['subject']);
         });
     }
@@ -58,7 +59,7 @@ class Email extends Controller {
         Mail::raw($info['content'], function ($message) use ($info)
         {
 
-            $message->from('m.hashim@mqplanet.com', 'Mqplanet');
+            $message->from(config('fxweb.senderEmail'), config('fxweb.displayName'));
 
             $message->to($info['email']);
         });

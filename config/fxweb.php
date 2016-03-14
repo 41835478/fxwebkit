@@ -26,6 +26,8 @@ return [
     'mt4CheckDemoHost'=>'192.168.15.10',
     'mt4CheckDemoPort'=>'443',
     'demoServerName'=>'demo',
+    'senderEmail'=>'m.hashim@mqplanet.com',
+    'displayName'=>'Mqplanet',
 
 
     'adminEmail'=>'taylorsuccessor@gmail.com',

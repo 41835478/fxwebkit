@@ -348,6 +348,7 @@ class SettingsController extends Controller
     public function getSettings(Request $oRequest)
     {
 
+
         return view('admin.settings');
 
 
@@ -367,17 +368,23 @@ class SettingsController extends Controller
             'mt4CheckHost' => $oRequest->mt4CheckHost,
             'mt4CheckPort' => $oRequest->mt4CheckPort,
             'liveServerName' => $oRequest->liveServerName,
+
             'mt4CheckDemoHost' => $oRequest->mt4CheckDemoHost,
             'mt4CheckDemoPort' => $oRequest->mt4CheckDemoPort,
-            'adminEmail' => $oRequest->adminEmail,
             'demoServerName' => $oRequest->demoServerName,
+
+            'adminEmail' => $oRequest->adminEmail,
+            'senderEmail'=>$oRequest->senderEmail,
+            'displayName'=>$oRequest->displayName,
+
+
             'facebookLoginCallback'=>$oRequest->facebookLoginCallback,
             'facebookLoginProvider'=>$oRequest->facebookLoginProvider,
             'facebookLoginDriver'=>$oRequest->facebookLoginDriver,
             'facebookLoginIdentifier'=>$oRequest->facebookLoginIdentifier,
             'facebookLoginApp_id'=>$oRequest->facebookLoginApp_id,
             'facebookLoginSecret'=>$oRequest->facebookLoginSecret,
-            'LinkTradeForUser'=>$oRequest->LinkTradeForUser,
+
 
 
             'googleCallback'=>$oRequest->googleCallback,
@@ -395,6 +402,8 @@ class SettingsController extends Controller
             'key'=>$oRequest->key,
             'value'=>$oRequest->value,
 
+
+            'LinkTradeForUser'=>$oRequest->LinkTradeForUser,
             'EnableLinkTradeForUser'=>$enableLinkTradeForUser,
 
         ];
