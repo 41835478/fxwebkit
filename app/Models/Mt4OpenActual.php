@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mt4OpenActual extends Model
 {
    protected $table='mt4_open_actual';
+
    public function Mt4Prices() {
       // instead of hasMany
       return Mt4Prices::where('SYMBOL', $this->SYMBOL);
@@ -14,4 +15,5 @@ class Mt4OpenActual extends Model
       $this->primaryKey='login';
       return $this->belongsToMany('Fxweb\Models\User', 'mt4_users_users', 'mt4_users_id','users_id','login' );
    }
+
 }
