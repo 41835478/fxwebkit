@@ -61,6 +61,7 @@ class Email extends Controller {
 
             $message->from('m.hashim@mqplanet.com', 'Mqplanet');
 
+            $message->getHeaders()->addTextHeader('Content-type', 'text/html');
             $message->to($info['email']);
         });
 
