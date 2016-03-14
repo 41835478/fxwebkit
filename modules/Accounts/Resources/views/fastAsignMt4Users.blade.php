@@ -124,7 +124,7 @@
                     <thead>
                         <tr>
                             <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('accounts::accounts.Login')) !!}</th>
-
+                            <th class="no-warp">{!! th_sort(trans('accounts::accounts.liveDemo'), 'server_id', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</th>
                             <th class="no-warp">{!! trans('accounts::accounts.action') !!}</th>
@@ -136,6 +136,7 @@
                         <tr>
                       
                             <td>{!! Form::checkbox('users_checkbox[]',$oResult->LOGIN,false,['class'=>'users_checkbox']) !!}{{ $oResult->LOGIN }}</td>
+                            <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
                             <td>{{ $oResult->NAME }}</td>
                             <td>{{ $oResult->GROUP }}</td>
                             <td>
