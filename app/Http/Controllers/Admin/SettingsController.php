@@ -347,8 +347,15 @@ class SettingsController extends Controller
 
     public function getSettings(Request $oRequest)
     {
+        $editConfig = new EditConfig();
 
-        return view('admin.settings');
+        return view('admin.settings',
+        [
+            'editLiveGroups'=>$editConfig->getEditDropDownHtml('GroupLive'),
+            'editDropJs'=>$editConfig->getEditDropDownJs()
+
+        ]
+        );
 
 
     }

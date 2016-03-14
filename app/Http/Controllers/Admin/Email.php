@@ -27,6 +27,7 @@ class Email extends Controller {
         Mail::send($sTemplate, $aTemplateVariables, function ($message) use ($info) {
             $message->from('m.hashim@mqplanet.com', 'Mqplanet');
             $message->to($info['to'])->subject($info['subject']);
+            $message->getHeaders()->addTextHeader('Content-type', 'text/html');
         });
     }
 
