@@ -352,7 +352,7 @@ class SettingsController extends Controller
         return view('admin.settings',
         [
             'editGroupLive'=>$editConfig->getEditDropDownHtml('GroupLive',config('fxweb.GroupLive')),
-
+'editGroupDemo'=>$editConfig->getEditDropDownHtml('GroupDemo',config('fxweb.GroupDemo')),
 
 
 
@@ -372,12 +372,8 @@ class SettingsController extends Controller
      */
     public function postSettings(Request $oRequest)
     {
-        $aGroupLive=[];
-foreach($oRequest->GroupLive as$value){
-    $item=explode(',',$value);
-    $aGroupLive[$item[0]]=$item[1];
 
-}
+
         $enableLinkTradeForUser = ($oRequest->EnableLinkTradeForUser) ? true : false;
 
         $aSetting = [
@@ -415,7 +411,7 @@ foreach($oRequest->GroupLive as$value){
             'linkedinDriver'=>$oRequest->linkedinDriver,
             'linkedinIdentifier'=>$oRequest->linkedinIdentifier,
             'linkedinSecret'=>$oRequest->linkedinSecret,
-            'GroupLive'=>$aGroupLive,
+
 
             
             'LinkTradeForUser'=>$oRequest->LinkTradeForUser,
@@ -426,7 +422,11 @@ foreach($oRequest->GroupLive as$value){
 
         $editConfig = new EditConfig();
 
-        $editConfig->editConfigFile('config/fxweb.php', $aSetting);
+        $editConfig->editConfigFile('config/fxweb.php', $aSetting,
+            [
+                'GroupLive'=>$editConfig->arrayToString('GroupLive',$oRequest->GroupLive),
+                'GroupDemo'=>$editConfig->arrayToString('GroupDemo',$oRequest->GroupDemo)
+            ]);
 
         return Redirect::route('admin.settings');
 

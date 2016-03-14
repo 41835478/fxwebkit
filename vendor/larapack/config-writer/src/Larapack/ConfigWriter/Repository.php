@@ -11,11 +11,13 @@ class Repository extends BaseRepository
 	
 	protected $name;
 	protected $disk;
+    protected $configArray;
 	
-	public function __construct($name)
+	public function __construct($name,$configArray=[])
 	{
 		$this->name = $name;
 
+        $this->configArray=$configArray;
         $aConfig=include $this->getFile($name);
 
 		parent::__construct($aConfig);
@@ -136,9 +138,9 @@ class Repository extends BaseRepository
 	
 	protected function toContent($contents, $newValues, $useValidation = true)
     {
-        $newValues['GroupLive']='iiiiiiiiiiiiiiii';
+
         $contents = $this->parseContent($contents, $newValues);
-        dd($contents);
+
         if ($useValidation)
         {
             $result = eval('?>'.$contents);
@@ -169,6 +171,10 @@ class Repository extends BaseRepository
             }
         }
 
+        foreach($this->configArray as $key=>$value){
+            $contents=preg_replace('/[\s\'\"]*'.$key.'[\s\'\"]*(=>)\[([\s\'\"\w]*(=>)*[\s\'\"\w]*,*)*\]/i',
+            $value,
+            $contents); }
         return $contents;
     }
     

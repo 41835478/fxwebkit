@@ -15,12 +15,12 @@ class EditConfigController extends Controller
         //
     }
 
-    function editConfigFile($filePath, $variables)
+    function editConfigFile($filePath, $variables,$configArray=[])
     {
 
 //$config = new Larapack\ConfigWriter\Repository('modules/Accounts/Config/config.php'); // loading the config from config/app.php
 //        $config = new Larapack\ConfigWriter\Repository('Config/fxweb.php'); // loading the config from config/app.php
-        $config = new \Larapack\ConfigWriter\Repository($filePath);
+        $config = new \Larapack\ConfigWriter\Repository($filePath,$configArray);
 
         if (count($variables)) {
             foreach ($variables as $key => $value) {
@@ -35,7 +35,7 @@ class EditConfigController extends Controller
                                         <div class="row">
                                             <div class="col-sm-6 nav-input-div ">
 
-                                                    <label class="control-label">'.trans('general.arrayName').' </label>
+                                                    <label class="control-label">'.trans('general.'.$name).' </label>
                                           <select name="'.$name.'[]" id="select_'.$name.'" multiple="multiple" class="form-control">
                                           ';
         foreach($array as $key=>$value){$html.='<option onclick=" $(this).remove();"value="'.$key.','.$value.'">'.$value.'</option>';}
@@ -67,5 +67,15 @@ class EditConfigController extends Controller
 
 }
 
+    public function arrayToString($arrayName,$array){
+        $sArray="'".$arrayName."'=>[";
+        foreach($array as $value){
+            $item=explode(',',$value);
+            $sArray.="'".$item[0]."'=>'".$item[1]."',";
+
+        }
+        $sArray.=']';
+        return $sArray;
+    }
 
 }

@@ -11,11 +11,13 @@ class Repository extends BaseRepository
 	
 	protected $name;
 	protected $disk;
+    protected $configArray;
 	
-	public function __construct($name)
+	public function __construct($name,$configArray=[])
 	{
 		$this->name = $name;
 
+        $this->configArray=$configArray;
         $aConfig=include $this->getFile($name);
 
 		parent::__construct($aConfig);
@@ -136,8 +138,9 @@ class Repository extends BaseRepository
 	
 	protected function toContent($contents, $newValues, $useValidation = true)
     {
+
         $contents = $this->parseContent($contents, $newValues);
-        
+
         if ($useValidation)
         {
             $result = eval('?>'.$contents);
@@ -167,12 +170,17 @@ class Repository extends BaseRepository
                 }
             }
         }
-        
+
+        foreach($this->configArray as $key=>$value){
+            $contents=preg_replace('/[\s\'\"]*'.$key.'[\s\'\"]*(=>)\[([\s\'\"\w]*(=>)*[\s\'\"\w]*,*)*\]/i',
+            $value,
+            $contents); }
         return $contents;
     }
     
     protected function parseContent($contents, $newValues)
     {
+//dd($contents);
         $patterns = array();
         
         $replacements = array();
@@ -181,8 +189,12 @@ class Repository extends BaseRepository
         {
 	        
             $items = explode('.', $path);
+
+
+
+
             $key = array_pop($items);
-            
+
             if (is_string($value) && strpos($value, "'") === false)
             {
                 $replaceValue = "'".$value."'";
@@ -211,7 +223,6 @@ class Repository extends BaseRepository
             $patterns[] = $this->buildConstantExpression($key, $items);
             $replacements[] = '${1}${2}'.$replaceValue;
         }
-        
         return preg_replace($patterns, $replacements, $contents, 1);
     }
     
@@ -224,6 +235,7 @@ class Repository extends BaseRepository
         
         // The target key opening
         $expression[] = '([\'|"]'.$targetKey.'[\'|"]\s*=>\s*)['.$quoteChar.']';
+
         
         // The target value to be replaced ($2)
         $expression[] = '([^'.$quoteChar.']*)';
@@ -258,7 +270,8 @@ class Repository extends BaseRepository
         if (count($arrayItems))
         {
             $itemOpen = array();
-            
+
+
             foreach ($arrayItems as $item)
             {
                 // The left hand array assignment

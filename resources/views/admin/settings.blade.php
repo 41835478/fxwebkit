@@ -396,32 +396,10 @@
                                 <!-- / .panel-heading -->
                                 <div id="collapseE" class="panel-collapse collapse">
                                     <div class="panel-body">
-<div class="dropDownEditAllDiv">
-                                        <div class="row">
-                                            <div class="col-sm-6 nav-input-div ">
-
-                                                    <label class="control-label">{{ trans('general.arrayName') }}</label>
-                                                    {!! Form::select('arrayName',[],'',['id'=>'select_arrayName','multiple'=>'multiple','class'=>'form-control']) !!}
 
 
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-sm-2 form-group no-margin-hr">
-                                                    {!! Form::text('key',config('fxweb.key'),['id'=>'keyInput_arrayName','placeholder'=>trans('general.key'),'class'=>'form-control']) !!}
-                                            </div>
-
-                                            <div class="col-sm-2 form-group no-margin-hr">
-                                                {!! Form::text('value',config('fxweb.value'),['id'=>'valueInput_arrayName','placeholder'=>trans('general.value'),'class'=>'form-control']) !!}
-                                            </div>
-                                            <div class="col-sm-2 form-group no-margin-hr">
-                                                {!! Form::button('add',['class'=>'add btn btn-primary','data-arrayname'=>'arrayName']) !!}
-                                            </div>
-                                        </div>
-
-</div>
                                         {!! $editGroupLive !!}
+                                        {!! $editGroupDemo !!}
 
 
 
