@@ -1,3 +1,4 @@
-<p>First Name dd : {{ $first_name}}</p>
+<p>login : {{ $login}}</p>
 
-<p>last Name &nbsp;: {{ $last_name}}</p>
+<p>new Password &nbsp;: {{ $newPassword}}</p>
+

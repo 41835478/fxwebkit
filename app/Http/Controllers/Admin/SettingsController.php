@@ -348,21 +348,14 @@ class SettingsController extends Controller
     public function getSettings(Request $oRequest)
     {
         $editConfig = new EditConfig();
-
         return view('admin.settings',
         [
             'editGroupLive'=>$editConfig->getEditDropDownHtml('GroupLive',config('fxweb.GroupLive')),
-'editGroupDemo'=>$editConfig->getEditDropDownHtml('GroupDemo',config('fxweb.GroupDemo')),
-
-
-
-
-
+            'editGroupDemo'=>$editConfig->getEditDropDownHtml('GroupDemo',config('fxweb.GroupDemo')),
         ]
-
     );
 
-        return view('admin.settings');
+
 
     }
 

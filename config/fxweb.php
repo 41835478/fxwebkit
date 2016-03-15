@@ -76,7 +76,7 @@ return [
 
 
     'Group'=>[
-],'GroupLive'=>['dfg'=>'ger','mohammd '=>'hashim','sdf'=>'sdfsd','1'=>'2','44'=>'44',],'GroupDemo'=>['dfg'=>'ger','mohammd '=>'hashim','sdf'=>'sdfsd','1'=>'2','44'=>'44','demo'=>'demo',],
+],'GroupLive'=>['dfg'=>'ger','44'=>'44',],'GroupDemo'=>['dfg'=>'ger','mohammd '=>'hashim','sdf'=>'sdfsd','1'=>'2','44'=>'44','demo'=>'demo',],
     'DepositLive'=>[
            '1000'=> '1000',
             '5000'=>'5000',

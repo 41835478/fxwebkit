@@ -12,18 +12,18 @@ class ApiController extends Controller {
 	public $mt4Host;
 	public $mt4Port;
 	private $returnMessages=[
-		'NOK01'=>'Invalid Data',
-		'NOK02'=>'Internal Error',
-		'NOK03'=>'General Error',
-		'NOK04'=>'No Change',
-		'NOK05'=>'Invalid Login',
-		'NOK06'=>'No Enough Money',
-		'NOK07'=>'Client is not related to this agent',
-		'NOK08'=>'Client Credit is less than credit out amount',
-		'NOK09'=>'Simple password, should contain numbers and letters',
-		'NOK10'=>'Exsiting User',
-		'NOK11'=>'Faild To create account',
-		'OK'=>'Success',
+		'1'=>'Invalid Data',
+		'2'=>'Internal Error',
+		'3'=>'General Error',
+		'4'=>'No Change',
+		'5'=>'Invalid Login',
+		'6'=>'No Enough Money',
+		'7'=>'Client is not related to this agent',
+		'8'=>'Client Credit is less than credit out amount',
+		'9'=>'Simple password, should contain numbers and letters',
+		'10'=>'Exsiting User',
+		'11'=>'Faild To create account',
+		'0'=>'Success',
 		'error'=>'Internal Error,Please try again later'
 	];
 	public $server_id;
@@ -105,9 +105,16 @@ public function changeServer($server_id){
 		}
 			fclose($fp);
 		}
-		$result=preg_replace('/\s+/', '', $result);
-die(var_dump(json_decode(  $result)));
-		return preg_replace('/\s+/', '', $result);/**/
+
+	//	$result = mb_convert_encoding($result, 'UTF-8','auto');
+
+		$result = preg_replace("#}[^}]*$#", '}', $result);
+		$result=json_decode($result);
+
+
+	return (is_object($result))? $result:json_decode('{"result":"error"}');/**/
+
+
 
 	}
 
@@ -129,7 +136,7 @@ die(var_dump(json_decode(  $result)));
 
 
 
-		if($result =='OK' ){
+		if( $result->result ==0 ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
 			$requestLog->insertChangePasswordRequest($login,$this->server_id,$newPassword,$result,$result,1);
 
@@ -157,7 +164,7 @@ die(var_dump(json_decode(  $result)));
 
 
 
-		if($result =='OK' ){
+		if($result->result ==0  ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
 			$requestLog->updateChangePasswordRequest($logId,$login,$newPassword,$result,$result,1);
 
@@ -185,7 +192,7 @@ die(var_dump(json_decode(  $result)));
 
 
 
-		if($result =='OK' ){
+		if($result->result ==0  ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
 			$requestLog->insertChangeLeverageRequest($login,$this->server_id,$leverage,$result,$result,1);
 
@@ -215,7 +222,7 @@ $this->changeServer($server_id);
 
 
 
-		if($result =='OK' ){
+		if($result->result ==0  ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
 			$requestLog->updateChangeLeverageRequest($logId,$login,$leverage,$result,$result,1);
 
@@ -249,7 +256,7 @@ $this->changeServer($server_id);
 
 		$result=$this->sendApiMessage($message);
 
-		if($result =='OK' ){
+		if($result->result ==0  ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
 			$requestLog->insertInternalTransferRequest($login1,$login2,$this->server_id,$amount,$result,$result,1);
 
@@ -278,7 +285,7 @@ $this->changeServer($server_id);
 
 		$result=$this->sendApiMessage($message);
 
-		if($result =='OK' ){
+		if($result->result ==0  ){
 
 			$requestLog->updateInternalTransferRequest($logId,$login1,$login2,$amount,$result,$result,1);
 
@@ -310,7 +317,7 @@ $this->changeServer($server_id);
 		$result=$this->sendApiMessage($message);
 
 
-		if($result =='OK' ){
+		if($result->result ==0  ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
 			$requestLog->insertWithDrawalRequest($login1,$this->server_id,$amount,$result,$result,1);
 
@@ -338,7 +345,7 @@ $this->changeServer($server_id);
 
 		$result=$this->sendApiMessage($message);
 
-		if($result =='OK' ){
+		if($result->result ==0  ){
 
 			$requestLog->updateWithDrawalRequest($logId,$login1,$amount,$result,$result,1);
 
@@ -385,7 +392,7 @@ $this->changeServer($server_id);
 
 			$result=$this->sendApiMessage($message);
 
-			if($result =='OK' ){
+			if($result->result ==0 ){
 				/* TODO comment and reason should be from addmin not $result,$result  */
 				$requestLog->insertMt4UserFullDetailsRequest($this->server_id,$mt4_user_details,1);
 
@@ -418,7 +425,7 @@ $this->changeServer($server_id);
 
 		$result=$this->sendApiMessage($message);
 
-		if($result =='OK' ){
+		if($result->result ==0  ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
 			$requestLog->updateMt4UserFullDetailsRequest($logId,$mt4_user_details,1);
 
@@ -439,8 +446,12 @@ $this->changeServer($server_id);
 
 	private function getApiResponseMessage($result){
 
+if(is_object($result) &&  property_exists ($result ,'result')){
 
-		return (isset($this->returnMessages[$result]))? $this->returnMessages[$result]:$this->returnMessages['error'];
+		return (array_key_exists($result->result,$this->returnMessages))? $this->returnMessages[$result->result]:$this->returnMessages['error'];
+}
+	$this->returnMessages['error'];
+
 	}
 
 
@@ -456,12 +467,12 @@ $this->changeServer($server_id);
 
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=7|LOGIN='.$login.'|CPASS='.$password;
 		$result=$this->sendApiMessage($message);
-		dd($result->result);
 
 
 
 
-		if(preg_match('#^Balance:#', $result) === 1){
+
+		if($result->result ==0 ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
 			$requestLog->insertAssignAccountRequest($login,$this->server_id,$password,$result,$result,1);
 
@@ -482,12 +493,12 @@ $this->changeServer($server_id);
 		$requestLog =new RequestLog();
 
 
-		$message="WWAPUSER-" . $login. "|" . $password;
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=7|LOGIN='.$login.'|CPASS='.$password;
 
 		$result=$this->sendApiMessage($message);
 
 
-		if(preg_match('#^Balance:#', $result) === 1){
+		if($result->result ==0){
 			$requestLog->updateAssignAccountRequest($logId,$login,$password,$result,$result,1);
 
 			/* TODO please trans() */
