@@ -58,6 +58,7 @@ class Repository extends BaseRepository
 		{
 			if (!empty($part))
 			{
+
 				$current .= '/';
 				
 				if ($this->disk()->isDirectory($current) == false) {
@@ -172,9 +173,16 @@ class Repository extends BaseRepository
         }
 
         foreach($this->configArray as $key=>$value){
-            $contents=preg_replace('/[\s\'\"]*'.$key.'[\s\'\"]*(=>)\[([\s\'\"\w]*(=>)*[\s\'\"\w]*,*)*\]/i',
+//            dd('/[\s\'\"]*'.$key.'[\s\'\"]*(=>)\[([\s\'\"\w]*(=>)*[\s\'\"\w]*,*)*\]/',
+//                $value);
+
+            $contents=preg_replace('/[^0-9\,][\s\'\"]*'.$key.'[\s\'\"]*(=>)[\s\'\"]*[\[]*[^\]]*\]/i',
             $value,
-            $contents); }
+            $contents);
+          //  dd('/[\s\'\"]*'.$key.'[\s\'\"]*(=>)\[([\s\'\"\w]*(=>)*[\s\'\"\w]*,*)*\]/i');
+
+        }
+
         return $contents;
     }
     
