@@ -61,34 +61,8 @@ return [
     'linkedinIdentifier' => '779y8ism8ovwns',
     'linkedinSecret' => 'l9paUw3eQJgtYRRV',
 
-    'demoArray'=>[
-        '1'=> '10',
-        '2'=>'20',
-        '3'=>'30',
-        '4'=>'40',
-        '11'=> '10',
-        '12'=>'20',
-        '13'=>'30',
-        '14'=>'40',
-    ],
     'key'=>'fgh',
-    'value'=>'fgh',
-
-
-    'Group'=>[
-],'GroupLive'=>['dfg'=>'ger','mohammd '=>'hashim','sdf'=>'sdfsd','1'=>'2','44'=>'44',],'GroupDemo'=>['dfg'=>'ger','mohammd '=>'hashim','sdf'=>'sdfsd','1'=>'2','44'=>'44','demo'=>'demo',],
-    'DepositLive'=>[
-           '1000'=> '1000',
-            '5000'=>'5000',
-            '10000'=>'10000',
-            '100000'=>'100000',
-        ],
-    'DepositDemo'=>[
-        '1000'=> '10',
-        '5000'=>'20',
-        '10000'=>'30',
-        '100000'=>'40',
-    ],
+    'value'=>'fgh','GroupLive'=>['dfg'=>'ger','mohammd '=>'hashim','sdf'=>'sdfsd','1'=>'admin','gggggg'=>'gggggggg',],'GroupDemo'=>['dfg'=>'ger','mohammd '=>'hashim','sdf'=>'sdfsd','1'=>'2','44'=>'44','demo'=>'demo','gggg'=>'gggggg',],'DepositLive'=>['1000'=>'1000','5000'=>'5000','10000'=>'10000','100000'=>'100000','25'=>'3000','30'=>'60','1'=>'1','fgggggggggg'=>'gggggg',],'DepositDemo'=>['1000'=>'1000','5000'=>'5000','10000'=>'10000','100000'=>'100000','25'=>'3000','30'=>'60','3'=>'2','ggggggg'=>'ggggggg',],'leverage'=>['50'=>'1:50','100'=>'1:100','150'=>'1:150','fgh'=>'fghfg','dfg'=>'dfgdfg','123'=>'000',],'leverageDemo'=>['50'=>'1:500','100'=>'1:1000','150'=>'1:1500','aaaa'=>'aaaa',],
     'theme' => [
         'color' => env('THEME_COLOR', 'default'),
         'navbarFixed' => env('FIXED_NAVBAR', false),
