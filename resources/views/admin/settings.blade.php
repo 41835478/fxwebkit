@@ -43,6 +43,7 @@
                                 </div>
 
                             </div>
+
                             <hr>
                             <div class="row">
                                 <div class="col-sm-6">
@@ -53,6 +54,14 @@
                                 </div>
 
                             </div>
+                            <hr>
+                            {!! $editGroupLive !!}
+                            <hr>
+                            {!! $editDepositLive  !!}
+                            <hr>
+                            {!! $editleverage !!}
+
+
                         </div>
                         <!-- / .panel-body -->
                     </div>
@@ -97,6 +106,12 @@
                                 </div>
 
                             </div>
+                            <hr>
+                            {!! $editGroupDemo !!}
+                            <hr>
+                            {!! $editDepositDemo  !!}
+                            <hr>
+                            {!! $editleverageDemo !!}
                         </div>
                         <!-- / .panel-body -->
                     </div>
@@ -398,8 +413,10 @@
                                     <div class="panel-body">
 
 
-                                        {!! $editGroupLive !!}
-                                        {!! $editGroupDemo !!}
+
+
+
+
 
 
 

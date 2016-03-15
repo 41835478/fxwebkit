@@ -352,10 +352,12 @@ class SettingsController extends Controller
         [
             'editGroupLive'=>$editConfig->getEditDropDownHtml('GroupLive',config('fxweb.GroupLive')),
             'editGroupDemo'=>$editConfig->getEditDropDownHtml('GroupDemo',config('fxweb.GroupDemo')),
-        ]
-    );
 
-
+            'editDepositLive'=>$editConfig->getEditDropDownHtml('DepositLive',config('fxweb.DepositLive')),
+            'editDepositDemo'=>$editConfig->getEditDropDownHtml('DepositDemo',config('fxweb.DepositDemo')),
+            'editleverage'=>$editConfig->getEditDropDownHtml('leverage',config('fxweb.leverage')),
+            'editleverageDemo'=>$editConfig->getEditDropDownHtml('leverageDemo',config('fxweb.leverageDemo')),
+        ]);
 
     }
 
@@ -418,8 +420,16 @@ class SettingsController extends Controller
         $editConfig->editConfigFile('config/fxweb.php', $aSetting,
             [
                 'GroupLive'=>$editConfig->arrayToString('GroupLive',$oRequest->GroupLive),
-                'GroupDemo'=>$editConfig->arrayToString('GroupDemo',$oRequest->GroupDemo)
+                'GroupDemo'=>$editConfig->arrayToString('GroupDemo',$oRequest->GroupDemo),
+                 'DepositLive'=>$editConfig->arrayToString('DepositLive',$oRequest->DepositLive),
+                'DepositDemo'=>$editConfig->arrayToString('DepositDemo',$oRequest->DepositDemo),
+                'leverage'=>$editConfig->arrayToString('leverage',$oRequest->leverage),
+                'leverageDemo'=>$editConfig->arrayToString('leverageDemo',$oRequest->leverageDemo),
             ]);
+
+
+
+
 
         return Redirect::route('admin.settings');
 

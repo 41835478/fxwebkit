@@ -617,7 +617,7 @@ class AccountsController extends Controller
     public function getMt4Leverage(Request $oRequest)
     {
 
-        $Result = Config('accounts.leverage');
+        $Result = Config('fxweb.leverage');
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);
 
@@ -640,7 +640,7 @@ class AccountsController extends Controller
     public function postMt4Leverage(Request $oRequest)
     {
 
-        $Result = Config('accounts.leverage');
+        $Result = Config('fxweb.leverage');
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
 
 
@@ -899,6 +899,10 @@ class AccountsController extends Controller
      * @param Request $oRequest
      * @return $this
      */
+
+
+
+
     public function postAccountsSettings(Request $oRequest)
     {
 
@@ -932,6 +936,7 @@ class AccountsController extends Controller
 
         $editConfig = new EditConfig();
         $editConfig->editConfigFile('modules/Accounts/Config/config.php', $accountsSetting);
+
         return  Redirect::route('accounts.accountsSettings')->with('accountsSetting', $accountsSetting);
 
     }
