@@ -63,6 +63,8 @@ class ClientIbportalController extends Controller
 
         $userIbid=UserIbid::where('user_id',current_user()->getUser()->id)->first();
 
+
+
         if(count($userIbid)){
         return view('ibportal::client.plan_list')
             ->with('oResults', $oResults)
