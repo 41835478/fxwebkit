@@ -6,7 +6,7 @@ return [
     'name' => 'accounts',
     'icon' => 'fa fa-user',
     'route' => '',
-    'directOrderToMt4Server'=>false,
+    'directOrderToMt4Server'=>true,
     'operation' => [
         '0' => 'Credit In',
         '1' => 'Credit Out',
@@ -20,7 +20,7 @@ return [
 
 
     'denyLiveAccount' => false,
-    'showMt4Leverage' => false,
+    'showMt4Leverage' => true,
     'showWithDrawal' => true,
     'showMt4ChangePassword' => true,
     'showMt4Transfer' => true,
