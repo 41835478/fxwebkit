@@ -40,11 +40,15 @@ return [
             'icon' => 'fa fa-money',
         ],
         [
+            'route' => 'admin.ibportal.assignAgents',
+            'title' => 'assignAgents',
+            'icon' => 'fa fa-plus',
+        ],
+        [
             'route' => 'admin.ibportal.ibportalSettings',
             'title' => 'settings',
             'icon' => 'fa fa-gears',
         ]
-
 
     ],
     'client_menu' => [
@@ -61,6 +65,10 @@ return [
         [
             'route' => 'client.ibportal.agentCommission',
             'title' => 'agentCommission',
+            'icon' => 'fa fa-money',
+        ],[
+            'route' => 'clients.ibportal.accountant',
+            'title' => 'accountant',
             'icon' => 'fa fa-money',
         ]
     ]

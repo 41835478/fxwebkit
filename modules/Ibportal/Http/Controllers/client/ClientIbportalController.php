@@ -269,6 +269,72 @@ class ClientIbportalController extends Controller
 
     }
 
+    public function getAccountant(Request $oRequest)
+    {
+        $oSymbols = $this->Ibportal->getClosedTradesSymbols();
+        $aTradeTypes = ['' => 'ALL'] + $this->Ibportal->getAccountantTypes();
+        $serverTypes = $this->Ibportal->getServerTypes();
+        $sSort = $oRequest->sort;
+        $sOrder = $oRequest->order;
+        $aGroups = [];
+        $aSymbols = [];
+        $oResults = null;
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
+            'from_date' => '',
+            'to_date' => '',
+            'all_groups' => true,
+            'group' => '',
+            'all_symbols' => true,
+            'symbol' => '',
+            'type' => '',
+            'server_id' => '',
+            'sort' => 'ASC',
+            'order' => 'TICKET',
+        ];
+
+
+        foreach ($oSymbols as $oSymbol) {
+            $aSymbols[$oSymbol->SYMBOL] = $oSymbol->SYMBOL;
+        }
+
+        foreach ($aTradeTypes as $sKey => $sValue) {
+            $aTradeTypes[$sKey] = trans('general.' . $sValue);
+        }
+
+        if ($oRequest->has('search')) {
+            $aFilterParams['from_login'] = $oRequest->from_login;
+            $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['from_date'] = $oRequest->from_date;
+            $aFilterParams['to_date'] = $oRequest->to_date;
+            $aFilterParams['all_groups'] = true;
+            $aFilterParams['group'] = [];
+            $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
+            $aFilterParams['symbol'] = $oRequest->symbol;
+            $aFilterParams['type'] = $oRequest->type;
+            $aFilterParams['server_id'] = $oRequest->server_id;
+        }
+
+
+        if ($oRequest->has('search')) {
+            $oResults = $this->Ibportal->getClientAccountantByFilters($aFilterParams, false, $sOrder, $sSort);
+            $oResults[0]->order = $aFilterParams['order'];
+            $oResults[0]->sorts = $aFilterParams['sort'];
+        }
+
+        return view('ibportal::client.ibportalAccountant')
+            ->with('aSymbols', $aSymbols)
+            ->with('aTradeTypes', $aTradeTypes)
+            ->with('oResults', $oResults)
+            ->with('serverTypes', $serverTypes)
+            ->with('aFilterParams', $aFilterParams);
+    }
+
 
 
 

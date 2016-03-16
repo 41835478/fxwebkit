@@ -296,6 +296,28 @@ $agents=$aFilters['agents'];
         return true;
     }
 
+    public function assignAgents($account_id, $users_id)
+    {
+        if (is_array($users_id)) {
+            foreach ($users_id as $id => $user_id) {
+
+                $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id])->first();
+                if ($asign) {
+                    $asign->users_id = $account_id;
+                    $asign->mt4_users_id = $user_id;
+                    $asign->save();
+                } else {
+                    $asign = new mt4_users_users;
+
+                    $asign->users_id = $account_id;
+                    $asign->mt4_users_id = $user_id;
+                    $asign->save();
+                }
+            }
+        }
+        return true;
+    }
+
     public function unsignMt4UsersToAccount($account_id, $users_id)
     {
 

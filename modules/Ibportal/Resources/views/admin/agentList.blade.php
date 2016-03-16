@@ -61,10 +61,13 @@
                     </li>
 
                     <li>
-                        <div  class=" nav-input-div  ">
-                            {!! Form::radio('agents',0,$aFilterParams['agents'],['id'=>'agents_0','checked'=>'true']) !!}<label for="agents_0">{{ trans('ibportal::ibportal.all') }}</label>
-                            {!! Form::radio('agents',1,($aFilterParams['agents']==1),['id'=>'agents_1']) !!}<label for="agents_1">{{ trans('ibportal::ibportal.agents') }}</label>
-                            {!! Form::radio('agents',2,($aFilterParams['agents']==2),['id'=>'agents_2']) !!}<label for="agents_2">{{ trans('ibportal::ibportal.nonAgents') }}</label>
+                        <div class=" nav-input-div  ">
+                            {!! Form::radio('agents',0,$aFilterParams['agents'],['id'=>'agents_0','checked'=>'true']) !!}
+                            <label for="agents_0">{{ trans('ibportal::ibportal.all') }}</label>
+                            {!! Form::radio('agents',1,($aFilterParams['agents']==1),['id'=>'agents_1']) !!}<label
+                                    for="agents_1">{{ trans('ibportal::ibportal.agents') }}</label>
+                            {!! Form::radio('agents',2,($aFilterParams['agents']==2),['id'=>'agents_2']) !!}<label
+                                    for="agents_2">{{ trans('ibportal::ibportal.nonAgents') }}</label>
 
                         </div>
                     </li>
@@ -79,7 +82,6 @@
                     </li>
                     <li class="divider"></li>
                 </ul>
-
 
 
             </div>
@@ -98,6 +100,7 @@
                             {{ trans('ibportal::ibportal.agent') }}
                         </div>
                     </div>
+
                         <table class="table table-bordered table-striped">
                             <thead>
                             <tr>
@@ -139,6 +142,7 @@
                             @endif
                             </tbody>
                         </table>
+
                     <div class="table-footer">
                         @if (count($oResults))
                             {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
