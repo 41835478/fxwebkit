@@ -253,7 +253,7 @@ class IbportalController extends Controller
             {
                 $oResults = $this->Ibportal->getAgentsByFilter($aFilterParams, false, $sOrder, $sSort, $role);
             }else
-               
+
             $oResults = $this->Users->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
 
         }
