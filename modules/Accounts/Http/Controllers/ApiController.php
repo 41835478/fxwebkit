@@ -106,6 +106,7 @@ public function changeServer($server_id){
 			fclose($fp);
 		}
 
+
 	//	$result = mb_convert_encoding($result, 'UTF-8','auto');
 
 		$result = preg_replace("#}[^}]*$#", '}', $result);
@@ -128,11 +129,8 @@ public function changeServer($server_id){
 		}
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
-
-
 		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=2|LOGIN='.$login.'|'.$password.'NPASS='.$newPassword.'|TYPE=0|MANAGER=1';
 		$result=$this->sendApiMessage($message);
-
 
 
 

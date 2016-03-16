@@ -44,7 +44,7 @@ return [
     'link' => 'Link',
     'agree'=>'Agree',
     'id'=>'Id',
-    'agent'=>'Agent',
+    'agent'=>'Agents List',
     'first_name'=>'First Name',
     'last_name'=>'Last Name',
     'Email'=>'Email',
@@ -92,6 +92,9 @@ return [
     'assignPlan'=>'Assign Plan',
     'agentUsres'=>'Agent Usres',
     'agentPlans'=>'Agent Plans',
+    'agents'=>'Agents',
+    'nonAgents'=>'Non',
+    'all'=>'All',
     'agentCommission'=>'Agent Commission',
 
 ];

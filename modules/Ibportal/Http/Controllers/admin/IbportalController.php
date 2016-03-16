@@ -228,22 +228,32 @@ class IbportalController extends Controller
             'first_name' => '',
             'last_name' => '',
             'email' => '',
+            'signed' => 1,
             'sort' => $sSort,
             'order' => $sOrder,
         ];
 
         if ($oRequest->has('search')) {
+
             $aFilterParams['id'] = $oRequest->id;
             $aFilterParams['first_name'] = $oRequest->first_name;
             $aFilterParams['last_name'] = $oRequest->last_name;
             $aFilterParams['email'] = $oRequest->email;
-
+            $aFilterParams['signed'] = $oRequest->signed;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
 
             $role = explode(',', Config::get('fxweb.client_default_role'));
             // TODO [mohammad] get agent list
 
+            if($oRequest->signed==0)
+            {
+                $oResults = $this->Users->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
+            }elseif($oRequest->signed==1)
+            {
+                $oResults = $this->Ibportal->getAgentsByFilter($aFilterParams, false, $sOrder, $sSort, $role);
+            }else
+               
             $oResults = $this->Users->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
 
         }

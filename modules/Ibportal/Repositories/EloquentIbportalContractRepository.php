@@ -13,6 +13,7 @@ use Modules\Ibportal\Entities\IbportalAgentUser as AgentUser;
 use Fxweb\Models\Mt4User;
 use Fxweb\Models\User;
 use Config;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Modules\Ibportal\Entities\IbportalAgentsCommission as AgentsCommission;
 use Fxweb\Helpers\Fx;
 
@@ -275,7 +276,10 @@ class EloquentIbportalContractRepository implements IbportalContract
     public function generateUserIbId($userId)
     {
         $IbId = Hash::make($userId);
+
         $insertResult = UserIbid::create(['user_id' => $userId, 'user_ibid' => $IbId]);
+
+
         if (count($insertResult)) {
             $planResult = Plan::where('public', true)->get();
             $aPublicPlans = [];
@@ -283,6 +287,7 @@ class EloquentIbportalContractRepository implements IbportalContract
                 $aPublicPlans[] = ['plan_id' => $plan->id, 'user_id' => $userId];
             }
             $assignPublicPlansResult = PlanUsers::insert($aPublicPlans);
+
         }
         return $insertResult;
     }
@@ -538,6 +543,57 @@ class EloquentIbportalContractRepository implements IbportalContract
             ]);
         }
 
+    }
+
+
+
+    public function getAgentsByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
+    {
+
+        $oRole = Sentinel::findRoleBySlug($role);
+        $role_id = $oRole->id;
+        $oResult = User::with('roles')->whereHas('roles', function ($query) use ($role_id) {
+            $query->where('id', $role_id);
+        });
+
+
+        /* =============== id Filter  =============== */
+        if (isset($aFilters['id']) && !empty($aFilters['id'])) {
+            $oResult = $oResult->where('id', $aFilters['id']);
+        }
+
+        /* =============== Nmae Filter  =============== */
+        if (isset($aFilters['first_name']) && !empty($aFilters['first_name'])) {
+            $oResult = $oResult->where('first_name', 'like', '%' . $aFilters['first_name'] . '%');
+        }
+
+        if (isset($aFilters['last_name']) && !empty($aFilters['last_name'])) {
+            $oResult = $oResult->where('last_name', 'like', '%' . $aFilters['last_name'] . '%');
+        }
+
+        /* =============== email Filter  =============== */
+        if (isset($aFilters['email']) && !empty($aFilters['email'])) {
+            $oResult = $oResult->where('email', 'like', '%' . $aFilters['email'] . '%');
+        }
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+
+        } else {
+            $oResult = $oResult->get();
+
+        }
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+
+        }
+        /* =============== Preparing Output  =============== */
+
+        return $oResult;
     }
 
 }

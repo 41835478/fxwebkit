@@ -61,6 +61,15 @@
                     </li>
 
                     <li>
+                        <div  class=" nav-input-div  ">
+                            {!! Form::radio('signed',0,$aFilterParams['signed'],['id'=>'signed_0','checked'=>'true']) !!}<label for="signed_0">{{ trans('ibportal::ibportal.all') }}</label>
+                            {!! Form::radio('signed',1,($aFilterParams['signed']==1),['id'=>'signed_1']) !!}<label for="signed_1">{{ trans('ibportal::ibportal.agents') }}</label>
+                            {!! Form::radio('signed',2,($aFilterParams['signed']==2),['id'=>'signed_2']) !!}<label for="signed_1">{{ trans('ibportal::ibportal.nonAgents') }}</label>
+
+                        </div>
+                    </li>
+
+                    <li>
                         <div class=" nav-input-div  ">
 
                             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
