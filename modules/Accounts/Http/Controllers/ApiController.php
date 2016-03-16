@@ -509,4 +509,27 @@ return 'error please try again.';
 
 	}
 
+
+	public function AssignAgents($login,$password){
+
+
+
+
+
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=7|LOGIN='.$login.'|CPASS='.$password;
+		$result=$this->sendApiMessage($message);
+
+		if($result->result ==0){
+
+
+			/* TODO please trans() */
+			return true;
+		}else{
+
+			return $this->getApiResponseMessage($result);
+		}
+
+
+	}
+
 }

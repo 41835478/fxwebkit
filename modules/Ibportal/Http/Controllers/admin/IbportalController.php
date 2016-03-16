@@ -6,7 +6,7 @@ use Modules\Mt4Configrations\Repositories\Mt4ConfigrationsContract as Mt4Configr
 use Modules\Ibportal\Repositories\IbportalContract as Ibportal;
 use Fxweb\Repositories\Admin\Mt4Group\Mt4GroupContract as Mt4Group;
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
-
+use Modules\Accounts\Http\Controllers\ApiController;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Illuminate\Support\Facades\Config;
 
@@ -616,6 +616,104 @@ class IbportalController extends Controller
         $this->Ibportal->generateUserIbId($oRequest->agentId);
         return Redirect::route('admin.ibportal.agentList');
 
+
+    }
+
+    public function getAssignAgents(Request $oRequest)
+    {
+        $userInfo = [
+            'login' => $oRequest['login'],
+            'password' => $oRequest['password']
+        ];
+
+
+        return view('ibportal::admin.addAgents')->with('userInfo', $userInfo);
+    }
+
+    public function postAssignAgents(Request $oRequest)
+    {
+        $oApiController = new ApiController();
+
+
+
+        $result = $oApiController->AssignAgents($oRequest['login'],$oRequest['password']);
+
+        if($result===true){
+            $asign_result = $this->Users->assignAgents(current_user()->getUser()->id, [$oRequest['login']]);
+            return Redirect::route('admin.ibportal.assignAgents') ->withErrors('The User has been assigned successfully');
+
+        }else{
+            return view('ibportal::admin.addAgents')
+                ->with('userInfo', ['login' => $oRequest['login'], 'password' => $oRequest['password']])->withErrors($result);
+        }
+    }
+
+    public function getAccountant(Request $oRequest)
+    {
+        $oSymbols = $this->Ibportal->getClosedTradesSymbols();
+        $aTradeTypes = ['' => 'ALL'] + $this->Ibportal->getAccountantTypes();
+        $serverTypes = $this->Ibportal->getServerTypes();
+        $sSort = $oRequest->sort;
+        $sOrder = $oRequest->order;
+        $aGroups = [];
+        $aSymbols = [];
+        $oResults = null;
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
+            'from_date' => '',
+            'to_date' => '',
+            'all_groups' => true,
+            'group' => '',
+            'all_symbols' => true,
+            'symbol' => '',
+            'type' => '',
+            'server_id' => '',
+            'sort' => 'ASC',
+            'order' => 'TICKET',
+            'agentId'=>$oRequest->agentId
+        ];
+
+
+        foreach ($oSymbols as $oSymbol) {
+            $aSymbols[$oSymbol->SYMBOL] = $oSymbol->SYMBOL;
+        }
+
+        foreach ($aTradeTypes as $sKey => $sValue) {
+            $aTradeTypes[$sKey] = trans('general.' . $sValue);
+        }
+if($oRequest->has('search')){
+
+            $aFilterParams['from_login'] = $oRequest->from_login;
+            $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
+    $aFilterParams['agentId'] =$oRequest->agentId;
+            $aFilterParams['from_date'] = $oRequest->from_date;
+            $aFilterParams['to_date'] = $oRequest->to_date;
+            $aFilterParams['all_groups'] = true;
+            $aFilterParams['group'] = [];
+            $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
+            $aFilterParams['symbol'] = $oRequest->symbol;
+            $aFilterParams['type'] = $oRequest->type;
+            $aFilterParams['server_id'] = $oRequest->server_id;
+
+
+
+
+            $oResults = $this->Ibportal->getAccountantByFilters($aFilterParams, false, $sOrder, $sSort);
+            $oResults[0]->order = $aFilterParams['order'];
+            $oResults[0]->sorts = $aFilterParams['sort'];
+}
+
+        return view('ibportal::admin.ibportalAccountant')
+            ->with('aSymbols', $aSymbols)
+            ->with('aTradeTypes', $aTradeTypes)
+            ->with('oResults', $oResults)
+            ->with('serverTypes', $serverTypes)
+            ->with('aFilterParams', $aFilterParams);
 
     }
 
