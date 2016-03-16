@@ -127,10 +127,10 @@
                                                class="fa fa-link tooltip_number" data-original-title="{{trans('ibportal::ibportal.agentPlans')}}"></a>
                                             <a href="{{ route('admin.ibportal.agentCommission').'?agentId='.$oResult->id }}"
                                                class="fa fa-money tooltip_number" data-original-title="{{trans('ibportal::ibportal.agentCommission')}}"></a>
-
+@if(!$oResult->isAgent)
                                                 <a href="{{ route('admin.ibportal.addAgents').'?agentId='.$oResult->id }}"
                                                    class="fa fa-user tooltip_number" data-original-title="{{trans('ibportal::ibportal.AddAgent')}}"></a>
-
+@endif
 
 
                                         </td>
