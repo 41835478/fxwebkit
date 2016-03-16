@@ -100,8 +100,8 @@ class EloquentUserRepository implements UserContract
     public function getAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin',$agentId)
     {
 
-        $oResult = User::with('agentUsers')->whereHas('agentUsers', function ($query) use ($agentId) {
-            $query->where('agent_id', $agentId);
+        $oResult = User::with('isAgent')->whereHas('isAgent', function ($query) use ($agentId) {
+            $query->where('user_id','!=', null);
         });
 
         /* =============== id Filter  =============== */
