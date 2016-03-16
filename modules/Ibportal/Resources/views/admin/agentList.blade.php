@@ -62,9 +62,9 @@
 
                     <li>
                         <div  class=" nav-input-div  ">
-                            {!! Form::radio('signed',0,$aFilterParams['signed'],['id'=>'signed_0','checked'=>'true']) !!}<label for="signed_0">{{ trans('ibportal::ibportal.all') }}</label>
-                            {!! Form::radio('signed',1,($aFilterParams['signed']==1),['id'=>'signed_1']) !!}<label for="signed_1">{{ trans('ibportal::ibportal.agents') }}</label>
-                            {!! Form::radio('signed',2,($aFilterParams['signed']==2),['id'=>'signed_2']) !!}<label for="signed_1">{{ trans('ibportal::ibportal.nonAgents') }}</label>
+                            {!! Form::radio('agents',0,$aFilterParams['agents'],['id'=>'agents_0','checked'=>'true']) !!}<label for="agents_0">{{ trans('ibportal::ibportal.all') }}</label>
+                            {!! Form::radio('agents',1,($aFilterParams['agents']==1),['id'=>'agents_1']) !!}<label for="agents_1">{{ trans('ibportal::ibportal.agents') }}</label>
+                            {!! Form::radio('agents',2,($aFilterParams['agents']==2),['id'=>'agents_2']) !!}<label for="agents_2">{{ trans('ibportal::ibportal.nonAgents') }}</label>
 
                         </div>
                     </li>
@@ -127,6 +127,10 @@
                                                class="fa fa-link tooltip_number" data-original-title="{{trans('ibportal::ibportal.agentPlans')}}"></a>
                                             <a href="{{ route('admin.ibportal.agentCommission').'?agentId='.$oResult->id }}"
                                                class="fa fa-money tooltip_number" data-original-title="{{trans('ibportal::ibportal.agentCommission')}}"></a>
+
+                                                <a href="{{ route('admin.ibportal.addAgents').'?agentId='.$oResult->id }}"
+                                                   class="fa fa-user tooltip_number" data-original-title="{{trans('ibportal::ibportal.AddAgent')}}"></a>
+
 
 
                                         </td>

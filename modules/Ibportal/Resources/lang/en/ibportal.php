@@ -96,5 +96,5 @@ return [
     'nonAgents'=>'Non',
     'all'=>'All',
     'agentCommission'=>'Agent Commission',
-
+    'AddAgent'=>'Add Agent',
 ];

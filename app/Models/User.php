@@ -17,4 +17,8 @@ class User extends SentinelUser
     public function agentPlan(){
      return $this->hasOne('Modules\Ibportal\Entities\IbportalAgentUser','user_id');
     }
+
+    public function isAgent(){
+        return $this->hasOne('Modules\Ibportal\Entities\IbportalUserIbid','user_id');
+    }
 }

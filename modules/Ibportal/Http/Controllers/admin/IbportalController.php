@@ -228,7 +228,7 @@ class IbportalController extends Controller
             'first_name' => '',
             'last_name' => '',
             'email' => '',
-            'signed' => 1,
+            'agents' => 0,
             'sort' => $sSort,
             'order' => $sOrder,
         ];
@@ -239,24 +239,20 @@ class IbportalController extends Controller
             $aFilterParams['first_name'] = $oRequest->first_name;
             $aFilterParams['last_name'] = $oRequest->last_name;
             $aFilterParams['email'] = $oRequest->email;
-            $aFilterParams['signed'] = $oRequest->signed;
+            $aFilterParams['agents'] = $oRequest->agents;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
 
             $role = explode(',', Config::get('fxweb.client_default_role'));
-            // TODO [mohammad] get agent list
 
-            if($oRequest->signed==0)
+
+            if($oRequest->agents==0)
             {
                 $oResults = $this->Users->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
-            }elseif($oRequest->signed==1)
-            {
-                $oResults = $this->Ibportal->getAgentsByFilter($aFilterParams, false, $sOrder, $sSort, $role);
             }else
 
-            $oResults = $this->Users->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
-
-        }
+                $oResults = $this->Users->getAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
+            }
 
         return view('ibportal::admin.agentList')
             ->with('oResults', $oResults)
@@ -611,6 +607,15 @@ class IbportalController extends Controller
         $editConfig->editConfigFile('modules/Ibportal/Config/config.php', $ibportalSetting);
 
         return view('ibportal::admin.ibportalSetting')->with('ibportalSetting', $ibportalSetting);
+
+    }
+
+    public function getAddAgents(Request $oRequest)
+    {
+
+        $this->Ibportal->generateUserIbId($oRequest->agentId);
+        return Redirect::route('admin.ibportal.agentList');
+
 
     }
 

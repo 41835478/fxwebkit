@@ -127,7 +127,6 @@ class ClientIbportalController extends Controller
             $aFilterParams['first_name'] = $oRequest->first_name;
             $aFilterParams['last_name'] = $oRequest->last_name;
             $aFilterParams['email'] = $oRequest->email;
-
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
 

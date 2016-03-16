@@ -547,7 +547,7 @@ class EloquentIbportalContractRepository implements IbportalContract
 
 
 
-    public function getAgentsByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
+    public function getAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
     {
 
         $oRole = Sentinel::findRoleBySlug($role);
@@ -594,6 +594,13 @@ class EloquentIbportalContractRepository implements IbportalContract
         /* =============== Preparing Output  =============== */
 
         return $oResult;
+    }
+
+    public function getAgents()
+    {
+        $result=UserIbid::get()->toArray();
+
+       return $result;
     }
 
 }

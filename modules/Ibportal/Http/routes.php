@@ -29,7 +29,7 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'ibportal', 'na
 		'postUsersName'=>'admin.ibportal.usersName',
 		'getAgentsCommission'=>'admin.ibportal.agentsCommission',
 		'getIbportalSettings'=>'admin.ibportal.ibportalSettings',
-
+		'getAddAgents'=>'admin.ibportal.addAgents',
 
 
 	]);
