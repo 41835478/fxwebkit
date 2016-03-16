@@ -9,6 +9,7 @@ use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Modules\Accounts\Entities\mt4_users_users;
 use Config;
 use Fxweb\Helpers\Fx;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class EloquentUserRepository
@@ -97,12 +98,25 @@ class EloquentUserRepository implements UserContract
         return $oResult;
     }
 
-    public function getAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin',$agentId)
+    public function getAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
     {
+$signed=$aFilters['signed'];
+        $oResult =new User();
+        if($signed == 1){
+            $oResult=   $oResult->with('isAgent')->whereHas('isAgent', function ($query) use ($signed) {
 
-        $oResult = User::with('isAgent')->whereHas('isAgent', function ($query) use ($agentId) {
-            $query->where('user_id','!=', null);
+            $query->whereNotNull('user_id');
+
         });
+    }else{
+            $oResult=  $oResult->whereNotIn('id', function ($query) {
+
+                $query->select(DB::raw('ibportal_user_ibid.user_id'))
+                    ->from('ibportal_user_ibid')
+                    ->whereRaw('ibportal_user_ibid.user_id = users.id');
+
+            });
+}
 
         /* =============== id Filter  =============== */
         if (isset($aFilters['id']) && !empty($aFilters['id'])) {
@@ -137,6 +151,7 @@ class EloquentUserRepository implements UserContract
 
         }
         /* =============== Preparing Output  =============== */
+
         return $oResult;
     }
 

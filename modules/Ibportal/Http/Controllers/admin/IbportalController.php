@@ -244,17 +244,16 @@ class IbportalController extends Controller
             $aFilterParams['order'] = $oRequest->order;
 
             $role = explode(',', Config::get('fxweb.client_default_role'));
-            // TODO [mohammad] get agent list
+
 
             if($oRequest->signed==0)
             {
                 $oResults = $this->Users->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
-            }elseif($oRequest->signed==1)
-            {
-                $oResults = $this->Ibportal->getAgentsByFilter($aFilterParams, false, $sOrder, $sSort, $role);
             }else
-               
-            $oResults = $this->Users->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
+            {
+                $oResults = $this->Users->getAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
+            }
+
 
         }
 
