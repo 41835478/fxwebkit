@@ -6,7 +6,7 @@ return [
     'name' => 'accounts',
     'icon' => 'fa fa-user',
     'route' => '',
-    'directOrderToMt4Server'=>true,
+    'directOrderToMt4Server'=>false,
     'operation' => [
         '0' => 'Credit In',
         '1' => 'Credit Out',
