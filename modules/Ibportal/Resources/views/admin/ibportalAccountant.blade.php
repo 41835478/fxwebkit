@@ -21,20 +21,7 @@
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections" >
                 <li class="active"><a href="#"> <i class="fa fa-search"></i> {{ trans('ibportal::ibportal.search') }} </a></li>
-                <li>
-                    <div class="   nav-input-div">
-                        <div class="checkbox">
-                            <label>
-                                {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
-                                <span class="lbl">{{ trans('ibportal::ibportal.ExactLogin') }}</span>
-                            </label>
-                        </div>
-                    </div>
-                </li>
-                <li id="from_login_li" ><div  class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('ibportal::ibportal.FromLogin'),'class'=>'form-control input-sm']) !!}</div> </li>
-                <li  id="to_login_li"><div  class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('ibportal::ibportal.ToLogin'),'class'=>'form-control input-sm']) !!}</div></li>
                 <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('ibportal::ibportal.Login'),'class'=>'form-control input-sm']) !!}</div></li>
-                <li><div  class=" nav-input-div  ">{!! Form::select('server_id', $serverTypes, $aFilterParams['server_id'], ['class'=>'form-control  input-sm']) !!}</div></li>
                 <li><div  class=" nav-input-div  ">
 
                         <div class="input-group date datepicker-warpper">
@@ -54,10 +41,6 @@
                             </span>
                         </div>
                     </div></li>
-
-                <li><div  class=" nav-input-div  ">{!! Form::select('type', $aTradeTypes, $aFilterParams['type'], ['class'=>'form-control  input-sm']) !!}</div></li>
-
-
 
 
                 <li><div  class=" nav-input-div  ">

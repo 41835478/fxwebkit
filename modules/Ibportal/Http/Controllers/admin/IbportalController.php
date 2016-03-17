@@ -613,13 +613,12 @@ class IbportalController extends Controller
     public function getAddAgents(Request $oRequest)
     {
 
-      $assAgents= $this->Ibportal->generateUserIbId($oRequest->agentId);
-        if($assAgents){
+        $assAgents = $this->Ibportal->generateUserIbId($oRequest->agentId);
+        if ($assAgents) {
             return Redirect::route('admin.ibportal.agentList')->withErrors(trans('ibportal::ibportal.the_account'));
-        }else{
+        } else {
             return Redirect::route('admin.ibportal.agentList')->withErrors('ibportal::ibportal.error_please');
         }
-
 
 
     }
@@ -664,18 +663,13 @@ class IbportalController extends Controller
         $aSymbols = [];
         $oResults = null;
         $aFilterParams = [
-            'from_login' => '',
-            'to_login' => '',
-            'exactLogin' => false,
-            'login' => '',
+            'login' => '100',
             'from_date' => '',
             'to_date' => '',
             'all_groups' => true,
             'group' => '',
             'all_symbols' => true,
             'symbol' => '',
-            'type' => '',
-            'server_id' => '',
             'sort' => 'ASC',
             'order' => 'TICKET',
             'agentId' => $oRequest->agentId
@@ -690,11 +684,7 @@ class IbportalController extends Controller
             $aTradeTypes[$sKey] = trans('general.' . $sValue);
         }
         if ($oRequest->has('search')) {
-
-            $aFilterParams['from_login'] = $oRequest->from_login;
-            $aFilterParams['to_login'] = $oRequest->to_login;
-            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
-            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['login'] = '100';
             $aFilterParams['agentId'] = $oRequest->agentId;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
@@ -702,11 +692,11 @@ class IbportalController extends Controller
             $aFilterParams['group'] = [];
             $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
             $aFilterParams['symbol'] = $oRequest->symbol;
-            $aFilterParams['type'] = $oRequest->type;
-            $aFilterParams['server_id'] = $oRequest->server_id;
+        }
 
+        if ($oRequest->has('search')) {
 
-            $oResults = $this->Ibportal->getAccountantByFilters($aFilterParams, false, $sOrder, $sSort);
+            $oResults = $this->Ibportal->getAgentsAccountantByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults[0]->order = $aFilterParams['order'];
             $oResults[0]->sorts = $aFilterParams['sort'];
         }
@@ -718,6 +708,19 @@ class IbportalController extends Controller
             ->with('serverTypes', $serverTypes)
             ->with('aFilterParams', $aFilterParams);
 
+    }
+
+    public function getSummary(Request $oRequest)
+    {
+        $clientId = $oRequest->agentId;
+
+        list($horizontal_line_numbers, $balance_array, $balance, $statistics) = $this->Ibportal->getAgentStatistics($clientId);
+
+        return view('ibportal::admin.summary',
+            [
+                'horizontal_line_numbers' => $horizontal_line_numbers,
+                'balance_array' => $balance_array,
+                'balance' => $balance])->withStatistics($statistics);
     }
 
 

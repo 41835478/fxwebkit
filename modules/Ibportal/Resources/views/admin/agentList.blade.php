@@ -146,6 +146,10 @@
                                            class="fa fa-money tooltip_number"
                                            data-original-title="{{trans('ibportal::ibportal.accountant')}}"></a>
 
+                                        <a href="{{ route('admin.ibportal.summary').'?agentId='.$oResult->id }}"
+                                           class="fa fa-bar-chart-o tooltip_number"
+                                           data-original-title="{{trans('ibportal::ibportal.summary')}}"></a>
+
                                     </td>
                                 </tr>
                             @endforeach

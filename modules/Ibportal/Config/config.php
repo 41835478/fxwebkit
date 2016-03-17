@@ -48,9 +48,9 @@ return [
     ],
     'client_menu' => [
         [
-            'route' => 'clients.ibportal.agentDashboard',
+            'route' => 'clients.ibportal.agentSummary',
             'title' => 'summary',
-            'icon' => 'fa-briefcase',
+            'icon' => 'fa fa-bar-chart-o',
         ],
         [
             'route' => 'client.ibportal.planList',

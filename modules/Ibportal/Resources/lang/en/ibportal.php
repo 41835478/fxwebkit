@@ -108,5 +108,11 @@ return [
     'assignAgents'=>'Assign Agents',
     'assign'=>'Assign',
     'the_account'=>'The account has been added successfully',
+    'summary'=>'Summary',
+    'user'=>'User',
+    'mt4_users'=>'Mt4 Users',
+    'no_account_available'=>'No Account Available',
+    'addAgents'=>'Agents',
+
 
 ];

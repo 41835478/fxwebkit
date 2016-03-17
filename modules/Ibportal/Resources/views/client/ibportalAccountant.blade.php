@@ -43,11 +43,6 @@
                         </div>
                     </div></li>
 
-                <li><div  class=" nav-input-div  ">{!! Form::select('type', $aTradeTypes, $aFilterParams['type'], ['class'=>'form-control  input-sm']) !!}</div></li>
-
-
-
-
                 <li><div  class=" nav-input-div  ">
                         {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>

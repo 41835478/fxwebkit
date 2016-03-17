@@ -635,131 +635,7 @@ class EloquentIbportalContractRepository implements IbportalContract
         ];
     }
 
-
-    public function getAccountantByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC') {
-        $oFxHelper = new Fx();
-        $aSummury = [];
-        /* ===============================check admin or user================ */
-
-        $user=User::find($aFilters['agentId']);
-        $oResult = new Mt4ClosedBalance();
-
-            if (!$user->InRole('admin')) {
-                $account_id = $user->id;
-                $oResult = Mt4ClosedBalance::with('users')->whereHas('users', function($query) use($account_id) {
-                    $query->where('users_id', $account_id);
-                });
-            } else {
-                $oResult = new Mt4ClosedBalance();
-            }
-
-
-        /* =================================== */
-        /* =============== Login Filters =============== */
-
-        if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
-            $oResult = $oResult->where('LOGIN', $aFilters['login']);
-        } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
-            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
-
-            if (!empty($aFilters['from_login'])) {
-                $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
-            }
-
-            if (!empty($aFilters['to_login'])) {
-                $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
-            }
-        }
-
-        if (isset($aFilters['server_id']) &&in_array($aFilters['server_id'],[0,1])) {
-
-            $oResult = $oResult->where('server_id',$aFilters['server_id']);
-        }
-
-        /* =============== Groups Filter  =============== */
-        if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
-            $aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
-            $oResult = $oResult->whereIn('LOGIN', $aUsers);
-        }
-
-        /* =============== Date Filter  =============== */
-        if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
-            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
-
-            if (!empty($aFilters['from_date'])) {
-                $oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
-            }
-
-            if (!empty($aFilters['to_date'])) {
-                $oResult = $oResult->where('CLOSE_TIME', '<=', $aFilters['to_date'] . ' 23:59:59');
-            }
-        }
-
-        /* =============== Get sum info and others =============== */
-        $depositResult = clone $oResult;
-        $withdrawsResult = clone $oResult;
-        $creditInResult = clone $oResult;
-        $creditOutResult = clone $oResult;
-
-
-        $aSummury ['deposits'] = $depositResult->where('CMD', 6)->where('PROFIT', '>', 0)->sum('PROFIT');
-        $aSummury ['withdraws'] = $withdrawsResult->where('CMD', 6)->where('PROFIT', '<', 0)->sum('PROFIT');
-        $aSummury ['creditIn'] = $creditInResult->where('CMD', 7)->where('PROFIT', '>', 0)->sum('PROFIT');
-        $aSummury ['creditOut'] = $creditOutResult->where('CMD', 7)->where('PROFIT', '<', 0)->sum('PROFIT');
-
-        /* =============== Type Filter  ===============
-
-          1 => 'BalanceOperations',
-          2 => 'CreditOperations',
-          3 => 'Deposits',
-          4 => 'Withdraws',
-          5 => 'CreditIn',
-          6 => 'CreditOut',
-         */
-        if (isset($aFilters['type']) && !empty($aFilters['type'])) {
-            if ($aFilters['type'] == 1) {
-                $oResult = $oResult->where('CMD', 6);
-            } elseif ($aFilters['type'] == 2) {
-                $oResult = $oResult->where('CMD', 7);
-            } elseif ($aFilters['type'] == 3) {
-                $oResult = $oResult->where('CMD', 6)->where('PROFIT', '>', 0);
-            } elseif ($aFilters['type'] == 4) {
-                $oResult = $oResult->where('CMD', 6)->where('PROFIT', '<', 0);
-            } elseif ($aFilters['type'] == 5) {
-                $oResult = $oResult->where('CMD', 7)->where('PROFIT', '>', 0);
-            } elseif ($aFilters['type'] == 6) {
-                $oResult = $oResult->where('CMD', 7)->where('PROFIT', '<', 0);
-            }
-        } else {
-            $oResult = $oResult->where('CMD', '=', 6)->Orwhere('CMD', '=', 7);
-        }
-
-        $oResult = $oResult->orderBy($sOrderBy, $sSort);
-
-        if (!$bFullSet) {
-            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
-        } else {
-            $oResult = $oResult->get();
-        }
-
-        /* =============== Preparing Output  =============== */
-        foreach ($oResult as $dKey => $oValue) {
-            // Set CMD type
-            $oResult[$dKey]->TYPE = $oFxHelper->getAccountantType($oValue->CMD, $oValue->PROFIT);
-            $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
-
-            $oResult[$dKey]->EQUITY = round($oResult[$dKey]->EQUITY, 2);
-            $oResult[$dKey]->BALANCE = round($oResult[$dKey]->BALANCE, 2);
-            $oResult[$dKey]->AGENT_ACCOUNT = round($oResult[$dKey]->AGENT_ACCOUNT, 2);
-            $oResult[$dKey]->MARGIN = round($oResult[$dKey]->MARGIN, 2);
-            $oResult[$dKey]->MARGIN_FREE = round($oResult[$dKey]->MARGIN_FREE, 2);
-            $oResult[$dKey]->LEVERAGE = round($oResult[$dKey]->LEVERAGE, 2);
-        }
-
-        return [$oResult, $aSummury];
-    }
-
-    public function getClientAccountantByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC') {
+    public function getAgentsAccountantByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC') {
         $oFxHelper = new Fx();
         $oResult = new Mt4ClosedBalance();
         $aSummury = [];
@@ -816,7 +692,7 @@ class EloquentIbportalContractRepository implements IbportalContract
 
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
-            dd($oResult);
+
         } else {
             $oResult = $oResult->get();
         }
