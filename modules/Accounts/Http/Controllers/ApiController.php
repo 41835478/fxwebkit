@@ -375,7 +375,7 @@ $this->changeServer($server_id);
 
 			$requestLog =new RequestLog();
 			if(Config('accounts.directOrderToMt4Server')==false){
-				$requestLog->insertMt4UserFullDetailsRequest($this->server_id,$mt4_user_details);
+				$requestLog->insertMt4UserFullDetailsRequest($this->server_id,$mt4_user_details,0,$accountId);
 
 				return trans('accounts::accounts.the_request');
 			}
