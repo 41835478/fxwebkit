@@ -426,12 +426,12 @@ $this->changeServer($server_id);
 
 		if($result->result ==0  ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
-			$requestLog->updateMt4UserFullDetailsRequest($logId,$mt4_user_details,1,$result->data[0]->login,$mt4_user_details['address']);
+			$requestLog->updateMt4UserFullDetailsRequest($logId,$mt4_user_details,1,$result->data[0]->login,$mt4_user_details['accountId']);
 
 
 		}else{
 
-			$requestLog->updateMt4UserFullDetailsRequest($logId,$mt4_user_details,2,0,$mt4_user_details['address']);
+			$requestLog->updateMt4UserFullDetailsRequest($logId,$mt4_user_details,2,0,$mt4_user_details['accountId']);
 		}
 		return $this->getApiResponseMessage($result);
 
