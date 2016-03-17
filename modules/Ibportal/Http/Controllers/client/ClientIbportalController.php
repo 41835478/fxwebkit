@@ -280,10 +280,7 @@ class ClientIbportalController extends Controller
         $aSymbols = [];
         $oResults = null;
         $aFilterParams = [
-            'from_login' => '',
-            'to_login' => '',
-            'exactLogin' => false,
-            'login' => '',
+            'login' => 100,
             'from_date' => '',
             'to_date' => '',
             'all_groups' => true,
@@ -291,7 +288,6 @@ class ClientIbportalController extends Controller
             'all_symbols' => true,
             'symbol' => '',
             'type' => '',
-            'server_id' => '',
             'sort' => 'ASC',
             'order' => 'TICKET',
         ];
@@ -306,10 +302,7 @@ class ClientIbportalController extends Controller
         }
 
         if ($oRequest->has('search')) {
-            $aFilterParams['from_login'] = $oRequest->from_login;
-            $aFilterParams['to_login'] = $oRequest->to_login;
-            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
-            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['login'] = '100';
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['all_groups'] = true;
@@ -317,12 +310,12 @@ class ClientIbportalController extends Controller
             $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
             $aFilterParams['symbol'] = $oRequest->symbol;
             $aFilterParams['type'] = $oRequest->type;
-            $aFilterParams['server_id'] = $oRequest->server_id;
         }
 
 
         if ($oRequest->has('search')) {
             $oResults = $this->Ibportal->getClientAccountantByFilters($aFilterParams, false, $sOrder, $sSort);
+       //     dd($oResults);
             $oResults[0]->order = $aFilterParams['order'];
             $oResults[0]->sorts = $aFilterParams['sort'];
         }

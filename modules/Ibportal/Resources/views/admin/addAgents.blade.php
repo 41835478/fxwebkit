@@ -41,6 +41,7 @@
 </div>
 @endif
 <div class="panel-footer text-right">
+    {!! Form::hidden('agentId',$agentId) !!}
     <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']  or 0 }}">{{ trans('ibportal::ibportal.assign') }}</button>
 </div>
 </div>

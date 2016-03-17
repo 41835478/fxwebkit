@@ -759,47 +759,16 @@ class EloquentIbportalContractRepository implements IbportalContract
         $oFxHelper = new Fx();
         $oResult = new Mt4ClosedBalance();
         $aSummury = [];
-        /* ===============================check admin or user================ */
-        $oResult = new Mt4ClosedBalance();
-        if ($user = current_user()->getUser()) {
-            if (!$user->InRole('admin')) {
-                $account_id = $user->id;
-                $oResult = Mt4ClosedBalance::with('users')->whereHas('users', function($query) use($account_id) {
-                    $query->where('users_id', $account_id);
-                });
-            } else {
-                $oResult = new Mt4ClosedBalance();
-            }
-        }
 
 
         /* =================================== */
-        /* =============== Login Filters =============== */
 
-        if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
-            $oResult = $oResult->where('LOGIN', $aFilters['login']);
-        } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
-            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
+        $oResult = $oResult->where('LOGIN',$aFilters['login']);
 
-            if (!empty($aFilters['from_login'])) {
-                $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
-            }
 
-            if (!empty($aFilters['to_login'])) {
-                $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
-            }
-        }
+        $oResult = $oResult->where('server_id',0);
 
-        if (isset($aFilters['server_id']) &&in_array($aFilters['server_id'],[0,1])) {
 
-            $oResult = $oResult->where('server_id',$aFilters['server_id']);
-        }
-
-        /* =============== Groups Filter  =============== */
-        if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
-            $aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
-            $oResult = $oResult->whereIn('LOGIN', $aUsers);
-        }
 
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
@@ -835,28 +804,15 @@ class EloquentIbportalContractRepository implements IbportalContract
           5 => 'CreditIn',
           6 => 'CreditOut',
          */
-        if (isset($aFilters['type']) && !empty($aFilters['type'])) {
-            if ($aFilters['type'] == 1) {
-                $oResult = $oResult->where('CMD', 6);
-            } elseif ($aFilters['type'] == 2) {
-                $oResult = $oResult->where('CMD', 7);
-            } elseif ($aFilters['type'] == 3) {
-                $oResult = $oResult->where('CMD', 6)->where('PROFIT', '>', 0);
-            } elseif ($aFilters['type'] == 4) {
-                $oResult = $oResult->where('CMD', 6)->where('PROFIT', '<', 0);
-            } elseif ($aFilters['type'] == 5) {
-                $oResult = $oResult->where('CMD', 7)->where('PROFIT', '>', 0);
-            } elseif ($aFilters['type'] == 6) {
-                $oResult = $oResult->where('CMD', 7)->where('PROFIT', '<', 0);
-            }
-        } else {
-            $oResult = $oResult->where('CMD', '=', 6)->Orwhere('CMD', '=', 7);
-        }
+
+            $oResult = $oResult->where('CMD', '>', 0);
+
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+            dd($oResult);
         } else {
             $oResult = $oResult->get();
         }

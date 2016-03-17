@@ -107,4 +107,6 @@ return [
     'password'=>'Password',
     'assignAgents'=>'Assign Agents',
     'assign'=>'Assign',
+    'the_account'=>'The account has been added successfully',
+
 ];

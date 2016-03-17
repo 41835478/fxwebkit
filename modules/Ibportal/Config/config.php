@@ -40,11 +40,6 @@ return [
             'icon' => 'fa fa-money',
         ],
         [
-            'route' => 'admin.ibportal.assignAgents',
-            'title' => 'assignAgents',
-            'icon' => 'fa fa-plus',
-        ],
-        [
             'route' => 'admin.ibportal.ibportalSettings',
             'title' => 'settings',
             'icon' => 'fa fa-gears',
