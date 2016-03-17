@@ -49,6 +49,7 @@ Route::group(['middleware' => ['authenticate.client'],'prefix' => 'ibportal', 'n
 		'getAgentUsers'=>'client.ibportal.agentUser',
 		'getAgentCommission'=>'client.ibportal.agentCommission',
 		'getAccountant'=>'clients.ibportal.accountant',
+		'getAgentDashboard'=>'clients.ibportal.agentDashboard',
 
 	]);
 });

@@ -48,6 +48,11 @@ return [
     ],
     'client_menu' => [
         [
+            'route' => 'clients.ibportal.agentDashboard',
+            'title' => 'summary',
+            'icon' => 'fa-briefcase',
+        ],
+        [
             'route' => 'client.ibportal.planList',
             'title' => 'plans',
             'icon' => 'fa-briefcase',

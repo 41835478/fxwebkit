@@ -522,7 +522,7 @@ return 'error please try again.';
 		if($result->result ==0){
 
 
-			/* TODO please trans() */
+
 			return true;
 		}else{
 
