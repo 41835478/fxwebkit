@@ -755,4 +755,9 @@ public function getAgentStatistics($agentId){
 }
 
 
+    public function assignMt4Agents($agentId, $login){
+        $userIbid=UserIbid::where('user_id',$agentId)->update(['login' =>$login]);
+
+    }
+
 }

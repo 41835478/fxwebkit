@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Config;
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
+use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
 
 class IbportalController extends Controller
 {
@@ -623,6 +624,7 @@ class IbportalController extends Controller
 
     }
 
+    /*TODO [moayd] please do the same for client area*/
     public function getAssignAgents(Request $oRequest)
     {
         $agentId = $oRequest->agentId;
@@ -643,17 +645,19 @@ class IbportalController extends Controller
         $result = $oApiController->AssignAgents($oRequest['login'], $oRequest['password']);
 
         if ($result === true) {
-            $asign_result = $this->Users->assignAgents(current_user()->getUser()->id, [$oRequest['login']]);
+            $asign_result = $this->Ibportal->assignMt4Agents($oRequest->agentId, $oRequest['login']);
             return Redirect::route('admin.ibportal.assignAgents')->withErrors('The User has been assigned successfully');
 
         } else {
             return view('ibportal::admin.addAgents')
+                ->with('agentId', $oRequest->agentId)
                 ->with('userInfo', ['login' => $oRequest['login'], 'password' => $oRequest['password']])->withErrors($result);
         }
     }
 
     public function getAccountant(Request $oRequest)
     {
+        $login=UserIbid::select('login')->where('user_id',$oRequest->agentId)->first()->login;
         $oSymbols = $this->Ibportal->getClosedTradesSymbols();
         $aTradeTypes = ['' => 'ALL'] + $this->Ibportal->getAccountantTypes();
         $serverTypes = $this->Ibportal->getServerTypes();
@@ -663,7 +667,7 @@ class IbportalController extends Controller
         $aSymbols = [];
         $oResults = null;
         $aFilterParams = [
-            'login' => '100',
+            'login' => $login,
             'from_date' => '',
             'to_date' => '',
             'all_groups' => true,
@@ -684,7 +688,7 @@ class IbportalController extends Controller
             $aTradeTypes[$sKey] = trans('general.' . $sValue);
         }
         if ($oRequest->has('search')) {
-            $aFilterParams['login'] = '100';
+            $aFilterParams['login'] = $login;
             $aFilterParams['agentId'] = $oRequest->agentId;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
