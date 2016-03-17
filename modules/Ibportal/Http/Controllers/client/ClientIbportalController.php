@@ -335,7 +335,18 @@ class ClientIbportalController extends Controller
             ->with('aFilterParams', $aFilterParams);
     }
 
+public function getAgentDashboard(){
 
+    $clientId=current_user()->getUser()->id;
+
+    list($horizontal_line_numbers, $balance_array,$balance,$statistics)=$this->Ibportal->getAgentStatistics($clientId);
+
+    return view('ibportal::client.agentDashboard',
+        [
+            'horizontal_line_numbers'=>$horizontal_line_numbers,
+            'balance_array'=>$balance_array,
+            'balance'=>$balance])->withStatistics($statistics);
+}
 
 
 }

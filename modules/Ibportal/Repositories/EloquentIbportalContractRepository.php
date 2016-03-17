@@ -10,6 +10,7 @@ use Modules\Ibportal\Entities\IbportalPlanUsers as PlanUsers;
 use Modules\Mt4Configrations\Entities\ConfigrationsSymbols as Symbols;
 use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
 use Modules\Ibportal\Entities\IbportalAgentUser as AgentUser;
+
 use Fxweb\Models\Mt4User;
 use Fxweb\Models\User;
 use Config;
@@ -18,6 +19,9 @@ use Modules\Ibportal\Entities\IbportalAgentsCommission as AgentsCommission;
 use Fxweb\Helpers\Fx;
 use Fxweb\Models\Mt4ClosedBalance;
 use Fxweb\Models\Mt4Closed;
+use Fxweb\Models\Mt4ClosedActualBalance;
+use Modules\Accounts\Entities\mt4_users_users;
+use Illuminate\Support\Facades\DB;
 
 class EloquentIbportalContractRepository implements IbportalContract
 {
@@ -877,5 +881,46 @@ class EloquentIbportalContractRepository implements IbportalContract
 
         return [$oResult, $aSummury];
     }
+
+
+public function getAgentStatistics($agentId){
+    $login=UserIbid::select('login')->where('user_id',$agentId)->first()->login;
+
+
+    $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'), 'CMD'])
+        ->where('login', $login)
+        ->where('server_id', 0)
+        ->where('cmd','>', 0)
+        ->orderBy('CLOSE_TIME')
+        ->get();
+
+
+    $balance_array = [];
+    $horizontal_line_numbers = [];
+
+    $pastBalance = 0;
+    $i = 0;
+    $balance=0;
+    foreach ($oGrowthResults as $row) {
+
+
+        $pastBalance+=$row->netProfit;
+        $balance=round($pastBalance, 2);
+        $balance_array[] = $balance;
+        $i++;
+        $horizontal_line_numbers[] = $i;
+    }
+    $statistics['users_number']=AgentUser::where('agent_id',$agentId)->count();
+    $statistics['mt4_users_number']=mt4_users_users::where('users_id',$agentId)->count();
+
+    $statistics['planes_number']=PlanUsers::where('user_id',$agentId)->count();
+
+    return [ $horizontal_line_numbers,
+        $balance_array,
+        $balance,
+        $statistics
+       ];
+}
+
 
 }

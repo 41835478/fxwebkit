@@ -17,7 +17,7 @@ class CreateIbportalUserIbidTable extends Migration {
         {
             $table->increments('user_id');
             $table->text('user_ibid',255);
-
+$table->integer('login');
             $table->timestamps();
         });
     }
