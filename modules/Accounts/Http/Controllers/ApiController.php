@@ -368,7 +368,7 @@ $this->changeServer($server_id);
 	}
 
 
-	public function mt4UserFullDetails($mt4_user_details,$oldPassword=null){
+	public function mt4UserFullDetails($accountId,$mt4_user_details,$oldPassword=null){
 
 
 
@@ -391,13 +391,14 @@ $this->changeServer($server_id);
 			$result=$this->sendApiMessage($message);
 
 			if($result->result ==0 ){
-				/* TODO comment and reason should be from addmin not $result,$result  */
-				$requestLog->insertMt4UserFullDetailsRequest($this->server_id,$mt4_user_details,1);
 
+				/* TODO comment and reason should be from addmin not $result,$result  */
+				$requestLog->insertMt4UserFullDetailsRequest($this->server_id,$mt4_user_details,1,$accountId);
+				return ($result->data[0]->login);
 
 			}else{
 
-				$requestLog->insertMt4UserFullDetailsRequest($this->server_id,$mt4_user_details,2);
+				$requestLog->insertMt4UserFullDetailsRequest($this->server_id,$mt4_user_details,2,$accountId);
 			}
 			return $this->getApiResponseMessage($result);
 
@@ -425,12 +426,12 @@ $this->changeServer($server_id);
 
 		if($result->result ==0  ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
-			$requestLog->updateMt4UserFullDetailsRequest($logId,$mt4_user_details,1);
+			$requestLog->updateMt4UserFullDetailsRequest($logId,$mt4_user_details,1,$result->data[0]->login,$mt4_user_details['address']);
 
 
 		}else{
 
-			$requestLog->updateMt4UserFullDetailsRequest($logId,$mt4_user_details,2);
+			$requestLog->updateMt4UserFullDetailsRequest($logId,$mt4_user_details,2,0,$mt4_user_details['address']);
 		}
 		return $this->getApiResponseMessage($result);
 

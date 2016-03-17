@@ -8,10 +8,14 @@ use Modules\Request\Entities\RequestChangeLeverage as ChangeLeverage;
 use Modules\Request\Entities\RequestChangePassword as ChangePassword;
 use Modules\Request\Entities\RequestAddAccount as addAccount;
 use Modules\Request\Entities\RequestAssignAccount as AssignAccount;
+use Fxweb\Repositories\Admin\User\EloquentUserRepository as Users;
 
 class RequestController extends Controller
 {
 
+    public function __construct(){
+
+    }
 
     public function insertInternalTransferRequest($fromLogin, $toLogin,$server_id, $amount = 0, $comment = '', $reason = '', $status = 0)
     {
@@ -162,7 +166,7 @@ class RequestController extends Controller
     }
 
 
-    public function insertMt4UserFullDetailsRequest($server_id,$mt4_user_details,$status=0)
+    public function insertMt4UserFullDetailsRequest($server_id,$mt4_user_details,$status=0,$accountId)
     {
 
         //$this->RequestLog->insertInternalTransferRequest($fromLogin,$toLogin,$amount,$comment,$reason,$status);
@@ -185,6 +189,7 @@ class RequestController extends Controller
             'city' => $mt4_user_details['city'],
             'address' => $mt4_user_details['address'],
             'zip_code' => $mt4_user_details['zip_code'],
+            'accountId'=>$accountId,
             //	'comment'=>$comment,
             //	'reason'=>$reason,
             'status'=>$status
@@ -196,7 +201,7 @@ class RequestController extends Controller
     }
 
 
-    public function updateMt4UserFullDetailsRequest($logId,$mt4_user_details,$status)
+    public function updateMt4UserFullDetailsRequest($logId,$mt4_user_details,$status,$login,$accountId)
     {
 
 
@@ -218,6 +223,12 @@ class RequestController extends Controller
         $log->zip_code=$mt4_user_details['zip_code'];
         $log->status=$status;
         $log->save();
+
+
+        if($login>0 ){
+            $result= Users::asignMt4UsersToAccount($accountId, [$login]);
+           return ($result==true)? true:false;
+        }
         return true;
 
 

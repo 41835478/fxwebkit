@@ -33,6 +33,7 @@ class CreateRequestAddAccountTable extends Migration {
             $table->text('comment');
             $table->text('reason');
             $table->tinyInteger('status');
+            $table->integer('accountId');
             $table->timestamps();
         });
     }

@@ -445,9 +445,12 @@ class ClientAccountsController extends Controller
         $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
         $oApiController->server_id=1;
 
-        $result = $oApiController->mt4UserFullDetails($mt4_user_details);
+        $result = $oApiController->mt4UserFullDetails(current_user()->getUser()->id,$mt4_user_details);
 
-
+if($result*1 >0 ){
+    $result= $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result]);
+    $result=($result==true)? 'the user assigned successfully':'error,the Mt4 user does not assigned to this account';
+}
         return Redirect::route('client.accounts.mt4DemoAccount')->withErrors($result) ;
 
     }
@@ -528,8 +531,12 @@ class ClientAccountsController extends Controller
 
 
         $oApiController = new ApiController();
-        $result = $oApiController->mt4UserFullDetails($mt4_user_details);
+        $result = $oApiController->mt4UserFullDetails(current_user()->getUser()->id,$mt4_user_details);
 
+        if($result*1 >0 ){
+            $result= $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result]);
+            $result=($result==true)? 'the user assigned successfully':'error,the Mt4 user does not assigned to this account';
+        }
         return Redirect::route('client.accounts.mt4LiveAccount')->withErrors($result);
 
     }
