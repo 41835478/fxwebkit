@@ -9,6 +9,7 @@ use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Modules\Accounts\Entities\mt4_users_users;
 use Config;
 use Fxweb\Helpers\Fx;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class EloquentUserRepository
@@ -97,12 +98,25 @@ class EloquentUserRepository implements UserContract
         return $oResult;
     }
 
-    public function getAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin',$agentId)
+    public function getAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
     {
+$agents=$aFilters['agents'];
+        $oResult =new User();
+        if($agents == 1){
+            $oResult=   $oResult->with('isAgent')->whereHas('isAgent', function ($query) use ($agents) {
 
-        $oResult = User::with('agentUsers')->whereHas('agentUsers', function ($query) use ($agentId) {
-            $query->where('agent_id', $agentId);
+            $query->whereNotNull('user_id');
+
         });
+    }else{
+            $oResult=  $oResult->whereNotIn('id', function ($query) {
+
+                $query->select(DB::raw('ibportal_user_ibid.user_id'))
+                    ->from('ibportal_user_ibid')
+                    ->whereRaw('ibportal_user_ibid.user_id = users.id');
+
+            });
+}
 
         /* =============== id Filter  =============== */
         if (isset($aFilters['id']) && !empty($aFilters['id'])) {
@@ -137,6 +151,7 @@ class EloquentUserRepository implements UserContract
 
         }
         /* =============== Preparing Output  =============== */
+
         return $oResult;
     }
 
@@ -280,6 +295,28 @@ class EloquentUserRepository implements UserContract
         }
         return true;
     }
+//
+//    public function assignAgents($account_id, $users_id)
+//    {
+//        if (is_array($users_id)) {
+//            foreach ($users_id as $id => $user_id) {
+//
+//                $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id])->first();
+//                if ($asign) {
+//                    $asign->users_id = $account_id;
+//                    $asign->mt4_users_id = $user_id;
+//                    $asign->save();
+//                } else {
+//                    $asign = new mt4_users_users;
+//
+//                    $asign->users_id = $account_id;
+//                    $asign->mt4_users_id = $user_id;
+//                    $asign->save();
+//                }
+//            }
+//        }
+//        return true;
+//    }
 
     public function unsignMt4UsersToAccount($account_id, $users_id)
     {

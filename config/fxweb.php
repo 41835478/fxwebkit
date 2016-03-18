@@ -12,7 +12,7 @@
  */
 
 return [
-  'app_name' => env('APP_NAME', 'FxWebKit'),
+    'app_name' => env('APP_NAME', 'FxWebKit'),
     //   'app_name' => 'FxWebKit',
     'admin_roles' => env('ADMIN_ROLES', 'admin'),
     'client_default_role' => env('CLIENT_DEFAULT_ROLE'),
@@ -61,38 +61,14 @@ return [
     'linkedinIdentifier' => '779y8ism8ovwns',
     'linkedinSecret' => 'l9paUw3eQJgtYRRV',
 
-    'demoArray'=>[
-        '1'=> '10',
-        '2'=>'20',
-        '3'=>'30',
-        '4'=>'40',
-        '11'=> '10',
-        '12'=>'20',
-        '13'=>'30',
-        '14'=>'40',
-    ],
     'key'=>'fgh',
-    'value'=>'fgh',
 
+    'value'=>'fgh','GroupLive'=>['dfg'=>'ger','sdf'=>'sdfsd','10'=>'500',],'GroupDemo'=>['dfg'=>'ger','mohammd '=>'hashim','sdf'=>'sdfsd','1'=>'2','44'=>'44','demo'=>'demo','gggg'=>'gggggg',],'DepositLive'=>['1000'=>'1000','5000'=>'5000','10000'=>'10000','100000'=>'100000','25'=>'3000','30'=>'60','1'=>'1','fgggggggggg'=>'gggggg',],'DepositDemo'=>['1000'=>'1000','5000'=>'5000','10000'=>'10000','100000'=>'100000','25'=>'3000','30'=>'60','3'=>'2','ggggggg'=>'ggggggg',],'leverage'=>['50'=>'1:50','100'=>'1:100','150'=>'1:150','123'=>'000',],'leverageDemo'=>['50'=>'1:500','100'=>'1:1000','150'=>'1:1500','aaaa'=>'aaaa',],
 
-    'Group'=>[
-],'GroupLive'=>['dfg'=>'ger','mohammd '=>'hashim','sdf'=>'sdfsd','1'=>'2','44'=>'44',],'GroupDemo'=>['dfg'=>'ger','1'=>'2','demo'=>'demo',],
-    'DepositLive'=>[
-           '1000'=> '1000',
-            '5000'=>'5000',
-            '10000'=>'10000',
-            '100000'=>'100000',
-        ],
-    'DepositDemo'=>[
-        '1000'=> '10',
-        '5000'=>'20',
-        '10000'=>'30',
-        '100000'=>'40',
-    ],
     'theme' => [
         'color' => env('THEME_COLOR', 'default'),
         'navbarFixed' => env('FIXED_NAVBAR', false),
-            'menuFixed' => env('FIXED_MENU mmc', false),
+        'menuFixed' => env('FIXED_MENU mmc', false),
         'menuAnimated' => env('ANIMATED_MENU', false),
     ],
     'admin_menu' => [
@@ -118,14 +94,13 @@ return [
                 ],
                 [
                     'route' => 'admin.settings',
-        'title' => 'settings',
-        'icon' => 'fa fa-gears',
-    ]
+                    'title' => 'settings',
+                    'icon' => 'fa fa-gears',
+                ]
             ]
         ],
-        
-    ],'client_menu' => [
 
+    ],'client_menu' => [
 
     ],
 ];

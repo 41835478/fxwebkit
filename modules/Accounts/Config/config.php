@@ -6,17 +6,7 @@ return [
     'name' => 'accounts',
     'icon' => 'fa fa-user',
     'route' => '',
-    'directOrderToMt4Server'=>true,
-    'leverage' => [
-        '50' => '1:50',
-        '100' => '1:100',
-        '150' => '1:150',
-    ],
-    'leverageDemo' => [
-        '50' => '1:500',
-        '100' => '1:1000',
-        '150' => '1:1500',
-    ],
+    'directOrderToMt4Server'=>false,
     'operation' => [
         '0' => 'Credit In',
         '1' => 'Credit Out',

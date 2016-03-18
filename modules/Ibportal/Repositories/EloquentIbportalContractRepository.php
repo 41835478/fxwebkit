@@ -10,11 +10,18 @@ use Modules\Ibportal\Entities\IbportalPlanUsers as PlanUsers;
 use Modules\Mt4Configrations\Entities\ConfigrationsSymbols as Symbols;
 use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
 use Modules\Ibportal\Entities\IbportalAgentUser as AgentUser;
+
 use Fxweb\Models\Mt4User;
 use Fxweb\Models\User;
 use Config;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Modules\Ibportal\Entities\IbportalAgentsCommission as AgentsCommission;
 use Fxweb\Helpers\Fx;
+use Fxweb\Models\Mt4ClosedBalance;
+use Fxweb\Models\Mt4Closed;
+use Fxweb\Models\Mt4ClosedActualBalance;
+use Modules\Accounts\Entities\mt4_users_users;
+use Illuminate\Support\Facades\DB;
 
 class EloquentIbportalContractRepository implements IbportalContract
 {
@@ -275,7 +282,10 @@ class EloquentIbportalContractRepository implements IbportalContract
     public function generateUserIbId($userId)
     {
         $IbId = Hash::make($userId);
+
         $insertResult = UserIbid::create(['user_id' => $userId, 'user_ibid' => $IbId]);
+
+
         if (count($insertResult)) {
             $planResult = Plan::where('public', true)->get();
             $aPublicPlans = [];
@@ -283,6 +293,7 @@ class EloquentIbportalContractRepository implements IbportalContract
                 $aPublicPlans[] = ['plan_id' => $plan->id, 'user_id' => $userId];
             }
             $assignPublicPlansResult = PlanUsers::insert($aPublicPlans);
+
         }
         return $insertResult;
     }
@@ -537,6 +548,215 @@ class EloquentIbportalContractRepository implements IbportalContract
                 'value' => $symbolsValue[$i],
             ]);
         }
+
+    }
+
+
+
+    public function getAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
+    {
+
+        $oRole = Sentinel::findRoleBySlug($role);
+        $role_id = $oRole->id;
+        $oResult = User::with('roles')->whereHas('roles', function ($query) use ($role_id) {
+            $query->where('id', $role_id);
+        });
+
+
+        /* =============== id Filter  =============== */
+        if (isset($aFilters['id']) && !empty($aFilters['id'])) {
+            $oResult = $oResult->where('id', $aFilters['id']);
+        }
+
+        /* =============== Nmae Filter  =============== */
+        if (isset($aFilters['first_name']) && !empty($aFilters['first_name'])) {
+            $oResult = $oResult->where('first_name', 'like', '%' . $aFilters['first_name'] . '%');
+        }
+
+        if (isset($aFilters['last_name']) && !empty($aFilters['last_name'])) {
+            $oResult = $oResult->where('last_name', 'like', '%' . $aFilters['last_name'] . '%');
+        }
+
+        /* =============== email Filter  =============== */
+        if (isset($aFilters['email']) && !empty($aFilters['email'])) {
+            $oResult = $oResult->where('email', 'like', '%' . $aFilters['email'] . '%');
+        }
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+
+        } else {
+            $oResult = $oResult->get();
+
+        }
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+
+        }
+        /* =============== Preparing Output  =============== */
+
+        return $oResult;
+    }
+
+
+    public function getClosedTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC') {
+        /* TODO[Galya] we will delete this table where we should get symbols */
+        return Mt4Closed::distinct()
+            ->select('SYMBOL')
+            ->where('CLOSE_TIME', '!=', '1970-01-01')
+            ->where('CMD', '<', '6')
+            ->orderBy($sOrderBy, $sSort)
+            ->get();
+    }
+
+
+    public function getAccountantTypes() {
+
+        return [
+            1 => 'BalanceOperations',
+            2 => 'CreditOperations',
+            3 => 'Deposits',
+            4 => 'Withdraws',
+            5 => 'CreditIn',
+            6 => 'CreditOut',
+        ];
+    }
+
+
+    public function getServerTypes() {
+        return [
+            -1=>'All',
+            0 => config('fxweb.liveServerName'),
+            1 => config('fxweb.demoServerName'),
+        ];
+    }
+
+    public function getAgentsAccountantByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC') {
+        $oFxHelper = new Fx();
+        $oResult = new Mt4ClosedBalance();
+        $aSummury = [];
+
+
+        /* =================================== */
+
+        $oResult = $oResult->where('LOGIN',$aFilters['login']);
+
+
+        $oResult = $oResult->where('server_id',0);
+
+
+
+        /* =============== Date Filter  =============== */
+        if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
+
+            if (!empty($aFilters['from_date'])) {
+                $oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
+            }
+
+            if (!empty($aFilters['to_date'])) {
+                $oResult = $oResult->where('CLOSE_TIME', '<=', $aFilters['to_date'] . ' 23:59:59');
+            }
+        }
+
+        /* =============== Get sum info and others =============== */
+        $depositResult = clone $oResult;
+        $withdrawsResult = clone $oResult;
+        $creditInResult = clone $oResult;
+        $creditOutResult = clone $oResult;
+
+
+        $aSummury ['deposits'] = $depositResult->where('CMD', 6)->where('PROFIT', '>', 0)->sum('PROFIT');
+        $aSummury ['withdraws'] = $withdrawsResult->where('CMD', 6)->where('PROFIT', '<', 0)->sum('PROFIT');
+        $aSummury ['creditIn'] = $creditInResult->where('CMD', 7)->where('PROFIT', '>', 0)->sum('PROFIT');
+        $aSummury ['creditOut'] = $creditOutResult->where('CMD', 7)->where('PROFIT', '<', 0)->sum('PROFIT');
+
+        /* =============== Type Filter  ===============
+
+          1 => 'BalanceOperations',
+          2 => 'CreditOperations',
+          3 => 'Deposits',
+          4 => 'Withdraws',
+          5 => 'CreditIn',
+          6 => 'CreditOut',
+         */
+
+            $oResult = $oResult->where('CMD', '>', 0);
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+
+        } else {
+            $oResult = $oResult->get();
+        }
+
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+            // Set CMD type
+            $oResult[$dKey]->TYPE = $oFxHelper->getAccountantType($oValue->CMD, $oValue->PROFIT);
+            $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
+
+            $oResult[$dKey]->EQUITY = round($oResult[$dKey]->EQUITY, 2);
+            $oResult[$dKey]->BALANCE = round($oResult[$dKey]->BALANCE, 2);
+            $oResult[$dKey]->AGENT_ACCOUNT = round($oResult[$dKey]->AGENT_ACCOUNT, 2);
+            $oResult[$dKey]->MARGIN = round($oResult[$dKey]->MARGIN, 2);
+            $oResult[$dKey]->MARGIN_FREE = round($oResult[$dKey]->MARGIN_FREE, 2);
+            $oResult[$dKey]->LEVERAGE = round($oResult[$dKey]->LEVERAGE, 2);
+        }
+
+        return [$oResult, $aSummury];
+    }
+
+
+public function getAgentStatistics($agentId){
+    $login=UserIbid::select('login')->where('user_id',$agentId)->first()->login;
+
+
+    $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'), 'CMD'])
+        ->where('login', $login)
+        ->where('server_id', 0)
+        ->where('cmd','>', 0)
+        ->orderBy('CLOSE_TIME')
+        ->get();
+
+
+    $balance_array = [];
+    $horizontal_line_numbers = [];
+
+    $pastBalance = 0;
+    $i = 0;
+    $balance=0;
+    foreach ($oGrowthResults as $row) {
+
+
+        $pastBalance+=$row->netProfit;
+        $balance=round($pastBalance, 2);
+        $balance_array[] = $balance;
+        $i++;
+        $horizontal_line_numbers[] = $i;
+    }
+    $statistics['users_number']=AgentUser::where('agent_id',$agentId)->count();
+    $statistics['mt4_users_number']=mt4_users_users::where('users_id',$agentId)->count();
+
+    $statistics['planes_number']=PlanUsers::where('user_id',$agentId)->count();
+
+    return [ $horizontal_line_numbers,
+        $balance_array,
+        $balance,
+        $statistics
+       ];
+}
+
+
+    public function assignMt4Agents($agentId, $login){
+        $userIbid=UserIbid::where('user_id',$agentId)->update(['login' =>$login]);
 
     }
 

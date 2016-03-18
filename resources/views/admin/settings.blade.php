@@ -43,6 +43,7 @@
                                 </div>
 
                             </div>
+
                             <hr>
                             <div class="row">
                                 <div class="col-sm-6">
@@ -53,6 +54,14 @@
                                 </div>
 
                             </div>
+                            <hr>
+                            {!! $editGroupLive !!}
+                            <hr>
+                            {!! $editDepositLive  !!}
+                            <hr>
+                            {!! $editleverage !!}
+
+
                         </div>
                         <!-- / .panel-body -->
                     </div>
@@ -97,6 +106,12 @@
                                 </div>
 
                             </div>
+                            <hr>
+                            {!! $editGroupDemo !!}
+                            <hr>
+                            {!! $editDepositDemo  !!}
+                            <hr>
+                            {!! $editleverageDemo !!}
                         </div>
                         <!-- / .panel-body -->
                     </div>
@@ -339,72 +354,44 @@
                         </div>
                         <!-- / .collapse -->
                     </div>
+                </div>
+
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
+                           href="#collapseSeven">
+                            {{ trans('general.webTrader') }}
+                        </a>
+                    </div>
+                    <!-- / .panel-heading -->
+                    <div id="collapseSeven" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group no-margin-hr">
+                                        <label class="control-label">{{ trans('general.LinkTradeForUser') }}</label>
+                                        {!! Form::text('LinkTradeForUser',config('fxweb.LinkTradeForUser'),['class'=>'form-control']) !!}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            {!! Form::checkbox('EnableLinkTradeForUser', 1, config('fxweb.EnableLinkTradeForUser'), ['class'=>'px','id'=>'EnableLinkTradeForUser']) !!}
+                                            <span class="lbl">{{ trans('general.EnableLinkTradeForUser') }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-
-
-
-
-
-
-                        <div class="panel">
-                            <div class="panel-heading">
-                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
-                                   href="#collapseSeven">
-                                    {{ trans('general.webTrader') }}
-                                </a>
-                            </div>
-                            <!-- / .panel-heading -->
-                            <div id="collapseSeven" class="panel-collapse collapse">
-                                <div class="panel-body">
-
-
-
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group no-margin-hr">
-                                                <label class="control-label">{{ trans('general.LinkTradeForUser') }}</label>
-                                                {!! Form::text('LinkTradeForUser',config('fxweb.LinkTradeForUser'),['class'=>'form-control']) !!}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="checkbox">
-                                                <label>
-                                                    {!! Form::checkbox('EnableLinkTradeForUser', 1, config('fxweb.EnableLinkTradeForUser'), ['class'=>'px','id'=>'EnableLinkTradeForUser']) !!}
-                                                    <span class="lbl">{{ trans('general.EnableLinkTradeForUser') }}</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                        </div>
-                            <div class="panel">
-                                <div class="panel-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
-                                       href="#collapseE">
-                                        {{ trans('general.demo') }}
-                                    </a>
-                                </div>
-                                <!-- / .panel-heading -->
-                                <div id="collapseE" class="panel-collapse collapse">
-                                    <div class="panel-body">
-
-
-                                        {!! $editGroupLive !!}
-                                        {!! $editGroupDemo !!}
-
-
-
-                                    </div>
-                                </div>
 
                 </div>
 
@@ -433,7 +420,6 @@
                     init.push(function () {
 
 
-
                         var options = {
                             format: "yyyy-mm-dd",
                             todayBtn: "linked",
@@ -452,18 +438,18 @@
                     });
 
 
+                    $('.dropDownEditAllDiv .add').click(function () {
+                        var arrayName = $(this).data('arrayname');
+                        console.log(arrayName);
+                        var key = $('#keyInput_' + arrayName).val();
+                        var value = $('#valueInput_' + arrayName).val();
 
-                    $('.dropDownEditAllDiv .add').click(function(){
-                        var arrayName=$(this).data('arrayname');console.log(arrayName);
-                        var key=$('#keyInput_'+arrayName).val();
-                        var value=$('#valueInput_'+arrayName).val();
-
-                    $('#select_'+arrayName).append('<option value="'+key+','+value+'" onclick="$(this).remove();">'+value+'</option>');
+                        $('#select_' + arrayName).append('<option value="' + key + ',' + value + '" onclick="$(this).remove();">' + value + '</option>');
                         $('.dropDownEditAllDiv  option').attr('selected', 'selected');
                     });
-                   $('button[type="submit"],input[type="submit"]').click(function(){
-                       $('.dropDownEditAllDiv  option').attr('selected', 'selected');
-                   });
+                    $('button[type="submit"],input[type="submit"]').click(function () {
+                        $('.dropDownEditAllDiv  option').attr('selected', 'selected');
+                    });
 
 
                 </script>

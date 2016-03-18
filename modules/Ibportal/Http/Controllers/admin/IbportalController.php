@@ -6,13 +6,14 @@ use Modules\Mt4Configrations\Repositories\Mt4ConfigrationsContract as Mt4Configr
 use Modules\Ibportal\Repositories\IbportalContract as Ibportal;
 use Fxweb\Repositories\Admin\Mt4Group\Mt4GroupContract as Mt4Group;
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
-
+use Modules\Accounts\Http\Controllers\ApiController;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Illuminate\Support\Facades\Config;
 
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
+use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
 
 class IbportalController extends Controller
 {
@@ -228,24 +229,29 @@ class IbportalController extends Controller
             'first_name' => '',
             'last_name' => '',
             'email' => '',
+            'agents' => 0,
             'sort' => $sSort,
             'order' => $sOrder,
         ];
 
         if ($oRequest->has('search')) {
+
             $aFilterParams['id'] = $oRequest->id;
             $aFilterParams['first_name'] = $oRequest->first_name;
             $aFilterParams['last_name'] = $oRequest->last_name;
             $aFilterParams['email'] = $oRequest->email;
-
+            $aFilterParams['agents'] = $oRequest->agents;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
 
             $role = explode(',', Config::get('fxweb.client_default_role'));
-            // TODO [mohammad] get agent list
 
-            $oResults = $this->Users->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
 
+            if ($oRequest->agents == 0) {
+                $oResults = $this->Users->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
+            } else
+
+                $oResults = $this->Users->getAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
         }
 
         return view('ibportal::admin.agentList')
@@ -328,6 +334,7 @@ class IbportalController extends Controller
         $users = $this->Users->getUsersNames();
         $selectedUsers = $this->Ibportal->getAgentAssignedUsers($request->agentId, $users);
 
+
         return view('ibportal::admin.assignAgentPlan')
             ->with('planId', $request->planId)
             ->with('agentId', $request->agentId)
@@ -368,7 +375,7 @@ class IbportalController extends Controller
             'planName' => [],
             'usresName' => [],
             'mt4UsresName' => [],
-            'server_id'=>'',
+            'server_id' => '',
             'sort' => 'ASC',
             'order' => 'TICKET',
         ];
@@ -407,7 +414,7 @@ class IbportalController extends Controller
             ->with('oResults', $oResults)
             ->with('agent_id', $oRequest->agentId)
             ->with('data', $data)
-            ->with('serverTypes',$serverTypes)
+            ->with('serverTypes', $serverTypes)
             ->with('totalCommission', $totalCommission)
             ->with('aFilterParams', $aFilterParams);
     }
@@ -478,7 +485,7 @@ class IbportalController extends Controller
             'planName' => [],
             'usresName' => [],
             'mt4UsresName' => [],
-            'server_id'=>'',
+            'server_id' => '',
             'sort' => 'ASC',
             'order' => 'TICKET',
         ];
@@ -517,7 +524,7 @@ class IbportalController extends Controller
             ->with('oResults', $oResults)
             ->with('data', $data)
             ->with('totalCommission', $totalCommission)
-            ->with('serverTypes',$serverTypes)
+            ->with('serverTypes', $serverTypes)
             ->with('aFilterParams', $aFilterParams);
 
     }
@@ -591,7 +598,7 @@ class IbportalController extends Controller
         $is_client = ($oRequest->is_client) ? 1 : 0;
         $ibportalSetting = [
 
-            'agreemment' =>$oRequest->agreemment,
+            'agreemment' => $oRequest->agreemment,
             'is_client' => $is_client,
 
 
@@ -602,6 +609,122 @@ class IbportalController extends Controller
 
         return view('ibportal::admin.ibportalSetting')->with('ibportalSetting', $ibportalSetting);
 
+    }
+
+    public function getAddAgents(Request $oRequest)
+    {
+
+        $assAgents = $this->Ibportal->generateUserIbId($oRequest->agentId);
+        if ($assAgents) {
+            return Redirect::route('admin.ibportal.agentList')->withErrors(trans('ibportal::ibportal.the_account'));
+        } else {
+            return Redirect::route('admin.ibportal.agentList')->withErrors('ibportal::ibportal.error_please');
+        }
+
+
+    }
+
+    /*TODO [moayd] please do the same for client area*/
+    public function getAssignAgents(Request $oRequest)
+    {
+        $agentId = $oRequest->agentId;
+        $userInfo = [
+            'login' => $oRequest['login'],
+            'password' => $oRequest['password'],
+        ];
+
+
+        return view('ibportal::admin.addAgents')->with('userInfo', $userInfo)->with('agentId', $agentId);
+    }
+
+    public function postAssignAgents(Request $oRequest)
+    {
+
+        $oApiController = new ApiController();
+
+        $result = $oApiController->AssignAgents($oRequest['login'], $oRequest['password']);
+
+        if ($result === true) {
+            $asign_result = $this->Ibportal->assignMt4Agents($oRequest->agentId, $oRequest['login']);
+            return Redirect::route('admin.ibportal.assignAgents')->withErrors('The User has been assigned successfully');
+
+        } else {
+            return view('ibportal::admin.addAgents')
+                ->with('agentId', $oRequest->agentId)
+                ->with('userInfo', ['login' => $oRequest['login'], 'password' => $oRequest['password']])->withErrors($result);
+        }
+    }
+
+    public function getAccountant(Request $oRequest)
+    {
+        $login=UserIbid::select('login')->where('user_id',$oRequest->agentId)->first()->login;
+        $oSymbols = $this->Ibportal->getClosedTradesSymbols();
+        $aTradeTypes = ['' => 'ALL'] + $this->Ibportal->getAccountantTypes();
+        $serverTypes = $this->Ibportal->getServerTypes();
+        $sSort = $oRequest->sort;
+        $sOrder = $oRequest->order;
+        $aGroups = [];
+        $aSymbols = [];
+        $oResults = null;
+        $aFilterParams = [
+            'login' => $login,
+            'from_date' => '',
+            'to_date' => '',
+            'all_groups' => true,
+            'group' => '',
+            'all_symbols' => true,
+            'symbol' => '',
+            'sort' => 'ASC',
+            'order' => 'TICKET',
+            'agentId' => $oRequest->agentId
+        ];
+
+
+        foreach ($oSymbols as $oSymbol) {
+            $aSymbols[$oSymbol->SYMBOL] = $oSymbol->SYMBOL;
+        }
+
+        foreach ($aTradeTypes as $sKey => $sValue) {
+            $aTradeTypes[$sKey] = trans('general.' . $sValue);
+        }
+        if ($oRequest->has('search')) {
+            $aFilterParams['login'] = $login;
+            $aFilterParams['agentId'] = $oRequest->agentId;
+            $aFilterParams['from_date'] = $oRequest->from_date;
+            $aFilterParams['to_date'] = $oRequest->to_date;
+            $aFilterParams['all_groups'] = true;
+            $aFilterParams['group'] = [];
+            $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
+            $aFilterParams['symbol'] = $oRequest->symbol;
+        }
+
+        if ($oRequest->has('search')) {
+
+            $oResults = $this->Ibportal->getAgentsAccountantByFilters($aFilterParams, false, $sOrder, $sSort);
+            $oResults[0]->order = $aFilterParams['order'];
+            $oResults[0]->sorts = $aFilterParams['sort'];
+        }
+
+        return view('ibportal::admin.ibportalAccountant')
+            ->with('aSymbols', $aSymbols)
+            ->with('aTradeTypes', $aTradeTypes)
+            ->with('oResults', $oResults)
+            ->with('serverTypes', $serverTypes)
+            ->with('aFilterParams', $aFilterParams);
+
+    }
+
+    public function getSummary(Request $oRequest)
+    {
+        $clientId = $oRequest->agentId;
+
+        list($horizontal_line_numbers, $balance_array, $balance, $statistics) = $this->Ibportal->getAgentStatistics($clientId);
+
+        return view('ibportal::admin.summary',
+            [
+                'horizontal_line_numbers' => $horizontal_line_numbers,
+                'balance_array' => $balance_array,
+                'balance' => $balance])->withStatistics($statistics);
     }
 
 

@@ -131,7 +131,7 @@ class ClientAccountsController extends Controller
     public function getMt4Leverage(Request $oRequest)
     {
 
-        $Result = Config('accounts.leverage');
+        $Result = Config('fxweb.leverage');
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
 
         $changeleverage = [
@@ -155,7 +155,7 @@ class ClientAccountsController extends Controller
     public function postMt4Leverage(Request $oRequest)
     {
 
-        $Result = Config('accounts.leverage');
+        $Result = Config('fxweb.leverage');
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
 
 
@@ -375,7 +375,7 @@ class ClientAccountsController extends Controller
 
         $array_group = Config('fxweb.GroupDemo');
         $array_deposit = Config('fxweb.DepositDemo');
-        $array_leverage = Config('accounts.leverageDemo');
+        $array_leverage = Config('fxweb.leverageDemo');
 
 
         $mt4_user_details = [
@@ -417,7 +417,7 @@ class ClientAccountsController extends Controller
 
         $array_group = Config('fxweb.GroupDemo');
         $array_deposit = Config('fxweb.DepositDemo');
-        $array_leverage = Config('accounts.leverageDemo');
+        $array_leverage = Config('fxweb.leverageDemo');
 
         $country_name = preg_replace("/ \((.*)\)/", "", $country_array);
 
@@ -445,9 +445,12 @@ class ClientAccountsController extends Controller
         $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
         $oApiController->server_id=1;
 
-        $result = $oApiController->mt4UserFullDetails($mt4_user_details);
+        $result = $oApiController->mt4UserFullDetails(current_user()->getUser()->id,$mt4_user_details);
 
-
+if($result*1 >0 ){
+    $result= $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result]);
+    $result=($result==true)? 'the user assigned successfully':'error,the Mt4 user does not assigned to this account';
+}
         return Redirect::route('client.accounts.mt4DemoAccount')->withErrors($result) ;
 
     }
@@ -462,7 +465,7 @@ class ClientAccountsController extends Controller
 
         $array_group = Config('fxweb.GroupLive');
         $array_deposit = Config('fxweb.DepositLive');
-        $array_leverage = Config('accounts.leverage');
+        $array_leverage = Config('fxweb.leverage');
 
 
         $mt4_user_details = [
@@ -505,7 +508,7 @@ class ClientAccountsController extends Controller
 
         $array_group = Config('fxweb.GroupDemo');
         $array_deposit = Config('fxweb.DepositDemo');
-        $array_leverage = Config('accounts.leverageDemo');
+        $array_leverage = Config('fxweb.leverageDemo');
 
         $country_name = preg_replace("/ \((.*)\)/", "", $country_array);
 
@@ -528,8 +531,12 @@ class ClientAccountsController extends Controller
 
 
         $oApiController = new ApiController();
-        $result = $oApiController->mt4UserFullDetails($mt4_user_details);
+        $result = $oApiController->mt4UserFullDetails(current_user()->getUser()->id,$mt4_user_details);
 
+        if($result*1 >0 ){
+            $result= $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result]);
+            $result=($result==true)? 'the user assigned successfully':'error,the Mt4 user does not assigned to this account';
+        }
         return Redirect::route('client.accounts.mt4LiveAccount')->withErrors($result);
 
     }

@@ -45,9 +45,13 @@ return [
             'icon' => 'fa fa-gears',
         ]
 
-
     ],
     'client_menu' => [
+        [
+            'route' => 'clients.ibportal.agentSummary',
+            'title' => 'summary',
+            'icon' => 'fa fa-bar-chart-o',
+        ],
         [
             'route' => 'client.ibportal.planList',
             'title' => 'plans',
@@ -61,6 +65,10 @@ return [
         [
             'route' => 'client.ibportal.agentCommission',
             'title' => 'agentCommission',
+            'icon' => 'fa fa-money',
+        ],[
+            'route' => 'clients.ibportal.accountant',
+            'title' => 'accountant',
             'icon' => 'fa fa-money',
         ]
     ]

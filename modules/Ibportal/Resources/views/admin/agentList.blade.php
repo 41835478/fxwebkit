@@ -62,6 +62,18 @@
 
                     <li>
                         <div class=" nav-input-div  ">
+                            {!! Form::radio('agents',0,$aFilterParams['agents'],['id'=>'agents_0','checked'=>'true']) !!}
+                            <label for="agents_0">{{ trans('ibportal::ibportal.all') }}</label>
+                            {!! Form::radio('agents',1,($aFilterParams['agents']==1),['id'=>'agents_1']) !!}<label
+                                    for="agents_1">{{ trans('ibportal::ibportal.agents') }}</label>
+                            {!! Form::radio('agents',2,($aFilterParams['agents']==2),['id'=>'agents_2']) !!}<label
+                                    for="agents_2">{{ trans('ibportal::ibportal.nonAgents') }}</label>
+
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class=" nav-input-div  ">
 
                             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                             {!! Form::hidden('order', $aFilterParams['order']) !!}
@@ -70,7 +82,6 @@
                     </li>
                     <li class="divider"></li>
                 </ul>
-
 
 
             </div>
@@ -89,43 +100,63 @@
                             {{ trans('ibportal::ibportal.agent') }}
                         </div>
                     </div>
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.id'), 'id', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.first_name'), 'first_name', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults) !!}</th>
 
-                                <th class="no-warp"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @if (count($oResults))
-                                {{-- */$i=0;/* --}}
-                                {{-- */$class='';/* --}}
-                                @foreach($oResults as $oResult)
-                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                                    <tr class='{{ $class }}'>
-                                        <td>{{ $oResult->id }}</td>
-                                        <td>{{ $oResult->first_name }}</td>
-                                        <td>{{ $oResult->last_name }}</td>
-                                        <td>{{ $oResult->email }}</td>
-                                        <td>
-                                            <a href="{{ route('admin.ibportal.agentUsres').'?agentId='.$oResult->id }}"
-                                               class="fa fa-users tooltip_number" data-original-title="{{trans('ibportal::ibportal.agentUsres')}}"></a>
-                                            <a href="{{ route('admin.ibportal.agentPlans').'?agentId='.$oResult->id }}"
-                                               class="fa fa-link tooltip_number" data-original-title="{{trans('ibportal::ibportal.agentPlans')}}"></a>
-                                            <a href="{{ route('admin.ibportal.agentCommission').'?agentId='.$oResult->id }}"
-                                               class="fa fa-money tooltip_number" data-original-title="{{trans('ibportal::ibportal.agentCommission')}}"></a>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.id'), 'id', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.first_name'), 'first_name', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults) !!}</th>
 
+                            <th class="no-warp"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @if (count($oResults))
+                            {{-- */$i=0;/* --}}
+                            {{-- */$class='';/* --}}
+                            @foreach($oResults as $oResult)
+                                {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                <tr class='{{ $class }}'>
+                                    <td>{{ $oResult->id }}</td>
+                                    <td>{{ $oResult->first_name }}</td>
+                                    <td>{{ $oResult->last_name }}</td>
+                                    <td>{{ $oResult->email }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.ibportal.agentUsres').'?agentId='.$oResult->id }}"
+                                           class="fa fa-users tooltip_number"
+                                           data-original-title="{{trans('ibportal::ibportal.agentUsres')}}"></a>
+                                        <a href="{{ route('admin.ibportal.agentPlans').'?agentId='.$oResult->id }}"
+                                           class="fa fa-link tooltip_number"
+                                           data-original-title="{{trans('ibportal::ibportal.agentPlans')}}"></a>
+                                        <a href="{{ route('admin.ibportal.agentCommission').'?agentId='.$oResult->id }}"
+                                           class="fa fa-money tooltip_number"
+                                           data-original-title="{{trans('ibportal::ibportal.agentCommission')}}"></a>
+                                        @if(!$oResult->isAgent)
+                                            <a href="{{ route('admin.ibportal.addAgents').'?agentId='.$oResult->id }}"
+                                               class="fa fa-user tooltip_number"
+                                               data-original-title="{{trans('ibportal::ibportal.addAgents')}}"></a>
+                                        @endif
+                                        <a href="{{ route('admin.ibportal.assignAgents').'?agentId='.$oResult->id }}"
+                                           class="fa fa-plus tooltip_number"
+                                           data-original-title="{{trans('ibportal::ibportal.assignAgents')}}"></a>
 
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @endif
-                            </tbody>
-                        </table>
+                                        <a href="{{ route('admin.ibportal.accountant').'?agentId='.$oResult->id }}"
+                                           class="fa fa-money tooltip_number"
+                                           data-original-title="{{trans('ibportal::ibportal.accountant')}}"></a>
+
+                                        <a href="{{ route('admin.ibportal.summary').'?agentId='.$oResult->id }}"
+                                           class="fa fa-bar-chart-o tooltip_number"
+                                           data-original-title="{{trans('ibportal::ibportal.summary')}}"></a>
+
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                        </tbody>
+                    </table>
+
                     <div class="table-footer">
                         @if (count($oResults))
                             {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
@@ -150,6 +181,7 @@
                         @endif
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

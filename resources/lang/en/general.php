@@ -165,4 +165,10 @@ return [
     'demo'=>'Demo',
     'senderEmail'=>'Sender Email',
     'displayName'=>'Display Name',
+    'GroupDemo'=>'Group',
+    'DepositDemo'=>'Deposit',
+    'leverageDemo'=>'leverage',
+    'add'=>'Add',
+    'GroupLive'=>'Group',
+    'DepositLive'=>'Deposit',
 ];

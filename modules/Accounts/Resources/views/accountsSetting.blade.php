@@ -37,7 +37,6 @@
                             </div>
                         </div>
 
-
                     </div>
                     <!-- / .panel-body -->
                 </div>
@@ -241,6 +240,18 @@
 
             $('input[name="birthday"]').datepicker(options);
 
+        });
+
+        $('.dropDownEditAllDiv .add').click(function(){
+            var arrayName=$(this).data('arrayname');console.log(arrayName);
+            var key=$('#keyInput_'+arrayName).val();
+            var value=$('#valueInput_'+arrayName).val();
+
+            $('#select_'+arrayName).append('<option value="'+key+','+value+'" onclick="$(this).remove();">'+value+'</option>');
+            $('.dropDownEditAllDiv  option').attr('selected', 'selected');
+        });
+        $('button[type="submit"],input[type="submit"]').click(function(){
+            $('.dropDownEditAllDiv  option').attr('selected', 'selected');
         });
 
         $('#jq-validation-select2').select2({allowClear: true, placeholder: 'Select a country...'}).change(function () {
