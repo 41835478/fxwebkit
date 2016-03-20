@@ -1105,13 +1105,18 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             ->get()
             ->count();
         $profit_trades_per = ($trades > 0) ? round(($profit_trades_number / $trades * 100), 5) : 0;
-        $statistics['profit_trades'] = '<span class="' . (($profit_trades_number < 0) ? 'red_font' : 'blue_font') . '">' . $profit_trades_number . '</span> ( ' . $profit_trades_per . ' <b> %</b> ) ';
+
+
+        $statistics['profit_trades_number']= $profit_trades_number;
+        $statistics['profit_trades'] = $profit_trades_per;
 
 
         /* ==== loss_trade ==== */
         $loss_trade_number = $trades - $profit_trades_number;
         $loss_trade_per = ($trades > 0) ? round($loss_trade_number / $trades * 100, 5) : 0;
-        $statistics['loss_trade'] = '<span class="' . (($loss_trade_number < 0) ? 'red_font' : 'blue_font') . '">' . $loss_trade_number . '</span> ( ' . $loss_trade_per . ' <b> %</b> ) ';
+
+        $statistics['loss_trade_number']=$loss_trade_number;
+        $statistics['loss_trade'] =  $loss_trade_per ;
 
         /* ==== best_trade ==== */
 
@@ -1121,7 +1126,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             ->first();
 
         $statistics['best_trade'] = (count($oBest_trade)) ? $oBest_trade->PROFIT : 0;
-        $statistics['best_trade'] = '<span class="' . (( $statistics['best_trade'] < 0) ? 'red_font' : 'blue_font') . '">' . $statistics['best_trade'] . '</span> ';
+
+
 
 
 
@@ -1132,7 +1138,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             ->orderBy('PROFIT', 'asc')
             ->first();
         $statistics['worst_trade'] = (count($oWorst_trade)) ? $oWorst_trade->PROFIT : 0;
-        $statistics['worst_trade'] = '<span class="' . (( $statistics['worst_trade'] < 0) ? 'red_font' : 'blue_font') . '">' . $statistics['worst_trade'] . '</span> ';
+        //$statistics['worst_trade'] = '<span class="' . (( $statistics['worst_trade'] < 0) ? 'red_font' : 'blue_font') . '">' . $statistics['worst_trade'] . '</span> ';
 
 
         /* ==== gross_profit ==== */   /* ==== gross_loss ==== */ /* ==== profit ==== */
@@ -1159,9 +1165,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
 
         $statistics['profit'] =$statistics['gross_profit']+$statistics['gross_loss'] ;
-        $statistics['gross_profit'] = '<span class="' . (( $statistics['gross_profit'] < 0) ? 'red_font' : 'blue_font') . '">' . $statistics['gross_profit'] . '</span> ';
 
-        $statistics['gross_loss'] = '<span class="' . (( $statistics['gross_loss'] < 0) ? 'red_font' : 'blue_font') . '">' . $statistics['gross_loss'] . '</span> ';
+
+//        $statistics['gross_profit'] =  $statistics['gross_profit'] ;
+//
+//        $statistics['gross_loss'] =  $statistics['gross_loss'];
 
 
 
@@ -1489,13 +1497,20 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 //
 //        }
 
-        $statistics['maximum_consecutive_wins'] = $maxWinNumber.' ( <span class="blue_font">'.$maxWin.'</span> ) ';
-        $statistics['maximum_consecutive_losses'] =  $minWinNumber.' ( <span class="red_font">'.$minWin.'</span> ) ';
+        $statistics['maximum_consecutive_wins_number'] = $maxWinNumber;
+        $statistics['maximum_consecutive_wins'] = $maxWin;
 
-        $statistics['maximal_consecutive_profit'] ='  <span class="blue_font">'.$maxProfit.'</span> ( '.$maxProfitNumber.' ) ';
-        $statistics['maximal_consecutive_loss'] =  '  <span class="red_font">'.$minProfit.'</span> ( '.$minProfitNumber.' ) ';
 
-        //$statistics['sharpe_ratio'] = 00;
+        $statistics['maximum_consecutive_losses_number'] =  $minWinNumber;
+        $statistics['maximum_consecutive_losses'] =  $minWin;
+
+
+        $statistics['maximal_consecutive_profit'] =$maxProfit;
+         $statistics['maximal_consecutive_profit_number']=$maxProfitNumber;
+
+        $statistics['maximal_consecutive_loss'] = $minProfit;
+        $statistics['maximal_consecutive_loss_number']=$minProfitNumber;
+        $statistics['sharpe_ratio'] = 00;
         $statistics['recovery_factor'] = 00;
 
         /* === long_trades ==== */
@@ -1522,11 +1537,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
 
 
-        //$statistics['expected_payoff'] = 00;
+        $statistics['expected_payoff'] = 00;
         $statistics['average_profit'] = ($profit_trades_number>0) ? round($gross_profit_result/$profit_trades_number,2) : 0.0;
         $statistics['average_loss'] = ($loss_trade_number>0) ? round($gross_loss_result/$loss_trade_number,2) : 0.0;
-        //$statistics['monthly_grouth'] = 00;
-        //$statistics['annual_farecast'] = 00;
+        $statistics['monthly_grouth'] = 00;
+        $statistics['annual_farecast'] = 00;
         return $statistics;
     }
 
