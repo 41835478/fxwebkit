@@ -6,7 +6,7 @@ Route::group(['prefix' => 'ibportal', 'namespace' => 'Modules\Ibportal\Http\Cont
 });
 
 
-Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'ibportal', 'namespace' => 'Modules\Ibportal\Http\Controllers\admin'], function()
+Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'admin', 'namespace' => 'Modules\Ibportal\Http\Controllers\admin'], function()
 {
 
 	Route::controller('Ibportal', 'IbportalController', [
@@ -37,10 +37,10 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'ibportal', 'na
 });
 
 
-Route::group(['middleware' => ['authenticate.client'],'prefix' => 'ibportal', 'namespace' => 'Modules\Ibportal\Http\Controllers\client'], function()
+Route::group(['middleware' => ['authenticate.client'],'prefix' => 'client', 'namespace' => 'Modules\Ibportal\Http\Controllers\client'], function()
 {
 
-	Route::controller('client-Ibportal', 'ClientIbportalController', [
+	Route::controller('Ibportal', 'ClientIbportalController', [
 		'getPlanList'=>'client.ibportal.planList',
 		'getDetailsPlan'=>'client.ibportal.detailsPlan',
 		'getAgreemmentPlan'=>'client.ibportal.agreemmentPlan',
