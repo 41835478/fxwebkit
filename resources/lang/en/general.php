@@ -57,7 +57,12 @@ return [
     'average_loss' => 'Average Loss',
     'maximum_consecutive_losses' => 'Maximum Consecutive Losses',
     'maximal_consecutive_loss' => 'Maximal Consecutive Loss',
-    'monthly_grouth' => 'Monthly Grouth',
+    'best_trade_tooltip' => 'The trade resulted in the largest profit. Extreme values are not usually considered for estimation to be more objective.',
+    'worst_trade_tooltip' => 'The trade resulted in the largest loss. It is often more important than the largest profit trade.',
+    'maximum_consecutive_wins_tooltip' => 'The amount of trades in the longest profitable sequence. The total profit of this sequence is given in brackets.',
+    'maximal_consecutive_profit_tooltip' => 'The largest profit in a continuous profitable sequence. The amount of trades made within this sequence is given in brackets.',
+    'maximum_consecutive_losses_tooltip' => 'The amount of trades in the longest losing sequence. The total loss of this sequence is given in brackets.',
+    'maximal_consecutive_loss_tooltip' => 'The largest loss in a continuous losing sequence. The amount of trades made within this sequence is given in brackets.',
 
 
     'BalanceOperations' => 'Balance Operations',
