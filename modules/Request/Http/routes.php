@@ -6,7 +6,7 @@ Route::group(['prefix' => 'request', 'namespace' => 'Modules\Request\Http\Contro
 });
 
 
-Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'request', 'namespace' => 'Modules\Request\Http\Controllers\admin'], function()
+Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'admin', 'namespace' => 'Modules\Request\Http\Controllers\admin'], function()
 {
 
 	Route::controller('request', 'RequestController', [
@@ -41,7 +41,7 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'request', 'nam
 });
 
 
-Route::group(['middleware' => ['authenticate.client'],'prefix' => 'request', 'namespace' => 'Modules\Request\Http\Controllers\client'], function()
+Route::group(['middleware' => ['authenticate.client'],'prefix' => 'client', 'namespace' => 'Modules\Request\Http\Controllers\client'], function()
 {
 
 	Route::controller('client-request', 'RequestController', [

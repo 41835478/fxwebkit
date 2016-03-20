@@ -85,6 +85,7 @@
        <tr> <th>{{ trans('general.maximal_consecutive_profit') }}</th><td><span class="tooltip_number" data-original-title="{{ trans('general.maximal_consecutive_profit_tooltip') }}">{!! $statistics['maximal_consecutive_profit'] !!}</span></td><th>{{ trans('general.maximal_consecutive_loss') }}</th><td><span class="tooltip_number" data-original-title="{{ trans('general.maximal_consecutive_loss_tooltip') }}">{!! $statistics['maximal_consecutive_loss'] !!}</span></td></tr>
        <tr> <th>{{ trans('general.sharpe_ratio') }}</th><td>{!! $statistics['sharpe_ratio'] !!}</td><th>{{ trans('general.monthly_grouth') }}</th><td>{!! $statistics['monthly_grouth'] !!}</td></tr>
        <tr> <td colspan="2"></td><th>{{ trans('general.annual_farecast') }}</th><td>{!! $statistics['annual_farecast'] !!}</td></tr>
+
        </tbody>
 
    </table>
@@ -112,7 +113,7 @@
 
        .blue_font{ color:#1D89CF;}
        .red_font{ color:#f00;}
-       .tooltip_number{cursor:pointer;}
+       .tooltip_number{cursor:pointer; font-weight: bold}
 
        g.highcharts-legend{display:none;}
        .stat-cell {display:block !important; margin:5px 0px;}
