@@ -77,6 +77,7 @@
        <tr> <th>{{ trans('general.trades') }}</th><td>{!! $statistics['trades'] !!}</td><th>{{ trans('general.recovery_factor') }}</th><td>{!! $statistics['recovery_factor'] !!}</td></tr>
        <tr> <th>{{ trans('general.profit_trades') }}</th><td >{!! $statistics['profit_trades'] !!} </td><th>{{ trans('general.long_trades') }}</th><td>{!! $statistics['long_trades'] !!}</td></tr>
        <tr> <th>{{ trans('general.loss_trade') }}</th><td>{!! $statistics['loss_trade'] !!}</td><th>{{ trans('general.short_trades') }}</th><td>{!! $statistics['short_trades'] !!}</td></tr>
+
        <tr> <th><span class="tooltip_number" data-original-title={{ trans('general.best_trade_tooltip') }}>{{ trans('general.best_trade') }}</span></th><td>{!! $statistics['best_trade'] !!}/td><th>{{ trans('general.profits_factor') }}</th><td>{!! $statistics['profits_factor'] !!}</td></tr>
        <tr> <th><span class="tooltip_number" data-original-title={{ trans('general.worst_trade_tooltip') }}>{{ trans('general.worst_trade') }}</span></th><td>{!! $statistics['worst_trade'] !!}</td></tr>
        <tr> <th><span class="tooltip_number" data-original-title={{ trans('general.gross_profit_tooltip') }}>{{ trans('general.gross_profit') }}</span></th><td>{!! $statistics['gross_profit'] !!}</td><th>{{ trans('general.average_profit') }}</th><td>{!! $statistics['average_profit'] !!}</td></tr>
@@ -147,7 +148,7 @@
 <script>
 
 init.push(function () {
-   $('.tooltip_number').tooltip();
+    $('.tooltip_number').tooltip();
 });
 
 $(function () {
