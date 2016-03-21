@@ -132,7 +132,7 @@
                     x: - 20
                 },
                 xAxis: {
-                    categories:{!! json_encode($horizontal_line_numbers)!!}
+                    categories:{!! json_encode($commission_horizontal_line_numbers)!!}
                 },
                 yAxis: {
                     title: {
@@ -155,7 +155,7 @@
                 },
                 series: [{
                     name: 'Balance',
-                    data: {!! json_encode($balance_array)!!},
+                    data: {!! json_encode($commission_array)!!},
                     color:'#1d89cf'
                 }]
             });

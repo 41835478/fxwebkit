@@ -113,6 +113,7 @@ return [
     'mt4_users'=>'Mt4 Users',
     'no_account_available'=>'No Account Available',
     'addAgents'=>'Agents',
+    'comment'=>'Comment'
 
 
 ];

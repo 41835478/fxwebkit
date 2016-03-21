@@ -718,13 +718,17 @@ class IbportalController extends Controller
     {
         $clientId = $oRequest->agentId;
 
-        list($horizontal_line_numbers, $balance_array, $balance, $statistics) = $this->Ibportal->getAgentStatistics($clientId);
+        list($horizontal_line_numbers, $balance_array, $balance, $statistics,$commission_horizontal_line_numbers,
+        $commission_array) = $this->Ibportal->getAgentStatistics($clientId);
 
         return view('ibportal::admin.summary',
             [
                 'horizontal_line_numbers' => $horizontal_line_numbers,
                 'balance_array' => $balance_array,
-                'balance' => $balance])->withStatistics($statistics);
+                'balance' => $balance,
+           'commission_horizontal_line_numbers'=> $commission_horizontal_line_numbers,
+                'commission_array'=>$commission_array
+            ])->withStatistics($statistics);
     }
 
 
