@@ -720,7 +720,7 @@ public function getAgentStatistics($agentId){
     $login=UserIbid::select('login')->where('user_id',$agentId)->first()->login;
 
 
-    $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit,concat(YEAR(CLOSE_TIME),concat("-",MONTH(CLOSE_TIME))) as month'), 'CMD'])
+    $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('sum(PROFIT+COMMISSION+SWAPS) as netProfit,concat(YEAR(CLOSE_TIME),concat("-",MONTH(CLOSE_TIME))) as month'), 'CMD'])
         ->where('login', $login)
         ->where('server_id', 0)
         ->where('cmd','>', 0)
