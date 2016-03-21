@@ -11,9 +11,7 @@
         <div class="panel-heading">
 
             <span class="panel-title">{{ trans('general.performance') }}</span>
-            {!! Form::open(['method'=>'get','class'=>'col-xs-3','id'=>'select_login_form','style'=>'float:right;margin:0px;']) !!}
-            {!! Form::select('login',$aLogin,$login,['class'=>'form-control','onChange'=>'$("#select_login_form").submit();']) !!}
-            {!! Form::close() !!}
+
             <div class="clearfix"></div>
 
         </div>

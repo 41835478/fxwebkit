@@ -241,7 +241,7 @@
                  trans('general.CreditOut')
                  *  {{ $oResults[1]['deposits']/*+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] */}}
              */
-                categories: ['{!! trans('ibportal::ibportal.deposits') !!}'/*, '{!!  trans('ibportal::ibportal.credit_in') !!}','{!!   trans('ibportal::ibportal.withdraws') !!}', '{!!   trans('ibportal::ibportal.credit_out') !!}'*/]
+                categories: ['{!! trans('ibportal::ibportal.Commission') !!}'/*, '{!!  trans('ibportal::ibportal.credit_in') !!}','{!!   trans('ibportal::ibportal.withdraws') !!}', '{!!   trans('ibportal::ibportal.credit_out') !!}'*/]
             },
             yAxis: {
                 min: 0,
@@ -258,7 +258,7 @@
                 }
             },
             series: [{
-                name: ['{!!  trans('ibportal::ibportal.deposits') !!}'],
+                name: ['{!!  trans('ibportal::ibportal.Commission') !!}'],
                 data: [{!! $oResults[1]['deposits']  !!}/*, 0,0,0*/]
             }
                 /*, {

@@ -454,11 +454,14 @@ class ToolsController extends Controller
         ];
 
 
-        $oResults = $this->oHoliday->getSymbols();
+        $symbols = $this->oHoliday->getSymbols();
+
+
 
         $view = view('tools::addSymbolHoliday');
         $view->with('holidayInfo', $holidayInfo);
-        $view->with('oResults', $oResults);
+
+       $view->with('symbols', $symbols);
         if ($message != '') {
             $view->withErrors($message);
         }
@@ -471,6 +474,7 @@ class ToolsController extends Controller
 
     public function postAddSymbolHoliday(Request $oRequest)
     {
+
         if ($oRequest->start_hour >= $oRequest->end_hour) {
 
 
