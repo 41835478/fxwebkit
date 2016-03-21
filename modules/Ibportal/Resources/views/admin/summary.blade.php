@@ -90,6 +90,8 @@
             <section id="chart_section">
                 @if(count($balance_array))
                     <div id="growth_chart_all_div" class="col-xs-12"></div>
+
+                    <div id="chartContainer" class="col-xs-12"></div>
                 @else
                     <div  class="col-xs-12 col-sm-8">{{ trans('ibportal::ibportal.no_account_available') }}</div>
                 @endif
@@ -164,5 +166,59 @@
             $('svg text').each(function(){if($(this).text() == 'Highcharts.com'){$(this).remove();} });
         }
         setTimeout('remove_copyrights()',1000);
+
+
+        $(function () {
+            $('#chartContainer').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories:{!! json_encode($horizontal_line_numbers)!!},
+                    type: 'category',
+                    labels: {
+                        rotation: -45,
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: ''
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                tooltip: {
+                    pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>'
+                },
+                series: [{
+                    name: 'Population',
+                    data:{!! json_encode($balance_array)!!},
+                    dataLabels: {
+                        enabled: true,
+                        rotation: -90,
+                        color: '#FFFFFF',
+                        align: 'right',
+                        format: '{point.y:.1f}', // one decimal
+                        y: 10, // 10 pixels down from the top
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                }]
+            });
+        });
     </script>
 @stop
