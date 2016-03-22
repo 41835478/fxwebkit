@@ -112,10 +112,7 @@
     </div>
     @endif
     <div class="panel-footer text-right">
-
-
         <button type="submit" class="btn btn-primary" name="holiday_id" value="{{ $holidayInfo['id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
-
     </div>
 
     {!! Form::close() !!}

@@ -760,4 +760,12 @@ public function getAgentStatistics($agentId){
 
     }
 
+    public function getAgents() {
+        return [
+            0=>trans('ibportal::ibportal.all'),
+            1 => trans('ibportal::ibportal.agents'),
+            2 => trans('ibportal::ibportal.nonAgents'),
+        ];
+    }
+
 }

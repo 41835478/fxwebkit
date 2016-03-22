@@ -222,6 +222,7 @@ class IbportalController extends Controller
     {
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+        $agents= $this->Ibportal->getAgents();
 
         $oResults = null;
         $aFilterParams = [
@@ -229,7 +230,7 @@ class IbportalController extends Controller
             'first_name' => '',
             'last_name' => '',
             'email' => '',
-            'agents' => 0,
+            'agents' => '',
             'sort' => $sSort,
             'order' => $sOrder,
         ];
@@ -246,7 +247,6 @@ class IbportalController extends Controller
 
             $role = explode(',', Config::get('fxweb.client_default_role'));
 
-
             if ($oRequest->agents == 0) {
                 $oResults = $this->Users->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
             } else
@@ -256,6 +256,7 @@ class IbportalController extends Controller
 
         return view('ibportal::admin.agentList')
             ->with('oResults', $oResults)
+            ->with('agents',$agents)
             ->with('aFilterParams', $aFilterParams);
     }
 

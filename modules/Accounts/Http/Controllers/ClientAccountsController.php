@@ -34,6 +34,7 @@ class ClientAccountsController extends Controller
     public function getMt4UsersList(Request $oRequest)
     {
 
+
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
         $serverTypes = $this->oMt4Trade->getServerTypes();

@@ -1,11 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('accounts::accounts.mt4UsersList'))
 @section('content')
-<style type="text/css">
 
-
-    #content-wrapper{ padding: 0px; margin: 0px;}
-</style>
 <div class="  theme-default page-mail" >
     <div class="mail-nav" >
         <div class="navigation">

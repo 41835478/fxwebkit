@@ -60,17 +60,9 @@
                         </div>
                     </li>
 
-                    <li>
-                        <div class=" nav-input-div  ">
-                            {!! Form::radio('agents',0,$aFilterParams['agents'],['id'=>'agents_0','checked'=>'true']) !!}
-                            <label for="agents_0">{{ trans('ibportal::ibportal.all') }}</label>
-                            {!! Form::radio('agents',1,($aFilterParams['agents']==1),['id'=>'agents_1']) !!}<label
-                                    for="agents_1">{{ trans('ibportal::ibportal.agents') }}</label>
-                            {!! Form::radio('agents',2,($aFilterParams['agents']==2),['id'=>'agents_2']) !!}<label
-                                    for="agents_2">{{ trans('ibportal::ibportal.nonAgents') }}</label>
+                    <li><div  class=" nav-input-div  ">{!! Form::select('agents', $agents, $aFilterParams['agents'], ['class'=>'form-control  input-sm']) !!}</div></li>
 
-                        </div>
-                    </li>
+
 
                     <li>
                         <div class=" nav-input-div  ">

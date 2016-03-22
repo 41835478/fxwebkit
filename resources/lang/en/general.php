@@ -57,12 +57,7 @@ return [
     'average_loss' => 'Average Loss',
     'maximum_consecutive_losses' => 'Maximum Consecutive Losses',
     'maximal_consecutive_loss' => 'Maximal Consecutive Loss',
-    'best_trade_tooltip' => 'The trade resulted in the largest profit. Extreme values are not usually considered for estimation to be more objective.',
-    'worst_trade_tooltip' => 'The trade resulted in the largest loss. It is often more important than the largest profit trade.',
-    'maximum_consecutive_wins_tooltip' => 'The amount of trades in the longest profitable sequence. The total profit of this sequence is given in brackets.',
-    'maximal_consecutive_profit_tooltip' => 'The largest profit in a continuous profitable sequence. The amount of trades made within this sequence is given in brackets.',
-    'maximum_consecutive_losses_tooltip' => 'The amount of trades in the longest losing sequence. The total loss of this sequence is given in brackets.',
-    'maximal_consecutive_loss_tooltip' => 'The largest loss in a continuous losing sequence. The amount of trades made within this sequence is given in brackets.',
+
 
 
     'BalanceOperations' => 'Balance Operations',
@@ -176,4 +171,25 @@ return [
     'add'=>'Add',
     'GroupLive'=>'Group',
     'DepositLive'=>'Deposit',
+
+
+
+    'trades_tooltip'=>'The total amount of trades made. If this amount is not large, it does not characterize your trading, the profit gained can be casual.',
+    'profit_trades_tooltip'=>'The total amount of profitable trades. Their percentage of the total amount of trades is given in brackets.',
+    'loss_trade_tooltip'=>'The total amount of losing trades. Their percentage of the total amount of trades is given in brackets.',
+    'best_trade_tooltip' => 'The trade resulted in the largest profit. Extreme values are not usually considered for estimation to be more objective.',
+    'worst_trade_tooltip' => 'The trade resulted in the largest loss. It is often more important than the largest profit trade.',
+    'gross_profit_tooltip' => 'Gross profit is the total of all profitable trades in money terms.',
+    'gross_loss_tooltip' => 'Gross loss is the total of all losing trades in money terms.',
+    'maximum_consecutive_wins_tooltip' => 'The amount of trades in the longest profitable sequence. The total profit of this sequence is given in brackets.',
+    'maximal_consecutive_profit_tooltip' => 'The largest profit in a continuous profitable sequence. The amount of trades made within this sequence is given in brackets.',
+    'maximum_consecutive_losses_tooltip' => 'The amount of trades in the longest losing sequence. The total loss of this sequence is given in brackets.',
+    'maximal_consecutive_loss_tooltip' => 'The largest loss in a continuous losing sequence. The amount of trades made within this sequence is given in brackets.',
+    'recovery_factor_tooltip' => 'Recovery factor is calculated as the ratio of the absolute profit to the maximum drawdown. The higher the recovery factor, the faster a system is recovered after a drawdown.',
+    'long_trades_tooltip' => 'The number of deals that have fixed profit/loss from buying a financial instrument. The percentage of long trades is specified in brackets.',
+    'short_trades_tooltip' => 'The number of deals that have fixed profit/loss from selling a financial instrument. The percentage of short trades is specified in brackets.',
+    'profits_factor_tooltip' => 'The profit factor shows how many times the gross profit exceeds the gross loss. The larger is this value, the better.',
+    'average_profit_tooltip' => 'Average profit is a quotient of the gross profit and the amount of profitable trades.',
+    'average_loss_tooltip' => 'Average loss is a quotient of the gross loss and the amount of losing trades.',
+    'average_loss_tooltip' => 'Average loss is a quotient of the gross loss and the amount of losing trades.',
 ];

@@ -90,7 +90,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
     public function getServerTypes() {
         return [
-            -1=>'All',
+            -1=>trans('accounts::accounts.all'),
             0 => config('fxweb.liveServerName'),
             1 => config('fxweb.demoServerName'),
         ];
