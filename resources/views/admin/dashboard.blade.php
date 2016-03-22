@@ -8,16 +8,6 @@
 		<h1><i class="fa fa-dashboard page-header-icon"></i>{{ trans('dashboard.PageTitle') }}</h1>
 	</div>
 
-
-
-
-
-
-
-
-
-
-
 	<div class="col-xs-12 col-sm-6" >
 		<div class="stat-panel ">
 			<!-- Success background, bordered, without top and bottom borders, without left border, without padding, vertically and horizontally centered text, large text -->
@@ -31,21 +21,21 @@
 					<div class="stat-row">
 						<!-- Success background, small padding, vertically aligned text -->
 						<a href="#" class="stat-cell bg-info padding-sm valign-middle">
-							{{$statistics['activeUsersNumber']}} Active Account
+							{{$statistics['activeUsersNumber']}} {{ trans('dashboard.activeAccount') }}
 							<i class="fa fa-check pull-right"></i>
 						</a>
 					</div>
 					<div class="stat-row">
 						<!-- Success darken background, small padding, vertically aligned text -->
 						<a href="#" class="stat-cell bg-info darken padding-sm valign-middle">
-							{{  $statistics['usersNumber'] - $statistics['activeUsersNumber']}} Not Active
+							{{  $statistics['usersNumber'] - $statistics['activeUsersNumber']}} {{ trans('dashboard.notActive') }}
 							<i class="fa fa-times pull-right"></i>
 						</a>
 					</div>
 					<div class="stat-row">
 						<!-- Success darker background, small padding, vertically aligned text -->
 						<a href="#" class="stat-cell bg-info darker padding-sm valign-middle">
-							{{$statistics['usersNumber']}} User
+							{{$statistics['usersNumber']}}{{ trans('dashboard.user') }}
 							<i class="fa fa-users pull-right"></i>
 						</a>
 					</div>
@@ -69,21 +59,21 @@
 					<div class="stat-row">
 						<!-- Success background, small padding, vertically aligned text -->
 						<a href="#" class="stat-cell bg-info padding-sm valign-middle">
-						{{ 	$statistics['liveMt4UsersNumber']}} Live Mt4 User
+						{{ 	$statistics['liveMt4UsersNumber']}}{{ trans('dashboard.liveMt4User') }}
 							<i class="fa fa-thumbs-up pull-right"></i>
 						</a>
 					</div>
 					<div class="stat-row">
 						<!-- Success darken background, small padding, vertically aligned text -->
 						<a href="#" class="stat-cell bg-info darken padding-sm valign-middle">
-							{{$statistics['mt4UsersNumber'] - $statistics['liveMt4UsersNumber'] }} Demo Mt4 User
+							{{$statistics['mt4UsersNumber'] - $statistics['liveMt4UsersNumber'] }}{{ trans('dashboard.demoMt4User') }}
 							<i class="fa fa-user pull-right"></i>
 						</a>
 					</div>
 					<div class="stat-row">
 						<!-- Success darker background, small padding, vertically aligned text -->
 						<a href="#" class="stat-cell bg-info darker padding-sm valign-middle">
-							{{$statistics['mt4UsersNumber']}} Mt4 User
+							{{$statistics['mt4UsersNumber']}}{{ trans('dashboard.mt4User') }}
 							<i class="fa fa-users pull-right"></i>
 						</a>
 					</div>

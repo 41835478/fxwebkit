@@ -76,31 +76,20 @@
 
    </div>
 
-   <table id='statistics_table' >
-       <tbody>
-       <tr> <th>{{ trans('general.trades') }}</th><td>{!! $statistics['trades'] !!}</td><th>{{ trans('general.recovery_factor') }}</th><td>{!! $statistics['recovery_factor'] !!}</td></tr>
+    <div id='statistics_table'>
 
-       <tr> <th>{{ trans('general.profit_trades') }}</th><td >{!! $statistics['profit_trades'] !!} </td><th>{{ trans('general.long_trades') }}</th><td>{!! $statistics['long_trades'] !!}</td></tr>
+        <div class="tooltip_number" data-original-title="{{ trans('general.trades_tooltip') }}">{{ trans('general.trades') }}<div>{!! $statistics['trades'] !!}</div></div><div class="tooltip_number" data-original-title="{{ trans('general.recovery_factor_tooltip') }}">{{ trans('general.recovery_factor') }}<div>{!! $statistics['recovery_factor'] !!}</div></div>
+        <div class="tooltip_number" data-original-title="{{ trans('general.profit_trades_tooltip') }}">{{ trans('general.profit_trades') }}<div><span class="@if( $statistics['profit_trades_number']< 0)  red_font @else blue_font @endif">{{$statistics['profit_trades_number']}}</span> ({!! $statistics['profit_trades'] !!} )</div></div><div class="tooltip_number" data-original-title="{{ trans('general.long_trades_tooltip') }}">{{ trans('general.long_trades') }}<div>{!! $statistics['long_trades'] !!}</div></div>
+        <div class="tooltip_number" data-original-title="{{ trans('general.loss_trade_tooltip') }}">{{ trans('general.loss_trade') }}<div><span class="@if( $statistics['loss_trade_number']< 0)  red_font @else blue_font @endif">{{$statistics['loss_trade_number']}}</span> ({!! $statistics['loss_trade'] !!} )</div></div><div class="tooltip_number" data-original-title="{{ trans('general.short_trades_tooltip') }}">{{ trans('general.short_trades') }}<div>{!! $statistics['short_trades'] !!}</div></div>
+        <div class="tooltip_number" data-original-title="{{ trans('general.best_trade_tooltip') }}">{{ trans('general.best_trade') }}<div><span class="@if($statistics['best_trade']<0)  red_font @else blue_font @endif">{!! $statistics['best_trade'] !!}</span></div></div><div class="tooltip_number" data-original-title="{{ trans('general.profits_factor_tooltip') }}">{{ trans('general.profits_factor') }}<div>{!! $statistics['profits_factor'] !!}</div></div>
+        <div class="tooltip_number" data-original-title="{{ trans('general.worst_trade_tooltip') }}">{{ trans('general.worst_trade') }}<div><span class="@if( $statistics['worst_trade']< 0)  red_font @else blue_font @endif">{!! $statistics['worst_trade'] !!}</span></div></div>
+        <div class="tooltip_number" data-original-title="{{ trans('general.gross_profit_tooltip') }}">{{ trans('general.gross_profit') }}<div><span class="@if( $statistics['gross_profit']< 0)  red_font @else blue_font @endif">{!! $statistics['gross_profit'] !!}</span></div></div><div class="tooltip_number" data-original-title="{{ trans('general.average_profit_tooltip') }}">{{ trans('general.average_profit') }}<div>{!! $statistics['average_profit'] !!}</div></div>
+        <div class="tooltip_number" data-original-title="{{ trans('general.gross_loss_tooltip') }}">{{ trans('general.gross_loss') }}<div><span class="@if( $statistics['gross_loss']< 0)  red_font @else blue_font @endif">{!! $statistics['gross_loss'] !!}</span></div></div><div class="tooltip_number" data-original-title="{{ trans('general.average_loss_tooltip') }}">{{ trans('general.average_loss') }}<div>{!! $statistics['average_loss'] !!}</div></div>
+        <div class="tooltip_number" data-original-title="{{ trans('general.maximum_consecutive_wins_tooltip') }}">{{ trans('general.maximum_consecutive_wins') }}<div>{!! $statistics['maximum_consecutive_wins_number'] !!}(<span class="blue_font">{{$statistics['maximum_consecutive_wins']}}</span>)</div></div><div class="tooltip_number" data-original-title="{{ trans('general.maximum_consecutive_losses_tooltip') }}">{{ trans('general.maximum_consecutive_losses') }}<div>{!! $statistics['maximum_consecutive_losses_number'] !!}(<span class="red_font">{!! $statistics['maximum_consecutive_losses'] !!}</span>)</div></div>
+        <div class="tooltip_number" data-original-title="{{ trans('general.maximal_consecutive_profit_tooltip') }}">{{ trans('general.maximal_consecutive_profit') }}<div><span class="blue_font">{!! $statistics['maximal_consecutive_profit'].' ( '. $statistics['maximal_consecutive_profit_number'].' ) '!!}</span></div></div><div class="tooltip_number" data-original-title="{{ trans('general.maximal_consecutive_loss_tooltip') }}">{{ trans('general.maximal_consecutive_loss') }}<div><span class="red_font">{!! $statistics['maximal_consecutive_loss'] !!}</span> ({{$statistics['maximal_consecutive_loss_number']}})</div></div>
 
-       <tr> <th>{{ trans('general.loss_trade') }}</th><td>{!! $statistics['loss_trade'] !!}</td><th>{{ trans('general.short_trades') }}</th><td>{!! $statistics['short_trades'] !!}</td></tr>
-
-       <tr> <th class="tooltip_number" data-original-title="{{ trans('general.best_trade_tooltip') }}">{{ trans('general.best_trade') }}</th><td>{!! $statistics['best_trade'] !!}</td><th>{{ trans('general.profits_factor') }}</th><td>{!! $statistics['profits_factor'] !!}</td></tr>
-
-       <tr class="tooltip_number" data-original-title="{{ trans('general.worst_trade_tooltip') }}"> <th>{{ trans('general.worst_trade') }}</th><td>{!! $statistics['worst_trade'] !!}</td></tr>
-
-       <tr> <th>{{ trans('general.gross_profit') }}</th><td>{!! $statistics['gross_profit'] !!}</td><th>{{ trans('general.average_profit') }}</th><td>{!! $statistics['average_profit'] !!}</td></tr>
-
-       <tr> <th>{{ trans('general.gross_loss') }}</th><td>{!! $statistics['gross_loss'] !!}</td><th>{{ trans('general.average_loss') }}</th><td>{!! $statistics['average_loss'] !!}</td></tr>
-
-       <tr> <th>{{ trans('general.maximum_consecutive_wins') }}</th><td><span class="tooltip_number" data-original-title="{{ trans('general.maximum_consecutive_wins_tooltip') }}">{!! $statistics['maximum_consecutive_wins'] !!}</span></td><th>{{ trans('general.maximum_consecutive_losses') }}</th><td><span class="tooltip_number" data-original-title="{{ trans('general.maximum_consecutive_losses_tooltip') }}">{!! $statistics['maximum_consecutive_losses'] !!}</span></td></tr>
-
-       <tr> <th>{{ trans('general.maximal_consecutive_profit') }}</th><td><span class="tooltip_number" data-original-title="{{ trans('general.maximal_consecutive_profit_tooltip') }}">{!! $statistics['maximal_consecutive_profit'] !!}</span></td><th>{{ trans('general.maximal_consecutive_loss') }}</th><td><span class="tooltip_number" data-original-title="{{ trans('general.maximal_consecutive_loss_tooltip') }}">{!! $statistics['maximal_consecutive_loss'] !!}</span></td></tr>
-
-
-
-       </tbody>
-
-   </table>
+        <div class="clearfix"></div>
+    </div>
 
 
 
@@ -157,6 +146,7 @@
 
         }
    </style>
+    </div>
 
 </section>
 
