@@ -18,10 +18,10 @@
         <div class="panel-body">
             <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                 <li class="">
-                    <a href="/client?login={{ $login }}">{{ trans('general.growth') }}</a>
+                    <a href="/client?login={{ $login.'&server_id='.$server_id  }}">{{ trans('general.growth') }}</a>
                 </li>
                 <li class="active">
-                    <a href="{{route('client.balanceChart') }}?login={{ $login }}">{{ trans('general.balance') }}</a>
+                    <a href="{{route('client.balanceChart') }}?login={{ $login.'&server_id='.$server_id  }}">{{ trans('general.balance') }}</a>
                 </li>
 
             </ul>
@@ -38,17 +38,17 @@
             <div class="col-xs-12 col-sm-4" style="height:400px; overflow-y: auto;">
 
                 @foreach($aLogin as $oneLogin)
-                    <a href="?login={{$oneLogin}}"
-                       class="stat-cell @if($oneLogin ==$login ) bg-info @else bg-default @endif  valign-middle col-xs-12 ">
+                    <a href="?login={{$oneLogin[0].'&server_id='.$oneLogin[1]}}"
+                       class="stat-cell @if($oneLogin[0].$oneLogin[1] ==$login.$server_id ) bg-info @else bg-default @endif  valign-middle col-xs-12 ">
                         <!-- Stat panel bg icon -->
                         <i class="fa fa-user bg-icon"></i>
                         <!-- Extra large text -->
                         <span class="text-xlg"><span
-                                    class="text-lg text-slim"></span><strong> {{$oneLogin}} </strong></span><br>
+                                    class="text-lg text-slim"></span><strong> {{$oneLogin[0]}} </strong>/@if($oneLogin[1]==0){{config('fxweb.liveServerName')}}@else {{config('fxweb.demoServerName')}}@endif</span><br>
                         <!-- Big text -->
-                        <span class="text-bg">{{ trans('user.balance') }} @if($oneLogin ==$login ) {{ $balance }}  @else
+                        <span class="text-bg">{{ trans('user.balance') }} @if($oneLogin[0].$oneLogin[1] ==$login.$server_id ) {{ $balance }}  @else
                                 Click here  @endif % </span><br> <!-- Big text -->
-                        <span class="text-bg">{{ trans('user.profit') }} @if($oneLogin ==$login ){{$statistics['profit']}} @else
+                        <span class="text-bg">{{ trans('user.profit') }} @if($oneLogin[0].$oneLogin[1] ==$login.$server_id ){{$statistics['profit']}} @else
                                 Click here @endif </span><br>
                         <!-- Small text -->
                         <span class="text-sm"></span>
