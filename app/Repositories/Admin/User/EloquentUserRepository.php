@@ -286,7 +286,7 @@ $agents=$aFilters['agents'];
         return [trans('general.deleted_successfully')];
     }
 
-    public function asignMt4UsersToAccount($account_id, $users_id)
+    public function asignMt4UsersToAccount($account_id, $users_id,$server_id=1)
     {
         if (is_array($users_id)) {
             foreach ($users_id as $id => $user_id) {
@@ -295,12 +295,14 @@ $agents=$aFilters['agents'];
                 if ($asign) {
                     $asign->users_id = $account_id;
                     $asign->mt4_users_id = $user_id;
+                    $asign->server_id = $server_id;
                     $asign->save();
                 } else {
                     $asign = new mt4_users_users;
 
                     $asign->users_id = $account_id;
                     $asign->mt4_users_id = $user_id;
+                    $asign->server_id = $server_id;
                     $asign->save();
                 }
             }

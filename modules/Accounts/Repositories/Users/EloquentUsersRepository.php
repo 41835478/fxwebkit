@@ -70,7 +70,7 @@ class EloquentUsersRepository implements Mt4UserContract
 		return $oResult;
 	}
         
-        public function asignMt4UsersToAccount($account_id,$users_id){
+        public function asignMt4UsersToAccount($account_id,$users_id,$server_id=1){
 
         foreach($users_id as $id=>$user_id){
             
@@ -78,12 +78,14 @@ class EloquentUsersRepository implements Mt4UserContract
             if($asign){
                 $asign->users_id=$account_id;
                $asign->mt4_users_id=$user_id;
+				$asign->server_id=$server_id;
                 $asign->save();
             }else{
 				$asign=new mt4_users_users;
 
                 $asign->users_id=$account_id;
                $asign->mt4_users_id=$user_id;
+				$asign->server_id=$server_id;
                 $asign->save();
             }
         }

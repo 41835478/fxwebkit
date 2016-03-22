@@ -354,9 +354,9 @@ class ClientAccountsController extends Controller
         $oApiController = new ApiController();
 
 
-        $result = $oApiController->AssignAccount($oRequest['login'],$oRequest['password']);
+        $result = $oApiController->AssignAccount($oRequest['login'],$oRequest['password'],0);
         if($result===true){
-            $asign_result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$oRequest['login']]);
+            $asign_result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$oRequest['login']],0);
             return Redirect::route('clients.accounts.Mt4UsersList') ->withErrors('The User has been assigned successfully');
 
         }else{
@@ -449,7 +449,7 @@ class ClientAccountsController extends Controller
         $result = $oApiController->mt4UserFullDetails(current_user()->getUser()->id,$mt4_user_details);
 
 if($result*1 >0 ){
-    $result= $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result]);
+    $result= $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result],1);
     $result=($result==true)? 'the user assigned successfully':'error,the Mt4 user does not assigned to this account';
 }
         return Redirect::route('client.accounts.mt4DemoAccount')->withErrors($result) ;
@@ -535,7 +535,7 @@ if($result*1 >0 ){
         $result = $oApiController->mt4UserFullDetails(current_user()->getUser()->id,$mt4_user_details);
 
         if($result*1 >0 ){
-            $result= $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result]);
+            $result= $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result],0);
             $result=($result==true)? 'the user assigned successfully':'error,the Mt4 user does not assigned to this account';
         }
         return Redirect::route('client.accounts.mt4LiveAccount')->withErrors($result);

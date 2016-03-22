@@ -408,7 +408,7 @@ $this->changeServer($server_id);
 
 	public function adminForwordMt4UserFullDetails($logId,$server_id,$mt4_user_details){
 $this->changeServer($server_id);
-
+		$mt4_user_details['server_id']=$server_id;
 
 
 		$requestLog =new RequestLog();
@@ -454,8 +454,8 @@ if(is_object($result) &&  property_exists ($result ,'result')){
 	}
 
 
-	public function AssignAccount($login,$password){
-
+	public function AssignAccount($login,$password,$server_id=1){
+		$this->changeServer($server_id);
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
 			$requestLog->insertAssignAccountRequest($login,$this->server_id,$password);
