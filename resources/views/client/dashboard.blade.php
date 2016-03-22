@@ -19,10 +19,10 @@
 <div class="panel-body">
    <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
        <li class="active">
-           <a href="/client?login={{ $login }}">{{ trans('general.growth') }}</a>
+           <a href="/client?login={{ $login.'&server_id='.$server_id }}">{{ trans('general.growth') }}</a>
        </li>
        <li class="">
-           <a href="{{route('client.balanceChart') }}?login={{ $login }}">{{ trans('general.balance') }}</a>
+           <a href="{{route('client.balanceChart') }}?login={{ $login.'&server_id='.$server_id  }}">{{ trans('general.balance') }}</a>
        </li>
 
    </ul>
@@ -40,14 +40,14 @@
             <div class="scrollDown fa fa-chevron-down"></div>
 <div class="scrollBody">
     @foreach($aLogin as $oneLogin)
-                <a  href="?login={{$oneLogin}}" class="stat-cell @if($oneLogin ==$login ) bg-info @else bg-default @endif  valign-middle col-xs-12 ">
+                <a  href="?login={{$oneLogin[0].'&server_id='.$oneLogin[1]}}" class="stat-cell @if($oneLogin[0].$oneLogin[1] ==$login.$server_id  ) bg-info @else bg-default @endif  valign-middle col-xs-12 ">
                     <!-- Stat panel bg icon -->
                     <i class="fa fa-user bg-icon"></i>
                     <!-- Extra large text -->
-                    <span class="text-xlg"><span class="text-lg text-slim"></span><strong> {{$oneLogin}} </strong></span><br>
+                    <span class="text-xlg"><span class="text-lg text-slim"></span><strong> {{$oneLogin[0]}}</strong>/@if($oneLogin[1]==0){{config('fxweb.liveServerName')}}@else {{config('fxweb.demoServerName')}}@endif </span><br>
                     <!-- Big text -->
-                    <span class="text-bg">{{ trans('user.growth') }} @if($oneLogin ==$login ) {{ $growth }}  @else Click here  @endif % </span><br>  <!-- Big text -->
-                    <span class="text-bg">{{ trans('user.profit') }} @if($oneLogin ==$login ){{$statistics['profit']}} @else Click here @endif </span><br>
+                    <span class="text-bg">{{ trans('user.growth') }} @if($oneLogin[0].$oneLogin[1] ==$login.$server_id  ) {{ $growth }}  @else Click here  @endif % </span><br>  <!-- Big text -->
+                    <span class="text-bg">{{ trans('user.profit') }} @if($oneLogin[0].$oneLogin[1] ==$login.$server_id  ){{$statistics['profit']}} @else Click here @endif </span><br>
                     <!-- Small text -->
                     <span class="text-sm"></span>
                 </a> <!-- /.stat-cell -->
@@ -94,34 +94,80 @@
 
 
 
-   <style type="text/css">
-       #statistics_section{
-           margin:20px 0px;
-           width:100%;
-           border-top:1px solid #ccc;}
-       #statistics_table{
-           margin:20px 0px;
-           width:100%;
+    <style type="text/css">
+        #statistics_section {
+            margin: 20px 0px;
+            width: 100%;
+            border-top: 1px solid #ccc;
+        }
 
-       }
+        #statistics_table {
+            margin: 20px 0px;
+            width: 100%;
 
-       #statistics_table td, #statistics_table th{ padding: 5px 10px;width:25%;font-size: 10px;}
-       #statistics_table td{text-align: right;border-right:1px solid #ccc;}
-       #statistics_table td:nth-child(4){border-right:1px solid transparent;}
+        }
 
-       #statistics_table th{text-align: left; font-weight: normal;}
-       #statistics_table th:after{content:':';}
+        #statistics_table td, #statistics_table th {
+            padding: 5px 10px;
+            width: 25%;
+            font-size: 10px;
+        }
+        #statistics_table>div{
+            border-right: 1px solid #ccc;
+            padding: 5px;
+font-weight: bold;
+        }
+        #statistics_table div div {
+            text-align: right;
+            float: right;
+            font-weight: normal;
 
-       .blue_font{ color:#1D89CF;}
-       .red_font{ color:#f00;}
-       .tooltip_number{cursor:pointer; font-weight: bold}
+        }
 
-       g.highcharts-legend{display:none;}
-       .stat-cell {display:block !important; margin:5px 0px;}
-       .stat-cell.bg-info{ border-bottom:3px solid #25BAE6;}
-       .stat-cell.bg-default{border-bottom:3px solid #cfcece;}
+        #statistics_table td:nth-child(4) {
+            border-right: 1px solid transparent;
+        }
 
+        #statistics_table th {
+            text-align: left;
+            font-weight: normal;
+        }
 
+        #statistics_table th:after {
+            content: ':';
+        }
+
+        .blue_font {
+            color: #1D89CF;
+        }
+
+        .red_font {
+            color: #f00;
+        }
+
+        .tooltip_number {
+            cursor: pointer;
+            display: block !important;
+            float: left;
+            width: 50%;
+        }
+
+        g.highcharts-legend {
+            display: none;
+        }
+
+        .stat-cell {
+            display: block !important;
+            margin: 5px 0px;
+        }
+
+        .stat-cell.bg-info {
+            border-bottom: 3px solid #25BAE6;
+        }
+
+        .stat-cell.bg-default {
+            border-bottom: 3px solid #cfcece;
+        }
 
        .buttonsScrollDiv{position: relative;overflow: hidden;padding:20px 0px;}
        .buttonsScrollDiv .scrollBody{}

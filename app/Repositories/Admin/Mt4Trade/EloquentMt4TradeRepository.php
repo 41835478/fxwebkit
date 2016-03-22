@@ -916,7 +916,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         return [$oResult, $aSummury];
     }
 
-    public function getClientGrowthChart($login) {
+    public function getClientGrowthChart($login,$server_id) {
 
 
         // $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
@@ -925,6 +925,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'), 'CMD'])
 
             ->where('login', $login)
+            ->where('server_id',$server_id)
             ->orderBy('CLOSE_TIME')
             ->get();
 
@@ -967,9 +968,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         //Trades: Profit Trades:  Loss Trade: Best Trade: Worst Trade: Gross Profit: Gross Loss: Maximum consecutive wins: Maximal consecutive profit: Sharpe Ratio: Recovery Factor: Long Trades: Shart Trades: Profits Factor: Expected Payoff: Average Profit: Average Loss: Maximum consecutive losses: Maximal consecutive loss: Monthly grouth: Annual Farecast:
         //trades profit_trades loss_trade best_trade worst_trade gross_profit gross_loss maximum__consecutive_wins maximal_consecutive_profit sharpe_ratio recovery_factor long_trades shart_trades profits_factor expected_payoff average_profit average_loss maximum_consecutive_losses maximal_consecutive_loss monthly_grouth annual_farecast
 
-        list($symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->getClinetSymbolsChart($login);
+        list($symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->getClinetSymbolsChart($login,$server_id);
 
-        return [ $horizontal_line_numbers, $growth_array, $averages_array, $this->getStatistics($login),
+        return [ $horizontal_line_numbers, $growth_array, $averages_array, $this->getStatistics($login,$server_id),
             $symbols_pie_array,
             $sell_array,
             $buy_array,
@@ -978,7 +979,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         ];
     }
 
-    public function getClinetBalanceChart($login) {
+    public function getClinetBalanceChart($login,$server_id) {
 
 
         // $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
@@ -987,6 +988,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'), 'CMD'])
             ->where('login', $login)
 
+            ->where('server_id',$server_id)
             ->orderBy('CLOSE_TIME')
             ->get();
 
@@ -1009,10 +1011,10 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
 
 
-        list($symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->getClinetSymbolsChart($login);
+        list($symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->getClinetSymbolsChart($login,$server_id);
         return [ $horizontal_line_numbers,
             $balance_array,
-            $this->getStatistics($login),
+            $this->getStatistics($login,$server_id),
             $symbols_pie_array,
             $sell_array,
             $buy_array,
@@ -1020,9 +1022,10 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             $balance];
     }
 
-    public function getClinetSymbolsChart($login) {
+    public function getClinetSymbolsChart($login,$server_id) {
         $oGrowthResults = Mt4ClosedActual::select([DB::raw('sum(VOLUME) as valume'), 'SYMBOL'])
             ->where('login', $login)
+            ->where('server_id',$server_id)
             ->groupBy('SYMBOL')
             ->orderBy('CLOSE_TIME')
             ->get();
@@ -1050,6 +1053,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $oSymbolsResults = Mt4ClosedActual::select([DB::raw('sum(VOLUME) as valume'), 'SYMBOL', 'CMD'])
             ->where('login', $login)
+            ->where('server_id',$server_id)
             ->groupBy(['SYMBOL', 'CMD'])
             ->orderBy('SYMBOL')
             ->get();
@@ -1090,10 +1094,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         return [$symbols_pie_array, $final_sell_array, $final_buy_array, $horizontal_line_numbers];
     }
 
-    public function getStatistics($login) {
+    public function getStatistics($login,$server_id) {
 
         /* ==== trades ==== */
-        $trades = Mt4ClosedActual::where('login', $login)->count();
+        $trades = Mt4ClosedActual::where('login', $login)
+            ->where('server_id',$server_id)->count();
         $statistics['trades'] = $trades;
 
 
@@ -1101,6 +1106,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $profit_trades_number = Mt4ClosedActual::select(DB::raw('PROFIT+COMMISSION+SWAPS as total'))
             ->where('login', $login)
+            ->where('server_id',$server_id)
             ->having('total', '>=', '0')
             ->get()
             ->count();
@@ -1122,6 +1128,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $oBest_trade = Mt4ClosedActual::select(['SYMBOL', 'PROFIT'])
             ->where('login', $login)
+            ->where('server_id',$server_id)
             ->orderBy('PROFIT', 'desc')
             ->first();
 
@@ -1135,6 +1142,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $oWorst_trade = Mt4ClosedActual::select(['SYMBOL', 'PROFIT'])
             ->where('login', $login)
+            ->where('server_id',$server_id)
             ->orderBy('PROFIT', 'asc')
             ->first();
         $statistics['worst_trade'] = (count($oWorst_trade)) ? $oWorst_trade->PROFIT : 0;
@@ -1145,6 +1153,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $gross_profit_result = Mt4ClosedActual::select(['PROFIT', DB::raw('PROFIT+COMMISSION+SWAPS as total')])
             ->where('login', $login)
+            ->where('server_id',$server_id)
             ->having('total', '>', '0')
             ->get()
             ->sum('PROFIT');
@@ -1158,6 +1167,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $gross_loss_result = Mt4ClosedActual::select(['PROFIT', DB::raw('PROFIT+COMMISSION+SWAPS as total')])
             ->where('login', $login)
+            ->where('server_id',$server_id)
             ->having('total', '<', '0')
             ->get()
             ->sum('PROFIT');
@@ -1177,6 +1187,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         /* === maximal_consecutive_profit === */
         $consecutive_result = Mt4ClosedActual::select(['PROFIT', DB::raw('PROFIT+COMMISSION+SWAPS as total')])
             ->where('login', $login)
+            ->where('server_id',$server_id)
             ->orderBy('CLOSE_TIME')
             ->get();
 
@@ -1517,6 +1528,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $long_trades = Mt4ClosedActual::where('cmd', '=', '0')
             ->where('login', $login)
+            ->where('server_id',$server_id)
             ->count();
         $statistics['long_trades'] = $long_trades;
 
@@ -1526,6 +1538,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $short_trades = Mt4ClosedActual::where('cmd', '=', '1')
             ->where('login', $login)
+            ->where('server_id',$server_id)
             ->count();
         $statistics['short_trades'] = $short_trades;
 

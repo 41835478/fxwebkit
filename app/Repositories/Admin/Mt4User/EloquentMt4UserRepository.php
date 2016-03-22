@@ -242,10 +242,14 @@ class EloquentMt4UserRepository implements Mt4UserContract {
         /* =============== Preparing Output  =============== */
         $aResult=[];
         $firstLogin =0;
+        $firstLoginServerID=1;
         foreach ($oResult as $dKey => $oValue) {
-            if($firstLogin ==0 )$firstLogin=$oResult[$dKey]->LOGIN;
-            $aResult[$oResult[$dKey]->LOGIN] = $oResult[$dKey]->LOGIN;
+            if($firstLogin ==0 ){
+                $firstLogin=$oResult[$dKey]->LOGIN;
+                $firstLoginServerID=$oResult[$dKey]->server_id;
+            }
+            $aResult[] = [$oResult[$dKey]->LOGIN,$oResult[$dKey]->server_id];
         }
-        return [$firstLogin,$aResult];
+        return [$firstLogin,$firstLoginServerID,$aResult];
     }
 }
