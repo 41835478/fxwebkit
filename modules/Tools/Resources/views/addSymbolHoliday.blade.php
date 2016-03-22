@@ -16,7 +16,7 @@
                 <thead>
                 <tr>
 
-                    <th class="no-warp">th_sort(trans('tools::tools.symbols')</th>
+                    <th class="no-warp">{{trans('tools::tools.symbols')}}</th>
                     <th></th>
 
                 </tr>
