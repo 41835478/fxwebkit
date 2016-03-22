@@ -102,15 +102,7 @@
     </div>
 
 
-    <style type="text/css">
 
-
-        g.highcharts-legend{display:none;}
-        #chartContainer{border-top: 10px solid #E2E2E2;
-            display: inline-block;
-            width: 100%;
-        padding-top:10px;}
-    </style>
 
 
 

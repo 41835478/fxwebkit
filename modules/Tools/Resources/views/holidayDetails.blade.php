@@ -88,32 +88,7 @@
                     </tbody>
 
                 </table>
-                <style type="text/css">
-                    .hoursLneAllDiv {
-                        width: 100%;
-                        height: 30px;
-                        position: relative;
-                    }
 
-                    .hourPeriodDiv {
-                        position: absolute;
-                        height: 30px;
-                        background-color: rgba(141, 195, 40, 0.46);
-                    }
-
-                    .oneHourDiv {
-                        width: 4.166666666666%;
-                        margin-right: -1px;
-                        margin-left: 1px;
-                        border-left: 1px solid #aaa;
-                        float: left;
-                        height: 30px;
-                        background-color: #ccc;
-                        color: #fff;
-                        text-align: center;
-                        padding-top: 5px;
-                    }
-                </style>
 
             </div>
 

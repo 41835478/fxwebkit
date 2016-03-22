@@ -102,11 +102,7 @@
     </div>
 
 
-    <style type="text/css">
 
-
-        g.highcharts-legend{display:none;}
-    </style>
 
 
 

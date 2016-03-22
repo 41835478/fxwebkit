@@ -1,4 +1,5 @@
 @extends('admin.layouts.main')
+@extends('admin.layouts.main')
 @section('title', trans('tools::tools.settings'))
 @section('content')
 

@@ -7,7 +7,7 @@
     <div class="navbar-inner">
         <div class="navbar-header">
             <a href="/" class="navbar-brand">
-                <!-- TODO Change the style -->
+
                 {!! HTML::image('assets/img/logo.png',app_name(),['style'=>'width:90px;height:28px;']) !!}
 
             </a>

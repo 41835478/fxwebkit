@@ -1,38 +1,7 @@
 @extends('client.layouts.main')
 @section('title', trans('reports::reports.accounts'))
 @section('content')
-    <style type="text/css">
-        #content-wrapper {
-            padding: 0px;
-            margin: 0px;
-        }
 
-        .nav-input-div {
-            padding: 7px;
-        }
-
-        .mail-container-header {
-            border-bottom: 1px solid #ccc;
-            margin-bottom: 7px;
-            padding: 5px !important;
-        }
-
-        .center_page_all_div {
-            padding: 0px 10px;
-        }
-
-        .mail-nav .navigation {
-            margin-top: 35px;
-        }
-
-        .user-info-table th {
-            text-align: right;
-        }
-
-        .user-info-table td {
-            text-align: left;
-        }
-    </style>
     <div class="theme-default page-mail">
         <div class="mail-nav">
             <div class="navigation">

@@ -1,9 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('accounts::accounts.accounts'))
 @section('content')
-<style type="text/css">
 
-</style>
 <div class="  theme-default page-mail" >
     <div class="mail-nav" >
         <div class="navigation">

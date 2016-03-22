@@ -6,11 +6,7 @@
         <a href="/" class="logo">
             {!! HTML::image('assets/img/logo.png', '', ['style' => 'margin-top: -5px;width:90px;height:28px;']) !!}&nbsp;
             <!-- todo put this style in css file do not leave  it here please -->
-            <style type="text/css">
-                .theme-default.page-signup .signup-header{
-                    background: rgb(113, 153, 179);
-                }
-            </style>
+
         </a>
         <div class="slogan">
             {{ Lang::get('user.Slogan') }}
