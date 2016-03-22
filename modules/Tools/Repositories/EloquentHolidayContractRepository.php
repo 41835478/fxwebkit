@@ -6,6 +6,7 @@ use Modules\Tools\Entities\ToolsHoliday;
 use Modules\Tools\Entities\ToolsSymbols;
 use Modules\Tools\Entities\ToolsSecurities as Securities;
 use Modules\Tools\Entities\ToolsHolidaySymbols;
+use Modules\Mt4Configrations\Entities\ConfigrationsSymbols;
 use Config;
 class EloquentHolidayContractRepository implements HolidayContract
 {
@@ -96,12 +97,9 @@ class EloquentHolidayContractRepository implements HolidayContract
 
     public function getSymbols(){
 
-        $oResults=ToolsSymbols::with('securities')->orderBy('id','desc');
+        $aSymbols=ConfigrationsSymbols::select(['id','symbol'])->distinct('symbol')->lists('symbol','id');
 
-
-        $oResults=Securities::with('symbols')->orderBy('id','desc');
-
-        return $oResults->paginate();
+return $aSymbols;
     }
 
     public function addSymbolsHoliday($aSymbols, $holiday_id, $start_hour, $end_hour, $date)
@@ -109,10 +107,10 @@ class EloquentHolidayContractRepository implements HolidayContract
         $result=false;
         if(count($aSymbols)){
             foreach ($aSymbols as $symbol) {
-                $symbol=explode(',',$symbol);
+                //$symbol=explode(',',$symbol);
                 $row = ['holiday_id' => $holiday_id,
-                    'securities_id' => $symbol[0],
-                    'symbols_id' => $symbol[1],
+                    'securities_id' => $symbol,
+                    'symbols_id' => $symbol,
                     'start_hour' => $start_hour,
                     'end_hour' => $end_hour,
                     'date' => $date];
@@ -167,7 +165,7 @@ class EloquentHolidayContractRepository implements HolidayContract
 
 
         foreach($oResults as $result) {
-            $aSymbolsHours[$result->symbols->name][] =
+            $aSymbolsHours[$result->symbols->symbol][] =
                 [
                     $this->convertHourToPercent($result->start_hour),
                     $this->convertHourToPercent($result->end_hour),

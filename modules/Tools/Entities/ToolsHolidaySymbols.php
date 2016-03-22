@@ -19,11 +19,12 @@ class ToolsHolidaySymbols extends Model {
     ];
 
     public function symbols(){
-        return $this->belongsTo('Modules\Tools\Entities\ToolsSymbols','symbols_id');
+
+        return $this->belongsTo('Modules\Mt4Configrations\Entities\ConfigrationsSymbols');
     }
 
-    public function securities(){
-        return $this->belongsTo('Modules\Tools\Entities\ToolsSecurities','securities_id');
-    }
+//    public function securities(){
+//        return $this->belongsTo('Modules\Tools\Entities\ToolsSecurities','securities_id');
+//    }
 
 }

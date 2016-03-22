@@ -685,7 +685,8 @@ class EloquentIbportalContractRepository implements IbportalContract
           6 => 'CreditOut',
          */
 
-            $oResult = $oResult->where('CMD', '>', 0);
+        $oResult = $oResult->where('CMD', '>', 6);
+        $oResult = $oResult->where('PROFIT', '>', 0);
 
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
@@ -714,18 +715,51 @@ class EloquentIbportalContractRepository implements IbportalContract
         return [$oResult, $aSummury];
     }
 
+    public function getAgentCommissionChart($login){
+
+
+        $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'), 'CMD'])
+            ->where('login', $login)
+            ->where('server_id', 0)
+            ->where('cmd','>', 0)
+            ->where('PROFIT','>', 0)
+            ->orderBy('CLOSE_TIME')
+            ->get();
+
+        $commission_array = [];
+        $commission_horizontal_line_numbers = [];
+
+        $pastCommission = 0;
+        $i = 0;
+        $commission=0;
+        foreach ($oGrowthResults as $row) {
+
+
+            $pastCommission+=$row->netProfit;
+            $commission=round($pastCommission, 2);
+            $commission_array[] = $commission;
+            $i++;
+            $commission_horizontal_line_numbers[] =   $i;
+        }
+
+
+        return [ $commission_horizontal_line_numbers,
+            $commission_array
+        ];
+    }
 
 public function getAgentStatistics($agentId){
     $login=UserIbid::select('login')->where('user_id',$agentId)->first()->login;
 
 
-    $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'), 'CMD'])
+    $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('sum(PROFIT+COMMISSION+SWAPS) as netProfit,concat(YEAR(CLOSE_TIME),concat("-",MONTH(CLOSE_TIME))) as month'), 'CMD'])
         ->where('login', $login)
         ->where('server_id', 0)
         ->where('cmd','>', 0)
+        ->where('PROFIT','>', 0)
+        ->groupby('month')
         ->orderBy('CLOSE_TIME')
         ->get();
-
 
     $balance_array = [];
     $horizontal_line_numbers = [];
@@ -740,17 +774,22 @@ public function getAgentStatistics($agentId){
         $balance=round($pastBalance, 2);
         $balance_array[] = $balance;
         $i++;
-        $horizontal_line_numbers[] = $i;
+        $horizontal_line_numbers[] = $row->month;
     }
     $statistics['users_number']=AgentUser::where('agent_id',$agentId)->count();
     $statistics['mt4_users_number']=mt4_users_users::where('users_id',$agentId)->count();
 
     $statistics['planes_number']=PlanUsers::where('user_id',$agentId)->count();
 
+    list($commission_horizontal_line_numbers,
+        $commission_array
+    )=$this->getAgentCommissionChart($login);
     return [ $horizontal_line_numbers,
         $balance_array,
         $balance,
-        $statistics
+        $statistics,
+        $commission_horizontal_line_numbers,
+        $commission_array
        ];
 }
 

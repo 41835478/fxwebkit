@@ -101,8 +101,7 @@
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.order#'), 'TICKET', $oResults[0]) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.login'), 'LOGIN', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.liveDemo'), 'server_id', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.type'), 'CMD', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.comment'), 'COMMENT', $oResults[0]) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.total'), 'PROFIT', $oResults[0]) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.close_time'), 'CLOSE_TIME', $oResults[0]) !!}</th>
                         </tr>
@@ -116,8 +115,7 @@
                         <tr class='{{ $class }}'>
                             <td>{{ $oResult->TICKET }}</td>
                             <td>{{ $oResult->LOGIN }}</td>
-                            <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
-                            <td>{{ $oResult->TYPE }}</td>
+                            <td>{{ $oResult->COMMENT }}</td>
                             <td>{{ $oResult->PROFIT }}</td>
                             <td>{{ $oResult->CLOSE_TIME }}</td>
                         </tr>
@@ -223,7 +221,7 @@
                 type: 'bar'
             },
             title: {
-                text: 'Accountant Total'
+                text: 'Commission'
             },
             xAxis: {
                 /*
