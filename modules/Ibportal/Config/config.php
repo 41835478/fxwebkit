@@ -68,7 +68,7 @@ return [
             'icon' => 'fa fa-money',
         ],[
             'route' => 'clients.ibportal.accountant',
-            'title' => 'accountant',
+            'title' => 'agentsMoney',
             'icon' => 'fa fa-money',
         ]
     ]
