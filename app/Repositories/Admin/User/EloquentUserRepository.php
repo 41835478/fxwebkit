@@ -10,6 +10,7 @@ use Modules\Accounts\Entities\mt4_users_users;
 use Config;
 use Fxweb\Helpers\Fx;
 use Illuminate\Support\Facades\DB;
+use Fxweb\Models\Mt4User;
 
 /**
  * Class EloquentUserRepository
@@ -25,7 +26,18 @@ class EloquentUserRepository implements UserContract
         //
     }
 
+public function getDashboardStatistics(){
+    $statistics['usersNumber']=User::count();
+    $statistics['activeUsersNumber']=User::with('activations')->whereHas('activations',function ($query){
+        $query->whereNotNull('user_id');
+    })->count();
 
+    $statistics['mt4UsersNumber']=Mt4User::count();
+    $statistics['liveMt4UsersNumber']=Mt4User::where('server_id',1)->count();
+
+
+    return $statistics;
+}
 
     public function getLoginsInGroup($aGroups, $sOrderBy = 'LOGIN', $sSort = 'ASC')
     {
