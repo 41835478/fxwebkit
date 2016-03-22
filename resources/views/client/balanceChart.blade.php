@@ -106,12 +106,15 @@
                     width: 25%;
                     font-size: 10px;
                 }
-
+                #statistics_table>div{
+                    border-right: 1px solid #ccc;
+                    padding: 5px;
+                    font-weight: bold;
+                }
                 #statistics_table div div {
                     text-align: right;
-                    border-right: 1px solid #ccc;
                     float: right;
-                    padding: 5px;
+                    font-weight: normal;
 
                 }
 
@@ -158,6 +161,29 @@
 
                 .stat-cell.bg-default {
                     border-bottom: 3px solid #cfcece;
+                }
+
+                .buttonsScrollDiv{position: relative;overflow: hidden;padding:20px 0px;}
+                .buttonsScrollDiv .scrollBody{}
+                .buttonsScrollDiv .scrollUp,.buttonsScrollDiv .scrollDown{
+                    position:absolute;
+                    width:100%;
+                    text-align:center;
+                    padding:5px 0px;
+                    background-color: #1D89CF;
+                    color:#ffffff;
+                    z-index: 2;
+                    left:0px;
+                    opacity: 0.3;
+
+                }
+                .buttonsScrollDiv:hover .scrollUp,.buttonsScrollDiv:hover .scrollDown{ opacity:1;}
+                .buttonsScrollDiv .scrollUp{
+                    top:0px;
+                }
+                .buttonsScrollDiv .scrollDown{
+                    bottom:0px;
+
                 }
             </style>
             </div>

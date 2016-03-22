@@ -94,34 +94,80 @@
 
 
 
-   <style type="text/css">
-       #statistics_section{
-           margin:20px 0px;
-           width:100%;
-           border-top:1px solid #ccc;}
-       #statistics_table{
-           margin:20px 0px;
-           width:100%;
+    <style type="text/css">
+        #statistics_section {
+            margin: 20px 0px;
+            width: 100%;
+            border-top: 1px solid #ccc;
+        }
 
-       }
+        #statistics_table {
+            margin: 20px 0px;
+            width: 100%;
 
-       #statistics_table td, #statistics_table th{ padding: 5px 10px;width:25%;font-size: 10px;}
-       #statistics_table td{text-align: right;border-right:1px solid #ccc;}
-       #statistics_table td:nth-child(4){border-right:1px solid transparent;}
+        }
 
-       #statistics_table th{text-align: left; font-weight: normal;}
-       #statistics_table th:after{content:':';}
+        #statistics_table td, #statistics_table th {
+            padding: 5px 10px;
+            width: 25%;
+            font-size: 10px;
+        }
+        #statistics_table>div{
+            border-right: 1px solid #ccc;
+            padding: 5px;
+font-weight: bold;
+        }
+        #statistics_table div div {
+            text-align: right;
+            float: right;
+            font-weight: normal;
 
-       .blue_font{ color:#1D89CF;}
-       .red_font{ color:#f00;}
-       .tooltip_number{cursor:pointer; font-weight: bold}
+        }
 
-       g.highcharts-legend{display:none;}
-       .stat-cell {display:block !important; margin:5px 0px;}
-       .stat-cell.bg-info{ border-bottom:3px solid #25BAE6;}
-       .stat-cell.bg-default{border-bottom:3px solid #cfcece;}
+        #statistics_table td:nth-child(4) {
+            border-right: 1px solid transparent;
+        }
 
+        #statistics_table th {
+            text-align: left;
+            font-weight: normal;
+        }
 
+        #statistics_table th:after {
+            content: ':';
+        }
+
+        .blue_font {
+            color: #1D89CF;
+        }
+
+        .red_font {
+            color: #f00;
+        }
+
+        .tooltip_number {
+            cursor: pointer;
+            display: block !important;
+            float: left;
+            width: 50%;
+        }
+
+        g.highcharts-legend {
+            display: none;
+        }
+
+        .stat-cell {
+            display: block !important;
+            margin: 5px 0px;
+        }
+
+        .stat-cell.bg-info {
+            border-bottom: 3px solid #25BAE6;
+        }
+
+        .stat-cell.bg-default {
+            border-bottom: 3px solid #cfcece;
+        }
 
        .buttonsScrollDiv{position: relative;overflow: hidden;padding:20px 0px;}
        .buttonsScrollDiv .scrollBody{}
