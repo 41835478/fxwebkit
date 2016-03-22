@@ -774,10 +774,12 @@ public function getAgentStatistics($agentId){
         $balance=round($pastBalance, 2);
         $balance_array[] = $balance;
         $i++;
-        $horizontal_line_numbers[] = $row->month;
+        $horizontal_line_numbers[] = date('M, Y',strtotime($row->month));
     }
     $statistics['users_number']=AgentUser::where('agent_id',$agentId)->count();
-    $statistics['mt4_users_number']=mt4_users_users::where('users_id',$agentId)->count();
+    $statistics['mt4_users_number']=mt4_users_users::with('agentUsers')->whereHas('agentUsers',function ($query) use($agentId){
+        $query->where('agent_id',$agentId);
+    })->count();
 
     $statistics['planes_number']=PlanUsers::where('user_id',$agentId)->count();
 

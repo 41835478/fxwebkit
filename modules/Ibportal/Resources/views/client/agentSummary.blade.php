@@ -90,6 +90,7 @@
         <section id="chart_section">
             @if(count($balance_array))
                 <div id="growth_chart_all_div" class="col-xs-12"></div>
+
                 <div id="chartContainer"></div>
             @else
                 <div  class="col-xs-12 col-sm-8">{{ trans('ibportal::ibportal.no_account_available') }}</div>
@@ -105,6 +106,10 @@
 
 
         g.highcharts-legend{display:none;}
+        #chartContainer{border-top: 10px solid #E2E2E2;
+            display: inline-block;
+            width: 100%;
+        padding-top:10px;}
     </style>
 
 
@@ -153,7 +158,7 @@
                     borderWidth: 0
                 },
                 series: [{
-                    name: 'Balance',
+                    name: 'Commission',
                     data: {!! json_encode($commission_array)!!},
                     color:'#1d89cf'
                 }]
@@ -200,13 +205,13 @@ function remove_copyrights(){
                     enabled: false
                 },
                 tooltip: {
-                    pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>'
+                    pointFormat: '{point.y:.1f}'
                 },
                 series: [{
                     name: 'Population',
                     data:{!! json_encode($balance_array)!!},
                     dataLabels: {
-                        enabled: true,
+                        enabled: false,
                         rotation: -90,
                         color: '#FFFFFF',
                         align: 'right',

@@ -200,13 +200,13 @@
                     enabled: false
                 },
                 tooltip: {
-                    pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>'
+                    pointFormat: '{point.y:.1f}'
                 },
                 series: [{
                     name: 'Population',
                     data:{!! json_encode($balance_array)!!},
                     dataLabels: {
-                        enabled: true,
+                        enabled: false,
                         rotation: -90,
                         color: '#FFFFFF',
                         align: 'right',
