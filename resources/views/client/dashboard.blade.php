@@ -35,21 +35,27 @@
     @else
         <div  class="col-xs-12 col-sm-8">{{ trans('user.no_account_available') }}</div>
     @endif
-        <div class="col-xs-12 col-sm-4" style="height:400px; overflow-y: auto;">
+        <div class=" buttonsScrollDiv col-xs-12 col-sm-4" style="height:400px;">
+<div class="scrollUp fa fa-chevron-up"></div>
+            <div class="scrollDown fa fa-chevron-down"></div>
+<div class="scrollBody">
+    @foreach($aLogin as $oneLogin)
+                <a  href="?login={{$oneLogin}}" class="stat-cell @if($oneLogin ==$login ) bg-info @else bg-default @endif  valign-middle col-xs-12 ">
+                    <!-- Stat panel bg icon -->
+                    <i class="fa fa-user bg-icon"></i>
+                    <!-- Extra large text -->
+                    <span class="text-xlg"><span class="text-lg text-slim"></span><strong> {{$oneLogin}} </strong></span><br>
+                    <!-- Big text -->
+                    <span class="text-bg">{{ trans('user.growth') }} @if($oneLogin ==$login ) {{ $growth }}  @else Click here  @endif % </span><br>  <!-- Big text -->
+                    <span class="text-bg">{{ trans('user.profit') }} @if($oneLogin ==$login ){{$statistics['profit']}} @else Click here @endif </span><br>
+                    <!-- Small text -->
+                    <span class="text-sm"></span>
+                </a> <!-- /.stat-cell -->
 
-           @foreach($aLogin as $oneLogin)
-            <a  href="?login={{$oneLogin}}" class="stat-cell @if($oneLogin ==$login ) bg-info @else bg-default @endif  valign-middle col-xs-12 ">
-                <!-- Stat panel bg icon -->
-                <i class="fa fa-user bg-icon"></i>
-                <!-- Extra large text -->
-                <span class="text-xlg"><span class="text-lg text-slim"></span><strong> {{$oneLogin}} </strong></span><br>
-                <!-- Big text -->
-                <span class="text-bg">{{ trans('user.growth') }} @if($oneLogin ==$login ) {{ $growth }}  @else Click here  @endif % </span><br>  <!-- Big text -->
-                <span class="text-bg">{{ trans('user.profit') }} @if($oneLogin ==$login ){{$statistics['profit']}} @else Click here @endif </span><br>
-                <!-- Small text -->
-                <span class="text-sm"></span>
-            </a> <!-- /.stat-cell -->
+
+
           @endforeach
+</div>
 
 
         </div>
@@ -116,6 +122,31 @@
        .stat-cell {display:block !important; margin:5px 0px;}
        .stat-cell.bg-info{ border-bottom:3px solid #25BAE6;}
        .stat-cell.bg-default{border-bottom:3px solid #cfcece;}
+
+
+
+       .buttonsScrollDiv{position: relative;overflow: hidden;padding:20px 0px;}
+       .buttonsScrollDiv .scrollBody{}
+       .buttonsScrollDiv .scrollUp,.buttonsScrollDiv .scrollDown{
+           position:absolute;
+           width:100%;
+           text-align:center;
+           padding:5px 0px;
+           background-color: #1D89CF;
+           color:#ffffff;
+           z-index: 2;
+           left:0px;
+           opacity: 0.3;
+
+       }
+       .buttonsScrollDiv:hover .scrollUp,.buttonsScrollDiv:hover .scrollDown{ opacity:1;}
+       .buttonsScrollDiv .scrollUp{
+           top:0px;
+       }
+       .buttonsScrollDiv .scrollDown{
+          bottom:0px;
+
+        }
    </style>
 
 </section>
@@ -144,6 +175,31 @@
 
 {!! HTML::script('assets/js/highcharts.js') !!}
 <script>
+
+function scrollButton(container,amount,direction){
+    var scrollBody=container.find('.scrollBody');
+
+   // console.log(direction +'==-&&('+ scrollBody.css('marginTop').replace("px", "") +'>= 0 )');
+    if(direction=='-'){
+
+    amount=( scrollBody.css('marginTop').replace("px", "")* -1 < (scrollBody.height() - container.height())  )?direction+"="+amount+"px": 0;
+}else{
+       // console.log(scrollBody.css('marginTop').replace("px", "") >  0  );
+    amount=( scrollBody.css('marginTop').replace("px", "") >  0  )?  0:direction+"="+amount+"px";
+}
+    scrollBody.animate({ "marginTop":  amount }, "fast");
+}
+
+    $(".scrollDown").click(function () {
+        scrollButton($(this).parent(),100,'-');
+    });
+
+    $(".scrollUp").click(function () {
+        scrollButton($(this).parent(),100,'+');
+
+
+    });
+
 
 init.push(function () {
     $('.tooltip_number').tooltip();
