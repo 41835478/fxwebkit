@@ -32,6 +32,7 @@
         "Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider",
         "Maatwebsite\\Excel\\ExcelServiceProvider",
         "Pingpong\\Modules\\ModulesServiceProvider",
+        "Cartalyst\\Sentinel\\Addons\\Social\\Laravel\\SocialServiceProvider",
         "Greggilbert\\Recaptcha\\RecaptchaServiceProvider"
     ],
     "eager": [
@@ -140,7 +141,11 @@
         "translator": "Illuminate\\Translation\\TranslationServiceProvider",
         "translation.loader": "Illuminate\\Translation\\TranslationServiceProvider",
         "html": "Illuminate\\Html\\HtmlServiceProvider",
-        "form": "Illuminate\\Html\\HtmlServiceProvider"
+        "form": "Illuminate\\Html\\HtmlServiceProvider",
+        "sentinel.addons.social.repository": "Cartalyst\\Sentinel\\Addons\\Social\\Laravel\\SocialServiceProvider",
+        "sentinel.addons.social.request": "Cartalyst\\Sentinel\\Addons\\Social\\Laravel\\SocialServiceProvider",
+        "sentinel.addons.social.session": "Cartalyst\\Sentinel\\Addons\\Social\\Laravel\\SocialServiceProvider",
+        "sentinel.addons.social": "Cartalyst\\Sentinel\\Addons\\Social\\Laravel\\SocialServiceProvider"
     },
     "when": {
         "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider": [],
@@ -154,6 +159,7 @@
         "Illuminate\\Redis\\RedisServiceProvider": [],
         "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider": [],
         "Illuminate\\Translation\\TranslationServiceProvider": [],
-        "Illuminate\\Html\\HtmlServiceProvider": []
+        "Illuminate\\Html\\HtmlServiceProvider": [],
+        "Cartalyst\\Sentinel\\Addons\\Social\\Laravel\\SocialServiceProvider": []
     }
 }

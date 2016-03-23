@@ -145,8 +145,8 @@
                                     <td>{{ $oResult->NAME }}</td>
                                     <td>{{ $oResult->GROUP }}</td>
                                     <td>
-{{$oResult->users_id}}
-                                        @if(isset($oResult->users_id ) || (isset($oResult->account) && $oResult->account->user_id>0))
+
+                                        @if(isset($oResult->users_id ) || (isset($oResult->account) && $oResult->account->users_id>0))
                                             {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
                                         @else
 

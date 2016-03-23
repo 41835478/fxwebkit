@@ -37,7 +37,7 @@ if (class_exists("Module") && Module::find('cms')) {
         return Redirect::to(env('CLIENT_NAME'));
     });
 }
-Event::listen('illuminate.query', function($query)
-{
-    var_dump($query);
-});
+//Event::listen('illuminate.query', function($query)
+//{
+//    var_dump($query);
+//});
