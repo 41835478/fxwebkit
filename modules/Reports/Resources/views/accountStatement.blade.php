@@ -91,25 +91,7 @@
                         <div class="table-caption">
                             {{ trans('reports::reports.OpenOrders') }}
 
-                            @if (count($oOpenResults))
-                                <div class="panel-heading-controls">
-                                    <div class="btn-group btn-group-xs">
-                                        <button data-toggle="dropdown" type="button"
-                                                class="btn btn-success dropdown-toggle">
-                                            <span class="fa fa-cog"></span>&nbsp;
-                                            <span class="fa fa-caret-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li>
-                                                <a href="{{ Request::fullUrl() }}&export=xls">
-                                                    <i class="dropdown-icon fa fa-camera-retro"></i>
-                                                    {{ trans('reports::reports.export') }}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            @endif
+
                         </div>
                     </div>
                     <table class="table table-bordered">
@@ -165,25 +147,6 @@
                         <div class="table-caption">
                             {{ trans('reports::reports.ClosedOrders') }}
 
-                            @if (count($oCloseResults))
-                                <div class="panel-heading-controls">
-                                    <div class="btn-group btn-group-xs">
-                                        <button data-toggle="dropdown" type="button"
-                                                class="btn btn-success dropdown-toggle">
-                                            <span class="fa fa-cog"></span>&nbsp;
-                                            <span class="fa fa-caret-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li>
-                                                <a href="{{ Request::fullUrl() }}&export=xls">
-                                                    <i class="dropdown-icon fa fa-camera-retro"></i>
-                                                    {{ trans('reports::reports.export') }}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            @endif
 
                         </div>
                     </div>

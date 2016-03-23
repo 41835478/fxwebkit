@@ -63,11 +63,11 @@ Route::get('recover', [
     'uses' => 'AuthController@getRecover'
 ]);
 Route::post('recover', [
-
     'as' => 'client.auth.recover',
     'uses' => 'AuthController@postRecover'
 ]);
 Route::get('resetForgetPassword/{userId}/{code}', [
+    'before'=>'changeLanguage',
     'as' => 'client.auth.resetForgetPassword',
     'uses' => 'AuthController@getResetForgetPassword'
 ]);

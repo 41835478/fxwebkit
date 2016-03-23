@@ -26,7 +26,7 @@
                     </li>
                     <li class="divider"></li>
                 </ul>
-                {!! Form::close() !!}
+
 
             </div>
         </div>
@@ -105,7 +105,7 @@
 
     </div>
 
-
+    {!! Form::close() !!}
     <script>
         init.push(function () {
 

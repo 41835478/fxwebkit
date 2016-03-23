@@ -87,25 +87,6 @@
                             <div class="table-caption">
                                 {{ trans('accounts::accounts.accounts') }}
 
-                                @if (count($oResults))
-                                    <div class="panel-heading-controls">
-                                        <div class="btn-group btn-group-xs">
-                                            <button data-toggle="dropdown" type="button"
-                                                    class="btn btn-success dropdown-toggle">
-                                                <span class="fa fa-cog"></span>&nbsp;
-                                                <span class="fa fa-caret-down"></span>
-                                            </button>
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li>
-                                                    <a href="{{ Request::fullUrl() }}&export=xls">
-                                                        <i class="dropdown-icon fa fa-camera-retro"></i>
-                                                        {{ trans('accounts::accounts.Export') }}
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                @endif
 
                             </div>
                         </div>
@@ -201,6 +182,7 @@
             </div>
         </div>
     </div>
+
     <script src="{{ asset('/assets/js/jquery.2.0.3.min.js') }}"></script>
     <script>
         init.push(function () {

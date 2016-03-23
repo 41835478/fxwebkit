@@ -57,6 +57,7 @@ return [
     'details' => 'Details',
     'save' => 'Save',
     'edit'=>'Edit',
+    'language'=>'Language',
 
 
     'mt4UserLogin' => 'Log IN',

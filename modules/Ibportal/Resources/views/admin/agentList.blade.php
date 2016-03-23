@@ -105,9 +105,9 @@
                                            class="fa fa-plus tooltip_number"
                                            data-original-title="{{trans('ibportal::ibportal.assignAgents')}}"></a>
 
-                                        <a href="{{ route('admin.ibportal.accountant').'?agentId='.$oResult->id }}"
+                                        <a href="{{ route('admin.ibportal.agentMoney').'?agentId='.$oResult->id }}"
                                            class="fa fa-money tooltip_number"
-                                           data-original-title="{{trans('ibportal::ibportal.accountant')}}"></a>
+                                           data-original-title="{{trans('ibportal::ibportal.agentMoney')}}"></a>
 
                                         <a href="{{ route('admin.ibportal.summary').'?agentId='.$oResult->id }}"
                                            class="fa fa-bar-chart-o tooltip_number"

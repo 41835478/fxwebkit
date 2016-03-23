@@ -151,9 +151,6 @@
         </div>
     </div>
         </div>
-
-
-
     {!! Form::close() !!}
     <script>
         init.push(function () {

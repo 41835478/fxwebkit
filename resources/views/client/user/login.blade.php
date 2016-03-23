@@ -14,7 +14,7 @@
 
             <div class="panel-heading-controls ">
                 <div class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i> Language</a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i> {{ trans('user.language') }}</a>
                 <ul class="dropdown-menu">
                     @foreach(config('app.language')  as $locale=>$name)
                         <li><a href="?locale={{$locale}}">{{ $name }}</a></li>

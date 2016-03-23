@@ -3,28 +3,36 @@
 @section('content')
 	<div class="signin-container">
 
-		<div class="signin-info">
-			<a href="" class="logo">
-				{!! HTML::image('assets/img/logo.png', '', ['style' => 'margin-top: -5px']) !!}&nbsp;
-				{{ app_name() }}
-			</a>
-			<div class="slogan">
-				{{ Lang::get('user.Slogan') }}
-			</div>
-			<ul>
-				<li><i class="fa fa-sitemap signin-icon"></i> {{ Lang::get('user.Feature1') }}</li>
-				<li><i class="fa fa-file-text-o signin-icon"></i> {{ Lang::get('user.Feature2') }}</li>
-				<li><i class="fa fa-outdent signin-icon"></i> {{ Lang::get('user.Feature3') }}</li>
-				<li><i class="fa fa-heart signin-icon"></i> {{ Lang::get('user.Feature4') }}</li>
-			</ul>
-		</div>
+
 
 		<div class="signin-form">
-			@include('client.partials.messages')
-			{!! Form::open(['id'=>'signin-form_id']) !!}
-				<div class="signin-text">
-					<span>{{ Lang::get('user.resetPassword') }}</span>
+
+			<a href="" class="logo">
+
+				{!! HTML::image('assets/img/logo.png', '', ['style' => 'margin-top: -5px;width:90px;height:28px;']) !!}
+				&nbsp;
+			</a>
+
+			<div class="panel-heading-controls ">
+				<div class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>
+						{{ trans('user.language') }}</a>
+					<ul class="dropdown-menu">
+						@foreach(config('app.language')  as $locale=>$name)
+							<li><a href="?locale={{$locale}}">{{ $name }}</a></li>
+
+						@endforeach
+					</ul>
 				</div>
+			</div>
+
+
+			{!! Form::open(['id'=>'signin-form_id']) !!}
+			<div class="signin-text">
+				<div style="clear:both; height: 20px;"></div>
+				<span>{{ trans('user.resetPasswordText') }}</span>
+			</div>
+			@include('admin.partials.messages')
 			<div class="form-group w-icon">
 				{!! Form::password('password', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.newpassword')]) !!}
 				<span class="fa fa-lock signin-form-icon"></span>

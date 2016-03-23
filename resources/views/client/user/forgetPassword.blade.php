@@ -4,25 +4,32 @@
     <div class="signin-container">
 
         <div class="signin-form">
+            <a href="" class="logo">
 
-            @include('admin.partials.messages')
-            {!! Form::open(['id'=>'signin-form_id']) !!}
-            <div class="signin-text">
+                {!! HTML::image('assets/img/logo.png', '', ['style' => 'margin-top: -5px;width:90px;height:28px;']) !!}
+                &nbsp;
+            </a>
 
                 <div class="panel-heading-controls ">
                     <div class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i> Language</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>
+                            {{ trans('user.language') }}</a>
                         <ul class="dropdown-menu">
                             @foreach(config('app.language')  as $locale=>$name)
                                 <li><a href="?locale={{$locale}}">{{ $name }}</a></li>
 
                             @endforeach
-                        </ul></div>
+                        </ul>
+                    </div>
                 </div>
 
+
+                {!! Form::open(['id'=>'signin-form_id']) !!}
+            <div class="signin-text">
                 <div style="clear:both; height: 20px;"></div>
                 <span>{{ trans('user.resetPasswordText') }}</span>
             </div>
+            @include('admin.partials.messages')
             <div class="form-group w-icon">
                 {!! Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>trans('user.email')]) !!}
                 <span class="fa fa-user signin-form-icon"></span>

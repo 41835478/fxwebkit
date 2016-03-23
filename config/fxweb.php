@@ -32,7 +32,7 @@ return [
 
     'adminEmail'=>'taylorsuccessor@gmail.com',
 
-    'facebookLoginCallback'=>'http://localhost:8000/client/facebook-callback-login',
+    'facebookLoginCallback'=>'http://fxwebkit/client/facebook-callback-login',
     'facebookLoginProvider'=>'facebook',
     'facebookLoginDriver' => 'Facebook',
     'facebookLoginIdentifier' => '1647542828861678',
@@ -45,9 +45,9 @@ return [
 
 
 
-    'googleCallback' => 'http://localhost:8000/client/google-callback-login',
+    'googleCallback' => 'http://fxwebkit/client/google-callback-login',
     'googleProvider'=>'google',
-    'googleDriver' => 'google',
+    'googleDriver' => 'Google',
     'googleIdentifier' => '153369653879-grpme2quc1398mjf57q8gl4s7g48o8kg.apps.googleusercontent.com',
     'googleSecret' => 'M6gqHVqK-t3CC55g3aH63zGM',
     'googleScopes' => ['email'],
@@ -55,9 +55,9 @@ return [
 
 
 
-    'linkedinCallback' => 'http://localhost:8000/client/linkedin-callback-login',
+    'linkedinCallback' => 'http://fxwebkit/client/linkedin-callback-login',
     'linkedinProvider'=>'linkedin',
-    'linkedinDriver' => 'linkedin',
+    'linkedinDriver' => 'LinkedIn',
     'linkedinIdentifier' => '779y8ism8ovwns',
     'linkedinSecret' => 'l9paUw3eQJgtYRRV',
 
