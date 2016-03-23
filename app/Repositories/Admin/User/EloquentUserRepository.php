@@ -339,10 +339,15 @@ public function getDashboardStatistics(){
 
     public function asignMt4UsersToAccount($account_id, $users_id,$server_id=1)
     {
+
         if (is_array($users_id)) {
             foreach ($users_id as $id => $user_id) {
-
-                $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id])->first();
+                if($server_id==3){
+                    $mt4=explode(',',$user_id);
+                    $user_id=$mt4[0];
+                    $server_id=($mt4[1]=='')? 0:$mt4[1];
+                }
+                $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id, 'server_id' => $server_id])->first();
                 if ($asign) {
                     $asign->users_id = $account_id;
                     $asign->mt4_users_id = $user_id;
@@ -383,13 +388,17 @@ public function getDashboardStatistics(){
 //        return true;
 //    }
 
-    public function unsignMt4UsersToAccount($account_id, $users_id)
+    public function unsignMt4UsersToAccount($account_id, $users_id,$server_id=1)
     {
 
         if (is_array($users_id)) {
             foreach ($users_id as $id => $user_id) {
-
-                $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id])->first();
+                if($server_id==3){
+                    $mt4=explode(',',$user_id);
+                    $user_id=$mt4[0];
+                    $server_id=($mt4[1]=='')? 0:$mt4[1];
+                }
+                $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id,'server_id'=>$server_id])->first();
                 if ($asign) {
                     $asign->delete();
                 }

@@ -629,10 +629,10 @@ g.highcharts-legend {
     display: none;
 }
 
-.stat-cell {
-    display: block !important;
-    margin: 5px 0px;
-}
+/*.stat-cell {*/
+    /*display: block !important;*/
+    /*margin: 5px 0px;*/
+/*}*/
 
 .stat-cell-account {
     display: block !important;

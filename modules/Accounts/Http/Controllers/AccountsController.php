@@ -349,7 +349,11 @@ class AccountsController extends Controller
             $users_checkbox = ($oRequest->has('asign_mt4_users_submit_id')) ? [$oRequest->get('asign_mt4_users_submit_id')] : $oRequest->users_checkbox;
 
             $account_id = $oRequest->account_id;
-            $this->oUsers->asignMt4UsersToAccount($account_id, $users_checkbox);
+            if($oRequest->has('server_id')){
+                $this->oUsers->asignMt4UsersToAccount($account_id, $users_checkbox,0);
+            }else{
+            $this->oUsers->asignMt4UsersToAccount($account_id, $users_checkbox,3);
+            }
             return $this->getAsignMt4Users($oRequest);
             return Redirect::route('accounts.asignMt4Users')->with('account_id', $account_id);
         }
@@ -359,7 +363,7 @@ class AccountsController extends Controller
             $users_checkbox = ($oRequest->has('un_sign_mt4_users_submit_id')) ? [$oRequest->get('un_sign_mt4_users_submit_id')] : $oRequest->users_checkbox;
 
             $account_id = $oRequest->account_id;
-            $this->oUsers->unsignMt4UsersToAccount($account_id, $users_checkbox);
+            $this->oUsers->unsignMt4UsersToAccount($account_id, $users_checkbox,3);
 
             return $this->getAsignMt4Users($oRequest);
             return Redirect::route('accounts.asignMt4Users')->with('account_id', $account_id);

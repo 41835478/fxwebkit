@@ -105,6 +105,7 @@
 
                             <div class="col-sm-2">
                                 {!! Form::hidden('account_id', $aFilterParams['account_id']) !!}
+                                {!! Form::hidden('server_id',0) !!}
                                 {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                                 {!! Form::hidden('order', $aFilterParams['order']) !!}
 
@@ -139,17 +140,17 @@
                             @foreach($oResults as $oResult)
                                 <tr>
 
-                                    <td>{!! Form::checkbox('users_checkbox[]',$oResult->LOGIN,false,['class'=>'users_checkbox']) !!}{{ $oResult->LOGIN }}</td>
-                                    <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                                    <td>{!! Form::checkbox('users_checkbox[]',$oResult->LOGIN.','.$oResult->server_id,false,['class'=>'users_checkbox']) !!}{{ $oResult->LOGIN }}</td>
+                                    <td>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
                                     <td>{{ $oResult->NAME }}</td>
                                     <td>{{ $oResult->GROUP }}</td>
                                     <td>
-
-                                        @if(isset($oResult->users_id ) )
-                                            {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->LOGIN  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+{{$oResult->users_id}}
+                                        @if(isset($oResult->users_id ) || (isset($oResult->account) && $oResult->account->user_id>0))
+                                            {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
                                         @else
 
-                                            {!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->LOGIN  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+                                            {!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
                                         @endif
                                     </td>
                                 </tr>

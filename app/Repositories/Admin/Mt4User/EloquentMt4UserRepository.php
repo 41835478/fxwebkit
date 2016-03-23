@@ -6,6 +6,8 @@ use Fxweb\Models\Mt4User;
 use Fxweb\Helpers\Fx;
 use Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Illuminate\Support\Facades\DB;
+
 
 /**
  * Class EloquentUserRepository
@@ -148,9 +150,8 @@ class EloquentMt4UserRepository implements Mt4UserContract {
         $account_id = (isset($aFilters['account_id'])) ? $aFilters['account_id'] : 0;
         //$oResult = Mt4User::with('account');
         //select * from `mt4_users` left join `mt4_users_users` on `mt4_users`.`id` = `mt4_users_users`.`mt4_users_id` and (`mt4_users_users`.`users_id` = 18)
-        $oResult = Mt4User::leftJoin('mt4_users_users', function($join) use($account_id) {
-                    $join->on('mt4_users.LOGIN', '=', 'mt4_users_users.mt4_users_id')->where('mt4_users_users.users_id', '=', $account_id);
-                });
+
+        $oResult =new Mt4User();
 
 //                $oResult = Mt4User::leftJoin('mt4_users_users', function ($join) use ($account_id){
 //                    $join->on('mt4_users.id', '=', 'mt4_users_users.mt4_users_id');
@@ -165,9 +166,14 @@ class EloquentMt4UserRepository implements Mt4UserContract {
             if ($aFilters['signed'] == 1) {
                 $oResult = $oResult->with('account')->whereHas('account', function($query) use($account_id) {
                     $query->where('users_id', $account_id);
+                    $query->where(DB::row('mt4_users.server_id=mt4_users_users.server_id'));
                 });
-            } elseif ($aFilters['signed'] == 2) {
-                
+            }else{
+                $oResult->leftJoin('mt4_users_users', function($join) use($account_id) {
+
+                    $join->on('mt4_users.LOGIN', '=', 'mt4_users_users.mt4_users_id')
+                        ->on('mt4_users.server_id', '=', 'mt4_users_users.server_id');
+                })->select(['mt4_users.*','mt4_users_users.users_id']);
             }
         }
         /* =============== Login Filters =============== */
