@@ -39,7 +39,7 @@ return [
     'addMt4User' => 'Add MT4 User',
     'trades' => 'Trades',
     'profit_trades' => 'Profit Trades',
-    'loss_trade' => 'Loss Trade',
+    'loss_trade' => 'Loss Trades',
     'best_trade' => 'Best Trade',
     'worst_trade' => 'Worst Trade',
     'gross_profit' => 'Gross Profit',
