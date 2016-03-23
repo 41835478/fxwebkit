@@ -666,26 +666,17 @@ class EloquentIbportalContractRepository implements IbportalContract
         /* =============== Get sum info and others =============== */
         $depositResult = clone $oResult;
         $withdrawsResult = clone $oResult;
-        $creditInResult = clone $oResult;
-        $creditOutResult = clone $oResult;
-
 
         $aSummury ['deposits'] = $depositResult->where('CMD', 6)->where('PROFIT', '>', 0)->sum('PROFIT');
         $aSummury ['withdraws'] = $withdrawsResult->where('CMD', 6)->where('PROFIT', '<', 0)->sum('PROFIT');
-        $aSummury ['creditIn'] = $creditInResult->where('CMD', 7)->where('PROFIT', '>', 0)->sum('PROFIT');
-        $aSummury ['creditOut'] = $creditOutResult->where('CMD', 7)->where('PROFIT', '<', 0)->sum('PROFIT');
 
         /* =============== Type Filter  ===============
 
-          1 => 'BalanceOperations',
-          2 => 'CreditOperations',
-          3 => 'Deposits',
-          4 => 'Withdraws',
-          5 => 'CreditIn',
-          6 => 'CreditOut',
+          1=> 'Commission',
+          2 => 'Withdraws',
          */
 
-        $oResult = $oResult->where('CMD', '>', 6);
+        $oResult = $oResult->where('CMD', '=', 6);
         $oResult = $oResult->where('PROFIT', '>', 0);
 
 
@@ -702,14 +693,7 @@ class EloquentIbportalContractRepository implements IbportalContract
         foreach ($oResult as $dKey => $oValue) {
             // Set CMD type
             $oResult[$dKey]->TYPE = $oFxHelper->getAccountantType($oValue->CMD, $oValue->PROFIT);
-            $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
-
-            $oResult[$dKey]->EQUITY = round($oResult[$dKey]->EQUITY, 2);
-            $oResult[$dKey]->BALANCE = round($oResult[$dKey]->BALANCE, 2);
-            $oResult[$dKey]->AGENT_ACCOUNT = round($oResult[$dKey]->AGENT_ACCOUNT, 2);
-            $oResult[$dKey]->MARGIN = round($oResult[$dKey]->MARGIN, 2);
-            $oResult[$dKey]->MARGIN_FREE = round($oResult[$dKey]->MARGIN_FREE, 2);
-            $oResult[$dKey]->LEVERAGE = round($oResult[$dKey]->LEVERAGE, 2);
+            $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
         }
 
         return [$oResult, $aSummury];

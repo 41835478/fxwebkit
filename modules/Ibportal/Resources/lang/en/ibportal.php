@@ -115,7 +115,8 @@ return [
     'addAgents'=>'Agents',
     'comment'=>'Comment',
     'CommissionChart'=>'Commission Chart',
-    'CommissionMonthly'=>'Monthly Commissions'
+    'CommissionMonthly'=>'Monthly Commissions',
+    'commissions'=>'Commissions'
 
 
 ];

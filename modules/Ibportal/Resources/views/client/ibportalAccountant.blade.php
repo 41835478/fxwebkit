@@ -90,7 +90,7 @@
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.order#'), 'TICKET', $oResults[0]) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.login'), 'LOGIN', $oResults[0]) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.comment'), 'COMMENT', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.total'), 'PROFIT', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Commission'), 'PROFIT', $oResults[0]) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.close_time'), 'CLOSE_TIME', $oResults[0]) !!}</th>
                         </tr>
                     </thead>
@@ -209,7 +209,7 @@
                 type: 'bar'
             },
             title: {
-                text: 'Commission'
+                text: '{!! trans('ibportal::ibportal.commissions') !!}'
             },
             xAxis: {
                 /*
@@ -217,9 +217,9 @@
                  trans('general.Withdraws')
                  trans('general.CreditIn')
                  trans('general.CreditOut')
-                 *  {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}
+                 *  {{ $oResults[1]['deposits']+$oResults[1]['withdraws']}}
              */
-                categories: ['{!! trans('ibportal::ibportal.deposits') !!}', '{!!  trans('ibportal::ibportal.credit_in') !!}','{!!   trans('ibportal::ibportal.withdraws') !!}', '{!!   trans('ibportal::ibportal.credit_out') !!}']
+                categories: ['{!! trans('ibportal::ibportal.commissions') !!}', '{!!   trans('ibportal::ibportal.withdraws') !!}']
             },
             yAxis: {
                 min: 0,
@@ -237,16 +237,10 @@
             },
             series: [{
                 name: ['{!!  trans('ibportal::ibportal.deposits') !!}'],
-                data: [{!! $oResults[1]['deposits']  !!}, 0,0,0]
-            }, {
-                name: ['{!! trans('ibportal::ibportal.credit_in') !!}'],
-                data: [0, {!! $oResults[1]['creditIn']  !!},0,0]
+                data: [{!! $oResults[1]['deposits']  !!}, 0]
             }, {
                 name: ['{!!  trans('ibportal::ibportal.withdraws') !!}'],
-                data: [0,0,{!! $oResults[1]['withdraws'] * - 1 !!}, 0]
-            }, {
-                name: ['{!! trans('ibportal::ibportal.credit_out') !!}'],
-                data: [0,0,0, {!! $oResults[1]['creditOut'] * - 1 !!}]
+                data: [0,{!! $oResults[1]['withdraws'] * - 1 !!}]
             }]
         });
     }
