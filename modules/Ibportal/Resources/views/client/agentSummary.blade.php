@@ -76,7 +76,7 @@
     <div class="panel clearFix">
         <div class="panel-heading">
 
-            <span class="panel-title">{{ trans('ibportal::ibportal.Commission') }}</span>
+            <span class="panel-title">{{ trans('ibportal::ibportal.CommissionChart') }}</span>
 
             <div class="clearfix"></div>
 
@@ -91,16 +91,48 @@
             @if(count($balance_array))
                 <div id="growth_chart_all_div" class="col-xs-12"></div>
 
-                <div id="chartContainer"></div>
             @else
                 <div  class="col-xs-12 col-sm-8">{{ trans('ibportal::ibportal.no_account_available') }}</div>
             @endif
 
         </section><div class="clearFix"></div>
 
+
+
+
         </div>
     </div>
 
+
+    <div class="panel clearFix">
+        <div class="panel-heading">
+
+            <span class="panel-title">{{ trans('ibportal::ibportal.CommissionMonthly') }}</span>
+
+            <div class="clearfix"></div>
+
+        </div>
+        <div class="panel-body">
+
+
+
+
+
+            <section id="chart_section">
+                @if(count($balance_array))
+
+                    <div id="chartContainer"></div>
+                @else
+                    <div  class="col-xs-12 col-sm-8">{{ trans('ibportal::ibportal.no_account_available') }}</div>
+                @endif
+
+            </section><div class="clearFix"></div>
+
+
+
+
+        </div>
+    </div>
 
 
 </div>

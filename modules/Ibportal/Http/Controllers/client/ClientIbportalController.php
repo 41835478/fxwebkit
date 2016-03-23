@@ -127,7 +127,7 @@ class ClientIbportalController extends Controller
 
             $role = explode(',', Config::get('fxweb.client_default_role'));
 
-            $oResults = $this->Users->getAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role, $agentId);
+            $oResults = $this->Users->getClientAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role, $agentId);
 
         }
 

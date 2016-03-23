@@ -118,10 +118,10 @@ public function getDashboardStatistics(){
         if($agents == 1){
             $oResult=   $oResult->with('isAgent')->whereHas('isAgent', function ($query) use ($agents) {
 
-            $query->whereNotNull('user_id');
+                $query->whereNotNull('user_id');
 
-        });
-    }else{
+            });
+        }else{
             $oResult=  $oResult->whereNotIn('id', function ($query) {
 
                 $query->select(DB::raw('ibportal_user_ibid.user_id'))
@@ -129,7 +129,57 @@ public function getDashboardStatistics(){
                     ->whereRaw('ibportal_user_ibid.user_id = users.id');
 
             });
-}
+        }
+
+        /* =============== id Filter  =============== */
+        if (isset($aFilters['id']) && !empty($aFilters['id'])) {
+            $oResult = $oResult->where('id', $aFilters['id']);
+        }
+
+        /* =============== Nmae Filter  =============== */
+        if (isset($aFilters['first_name']) && !empty($aFilters['first_name'])) {
+            $oResult = $oResult->where('first_name', 'like', '%' . $aFilters['first_name'] . '%');
+        }
+
+        if (isset($aFilters['last_name']) && !empty($aFilters['last_name'])) {
+            $oResult = $oResult->where('last_name', 'like', '%' . $aFilters['last_name'] . '%');
+        }
+
+        /* =============== email Filter  =============== */
+        if (isset($aFilters['email']) && !empty($aFilters['email'])) {
+            $oResult = $oResult->where('email', 'like', '%' . $aFilters['email'] . '%');
+        }
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+        }
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+
+        }
+        /* =============== Preparing Output  =============== */
+
+        return $oResult;
+    }
+
+
+    public function getClientAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
+    {
+
+        $agents=$aFilters['agent_id'];
+        $oResult =new User();
+
+            $oResult=   $oResult->with('agentPlan')->whereHas('agentPlan',function($query)use ($agents){
+                $query->where('agent_id',$agents);
+                $query->with('plan');
+            });
+
 
         /* =============== id Filter  =============== */
         if (isset($aFilters['id']) && !empty($aFilters['id'])) {
