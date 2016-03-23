@@ -264,9 +264,10 @@ class ClientIbportalController extends Controller
 
     public function getAccountant(Request $oRequest)
     {
+
         $login=UserIbid::select('login')->where('user_id', current_user()->getUser()->id)->first()->login;
         $oSymbols = $this->Ibportal->getClosedTradesSymbols();
-        $aTradeTypes = ['' => 'ALL'] + $this->Ibportal->getAccountantTypes();
+        $aTradeTypes = ['' => 'ALL'] + $this->Ibportal->getAgentCommissionTypes();
         $serverTypes = $this->Ibportal->getServerTypes();
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
@@ -281,6 +282,7 @@ class ClientIbportalController extends Controller
             'group' => '',
             'all_symbols' => true,
             'symbol' => '',
+            'type' => '',
             'sort' => 'ASC',
             'order' => 'TICKET',
         ];
@@ -298,6 +300,7 @@ class ClientIbportalController extends Controller
             $aFilterParams['login'] = $login;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
+            $aFilterParams['type'] = $oRequest->type;
             $aFilterParams['all_groups'] = true;
             $aFilterParams['group'] = [];
             $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);

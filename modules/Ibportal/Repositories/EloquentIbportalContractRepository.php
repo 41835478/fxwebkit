@@ -626,6 +626,14 @@ class EloquentIbportalContractRepository implements IbportalContract
         ];
     }
 
+    public function getAgentCommissionTypes() {
+
+        return [
+            6 => 'Commission',
+            7 => 'Withdraws'
+        ];
+    }
+
 
     public function getServerTypes() {
         return [
@@ -676,8 +684,19 @@ class EloquentIbportalContractRepository implements IbportalContract
           2 => 'Withdraws',
          */
 
+        if (isset($aFilters['type']) && !empty($aFilters['type'])) {
+if($aFilters['type'] == 6){
+
+    $oResult = $oResult->where('PROFIT', '>', 0);
+}else if($aFilters['type'] == 7){
+
+    $oResult = $oResult->where('PROFIT', '<', 0);
+}
+
+
+        }
+
         $oResult = $oResult->where('CMD', '=', 6);
-        $oResult = $oResult->where('PROFIT', '>', 0);
 
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);

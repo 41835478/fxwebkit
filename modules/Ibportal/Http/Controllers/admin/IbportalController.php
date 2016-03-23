@@ -660,7 +660,7 @@ class IbportalController extends Controller
     {
         $login=UserIbid::select('login')->where('user_id',$oRequest->agentId)->first()->login;
         $oSymbols = $this->Ibportal->getClosedTradesSymbols();
-        $aTradeTypes = ['' => 'ALL'] + $this->Ibportal->getAccountantTypes();
+        $aTradeTypes = ['' => 'ALL'] + $this->Ibportal->getAgentCommissionTypes();
         $serverTypes = $this->Ibportal->getServerTypes();
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
@@ -671,6 +671,7 @@ class IbportalController extends Controller
             'login' => $login,
             'from_date' => '',
             'to_date' => '',
+            'type' => '',
             'all_groups' => true,
             'group' => '',
             'all_symbols' => true,
@@ -695,6 +696,7 @@ class IbportalController extends Controller
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['all_groups'] = true;
             $aFilterParams['group'] = [];
+            $aFilterParams['type'] = $oRequest->type;
             $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
             $aFilterParams['symbol'] = $oRequest->symbol;
         }
