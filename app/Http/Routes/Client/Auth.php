@@ -58,10 +58,12 @@ Route::post('register', [
 ]);
 
 Route::get('recover', [
+    'before'=>'changeLanguage',
     'as' => 'client.auth.recover',
     'uses' => 'AuthController@getRecover'
 ]);
 Route::post('recover', [
+
     'as' => 'client.auth.recover',
     'uses' => 'AuthController@postRecover'
 ]);
