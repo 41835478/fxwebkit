@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('accounts::accounts.addAccount'))
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('accounts::accounts.addAccount') }}</h1>
     </div>
@@ -141,6 +141,7 @@
     </div>
 
     {!! Form::close() !!}
+    </div>
 @stop
 @section("script")
     @parent

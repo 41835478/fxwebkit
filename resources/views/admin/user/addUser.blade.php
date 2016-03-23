@@ -1,8 +1,8 @@
 @extends('admin.layouts.main')
 @section('title', trans('user.addUser'))
 @section('content')
-
-<div class="page-header">
+    <div id="content-wrapper">
+        <div class="page-header">
 		<h1>{{ trans('user.addUser') }}</h1>
 	</div>
 
@@ -129,7 +129,7 @@
     <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']  or 0 }}">{{ trans('user.save') }}</button>
 
 </div>
-
+</div>
 {!! Form::close() !!}
 @stop
 @section('script')

@@ -1,7 +1,7 @@
 @extends('client.layouts.main')
 @section('title', trans('accounts::accounts.accountStatement'))
 @section('content')
-
+    <div id="content-wrapper">
 
 <div class="page-header">
     <h1>{{ trans('accounts::accounts.user_details') }}</h1>
@@ -91,7 +91,7 @@
 
     @endif
 </div>                
-
+</div>
 
 <script>
     init.push(function () {

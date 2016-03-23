@@ -1,7 +1,7 @@
 @extends('client.layouts.main')
 @section('title', trans('ibportal::ibportal.agreemment'))
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('ibportal::ibportal.agreemment') }}</h1>
     </div>
@@ -37,7 +37,7 @@
 
         </div>
     @endif
-
+</div>
     {!! Form::close() !!}
 
 

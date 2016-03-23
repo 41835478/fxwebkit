@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('tools::tools.edit_contract'))
 @section('content')
-
+    <div id="content-wrapper">
 <div class="page-header">
     <h1>{{ trans('tools::tools.edit_contract') }}</h1>
 </div>
@@ -82,7 +82,7 @@
 <div class="panel-footer text-right">
     <a href="{{ route('tools.futureContract') }}">
         <button type="submit" class="btn btn-primary" name="id" value="{{ $contractInfo['id']}}">{{ trans('tools::tools.save') }}</button></a>
-
+</div>
     {!! Form::close() !!}
     @stop
     @section("script")

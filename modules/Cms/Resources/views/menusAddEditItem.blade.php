@@ -1,7 +1,7 @@
 @extends(Config::get('cms.admin_theme'))
 
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('cms::cms.menuBuilder') }}</h1>
 
@@ -60,8 +60,9 @@
     </div>
 
     </div><!-- .form_body_div -->
-    {!! Form::close() !!}
     </div>
+    {!! Form::close() !!}
+
 
 
     @endif

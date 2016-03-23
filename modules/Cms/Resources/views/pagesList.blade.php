@@ -2,7 +2,7 @@
 
 
 @section('content')
-
+    <div id="content-wrapper">
     <div class="  theme-default page-mail">
         <div class="page-header">
             <h1>{{ trans('cms::cms.pagesList') }}</h1>
@@ -61,7 +61,7 @@
         </div>
     </div>
 
-
+</div>
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'cms_pagesList.css') }}">
     <script src="{{ asset($asset_folder.'jquery-2.1.1.min.js') }}"></script>

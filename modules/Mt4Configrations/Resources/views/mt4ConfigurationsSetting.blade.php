@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('mt4configrations::mt4configrations.settings'))
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('mt4configrations::mt4configrations.settings') }}</h1>
     </div>
@@ -46,7 +46,7 @@
 
         </div>
 
-
+</div>
 
     @if($errors->any())
         <div class="alert alert-danger alert-dark">

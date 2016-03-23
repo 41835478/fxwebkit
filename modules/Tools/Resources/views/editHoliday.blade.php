@@ -1,7 +1,7 @@
     @extends('admin.layouts.main')
     @section('title', trans('tools::tools.addContract'))
     @section('content')
-
+        <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('tools::tools.add_holiday') }}</h1>
     </div>
@@ -51,7 +51,7 @@
     <div class="panel-footer text-right">
         <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $holidayInfo['id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
     </div>
-
+</div>
     {!! Form::close() !!}
     @stop
     @section("script")

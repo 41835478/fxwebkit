@@ -1,7 +1,7 @@
-    @extends('admin.layouts.main')
-    @section('title', trans('tools::tools.addContract'))
-    @section('content')
-
+@extends('admin.layouts.main')
+@section('title', trans('tools::tools.addContract'))
+@section('content')
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('tools::tools.add_contract') }}</h1>
     </div>
@@ -15,14 +15,17 @@
                     <label class="control-label">{{ trans('tools::tools.name') }}</label>
                     {!! Form::text('name',$contractInfo['name'],['class'=>'form-control','id'=>'nameInput']) !!}
                 </div>
-            </div><!-- col-sm-6 -->
+            </div>
+            <!-- col-sm-6 -->
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.symbol') }}</label>
-                      {!! Form::text('symbol',$contractInfo['symbol'],['class'=>'form-control']) !!}
+                    {!! Form::text('symbol',$contractInfo['symbol'],['class'=>'form-control']) !!}
                 </div>
-            </div><!-- col-sm-6 -->
-        </div><!-- row -->
+            </div>
+            <!-- col-sm-6 -->
+        </div>
+        <!-- row -->
 
 
         <div class="row">
@@ -33,15 +36,18 @@
 
 
                 </div>
-            </div><!-- col-sm-6 -->
+            </div>
+            <!-- col-sm-6 -->
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.month') }}</label>
 
                     {!! Form::select('month',$contractInfo['month_array'],$contractInfo['month'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
                 </div>
-            </div><!-- col-sm-6 -->
-        </div><!-- row -->
+            </div>
+            <!-- col-sm-6 -->
+        </div>
+        <!-- row -->
 
         <div class="row">
 
@@ -51,14 +57,17 @@
                     {!! Form::text('year',$contractInfo['year'],['class'=>'form-control']) !!}
 
                 </div>
-            </div><!-- col-sm-6 -->
+            </div>
+            <!-- col-sm-6 -->
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.start_date') }}</label>
                     {!! Form::text('start_date',$contractInfo['start_date'],['class'=>'form-control']) !!}
                 </div>
-            </div><!-- col-sm-6 -->
-        </div><!-- row -->
+            </div>
+            <!-- col-sm-6 -->
+        </div>
+        <!-- row -->
 
         <div class="row">
 
@@ -68,43 +77,46 @@
                     {!! Form::text('expiry_date',$contractInfo['expiry_date'],['class'=>'form-control']) !!}
 
                 </div>
-            </div><!-- col-sm-6 -->
-        </div><!-- row -->
+            </div>
+            <!-- col-sm-6 -->
+        </div>
+        <!-- row -->
 
 
     </div>
     @if($errors->any())
-    <div class="alert alert-danger alert-dark">
-        @foreach($errors->all() as $key=>$error)
-        <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
-        @endforeach
-    </div>
+        <div class="alert alert-danger alert-dark">
+            @foreach($errors->all() as $key=>$error)
+                <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>
+            @endforeach
+        </div>
     @endif
     <div class="panel-footer text-right">
-        <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $contractInfo['edit_id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
+        <button type="submit" class="btn btn-primary" name="edit_id"
+                value="{{ $contractInfo['edit_id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
     </div>
-
+</div>
     {!! Form::close() !!}
-    @stop
-    @section("script")
+@stop
+@section("script")
     @parent
     <link rel="stylesheet" type="text/css" href="/assets/css/autoCompleteInput.css">
     <script src="/assets/js/autoCompleteInput.js"></script>
     <script>
         init.push(function () {
-        var options = {
-        format: "yyyy-mm-dd",
+            var options = {
+                format: "yyyy-mm-dd",
                 todayBtn: "linked",
                 orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-        }
+            }
 
-        $('input[name="expiry_date"],input[name="start_date"]').datepicker(options);
+            $('input[name="expiry_date"],input[name="start_date"]').datepicker(options);
         });
 
         // Waiting for the DOM ready...
 
 
-     $('#exhangeInput').typeahead({
+        $('#exhangeInput').typeahead({
             name: 'exchange',
 
             // data source
@@ -112,9 +124,9 @@
 
             // max item numbers list in the dropdown
             limit: 10
-          });
+        });
 
-           $('#nameInput').typeahead({
+        $('#nameInput').typeahead({
             name: 'name',
 
             // data source
@@ -122,8 +134,8 @@
 
             // max item numbers list in the dropdown
             limit: 10
-          });
+        });
 
 
     </script>
-    @stop
+@stop

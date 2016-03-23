@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('tools::tools.addContract'))
 @section('content')
-    {{-- TODO[moaid] translate this page and put the right words and titles --}}
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('tools::tools.trading_hours_over_the').' '. $holidayInfo['name']  }}</h1>
     </div>
@@ -105,7 +105,7 @@
     <div class="panel-footer text-right">
     </div>
 
-
+</div>
 @stop
 @section("script")
     @parent
