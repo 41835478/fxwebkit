@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('ibportal::ibportal.accountant'))
+@section('title', trans('ibportal::ibportal.agentMoney'))
 @section('content')
 
 <div class="  theme-default page-mail" >
@@ -20,7 +20,7 @@
                     </div></li>
 
 
-                <li><div  class=" nav-input-div  ">
+                <li><div  class=" nav-input-div">
                         <div class="input-group date datepicker-warpper">
                             {!! Form::text('to_date', $aFilterParams['to_date'], ['placeholder'=>trans('reports::reports.ToDate'),'class'=>'form-control input-sm']) !!}
                             <span class="input-group-addon">
@@ -50,7 +50,7 @@
 
     <div class="mail-container " >
         <div class="mail-container-header">
-            {{ trans('ibportal::ibportal.accountant') }}
+            {{ trans('ibportal::ibportal.agentMoney') }}
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
@@ -62,7 +62,7 @@
             <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
-                        {{ trans('ibportal::ibportal.accountant') }}
+                        {{ trans('ibportal::ibportal.agentMoney') }}
 
                         @if (count($oResults[0]))
                         <div class="panel-heading-controls">

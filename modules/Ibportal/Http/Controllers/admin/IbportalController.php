@@ -656,7 +656,7 @@ class IbportalController extends Controller
         }
     }
 
-    public function getAccountant(Request $oRequest)
+    public function getAgentMoney(Request $oRequest)
     {
         $login=UserIbid::select('login')->where('user_id',$oRequest->agentId)->first()->login;
         $oSymbols = $this->Ibportal->getClosedTradesSymbols();
@@ -708,7 +708,7 @@ class IbportalController extends Controller
             $oResults[0]->sorts = $aFilterParams['sort'];
         }
 
-        return view('ibportal::admin.ibportalAccountant')
+        return view('ibportal::admin.ibportalAgentMoney')
             ->with('aSymbols', $aSymbols)
             ->with('aTradeTypes', $aTradeTypes)
             ->with('oResults', $oResults)

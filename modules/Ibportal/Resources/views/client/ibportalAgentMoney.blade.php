@@ -1,5 +1,5 @@
 @extends('client.layouts.main')
-@section('title', trans('ibportal::ibportal.accountant'))
+@section('title', trans('ibportal::ibportal.agentMoney'))
 @section('content')
 
 
@@ -50,7 +50,7 @@
 
     <div class="mail-container " >
         <div class="mail-container-header">
-            {{ trans('ibportal::ibportal.accountant') }}
+            {{ trans('ibportal::ibportal.agentMoney') }}
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
@@ -62,7 +62,7 @@
             <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
-                        {{ trans('ibportal::ibportal.accountant') }}
+                        {{ trans('ibportal::ibportal.agentMoney') }}
 
                         @if (count($oResults[0]))
                         <div class="panel-heading-controls">

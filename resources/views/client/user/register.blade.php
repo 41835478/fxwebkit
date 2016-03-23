@@ -124,9 +124,6 @@
             {!! Form::submit(Lang::get('user.SignUp'), ['class'=>'signup-btn bg-primary']) !!}
         </div>
         </form>
-        
-
-
 
         <div class="signup-with">
             <a href="{{ route('client.auth.login') }}" class="signup-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">

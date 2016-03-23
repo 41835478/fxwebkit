@@ -102,7 +102,7 @@ return [
     'withdraws'=>'Withdraws',
     'credit_in'=>'CreditIn',
     'credit_out'=>'CreditOut',
-    'agentsMoney' => 'Agents Money',
+    'agentMoney' => 'Agent Money',
     'total'=>'Total',
     'password'=>'Password',
     'assignAgents'=>'Assign Agents',

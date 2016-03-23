@@ -262,7 +262,7 @@ class ClientIbportalController extends Controller
 
     }
 
-    public function getAccountant(Request $oRequest)
+    public function getAgentMoney(Request $oRequest)
     {
 
         $login=UserIbid::select('login')->where('user_id', current_user()->getUser()->id)->first()->login;
@@ -317,7 +317,7 @@ class ClientIbportalController extends Controller
             $oResults[0]->sorts = $aFilterParams['sort'];
         }
 
-        return view('ibportal::client.ibportalAccountant')
+        return view('ibportal::client.ibportalAgentMoney')
             ->with('aSymbols', $aSymbols)
             ->with('aTradeTypes', $aTradeTypes)
             ->with('oResults', $oResults)
