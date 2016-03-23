@@ -718,10 +718,10 @@ class EloquentIbportalContractRepository implements IbportalContract
     public function getAgentCommissionChart($login){
 
 
-        $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'), 'CMD'])
+        $oGrowthResults = Mt4ClosedBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'), 'CMD'])
             ->where('login', $login)
             ->where('server_id', 0)
-            ->where('cmd','>', 0)
+            ->where('cmd','=', 6)
             ->where('PROFIT','>', 0)
             ->orderBy('CLOSE_TIME')
             ->get();
@@ -752,10 +752,10 @@ public function getAgentStatistics($agentId){
     $login=UserIbid::select('login')->where('user_id',$agentId)->first()->login;
 
 
-    $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('sum(PROFIT+COMMISSION+SWAPS) as netProfit,concat(YEAR(CLOSE_TIME),concat("-",MONTH(CLOSE_TIME))) as month'), 'CMD'])
+    $oGrowthResults = Mt4ClosedBalance::select([DB::raw('sum(PROFIT+COMMISSION+SWAPS) as netProfit,concat(YEAR(CLOSE_TIME),concat("-",MONTH(CLOSE_TIME))) as month'), 'CMD'])
         ->where('login', $login)
         ->where('server_id', 0)
-        ->where('cmd','>', 0)
+        ->where('cmd','=', 6)
         ->where('PROFIT','>', 0)
         ->groupby('month')
         ->orderBy('CLOSE_TIME')
@@ -770,7 +770,7 @@ public function getAgentStatistics($agentId){
     foreach ($oGrowthResults as $row) {
 
 
-        $pastBalance+=$row->netProfit;
+        $pastBalance=$row->netProfit;
         $balance=round($pastBalance, 2);
         $balance_array[] = $balance;
         $i++;
