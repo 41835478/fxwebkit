@@ -67,6 +67,7 @@
                                 <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.first_name'), 'first_name', $oResults) !!}</th>
                                 <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults) !!}</th>
                                 <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults) !!}</th>
+                                <th class="no-warp">{!! trans('ibportal::ibportal.plan')!!}</th>
 
                             </tr>
                             </thead>
@@ -81,6 +82,7 @@
                                         <td>{{ $oResult->first_name }}</td>
                                         <td>{{ $oResult->last_name }}</td>
                                         <td>{{ $oResult->email }}</td>
+                                        <td>{{ $oResult->agentPlan->plan->name}}</td>
                                     </tr>
                                 @endforeach
                             @endif
