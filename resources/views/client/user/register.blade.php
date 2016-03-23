@@ -13,11 +13,17 @@
             &nbsp;
         </a>
 
-        <div class="panel-heading-controls">
-            @foreach(config('app.language')  as $locale=>$name)
-                <a href="?locale={{$locale}}"> | {{ $name }}  </a>
-            @endforeach
+        <div class="panel-heading-controls ">
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i> {{ trans('user.language') }}</a>
+                <ul class="dropdown-menu">
+                    @foreach(config('app.language')  as $locale=>$name)
+                        <li><a href="?locale={{$locale}}">{{ $name }}</a></li>
+
+                    @endforeach
+                </ul></div>
         </div>
+
         @include('client.partials.messages')
         {!! Form::open(['id'=>'signup-form_id']) !!}
         <div class="signup-text">

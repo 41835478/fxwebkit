@@ -553,22 +553,7 @@ g.highcharts-legend{display:none;}
 }
 /* __End__ holiday Details*/
 
-/* Login*/
-.page-signin .signin-with-btn {
-    border-radius: 2px;
-    width: 32%;
-    color: #fff;
-    display: block;
-    font-weight: 300;
-    padding: 10px 0;
-    text-align: center;
-    -webkit-transition: all .3s;
-    transition: all .3s;
-    float: left;
-    margin-top: 0px !important;
-    margin-left: 1%;
-}
-/* End Login*/
+
 
 /* Register */
 .theme-default.page-signup .signup-header{
