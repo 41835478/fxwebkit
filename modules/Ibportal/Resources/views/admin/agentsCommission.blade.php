@@ -79,7 +79,7 @@
 
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
             {!! Form::hidden('order', $aFilterParams['order']) !!}
-            {!! Form::close() !!}
+
 
         </div>
     </div>
@@ -181,7 +181,7 @@
     </div>
 </div>
 </div>
-
+{!! Form::close() !!}
 <script>
     init.push(function () {
 

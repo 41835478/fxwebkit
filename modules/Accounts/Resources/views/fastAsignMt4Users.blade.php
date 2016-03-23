@@ -218,6 +218,7 @@
     </div>
 
     </div>
+
     <script src="{{ asset('/assets/js/jquery.2.0.3.min.js') }}"></script>
     <script>
 

@@ -35,7 +35,7 @@
 
                 {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                 {!! Form::hidden('order', $aFilterParams['order']) !!}
-                {!! Form::close() !!}
+
 
 
             </div>
@@ -55,24 +55,6 @@
                         <div class="table-caption">
                             {{ trans('reports::reports.accounts') }}
 
-                            @if (count($oResults))
-                                <div class="panel-heading-controls">
-                                    <div class="btn-group btn-group-xs">
-                                        <button data-toggle="dropdown" type="button" class="btn btn-success dropdown-toggle">
-                                            <span class="fa fa-cog"></span>&nbsp;
-                                            <span class="fa fa-caret-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li>
-                                                <a href="{{ Request::fullUrl() }}&export=xls">
-                                                    <i class="dropdown-icon fa fa-camera-retro"></i>
-                                                    {{ trans('reports::reports.export') }}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            @endif
 
                         </div>
                     </div>
@@ -141,6 +123,7 @@
         </div>
     </div>
     </div>
+    {!! Form::close() !!}
     <script>
         init.push(function () {
 
