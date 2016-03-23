@@ -1,7 +1,7 @@
 @extends(Config::get('cms.admin_theme'))
 
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('cms::cms.newCustomHTML') }}</h1>
         @if($selected_id>0)
@@ -62,6 +62,7 @@
             {!! Form::submit('save translate',["name"=>'editcustomHtml_submit','id'=>'edit_customHtml_submit','class'=>'btn btn-primary' ]) !!}
 
 
+        </div>
         </div>
         {!! Form::close() !!}
     @endif

@@ -2,7 +2,7 @@
 @section('title', Lang::get('dashboard.PageTitle'))
 @section('content')
 
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('ibportal::ibportal.summary') }}</h1>
     </div>
@@ -103,7 +103,7 @@
 
 
 
-
+</div>
 
 
 @stop

@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('tools::tools.marketWatch'))
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('tools::tools.marketWatch') }}</h1>
     </div>
@@ -73,7 +73,7 @@
 
     </section>
 
-
+</div>
 @stop
 @section("script")
     @parent

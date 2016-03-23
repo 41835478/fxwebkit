@@ -1,7 +1,7 @@
 @extends('client.layouts.main')
 @section('title', trans('accounts::accounts.addMt4User'))
 @section('content')
-
+    <div id="content-wrapper">
 <div class="page-header">
     <h1>{{ trans('accounts::accounts.addMt4User') }}</h1>
 </div>
@@ -93,6 +93,7 @@
     <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $mt4_user_details['edit_id']  or 0 }}">{{ trans('accounts::accounts.submit') }}</button>
 </div>
 </div>
+        </div>
 {!! Form::close() !!}
 @stop
 @section("script")

@@ -112,7 +112,7 @@ public function getDashboardStatistics(){
 
     public function getAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
     {
-     
+
         $agents=$aFilters['agent_id'];
         $oResult =new User();
         if($agents == 1){

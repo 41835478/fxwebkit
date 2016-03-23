@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('ibportal::ibportal.addAliases'))
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('ibportal::ibportal.addPlan') }}</h1>
     </div>
@@ -57,7 +57,7 @@
 
             </div>
         @endif
-
+</div>
         {!! Form::close() !!}
 
         @stop

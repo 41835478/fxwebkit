@@ -2,7 +2,7 @@
 @section('title', trans('user.addUser'))
 @section('content')
 
-
+    <div id="content-wrapper">
 <div class="page-header">
     <h1>{{ trans('user.edit_user') }}</h1>
 </div>
@@ -136,6 +136,7 @@
 
     {!! Form::close() !!}
 </div>
+        </div>
 @stop
 @section('script')
 @parent

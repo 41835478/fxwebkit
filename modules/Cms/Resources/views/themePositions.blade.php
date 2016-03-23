@@ -1,7 +1,7 @@
 @extends(Config::get('cms.admin_theme'))
 
 @section('content')
-
+    <div id="content-wrapper">
 
     <div class="page-header">
         <h1>{{ trans('cms::cms.pageBuilder') }}</h1>
@@ -114,7 +114,7 @@
         </div>
 
     </div>
-
+</div>
     {!! Form::hidden('position',$page_id ,['id'=>'position_name_input' ,]) !!}
     {!! Form::hidden('module_value','' ) !!}
     {!! Form::hidden('type','' ) !!}

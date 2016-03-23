@@ -1,7 +1,7 @@
 @extends(Config::get('cms.admin_theme'))
 
 @section('content')
-
+    <div id="content-wrapper">
 	<div class="page-header">
 		<h1>{{ trans('cms::cms.themes') }}</h1>
 	</div>
@@ -16,7 +16,7 @@
     {{ trans('cms::cms.this_image_display') }}
 </p>
     
-
+</div>
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'cms_themes.css') }}">
     <script src="{{ asset($asset_folder.'jquery-2.1.1.min.js') }}"></script>

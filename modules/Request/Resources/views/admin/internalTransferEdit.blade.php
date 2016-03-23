@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('request::request.internalTransfer'))
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('request::request.internalTransfer') }}</h1>
     </div>
@@ -49,6 +49,7 @@
         <button type="submit" class="btn btn-primary" name="logId"
                 value="{{ $intenalTransfer['logId']}}">{{ trans('request::request.save') }}</button>
     </div>
+        </div>
 
     {!! Form::close() !!}
 @stop

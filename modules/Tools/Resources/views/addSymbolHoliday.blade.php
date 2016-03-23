@@ -1,7 +1,7 @@
-    @extends('admin.layouts.main')
-    @section('title', trans('tools::tools.addContract'))
-    @section('content')
-
+@extends('admin.layouts.main')
+@section('title', trans('tools::tools.addContract'))
+@section('content')
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('tools::tools.trading_hours_over_the').' '. $holidayInfo['name']  }} </h1>
     </div>
@@ -12,7 +12,7 @@
 
         <div class="table-light">
 
-       <table id="symbolsListTable" class="table table-bordered table-striped">
+            <table id="symbolsListTable" class="table table-bordered table-striped">
                 <thead>
                 <tr>
 
@@ -34,8 +34,6 @@
                         data-target="#myModal">{{ trans('ibportal::ibportal.add_symbol') }}</button>
 
 
-
-
             </div>
         </div>
 
@@ -45,17 +43,19 @@
                     <label class="control-label">{{ trans('tools::tools.date') }}</label>
                     {!! Form::text('date',$holidayInfo['date'],['class'=>'form-control']) !!}
                 </div>
-            </div><!-- col-sm-6 -->
+            </div>
+            <!-- col-sm-6 -->
 
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.start_time') }}</label>
                     {!! Form::text('start_hour',$holidayInfo['start_hour'],['class'=>'form-control']) !!}
                 </div>
-            </div><!-- col-sm-6 -->
+            </div>
+            <!-- col-sm-6 -->
 
-        </div><!-- row -->
-
+        </div>
+        <!-- row -->
 
 
         <div class="row">
@@ -65,22 +65,25 @@
                     {!! Form::text('end_hour',$holidayInfo['end_hour'],['class'=>'form-control']) !!}
 
                 </div>
-            </div><!-- col-sm-6 -->
-        </div><!-- row -->
+            </div>
+            <!-- col-sm-6 -->
+        </div>
+        <!-- row -->
 
 
     </div>
     @if($errors->any())
-    <div class="alert alert-danger alert-dark">
-        @foreach($errors->all() as $key=>$error)
-        <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
-        @endforeach
-    </div>
+        <div class="alert alert-danger alert-dark">
+            @foreach($errors->all() as $key=>$error)
+                <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>
+            @endforeach
+        </div>
     @endif
     <div class="panel-footer text-right">
-        <button type="submit" class="btn btn-primary" name="holiday_id" value="{{ $holidayInfo['id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
+        <button type="submit" class="btn btn-primary" name="holiday_id"
+                value="{{ $holidayInfo['id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
     </div>
-
+</div>
     {!! Form::close() !!}
 
 
@@ -119,21 +122,21 @@
         <!-- / .modal-dialog -->
     </div>
 
-    @stop
-    @section("script")
+@stop
+@section("script")
     @parent
     <link rel="stylesheet" type="text/css" href="/assets/css/autoCompleteInput.css">
 
     <script>
         {{-- TODO [mohammad] check if the start hour less than end hour --}}
         init.push(function () {
-        var options = {
-        format: "yyyy-mm-dd",
+            var options = {
+                format: "yyyy-mm-dd",
                 todayBtn: "linked",
                 orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-        }
+            }
 
-        $('input[name="date"]').datepicker(options);
+            $('input[name="date"]').datepicker(options);
         });
 
         var options2 = {
@@ -141,23 +144,21 @@
             showSeconds: true,
             showMeridian: false,
             showInputs: false,
-            orientation: $('body').hasClass('right-to-left') ? { x: 'right', y: 'auto'} : { x: 'auto', y: 'auto'}
+            orientation: $('body').hasClass('right-to-left') ? {x: 'right', y: 'auto'} : {x: 'auto', y: 'auto'}
         }
         $('input[name="end_hour"],input[name="start_hour"]').timepicker(options2);
 
 
-        $('.securitiesCheckbox').change(function(){
-            var security_id=$(this).val();
+        $('.securitiesCheckbox').change(function () {
+            var security_id = $(this).val();
 
-            if($(this).prop("checked")){
-                $(".symbols_tr_"+security_id+" .symbolsCheckbox").prop("checked",true);
-            }else{
+            if ($(this).prop("checked")) {
+                $(".symbols_tr_" + security_id + " .symbolsCheckbox").prop("checked", true);
+            } else {
 
-                $(".symbols_tr_"+security_id+" .symbolsCheckbox").prop("checked",false);
+                $(".symbols_tr_" + security_id + " .symbolsCheckbox").prop("checked", false);
             }
         });
-
-
 
 
         $('#addSymbolsToListButton').click(function () {
@@ -187,4 +188,4 @@
             $('#symbolsMultiSelect').append('<option value="' + symbol + '">' + symbolLabel + '</option>');
         }
     </script>
-    @stop
+@stop

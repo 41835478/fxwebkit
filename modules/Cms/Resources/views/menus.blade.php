@@ -1,7 +1,7 @@
 @extends(Config::get('cms.admin_theme'))
 
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('cms::cms.menuBuilder') }}</h1>
 
@@ -136,7 +136,7 @@
                 {!! $render_menu_html !!}
             </div>
         </div>
-
+</div>
     @endif
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'cms_menus.css') }}">

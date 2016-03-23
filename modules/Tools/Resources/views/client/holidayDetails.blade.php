@@ -1,7 +1,7 @@
 @extends('client.layouts.main')
 @section('title', trans('tools::tools.addContract'))
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('tools::tools.trading_hours_over_the').' '. $holidayInfo['name']  }}</h1>
     </div>
@@ -126,7 +126,7 @@
     <div class="panel-footer text-right">
     </div>
 
-
+</div>
 @stop
 @section("script")
     @parent

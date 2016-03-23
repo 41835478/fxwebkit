@@ -3,7 +3,7 @@
 @section('title', Lang::get('dashboard.PageTitle'))
 @section('content')
 
-
+	<div id="content-wrapper">
 	<div class="page-header">
 		<h1><i class="fa fa-dashboard page-header-icon"></i>{{ trans('dashboard.PageTitle') }}</h1>
 	</div>
@@ -86,7 +86,7 @@
 	<div class="clearFix" style="clear:both;"></div>
 
 
-
+</div>
 
 @stop
 

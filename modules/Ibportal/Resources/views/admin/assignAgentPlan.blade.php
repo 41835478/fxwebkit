@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('ibportal::ibportal.assignAgentPlan'))
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('ibportal::ibportal.assignAgentPlan') }}</h1>
     </div>
@@ -71,7 +71,7 @@
         {!! Form::close() !!}
 
 
-
+</div>
 
         @stop
         @section('script')

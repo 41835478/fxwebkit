@@ -69,13 +69,13 @@
                     <div class="stat-panel no-margin-b">
                         <div class="stat-row">
                             <div class="stat-counters bg-panel no-padding text-center">
-                                <div class="stat-cell col-xs-4 padding-xs-vr">
+                                <div class="stat-cell-account col-xs-4 padding-xs-vr">
                                     <span class="text-xs">{{ trans('reports::reports.account') }}{{ $oResults->LOGIN }} </span>
                                 </div>
-                                <div class="stat-cell col-xs-4 padding-xs-vr">
+                                <div class="stat-cell-account col-xs-4 padding-xs-vr">
                                     <span class="text-xs">{{ trans('reports::reports.name') }}{{ $oResults->NAME }}  </span>
                                 </div>
-                                <div class="stat-cell col-xs-4 padding-xs-vr">
+                                <div class="stat-cell-account col-xs-4 padding-xs-vr">
                                     <span class="text-xs">{{ trans('reports::reports.leverage') }}{{ $oResults->LEVERAGE }} </span>
                                 </div>
                             </div>
