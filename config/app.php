@@ -156,7 +156,7 @@ return [
 		'Maatwebsite\Excel\ExcelServiceProvider',
 		'Pingpong\Modules\ModulesServiceProvider',
 
-		//	       'Cartalyst\Sentinel\Addons\Social\Laravel\SocialServiceProvider',
+			       'Cartalyst\Sentinel\Addons\Social\Laravel\SocialServiceProvider',
 	'Greggilbert\Recaptcha\RecaptchaServiceProvider'
 	],
 
@@ -218,7 +218,7 @@ return [
 		'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 
 
-		//    'Social' => 'Cartalyst\Sentinel\Addons\Social\Laravel\Facades\Social',
+		    'Social' => 'Cartalyst\Sentinel\Addons\Social\Laravel\Facades\Social',
 
 		'Recaptcha' => 'Greggilbert\Recaptcha\Facades\Recaptcha',
 	],
