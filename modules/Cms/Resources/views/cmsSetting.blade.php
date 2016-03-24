@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('cms::cms.settings'))
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('cms::cms.settings') }}</h1>
     </div>
@@ -84,6 +84,7 @@
         {!! Form::close() !!}
     </div>
     </div>
+
 @stop
 @section("script")
     @parent

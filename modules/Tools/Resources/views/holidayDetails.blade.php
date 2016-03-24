@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('tools::tools.addContract'))
 @section('content')
-    {{-- TODO[moaid] translate this page and put the right words and titles --}}
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('tools::tools.trading_hours_over_the').' '. $holidayInfo['name']  }}</h1>
     </div>
@@ -88,32 +88,7 @@
                     </tbody>
 
                 </table>
-                <style type="text/css">
-                    .hoursLneAllDiv {
-                        width: 100%;
-                        height: 30px;
-                        position: relative;
-                    }
 
-                    .hourPeriodDiv {
-                        position: absolute;
-                        height: 30px;
-                        background-color: rgba(141, 195, 40, 0.46);
-                    }
-
-                    .oneHourDiv {
-                        width: 4.166666666666%;
-                        margin-right: -1px;
-                        margin-left: 1px;
-                        border-left: 1px solid #aaa;
-                        float: left;
-                        height: 30px;
-                        background-color: #ccc;
-                        color: #fff;
-                        text-align: center;
-                        padding-top: 5px;
-                    }
-                </style>
 
             </div>
 
@@ -130,7 +105,7 @@
     <div class="panel-footer text-right">
     </div>
 
-
+</div>
 @stop
 @section("script")
     @parent

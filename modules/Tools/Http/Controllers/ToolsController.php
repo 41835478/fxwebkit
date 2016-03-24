@@ -440,13 +440,10 @@ class ToolsController extends Controller
         $carbon = new Carbon();
         $dt = $carbon->now();
 
-
         $oResult = $this->oHoliday->getHolidayDetails($oRequest->holiday_id);
-
 
         $holidayInfo = [
             'id' => $oRequest->holiday_id,
-
             'name' => $oResult['name'],
             'date' => $oResult['start_date'],
             'start_hour' => $dt->format('H:i'),
@@ -454,27 +451,27 @@ class ToolsController extends Controller
         ];
 
 
-        $oResults = $this->oHoliday->getSymbols();
+
+        $symbols = $this->oHoliday->getSymbols();
+
+
 
         $view = view('tools::addSymbolHoliday');
         $view->with('holidayInfo', $holidayInfo);
-        $view->with('oResults', $oResults);
+
+       $view->with('symbols', $symbols);
         if ($message != '') {
             $view->withErrors($message);
         }
-
-
         return $view;
-
     }
 
 
     public function postAddSymbolHoliday(Request $oRequest)
     {
+
         if ($oRequest->start_hour >= $oRequest->end_hour) {
-
-
-            return $this->getAddSymbolHoliday($oRequest, trans('tools::tools.start_hour_message'));
+           // return $this->getAddSymbolHoliday($oRequest, trans('tools::tools.start_hour_message'));
         }
 
 

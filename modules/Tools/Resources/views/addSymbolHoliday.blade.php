@@ -1,7 +1,7 @@
-    @extends('admin.layouts.main')
-    @section('title', trans('tools::tools.addContract'))
-    @section('content')
-
+@extends('admin.layouts.main')
+@section('title', trans('tools::tools.addContract'))
+@section('content')
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('tools::tools.trading_hours_over_the').' '. $holidayInfo['name']  }} </h1>
     </div>
@@ -12,38 +12,17 @@
 
         <div class="table-light">
 
-       <table class="table table-bordered table-striped">
+            <table id="symbolsListTable" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th class="no-warp">{!! th_sort(trans('tools::tools.securities'), 'name', $oResults) !!}</th>
-                    <th class="no-warp">{!! th_sort(trans('tools::tools.symbols'), 'symbol', $oResults) !!}</th>
+
+                    <th class="no-warp">{{trans('tools::tools.symbols')}}</th>
+                    <th></th>
 
                 </tr>
                 </thead>
                 <tbody>
-                @if (count($oResults))
-                    {{-- */$i=0;/* --}}
-                    {{-- */$class='';/* --}}
-                    @foreach($oResults as $oResult)
-                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                        <tr class='{{ $class }}' data-security_id="{{ $oResult->id }}">
-                            <td colspan="2">
-                                {!! Form::checkbox('securities[]',$oResult->id,false,['class'=>'securitiesCheckbox']) !!}
 
-                                {{ $oResult->name }}</td>
-
-                        </tr>
-                        @foreach($oResult->symbols as $symbol)
-                        <tr class='symbols_tr_{{ $oResult->id }}'>
-                            <td></td><td>
-                                {!! Form::checkbox('symbols[]',$oResult->id .','. $symbol->id,false,['class'=>'symbolsCheckbox']) !!}
-                                {{ $symbol->name }}</td>
-
-                        </tr>
-
-                        @endforeach
-                    @endforeach
-                @endif
 
                 </tbody>
 
@@ -51,25 +30,10 @@
 
             <div class="table-footer">
 
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                        data-target="#myModal">{{ trans('ibportal::ibportal.add_symbol') }}</button>
 
-                @if (count($oResults))
 
-                    {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->render()) !!}
-                    @if($oResults->total()>25)
-
-                        <div class="DT-lf-right change_page_all_div" >
-
-                            {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('tools::tools.page'),'class'=>'form-control input-sm']) !!}
-
-                            {!! Form::submit(trans('tools::tools.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-
-                        </div>
-                    @endif
-
-                    <div class="col-sm-3">
-                        <span class="text-xs">{{trans('tools::tools.showing')}} {{ $oResults->firstItem() }} {{trans('tools::tools.to')}} {{ $oResults->lastItem() }} {{trans('tools::tools.of')}} {{ $oResults->total() }} {{trans('tools::tools.entries')}}</span>
-                    </div>
-                @endif
             </div>
         </div>
 
@@ -81,17 +45,19 @@
                     <label class="control-label">{{ trans('tools::tools.date') }}</label>
                     {!! Form::text('date',$holidayInfo['date'],['class'=>'form-control']) !!}
                 </div>
-            </div><!-- col-sm-6 -->
+            </div>
+            <!-- col-sm-6 -->
 
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.start_time') }}</label>
                     {!! Form::text('start_hour',$holidayInfo['start_hour'],['class'=>'form-control']) !!}
                 </div>
-            </div><!-- col-sm-6 -->
+            </div>
+            <!-- col-sm-6 -->
 
-        </div><!-- row -->
-
+        </div>
+        <!-- row -->
 
 
         <div class="row">
@@ -101,41 +67,78 @@
                     {!! Form::text('end_hour',$holidayInfo['end_hour'],['class'=>'form-control']) !!}
 
                 </div>
-            </div><!-- col-sm-6 -->
-        </div><!-- row -->
+            </div>
+            <!-- col-sm-6 -->
+        </div>
+        <!-- row -->
 
 
     </div>
     @if($errors->any())
-    <div class="alert alert-danger alert-dark">
-        @foreach($errors->all() as $key=>$error)
-        <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>	
-        @endforeach
-    </div>
+        <div class="alert alert-danger alert-dark">
+            @foreach($errors->all() as $key=>$error)
+                <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>
+            @endforeach
+        </div>
     @endif
     <div class="panel-footer text-right">
+        <button type="submit" class="btn btn-primary" name="holiday_id"
+                value="{{ $holidayInfo['id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
+    </div>
+</div>
+    {!! Form::close() !!}
 
 
-        <button type="submit" class="btn btn-primary" name="holiday_id" value="{{ $holidayInfo['id']  or 0 }}">{{ trans('tools::tools.save') }}</button>
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">{{ trans('tools::tools.select_symbols') }}</h4>
+                </div>
+                <div class="modal-body">
 
+                    {!! Form::open() !!}
+                    <div class="row form-group">
+                        <label class="col-sm-4 control-label">{{ trans('tools::tools.symbols') }} </label>
+
+                        <div class="col-sm-8">
+                            {!! Form::select('symbols',$symbols,'',['id'=>'symbolsMultiSelect','multiple'=>'multiple','class'=>'form-control']) !!}
+
+                        </div>
+                    </div>
+
+
+                    {!! Form::close() !!}
+                </div>
+                <!-- / .modal-body -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">{{ trans('tools::tools.close') }}</button>
+                    <button type="button" class="btn btn-primary"
+                            id="addSymbolsToListButton">{{ trans('tools::tools.add') }}</button>
+                </div>
+            </div>
+            <!-- / .modal-content -->
+        </div>
+        <!-- / .modal-dialog -->
     </div>
 
-    {!! Form::close() !!}
-    @stop
-    @section("script")
+@stop
+@section("script")
     @parent
     <link rel="stylesheet" type="text/css" href="/assets/css/autoCompleteInput.css">
 
     <script>
         {{-- TODO [mohammad] check if the start hour less than end hour --}}
         init.push(function () {
-        var options = {
-        format: "yyyy-mm-dd",
+            var options = {
+                format: "yyyy-mm-dd",
                 todayBtn: "linked",
                 orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-        }
+            }
 
-        $('input[name="date"]').datepicker(options);
+            $('input[name="date"]').datepicker(options);
         });
 
         var options2 = {
@@ -143,20 +146,48 @@
             showSeconds: true,
             showMeridian: false,
             showInputs: false,
-            orientation: $('body').hasClass('right-to-left') ? { x: 'right', y: 'auto'} : { x: 'auto', y: 'auto'}
+            orientation: $('body').hasClass('right-to-left') ? {x: 'right', y: 'auto'} : {x: 'auto', y: 'auto'}
         }
         $('input[name="end_hour"],input[name="start_hour"]').timepicker(options2);
 
 
-        $('.securitiesCheckbox').change(function(){
-            var security_id=$(this).val();
+        $('.securitiesCheckbox').change(function () {
+            var security_id = $(this).val();
 
-            if($(this).prop("checked")){
-                $(".symbols_tr_"+security_id+" .symbolsCheckbox").prop("checked",true);
-            }else{
+            if ($(this).prop("checked")) {
+                $(".symbols_tr_" + security_id + " .symbolsCheckbox").prop("checked", true);
+            } else {
 
-                $(".symbols_tr_"+security_id+" .symbolsCheckbox").prop("checked",false);
+                $(".symbols_tr_" + security_id + " .symbolsCheckbox").prop("checked", false);
             }
         });
+
+
+        $('#addSymbolsToListButton').click(function () {
+            var html = '';
+            var selectedSymbols = $('#symbolsMultiSelect').val();
+
+            if (selectedSymbols != null) {
+                var type = $('#symbolsType').val();
+                var value = $('#symbolsValue').val();
+                for (var i = 0; i < selectedSymbols.length; i++) {
+                    var symbolLabel = $('#symbolsMultiSelect option[value="' + selectedSymbols[i] + '"]').text();
+                    $('#symbolsMultiSelect option[value="' + selectedSymbols[i] + '"]').remove();
+                    html = '<tr id="tr_' + selectedSymbols[i] + '">' +
+                            '<td><input type="hidden" name="symbols[]" value="' + selectedSymbols[i] + '" />' + symbolLabel + '</td>' +
+                            '<td><i class="fa fa-trash-o" onclick="removeSelectedSymbolFromTable(\'' + selectedSymbols[i] + '\',\'' + symbolLabel + '\')"></i> </td>' +
+                            '</tr>';
+                    $('#symbolsListTable tbody').append(html);
+                }
+                $('#s2id_symbolsMultiSelect .select2-search-choice').remove();
+            }
+
+
+        });
+
+        function removeSelectedSymbolFromTable(symbol, symbolLabel) {
+            $('#tr_' + symbol).remove();
+            $('#symbolsMultiSelect').append('<option value="' + symbol + '">' + symbolLabel + '</option>');
+        }
     </script>
-    @stop
+@stop

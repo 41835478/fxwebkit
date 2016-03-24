@@ -50,25 +50,7 @@
         
               
     </table>
-     
-    <style type="text/css">
-        #statistics_section{
-            margin:20px 0px;
-            width:100%;
-            border-top:1px solid #ccc;}
-        #statistics_table{
-            margin:20px 0px;
-            width:100%;
 
-        }
-
-        #statistics_table td, #statistics_table th{ padding: 5px 10px;width:25%;font-size: 10px;}
-        #statistics_table td{text-align: right;border-right:1px solid #ccc;}
-        #statistics_table td:nth-child(4){border-right:1px solid transparent;}
-
-        #statistics_table th{text-align: left; font-weight: normal;}
-        #statistics_table th:after{content:':';}
-    </style>
 </section>
 
 @stop

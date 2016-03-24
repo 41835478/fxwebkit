@@ -11,8 +11,22 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 class DashboardController extends Controller {
 
+
+    protected $oUsers;
+
+    public function __construct(
+        Users $oUsers
+    )
+    {
+        $this->oUsers = $oUsers;
+    }
+
+
+
     public function index() {
-        return view('admin.dashboard');
+
+        return view('admin.dashboard')
+            ->withStatistics($this->oUsers->getDashboardStatistics());
     }
 /*
     protected $oUsers;

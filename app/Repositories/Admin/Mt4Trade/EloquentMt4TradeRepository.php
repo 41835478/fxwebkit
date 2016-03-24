@@ -19,8 +19,6 @@ use Fxweb\Models\Mt4Open;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 
 
-
-
 use Illuminate\Support\Facades\DB;
 use Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
@@ -30,13 +28,15 @@ use \YaLinqo\Enumerable;
  * Class EloquentUserRepository
  * @package App\Repositories\User
  */
-class EloquentMt4TradeRepository implements Mt4TradeContract {
+class EloquentMt4TradeRepository implements Mt4TradeContract
+{
 
     protected $oUsers;
 
     /**
      */
-    public function __construct(Mt4User $oUsers) {
+    public function __construct(Mt4User $oUsers)
+    {
         $this->oUsers = $oUsers;
     }
 
@@ -47,7 +47,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      * @param string $sSort
      * @return mixed
      */
-    public function getClosedTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC') {
+    public function getClosedTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC')
+    {
         /* TODO[Galya] we will delete this table where we should get symbols */
         return Mt4Closed::distinct()
             ->select('SYMBOL')
@@ -64,7 +65,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      * @param string $sSort
      * @return mixed
      */
-    public function getOpenTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC') {
+    public function getOpenTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC')
+    {
         /* TODO[Galya] we will delete this table where we should get symbols */
 
         return Mt4Closed::distinct()
@@ -80,7 +82,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      *
      * @return array
      */
-    public function getTradesTypes() {
+    public function getTradesTypes()
+    {
         return [
             0 => 'ACTUAL_TRADES',
             1 => 'PENDING_TRADES',
@@ -88,14 +91,14 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
     }
 
 
-    public function getServerTypes() {
+    public function getServerTypes()
+    {
         return [
-            -1=>'All',
+            -1 => trans('accounts::accounts.all'),
             0 => config('fxweb.liveServerName'),
             1 => config('fxweb.demoServerName'),
         ];
     }
-
 
 
     /**
@@ -103,7 +106,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      *
      * @return array
      */
-    public function getAccountantTypes() {
+    public function getAccountantTypes()
+    {
 
         return [
             1 => 'BalanceOperations',
@@ -124,7 +128,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      * @param string $sSort
      * @return object
      */
-    public function getClosedTradesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC') {
+    public function getClosedTradesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC')
+    {
         $oFxHelper = new Fx();
 
 
@@ -135,13 +140,13 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
 
-                $oResult = Mt4Closed::with('users')->whereHas('users', function($query) use($account_id) {
+                $oResult = Mt4Closed::with('users')->whereHas('users', function ($query) use ($account_id) {
 
                     $query->where('users_id', $account_id);
                 });
             } else {
 
-                $oResult =new Mt4Closed();
+                $oResult = new Mt4Closed();
             }
         }
 
@@ -150,7 +155,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
             $oResult = $oResult->where('LOGIN', $aFilters['login']);
         } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
-            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+        ) {
 
             if (!empty($aFilters['from_login'])) {
                 $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
@@ -164,9 +170,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         /* =============== Server Id Filter  =============== */
 
-        if (isset($aFilters['server_id']) &&in_array($aFilters['server_id'],[0,1])) {
+        if (isset($aFilters['server_id']) && in_array($aFilters['server_id'], [0, 1])) {
 
-                $oResult = $oResult->where('server_id',$aFilters['server_id']);
+            $oResult = $oResult->where('server_id', $aFilters['server_id']);
         }
 
         /* =============== Groups Filter  =============== */
@@ -177,7 +183,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
-            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
+        ) {
 
             if (!empty($aFilters['from_date'])) {
                 $oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
@@ -229,8 +236,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
             //OPenPrice/SL/TP/CLOSED_PRICE
 
-            $price=$oResult[$dKey]->Mt4Prices()->first();
-            $digits = ($price)?$price->DIGITS:5;
+            $price = $oResult[$dKey]->Mt4Prices()->first();
+            $digits = ($price) ? $price->DIGITS : 5;
             $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
             $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
             $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
@@ -241,10 +248,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         return $oResult;
     }
 
-    public function getOpenTradesByDate($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC') {
+    public function getOpenTradesByDate($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC')
+    {
 
         $oFxHelper = new Fx();
-        $oResult =new Mt4Open();
+        $oResult = new Mt4Open();
 
         /* =============== Login Filters =============== */
         //if ((isset($aFilters['login']) && !empty($aFilters['login'])) ) {
@@ -255,7 +263,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         //}
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
-            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
+        ) {
 
             if (!empty($aFilters['from_date'])) {
                 $oResult = $oResult->where('OPEN_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
@@ -274,8 +283,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         } else {
             $oResult = $oResult->get();
         }
-
-
 
 
         /* =============== Preparing Output  =============== */
@@ -308,10 +315,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      * @param string $sSort
      * @return object
      */
-    public function getClosedTradesByDate($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC') {
-
+    public function getClosedTradesByDate($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC')
+    {
+//dd($aFilters);
         $oFxHelper = new Fx();
-        $oResult =new Mt4Closed();
+        $oResult = new Mt4Closed();
 
         /* =============== Login Filters =============== */
         //if ((isset($aFilters['login']) && !empty($aFilters['login'])) ) {
@@ -320,7 +328,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         //}
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
-            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
+        ) {
 
             if (!empty($aFilters['from_date'])) {
                 $oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
@@ -350,7 +359,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
 
             //OPenPrice/SL/TP/CLOSED_PRICE
-            $digits = $oResult[$dKey]->Mt4Prices()->first()->DIGITS;
+            $digits = 5;
             $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
             $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
             $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
@@ -369,19 +378,20 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      * @param string $sSort
      * @return object
      */
-    public function getOpenTradesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC') {
+    public function getOpenTradesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC')
+    {
         $oFxHelper = new Fx();
         //$oResult = Mt4Trade::where('CLOSE_TIME', '=', '1970-01-01 00:00:00');
         /* ===============================check admin or user================ */
         $oResult = '';
-        if ($user =current_user()->getUser()) {
+        if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
-                $oResult = Mt4Open::with('users')->whereHas('users', function($query) use($account_id) {
+                $oResult = Mt4Open::with('users')->whereHas('users', function ($query) use ($account_id) {
                     $query->where('users_id', $account_id);
                 });
             } else {
-                $oResult =new Mt4Open();
+                $oResult = new Mt4Open();
             }
         }
         /* =============== Login Filters =============== */
@@ -389,7 +399,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
             $oResult = $oResult->where('LOGIN', $aFilters['login']);
         } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
-            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+        ) {
 
             if (!empty($aFilters['from_login'])) {
                 $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
@@ -402,9 +413,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         /* =============== Server Id Filter  =============== */
 
-        if (isset($aFilters['server_id']) &&in_array($aFilters['server_id'],[0,1])) {
+        if (isset($aFilters['server_id']) && in_array($aFilters['server_id'], [0, 1])) {
 
-            $oResult = $oResult->where('server_id',$aFilters['server_id']);
+            $oResult = $oResult->where('server_id', $aFilters['server_id']);
         }
 
         /* =============== Groups Filter  =============== */
@@ -464,15 +475,16 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      * @param array $aFilters
      * @return integer
      */
-    public function getDepositByLogin($aFilters) {
-/* Todo[Galya] which tables we have to get data from  ( I've use Mt4ClosedBalance where cmd =6)*/
+    public function getDepositByLogin($aFilters)
+    {
+        /* Todo[Galya] which tables we have to get data from  ( I've use Mt4ClosedBalance where cmd =6)*/
         // $oResult = Mt4Trade::select('PROFIT')->where('CMD', '=', 6);
         /* ===============================check admin or user================ */
         $oResult = '';
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
-                $oResult = Mt4ClosedBalance::with('users')->whereHas('users', function($query) use($account_id) {
+                $oResult = Mt4ClosedBalance::with('users')->whereHas('users', function ($query) use ($account_id) {
                     $query->where('users_id', $account_id);
                 })->select('PROFIT')->where('CMD', '=', 6);
             } else {
@@ -484,7 +496,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
-            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
+        ) {
 
             if (!empty($aFilters['from_date'])) {
                 $oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
@@ -504,7 +517,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      * @param array $aFilters
      * @return integer
      */
-    public function getCreditFacilityByLogin($aFilters) {
+    public function getCreditFacilityByLogin($aFilters)
+    {
 
         /* Todo[Galya] which tables we have to get data from   ( I've used Mt4ClosedBalance where cmd =7)*/
         //$oResult = Mt4Trade::select('PROFIT')->where('CMD', '=', 7);
@@ -513,7 +527,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
-                $oResult = Mt4ClosedBalance::with('users')->whereHas('users', function($query) use($account_id) {
+                $oResult = Mt4ClosedBalance::with('users')->whereHas('users', function ($query) use ($account_id) {
                     $query->where('users_id', $account_id);
                 })->select('PROFIT')->where('CMD', '=', 7);
             } else {
@@ -524,13 +538,13 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         /* =================================== */
 
 
-
         $oResult->where('LOGIN', '=', $aFilters['login']);
 
 
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
-            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
+        ) {
 
             if (!empty($aFilters['from_date'])) {
                 $oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
@@ -550,14 +564,15 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      * @param array $aFilters
      * @return integer
      */
-    public function getClosedTradeByLogin($aFilters) {
+    public function getClosedTradeByLogin($aFilters)
+    {
         //$oResult = Mt4Trade::select('PROFIT')->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
         /* ===============================check admin or user================ */
         $oResult = '';
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
-                $oResult = Mt4ClosedActual::with('users')->whereHas('users', function($query) use($account_id) {
+                $oResult = Mt4ClosedActual::with('users')->whereHas('users', function ($query) use ($account_id) {
                     $query->where('users_id', $account_id);
                 })->select('PROFIT');
             } else {
@@ -571,7 +586,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
-            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
+        ) {
 
             if (!empty($aFilters['from_date'])) {
                 $oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
@@ -591,7 +607,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      * @param array $aFilters
      * @return integer
      */
-    public function getFloatingByLogin($aFilters) {
+    public function getFloatingByLogin($aFilters)
+    {
 
         // $oResult = Mt4Trade::select('PROFIT')->where('CLOSE_TIME', '=', '1970-01-01 00:00:00');
         /* ===============================check admin or user================ */
@@ -599,7 +616,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
-                $oResult = Mt4OpenActual::with('users')->whereHas('users', function($query) use($account_id) {
+                $oResult = Mt4OpenActual::with('users')->whereHas('users', function ($query) use ($account_id) {
                     $query->where('users_id', $account_id);
                 })->select('PROFIT');
             } else {
@@ -612,7 +629,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
-            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
+        ) {
 
             if (!empty($aFilters['from_date'])) {
                 $oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
@@ -635,7 +653,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      * @param string $sSort
      * @return object
      */
-    public function getCommissionByFilters($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC') {
+    public function getCommissionByFilters($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC')
+    {
         $oFxHelper = new Fx();
         // $oResult = Mt4Trade::where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
         /* ===============================check admin or user================ */
@@ -643,11 +662,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
-                $oResult = Mt4Closed::with('users')->whereHas('users', function($query) use($account_id) {
+                $oResult = Mt4Closed::with('users')->whereHas('users', function ($query) use ($account_id) {
                     $query->where('users_id', $account_id);
                 });
             } else {
-                $oResult =new Mt4Closed();
+                $oResult = new Mt4Closed();
             }
         }
 
@@ -662,7 +681,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
             $oResult = $oResult->where('LOGIN', $aFilters['login']);
         } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
-            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+        ) {
 
             if (!empty($aFilters['from_login'])) {
                 $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
@@ -696,7 +716,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         }
 
 
-
         /* =============== Preparing Output  =============== */
         foreach ($oResult as $dKey => $oValue) {
             // Set CMD type
@@ -716,7 +735,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      * @param string $sSort
      * @return object
      */
-    public function getAgentCommissionByFilters($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC') {
+    public function getAgentCommissionByFilters($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC')
+    {
         $oFxHelper = new Fx();
         //$oResult = Mt4Trade::where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')->where('COMMISSION_AGENT', '!=', 0);
         /* ===============================check admin or user================ */
@@ -724,7 +744,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
-                $oResult = Mt4Closed::with('users')->whereHas('users', function($query) use($account_id) {
+                $oResult = Mt4Closed::with('users')->whereHas('users', function ($query) use ($account_id) {
                     $query->where('users_id', $account_id);
                 })->where('COMMISSION_AGENT', '!=', 0);
             } else {
@@ -743,7 +763,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
             $oResult = $oResult->where('LOGIN', $aFilters['login']);
         } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
-            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+        ) {
 
             if (!empty($aFilters['from_login'])) {
                 $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
@@ -794,7 +815,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
      * @param string $sSort
      * @return array
      */
-    public function getAccountantByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC') {
+    public function getAccountantByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC')
+    {
         $oFxHelper = new Fx();
         $oResult = new Mt4ClosedBalance();
         $aSummury = [];
@@ -803,7 +825,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
-                $oResult = Mt4ClosedBalance::with('users')->whereHas('users', function($query) use($account_id) {
+                $oResult = Mt4ClosedBalance::with('users')->whereHas('users', function ($query) use ($account_id) {
                     $query->where('users_id', $account_id);
                 });
             } else {
@@ -817,7 +839,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
             $oResult = $oResult->where('LOGIN', $aFilters['login']);
         } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
-            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+        ) {
 
             if (!empty($aFilters['from_login'])) {
                 $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
@@ -828,9 +851,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             }
         }
 
-        if (isset($aFilters['server_id']) &&in_array($aFilters['server_id'],[0,1])) {
+        if (isset($aFilters['server_id']) && in_array($aFilters['server_id'], [0, 1])) {
 
-            $oResult = $oResult->where('server_id',$aFilters['server_id']);
+            $oResult = $oResult->where('server_id', $aFilters['server_id']);
         }
 
         /* =============== Groups Filter  =============== */
@@ -841,7 +864,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
-            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
+        ) {
 
             if (!empty($aFilters['from_date'])) {
                 $oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
@@ -916,15 +940,16 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         return [$oResult, $aSummury];
     }
 
-    public function getClientGrowthChart($login) {
+    public function getClientGrowthChart($login, $server_id)
+    {
 
 
         // $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
 
 
         $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'), 'CMD'])
-
             ->where('login', $login)
+            ->where('server_id', $server_id)
             ->orderBy('CLOSE_TIME')
             ->get();
 
@@ -935,27 +960,27 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $lastBalance = 0;
         $pastBalance = 0;
         $i = 0;
-        $growth=0;
+        $growth = 0;
         foreach ($oGrowthResults as $row) {
             if ($row->CMD != 6 && $lastBalance != 0) {
                 $i++;
 
-                $growth=round((($pastK * $pastBalance / $lastBalance) - 1) * 100, 2);
+                $growth = round((($pastK * $pastBalance / $lastBalance) - 1) * 100, 2);
                 $growth_array[] = $growth;
 
                 $horizontal_line_numbers[] = $i;
             } else if ($row->CMD == 6) {
 
 
-                $pastK *=($lastBalance != 0) ? ($pastBalance + $lastBalance / ($lastBalance * $lastBalance)) : 1;
-                $pastK/=($lastBalance != 0) ? $lastBalance : 1;
+                $pastK *= ($lastBalance != 0) ? ($pastBalance + $lastBalance / ($lastBalance * $lastBalance)) : 1;
+                $pastK /= ($lastBalance != 0) ? $lastBalance : 1;
 
                 //$pastBalance+=$row->netProfit;
 
                 $lastBalance = $pastBalance + $row->netProfit;
             }
 
-            $pastBalance+=$row->netProfit;
+            $pastBalance += $row->netProfit;
         }
 
         $averages_array = [];
@@ -967,9 +992,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         //Trades: Profit Trades:  Loss Trade: Best Trade: Worst Trade: Gross Profit: Gross Loss: Maximum consecutive wins: Maximal consecutive profit: Sharpe Ratio: Recovery Factor: Long Trades: Shart Trades: Profits Factor: Expected Payoff: Average Profit: Average Loss: Maximum consecutive losses: Maximal consecutive loss: Monthly grouth: Annual Farecast:
         //trades profit_trades loss_trade best_trade worst_trade gross_profit gross_loss maximum__consecutive_wins maximal_consecutive_profit sharpe_ratio recovery_factor long_trades shart_trades profits_factor expected_payoff average_profit average_loss maximum_consecutive_losses maximal_consecutive_loss monthly_grouth annual_farecast
 
-        list($symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->getClinetSymbolsChart($login);
+        list($symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->getClinetSymbolsChart($login, $server_id);
 
-        return [ $horizontal_line_numbers, $growth_array, $averages_array, $this->getStatistics($login),
+        return [$horizontal_line_numbers, $growth_array, $averages_array, $this->getStatistics($login, $server_id),
             $symbols_pie_array,
             $sell_array,
             $buy_array,
@@ -978,7 +1003,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         ];
     }
 
-    public function getClinetBalanceChart($login) {
+    public function getClinetBalanceChart($login, $server_id)
+    {
 
 
         // $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
@@ -986,7 +1012,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'), 'CMD'])
             ->where('login', $login)
-
+            ->where('server_id', $server_id)
             ->orderBy('CLOSE_TIME')
             ->get();
 
@@ -996,23 +1022,22 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $pastBalance = 0;
         $i = 0;
-        $balance=0;
+        $balance = 0;
         foreach ($oGrowthResults as $row) {
 
 
-            $pastBalance+=$row->netProfit;
-            $balance=round($pastBalance, 2);
+            $pastBalance += $row->netProfit;
+            $balance = round($pastBalance, 2);
             $balance_array[] = $balance;
             $i++;
             $horizontal_line_numbers[] = $i;
         }
 
 
-
-        list($symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->getClinetSymbolsChart($login);
-        return [ $horizontal_line_numbers,
+        list($symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->getClinetSymbolsChart($login, $server_id);
+        return [$horizontal_line_numbers,
             $balance_array,
-            $this->getStatistics($login),
+            $this->getStatistics($login, $server_id),
             $symbols_pie_array,
             $sell_array,
             $buy_array,
@@ -1020,9 +1045,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
             $balance];
     }
 
-    public function getClinetSymbolsChart($login) {
+    public function getClinetSymbolsChart($login, $server_id)
+    {
         $oGrowthResults = Mt4ClosedActual::select([DB::raw('sum(VOLUME) as valume'), 'SYMBOL'])
             ->where('login', $login)
+            ->where('server_id', $server_id)
             ->groupBy('SYMBOL')
             ->orderBy('CLOSE_TIME')
             ->get();
@@ -1036,7 +1063,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $i = 0;
 
         foreach ($oGrowthResults as $row) {
-            $totalValume+=$row->valume;
+            $totalValume += $row->valume;
         }
         $totalValume = ($totalValume != 0) ? $totalValume : 1;
         foreach ($oGrowthResults as $row) {
@@ -1047,9 +1074,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         }
 
 
-
         $oSymbolsResults = Mt4ClosedActual::select([DB::raw('sum(VOLUME) as valume'), 'SYMBOL', 'CMD'])
             ->where('login', $login)
+            ->where('server_id', $server_id)
             ->groupBy(['SYMBOL', 'CMD'])
             ->orderBy('SYMBOL')
             ->get();
@@ -1060,7 +1087,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         foreach ($oSymbolsResults as $row) {
             if (isset($totalSymbolsValume[$row->SYMBOL])) {
-                $totalSymbolsValume[$row->SYMBOL]+=$row->valume;
+                $totalSymbolsValume[$row->SYMBOL] += $row->valume;
             } else {
                 $totalSymbolsValume[$row->SYMBOL] = $row->valume;
             }
@@ -1090,10 +1117,12 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         return [$symbols_pie_array, $final_sell_array, $final_buy_array, $horizontal_line_numbers];
     }
 
-    public function getStatistics($login) {
+    public function getStatistics($login, $server_id)
+    {
 
         /* ==== trades ==== */
-        $trades = Mt4ClosedActual::where('login', $login)->count();
+        $trades = Mt4ClosedActual::where('login', $login)
+            ->where('server_id', $server_id)->count();
         $statistics['trades'] = $trades;
 
 
@@ -1101,13 +1130,14 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $profit_trades_number = Mt4ClosedActual::select(DB::raw('PROFIT+COMMISSION+SWAPS as total'))
             ->where('login', $login)
+            ->where('server_id', $server_id)
             ->having('total', '>=', '0')
             ->get()
             ->count();
         $profit_trades_per = ($trades > 0) ? round(($profit_trades_number / $trades * 100), 5) : 0;
 
 
-        $statistics['profit_trades_number']= $profit_trades_number;
+        $statistics['profit_trades_number'] = $profit_trades_number;
         $statistics['profit_trades'] = $profit_trades_per;
 
 
@@ -1115,26 +1145,25 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $loss_trade_number = $trades - $profit_trades_number;
         $loss_trade_per = ($trades > 0) ? round($loss_trade_number / $trades * 100, 5) : 0;
 
-        $statistics['loss_trade_number']=$loss_trade_number;
-        $statistics['loss_trade'] =  $loss_trade_per ;
+        $statistics['loss_trade_number'] = $loss_trade_number;
+        $statistics['loss_trade'] = $loss_trade_per;
 
         /* ==== best_trade ==== */
 
         $oBest_trade = Mt4ClosedActual::select(['SYMBOL', 'PROFIT'])
             ->where('login', $login)
+            ->where('server_id', $server_id)
             ->orderBy('PROFIT', 'desc')
             ->first();
 
         $statistics['best_trade'] = (count($oBest_trade)) ? $oBest_trade->PROFIT : 0;
 
 
-
-
-
         /* ==== worst_trade ==== */
 
         $oWorst_trade = Mt4ClosedActual::select(['SYMBOL', 'PROFIT'])
             ->where('login', $login)
+            ->where('server_id', $server_id)
             ->orderBy('PROFIT', 'asc')
             ->first();
         $statistics['worst_trade'] = (count($oWorst_trade)) ? $oWorst_trade->PROFIT : 0;
@@ -1145,6 +1174,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $gross_profit_result = Mt4ClosedActual::select(['PROFIT', DB::raw('PROFIT+COMMISSION+SWAPS as total')])
             ->where('login', $login)
+            ->where('server_id', $server_id)
             ->having('total', '>', '0')
             ->get()
             ->sum('PROFIT');
@@ -1153,18 +1183,16 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $statistics['gross_profit'] = $gross_profit_result;
 
 
-
-
-
         $gross_loss_result = Mt4ClosedActual::select(['PROFIT', DB::raw('PROFIT+COMMISSION+SWAPS as total')])
             ->where('login', $login)
+            ->where('server_id', $server_id)
             ->having('total', '<', '0')
             ->get()
             ->sum('PROFIT');
         $statistics['gross_loss'] = $gross_loss_result;
 
 
-        $statistics['profit'] =$statistics['gross_profit']+$statistics['gross_loss'] ;
+        $statistics['profit'] = $statistics['gross_profit'] + $statistics['gross_loss'];
 
 
 //        $statistics['gross_profit'] =  $statistics['gross_profit'] ;
@@ -1172,110 +1200,103 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 //        $statistics['gross_loss'] =  $statistics['gross_loss'];
 
 
-
-
         /* === maximal_consecutive_profit === */
         $consecutive_result = Mt4ClosedActual::select(['PROFIT', DB::raw('PROFIT+COMMISSION+SWAPS as total')])
             ->where('login', $login)
+            ->where('server_id', $server_id)
             ->orderBy('CLOSE_TIME')
             ->get();
 
-        $maxWinArray=[];
-        $pastMaxWinNumber=0;
-        $pastMaxWin=0;
+        $maxWinArray = [];
+        $pastMaxWinNumber = 0;
+        $pastMaxWin = 0;
 
 
-        $minWinArray=[];
-        $pastMinWinNumber=0;
-        $pastMinWin=0;
+        $minWinArray = [];
+        $pastMinWinNumber = 0;
+        $pastMinWin = 0;
 
-        $pastTradeLossOrWin='win';
-        foreach($consecutive_result as $row){
-            if($row->total >=0){
-                if($pastTradeLossOrWin!='win'){
-                    $maxWinArray[]=[$pastMaxWinNumber,$pastMaxWin];
-                    $pastMaxWinNumber=1;
-                    $pastMaxWin=$row->total;
-                }else{
+        $pastTradeLossOrWin = 'win';
+        foreach ($consecutive_result as $row) {
+            if ($row->total >= 0) {
+                if ($pastTradeLossOrWin != 'win') {
+                    $maxWinArray[] = [$pastMaxWinNumber, $pastMaxWin];
+                    $pastMaxWinNumber = 1;
+                    $pastMaxWin = $row->total;
+                } else {
 
-                    $pastMaxWinNumber+=1;
-                    $pastMaxWin+=$row->total;
+                    $pastMaxWinNumber += 1;
+                    $pastMaxWin += $row->total;
                 }
 
 
-                $pastTradeLossOrWin='win';
-            }else{
-                if($pastTradeLossOrWin!='loss'){
-                    $minWinArray[]=[$pastMinWinNumber,$pastMinWin];
-                    $pastMinWinNumber=1;
-                    $pastMinWin=$row->total;
+                $pastTradeLossOrWin = 'win';
+            } else {
+                if ($pastTradeLossOrWin != 'loss') {
+                    $minWinArray[] = [$pastMinWinNumber, $pastMinWin];
+                    $pastMinWinNumber = 1;
+                    $pastMinWin = $row->total;
 
-                }else{
+                } else {
 
-                    $pastMinWinNumber+=1;
-                    $pastMinWin+=$row->total;
+                    $pastMinWinNumber += 1;
+                    $pastMinWin += $row->total;
                 }
 
 
-                $pastTradeLossOrWin='loss';
+                $pastTradeLossOrWin = 'loss';
             }
 
         }
 
-        $maxWin=0;
-        $maxWinNumber=0;
-        foreach($maxWinArray as $row){
-            if($maxWinNumber<$row[0]){
-                $maxWin=$row[1];
-                $maxWinNumber=$row[0];
-            }elseif($maxWinNumber==$row[0]){
-                $maxWin=($maxWin>$row[1])?$maxWin:$row[1];
+        $maxWin = 0;
+        $maxWinNumber = 0;
+        foreach ($maxWinArray as $row) {
+            if ($maxWinNumber < $row[0]) {
+                $maxWin = $row[1];
+                $maxWinNumber = $row[0];
+            } elseif ($maxWinNumber == $row[0]) {
+                $maxWin = ($maxWin > $row[1]) ? $maxWin : $row[1];
             }
         }
 
-        $minWin=0;
-        $minWinNumber=0;
-        foreach($minWinArray as $row){
-            if($minWinNumber<$row[0]){
-                $minWin=$row[1];
-                $minWinNumber=$row[0];
-            }elseif($minWinNumber==$row[0]){
-                $minWin=($minWin<$row[1])?$minWin:$row[1];
+        $minWin = 0;
+        $minWinNumber = 0;
+        foreach ($minWinArray as $row) {
+            if ($minWinNumber < $row[0]) {
+                $minWin = $row[1];
+                $minWinNumber = $row[0];
+            } elseif ($minWinNumber == $row[0]) {
+                $minWin = ($minWin < $row[1]) ? $minWin : $row[1];
             }
         }
 
         /*______________________________________________*/
 
 
-        $maxProfit=0;
-        $maxProfitNumber=0;
-        foreach($maxWinArray as $row){
-            if($maxProfit<$row[1]){
-                $maxProfit=$row[1];
-                $maxProfitNumber=$row[0];
-            }elseif($maxProfit==$row[1]){
-                $maxProfitNumber=($maxProfitNumber>$row[0])?$maxProfitNumber:$row[0];
+        $maxProfit = 0;
+        $maxProfitNumber = 0;
+        foreach ($maxWinArray as $row) {
+            if ($maxProfit < $row[1]) {
+                $maxProfit = $row[1];
+                $maxProfitNumber = $row[0];
+            } elseif ($maxProfit == $row[1]) {
+                $maxProfitNumber = ($maxProfitNumber > $row[0]) ? $maxProfitNumber : $row[0];
             }
         }
 
-        $minProfit=0;
-        $minProfitNumber=0;
-        foreach($minWinArray as $row){
-            if($minProfit>$row[1]){
-                $minProfit=$row[1];
-                $minProfitNumber=$row[0];
-            }elseif($minProfit==$row[1]){
-                $minProfitNumber=($minProfitNumber<$row[0])?$minProfitNumber:$row[0];
+        $minProfit = 0;
+        $minProfitNumber = 0;
+        foreach ($minWinArray as $row) {
+            if ($minProfit > $row[1]) {
+                $minProfit = $row[1];
+                $minProfitNumber = $row[0];
+            } elseif ($minProfit == $row[1]) {
+                $minProfitNumber = ($minProfitNumber < $row[0]) ? $minProfitNumber : $row[0];
             }
         }
 
         /*_________________________________________________*/
-
-
-
-
-
-
 
 
 //
@@ -1501,15 +1522,15 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         $statistics['maximum_consecutive_wins'] = $maxWin;
 
 
-        $statistics['maximum_consecutive_losses_number'] =  $minWinNumber;
-        $statistics['maximum_consecutive_losses'] =  $minWin;
+        $statistics['maximum_consecutive_losses_number'] = $minWinNumber;
+        $statistics['maximum_consecutive_losses'] = $minWin;
 
 
-        $statistics['maximal_consecutive_profit'] =$maxProfit;
-         $statistics['maximal_consecutive_profit_number']=$maxProfitNumber;
+        $statistics['maximal_consecutive_profit'] = $maxProfit;
+        $statistics['maximal_consecutive_profit_number'] = $maxProfitNumber;
 
         $statistics['maximal_consecutive_loss'] = $minProfit;
-        $statistics['maximal_consecutive_loss_number']=$minProfitNumber;
+        $statistics['maximal_consecutive_loss_number'] = $minProfitNumber;
         $statistics['sharpe_ratio'] = 00;
         $statistics['recovery_factor'] = 00;
 
@@ -1517,15 +1538,16 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
 
         $long_trades = Mt4ClosedActual::where('cmd', '=', '0')
             ->where('login', $login)
+            ->where('server_id', $server_id)
             ->count();
         $statistics['long_trades'] = $long_trades;
-
 
 
         /* === short_trades ==== */
 
         $short_trades = Mt4ClosedActual::where('cmd', '=', '1')
             ->where('login', $login)
+            ->where('server_id', $server_id)
             ->count();
         $statistics['short_trades'] = $short_trades;
 
@@ -1533,13 +1555,12 @@ class EloquentMt4TradeRepository implements Mt4TradeContract {
         /* === profits_factor ==== */
         $statistics['profits_factor'] = ($gross_loss_result != 0) ? $gross_profit_result / $gross_loss_result * 100 : 0;
         $statistics['profits_factor'] = ($gross_profit_result >= $gross_loss_result) ? abs($statistics['profits_factor']) : abs($statistics['profits_factor']) * -1;
-        $statistics['profits_factor']=round($statistics['profits_factor'],5);
-
+        $statistics['profits_factor'] = round($statistics['profits_factor'], 5);
 
 
         $statistics['expected_payoff'] = 00;
-        $statistics['average_profit'] = ($profit_trades_number>0) ? round($gross_profit_result/$profit_trades_number,2) : 0.0;
-        $statistics['average_loss'] = ($loss_trade_number>0) ? round($gross_loss_result/$loss_trade_number,2) : 0.0;
+        $statistics['average_profit'] = ($profit_trades_number > 0) ? round($gross_profit_result / $profit_trades_number, 2) : 0.0;
+        $statistics['average_loss'] = ($loss_trade_number > 0) ? round($gross_loss_result / $loss_trade_number, 2) : 0.0;
         $statistics['monthly_grouth'] = 00;
         $statistics['annual_farecast'] = 00;
         return $statistics;

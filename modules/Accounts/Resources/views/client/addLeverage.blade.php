@@ -2,7 +2,7 @@
 @section('title', trans('accounts::accounts.addAccount'))
 @section('content')
 
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('accounts::accounts.user_details') }}</h1>
     </div>
@@ -79,7 +79,7 @@
                 @endforeach
             </div>
         @endif
-
+</div>
         {!! Form::close() !!}
         @stop
 

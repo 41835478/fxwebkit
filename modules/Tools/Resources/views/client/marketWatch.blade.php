@@ -1,7 +1,7 @@
 @extends('client.layouts.main')
 @section('title', trans('tools::tools.marketWatch'))
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('tools::tools.marketWatch') }}</h1>
     </div>
@@ -74,7 +74,7 @@
     </section>
 
 
-
+</div>
 
     <style type="text/css">
 

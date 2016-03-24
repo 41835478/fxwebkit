@@ -59,13 +59,3 @@
         @endforeach
     @endif
 </div>
-
-<style type="text/css">
-    .clearfix {
-        clear: both;
-    }
-
-    #position_1, #position_2, #position_3 {
-        float: left;
-    }
-</style>

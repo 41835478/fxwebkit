@@ -10,6 +10,7 @@ use Modules\Accounts\Entities\mt4_users_users;
 use Config;
 use Fxweb\Helpers\Fx;
 use Illuminate\Support\Facades\DB;
+use Fxweb\Models\Mt4User;
 
 /**
  * Class EloquentUserRepository
@@ -25,7 +26,18 @@ class EloquentUserRepository implements UserContract
         //
     }
 
+public function getDashboardStatistics(){
+    $statistics['usersNumber']=User::count();
+    $statistics['activeUsersNumber']=User::with('activations')->whereHas('activations',function ($query){
+        $query->whereNotNull('user_id');
+    })->count();
 
+    $statistics['mt4UsersNumber']=Mt4User::count();
+    $statistics['liveMt4UsersNumber']=Mt4User::where('server_id',1)->count();
+
+
+    return $statistics;
+}
 
     public function getLoginsInGroup($aGroups, $sOrderBy = 'LOGIN', $sSort = 'ASC')
     {
@@ -100,15 +112,16 @@ class EloquentUserRepository implements UserContract
 
     public function getAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
     {
-$agents=$aFilters['agents'];
+
+        $agents=$aFilters['agent_id'];
         $oResult =new User();
         if($agents == 1){
             $oResult=   $oResult->with('isAgent')->whereHas('isAgent', function ($query) use ($agents) {
 
-            $query->whereNotNull('user_id');
+                $query->whereNotNull('user_id');
 
-        });
-    }else{
+            });
+        }else{
             $oResult=  $oResult->whereNotIn('id', function ($query) {
 
                 $query->select(DB::raw('ibportal_user_ibid.user_id'))
@@ -116,7 +129,57 @@ $agents=$aFilters['agents'];
                     ->whereRaw('ibportal_user_ibid.user_id = users.id');
 
             });
-}
+        }
+
+        /* =============== id Filter  =============== */
+        if (isset($aFilters['id']) && !empty($aFilters['id'])) {
+            $oResult = $oResult->where('id', $aFilters['id']);
+        }
+
+        /* =============== Nmae Filter  =============== */
+        if (isset($aFilters['first_name']) && !empty($aFilters['first_name'])) {
+            $oResult = $oResult->where('first_name', 'like', '%' . $aFilters['first_name'] . '%');
+        }
+
+        if (isset($aFilters['last_name']) && !empty($aFilters['last_name'])) {
+            $oResult = $oResult->where('last_name', 'like', '%' . $aFilters['last_name'] . '%');
+        }
+
+        /* =============== email Filter  =============== */
+        if (isset($aFilters['email']) && !empty($aFilters['email'])) {
+            $oResult = $oResult->where('email', 'like', '%' . $aFilters['email'] . '%');
+        }
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+        }
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+
+        }
+        /* =============== Preparing Output  =============== */
+
+        return $oResult;
+    }
+
+
+    public function getClientAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
+    {
+
+        $agents=$aFilters['agent_id'];
+        $oResult =new User();
+
+            $oResult=   $oResult->with('agentPlan')->whereHas('agentPlan',function($query)use ($agents){
+                $query->where('agent_id',$agents);
+                $query->with('plan');
+            });
+
 
         /* =============== id Filter  =============== */
         if (isset($aFilters['id']) && !empty($aFilters['id'])) {
@@ -274,21 +337,28 @@ $agents=$aFilters['agents'];
         return [trans('general.deleted_successfully')];
     }
 
-    public function asignMt4UsersToAccount($account_id, $users_id)
+    public function asignMt4UsersToAccount($account_id, $users_id,$server_id=1)
     {
+
         if (is_array($users_id)) {
             foreach ($users_id as $id => $user_id) {
-
-                $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id])->first();
+                if($server_id==3){
+                    $mt4=explode(',',$user_id);
+                    $user_id=$mt4[0];
+                    $server_id=($mt4[1]=='')? 0:$mt4[1];
+                }
+                $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id, 'server_id' => $server_id])->first();
                 if ($asign) {
                     $asign->users_id = $account_id;
                     $asign->mt4_users_id = $user_id;
+                    $asign->server_id = $server_id;
                     $asign->save();
                 } else {
                     $asign = new mt4_users_users;
 
                     $asign->users_id = $account_id;
                     $asign->mt4_users_id = $user_id;
+                    $asign->server_id = $server_id;
                     $asign->save();
                 }
             }
@@ -318,13 +388,17 @@ $agents=$aFilters['agents'];
 //        return true;
 //    }
 
-    public function unsignMt4UsersToAccount($account_id, $users_id)
+    public function unsignMt4UsersToAccount($account_id, $users_id,$server_id=1)
     {
 
         if (is_array($users_id)) {
             foreach ($users_id as $id => $user_id) {
-
-                $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id])->first();
+                if($server_id==3){
+                    $mt4=explode(',',$user_id);
+                    $user_id=$mt4[0];
+                    $server_id=($mt4[1]=='')? 0:$mt4[1];
+                }
+                $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id,'server_id'=>$server_id])->first();
                 if ($asign) {
                     $asign->delete();
                 }

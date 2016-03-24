@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('reports::reports.settings'))
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('reports::reports.settings') }}</h1>
     </div>
@@ -49,7 +49,7 @@
 
         </div>
 
-
+</div>
 
     @if($errors->any())
         <div class="alert alert-danger alert-dark">

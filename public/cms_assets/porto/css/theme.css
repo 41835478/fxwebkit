@@ -696,7 +696,7 @@ footer h3,
 footer h4,
 footer h5,
 footer a {
-	color: #33B8FF !important;
+	color: #0095E4 !important;
 }
 
 footer a:hover {
@@ -706,7 +706,8 @@ footer a:hover {
 footer h4 {
 	font-size: 1.8em;
 	font-weight: 200;
-	text-shadow: 1px 1px 1px #000;
+	/* text-shadow: 1px 1px 1px #000; */
+	color: #000 !important;
 }
 
 div.footer-copyright {

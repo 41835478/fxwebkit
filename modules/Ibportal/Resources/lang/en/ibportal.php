@@ -102,7 +102,7 @@ return [
     'withdraws'=>'Withdraws',
     'credit_in'=>'CreditIn',
     'credit_out'=>'CreditOut',
-    'accountant' => 'Accountant',
+    'agentMoney' => 'Agent Money',
     'total'=>'Total',
     'password'=>'Password',
     'assignAgents'=>'Assign Agents',
@@ -113,6 +113,10 @@ return [
     'mt4_users'=>'Mt4 Users',
     'no_account_available'=>'No Account Available',
     'addAgents'=>'Agents',
+    'comment'=>'Comment',
+    'CommissionChart'=>'Commission Chart',
+    'CommissionMonthly'=>'Monthly Commissions',
+    'commissions'=>'Commissions'
 
 
 ];

@@ -1,38 +1,8 @@
 @extends('admin.layouts.main')
 @section('title', trans('reports::reports.accounts'))
 @section('content')
-    <style type="text/css">
-        #content-wrapper {
-            padding: 0px;
-            margin: 0px;
-        }
 
-        .nav-input-div {
-            padding: 7px;
-        }
 
-        .mail-container-header {
-            border-bottom: 1px solid #ccc;
-            margin-bottom: 7px;
-            padding: 5px !important;
-        }
-
-        .center_page_all_div {
-            padding: 0px 10px;
-        }
-
-        .mail-nav .navigation {
-            margin-top: 35px;
-        }
-
-        .user-info-table th {
-            text-align: right;
-        }
-
-        .user-info-table td {
-            text-align: left;
-        }
-    </style>
     <div class="theme-default page-mail">
         <div class="mail-nav">
             <div class="navigation">
@@ -100,13 +70,13 @@
                     <div class="stat-panel no-margin-b">
                         <div class="stat-row">
                             <div class="stat-counters bg-panel no-padding text-center">
-                                <div class="stat-cell col-xs-4 padding-xs-vr">
+                                <div class="stat-cell-account col-xs-4 padding-xs-vr">
                                     <span class="text-xs">{{ trans('reports::reports.account') }}{{ $oResults->LOGIN }} </span>
                                 </div>
-                                <div class="stat-cell col-xs-4 padding-xs-vr">
+                                <div class="stat-cell-account col-xs-4 padding-xs-vr">
                                     <span class="text-xs">{{ trans('reports::reports.name') }}{{ $oResults->NAME }}  </span>
                                 </div>
-                                <div class="stat-cell col-xs-4 padding-xs-vr">
+                                <div class="stat-cell-account col-xs-4 padding-xs-vr">
                                     <span class="text-xs">{{ trans('reports::reports.leverage') }}{{ $oResults->LEVERAGE }} </span>
                                 </div>
                             </div>
@@ -121,25 +91,7 @@
                         <div class="table-caption">
                             {{ trans('reports::reports.OpenOrders') }}
 
-                            @if (count($oOpenResults))
-                                <div class="panel-heading-controls">
-                                    <div class="btn-group btn-group-xs">
-                                        <button data-toggle="dropdown" type="button"
-                                                class="btn btn-success dropdown-toggle">
-                                            <span class="fa fa-cog"></span>&nbsp;
-                                            <span class="fa fa-caret-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li>
-                                                <a href="{{ Request::fullUrl() }}&export=xls">
-                                                    <i class="dropdown-icon fa fa-camera-retro"></i>
-                                                    {{ trans('reports::reports.export') }}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            @endif
+
                         </div>
                     </div>
                     <table class="table table-bordered">
@@ -195,25 +147,6 @@
                         <div class="table-caption">
                             {{ trans('reports::reports.ClosedOrders') }}
 
-                            @if (count($oCloseResults))
-                                <div class="panel-heading-controls">
-                                    <div class="btn-group btn-group-xs">
-                                        <button data-toggle="dropdown" type="button"
-                                                class="btn btn-success dropdown-toggle">
-                                            <span class="fa fa-cog"></span>&nbsp;
-                                            <span class="fa fa-caret-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li>
-                                                <a href="{{ Request::fullUrl() }}&export=xls">
-                                                    <i class="dropdown-icon fa fa-camera-retro"></i>
-                                                    {{ trans('reports::reports.export') }}
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            @endif
 
                         </div>
                     </div>

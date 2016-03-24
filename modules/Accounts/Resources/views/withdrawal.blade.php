@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('accounts::accounts.addAccount'))
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('accounts::accounts.user_details') }}</h1>
     </div>
@@ -18,21 +18,20 @@
                 <li>
                     <a href="{{ route('accounts.mt4UserDetails').'?login='.$login.'&server_id='.$server_id}}&from_date=&to_date=&search=Search&sort=asc&order=login">{{ trans('accounts::accounts.summry') }}</a>
                 </li>
-                <li >
+                <li>
 
                     <a href="{{ route('accounts.mt4Leverage').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.leverage') }}</a>
                 </li>
                 <li>
                     <a href="{{ route('accounts.mt4ChangePassword').'?login='.$login.'&server_id='.$server_id}} ">{{ trans('accounts::accounts.changePassword') }}</a>
                 </li>
-                <li >
+                <li>
                     <a href="{{ route('accounts.mt4InternalTransfer').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
                 </li>
                 <li class="active">
-                    <a href="{{ route('accounts.withDrawal').'?login='.$login.'&server_id='.$server_id}}" >{{ trans('accounts::accounts.withDrawal') }}</a>
+                    <a href="{{ route('accounts.withDrawal').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.withDrawal') }}</a>
                 </li>
             </ul>
-
 
 
             <div class="row">
@@ -59,11 +58,6 @@
 
                 @endif
             </div>
-
-
-
-
-
 
 
             <div class="panel-footer text-right">

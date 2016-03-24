@@ -18,7 +18,8 @@ class CreateMt4UsersUsersTable extends Migration {
 
             $table->integer('users_id');
             $table->integer('mt4_users_id');
-            
+
+            $table->tinyInteger('server_id');
             $table->timestamps();
         });
     }

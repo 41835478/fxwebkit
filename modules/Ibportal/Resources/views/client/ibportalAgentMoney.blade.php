@@ -1,20 +1,8 @@
 @extends('client.layouts.main')
-@section('title', trans('ibportal::ibportal.accountant'))
+@section('title', trans('ibportal::ibportal.agentMoney'))
 @section('content')
 
-<!-- ______________________________________-->
-<style type="text/css">
-    #content-wrapper{ padding: 0px; margin: 0px !important;height: auto; overflow:visible !important ;}
-    .nav-input-div{padding:7px;}
-    .mail-container-header{
-        border-bottom: 1px solid #ccc;
-        margin-bottom: 7px;
-        padding: 5px !important;
-    }
-    .theme-default .page-mail{ overflow: visible;height: auto; min-height: 800px;}
-    .center_page_all_div{ padding: 0px 10px;}
-    .mail-nav .navigation{margin-top: 35px;}
-</style>
+
 <div class="  theme-default page-mail" >
     <div class="mail-nav" >
         <div class="navigation">
@@ -42,6 +30,7 @@
                             </span>
                         </div>
                     </div></li>
+                <li><div  class=" nav-input-div  ">{!! Form::select('type', $aTradeTypes, $aFilterParams['type'], ['class'=>'form-control  input-sm']) !!}</div></li>
 
                 <li><div  class=" nav-input-div  ">
                         {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
@@ -61,7 +50,7 @@
 
     <div class="mail-container " >
         <div class="mail-container-header">
-            {{ trans('ibportal::ibportal.accountant') }}
+            {{ trans('ibportal::ibportal.agentMoney') }}
         </div>
         <div class="center_page_all_div">
             @include('admin.partials.messages')
@@ -73,26 +62,9 @@
             <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
-                        {{ trans('ibportal::ibportal.accountant') }}
+                        {{ trans('ibportal::ibportal.agentMoney') }}
 
-                        @if (count($oResults[0]))
-                        <div class="panel-heading-controls">
-                            <div class="btn-group btn-group-xs">
-                                <button data-toggle="dropdown" type="button" class="btn btn-success dropdown-toggle">
-                                    <span class="fa fa-cog"></span>&nbsp;
-                                    <span class="fa fa-caret-down"></span>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li>
-                                        <a href="{{ Request::fullUrl() }}&export=xls">
-                                            <i class="dropdown-icon fa fa-camera-retro"></i>
-                                            {{ trans('ibportal::ibportal.export') }}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        @endif
+
 
                     </div>
                 </div>
@@ -101,9 +73,8 @@
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.order#'), 'TICKET', $oResults[0]) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.login'), 'LOGIN', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.liveDemo'), 'server_id', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.type'), 'CMD', $oResults[0]) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.total'), 'PROFIT', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.comment'), 'COMMENT', $oResults[0]) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Commission'), 'PROFIT', $oResults[0]) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.close_time'), 'CLOSE_TIME', $oResults[0]) !!}</th>
                         </tr>
                     </thead>
@@ -116,8 +87,7 @@
                         <tr class='{{ $class }}'>
                             <td>{{ $oResult->TICKET }}</td>
                             <td>{{ $oResult->LOGIN }}</td>
-                            <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
-                            <td>{{ $oResult->TYPE }}</td>
+                            <td>{{ $oResult->COMMENT }}</td>
                             <td>{{ $oResult->PROFIT }}</td>
                             <td>{{ $oResult->CLOSE_TIME }}</td>
                         </tr>
@@ -223,7 +193,7 @@
                 type: 'bar'
             },
             title: {
-                text: 'Accountant Total'
+                text: '{!! trans('ibportal::ibportal.commissions') !!}'
             },
             xAxis: {
                 /*
@@ -231,9 +201,9 @@
                  trans('general.Withdraws')
                  trans('general.CreditIn')
                  trans('general.CreditOut')
-                 *  {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}
+                 *  {{ $oResults[1]['deposits']+$oResults[1]['withdraws']}}
              */
-                categories: ['{!! trans('ibportal::ibportal.deposits') !!}', '{!!  trans('ibportal::ibportal.credit_in') !!}','{!!   trans('ibportal::ibportal.withdraws') !!}', '{!!   trans('ibportal::ibportal.credit_out') !!}']
+                categories: ['{!! trans('ibportal::ibportal.commissions') !!}', '{!!   trans('ibportal::ibportal.withdraws') !!}']
             },
             yAxis: {
                 min: 0,
@@ -251,16 +221,10 @@
             },
             series: [{
                 name: ['{!!  trans('ibportal::ibportal.deposits') !!}'],
-                data: [{!! $oResults[1]['deposits']  !!}, 0,0,0]
-            }, {
-                name: ['{!! trans('ibportal::ibportal.credit_in') !!}'],
-                data: [0, {!! $oResults[1]['creditIn']  !!},0,0]
+                data: [{!! $oResults[1]['deposits']  !!}, 0]
             }, {
                 name: ['{!!  trans('ibportal::ibportal.withdraws') !!}'],
-                data: [0,0,{!! $oResults[1]['withdraws'] * - 1 !!}, 0]
-            }, {
-                name: ['{!! trans('ibportal::ibportal.credit_out') !!}'],
-                data: [0,0,0, {!! $oResults[1]['creditOut'] * - 1 !!}]
+                data: [0,{!! $oResults[1]['withdraws'] * - 1 !!}]
             }]
         });
     }

@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('general.settings'))
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('general.settings') }}</h1>
     </div>
@@ -409,7 +409,7 @@
                         <button type="submit" class="btn btn-primary" name="edit_id"
                                 value="0">{{ trans('general.save') }}</button>
                     </a>
-
+</div>
                     {!! Form::close() !!}
                 </div>
             </div>

@@ -1,36 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('ibportal::ibportal.agent'))
 @section('content')
-    <style type="text/css">
-        #content-wrapper {
-            padding: 0px;
-            margin: 0px;
-        }
 
-        .nav-input-div {
-            padding: 7px;
-        }
-
-        .mail-container-header {
-            border-bottom: 1px solid #ccc;
-            margin-bottom: 7px;
-            padding: 5px !important;
-        }
-
-        .theme-default .page-mail {
-            overflow: visible;
-            height: auto;
-            min-height: 800px;
-        }
-
-        .center_page_all_div {
-            padding: 0px 10px;
-        }
-
-        .mail-nav .navigation {
-            margin-top: 35px;
-        }
-    </style>
     <div class="  theme-default page-mail">
         <div class="mail-nav">
             <div class="navigation">
@@ -60,17 +31,9 @@
                         </div>
                     </li>
 
-                    <li>
-                        <div class=" nav-input-div  ">
-                            {!! Form::radio('agents',0,$aFilterParams['agents'],['id'=>'agents_0','checked'=>'true']) !!}
-                            <label for="agents_0">{{ trans('ibportal::ibportal.all') }}</label>
-                            {!! Form::radio('agents',1,($aFilterParams['agents']==1),['id'=>'agents_1']) !!}<label
-                                    for="agents_1">{{ trans('ibportal::ibportal.agents') }}</label>
-                            {!! Form::radio('agents',2,($aFilterParams['agents']==2),['id'=>'agents_2']) !!}<label
-                                    for="agents_2">{{ trans('ibportal::ibportal.nonAgents') }}</label>
+                    <li><div  class=" nav-input-div  ">{!! Form::select('agents', $agents, $aFilterParams['agents'], ['class'=>'form-control  input-sm']) !!}</div></li>
 
-                        </div>
-                    </li>
+
 
                     <li>
                         <div class=" nav-input-div  ">
@@ -142,9 +105,9 @@
                                            class="fa fa-plus tooltip_number"
                                            data-original-title="{{trans('ibportal::ibportal.assignAgents')}}"></a>
 
-                                        <a href="{{ route('admin.ibportal.accountant').'?agentId='.$oResult->id }}"
+                                        <a href="{{ route('admin.ibportal.agentMoney').'?agentId='.$oResult->id }}"
                                            class="fa fa-money tooltip_number"
-                                           data-original-title="{{trans('ibportal::ibportal.accountant')}}"></a>
+                                           data-original-title="{{trans('ibportal::ibportal.agentMoney')}}"></a>
 
                                         <a href="{{ route('admin.ibportal.summary').'?agentId='.$oResult->id }}"
                                            class="fa fa-bar-chart-o tooltip_number"

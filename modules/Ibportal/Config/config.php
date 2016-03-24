@@ -67,8 +67,8 @@ return [
             'title' => 'agentCommission',
             'icon' => 'fa fa-money',
         ],[
-            'route' => 'clients.ibportal.accountant',
-            'title' => 'accountant',
+            'route' => 'clients.ibportal.agentMoney',
+            'title' => 'agentMoney',
             'icon' => 'fa fa-money',
         ]
     ]

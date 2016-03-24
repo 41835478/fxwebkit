@@ -6,6 +6,8 @@ use Fxweb\Models\Mt4User;
 use Fxweb\Helpers\Fx;
 use Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Illuminate\Support\Facades\DB;
+
 
 /**
  * Class EloquentUserRepository
@@ -83,6 +85,8 @@ class EloquentMt4UserRepository implements Mt4UserContract {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
                 $oResult = Mt4User::with('accounts')->whereHas('accounts', function($query) use($account_id) {
+                    $query->where(DB::raw('mt4_users_users.server_id'),'=',DB::raw(' mt4_users.server_id'));
+
                     $query->where('users_id', $account_id);
                 });
             }
@@ -142,33 +146,32 @@ class EloquentMt4UserRepository implements Mt4UserContract {
     }
 
     public function getUsersMt4UsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC') {
-//                 $oResult = Mt4User::with('account')->whereHas('account', function($query) use($account_id) {
-//            $query->where('users_id', $account_id);
 
         $account_id = (isset($aFilters['account_id'])) ? $aFilters['account_id'] : 0;
-        //$oResult = Mt4User::with('account');
-        //select * from `mt4_users` left join `mt4_users_users` on `mt4_users`.`id` = `mt4_users_users`.`mt4_users_id` and (`mt4_users_users`.`users_id` = 18)
-        $oResult = Mt4User::leftJoin('mt4_users_users', function($join) use($account_id) {
-                    $join->on('mt4_users.LOGIN', '=', 'mt4_users_users.mt4_users_id')->where('mt4_users_users.users_id', '=', $account_id);
-                });
 
-//                $oResult = Mt4User::leftJoin('mt4_users_users', function ($join) use ($account_id){
-//                    $join->on('mt4_users.id', '=', 'mt4_users_users.mt4_users_id');
-//      $join->where('mt4_users_users.users_id', '=',$account_id );
-//      
-//    });
+        $oResult =new Mt4User();
+
 
 
         /* =============== signed filter ============== */
         if ((isset($aFilters['signed']) && !empty($aFilters['signed']))) {
 
             if ($aFilters['signed'] == 1) {
+
                 $oResult = $oResult->with('account')->whereHas('account', function($query) use($account_id) {
+                    $query->where(DB::raw('mt4_users_users.server_id'),'=',DB::raw(' mt4_users.server_id'));
                     $query->where('users_id', $account_id);
                 });
-            } elseif ($aFilters['signed'] == 2) {
-                
+
             }
+        }else{
+
+            $oResult=  Mt4User::leftJoin('mt4_users_users', function($join) use($account_id) {
+
+                $join->on('mt4_users.LOGIN', '=', 'mt4_users_users.mt4_users_id')
+                    ->on('mt4_users.server_id', '=', 'mt4_users_users.server_id');
+                $join->where('mt4_users_users.users_id', '=',$account_id );
+            })->select(['mt4_users.*','mt4_users_users.users_id']);
         }
         /* =============== Login Filters =============== */
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
@@ -229,7 +232,8 @@ class EloquentMt4UserRepository implements Mt4UserContract {
     public function getUsersMt4Users($account_id) {
 
  $oResult = Mt4User::leftJoin('mt4_users_users', function($join) use($account_id) {
-            $join->on('mt4_users.LOGIN', '=', 'mt4_users_users.mt4_users_id')->where('mt4_users_users.users_id', '=', $account_id);
+            $join->on('mt4_users.LOGIN', '=', 'mt4_users_users.mt4_users_id')
+                ->on('mt4_users.server_id', '=', 'mt4_users_users.server_id')->where('mt4_users_users.users_id', '=', $account_id);
         });
 
         $oResult = $oResult->with('account')->whereHas('account', function($query) use($account_id) {
@@ -242,10 +246,14 @@ class EloquentMt4UserRepository implements Mt4UserContract {
         /* =============== Preparing Output  =============== */
         $aResult=[];
         $firstLogin =0;
+        $firstLoginServerID=1;
         foreach ($oResult as $dKey => $oValue) {
-            if($firstLogin ==0 )$firstLogin=$oResult[$dKey]->LOGIN;
-            $aResult[$oResult[$dKey]->LOGIN] = $oResult[$dKey]->LOGIN;
+            if($firstLogin ==0 ){
+                $firstLogin=$oResult[$dKey]->LOGIN;
+                $firstLoginServerID=$oResult[$dKey]->server_id;
+            }
+            $aResult[] = [$oResult[$dKey]->LOGIN,$oResult[$dKey]->server_id];
         }
-        return [$firstLogin,$aResult];
+        return [$firstLogin,$firstLoginServerID,$aResult];
     }
 }

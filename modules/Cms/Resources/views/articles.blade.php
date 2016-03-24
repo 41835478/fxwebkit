@@ -1,7 +1,7 @@
 @extends(Config::get('cms.admin_theme'))
 
-@section('content') 
-
+@section('content')
+    <div id="content-wrapper">
 <div class="page-header">
     <h1>{{ trans('cms::cms.newArticle') }}</h1>
     @if($selected_id>0)               
@@ -66,6 +66,7 @@
 
 
 </div>
+        </div>
 {!! Form::close() !!}
 @endif
 

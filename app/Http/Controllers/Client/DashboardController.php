@@ -64,9 +64,15 @@ class DashboardController extends Controller
         }
         /*___________________________END__test*/
 
-        list($firstLogin, $aLoginList) = $this->oMt4User->getUsersMt4Users($clientId);
+        list($firstLogin,$firstLoginServerId, $aLoginList) = $this->oMt4User->getUsersMt4Users($clientId);
+        $login=$firstLogin;
+        $server_id=$firstLoginServerId;
+        if($oRequest->has('login')){
+            $login = $oRequest->login ;
+            $server_id =  $oRequest->server_id ;
+        }
 
-        $login = ($oRequest->has('login')) ? $oRequest->login : $firstLogin;
+
 
         list($horizontal_line_numbers,
             $growth_array,
@@ -76,7 +82,7 @@ class DashboardController extends Controller
             $sell_array,
             $buy_array,
             $sell_buy_horizontal_line_numbers,
-            $growth) = $this->oMt4Trade->getClientGrowthChart($login);
+            $growth) = $this->oMt4Trade->getClientGrowthChart($login,$server_id);
 
         if($oUser->hasAnyAccess(['user.denyLiveAccount']) ){
             Session::flash('flash_info',trans('user.fillFullDetailsToAllowLive'));
@@ -92,6 +98,7 @@ class DashboardController extends Controller
             ->with('statistics', $statistics)
             ->with('aLogin', $aLoginList)
             ->with('login', $login)
+            ->with('server_id', $server_id)
             ->with('sell_buy_horizontal_line_numbers', $sell_buy_horizontal_line_numbers)
             ->with('symbols_pie_array', $symbols_pie_array)
             ->with('sell_array', $sell_array)
@@ -106,10 +113,15 @@ class DashboardController extends Controller
         $clientId = Sentinel::getUser()->id;
 
 
-        list($firstLogin, $aLoginList) = $this->oMt4User->getUsersMt4Users($clientId);
-        $login = ($oRequest->has('login')) ? $oRequest->login : $firstLogin;
+        list($firstLogin,$firstLoginServerId, $aLoginList) = $this->oMt4User->getUsersMt4Users($clientId);
+        $login=$firstLogin;
+        $server_id=$firstLoginServerId;
+        if($oRequest->has('login')){
+            $login = $oRequest->login ;
+            $server_id =  $oRequest->server_id ;
+        }
 
-        list($horizontal_line_numbers, $balance_array, $statistics, $symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers,$balance) = $this->oMt4Trade->getClinetBalanceChart($login);
+        list($horizontal_line_numbers, $balance_array, $statistics, $symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers,$balance) = $this->oMt4Trade->getClinetBalanceChart($login,$server_id);
 
 
         return view('client.balanceChart')
@@ -118,6 +130,7 @@ class DashboardController extends Controller
             ->with('statistics', $statistics)
             ->with('aLogin', $aLoginList)
             ->with('login', $login)
+            ->with('server_id', $server_id)
             ->with('sell_buy_horizontal_line_numbers', $sell_buy_horizontal_line_numbers)
             ->with('symbols_pie_array', $symbols_pie_array)
             ->with('sell_array', $sell_array)

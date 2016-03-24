@@ -127,7 +127,7 @@ class ClientIbportalController extends Controller
 
             $role = explode(',', Config::get('fxweb.client_default_role'));
 
-            $oResults = $this->Users->getAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role, $agentId);
+            $oResults = $this->Users->getClientAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role, $agentId);
 
         }
 
@@ -262,11 +262,12 @@ class ClientIbportalController extends Controller
 
     }
 
-    public function getAccountant(Request $oRequest)
+    public function getAgentMoney(Request $oRequest)
     {
+
         $login=UserIbid::select('login')->where('user_id', current_user()->getUser()->id)->first()->login;
         $oSymbols = $this->Ibportal->getClosedTradesSymbols();
-        $aTradeTypes = ['' => 'ALL'] + $this->Ibportal->getAccountantTypes();
+        $aTradeTypes = ['' => 'ALL'] + $this->Ibportal->getAgentCommissionTypes();
         $serverTypes = $this->Ibportal->getServerTypes();
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;
@@ -281,6 +282,7 @@ class ClientIbportalController extends Controller
             'group' => '',
             'all_symbols' => true,
             'symbol' => '',
+            'type' => '',
             'sort' => 'ASC',
             'order' => 'TICKET',
         ];
@@ -298,6 +300,7 @@ class ClientIbportalController extends Controller
             $aFilterParams['login'] = $login;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
+            $aFilterParams['type'] = $oRequest->type;
             $aFilterParams['all_groups'] = true;
             $aFilterParams['group'] = [];
             $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
@@ -314,7 +317,7 @@ class ClientIbportalController extends Controller
             $oResults[0]->sorts = $aFilterParams['sort'];
         }
 
-        return view('ibportal::client.ibportalAccountant')
+        return view('ibportal::client.ibportalAgentMoney')
             ->with('aSymbols', $aSymbols)
             ->with('aTradeTypes', $aTradeTypes)
             ->with('oResults', $oResults)
@@ -327,13 +330,16 @@ class ClientIbportalController extends Controller
 
         $clientId = current_user()->getUser()->id;
 
-        list($horizontal_line_numbers, $balance_array, $balance, $statistics) = $this->Ibportal->getAgentStatistics($clientId);
+        list($horizontal_line_numbers, $balance_array, $balance, $statistics,$commission_horizontal_line_numbers,
+            $commission_array) = $this->Ibportal->getAgentStatistics($clientId);
 
         return view('ibportal::client.agentSummary',
             [
                 'horizontal_line_numbers' => $horizontal_line_numbers,
                 'balance_array' => $balance_array,
-                'balance' => $balance])->withStatistics($statistics);
+                'balance' => $balance,
+                'commission_horizontal_line_numbers'=> $commission_horizontal_line_numbers,
+                'commission_array'=>$commission_array])->withStatistics($statistics);
     }
 
 

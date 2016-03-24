@@ -31,9 +31,9 @@
 	<div id="main-wrapper">
 		@include('admin.partials.header')
 		@include('admin.partials.menu')
-		<div id="content-wrapper">
+
 			@yield('content')
-		</div>
+
 		<div id="main-menu-bg"></div>
 	</div>
 

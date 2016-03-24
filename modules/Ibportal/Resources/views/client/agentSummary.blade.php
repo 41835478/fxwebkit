@@ -2,7 +2,7 @@
 @section('title', Lang::get('dashboard.PageTitle'))
 @section('content')
 
-   
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('ibportal::ibportal.summary') }}</h1>
     </div>
@@ -76,7 +76,7 @@
     <div class="panel clearFix">
         <div class="panel-heading">
 
-            <span class="panel-title">{{ trans('ibportal::ibportal.Commission') }}</span>
+            <span class="panel-title">{{ trans('ibportal::ibportal.CommissionChart') }}</span>
 
             <div class="clearfix"></div>
 
@@ -90,22 +90,52 @@
         <section id="chart_section">
             @if(count($balance_array))
                 <div id="growth_chart_all_div" class="col-xs-12"></div>
+
             @else
                 <div  class="col-xs-12 col-sm-8">{{ trans('ibportal::ibportal.no_account_available') }}</div>
             @endif
 
         </section><div class="clearFix"></div>
 
+
+
+
         </div>
     </div>
 
 
-    <style type="text/css">
+    <div class="panel clearFix">
+        <div class="panel-heading">
+
+            <span class="panel-title">{{ trans('ibportal::ibportal.CommissionMonthly') }}</span>
+
+            <div class="clearfix"></div>
+
+        </div>
+        <div class="panel-body">
 
 
-        g.highcharts-legend{display:none;}
-    </style>
 
+
+
+            <section id="chart_section">
+                @if(count($balance_array))
+
+                    <div id="chartContainer"></div>
+                @else
+                    <div  class="col-xs-12 col-sm-8">{{ trans('ibportal::ibportal.no_account_available') }}</div>
+                @endif
+
+            </section><div class="clearFix"></div>
+
+
+
+
+        </div>
+    </div>
+
+
+</div>
 
 
 @stop
@@ -130,7 +160,7 @@
                     x: - 20
                 },
                 xAxis: {
-                    categories:{!! json_encode($horizontal_line_numbers)!!}
+                    categories:{!! json_encode($commission_horizontal_line_numbers)!!}
                 },
                 yAxis: {
                     title: {
@@ -152,8 +182,8 @@
                     borderWidth: 0
                 },
                 series: [{
-                    name: 'Balance',
-                    data: {!! json_encode($balance_array)!!},
+                    name: 'Commission',
+                    data: {!! json_encode($commission_array)!!},
                     color:'#1d89cf'
                 }]
             });
@@ -164,5 +194,60 @@ function remove_copyrights(){
         $('svg text').each(function(){if($(this).text() == 'Highcharts.com'){$(this).remove();} });
 }
         setTimeout('remove_copyrights()',1000);
+
+
+
+        $(function () {
+            $('#chartContainer').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories:{!! json_encode($horizontal_line_numbers)!!},
+                    type: 'category',
+                    labels: {
+                        rotation: -45,
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: ''
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                tooltip: {
+                    pointFormat: '{point.y:.1f}'
+                },
+                series: [{
+                    name: 'Population',
+                    data:{!! json_encode($balance_array)!!},
+                    dataLabels: {
+                        enabled: false,
+                        rotation: -90,
+                        color: '#FFFFFF',
+                        align: 'right',
+                        format: '{point.y:.1f}', // one decimal
+                        y: 10, // 10 pixels down from the top
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                }]
+            });
+        });
     </script>
 @stop

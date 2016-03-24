@@ -32,11 +32,11 @@ return [
 			'title' => 'commission',
 			'icon' => 'fa fa-money',
 		],
-		[
-			'route' => 'admin.reports.agentCommission',
-			'title' => 'agentCommission',
-			'icon' => 'fa fa-money',
-		],
+//		[
+//			'route' => 'admin.reports.agentCommission',
+//			'title' => 'agentCommission',
+//			'icon' => 'fa fa-money',
+//		],
 		[
 			'route' => 'admin.reports.accountant',
 			'title' => 'accountant',

@@ -2,39 +2,6 @@
 @section('title', trans('ibportal::ibportal.agentCommission'))
 @section('content')
 
-        <!-- ______________________________________-->
-<style type="text/css">
-    #content-wrapper {
-        padding: 0px;
-        margin: 0px !important;
-        height: auto;
-        overflow: visible !important;
-    }
-
-    .nav-input-div {
-        padding: 7px;
-    }
-
-    .mail-container-header {
-        border-bottom: 1px solid #ccc;
-        margin-bottom: 7px;
-        padding: 5px !important;
-    }
-
-    .theme-default .page-mail {
-        overflow: visible;
-        height: auto;
-        min-height: 800px;
-    }
-
-    .center_page_all_div {
-        padding: 0px 10px;
-    }
-
-    .mail-nav .navigation {
-        margin-top: 35px;
-    }
-</style>
 <div class="  theme-default page-mail">
     <div class="mail-nav">
         <div class="navigation">
@@ -109,7 +76,7 @@
 
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
             {!! Form::hidden('order', $aFilterParams['order']) !!}
-            {!! Form::close() !!}
+
 
         </div>
     </div>
@@ -211,7 +178,7 @@
     </div>
 </div>
 </div>
-
+{!! Form::close() !!}
 <script>
     init.push(function () {
 

@@ -2,19 +2,7 @@
 @section('title', trans('reports::reports.accountant'))
 @section('content')
 
-        <!-- ______________________________________-->
-<style type="text/css">
-    #content-wrapper{ padding: 0px; margin: 0px !important;height: auto; overflow:visible !important ;}
-    .nav-input-div{padding:7px;}
-    .mail-container-header{
-        border-bottom: 1px solid #ccc;
-        margin-bottom: 7px;
-        padding: 5px !important;
-    }
-    .theme-default .page-mail{ overflow: visible;height: auto; min-height: 800px;}
-    .center_page_all_div{ padding: 0px 10px;}
-    .mail-nav .navigation{margin-top: 35px;}
-</style>
+
 <div class="  theme-default page-mail" >
     <div class="mail-nav" >
         <div class="navigation">
@@ -93,25 +81,6 @@
                 <div class="table-header">
                     <div class="table-caption">
                         {{ trans('reports::reports.accountant') }}
-
-                        @if (count($oResults[0]))
-                            <div class="panel-heading-controls">
-                                <div class="btn-group btn-group-xs">
-                                    <button data-toggle="dropdown" type="button" class="btn btn-success dropdown-toggle">
-                                        <span class="fa fa-cog"></span>&nbsp;
-                                        <span class="fa fa-caret-down"></span>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <a href="{{ Request::fullUrl() }}&export=xls">
-                                                <i class="dropdown-icon fa fa-camera-retro"></i>
-                                                {{ trans('reports::reports.export') }}
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        @endif
 
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('user.addAccount'))
 @section('content')
-
+    <div id="content-wrapper">
 <div class="page-header">
     <h1>{{ trans('user.details') }}</h1>
 </div>
@@ -145,5 +145,5 @@
 </div>
 </div>
 
-
+</div>
 @stop

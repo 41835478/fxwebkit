@@ -12,10 +12,15 @@
                 &nbsp;
             </a>
 
-            <div class="panel-heading-controls">
-                @foreach(config('app.language')  as $locale=>$name)
-                    <a href="?locale={{$locale}}"> | {{ $name }}  </a>
-                @endforeach
+            <div class="panel-heading-controls ">
+                <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i> {{ trans('user.language') }}</a>
+                <ul class="dropdown-menu">
+                    @foreach(config('app.language')  as $locale=>$name)
+                        <li><a href="?locale={{$locale}}">{{ $name }}</a></li>
+
+                    @endforeach
+                </ul></div>
             </div>
 
 
@@ -67,20 +72,5 @@
     <div class="not-a-member">
         Not a member? <a href="{{ route('client.auth.register') }}">Sign up now</a>
     </div>
-    <style type="text/css">
-        .page-signin .signin-with-btn {
-            border-radius: 2px;
-            width: 32%;
-            color: #fff;
-            display: block;
-            font-weight: 300;
-            padding: 10px 0;
-            text-align: center;
-            -webkit-transition: all .3s;
-            transition: all .3s;
-            float: left;
-            margin-top: 0px !important;
-            margin-left: 1%;
-        }
-    </style>
+
 @stop

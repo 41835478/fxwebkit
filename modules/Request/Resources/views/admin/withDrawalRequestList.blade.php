@@ -1,36 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('request::request.withDrawal'))
 @section('content')
-    <style type="text/css">
-        #content-wrapper {
-            padding: 0px;
-            margin: 0px;
-        }
 
-        .nav-input-div {
-            padding: 7px;
-        }
-
-        .mail-container-header {
-            border-bottom: 1px solid #ccc;
-            margin-bottom: 7px;
-            padding: 5px !important;
-        }
-
-        .theme-default .page-mail {
-            overflow: visible;
-            height: auto;
-            min-height: 800px;
-        }
-
-        .center_page_all_div {
-            padding: 0px 10px;
-        }
-
-        .mail-nav .navigation {
-            margin-top: 35px;
-        }
-    </style>
     <div class="  theme-default page-mail">
         <div class="mail-nav">
             <div class="navigation">
@@ -55,7 +26,7 @@
                     </li>
                     <li class="divider"></li>
                 </ul>
-                {!! Form::close() !!}
+
 
             </div>
         </div>
@@ -145,7 +116,7 @@
         </div>
 
     </div>
-
+    {!! Form::close() !!}
 
     <script>
         init.push(function () {

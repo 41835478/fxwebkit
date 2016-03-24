@@ -2,29 +2,34 @@
 @section('title', Lang::get('user.PageTitleSignUp'))
 @section('content')
 <div class="signup-container">
-    <div class="signup-header">
-        <a href="/" class="logo">
-            {!! HTML::image('assets/img/logo.png', '', ['style' => 'margin-top: -5px;width:90px;height:28px;']) !!}&nbsp;
-            <!-- todo put this style in css file do not leave  it here please -->
-            <style type="text/css">
-                .theme-default.page-signup .signup-header{
-                    background: rgb(113, 153, 179);
-                }
-            </style>
-        </a>
-        <div class="slogan">
-            {{ Lang::get('user.Slogan') }}
-        </div>
-    </div>
+
+
+
     <div class="signup-form">
+
+        <a href="" class="logo">
+
+            {!! HTML::image('assets/img/logo.png', '', ['style' => 'margin-top: -5px;width:90px;height:28px;']) !!}
+            &nbsp;
+        </a>
+
+        <div class="panel-heading-controls ">
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i> {{ trans('user.language') }}</a>
+                <ul class="dropdown-menu">
+                    @foreach(config('app.language')  as $locale=>$name)
+                        <li><a href="?locale={{$locale}}">{{ $name }}</a></li>
+
+                    @endforeach
+                </ul></div>
+        </div>
+
         @include('client.partials.messages')
         {!! Form::open(['id'=>'signup-form_id']) !!}
         <div class="signup-text">
             <span>{{ Lang::get('user.SignUpText') }}</span>
 
         </div>
-
-
         <div class="form-group w-icon">
             {!! Form::text('first_name', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.FirstName')]) !!}
             <span class="fa fa-info signup-form-icon"></span>
@@ -125,21 +130,6 @@
             {!! Form::submit(Lang::get('user.SignUp'), ['class'=>'signup-btn bg-primary']) !!}
         </div>
         </form>
-
-
-
-        <div class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i>
-                Language</a>
-            <ul class="dropdown-menu">
-                @foreach(config('app.language')  as $locale=>$name)
-                    <li><a href="?locale={{$locale}}">{{ $name }}</a></li>
-                @endforeach
-
-            </ul>
-        </div>
-
-
 
         <div class="signup-with">
             <a href="{{ route('client.auth.login') }}" class="signup-with-btn" style="background:#4f6faa;background:rgba(79, 111, 170, .8);">

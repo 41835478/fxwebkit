@@ -1,7 +1,7 @@
 @extends(Config::get('cms.admin_theme'))
 
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('cms::cms.languages') }}</h1>
     </div>
@@ -67,6 +67,7 @@
             @endforeach
             </tbody>
         </table>
+        </div>
         {!! Form::close() !!}
     </div>
 

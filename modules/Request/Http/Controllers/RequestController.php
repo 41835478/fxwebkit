@@ -227,7 +227,7 @@ class RequestController extends Controller
 
         if($login>0 ){
             $user= new Users();
-            $result=$user->asignMt4UsersToAccount($accountId, [$login]);
+            $result=$user->asignMt4UsersToAccount($accountId, [$login],$mt4_user_details['server_id']);
            return ($result==true)? true:false;
         }
         return true;

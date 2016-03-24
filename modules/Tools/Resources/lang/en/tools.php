@@ -68,6 +68,9 @@ return [
     'deleteHoliday'=>'Delete Holiday',
     'addSymbolHoliday'=>'Add Symbol Holiday',
     'holidayDetails'=>'Holiday Details',
+    'close'=>'Close',
+    'add'=>'Add',
+    'select_symbols'=>'Select Symbols',
 
 
 ];

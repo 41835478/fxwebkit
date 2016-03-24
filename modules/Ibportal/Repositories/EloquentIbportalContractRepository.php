@@ -626,6 +626,14 @@ class EloquentIbportalContractRepository implements IbportalContract
         ];
     }
 
+    public function getAgentCommissionTypes() {
+
+        return [
+            6 => 'Commission',
+            7 => 'Withdraws'
+        ];
+    }
+
 
     public function getServerTypes() {
         return [
@@ -666,26 +674,29 @@ class EloquentIbportalContractRepository implements IbportalContract
         /* =============== Get sum info and others =============== */
         $depositResult = clone $oResult;
         $withdrawsResult = clone $oResult;
-        $creditInResult = clone $oResult;
-        $creditOutResult = clone $oResult;
-
 
         $aSummury ['deposits'] = $depositResult->where('CMD', 6)->where('PROFIT', '>', 0)->sum('PROFIT');
         $aSummury ['withdraws'] = $withdrawsResult->where('CMD', 6)->where('PROFIT', '<', 0)->sum('PROFIT');
-        $aSummury ['creditIn'] = $creditInResult->where('CMD', 7)->where('PROFIT', '>', 0)->sum('PROFIT');
-        $aSummury ['creditOut'] = $creditOutResult->where('CMD', 7)->where('PROFIT', '<', 0)->sum('PROFIT');
 
         /* =============== Type Filter  ===============
 
-          1 => 'BalanceOperations',
-          2 => 'CreditOperations',
-          3 => 'Deposits',
-          4 => 'Withdraws',
-          5 => 'CreditIn',
-          6 => 'CreditOut',
+          1=> 'Commission',
+          2 => 'Withdraws',
          */
 
-            $oResult = $oResult->where('CMD', '>', 0);
+        if (isset($aFilters['type']) && !empty($aFilters['type'])) {
+if($aFilters['type'] == 6){
+
+    $oResult = $oResult->where('PROFIT', '>', 0);
+}else if($aFilters['type'] == 7){
+
+    $oResult = $oResult->where('PROFIT', '<', 0);
+}
+
+
+        }
+
+        $oResult = $oResult->where('CMD', '=', 6);
 
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
@@ -701,31 +712,57 @@ class EloquentIbportalContractRepository implements IbportalContract
         foreach ($oResult as $dKey => $oValue) {
             // Set CMD type
             $oResult[$dKey]->TYPE = $oFxHelper->getAccountantType($oValue->CMD, $oValue->PROFIT);
-            $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
-
-            $oResult[$dKey]->EQUITY = round($oResult[$dKey]->EQUITY, 2);
-            $oResult[$dKey]->BALANCE = round($oResult[$dKey]->BALANCE, 2);
-            $oResult[$dKey]->AGENT_ACCOUNT = round($oResult[$dKey]->AGENT_ACCOUNT, 2);
-            $oResult[$dKey]->MARGIN = round($oResult[$dKey]->MARGIN, 2);
-            $oResult[$dKey]->MARGIN_FREE = round($oResult[$dKey]->MARGIN_FREE, 2);
-            $oResult[$dKey]->LEVERAGE = round($oResult[$dKey]->LEVERAGE, 2);
+            $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
         }
 
         return [$oResult, $aSummury];
     }
 
+    public function getAgentCommissionChart($login){
+
+
+        $oGrowthResults = Mt4ClosedBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'), 'CMD'])
+            ->where('login', $login)
+            ->where('server_id', 0)
+            ->where('cmd','=', 6)
+            ->where('PROFIT','>', 0)
+            ->orderBy('CLOSE_TIME')
+            ->get();
+
+        $commission_array = [];
+        $commission_horizontal_line_numbers = [];
+
+        $pastCommission = 0;
+        $i = 0;
+        $commission=0;
+        foreach ($oGrowthResults as $row) {
+
+
+            $pastCommission+=$row->netProfit;
+            $commission=round($pastCommission, 2);
+            $commission_array[] = $commission;
+            $i++;
+            $commission_horizontal_line_numbers[] =   $i;
+        }
+
+
+        return [ $commission_horizontal_line_numbers,
+            $commission_array
+        ];
+    }
 
 public function getAgentStatistics($agentId){
     $login=UserIbid::select('login')->where('user_id',$agentId)->first()->login;
 
 
-    $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'), 'CMD'])
+    $oGrowthResults = Mt4ClosedBalance::select([DB::raw('sum(PROFIT+COMMISSION+SWAPS) as netProfit,concat(YEAR(CLOSE_TIME),concat("-",MONTH(CLOSE_TIME))) as month'), 'CMD'])
         ->where('login', $login)
         ->where('server_id', 0)
-        ->where('cmd','>', 0)
+        ->where('cmd','=', 6)
+        ->where('PROFIT','>', 0)
+        ->groupby('month')
         ->orderBy('CLOSE_TIME')
         ->get();
-
 
     $balance_array = [];
     $horizontal_line_numbers = [];
@@ -736,21 +773,28 @@ public function getAgentStatistics($agentId){
     foreach ($oGrowthResults as $row) {
 
 
-        $pastBalance+=$row->netProfit;
+        $pastBalance=$row->netProfit;
         $balance=round($pastBalance, 2);
         $balance_array[] = $balance;
         $i++;
-        $horizontal_line_numbers[] = $i;
+        $horizontal_line_numbers[] = date('M, Y',strtotime($row->month));
     }
     $statistics['users_number']=AgentUser::where('agent_id',$agentId)->count();
-    $statistics['mt4_users_number']=mt4_users_users::where('users_id',$agentId)->count();
+    $statistics['mt4_users_number']=mt4_users_users::with('agentUsers')->whereHas('agentUsers',function ($query) use($agentId){
+        $query->where('agent_id',$agentId);
+    })->count();
 
     $statistics['planes_number']=PlanUsers::where('user_id',$agentId)->count();
 
+    list($commission_horizontal_line_numbers,
+        $commission_array
+    )=$this->getAgentCommissionChart($login);
     return [ $horizontal_line_numbers,
         $balance_array,
         $balance,
-        $statistics
+        $statistics,
+        $commission_horizontal_line_numbers,
+        $commission_array
        ];
 }
 
@@ -758,6 +802,14 @@ public function getAgentStatistics($agentId){
     public function assignMt4Agents($agentId, $login){
         $userIbid=UserIbid::where('user_id',$agentId)->update(['login' =>$login]);
 
+    }
+
+    public function getAgents() {
+        return [
+            0=>trans('ibportal::ibportal.all'),
+            1 => trans('ibportal::ibportal.agents'),
+            2 => trans('ibportal::ibportal.nonAgents'),
+        ];
     }
 
 }

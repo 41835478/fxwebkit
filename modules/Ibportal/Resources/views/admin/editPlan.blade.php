@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', trans('ibportal::ibportal.editPlan'))
 @section('content')
-
+    <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('ibportal::ibportal.editPlan') }}</h1>
     </div>
@@ -100,6 +100,7 @@
 
             </div>
         @endif
+        </div>
 
         {!! Form::close() !!}
 
