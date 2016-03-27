@@ -11,16 +11,12 @@ class Repository extends BaseRepository
 	
 	protected $name;
 	protected $disk;
-    protected $configArray;
 	
-	public function __construct($name,$configArray=[])
+	public function __construct($name)
 	{
 		$this->name = $name;
-
-        $this->configArray=$configArray;
-        $aConfig=include $this->getFile($name);
-
-		parent::__construct($aConfig);
+		
+		parent::__construct(Config::get($name));
 	}
 	
 	public function save($from = null, $to = null, $validate = true)
@@ -30,7 +26,7 @@ class Repository extends BaseRepository
 		
 		$content = $this->prepareContent($from, $validate);
 		
-		//$this->ensurePathsExists($to);
+		$this->ensurePathsExists($to);
 		
 		$this->disk()->put(
 			$to,
@@ -58,7 +54,6 @@ class Repository extends BaseRepository
 		{
 			if (!empty($part))
 			{
-
 				$current .= '/';
 				
 				if ($this->disk()->isDirectory($current) == false) {
@@ -90,7 +85,6 @@ class Repository extends BaseRepository
 	
 	protected function getFile()
 	{
-        return base_path($this->name);
 		$file = $this->getCoreFile($this->name);
 		
 		return base_path('config/'.$file.'.php');
@@ -139,9 +133,8 @@ class Repository extends BaseRepository
 	
 	protected function toContent($contents, $newValues, $useValidation = true)
     {
-
         $contents = $this->parseContent($contents, $newValues);
-
+        
         if ($useValidation)
         {
             $result = eval('?>'.$contents);
@@ -171,24 +164,12 @@ class Repository extends BaseRepository
                 }
             }
         }
-
-        foreach($this->configArray as $key=>$value){
-//            dd('/[\s\'\"]*'.$key.'[\s\'\"]*(=>)\[([\s\'\"\w]*(=>)*[\s\'\"\w]*,*)*\]/',
-//                $value);
-
-            $contents=preg_replace('/[^0-9\,][\s\'\"]*'.$key.'[\s\'\"]*(=>)[\s\'\"]*[\[]*[^\]]*\]/i',
-            $value,
-            $contents);
-          //  dd('/[\s\'\"]*'.$key.'[\s\'\"]*(=>)\[([\s\'\"\w]*(=>)*[\s\'\"\w]*,*)*\]/i');
-
-        }
-
+        
         return $contents;
     }
     
     protected function parseContent($contents, $newValues)
     {
-//dd($contents);
         $patterns = array();
         
         $replacements = array();
@@ -197,12 +178,8 @@ class Repository extends BaseRepository
         {
 	        
             $items = explode('.', $path);
-
-
-
-
             $key = array_pop($items);
-
+            
             if (is_string($value) && strpos($value, "'") === false)
             {
                 $replaceValue = "'".$value."'";
@@ -231,6 +208,7 @@ class Repository extends BaseRepository
             $patterns[] = $this->buildConstantExpression($key, $items);
             $replacements[] = '${1}${2}'.$replaceValue;
         }
+        
         return preg_replace($patterns, $replacements, $contents, 1);
     }
     
@@ -243,7 +221,6 @@ class Repository extends BaseRepository
         
         // The target key opening
         $expression[] = '([\'|"]'.$targetKey.'[\'|"]\s*=>\s*)['.$quoteChar.']';
-
         
         // The target value to be replaced ($2)
         $expression[] = '([^'.$quoteChar.']*)';
@@ -278,8 +255,7 @@ class Repository extends BaseRepository
         if (count($arrayItems))
         {
             $itemOpen = array();
-
-
+            
             foreach ($arrayItems as $item)
             {
                 // The left hand array assignment

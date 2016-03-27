@@ -752,8 +752,13 @@ if($aFilters['type'] == 6){
     }
 
 public function getAgentStatistics($agentId){
-    $login=UserIbid::select('login')->where('user_id',$agentId)->first()->login;
-
+    
+    $login=UserIbid::select('login')->where('user_id',$agentId)->first();
+    if($login){
+        $login=$login->login;
+    }else{
+        /* TODO please determine if the user does not have mt4 login to get his commission(IBID table column field)*/
+        dd('please determine if the user does not have mt4 login to get his commission(IBID table column field)');}
 
     $oGrowthResults = Mt4ClosedBalance::select([DB::raw('sum(PROFIT+COMMISSION+SWAPS) as netProfit,concat(YEAR(CLOSE_TIME),concat("-",MONTH(CLOSE_TIME))) as month'), 'CMD'])
         ->where('login', $login)
