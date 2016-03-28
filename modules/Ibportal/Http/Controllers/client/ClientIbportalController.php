@@ -266,11 +266,9 @@ class ClientIbportalController extends Controller
     {
 
         $login=UserIbid::select('login')->where('user_id', current_user()->getUser()->id)->first();
-        if($login){
-            $login=$login->login;
-        }else{
-            /* TODO please determine if the user does not have mt4 login to get his commission(IBID table column field)*/
-            dd('please determine if the user does not have mt4 login to get his commission(IBID table column field)');}
+
+            $login=($login)?$login->login:-1;
+
         $oSymbols = $this->Ibportal->getClosedTradesSymbols();
         $aTradeTypes = ['' => 'ALL'] + $this->Ibportal->getAgentCommissionTypes();
         $serverTypes = $this->Ibportal->getServerTypes();
