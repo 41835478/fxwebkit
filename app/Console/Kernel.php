@@ -12,6 +12,7 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected $commands = [
 		'Fxweb\Console\Commands\Inspire',
+        'Fxweb\Console\Commands\SetupCommand',
 	];
 
 	/**
