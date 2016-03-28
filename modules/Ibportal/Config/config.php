@@ -48,6 +48,16 @@ return [
     ],
     'client_menu' => [
         [
+            'route' => 'clients.ibportal.closedOrders',
+            'title' => 'ClosedOrders',
+            'icon' => 'fa-briefcase',
+        ],
+        [
+            'route' => 'clients.ibportal.openOrders',
+            'title' => 'OpenOrders',
+            'icon' => 'fa-folder-open-o',
+        ],
+        [
             'route' => 'clients.ibportal.agentSummary',
             'title' => 'summary',
             'icon' => 'fa fa-bar-chart-o',
