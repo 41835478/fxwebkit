@@ -68,6 +68,7 @@
                                 <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults) !!}</th>
                                 <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults) !!}</th>
                                 <th class="no-warp">{!! trans('ibportal::ibportal.plan')!!}</th>
+                                <th class="no-warp"></th>
 
                             </tr>
                             </thead>
@@ -83,6 +84,9 @@
                                         <td>{{ $oResult->last_name }}</td>
                                         <td>{{ $oResult->email }}</td>
                                         <td>{{ $oResult->agentPlan->plan->name}}</td>
+                                        <td> <a href="{{ route('clients.ibportal.agentUserMt4Users').'?account_id='.$oResult->id }}"
+                                                class="fa fa-users tooltip_number" data-original-title="{{trans('accounts::accounts.asignMt4Users')}}"></a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             @endif

@@ -113,7 +113,7 @@ public function getDashboardStatistics(){
     public function getAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
     {
 
-        $agents=$aFilters['agent_id'];
+        $agents=$aFilters['agents'];
         $oResult =new User();
         if($agents == 1){
             $oResult=   $oResult->with('isAgent')->whereHas('isAgent', function ($query) use ($agents) {

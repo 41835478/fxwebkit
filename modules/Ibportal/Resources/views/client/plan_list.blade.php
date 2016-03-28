@@ -22,7 +22,6 @@
                     <thead>
                     <tr>
                         <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.name'), 'name', $oResults) !!}</th>
-                        <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.type'), 'type', $oResults) !!}</th>
                         <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.public'), 'Public', $oResults) !!}</th>
                         <th class="no-warp">{{ trans('ibportal::ibportal.link') }}</th>
                         <th class="no-warp"></th>
@@ -36,7 +35,6 @@
                             {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                             <tr class='{{ $class }}'>
                                 <td>{{ $oResult->name }}</td>
-                                <td>{{ $oResult->type }}</td>
                                 <td>@if($oResult->public) {{trans('ibportal::ibportal.public') }}@endif </td>
                                 <td>
                                     <a href="{{ route('client.auth.register').'?ibid='.$ibid.'&planId='.$oResult->id }}">{{ route('client.auth.register').'?ibid='.$ibid.'&planId='.$oResult->id }}</a>

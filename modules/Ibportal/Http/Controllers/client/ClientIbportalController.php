@@ -7,6 +7,7 @@ use Fxweb\Repositories\Admin\User\UserContract as Users;
 
 use Modules\Ibportal\Repositories\IbportalContract as Ibportal;
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
+use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4Users;
 use Illuminate\Support\Facades\Config;
 
 use Pingpong\Modules\Routing\Controller;
@@ -25,15 +26,17 @@ class ClientIbportalController extends Controller
     protected $Ibportal;
     protected $Users;
     protected $oMt4Trade;
+    protected $oMt4User;
 
     public function __construct(
-        Mt4Configrations $Mt4Configrations, Ibportal $Ibportal, Users $Users, Mt4Trade $oMt4Trade
+        Mt4Configrations $Mt4Configrations, Ibportal $Ibportal, Users $Users, Mt4Trade $oMt4Trade,Mt4Users $oMt4User
     )
     {
         $this->Ibportal = $Ibportal;
         $this->Mt4Configrations = $Mt4Configrations;
         $this->Users = $Users;
         $this->oMt4Trade = $oMt4Trade;
+        $this->oMt4User=$oMt4User;
     }
 
 
@@ -345,5 +348,59 @@ class ClientIbportalController extends Controller
                 'commission_array'=>$commission_array])->withStatistics($statistics);
     }
 
+    public function getAgentUserMt4Users(Request $oRequest)
+    {
+
+
+        $account_id = $oRequest->account_id;
+
+
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
+        $aGroups = [];
+        $oResults = null;
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
+            'name' => '',
+            'all_groups' => true,
+            'group' => '',
+            'sort' => $sSort,
+            'order' => $sOrder,
+            'signed' => 1,
+            'account_id' => $account_id,
+        ];
+
+
+
+
+        if ($oRequest->has('search')) {
+            $aFilterParams['from_login'] = $oRequest->from_login;
+            $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['name'] = $oRequest->name;
+            $aFilterParams['all_groups'] = true;
+
+            $aFilterParams['sort'] = $oRequest->sort;
+            $aFilterParams['signed'] =1;
+            $aFilterParams['account_id'] = $account_id;
+            $aFilterParams['order'] = $oRequest->order;
+
+           }
+
+
+        $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
+
+
+
+        return view('ibportal::client.agentUserMt4Users')
+            ->with('aGroups', $aGroups)
+            ->with('oResults', $oResults)
+            ->with('account_id', $account_id)
+            ->with('aFilterParams', $aFilterParams);
+    }
 
 }
