@@ -517,7 +517,7 @@ class ClientIbportalController extends Controller
             $aFilterParams['symbol'] = $oRequest->symbol;
             $aFilterParams['type'] = $oRequest->type;
             $aFilterParams['server_id'] = $oRequest->server_id;
-  
+
             $oResults = $this->oMt4Trade->getAgentOpenTradesByFilters($aFilterParams, false, $sOrder, $sSort,current_user()->getUser()->id);
         }
 
