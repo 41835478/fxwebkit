@@ -529,4 +529,30 @@ class ClientIbportalController extends Controller
             ->with('aFilterParams', $aFilterParams);
     }
 
+    public function getAgentInternalTransfer()
+    {
+        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+
+        $internalTransfer = [
+            'login1' => '',
+            'oldPassword' => '',
+            'login2' => '',
+            'amount' => ''];
+
+        return view('ibportal::client.internalTransfer')->with('internalTransfer', $internalTransfer)  ->with('Pssword', $Pssword);
+    }
+
+    public function getAgentwithDrawal()
+    {
+        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+
+        $internalTransfer = [
+            'login1' => '',
+            'oldPassword' => '',
+            'login2' => '',
+            'amount' => ''];
+
+        return view('ibportal::client.withDrawal')->with('internalTransfer', $internalTransfer)  ->with('Pssword', $Pssword);
+    }
+
 }

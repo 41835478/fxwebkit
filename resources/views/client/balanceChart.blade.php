@@ -52,8 +52,6 @@
                                 <span class="text-sm"></span>
                             </a> <!-- /.stat-cell -->
 
-
-
                         @endforeach
                     </div>
 

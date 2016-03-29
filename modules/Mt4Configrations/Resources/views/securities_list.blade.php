@@ -6,11 +6,9 @@
         <div class="mail-nav">
             <div class="navigation">
                 {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
-
                 <ul class="sections">
                     <li class="active"><a href="#"> <i
                                     class="fa fa-search"></i> {{ trans('mt4configrations::mt4configrations.search') }} </a></li>
-
 
                     <li>
                         <div class=" nav-input-div  ">
@@ -25,11 +23,9 @@
                     </li>
                     <li class="divider"></li>
                 </ul>
-
-
             </div>
         </div>
-
+        {!! Form::close() !!}
         <div class="mail-container ">
             <div class="mail-container-header">
                 {{ trans('mt4configrations::mt4configrations.securities') }}
@@ -97,7 +93,7 @@
             </div>
         </div>
     </div>
-    {!! Form::close() !!}
+
     <script>
         init.push(function () {
 
