@@ -409,7 +409,7 @@ class ClientIbportalController extends Controller
     {
 
 
-        $oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
+        $oSymbols = $this->oMt4Trade->getAgentSymbols();
 
         $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
         $serverTypes = $this->oMt4Trade->getServerTypes();
@@ -475,7 +475,7 @@ class ClientIbportalController extends Controller
 
     public function getOpenOrders(Request $oRequest)
     {
-        $oSymbols = $this->oMt4Trade->getOpenTradesSymbols();
+        $oSymbols = $this->oMt4Trade->getAgentSymbols();
         $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
         $serverTypes = $this->oMt4Trade->getServerTypes();
         $aSymbols = [];

@@ -15,14 +15,19 @@ use Fxweb\Models\Mt4OpenPending;
 use Fxweb\Models\Mt4ClosedActualBalance;
 use Fxweb\Models\Mt4Closed;
 use Fxweb\Models\Mt4Open;
+use Modules\Mt4Configrations\Entities\ConfigrationsSymbols as Symbols;
 
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
+
+use Fxweb\Models\Mt4User as modelMt4User;
 
 
 use Illuminate\Support\Facades\DB;
 use Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use \YaLinqo\Enumerable;
+
+use Modules\Mt4Configrations\Entities\ConfigrationsGroupsSecurities as GroupsSecurities;
 
 /**
  * Class EloquentUserRepository
@@ -49,13 +54,59 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
      */
     public function getClosedTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC')
     {
-        /* TODO[Galya] we will delete this table where we should get symbols */
-        return Mt4Closed::distinct()
-            ->select('SYMBOL')
-            ->where('CLOSE_TIME', '!=', '1970-01-01')
-            ->where('CMD', '<', '6')
-            ->orderBy($sOrderBy, $sSort)
-            ->get();
+        $user = current_user()->getUser();
+
+            if (!$user->InRole('admin')) {
+                $account_id = $user->id;
+
+                $oUserMt4Groups = modelMt4User::with('accounts')->whereHas('accounts', function($query) use($account_id) {
+                    $query->where(DB::raw('mt4_users_users.server_id'),'=',DB::raw(' mt4_users.server_id'));
+                    $query->where('users_id', $account_id);
+                })->select('group')->get();
+
+                $aUserMt4Groups=[];
+                foreach($oUserMt4Groups as $group){
+                    $aUserMt4Groups[]=$group->group;
+                }
+
+                $oAgentMt4Groups = modelMt4User::with('agents')->whereHas('agents', function($query) use($account_id) {
+                    $query->where(DB::raw('mt4_users_users.server_id'),'=',DB::raw(' mt4_users.server_id'));
+                    $query->where('agent_id', $account_id);
+                })->select('group')->get();
+
+                $aAgentMt4Groups=[];
+                foreach($oAgentMt4Groups as $group){
+                    $aAgentMt4Groups[]=$group->group;
+                }
+
+                $groupsSecurities=GroupsSecurities::select()
+                    ->whereIn('group',$aUserMt4Groups+$aAgentMt4Groups)
+                    ->where('show','=',1)->get();
+
+                $aGroupsSecurities=[];
+                foreach($groupsSecurities as $group){
+                    $aGroupsSecurities[]=$group->position;
+                }
+
+
+
+
+                $oResult =Symbols::whereIn('type',$aGroupsSecurities)->get();
+                foreach($oResult as &$result){
+                    $result->SYMBOL= $result->symbol;
+                }
+            } else {
+
+                $oResult =Symbols::get();
+                foreach($oResult as &$result){
+                    $result->SYMBOL= $result->symbol;
+                }
+            }
+
+    return $oResult;
+
+
+
     }
 
     /**
@@ -67,16 +118,56 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
      */
     public function getOpenTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC')
     {
-        /* TODO[Galya] we will delete this table where we should get symbols */
+        /* TODO[Galya] please tell me if the close symbols different  from close order */
 
-        return Mt4Closed::distinct()
-            ->select('SYMBOL')
-            ->where('CLOSE_TIME', '=', '1970-01-01')
-            ->where('CMD', '<', '6')
-            ->orderBy($sOrderBy, $sSort)
-            ->get();
+        return $this->getClosedTradesSymbols();
     }
 
+    public function getAgentSymbols(){
+
+        $user = current_user()->getUser();
+
+        if (!$user->InRole('admin')) {
+            $account_id = $user->id;
+
+
+            $oAgentMt4Groups = modelMt4User::with('agents')->whereHas('agents', function($query) use($account_id) {
+                $query->where(DB::raw('mt4_users_users.server_id'),'=',DB::raw(' mt4_users.server_id'));
+                $query->where('agent_id', $account_id);
+            })->select('group')->get();
+
+            $aAgentMt4Groups=[];
+            foreach($oAgentMt4Groups as $group){
+                $aAgentMt4Groups[]=$group->group;
+            }
+
+            $groupsSecurities=GroupsSecurities::select()
+                ->whereIn('group',$aAgentMt4Groups)
+                ->where('show','=',1)->get();
+
+            $aGroupsSecurities=[];
+            foreach($groupsSecurities as $group){
+                $aGroupsSecurities[]=$group->position;
+            }
+
+
+
+
+            $oResult =Symbols::whereIn('type',$aGroupsSecurities)->get();
+            foreach($oResult as &$result){
+                $result->SYMBOL= $result->symbol;
+            }
+        } else {
+
+            $oResult =Symbols::get();
+            foreach($oResult as &$result){
+                $result->SYMBOL= $result->symbol;
+            }
+        }
+
+        return $oResult;
+
+    }
     /**
      * Gets the orders types
      *
