@@ -71,6 +71,7 @@ class EditConfigController extends Controller
 
     public function arrayToString($arrayName, $array)
     {
+        if(!is_array($array)){return "'" . $arrayName . "'=>[]";}
         $sArray = "'" . $arrayName . "'=>[";
         foreach ($array as $value) {
             $item = explode(',', $value);

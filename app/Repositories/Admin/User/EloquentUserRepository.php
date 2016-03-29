@@ -113,8 +113,16 @@ public function getDashboardStatistics(){
     public function getAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
     {
 
-        $agents=$aFilters['agent_id'];
-        $oResult =new User();
+        $agents=$aFilters['agents'];
+        //$oResult =new User();
+
+
+        $oRole = Sentinel::findRoleBySlug('admin');
+        $role_id = $oRole->id;
+        $oResult = User::with('roles')->whereHas('roles', function ($query) use ($role_id) {
+            $query->where('id','!=', $role_id);
+        });
+
         if($agents == 1){
             $oResult=   $oResult->with('isAgent')->whereHas('isAgent', function ($query) use ($agents) {
 

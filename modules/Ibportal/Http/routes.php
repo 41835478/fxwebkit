@@ -48,6 +48,9 @@ Route::group(['middleware' => ['authenticate.client'],'prefix' => 'client', 'nam
 		'getAgentCommission'=>'client.ibportal.agentCommission',
 		'getAgentMoney'=>'clients.ibportal.agentMoney',
 		'getAgentSummary'=>'clients.ibportal.agentSummary',
+		'getAgentUserMt4Users' => 'clients.ibportal.agentUserMt4Users',
+		'getClosedOrders' => 'clients.ibportal.closedOrders',
+		'getOpenOrders' => 'clients.ibportal.openOrders',
 
 	]);
 });

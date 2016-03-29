@@ -7,6 +7,7 @@ use Fxweb\Repositories\Admin\User\UserContract as Users;
 
 use Modules\Ibportal\Repositories\IbportalContract as Ibportal;
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
+use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4Users;
 use Illuminate\Support\Facades\Config;
 
 use Pingpong\Modules\Routing\Controller;
@@ -25,15 +26,17 @@ class ClientIbportalController extends Controller
     protected $Ibportal;
     protected $Users;
     protected $oMt4Trade;
+    protected $oMt4User;
 
     public function __construct(
-        Mt4Configrations $Mt4Configrations, Ibportal $Ibportal, Users $Users, Mt4Trade $oMt4Trade
+        Mt4Configrations $Mt4Configrations, Ibportal $Ibportal, Users $Users, Mt4Trade $oMt4Trade,Mt4Users $oMt4User
     )
     {
         $this->Ibportal = $Ibportal;
         $this->Mt4Configrations = $Mt4Configrations;
         $this->Users = $Users;
         $this->oMt4Trade = $oMt4Trade;
+        $this->oMt4User=$oMt4User;
     }
 
 
@@ -266,11 +269,9 @@ class ClientIbportalController extends Controller
     {
 
         $login=UserIbid::select('login')->where('user_id', current_user()->getUser()->id)->first();
-        if($login){
-            $login=$login->login;
-        }else{
-            /* TODO please determine if the user does not have mt4 login to get his commission(IBID table column field)*/
-            dd('please determine if the user does not have mt4 login to get his commission(IBID table column field)');}
+
+            $login=($login)?$login->login:-1;
+
         $oSymbols = $this->Ibportal->getClosedTradesSymbols();
         $aTradeTypes = ['' => 'ALL'] + $this->Ibportal->getAgentCommissionTypes();
         $serverTypes = $this->Ibportal->getServerTypes();
@@ -347,5 +348,185 @@ class ClientIbportalController extends Controller
                 'commission_array'=>$commission_array])->withStatistics($statistics);
     }
 
+    public function getAgentUserMt4Users(Request $oRequest)
+    {
+
+
+        $account_id = $oRequest->account_id;
+
+
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
+        $aGroups = [];
+        $oResults = null;
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
+            'name' => '',
+            'all_groups' => true,
+            'group' => '',
+            'sort' => $sSort,
+            'order' => $sOrder,
+            'signed' => 1,
+            'account_id' => $account_id,
+        ];
+
+
+
+
+        if ($oRequest->has('search')) {
+            $aFilterParams['from_login'] = $oRequest->from_login;
+            $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['name'] = $oRequest->name;
+            $aFilterParams['all_groups'] = true;
+
+            $aFilterParams['sort'] = $oRequest->sort;
+            $aFilterParams['signed'] =1;
+            $aFilterParams['account_id'] = $account_id;
+            $aFilterParams['order'] = $oRequest->order;
+
+           }
+
+
+        $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
+
+
+
+        return view('ibportal::client.agentUserMt4Users')
+            ->with('aGroups', $aGroups)
+            ->with('oResults', $oResults)
+            ->with('account_id', $account_id)
+            ->with('aFilterParams', $aFilterParams);
+    }
+
+
+
+    public function getClosedOrders(Request $oRequest)
+    {
+
+
+        $oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
+
+        $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
+        $serverTypes = $this->oMt4Trade->getServerTypes();
+        $sSort = $oRequest->sort;
+        $sOrder = $oRequest->order;
+        $aSymbols = [];
+        $oResults = null;
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
+            'from_date' => '',
+            'to_date' => '',
+            'all_groups' => true,
+            'group' => '',
+            'all_symbols' => true,
+            'symbol' => '',
+            'type' => '',
+            'server_id' => '',
+            'sort' => 'ASC',
+            'order' => 'TICKET',
+        ];
+
+        foreach ($oSymbols as $oSymbol) {
+            $aSymbols[$oSymbol->SYMBOL] = $oSymbol->SYMBOL;
+        }
+
+        foreach ($aTradeTypes as $sKey => $sValue) {
+            $aTradeTypes[$sKey] = trans('general.' . $sValue);
+        }
+
+        if ($oRequest->has('search')) {
+            $aFilterParams['from_login'] = $oRequest->from_login;
+            $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['from_date'] = $oRequest->from_date;
+            $aFilterParams['to_date'] = $oRequest->to_date;
+            $aFilterParams['all_groups'] = true;
+            $aFilterParams['group'] = [];
+            $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
+            $aFilterParams['symbol'] = $oRequest->symbol;
+            $aFilterParams['type'] = $oRequest->type;
+            $aFilterParams['server_id'] = $oRequest->server_id;
+        }
+
+
+        if ($oRequest->has('search')) {
+
+            $oResults = $this->oMt4Trade->getAgentClosedTradesByFilters($aFilterParams, false, $sOrder, $sSort,current_user()->getUser()->id);
+            $oResults->order = $aFilterParams['order'];
+            $oResults->sorts = $aFilterParams['sort'];
+        }
+
+        return view('reports::client.closedOrders')
+            ->with('aSymbols', $aSymbols)
+            ->with('aTradeTypes', $aTradeTypes)
+            ->with('oResults', $oResults)
+            ->with('serverTypes', $serverTypes)
+            ->with('aFilterParams', $aFilterParams);
+    }
+
+    public function getOpenOrders(Request $oRequest)
+    {
+        $oSymbols = $this->oMt4Trade->getOpenTradesSymbols();
+        $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
+        $serverTypes = $this->oMt4Trade->getServerTypes();
+        $aSymbols = [];
+        $oResults = null;
+        $sSort = $oRequest->sort;
+        $sOrder = $oRequest->order;
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
+            'all_groups' => true,
+            'group' => '',
+            'all_symbols' => true,
+            'symbol' => '',
+            'type' => '',
+            'server_id' => '',
+            'sort' => 'ASC',
+            'order' => 'TICKET'
+        ];
+
+
+        foreach ($oSymbols as $oSymbol) {
+            $aSymbols[$oSymbol->SYMBOL] = $oSymbol->SYMBOL;
+        }
+
+        foreach ($aTradeTypes as $sKey => $sValue) {
+            $aTradeTypes[$sKey] = trans('general.' . $sValue);
+        }
+
+        if ($oRequest->has('search')) {
+            $aFilterParams['from_login'] = $oRequest->from_login;
+            $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['all_groups'] = true;
+            $aFilterParams['group'] = [];
+            $aFilterParams['all_symbols'] = ($oRequest->has('all_symbols') ? true : false);
+            $aFilterParams['symbol'] = $oRequest->symbol;
+            $aFilterParams['type'] = $oRequest->type;
+            $aFilterParams['server_id'] = $oRequest->server_id;
+  
+            $oResults = $this->oMt4Trade->getAgentOpenTradesByFilters($aFilterParams, false, $sOrder, $sSort,current_user()->getUser()->id);
+        }
+
+        return view('reports::client.openOrders')
+            ->with('aSymbols', $aSymbols)
+            ->with('aTradeTypes', $aTradeTypes)
+            ->with('serverTypes', $serverTypes)
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
+    }
 
 }

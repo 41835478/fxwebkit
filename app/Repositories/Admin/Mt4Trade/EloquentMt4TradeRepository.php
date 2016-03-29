@@ -1566,4 +1566,198 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         return $statistics;
     }
 
+
+    public function getAgentClosedTradesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC',$agent_id)
+    {
+        $oFxHelper = new Fx();
+
+                $oResult = Mt4Closed::with('agents')->whereHas('agents', function ($query) use ($agent_id) {
+
+                    $query->where('agent_id', $agent_id);
+                });
+
+
+
+        /* =============== Login Filters =============== */
+        if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
+            $oResult = $oResult->where('LOGIN', $aFilters['login']);
+        } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+        ) {
+
+            if (!empty($aFilters['from_login'])) {
+                $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
+            }
+
+            if (!empty($aFilters['to_login'])) {
+                $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
+            }
+        }
+
+
+        /* =============== Server Id Filter  =============== */
+
+        if (isset($aFilters['server_id']) && in_array($aFilters['server_id'], [0, 1])) {
+
+            $oResult = $oResult->where('server_id', $aFilters['server_id']);
+        }
+
+        /* =============== Groups Filter  =============== */
+        if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
+            $aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
+            $oResult = $oResult->whereIn('LOGIN', $aUsers);
+        }
+
+        /* =============== Date Filter  =============== */
+        if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
+        ) {
+
+            if (!empty($aFilters['from_date'])) {
+                $oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
+            }
+
+            if (!empty($aFilters['to_date'])) {
+                $oResult = $oResult->where('CLOSE_TIME', '<=', $aFilters['to_date'] . ' 23:59:59');
+            }
+        }
+
+        /* =============== Symbols Filter  =============== */
+        if (!isset($aFilters['all_symbols']) || !$aFilters['all_symbols']) {
+            $oResult = $oResult->whereIn('SYMBOL', $aFilters['symbol']);
+        }
+
+        /* =============== Type Filter  =============== */
+
+        if (isset($aFilters['type']) && !empty($aFilters['type'])) {
+
+            if ($aFilters['type'] == 1) {
+
+                $oResult = $oResult->where('CMD', '<', 2);
+            } elseif ($aFilters['type'] == 2) {
+
+                $oResult = $oResult->whereBetween('CMD', [2, 5]);
+            }
+        } else {
+
+            $oResult = $oResult->where('CMD', '<', 6);
+        }
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+        }
+
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+            // Set CMD type
+            $oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
+            $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
+
+            $oResult[$dKey]->COMMISSION = round($oResult[$dKey]->COMMISSION, 2);
+            $oResult[$dKey]->SWAPS = round($oResult[$dKey]->SWAPS, 2);
+            $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
+
+            //OPenPrice/SL/TP/CLOSED_PRICE
+
+            $price = $oResult[$dKey]->Mt4Prices()->first();
+            $digits = ($price) ? $price->DIGITS : 5;
+            $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
+            $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
+            $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
+            $oResult[$dKey]->CLOSE_PRICE = round($oResult[$dKey]->CLOSE_PRICE, $digits);
+        }
+
+
+        return $oResult;
+    }
+
+
+   public function getAgentOpenTradesByDate($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC',$agent_id)
+   {
+       $oFxHelper = new Fx();
+
+
+       $oResult = Mt4Open::with('agents')->whereHas('agents', function ($query) use ($agent_id) {
+
+           $query->where('agent_id', $agent_id);
+       });
+
+       /* =============== Login Filters =============== */
+
+       if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
+           $oResult = $oResult->where('LOGIN', $aFilters['login']);
+       } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+           (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+       ) {
+
+           if (!empty($aFilters['from_login'])) {
+               $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
+           }
+
+           if (!empty($aFilters['to_login'])) {
+               $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
+           }
+       }
+
+       /* =============== Server Id Filter  =============== */
+
+       if (isset($aFilters['server_id']) && in_array($aFilters['server_id'], [0, 1])) {
+
+           $oResult = $oResult->where('server_id', $aFilters['server_id']);
+       }
+
+       /* =============== Groups Filter  =============== */
+       if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
+           $aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
+           $oResult = $oResult->whereIn('LOGIN', $aUsers);
+       }
+
+       /* =============== Symbols Filter  =============== */
+       if (!isset($aFilters['all_symbols']) || !$aFilters['all_symbols']) {
+           $oResult = $oResult->whereIn('SYMBOL', $aFilters['symbol']);
+       }
+
+       /* =============== Type Filter  =============== */
+       if (isset($aFilters['type']) && !empty($aFilters['type'])) {
+           if ($aFilters['type'] == 1) {
+               $oResult = $oResult->where('CMD', '<', 2);
+           } elseif ($aFilters['type'] == 2) {
+               $oResult = $oResult->whereBetween('CMD', [2, 5]);
+           }
+       } else {
+           $oResult = $oResult->where('CMD', '<', 6);
+       }
+
+       $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+       if (!$bFullSet) {
+           $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+       } else {
+           $oResult = $oResult->get();
+       }
+
+       /* =============== Preparing Output  =============== */
+       foreach ($oResult as $dKey => $oValue) {
+           // Set CMD type
+           $oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
+           $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
+
+           $oResult[$dKey]->COMMISSION = round($oResult[$dKey]->COMMISSION, 2);
+           $oResult[$dKey]->SWAPS = round($oResult[$dKey]->SWAPS, 2);
+           $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
+
+           //OPenPrice/SL/TP/CLOSED_PRICE
+           $digits = $oResult[$dKey]->Mt4Prices()->first()->DIGITS;
+           $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
+           $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
+           $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
+           $oResult[$dKey]->CLOSE_PRICE = round($oResult[$dKey]->CLOSE_PRICE, $digits);
+       }
+
+       return $oResult;
+   }
 }

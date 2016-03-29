@@ -3,7 +3,7 @@
 2. **password**:Lha4T6W1vx
 
 
-#facebook
+# 1. facebook
 ## facebook account
 1. **user name**:fxwebkit
 2. **password**:Lha4T6W1vx
@@ -13,7 +13,7 @@
 2. **App Secret**:8dfda7399b0793451f6dcc49370dadf6
 3. **call back url**:http://www.fxwebkit.com/client/facebook-callback-login
 
-#gmail
+# 2. gmail
 ## gmail account
 1. **email**:fxwebkit@gmail.com
 2. **password**:Lha4T6W1vx
@@ -26,7 +26,7 @@
 
 
 
-# linkedin
+# 3. linkedin
 ## linkedin account
 1. **email**:marketing@fxwebkit.com
 2. **password**:Lha4T6W1vx
