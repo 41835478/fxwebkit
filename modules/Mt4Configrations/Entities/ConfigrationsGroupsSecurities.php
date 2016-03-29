@@ -6,7 +6,9 @@ class ConfigrationsGroupsSecurities extends Model {
 
     protected $table = 'configrations_groups_securities';
     public $timestamps = false;
-    protected $fillable = ['position',
+    protected $fillable = [
+        'group',
+        'position',
         'show',
         'trade',
         'execution',

@@ -47,6 +47,8 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
                 $string .= $data;
             }
         }
+
+        $string = preg_replace("#}[^}]*$#", '}', $string);
         return $string;
 
 
@@ -137,7 +139,9 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
 
         $message='WMQADMINWEBAPI MASTER='.Config('mt4configrations.apiAdminPassword').'|MODE=3';
 
-        $apiGroups=json_decode(utf8_encode($this->sendApiMessage($message)));
+        $returnMessage=$this->sendApiMessage($message);
+
+        $apiGroups=json_decode(utf8_encode($returnMessage));
 
 
         if(isset($apiGroups->result) && $apiGroups->result==1 &&  isset($apiGroups->data) && count($apiGroups->data)) {
@@ -201,6 +205,7 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
 
                     foreach( $group->secgroups as $groupSec){
                         $groupSecs[]= [
+                            'group'=> $group->group,
                             'position'=>$groupSec->position,
                             'show'=>$groupSec->show,
                             'trade'=>$groupSec->trade,
@@ -230,6 +235,7 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
 
                     foreach( $group->secmargins as $groupMargin){
                         $groupMargins[]= [
+                            'group'=> $group->group,
                             'position'=>$groupMargin->position,
                             'symbol'=>$groupMargin->symbol,
                             'swap_long'=>$groupMargin->swap_long,
@@ -263,7 +269,9 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
 
         $message='WMQADMINWEBAPI MASTER='.Config('mt4configrations.apiAdminPassword').'|MODE=2';
 
-        $apiSecurity= json_decode($this->sendApiMessage($message));
+        $returnMessages=$this->sendApiMessage($message);
+
+        $apiSecurity= json_decode($returnMessages);
 
         if(isset($apiSecurity->result) && $apiSecurity->result==1 &&  isset($apiSecurity->data) && count($apiSecurity->data)){
             SymbolGroup::truncate();

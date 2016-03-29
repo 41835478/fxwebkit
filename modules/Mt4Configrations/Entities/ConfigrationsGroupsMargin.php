@@ -6,7 +6,9 @@ class ConfigrationsGroupsMargin extends Model {
 
     protected $table = 'configrations_groups_margin';
     public $timestamps = false;
-    protected $fillable = [  'position',
+    protected $fillable = [
+        'group',
+        'position',
         'symbol',
         'swap_long',
         'swap_short',
