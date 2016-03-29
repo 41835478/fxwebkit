@@ -116,7 +116,13 @@ return [
     'comment'=>'Comment',
     'CommissionChart'=>'Commission Chart',
     'CommissionMonthly'=>'Monthly Commissions',
-    'commissions'=>'Commissions'
+    'commissions'=>'Commissions',
+    'Name'=>'Name',
+    'Group'=>'Group',
+    'mt4Users'=>'Mt4 Users',
+    'ClosedOrders'=>'Closed Orders',
+    'OpenOrders'=>'Open Orders',
+
 
 
 ];

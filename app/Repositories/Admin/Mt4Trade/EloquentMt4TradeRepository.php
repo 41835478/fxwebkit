@@ -1676,7 +1676,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
     }
 
 
-   public function getAgentOpenTradesByDate($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC',$agent_id)
+   public function getAgentOpenTradesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC',$agent_id)
    {
        $oFxHelper = new Fx();
 

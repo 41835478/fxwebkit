@@ -1,5 +1,5 @@
-@extends('admin.layouts.main')
-@section('title', trans('accounts::accounts.accounts'))
+@extends('client.layouts.main')
+@section('title', trans('ibportal::ibportal.mt4Users'))
 @section('content')
 <!-- todo[moayd] please translate this page into ibportal module -->
     <div class="  theme-default page-mail">
@@ -8,36 +8,36 @@
                 {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
                 <ul class="sections">
                     <li class="active"><a href="#"> <i
-                                    class="fa fa-search"></i> {{ trans('accounts::accounts.search') }} </a></li>
+                                    class="fa fa-search"></i> {{ trans('ibportal::ibportal.search') }} </a></li>
                     <li>
                         <div class="   nav-input-div">
                             <div class="checkbox">
                                 <label>
                                     {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
-                                    <span class="lbl">{{ trans('accounts::accounts.ExactLogin') }}</span>
+                                    <span class="lbl">{{ trans('ibportal::ibportal.ExactLogin') }}</span>
                                 </label>
                             </div>
                         </div>
                     </li>
                     <li id="from_login_li">
-                        <div class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('accounts::accounts.FromLogin'),'class'=>'form-control input-sm']) !!}</div>
+                        <div class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('ibportal::ibportal.FromLogin'),'class'=>'form-control input-sm']) !!}</div>
                     </li>
                     <li id="to_login_li">
-                        <div class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('accounts::accounts.ToLogin'),'class'=>'form-control input-sm']) !!}</div>
+                        <div class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('ibportal::ibportal.ToLogin'),'class'=>'form-control input-sm']) !!}</div>
                     </li>
                     <li id="login_li">
-                        <div class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']) !!}</div>
+                        <div class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('ibportal::ibportal.Login'),'class'=>'form-control input-sm']) !!}</div>
                     </li>
 
                     <li>
-                        <div class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']) !!}</div>
+                        <div class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('ibportal::ibportal.Name'),'class'=>'form-control input-sm']) !!}</div>
                     </li>
 
 
 
                     <li>
                         <div class=" nav-input-div  ">
-                            {!! Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                            {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                         </div>
                     </li>
                     <li class="divider"></li>
@@ -53,7 +53,7 @@
 
         <div class="mail-container ">
             <div class="mail-container-header">
-                {{ trans('accounts::accounts.accounts') }}
+                {{ trans('ibportal::ibportal.mt4Users') }}
             </div>
             <div class="center_page_all_div">
                 @include('admin.partials.messages')
@@ -71,10 +71,10 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>{!! Form::label('check_all',trans('accounts::accounts.Login')) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('accounts::accounts.liveDemo'), 'server_id', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</th>
+                                <th>{!! Form::label('check_all',trans('ibportal::ibportal.Login')) !!}</th>
+                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.liveDemo'), 'server_id', $oResults) !!}</th>
+                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Name'), 'NAME', $oResults) !!}</th>
+                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Group'), 'GROUP', $oResults) !!}</th>
                                   </tr>
                             </thead>
                             <tbody>
@@ -113,20 +113,20 @@
                                     {!! Form::hidden('all_groups', $aFilterParams['all_groups']) !!}
                                     {!! Form::hidden('exactLogin', $aFilterParams['exactLogin']) !!}
 
-                                    {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}
+                                    {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('ibportal::ibportal.page'),'class'=>'form-control input-sm']) !!}
 
-                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                                    {!! Form::submit(trans('ibportal::ibportal.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                                     {!! Form::close() !!}
                                 </div>
 
                             @endif
 
                             <div class="col-sm-3">
-                                <span class="text-xs">{{trans('accounts::accounts.showing')}} {{ $oResults->firstItem() }} {{trans('accounts::accounts.to')}} {{ $oResults->lastItem() }} {{trans('accounts::accounts.of')}} {{ $oResults->total() }} {{trans('accounts::accounts.entries')}}</span>
+                                <span class="text-xs">{{trans('ibportal::ibportal.showing')}} {{ $oResults->firstItem() }} {{trans('ibportal::ibportal.to')}} {{ $oResults->lastItem() }} {{trans('ibportal::ibportal.of')}} {{ $oResults->total() }} {{trans('ibportal::ibportal.entries')}}</span>
                             </div>
                         @else
                             <div class="col-sm text-left">
-                                <span class="text-xs"><h3>{{trans('accounts::accounts.no_assign_account')}}</h3></span>
+                                <span class="text-xs"><h3>{{trans('ibportal::ibportal.no_assign_account')}}</h3></span>
                             </div>
                         @endif
 
