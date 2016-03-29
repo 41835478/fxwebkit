@@ -63,22 +63,24 @@
             <div class="mail-container-header">
                 {{ trans('ibportal::ibportal.agentMoney') }}
             </div>
-            <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
-                <li  class="active">
-                    <a href="{{ route('clients.ibportal.agentMoney')}}">{{ trans('ibportal::ibportal.summry') }}</a>
-                </li>
+
+            <div class="center_page_all_div">
+
+                <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+                    <li  class="active">
+                        <a href="{{ route('clients.ibportal.agentMoney')}}">{{ trans('ibportal::ibportal.agentMoney') }}</a>
+                    </li>
 
                     <li >
-                        <a href="{{ route('clients.ibportal.agentInternalTransfer')}}">{{ trans('ibportal::ibportal.internalTransfer') }}</a>
+                        <a href="{{ route('clients.ibportal.agentInternalTransfer')}}">{{ trans('ibportal::ibportal.agentInternalTransfer') }}</a>
                     </li>
 
 
                     <li>
-                        <a href="{{ route('client.ibportal.agentwithDrawal')}}">{{ trans('ibportal::ibportal.withDrawal') }}</a>
+                        <a href="{{ route('client.ibportal.agentwithDrawal')}}">{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
                     </li>
 
-            </ul>
-            <div class="center_page_all_div">
+                </ul>
                 @include('admin.partials.messages')
 
                 @if (count($oResults[0]))

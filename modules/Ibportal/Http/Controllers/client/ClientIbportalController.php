@@ -9,6 +9,7 @@ use Modules\Ibportal\Repositories\IbportalContract as Ibportal;
 use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4Users;
 use Illuminate\Support\Facades\Config;
+use Modules\Accounts\Http\Controllers\ApiController;
 
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
@@ -542,6 +543,70 @@ class ClientIbportalController extends Controller
         return view('ibportal::client.internalTransfer')->with('internalTransfer', $internalTransfer)  ->with('Pssword', $Pssword);
     }
 
+    public function postAgentInternalTransfer(Request $oRequest)
+    {
+
+
+        $login= \Modules\Ibportal\Entities\IbportalUserIbid::select('login')->where('user_id',current_user()->getUser()->id)->first();
+        $login=(count($login))? $login->login:0;
+        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $allowTransferToUnsignedMT4 = Config('accounts.allowTransferToUnsignedMT4');
+
+        $allowed = true;
+
+        if ($allowTransferToUnsignedMT4 == false) {
+            $aFilterParams = [
+                'from_login' => '',
+                'to_login' => '',
+                'exactLogin' => true,
+                'login' => $oRequest['login2'],
+                'name' => '',
+                'all_groups' => true,
+                'group' => '',
+                'sort' => "",
+                'order' => '',
+                'signed' => 1,
+                'account_id' => current_user()->getUser()->id,
+            ];
+            $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, 'login', 'desc');
+
+            if (!count($oResults)) {
+                $allowed = false;
+            }
+        }
+
+        $internalTransfer = [
+            'login' => '',
+            'oldPassword' => '',
+            'login2' => '',
+            'amount' => ''];
+        $result = '';
+        if ($allowed) {
+            $oApiController = new ApiController();
+            if($oRequest['server_id']==1){
+                $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
+                $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+                $oApiController->server_id=1;
+            }
+
+            $result = $oApiController->internalTransfer($login, $oRequest['login2'], $oRequest['oldPassword'], $oRequest['amount']);
+        } else {
+            $result = 'The Admin does not allowed to transfer to unsigned Mt4 users';
+        }
+
+        /* TODO with success */
+        return view('ibportal::client.internalTransfer')
+            ->withErrors($result)
+            ->with('Pssword', $Pssword)
+            ->with('internalTransfer', $internalTransfer)
+            ->with('login', $oRequest->login)
+            ->with('server_id', $oRequest->server_id)
+            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
+            ->with('showWithDrawal',config('accounts.showWithDrawal'))
+            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
+    }
+
     public function getAgentwithDrawal()
     {
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
@@ -553,6 +618,42 @@ class ClientIbportalController extends Controller
             'amount' => ''];
 
         return view('ibportal::client.withDrawal')->with('internalTransfer', $internalTransfer)  ->with('Pssword', $Pssword);
+    }
+
+    public function postAgentwithDrawal(Request $oRequest)
+    {
+
+        $login= \Modules\Ibportal\Entities\IbportalUserIbid::select('login')->where('user_id',current_user()->getUser()->id)->first();
+        $login=($login)? $login->login:0;
+        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $oResults = $this->oMt4User->getUserInfo($oRequest->login);
+
+        $internalTransfer = [
+            'login' => '',
+            'oldPassword' => '',
+            'amount' => ''];
+
+        $oApiController = new ApiController();
+        if($oRequest['server_id']==1){
+            $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
+            $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+            $oApiController->server_id=1;
+        }
+
+        $result = $oApiController->withDrawal($login, $oRequest['amount'],$oRequest['oldPassword']);
+
+        /* TODO with success */
+        return view('ibportal::client.withDrawal')
+            ->withErrors($result)
+            ->with('Pssword', $Pssword)
+            ->with('internalTransfer', $internalTransfer)
+            ->with('oResults', $oResults)
+            ->with('server_id', $oRequest->server_id)
+            ->with('login', $oRequest->login)
+            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal',config('accounts.showWithDrawal'))
+            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
 }

@@ -1,31 +1,31 @@
 @extends('client.layouts.main')
-@section('title', trans('ibportal::ibportal.addAccount'))
+@section('title', trans('ibportal::ibportal.agentwithDrawal'))
 @section('content')
 
     <div id="content-wrapper">
         <div class="page-header">
-        <h1>{{ trans('ibportal::ibportal.user_details') }}</h1>
+        <h1>{{ trans('ibportal::ibportal.agentwithDrawal') }}</h1>
     </div>
 
     <div class="panel">
         {!! Form::open(['class'=>'panel form-horizontal']) !!}
         <div class="panel-heading">
-            <span class="panel-title">{{ trans('ibportal::ibportal.user_details') }}</span>
+            <span class="panel-title">{{ trans('ibportal::ibportal.agentwithDrawal') }}</span>
         </div>
 
 
         <div class="panel-body">
             <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                 <li>
-                    <a href="{{ route('clients.ibportal.agentMoney')}}">{{ trans('ibportal::ibportal.summry') }}</a>
+                    <a href="{{ route('clients.ibportal.agentMoney')}}">{{ trans('ibportal::ibportal.agentMoney') }}</a>
                 </li>
 
                 <li >
-                    <a href="{{ route('clients.ibportal.agentInternalTransfer')}}">{{ trans('ibportal::ibportal.internalTransfer') }}</a>
+                    <a href="{{ route('clients.ibportal.agentInternalTransfer')}}">{{ trans('ibportal::ibportal.agentInternalTransfer') }}</a>
                 </li>
 
                 <li class="active">
-                    <a href="{{ route('client.ibportal.agentwithDrawal')}}">{{ trans('ibportal::ibportal.withDrawal') }}</a>
+                    <a href="{{ route('client.ibportal.agentwithDrawal')}}">{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
                 </li>
 
             </ul>

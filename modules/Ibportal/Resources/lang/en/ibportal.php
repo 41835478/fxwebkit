@@ -122,6 +122,11 @@ return [
     'mt4Users'=>'Mt4 Users',
     'ClosedOrders'=>'Closed Orders',
     'OpenOrders'=>'Open Orders',
+    'agentInternalTransfer'=>'Agent Internal Transfer',
+    'agentwithDrawal'=>'Agent WithDrawal',
+    'toMt4Account'=>'To Mt4 Account',
+    'transferAmount'=>'Transfer Amount',
+    'amount'=>'Amount',
 
 
 
