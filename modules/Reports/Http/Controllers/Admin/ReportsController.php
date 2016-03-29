@@ -49,6 +49,20 @@ class ReportsController extends Controller
         $aGroups = [];
         $aSymbols = [];
         $oResults = null;
+
+        foreach ($oGroups as $oGroup) {
+            $aGroups[$oGroup->group] = $oGroup->group;
+        }
+
+        foreach ($oSymbols as $oSymbol) {
+            $aSymbols[$oSymbol->SYMBOL] = $oSymbol->SYMBOL;
+        }
+
+        foreach ($aTradeTypes as $sKey => $sValue) {
+            $aTradeTypes[$sKey] = trans('general.' . $sValue);
+        }
+
+
         $aFilterParams = [
             'from_login' => '',
             'to_login' => '',
@@ -65,18 +79,6 @@ class ReportsController extends Controller
             'sort' => 'ASC',
             'order' => 'TICKET',
         ];
-
-        foreach ($oGroups as $oGroup) {
-            $aGroups[$oGroup->group] = $oGroup->group;
-        }
-
-        foreach ($oSymbols as $oSymbol) {
-            $aSymbols[$oSymbol->SYMBOL] = $oSymbol->SYMBOL;
-        }
-
-        foreach ($aTradeTypes as $sKey => $sValue) {
-            $aTradeTypes[$sKey] = trans('general.' . $sValue);
-        }
 
 
         if ($oRequest->has('search')) {

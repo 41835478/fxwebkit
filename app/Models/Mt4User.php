@@ -33,4 +33,11 @@ class Mt4User extends Model {
         return $this->belongsToMany('Fxweb\Models\User', 'mt4_users_users', 'mt4_users_id', 'users_id', 'login');
     }
 
+
+    public function agents() {
+
+        return $this->belongsToMany('Modules\Ibportal\Entities\IbportalAgentUser', 'mt4_users_users', 'mt4_users_id', 'users_id', 'login');
+    }
+
+
 }
