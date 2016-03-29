@@ -51,6 +51,8 @@ Route::group(['middleware' => ['authenticate.client'],'prefix' => 'client', 'nam
 		'getAgentUserMt4Users' => 'clients.ibportal.agentUserMt4Users',
 		'getClosedOrders' => 'clients.ibportal.closedOrders',
 		'getOpenOrders' => 'clients.ibportal.openOrders',
+		'getAgentInternalTransfer'=>'clients.ibportal.agentInternalTransfer',
+		'getAgentwithDrawal'=>'client.ibportal.agentwithDrawal',
 
 	]);
 });
