@@ -493,7 +493,7 @@ section.page-top {
 	border-bottom: 5px solid #7AC1EF;
 	border-top: 5px solid #1a7ab9;
 	margin-bottom: 35px;
-	margin-top: 15px;
+	/* margin-top: 15px; */
 	min-height: 50px;
 	padding: 0;
 	padding: 20px;

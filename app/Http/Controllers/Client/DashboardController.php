@@ -65,14 +65,12 @@ class DashboardController extends Controller
         /*___________________________END__test*/
 
         list($firstLogin,$firstLoginServerId, $aLoginList) = $this->oMt4User->getUsersMt4Users($clientId);
-        $login=$firstLogin;
+        $login=0;
         $server_id=$firstLoginServerId;
         if($oRequest->has('login')){
             $login = $oRequest->login ;
             $server_id =  $oRequest->server_id ;
         }
-
-
 
         list($horizontal_line_numbers,
             $growth_array,
@@ -82,8 +80,19 @@ class DashboardController extends Controller
             $sell_array,
             $buy_array,
             $sell_buy_horizontal_line_numbers,
-            $growth) = $this->oMt4Trade->getClientGrowthChart($login,$server_id);
+            $growth) =[[],[],[],[],[],[],[],[],[]];
 
+if($login !=0){
+        list($horizontal_line_numbers,
+            $growth_array,
+            $averages_array,
+            $statistics,
+            $symbols_pie_array,
+            $sell_array,
+            $buy_array,
+            $sell_buy_horizontal_line_numbers,
+            $growth) = $this->oMt4Trade->getClientGrowthChart($login,$server_id);
+    }
         if($oUser->hasAnyAccess(['user.denyLiveAccount']) ){
             Session::flash('flash_info',trans('user.fillFullDetailsToAllowLive'));
         }

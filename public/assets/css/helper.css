@@ -691,3 +691,25 @@ g.highcharts-legend {
 #statistics_table th:after{content:':';}
 
 /* End Symbols Chart */
+
+/*_______________________________________dashboard*/
+#growth_chart_all_div_no_select{
+    height:400px;
+    background: url('../img/chartBackground.png');
+    background-size: cover;
+}
+.over_description_text{
+    width:100%;
+    text-align: center;
+}
+.over_description_text:hover{
+    background-color: rgba(255,255,255,0.5);
+}
+#growth_chart_all_div_no_select .over_description_text{
+padding-top:150px;
+    font-size: 48px;
+    color: #1D89CF;
+    height:400px;
+    cursor:pointer;
+
+}
