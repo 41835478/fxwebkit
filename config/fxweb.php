@@ -96,7 +96,14 @@ return [
                     'route' => 'admin.settings',
                     'title' => 'settings',
                     'icon' => 'fa fa-gears',
+                ],
+                [
+                    'route' => 'admin.language.editLanguage',
+                    'title' => 'language',
+                    'icon' => 'fa fa-globe',
                 ]
+
+
             ]
         ],
 

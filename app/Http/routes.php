@@ -4,11 +4,13 @@ Route::post('changeLanguage','\client\AuthController@postChangeLanguage');
 //$password=\Illuminate\Support\Facades\Hash::make('admin');dd($password);
 //$2y$10$TuVA/eIMmfxa4.wEGCXokOg5c71hAWpgpeiKRxacM7hgUrTHROLVO
 Route::group(['prefix' => env('ADMIN_NAME'), 'namespace' => 'Admin'], function() {
-    Route::resource('admin2', '\Fxweb\Http\Controllers\admin\adminController');
+  //  Route::resource('admin2', '\Fxweb\Http\Controllers\admin\adminController');
     require_once __DIR__ . "/Routes/Admin/Dashboard.php";
     require_once __DIR__ . "/Routes/Admin/Settings.php";
     require_once __DIR__ . "/Routes/Admin/Auth.php";
     require_once __DIR__ . "/Routes/Admin/User.php";
+    require_once __DIR__ . "/Routes/Admin/language.php";
+
 
 });
 
