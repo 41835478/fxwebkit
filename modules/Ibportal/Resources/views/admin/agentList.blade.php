@@ -91,7 +91,7 @@
                                            class="fa fa-users tooltip_number"
                                            data-original-title="{{trans('ibportal::ibportal.agentUsres')}}"></a>
                                         <a href="{{ route('admin.ibportal.agentPlans').'?agentId='.$oResult->id }}"
-                                           class="fa fa-link tooltip_number"
+                                           class="fa fa-briefcase tooltip_number"
                                            data-original-title="{{trans('ibportal::ibportal.agentPlans')}}"></a>
                                         <a href="{{ route('admin.ibportal.agentCommission').'?agentId='.$oResult->id }}"
                                            class="fa fa-money tooltip_number"

@@ -10,8 +10,6 @@
                 <ul class="sections">
                     <li class="active"><a href="#"> <i
                                     class="fa fa-search"></i> {{ trans('ibportal::ibportal.search') }} </a></li>
-
-
                     <li>
                         <div class=" nav-input-div  ">
                             {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('ibportal::ibportal.plan'),'class'=>'form-control input-sm']) !!}

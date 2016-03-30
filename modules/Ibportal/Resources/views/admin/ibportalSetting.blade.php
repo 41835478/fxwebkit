@@ -57,13 +57,13 @@
                     <!-- / .panel -->
                     <div class="panel">
                         <div class="panel-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-example"
-                               href="#collapseTow">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
+                               href="#collapseTwo">
                                 {{ trans('ibportal::ibportal.agentInternalTransfer') }}
                             </a>
                         </div>
                         <!-- / .panel-heading -->
-                        <div id="collapseTow" class="panel-collapse in">
+                        <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="panel-body">
 
 
