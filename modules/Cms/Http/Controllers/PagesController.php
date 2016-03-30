@@ -128,14 +128,15 @@ class PagesController extends Controller
         }
     }
 
-    public function website($page_id = 1, $article_html = '', $language = 1)
+    public function website($page_id = 1, $article_html = '', $language = 1,$menu_item=1)
     {
 
         $asset_folder = Config::get('cms.asset_folder');
         return view('cms::' . Config::get('cms.theme_folder') . '.theme', [
                 'page_id' => $page_id,
-                'positions' => $this->getPageMoudules($page_id, $article_html, $language),
-                'asset_folder' => $asset_folder]
+                'positions' => $this->getPageMoudules($page_id, $article_html, $language,$menu_item),
+                'asset_folder' => $asset_folder
+            ]
         );
     }
 
@@ -304,6 +305,7 @@ class PagesController extends Controller
         }
         $menu_item = ($menu_item == '') ? 'home' : $menu_item;
         $menu_item = cms_menus_items::where(['name' => $menu_item])->first();
+
         if (empty($menu_item)) {
 
             return view('errors/404');
@@ -330,12 +332,12 @@ class PagesController extends Controller
             }
         }
 
-        return $this->website($page_id, $article_html, $language);
+        return $this->website($page_id, $article_html, $language,$menu_item->id);
     }
 
     /* ________________________________________________________END________render_page */
 
-    private function getPageMoudules($page_id, $article_html = '', $language = 1)
+    private function getPageMoudules($page_id, $article_html = '', $language = 1,$menu_id=1)
     {
         $modules_list_controller = new ModulesListController();
         $modules_list = $modules_list_controller->modules_list();
@@ -369,7 +371,7 @@ class PagesController extends Controller
 
                 case -1:
                     $menu = new MenusController();
-                    $module_html .= $menu->render_menu($page_module->module_id, $language);
+                    $module_html .= $menu->render_menu($page_module->module_id, $language,$menu_id);
                     break;
 
                 case -2:

@@ -293,8 +293,9 @@ class MenusController extends Controller
         return $return;
     }
 
-    public function render_menu($menu_id, $language = 1)
+    public function render_menu($menu_id, $language = 1,$selected_id=1)
     {
+
 
         $links = cms_menus_items::where(['menu_id' => $menu_id])->get();
 
@@ -305,7 +306,7 @@ class MenusController extends Controller
         $links = $links->toArray();
         return view('cms::' . Config::get('cms.theme_folder') . '.theme_menu', [
                 'menu_array' => $this->order_menu($links),
-                'selected_id' => $menu_id
+                'selected_id' => $selected_id
             ]
         );
     }
