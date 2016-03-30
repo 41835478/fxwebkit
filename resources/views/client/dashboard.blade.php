@@ -33,7 +33,7 @@
                 @if(count($growth_array))
                     <div id="growth_chart_all_div" class="col-xs-12 col-sm-8"></div>
                 @elseif($login== 0)
-                    <div id="growth_chart_all_div_no_select" class="col-xs-12 col-sm-8"><div class="over_description_text">Click On Your Login </div> </div>
+                    <div id="growth_chart_all_div_no_select" class="col-xs-12 col-sm-8"><div class="over_description_text">{{ trans('general.clickOnYourLogin') }}</div> </div>
                  @else
                     <div class="col-xs-12 col-sm-8">{{ trans('user.no_account_available') }}</div>
                 @endif
@@ -83,7 +83,7 @@
                 </div>
 
                 <div id='statistics_table'>
-@if($login!=0)
+                    @if($login!=0)
                     <div class="tooltip_number_dashborad"  title="{{ trans('general.trades_tooltip') }}">{{ trans('general.trades') }}<div>{!! $statistics['trades']!!}</div></div><div class="tooltip_number_dashborad" title="{{ trans('general.profits_factor_tooltip') }}">{{ trans('general.profits_factor') }}<div>{!! $statistics['profits_factor'] !!}</div></div>
                     <div class="tooltip_number_dashborad" title="{{ trans('general.profit_trades_tooltip') }}">{{ trans('general.profit_trades') }}<div><span class="@if( $statistics['profit_trades_number']< 0)  red_font @else blue_font @endif">{{$statistics['profit_trades_number']}}</span> ({!! $statistics['profit_trades'] !!} )</div></div><div class="tooltip_number_dashborad" title="{{ trans('general.long_trades_tooltip') }}">{{ trans('general.long_trades') }}<div>{!! $statistics['long_trades'] !!}</div></div>
                     <div class="tooltip_number_dashborad" title="{{ trans('general.loss_trade_tooltip') }}">{{ trans('general.loss_trade') }}<div><span class="@if( $statistics['loss_trade_number']< 0)  red_font @else blue_font @endif">{{$statistics['loss_trade_number']}}</span> ({!! $statistics['loss_trade'] !!} )</div></div><div class="tooltip_number_dashborad" title="{{ trans('general.short_trades_tooltip') }}">{{ trans('general.short_trades') }}<div>{!! $statistics['short_trades'] !!}</div></div>
@@ -93,7 +93,7 @@
                     <div class="tooltip_number_dashborad" title="{{ trans('general.gross_loss_tooltip') }}">{{ trans('general.gross_loss') }}<div><span class="@if( $statistics['gross_loss']< 0)  red_font @else blue_font @endif">{!! $statistics['gross_loss'] !!}</span></div></div><div class="tooltip_number_dashborad" title="{{ trans('general.average_loss_tooltip') }}">{{ trans('general.average_loss') }}<div>{!! $statistics['average_loss'] !!}</div></div>
                     <div class="tooltip_number_dashborad" title="{{ trans('general.maximum_consecutive_wins_tooltip') }}">{{ trans('general.maximum_consecutive_wins') }}<div>{!! $statistics['maximum_consecutive_wins_number'] !!}(<span class="blue_font">{{$statistics['maximum_consecutive_wins']}}</span>)</div></div><div class="tooltip_number_dashborad" title="{{ trans('general.maximum_consecutive_losses_tooltip') }}">{{ trans('general.maximum_consecutive_losses') }}<div>{!! $statistics['maximum_consecutive_losses_number'] !!}(<span class="red_font">{!! $statistics['maximum_consecutive_losses'] !!}</span>)</div></div>
                     <div class="tooltip_number_dashborad" title="{{ trans('general.maximal_consecutive_profit_tooltip') }}">{{ trans('general.maximal_consecutive_profit') }}<div><span class="blue_font">{!! $statistics['maximal_consecutive_profit'].' ( '. $statistics['maximal_consecutive_profit_number'].' ) '!!}</span></div></div><div class="tooltip_number_dashborad" title="{{ trans('general.maximal_consecutive_loss_tooltip') }}">{{ trans('general.maximal_consecutive_loss') }}<div><span class="red_font">{!! $statistics['maximal_consecutive_loss'] !!}</span> ({{$statistics['maximal_consecutive_loss_number']}})</div></div>
-@else
+                        @else
                         <div class="tooltip_number_dashborad"  title="{{ trans('general.trades_tooltip') }}">{{ trans('general.trades') }}<div>0</div></div><div class="tooltip_number_dashborad" title="{{ trans('general.profits_factor_tooltip') }}">{{ trans('general.profits_factor') }}<div>0</div></div>
                         <div class="tooltip_number_dashborad" title="{{ trans('general.profit_trades_tooltip') }}">{{ trans('general.profit_trades') }}<div><span class="blue_font">0</span> (0 )</div></div><div class="tooltip_number_dashborad" title="{{ trans('general.long_trades_tooltip') }}">{{ trans('general.long_trades') }}<div>0</div></div>
                         <div class="tooltip_number_dashborad" title="{{ trans('general.loss_trade_tooltip') }}">{{ trans('general.loss_trade') }}<div><span class=" blue_font ">0</span> (0)</div></div><div class="tooltip_number_dashborad" title="{{ trans('general.short_trades_tooltip') }}">{{ trans('general.short_trades') }}<div>0</div></div>
