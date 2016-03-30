@@ -10,6 +10,7 @@ use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
 use Illuminate\Support\Facades\Redirect;
 use Modules\Accounts\Http\Controllers\ApiController;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Fxweb\Models\Mt4User as modelMt4User;
 
 class ClientAccountsController extends Controller
 {
@@ -141,9 +142,22 @@ class ClientAccountsController extends Controller
             'leverage' => ''];
 
 
+$oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->login,'server_id'=>$oRequest->server_id])->first()->LEVERAGE;
+
+
+        $currentLeverage=[0,0];
+        if(array_key_exists($oCurrentLeverage,$Result)){
+        $currentLeverage=[$currentLeverage,$Result[$oCurrentLeverage]];
+     unset($Result[$oCurrentLeverage]);
+    }
+    else{$currentLeverage=[$oCurrentLeverage,$oCurrentLeverage];}
+
+
+
         return view('accounts::client.addLeverage')
             ->with('Pssword', $Pssword)
             ->with('Result', $Result)
+            ->with('currentLeverage',$currentLeverage)
             ->with('changeleverage', $changeleverage)
             ->with('login', $oRequest->login)
             ->with('server_id', $oRequest->server_id)
@@ -159,6 +173,16 @@ class ClientAccountsController extends Controller
         $Result = Config('fxweb.leverage');
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
 
+
+        $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->login,'server_id'=>$oRequest->server_id])->first()->LEVERAGE;
+
+
+        $currentLeverage=[0,0];
+        if(array_key_exists($oCurrentLeverage,$Result)){
+            $currentLeverage=[$currentLeverage,$Result[$oCurrentLeverage]];
+            unset($Result[$oCurrentLeverage]);
+        }
+        else{$currentLeverage=[$oCurrentLeverage,$oCurrentLeverage];}
 
         $changeleverage = [
             'login' => '',
@@ -179,6 +203,7 @@ class ClientAccountsController extends Controller
         /* TODO with success */
         return view('accounts::client.addLeverage')
             ->with('Result', $Result)
+            ->with('currentLeverage',$currentLeverage)
             ->with('Pssword', $Pssword)
             ->with('login', $oRequest->login)
             ->with('changeleverage', $changeleverage)

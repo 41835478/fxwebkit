@@ -123,9 +123,9 @@ public function changeServer($server_id){
 
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
-			$requestLog->insertChangePasswordRequest($login,$this->server_id,$newPassword);
+			$notExist=$requestLog->insertChangePasswordRequest($login,$this->server_id,$newPassword);
 
-			return trans('accounts::accounts.the_request');
+			return (!$notExist)? trans('accounts::accounts.youHavePendingRequest'):trans('accounts::accounts.the_request');
 		}
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
@@ -178,9 +178,8 @@ public function changeServer($server_id){
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
 
-			$requestLog->insertChangeLeverageRequest($login,$this->server_id,$leverage);
-			/* TODO[moaid] please translate this message */
-			return trans('accounts::accounts.the_request');
+			$notExist=$requestLog->insertChangeLeverageRequest($login,$this->server_id,$leverage);
+			return (!$notExist)? trans('accounts::accounts.youHavePendingRequest'):trans('accounts::accounts.the_request');
 		}
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
@@ -241,9 +240,10 @@ $this->changeServer($server_id);
 
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
-			$requestLog->insertInternalTransferRequest($login1,$login2,$this->server_id,$amount);
-			/* TODO[moaid] please translate this message */
-			return trans('accounts::accounts.the_request');
+			$notExist=$requestLog->insertInternalTransferRequest($login1,$login2,$this->server_id,$amount);
+
+
+			return (!$notExist)? trans('accounts::accounts.youHavePendingRequest'):trans('accounts::accounts.the_request');
 		}
 
 
@@ -302,9 +302,9 @@ $this->changeServer($server_id);
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
 
-			$requestLog->insertWithDrawalRequest($login1,$this->server_id,$amount);
+			$notExist=$requestLog->insertWithDrawalRequest($login1,$this->server_id,$amount);
 
-			return trans('accounts::accounts.the_request');
+			return (!$notExist)? trans('accounts::accounts.youHavePendingRequest'):trans('accounts::accounts.the_request');
 		}
 
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
@@ -375,9 +375,9 @@ $this->changeServer($server_id);
 
 			$requestLog =new RequestLog();
 			if(Config('accounts.directOrderToMt4Server')==false){
-				$requestLog->insertMt4UserFullDetailsRequest($this->server_id,$mt4_user_details,0,$accountId);
+				$notExist=$requestLog->insertMt4UserFullDetailsRequest($this->server_id,$mt4_user_details,0,$accountId);
 
-				return trans('accounts::accounts.the_request');
+				return (!$notExist)? trans('accounts::accounts.youHavePendingRequest'):trans('accounts::accounts.the_request');
 			}
 
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
@@ -458,8 +458,8 @@ if(is_object($result) &&  property_exists ($result ,'result')){
 		$this->changeServer($server_id);
 		$requestLog =new RequestLog();
 		if(Config('accounts.directOrderToMt4Server')==false){
-			$requestLog->insertAssignAccountRequest($login,$this->server_id,$password);
-			return trans('accounts::accounts.the_request');
+			$notExist=$requestLog->insertAssignAccountRequest($login,$this->server_id,$password);
+			return (!$notExist)? trans('accounts::accounts.youHavePendingRequest'):trans('accounts::accounts.the_request');
 		}
 
 

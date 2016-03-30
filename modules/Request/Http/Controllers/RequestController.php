@@ -19,7 +19,14 @@ class RequestController extends Controller
 
     public function insertInternalTransferRequest($fromLogin, $toLogin,$server_id, $amount = 0, $comment = '', $reason = '', $status = 0)
     {
-
+       $existResult= InternalTransfer::where([
+           'from_login' => $fromLogin,
+           'to_login' => $toLogin,
+           'server_id'=>$server_id,
+           'amount' => $amount,
+           'status' => 0
+       ])->get();
+        if(count($existResult)){ return false;}
 
         //$this->RequestLog->insertInternalTransferRequest($fromLogin,$toLogin,$amount,$comment,$reason,$status);
         $log = new InternalTransfer();
@@ -40,7 +47,13 @@ class RequestController extends Controller
 
     public function insertWithDrawalRequest($login,$server_id, $amount = 0, $comment = '', $reason = '', $status = 0)
     {
-
+        $existResult= Withdrawal::where([
+            'login' => $login,
+            'server_id'=>$server_id,
+            'amount' => $amount,
+            'status' => 0
+        ])->get();
+        if(count($existResult)){ return false;}
 
         //$this->RequestLog->insertInternalTransferRequest($fromLogin,$toLogin,$amount,$comment,$reason,$status);
 
@@ -99,7 +112,13 @@ class RequestController extends Controller
 
     public function insertChangeLeverageRequest($login,$server_id, $leverage, $comment = '', $reason = '', $status = 0)
     {
-
+        $existResult= ChangeLeverage::where([
+            'login' => $login,
+            'server_id'=>$server_id,
+            'leverage' => $leverage,
+            'status' => 0
+        ])->get();
+        if(count($existResult)){ return false;}
         $log = new ChangeLeverage();
 
         $log->insert([
@@ -134,7 +153,14 @@ class RequestController extends Controller
 
     public function insertChangePasswordRequest($login,$server_id, $newPassword, $comment = '', $reason = '', $status = 0)
     {
+        $existResult= ChangePassword::where([
 
+            'login' => $login,
+            'server_id' => $server_id,
+            'newPassword' => $newPassword,
+            'status' => 0
+        ])->get();
+        if(count($existResult)){ return false;}
         $log = new ChangePassword();
 
         $log->insert([
@@ -170,6 +196,14 @@ class RequestController extends Controller
     {
 
         //$this->RequestLog->insertInternalTransferRequest($fromLogin,$toLogin,$amount,$comment,$reason,$status);
+        $existResult= addAccount::where([
+
+            'accountId' => $accountId,
+
+            'status' => 0
+        ])->get();
+        if(count($existResult)){ return false;}
+
 
         $log = new addAccount();
 
@@ -236,9 +270,17 @@ class RequestController extends Controller
     }
 
     public function insertAssignAccountRequest($login,$server_id, $password, $comment = '', $reason = '', $status = 0)
-    {
+    { $user = current_user()->getUser();
+        $existResult= AssignAccount::where([
 
-        $user = current_user()->getUser();
+            'accountId' => $user->id,
+
+            'status' => 0
+        ])->get();
+        if(count($existResult)){ return false;}
+
+
+
         $log = new AssignAccount();
 
         $log->insert([
