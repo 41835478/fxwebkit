@@ -39,6 +39,36 @@
                                 <hr>
                                 <div class="row">
 
+                                    <div class="col-sm-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                {!! Form::checkbox('is_client', 1,$ibportalSetting['is_client'], ['class'=>'px','id'=>'is_client']) !!}
+                                                <span class="lbl">{{ trans('ibportal::ibportal.is_client') }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- col-sm-6 -->
+                                </div>
+                            </div>
+                            <!-- / .panel-body -->
+                        </div>
+                        <!-- / .collapse -->
+                    </div>
+                    <!-- / .panel -->
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-example"
+                               href="#collapseTow">
+                                {{ trans('ibportal::ibportal.agentInternalTransfer') }}
+                            </a>
+                        </div>
+                        <!-- / .panel-heading -->
+                        <div id="collapseTow" class="panel-collapse in">
+                            <div class="panel-body">
+
+
+                                <div class="row">
+
 
                                     <div class="col-sm-4">
                                         <div class="checkbox">
@@ -62,28 +92,11 @@
                                         </div>
                                     </div>
 
-
-
-
-
                                     <div class="col-sm-4">
                                         <div class="checkbox">
                                             <label>
                                                 {!! Form::checkbox('allowAgentTransferToHisAgent', 1,$ibportalSetting['allowAgentTransferToHisAgent'], ['class'=>'px allow_transfer_check_box','id'=>'allowAgentTransferToHisAgent']) !!}
                                                 <span class="lbl">{{ trans('ibportal::ibportal.allowAgentTransferToHisAgent') }}</span>
-                                            </label>
-                                        </div>
-                                    </div>
-
-
-
-
-
-                                    <div class="col-sm-4">
-                                        <div class="checkbox">
-                                            <label>
-                                                {!! Form::checkbox('is_client', 1,$ibportalSetting['is_client'], ['class'=>'px','id'=>'is_client']) !!}
-                                                <span class="lbl">{{ trans('ibportal::ibportal.is_client') }}</span>
                                             </label>
                                         </div>
                                     </div>
@@ -94,7 +107,6 @@
                         </div>
                         <!-- / .collapse -->
                     </div>
-                    <!-- / .panel -->
 
                 </div>
                 <!-- / .panel-group -->

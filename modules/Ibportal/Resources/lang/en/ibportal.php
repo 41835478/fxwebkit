@@ -127,6 +127,10 @@ return [
     'toMt4Account'=>'To Mt4 Account',
     'transferAmount'=>'Transfer Amount',
     'amount'=>'Amount',
+    'agentInternalTransfer'=>'Agent Internal Transfer',
+    'allowAgentTransferToAll'=>'Allow Agent Transfer To All',
+    'allowAgentTransferToHisAgentUsers'=>'Allow Agent Transfer To His Agent Users',
+    'allowAgentTransferToHisAgent'=>'Allow Agent Transfer To His Agent',
 
 
 
