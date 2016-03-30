@@ -713,3 +713,17 @@ padding-top:150px;
     cursor:pointer;
 
 }
+
+#population_column_all_div{
+    height:400px;
+    background: url('../img/populationColumn.png');
+    background-size: cover;
+
+}
+
+#population_pie_all_div{
+    height:400px;
+    background: url('../img/pieChart.png');
+    background-size: cover;
+
+}
