@@ -18,7 +18,7 @@ return [
     'apiMasterPassword' => 'PASSWORD',
     'allowTransferToUnsignedMT4' => true,
 
-
+'changeLeverageWarning'=>'Please, be careful with this operation !. ',
     'denyLiveAccount' => false,
     'showMt4Leverage' => true,
     'showWithDrawal' => true,

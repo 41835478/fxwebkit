@@ -882,7 +882,7 @@ class AccountsController extends Controller
     {
 
         $accountsSetting = [
-
+'changeLeverageWarning'=>config('accounts.changeLeverageWarning'),
             'showMt4Leverage' => Config('accounts.showMt4Leverage'),
             'showMt4ChangePassword' => Config('accounts.showMt4ChangePassword'),
             'showMt4Transfer' => Config('accounts.showMt4Transfer'),
@@ -932,6 +932,7 @@ class AccountsController extends Controller
             'allowTransferToUnsignedMT4'=>$allowTransferToUnsignedMT4,
             'directOrderToMt4Server'=>$directOrderToMt4Server,
             'showWithDrawal'=>$showWithDrawal,
+            'changeLeverageWarning'=>$oRequest->changeLeverageWarning,
             'apiMasterPassword'=>$oRequest->apiMasterPassword,
             'is_client' => $is_client,
 

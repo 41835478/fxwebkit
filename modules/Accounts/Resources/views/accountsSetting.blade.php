@@ -125,6 +125,9 @@
                                 </div>
                             </div>
                             <!-- col-sm-6 -->
+
+
+
                         </div>
 
                         <hr>
@@ -150,6 +153,19 @@
 
                             <!-- col-sm-6 -->
                         </div>
+                        <hr>
+
+<div class="row">
+
+                        <div class="col-sm-6">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.changeLeverageWarning') }}</label>
+                                {!! Form::text('changeLeverageWarning',config('accounts.changeLeverageWarning'),['class'=>'form-control']) !!}
+
+                            </div>
+                        </div>
+                    </div>
+
                         <!-- row -->
                     </div>
                     <!-- / .panel-body -->
@@ -179,6 +195,8 @@
 
                                 </div>
                             </div>
+
+
 
 
                             <!-- col-sm-6 -->
