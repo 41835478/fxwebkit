@@ -105,7 +105,7 @@ return [
     'agentMoney' => 'Agent Money',
     'total'=>'Total',
     'password'=>'Password',
-    'assignAgents'=>'Assign Agents',
+    'assignAgents'=>'Assign Agents Mt4 Users',
     'assign'=>'Assign',
     'the_account'=>'The account has been added successfully',
     'summary'=>'Summary',
