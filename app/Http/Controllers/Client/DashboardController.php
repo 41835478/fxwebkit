@@ -41,7 +41,7 @@ class DashboardController extends Controller
         $growth_array = [0.00, 50.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
        $averages_array = [50.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
         */
-        $oUser=Sentinel::getUser();
+        $oUser = Sentinel::getUser();
         $clientId = $oUser->id;
 
         /*_____________________________test*
@@ -64,12 +64,12 @@ class DashboardController extends Controller
         }
         /*___________________________END__test*/
 
-        list($firstLogin,$firstLoginServerId, $aLoginList) = $this->oMt4User->getUsersMt4Users($clientId);
-        $login=0;
-        $server_id=$firstLoginServerId;
-        if($oRequest->has('login')){
-            $login = $oRequest->login ;
-            $server_id =  $oRequest->server_id ;
+        list($firstLogin, $firstLoginServerId, $aLoginList) = $this->oMt4User->getUsersMt4Users($clientId);
+        $login = 0;
+        $server_id = $firstLoginServerId;
+        if ($oRequest->has('login')) {
+            $login = $oRequest->login;
+            $server_id = $oRequest->server_id;
         }
 
         list($horizontal_line_numbers,
@@ -80,26 +80,26 @@ class DashboardController extends Controller
             $sell_array,
             $buy_array,
             $sell_buy_horizontal_line_numbers,
-            $growth) =[[],[],[],[],[],[],[],[],[]];
+            $growth) = [[], [], [], [], [], [], [], [], []];
 
-if($login !=0){
-        list($horizontal_line_numbers,
-            $growth_array,
-            $averages_array,
-            $statistics,
-            $symbols_pie_array,
-            $sell_array,
-            $buy_array,
-            $sell_buy_horizontal_line_numbers,
-            $growth) = $this->oMt4Trade->getClientGrowthChart($login,$server_id);
-    }
-        if($oUser->hasAnyAccess(['user.denyLiveAccount']) ){
-            Session::flash('flash_info',trans('user.fillFullDetailsToAllowLive'));
+        if ($login != 0) {
+            list($horizontal_line_numbers,
+                $growth_array,
+                $averages_array,
+                $statistics,
+                $symbols_pie_array,
+                $sell_array,
+                $buy_array,
+                $sell_buy_horizontal_line_numbers,
+                $growth) = $this->oMt4Trade->getClientGrowthChart($login, $server_id);
+
+        }
+        if ($oUser->hasAnyAccess(['user.denyLiveAccount'])) {
+            Session::flash('flash_info', trans('user.fillFullDetailsToAllowLive'));
         }
 
 
-
-       // dd( \Illuminate\Support\Facades\Session::get('flash_success'));
+        // dd( \Illuminate\Support\Facades\Session::get('flash_success'));
         return view('client.dashboard')
             ->with('horizontal_line_numbers', $horizontal_line_numbers)
             ->with('growth_array', $growth_array)
@@ -112,7 +112,7 @@ if($login !=0){
             ->with('symbols_pie_array', $symbols_pie_array)
             ->with('sell_array', $sell_array)
             ->with('buy_array', $buy_array)
-            ->with('growth', $growth) ;
+            ->with('growth', $growth);
 
 
     }
@@ -122,15 +122,37 @@ if($login !=0){
         $clientId = Sentinel::getUser()->id;
 
 
-        list($firstLogin,$firstLoginServerId, $aLoginList) = $this->oMt4User->getUsersMt4Users($clientId);
-        $login=$firstLogin;
-        $server_id=$firstLoginServerId;
-        if($oRequest->has('login')){
-            $login = $oRequest->login ;
-            $server_id =  $oRequest->server_id ;
+        list($firstLogin, $firstLoginServerId, $aLoginList) = $this->oMt4User->getUsersMt4Users($clientId);
+        $login = 0;
+        $server_id = $firstLoginServerId;
+
+        if ($oRequest->has('login')) {
+            $login = $oRequest->login;
+            $server_id = $oRequest->server_id;
         }
 
-        list($horizontal_line_numbers, $balance_array, $statistics, $symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers,$balance) = $this->oMt4Trade->getClinetBalanceChart($login,$server_id);
+        list($horizontal_line_numbers,
+            $balance_array,
+            $statistics,
+            $symbols_pie_array,
+            $sell_array,
+            $buy_array,
+            $sell_buy_horizontal_line_numbers,
+            $balance) = [[], [], [], [], [], [], [], [], []];
+
+
+
+        if ($login != 0) {
+
+            list($horizontal_line_numbers,
+                $balance_array,
+                $statistics,
+                $symbols_pie_array,
+                $sell_array,
+                $buy_array,
+                $sell_buy_horizontal_line_numbers,
+                $balance) = $this->oMt4Trade->getClinetBalanceChart($login, $server_id);
+        }
 
 
         return view('client.balanceChart')

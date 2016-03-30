@@ -192,4 +192,6 @@ return [
     'average_profit_tooltip' => 'Average profit is a quotient of the gross profit and the amount of profitable trades.',
     'average_loss_tooltip' => 'Average loss is a quotient of the gross loss and the amount of losing trades.',
     'average_loss_tooltip' => 'Average loss is a quotient of the gross loss and the amount of losing trades.',
+
+    'clickOnYourLogin'=>'Click On Your Login',
 ];
