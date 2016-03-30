@@ -192,6 +192,11 @@ class EloquentMt4UserRepository implements Mt4UserContract {
             $oResult = $oResult->where('name', 'like', '%' . $aFilters['name'] . '%');
         }
 
+        /* =============== Nmae Filter  =============== */
+        if (isset($aFilters['server_id'])) {
+            $oResult = $oResult->where('server_id', '=', $aFilters['server_id']);
+        }
+
         /* =============== Groups Filter  =============== */
         if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
             $aUsers = $this->getLoginsInGroup($aFilters['group']);
