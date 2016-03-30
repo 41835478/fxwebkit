@@ -154,6 +154,14 @@
                     <div id="bar_negative_stack_all_div" class="col-xs-6"></div>
                     <div id="symbols_pie_chart_all_div" class="col-xs-6"></div>
                 </div>
+            @elseif($login==0)
+
+
+                <div class="panel-body">
+                    <div id="population_column_all_div" class="col-xs-6"></div>
+                    <div id="population_pie_all_div" class="col-xs-6"></div>
+                </div>
+
             @else
                 <div class="text-center">{{ trans('user.no_account_available') }}</div>
             @endif
