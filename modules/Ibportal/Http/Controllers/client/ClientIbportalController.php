@@ -373,6 +373,7 @@ class ClientIbportalController extends Controller
             'order' => $sOrder,
             'signed' => 1,
             'account_id' => $account_id,
+            'server_id'=>0
         ];
 
 
@@ -389,6 +390,7 @@ class ClientIbportalController extends Controller
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['signed'] =1;
             $aFilterParams['account_id'] = $account_id;
+            $aFilterParams['server_id']=0;
             $aFilterParams['order'] = $oRequest->order;
 
            }

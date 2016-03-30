@@ -757,8 +757,8 @@ public function getAgentStatistics($agentId){
     if($login){
         $login=$login->login;
     }else{
-        /* TODO please determine if the user does not have mt4 login to get his commission(IBID table column field)*/
-        dd('please determine if the user does not have mt4 login to get his commission(IBID table column field)');}
+        $login=0;
+        }
 
     $oGrowthResults = Mt4ClosedBalance::select([DB::raw('sum(PROFIT+COMMISSION+SWAPS) as netProfit,concat(YEAR(CLOSE_TIME),concat("-",MONTH(CLOSE_TIME))) as month'), 'CMD'])
         ->where('login', $login)
@@ -787,7 +787,7 @@ public function getAgentStatistics($agentId){
     $statistics['users_number']=AgentUser::where('agent_id',$agentId)->count();
     $statistics['mt4_users_number']=mt4_users_users::with('agentUsers')->whereHas('agentUsers',function ($query) use($agentId){
         $query->where('agent_id',$agentId);
-    })->count();
+    })->where('server_id',0)->count();
 
     $statistics['planes_number']=PlanUsers::where('user_id',$agentId)->count();
 

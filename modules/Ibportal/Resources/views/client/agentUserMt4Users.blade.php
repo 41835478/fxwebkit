@@ -72,9 +72,8 @@
                             <thead>
                             <tr>
                                 <th>{!! Form::label('check_all',trans('ibportal::ibportal.Login')) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.liveDemo'), 'server_id', $oResults) !!}</th>
+                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.live'), 'server_id', $oResults) !!}</th>
                                 <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Name'), 'NAME', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Group'), 'GROUP', $oResults) !!}</th>
                                   </tr>
                             </thead>
                             <tbody>
@@ -85,7 +84,6 @@
                                     <td>{{ $oResult->LOGIN }}</td>
                                     <td>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
                                     <td>{{ $oResult->NAME }}</td>
-                                    <td>{{ $oResult->GROUP }}</td>
 
                                 </tr>
                             @endforeach
