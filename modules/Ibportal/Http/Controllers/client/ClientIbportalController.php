@@ -14,6 +14,7 @@ use Modules\Accounts\Http\Controllers\ApiController;
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
+use Modules\Accounts\Entities\mt4_users_users;
 
 class ClientIbportalController extends Controller
 {
@@ -558,6 +559,7 @@ class ClientIbportalController extends Controller
 
 
         $allowed = true;
+
         if ($allowAgentTransferToAll== false) {
             $oHisResults=[];
             $oHisUsersResults=[];
@@ -581,12 +583,11 @@ class ClientIbportalController extends Controller
 
             if($allowAgentTransferToHisAgentUsers){
 
-
                 $agentId=current_user()->getUser()->id;
                 $oHisUsersResults ==mt4_users_users::with('agentUsers')->whereHas('agentUsers',function ($query) use($agentId){
                     $query->where('agent_id',$agentId);
                 })
-                    ->where('login',$oRequest['login2'])
+                    ->where('mt4_users_id',$oRequest['login2'])
                     ->where('server_id',0)
                     ->get();
             }
