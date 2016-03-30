@@ -550,11 +550,19 @@ class ClientIbportalController extends Controller
         $login= \Modules\Ibportal\Entities\IbportalUserIbid::select('login')->where('user_id',current_user()->getUser()->id)->first();
         $login=(count($login))? $login->login:0;
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
-        $allowTransferToUnsignedMT4 = Config('accounts.allowTransferToUnsignedMT4');
+
+
+       $allowAgentTransferToAll = Config('ibportal.allowAgentTransferToAll');
+        $allowAgentTransferToHisAgent = Config('ibportal.allowAgentTransferToHisAgent');
+        $allowAgentTransferToHisAgentUsers = Config('ibportal.allowAgentTransferToHisAgentUsers');
+
 
         $allowed = true;
+        if ($allowAgentTransferToAll== false) {
+            $oHisResults=[];
+            $oHisUsersResults=[];
 
-        if ($allowTransferToUnsignedMT4 == false) {
+            if($allowAgentTransferToHisAgent){
             $aFilterParams = [
                 'from_login' => '',
                 'to_login' => '',
@@ -568,11 +576,25 @@ class ClientIbportalController extends Controller
                 'signed' => 1,
                 'account_id' => current_user()->getUser()->id,
             ];
-            $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, 'login', 'desc');
+            $oHisResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, 'login', 'desc');
+        }
 
-            if (!count($oResults)) {
-                $allowed = false;
+            if($allowAgentTransferToHisAgentUsers){
+
+
+                $agentId=current_user()->getUser()->id;
+                $oHisUsersResults ==mt4_users_users::with('agentUsers')->whereHas('agentUsers',function ($query) use($agentId){
+                    $query->where('agent_id',$agentId);
+                })
+                    ->where('login',$oRequest['login2'])
+                    ->where('server_id',0)
+                    ->get();
             }
+
+            if (!count($oHisResults) && !count($oHisUsersResults) ) { $allowed = false; }
+
+
+
         }
 
         $internalTransfer = [

@@ -15,7 +15,10 @@ return [
         '150' => 'type',
     ],
     'agreemment'=>'<p>please agee to the agreement to be agent</p>
-',
+','allowAgentTransferToAll'=>0,
+    'allowAgentTransferToHisAgentUsers'=>1,
+    'allowAgentTransferToHisAgent'=>1
+    ,
     'admin_menu' => [
 
         [

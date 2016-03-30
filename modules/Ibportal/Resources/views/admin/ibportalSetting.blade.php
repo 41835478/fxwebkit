@@ -43,6 +43,45 @@
                                     <div class="col-sm-4">
                                         <div class="checkbox">
                                             <label>
+                                                {!! Form::checkbox('allowAgentTransferToAll', 1,$ibportalSetting['allowAgentTransferToAll'], ['class'=>'px allow_transfer_check_box','id'=>'allowAgentTransferToAll']) !!}
+                                                <span class="lbl">{{ trans('ibportal::ibportal.allowAgentTransferToAll') }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="col-sm-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                {!! Form::checkbox('allowAgentTransferToHisAgentUsers', 1,$ibportalSetting['allowAgentTransferToHisAgentUsers'], ['class'=>'px allow_transfer_check_box','id'=>'allowAgentTransferToHisAgentUsers']) !!}
+                                                <span class="lbl">{{ trans('ibportal::ibportal.allowAgentTransferToHisAgentUsers') }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="col-sm-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                {!! Form::checkbox('allowAgentTransferToHisAgent', 1,$ibportalSetting['allowAgentTransferToHisAgent'], ['class'=>'px allow_transfer_check_box','id'=>'allowAgentTransferToHisAgent']) !!}
+                                                <span class="lbl">{{ trans('ibportal::ibportal.allowAgentTransferToHisAgent') }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="col-sm-4">
+                                        <div class="checkbox">
+                                            <label>
                                                 {!! Form::checkbox('is_client', 1,$ibportalSetting['is_client'], ['class'=>'px','id'=>'is_client']) !!}
                                                 <span class="lbl">{{ trans('ibportal::ibportal.is_client') }}</span>
                                             </label>
@@ -109,5 +148,26 @@
                     filebrowserBrowseUrl: " {{ asset('/cms/articles/file-browser') }}",
                     filebrowserUploadUrl: "{{ asset('/cms/articles/upload-image' ).'?_token='. csrf_token() }}"
                 });
+
+                $('#allowAgentTransferToAll').change(function() {
+                    if($(this).is(':checked')){
+                        $('#allowAgentTransferToHisAgentUsers').prop('checked',false);
+                        $('#allowAgentTransferToHisAgent').prop('checked',false);
+//                        $('#allowAgentTransferToHisAgentUsers').attr("disabled", true);
+//                        $('#allowAgentTransferToHisAgent').attr("disabled", true);
+                    }
+                });
+//                $('#allowAgentTransferToAll').click(function(){ $(this).removeAttr("disabled");});
+//                $('#allowAgentTransferToHisAgentUsers,#allowAgentTransferToHisAgent').click(function(){
+//
+//                    $('#allowAgentTransferToAll,#allowAgentTransferToAll').removeAttr("disabled");});
+                        $('#allowAgentTransferToHisAgentUsers,#allowAgentTransferToHisAgent').change(function() {
+                            if($(this).is(':checked')){
+                                $('#allowAgentTransferToAll').prop('checked',false);
+//                                $('#allowAgentTransferToAll').attr("disabled", true);
+
+                            }
+                        });
+
             </script>
 @stop

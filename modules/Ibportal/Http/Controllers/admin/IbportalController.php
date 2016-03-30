@@ -586,7 +586,9 @@ class IbportalController extends Controller
 
             'agreemment' => Config('ibportal.agreemment'),
             'is_client' => Config('ibportal.is_client'),
-
+            'allowAgentTransferToAll'=> Config('ibportal.allowAgentTransferToAll'),
+            'allowAgentTransferToHisAgentUsers'=> Config('ibportal.allowAgentTransferToHisAgentUsers'),
+            'allowAgentTransferToHisAgent'=> Config('ibportal.allowAgentTransferToHisAgent')
 
         ];
 
@@ -601,6 +603,9 @@ class IbportalController extends Controller
 
             'agreemment' => $oRequest->agreemment,
             'is_client' => $is_client,
+            'allowAgentTransferToAll'=> ($oRequest->allowAgentTransferToAll)? 1:0,
+            'allowAgentTransferToHisAgentUsers'=> ($oRequest->allowAgentTransferToHisAgentUsers)? 1:0,
+            'allowAgentTransferToHisAgent'=> ($oRequest->allowAgentTransferToHisAgent)? 1:0
 
 
         ];
