@@ -21,8 +21,8 @@
             <div class="col-sm-12">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('general.template') }}</label>
-                    {!! Form::select('name', $aTemplates, $sTemplate, array('class' => ' form-control', 'id' => 'template-name','onchange'=>'$("#showTemplateForm").submit()')) !!}
-                
+                    {!! Form::select('templateId', $aTemplates, $templateId, array('class' => ' form-control', 'id' => 'template-name','onchange'=>'$("#showTemplateForm").submit()')) !!}
+
                 </div>
             </div><!-- col-sm-6 -->
 
@@ -37,19 +37,33 @@
 
             {!! Form::close() !!}
             <div style='clear:both'></div>
-            @if ($sContent)
+
                 {!! Form::open(array('class'=>'form-horizontal')) !!}
-                <div class="well body">
+
+
+<div class="col-xm-12">
+                <div class="form-group no-margin-hr  body">
+                    <label class="control-label">{{ trans('general.subject') }}</label>
+                    {!! Form::text('subject', $subject, ['class' => ' form-control']) !!}
+                </div>
+        </div>
+
+
+
+            <div class="well body">
                     {!! Form::textarea('template_body', $sContent, array('id'=>'editor1','class' => 'form-control ckeditor')) !!}
                 </div>
                 <div class="form-actions align-right">
 
 
-                    {!! Form::submit(trans('general.send'), array('class'=>'btn btn-primary btn-flat')) !!}
+                    {!! Form::submit(trans('general.save'), array('name'=>'save', 'class'=>'btn btn-primary btn-flat')) !!}
+                    {!! Form::submit(trans('general.saveAndSend'), array('name'=>'saveSend', 'class'=>'btn btn-primary btn-flat')) !!}
+                    {!! Form::submit(trans('general.send'), array('name'=>'send', 'class'=>'btn btn-primary btn-flat')) !!}
                 </div>
+            {!! Form::hidden('templateId', $templateId) !!}
+            {!! Form::hidden('lang', $sLanguage) !!}
+            {!! Form::close() !!}
 
-                {!! Form::close() !!}
-            @endif
         </div>
         </div>
     </fieldset>

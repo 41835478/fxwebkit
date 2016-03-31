@@ -14,7 +14,7 @@ class LanguageController extends Controller
     public function getEditLanguage(Request $request){
 
         $modules=[''=>'public',
-        'modules/Accounts'=>'Account',
+            'modules/Accounts'=>'Account',
             'modules/Cms'=>'Cms',
             'modules/Ibportal'=>'Ibportal',
             'modules/Mt4Configrations'=>'Configrations',
@@ -59,13 +59,14 @@ class LanguageController extends Controller
 
     public function postEditLanguage(Request $request){
 
-       $this->directWriteArrayToFile(base_path($request->module.'/resources/lang/'.$request->language.'/'.$request->file),$request->translate);
-   return $this->getEditLanguage($request);
+        $this->directWriteArrayToFile(base_path($request->module.'/resources/lang/'.$request->language.'/'.$request->file),$request->translate);
+        return $this->getEditLanguage($request);
     }
 
 
     public function ifFileArrayReplace($filePath,$tempFile){
 
+        /* we do not use this function but to use it we have to test if the included file is valid php code  */
         $tempArray=include('$tempFile');
         if(is_array($tempArray)){
             unlink($filePath);
@@ -79,7 +80,7 @@ class LanguageController extends Controller
     {
         if(!is_array($array)){return "<?php  return []; ?>";}
         $sArray = "<?php return [\n";
-        foreach ($array as &$key=>$value) {
+        foreach ($array as $key=>$value) {
 
             $sArray .= "'" . $key . "'=>'" .$value . "',\n";
 

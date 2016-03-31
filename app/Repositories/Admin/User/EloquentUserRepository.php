@@ -226,12 +226,16 @@ public function getDashboardStatistics(){
         return $oResult;
     }
 
-    public function getUsersEmail()
+    public function getUsersEmail($last_user_id=0,$limit=0)
     {
 
-        $oResult = User::select('first_name', 'email')->get()->toArray();
+        $oResult = User::select('first_name', 'email','id')->where('id','>',$last_user_id);
 
-        return $oResult;
+        if($limit > 0){
+            $oResult = $oResult->limit($limit);
+        }
+        $oResult = $oResult->get();
+        return $oResult->toArray();
     }
 
 
