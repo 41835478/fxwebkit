@@ -42,13 +42,13 @@
 
 
             <div class="row">
-                <div class="alert alert-danger alert-dark">
-
-                        <strong></strong>  {{config('accounts.changeLeverageWarning') }}<br>
-
+               <br>
+                <div class="alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong></strong>  {{config('accounts.changeLeverageWarning') }}<br>
                 </div>
 
-               <label>current Leverage : {{ $currentLeverage[1] }}</label> <br>
+               <label class="label label-primary label-tag">current Leverage : <b>{{ $currentLeverage[1] }}</b> </label> <br>
                 <div class="col-sm-6">
                     <div class="form-group no-margin-hr">
                         <label class="control-label">{{ trans('accounts::accounts.leverage') }}</label>
