@@ -79,7 +79,7 @@ class LanguageController extends Controller
     {
         if(!is_array($array)){return " return [];";}
         $sArray = "<?php return [\n";
-        foreach ($array as $key=>$value) {
+        foreach ($array as &$key=>$value) {
 
             $sArray .= "'" . $key . "'=>'" .$value . "',\n";
 
