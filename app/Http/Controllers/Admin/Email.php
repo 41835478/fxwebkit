@@ -7,6 +7,8 @@ use Fxweb\Http\Requests;
 use Fxweb\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
 use Mail;
+use Fxweb\Models\SettingsMassMail;
+use Fxweb\Models\User;
 
 class Email extends Controller {
 
@@ -181,6 +183,48 @@ class Email extends Controller {
     }
 
 
+    public function autoSendMassMail($limit=2,$mailId=0,$last_user_id=0){
+
+
+
+        $massMail=[];
+        if($mailId >0){
+            $massMail=SettingsMassMail::find($mailId);
+        }else{
+            $massMail=SettingsMassMail::where('completed',0)->first();
+        }
+
+        if(!count($massMail)){return  'completed';}
+
+        $last_user_id=($last_user_id > $massMail->last_user_id)? $last_user_id : $massMail->last_user_id;
+
+        $userResults = $this->getUsersEmail($last_user_id,$limit);
+
+        foreach ($userResults as $user) {
+            $this->massMailler([
+                'subject'=>$massMail->subject,
+                'email' => $user['email'],
+                'content' => $massMail->mail
+            ]);
+            $last_user_id=$user['id'];
+        }
+        $massMail->completed=(count($userResults))? 0:1;
+        $massMail->last_user_id=$last_user_id;
+        $massMail->save();
+
+    }
+
+    public function getUsersEmail($last_user_id=0,$limit=0)
+    {
+
+        $oResult = User::select('first_name', 'email','id')->where('id','>',$last_user_id);
+
+        if($limit > 0){
+            $oResult = $oResult->limit($limit);
+        }
+        $oResult = $oResult->get();
+        return $oResult->toArray();
+    }
 
 
 //

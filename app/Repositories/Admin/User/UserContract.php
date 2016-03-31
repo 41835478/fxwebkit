@@ -29,5 +29,5 @@ interface UserContract
         
         public function getUserDetails($userId);
         public function getCountry($iso2);
-        public function getUsersEmail();
+        public function getUsersEmail($last_user_id=0,$limit=0);
 }

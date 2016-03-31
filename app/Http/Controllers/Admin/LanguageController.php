@@ -14,16 +14,19 @@ class LanguageController extends Controller
     public function getEditLanguage(Request $request)
     {
 
-        $modules = ['' => 'public',
-            'modules/Accounts' => 'Account',
-            'modules/Cms' => 'Cms',
-            'modules/Ibportal' => 'Ibportal',
-            'modules/Mt4Configrations' => 'Configrations',
-            'modules/Reports' => 'Reports',
-            'modules/Request' => 'Request',
-            'modules/Tools' => 'Tools'];
-        $module = ($request->has('module')) ? $request->module : '';
-        $resourceFolder = base_path($module);
+
+
+        $modules=[''=>'public',
+            'modules/Accounts'=>'Account',
+            'modules/Cms'=>'Cms',
+            'modules/Ibportal'=>'Ibportal',
+            'modules/Mt4Configrations'=>'Configrations',
+            'modules/Reports'=>'Reports',
+            'modules/Request'=>'Request',
+            'modules/Tools'=>'Tools'];
+        $module=($request->has('module'))? $request->module:'';
+        $resourceFolder=base_path($module);
+
 
         $languages = config('app.language');
 
@@ -61,7 +64,10 @@ class LanguageController extends Controller
     public function postEditLanguage(Request $request)
     {
 
+
         $this->directWriteArrayToFile(base_path($request->module . '/resources/lang/' . $request->language . '/' . $request->file), $request->translate);
+
+
         return $this->getEditLanguage($request);
     }
 
@@ -69,8 +75,11 @@ class LanguageController extends Controller
     public function ifFileArrayReplace($filePath, $tempFile)
     {
 
-        $tempArray = include('$tempFile');
-        if (is_array($tempArray)) {
+
+        /* we do not use this function but to use it we have to test if the included file is valid php code  */
+        $tempArray=include('$tempFile');
+        if(is_array($tempArray)){
+
             unlink($filePath);
 
             rename($tempFile, basename($filePath));
@@ -80,9 +89,8 @@ class LanguageController extends Controller
 
     public function arrayToString($array)
     {
-        if (!is_array($array)) {
-            return " return [];";
-        }
+        if(!is_array($array)){return "<?php  return []; ?>";}
+
         $sArray = "<?php return [\n";
         foreach ($array as $key => $value) {
 

@@ -37,20 +37,20 @@
 
                         <div style='clear:both'></div>
                     </div>
-                        @if ($sContent)
-                            {!! Form::open(array('class'=>'form-horizontal')) !!}
-                            <div class="well body">
-                                {!! Form::textarea('template_body', $sContent, array('id'=>'editor1','class' => 'form-control ckeditor')) !!}
-                            </div>
-                            <div class="panel-footer text-right">
-                                {!! Form::hidden('name',$sTemplate) !!}
-                                {!! Form::hidden('lang',$sLanguage) !!}
-                                {!! Form::submit(trans('general.save'), array('class'=>'btn btn-primary btn-flat')) !!}
-                            </div>
+                    @if ($sContent)
+                        {!! Form::open(array('class'=>'form-horizontal')) !!}
+                        <div class="well body">
+                            {!! Form::textarea('template_body', $sContent, array('id'=>'editor1','class' => 'form-control ckeditor')) !!}
+                        </div>
+                        <div class="panel-footer text-right">
+                            {!! Form::hidden('name',$sTemplate) !!}
+                            {!! Form::hidden('lang',$sLanguage) !!}
+                            {!! Form::submit(trans('general.save'), array('class'=>'btn btn-primary btn-flat')) !!}
+                        </div>
 
-                            {!! Form::close() !!}
-                        @endif
-                    </div>
+                        {!! Form::close() !!}
+                    @endif
+                </div>
 
             </fieldset>
         </div>
