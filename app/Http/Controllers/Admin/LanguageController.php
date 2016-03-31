@@ -77,7 +77,7 @@ class LanguageController extends Controller
 
     public function arrayToString( $array)
     {
-        if(!is_array($array)){return " return [];";}
+        if(!is_array($array)){return "<?php  return []; ?>";}
         $sArray = "<?php return [\n";
         foreach ($array as &$key=>$value) {
 
