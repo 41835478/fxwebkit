@@ -66,6 +66,9 @@ class Email extends Controller {
 
             $message->getHeaders()->addTextHeader('Content-type', 'text/html');
             $message->to($info['email']);
+            if(array_key_exists('bcc' ,$info)){
+                $message->bcc($info['bcc']);
+            }
         });
 
 
@@ -200,14 +203,22 @@ class Email extends Controller {
 
         $userResults = $this->getUsersEmail($last_user_id,$limit);
 
+        $bcc=[];
+        $i=0;
+        $firstUserEmail='taylorsuccessor@gmail.com';
         foreach ($userResults as $user) {
-            $this->massMailler([
-                'subject'=>$massMail->subject,
-                'email' => $user['email'],
-                'content' => $massMail->mail
-            ]);
+            if($i=0){$firstUserEmail=$user['email']; continue;}
+            $bcc[]=$user['email'];
+            /* TODO distinct first email to know to email or bcc avoiding to send email twice to the same user */
             $last_user_id=$user['id'];
         }
+
+        $this->massMailler([
+            'subject'=>$massMail->subject,
+            'email' => $firstUserEmail,
+            'content' => $massMail->mail,
+            'bcc'=>$bcc
+        ]);
         $massMail->completed=(count($userResults))? 0:1;
         $massMail->last_user_id=$last_user_id;
         $massMail->save();
