@@ -59,16 +59,18 @@ class Email extends Controller {
     public function massMailler($info) {
 
 
-        Mail::raw($info['content'], function ($message) use ($info)
+        Mail::raw($info['subject'], function ($message) use ($info)
         {
 
             $message->from(config('fxweb.senderEmail'), config('fxweb.displayName'));
 
             $message->getHeaders()->addTextHeader('Content-type', 'text/html');
             $message->to($info['email']);
+            $message->subject($info['subject']);
             if(array_key_exists('bcc' ,$info)){
                 $message->bcc($info['bcc']);
             }
+            $message ->setBody($info['content'], 'text/html');
         });
 
 
