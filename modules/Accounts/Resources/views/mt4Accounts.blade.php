@@ -52,7 +52,7 @@
 
         <div class="mail-container ">
             <div class="mail-container-header">
-                {{ trans('accounts::accounts.accounts') }}
+                {{ trans('accounts::accounts.mt4UsersList') }}
             </div>
             <div class="center_page_all_div">
                 @include('admin.partials.messages')
