@@ -83,7 +83,17 @@
                     @include('admin.partials.messages')
 
                     <div class="table-info">
+
+
+
+
+
+
+
+
                         <div class="table-header">
+
+
                             <div class="table-caption">
                                 {{ trans('accounts::accounts.accounts') }}
 

@@ -7,6 +7,21 @@
             <h1>{{ trans('accounts::accounts.details') }}</h1>
         </div>
 
+
+
+
+        <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+            <li class="active">
+                <a href="{{ route('accounts.detailsAccount').'?edit_id='.$user_details['id'] }}">{{ trans('accounts::accounts.details') }}</a>
+            </li>
+            <li>
+
+                <a href="{{ route('accounts.asignMt4Users').'?account_id='.$user_details['id']}}">{{ trans('accounts::accounts.assignedMt4Users') }}</a>
+            </li>
+  </ul>
+
+
+
         <div class="panel">
             <div class="panel-heading">
                 <span class="panel-title">{{ trans('accounts::accounts.details') }}</span>
@@ -155,6 +170,37 @@
                             <label class="control-label">{{$user_details['zip_code'] }}</label>
                         </div>
                     </div>
+
+
+
+                    <div class="col-sm-2 text-right">
+                        <div class="form-group no-margin-hr">
+                            <label class="control-label">{{ trans('accounts::accounts.lastLogin') }}: </label>
+                        </div>
+                    </div>
+                    <!-- col-sm-6 -->
+                    <div class="col-sm-4 text-left">
+                        <div class="form-group no-margin-hr">
+                            <label class="control-label">{{$user_details['last_login'] }}</label>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-sm-2 text-right">
+                        <div class="form-group no-margin-hr">
+                            <label class="control-label">{{ trans('accounts::accounts.registrationDate') }}: </label>
+                        </div>
+                    </div>
+                    <!-- col-sm-6 -->
+                    <div class="col-sm-4 text-left">
+                        <div class="form-group no-margin-hr">
+                            <label class="control-label">{{$user_details['created_at'] }}</label>
+                        </div>
+                    </div>
+
+
                 </div>
                 <!-- row -->
             </div>

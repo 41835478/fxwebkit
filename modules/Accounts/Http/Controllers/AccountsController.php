@@ -213,6 +213,8 @@ class AccountsController extends Controller
                 'city' => $oResult['city'],
                 'zip_code' => $oResult['zip_code'],
                 'gender' => $oResult['gender'],
+                'last_login'=>$oResult['last_login'],
+                'created_at'=>$oResult['created_at']
             ];
             return view('accounts::detailsAccount')->with('user_details', $user_details);
         } else {
@@ -250,6 +252,8 @@ class AccountsController extends Controller
                 'city' => $oResult['city'],
                 'zip_code' => $oResult['zip_code'],
                 'gender' => $oResult['gender'],
+                'last_login'=>$oResult['last_login'],
+                'created_at'=>$oResult['created_at']
             ];
 
             return view('accounts::detailsAccount')->with('user_details', $user_details);
@@ -302,8 +306,8 @@ class AccountsController extends Controller
             $aFilterParams['account_id'] = $account_id;
             $aFilterParams['order'] = $oRequest->order;
 
-            $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
-        }
+           }
+        $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
 
 
         if ($oRequest->has('export')) {
@@ -389,6 +393,8 @@ class AccountsController extends Controller
             'city' => $oResult['city'],
             'zip_code' => $oResult['zip_code'],
             'gender' => $oResult['gender'],
+            'last_login'=>$oResult['last_login'],
+            'created_at'=>$oResult['created_at']
         ];
 
         return view('accounts::detailsAccount')->with('user_details', $user_details);

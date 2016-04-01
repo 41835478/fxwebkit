@@ -448,6 +448,8 @@ public function getDashboardStatistics(){
             $userDetails ['city'] = $fullDetails['city'];
             $userDetails ['zip_code'] = $fullDetails['zip_code'];
             $userDetails ['gender'] = $fullDetails['gender'];
+            $userDetails ['last_login'] = $user['last_login'];
+            $userDetails ['created_at'] = $user['created_at'];
         }
 
         return $userDetails;

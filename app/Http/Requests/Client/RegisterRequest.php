@@ -23,8 +23,8 @@ class RegisterRequest extends Request {
 	{
         
 		return [
-			'first_name'    => 'required|alpha',
-			'last_name'	=> 'required|alpha',
+			'first_name'    => 'required',
+			'last_name'	=> 'required',
 			'email'	        => 'required|email|unique:users,email',
 			'password'	=> 'required|min:8|confirmed',
 			'password_confirmation'=>'required|min:8',

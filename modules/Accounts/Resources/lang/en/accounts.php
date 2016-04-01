@@ -188,7 +188,12 @@ return [
     'youHavePendingRequest'=>'Please wait until finishing current pending request . ',
 
 
-'assignedUsers'=>'Assigned Users'
+'assignedUsers'=>'Assigned Users',
+'lastLogin'=>'Last Login',
+    'registrationDate'=>'Registration Date',
+
+    'assignedMt4Users'=>'assigned MT4 Users'
+
 
 
 ];

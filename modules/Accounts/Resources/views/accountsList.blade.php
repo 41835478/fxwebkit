@@ -72,6 +72,7 @@
                                 <th class="no-warp">{!! th_sort(trans('accounts::accounts.first_name'), 'first_name', $oResults) !!}</th>
                                 <th class="no-warp">{!! th_sort(trans('accounts::accounts.last_name'), 'last_name', $oResults) !!}</th>
                                 <th class="no-warp">{!! th_sort(trans('accounts::accounts.Email'), 'email', $oResults) !!}</th>
+                                <th class="no-warp">{!! th_sort(trans('accounts::accounts.lastLogin'), 'last_login', $oResults) !!}</th>
                                 <th class="no-warp"></th>
                             </tr>
                             </thead>
@@ -86,6 +87,7 @@
                                         <td>{{ $oResult->first_name }}</td>
                                         <td>{{ $oResult->last_name }}</td>
                                         <td>{{ $oResult->email }}</td>
+                                        <td>{{ $oResult->last_login }}</td>
                                         <td>
                                             <a href="{{ route('accounts.editAccount').'?edit_id='.$oResult->id }}"
                                                class="fa fa-edit tooltip_number" data-original-title="{{trans('accounts::accounts.editAccount')}}"></a>
