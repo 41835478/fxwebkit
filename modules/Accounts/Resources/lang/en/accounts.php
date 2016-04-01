@@ -185,6 +185,7 @@ return [
     'assign' => 'Assign',
     'fillFullDetailsToAllowLive'=>'Fill Full Details To Allow Live',
     'showWithDrawal'=>'Show Withdrawal',
+    'youHavePendingRequest'=>'Please wait until finishing current pending request . '
 
 
 

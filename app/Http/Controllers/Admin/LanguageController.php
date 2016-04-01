@@ -11,10 +11,13 @@ class LanguageController extends Controller
 {
 
 
-    public function getEditLanguage(Request $request){
+    public function getEditLanguage(Request $request)
+    {
+
+
 
         $modules=[''=>'public',
-        'modules/Accounts'=>'Account',
+            'modules/Accounts'=>'Account',
             'modules/Cms'=>'Cms',
             'modules/Ibportal'=>'Ibportal',
             'modules/Mt4Configrations'=>'Configrations',
@@ -24,50 +27,61 @@ class LanguageController extends Controller
         $module=($request->has('module'))? $request->module:'';
         $resourceFolder=base_path($module);
 
-        $languages=config('app.language');
-
-        $language=($request->has('language'))?$request->language:'en';
 
 
-        list($files,$firstFiles)=$this->getFilesList($resourceFolder.'/resources/lang/'.$language);
+        $languages = config('app.language');
 
-        $file=($request->has('file') && array_key_exists($request->file,$files))?$request->file:$firstFiles;
+        $language = ($request->has('language')) ? $request->language : 'en';
 
 
-        $enArray=include($resourceFolder.'/resources/lang/en/'.$file);
-        $otherLanguageArray=[];
-        if($language=='en'){
-            $otherLanguageArray=$enArray;
-        }else{
+        list($files, $firstFiles) = $this->getFilesList($resourceFolder . '/resources/lang/' . $language);
 
-            $otherLanguageArray=include($resourceFolder.'/resources/lang/'.$language.'/'.$file);
+        $file = ($request->has('file') && array_key_exists($request->file, $files)) ? $request->file : $firstFiles;
+
+
+        $enArray = include($resourceFolder . '/resources/lang/en/' . $file);
+        $otherLanguageArray = [];
+        if ($language == 'en') {
+            $otherLanguageArray = $enArray;
+        } else {
+
+            $otherLanguageArray = include($resourceFolder . '/resources/lang/' . $language . '/' . $file);
 
         }
 
-        return view('admin.language',[
-            'languages'=>$languages,
-            'language'=>$language,
-            'files'=>$files,
-            'file'=>$file,
-            'modules'=>$modules,
-            'module'=>$module,
-            'enArray'=>$enArray,
-            'otherLanguageArray'=>$otherLanguageArray
+        return view('admin.language', [
+            'languages' => $languages,
+            'language' => $language,
+            'files' => $files,
+            'file' => $file,
+            'modules' => $modules,
+            'module' => $module,
+            'enArray' => $enArray,
+            'otherLanguageArray' => $otherLanguageArray
+
         ]);
 
     }
 
-    public function postEditLanguage(Request $request){
+    public function postEditLanguage(Request $request)
+    {
 
-       $this->directWriteArrayToFile(base_path($request->module.'/resources/lang/'.$request->language.'/'.$request->file),$request->translate);
-   return $this->getEditLanguage($request);
+
+        $this->directWriteArrayToFile(base_path($request->module . '/resources/lang/' . $request->language . '/' . $request->file), $request->translate);
+
+
+        return $this->getEditLanguage($request);
     }
 
 
-    public function ifFileArrayReplace($filePath,$tempFile){
+    public function ifFileArrayReplace($filePath, $tempFile)
+    {
 
+
+        /* we do not use this function but to use it we have to test if the included file is valid php code  */
         $tempArray=include('$tempFile');
         if(is_array($tempArray)){
+
             unlink($filePath);
 
             rename($tempFile, basename($filePath));
@@ -75,40 +89,50 @@ class LanguageController extends Controller
     }
 
 
-    public function arrayToString( $array)
+    public function arrayToString($array)
     {
-        if(!is_array($array)){return " return [];";}
-        $sArray = "<?php return [\n";
-        foreach ($array as $key=>$value) {
+        if(!is_array($array)){return "<?php  return []; ?>";}
 
-            $sArray .= "'" . $key . "'=>'" .$value . "',\n";
+        $sArray = "<?php return [\n";
+        foreach ($array as $key => $value) {
+
+            $sArray .= "'" . $key . "'=>'" . $value . "',\n";
+
 
         }
         $sArray .= ']; ?>';
         return $sArray;
     }
 
-    public function createTempArrayFile(){
+    public function createTempArrayFile()
+    {
 
     }
-    public function directWriteArrayToFile($filePath,$array){
-        file_put_contents($filePath,$this->arrayToString($array));
+
+    public function directWriteArrayToFile($filePath, $array)
+    {
+        file_put_contents($filePath, $this->arrayToString($array));
     }
 
-    public function getFilesList($folder){
+    public function getFilesList($folder)
+    {
 
 
-        $files=scandir($folder);
-        $aFiles=[];
-        $firstFiles='';
-        $i=0;
-        foreach($files as $key=>$file){
-            if($file =='.' || $file =='..' ){continue;}
-            if($i==0){$firstFiles=$file;}
-            $aFiles[$file]=$file;
+        $files = scandir($folder);
+        $aFiles = [];
+        $firstFiles = '';
+        $i = 0;
+        foreach ($files as $key => $file) {
+            if ($file == '.' || $file == '..') {
+                continue;
+            }
+            if ($i == 0) {
+                $firstFiles = $file;
+            }
+            $aFiles[$file] = $file;
             $i++;
         }
-        return [$aFiles,$firstFiles];
+        return [$aFiles, $firstFiles];
     }
 
 }

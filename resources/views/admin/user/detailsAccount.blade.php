@@ -157,7 +157,8 @@
                     </div>
                 </div>
                 <!-- row -->
-            </div><div class="panel-footer text-right">
+            </div>
+            <div class="panel-footer text-right">
                 <a href="{{ route('general.editUser').'?edit_id='.$user_details['edit_id'] }}">
                     <button type="submit" class="btn btn-primary" name="edit_id">{{ trans('user.edit') }}</button>
                 </a>

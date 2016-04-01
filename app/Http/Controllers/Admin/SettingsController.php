@@ -19,6 +19,8 @@ use File;
 use Fxweb\Http\Controllers\admin\Email;
 use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
 
+use Fxweb\Models\SettingsMassMail;
+
 class SettingsController extends Controller
 {
 
@@ -307,39 +309,72 @@ class SettingsController extends Controller
     public function getMassMailer(Request $oRequest)
     {
 
-        $aTemplates = $this->aTemplates;
-        $sTemplate = ($oRequest->has('lang')) ? $oRequest->name : 'massMailler';
+        $aTemplates = SettingsMassMail::select(['id','subject'])->lists('subject','id');
+
+        $templateId = ($oRequest->has('templateId')) ? $oRequest->templateId :1;
         $sLanguage = ($oRequest->has('lang')) ? $oRequest->lang : 'en';
+
+
         $sContent = '';
 
-        $aLanguages = ['ar' => 'Arabic', 'en' => 'English'];
+        $aLanguages =config('app.language');
 
 
-        $sPath = base_path() . '/resources/views/admin/email/templates/' . $sLanguage . '/' . $sTemplate . '.blade.php';
+//       $sPath = base_path() . '/resources/views/admin/email/templates/' . $sLanguage . '/' . $sTemplate . '.blade.php';
+//
+//        if (file_exists($sPath)) {
+//            $sContent = File::get($sPath);
+//        }
 
-        if (file_exists($sPath)) {
-            $sContent = File::get($sPath);
-        }
-
+        $massMail= SettingsMassMail::select(['subject','mail'])->find($templateId);
 
         return view('admin.email.massMailler')
             ->with('aTemplates', $aTemplates)
-            ->with('sTemplate', $sTemplate)
+            ->with('templateId', $templateId)
             ->with('aLanguages', $aLanguages)
             ->with('sLanguage', $sLanguage)
-            ->with('sContent', $sContent);
+            ->with('sContent', $massMail->mail)
+            ->with('subject',$massMail->subject);
     }
 
 
     public function postMassMailer(Request $oRequest)
     {
 
-        $email = new Email();
-        $userResults = $this->oUser->getUsersEmail();
+        $EmailClass = new Email();
+        if($oRequest->has('save')){
 
-        foreach ($userResults as $user) {
-            $email->massMailler(['email' => $user['email'], 'content' => $oRequest->template_body]);
+            $email= SettingsMassMail::create([
+                'subject'=>$oRequest->subject,
+                'mail' => $oRequest->template_body,
+                'language' => $oRequest->lang
+            ]);
+            $oRequest->templateId=$email->id;
+        }else if($oRequest->has('saveSend')){
+
+           $email= SettingsMassMail::create([
+                'subject'=>$oRequest->subject,
+                'mail' => $oRequest->template_body,
+                'language' => $oRequest->lang
+            ]);
+            $EmailClass-> autoSendMassMail(7,$email->id,0);
+            $oRequest->templateId=$email->id;
+        }elseif($oRequest->has('send')){
+
+            $userResults = $this->oUser->getUsersEmail(0);
+
+            foreach ($userResults as $user) {
+                $EmailClass->massMailler([
+                    'subject'=>$oRequest->subject,
+                    'email' => $user['email'],
+                    'content' => $oRequest->template_body
+                ]);
+            }
+
         }
+
+
+return $this->getMassMailer($oRequest);
 
 
     }
