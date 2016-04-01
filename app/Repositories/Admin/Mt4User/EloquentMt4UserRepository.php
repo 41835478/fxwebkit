@@ -261,4 +261,5 @@ class EloquentMt4UserRepository implements Mt4UserContract {
         }
         return [$firstLogin,$firstLoginServerID,$aResult];
     }
+
 }

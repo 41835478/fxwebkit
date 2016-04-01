@@ -739,4 +739,14 @@ public function getDashboardStatistics(){
     }
 
 
+    public function getMt4AssignedUsers($login,$server_id){
+
+        $oResults=User::with('mt4Users')->whereHas('mt4Users',function ($query) use($login,$server_id){
+
+            $query->where('mt4_users_id',$login);
+            $query->where('server_id',$server_id);
+        })->paginate(Config::get('fxweb.pagination_size'));
+
+        return $oResults;
+    }
 }

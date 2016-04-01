@@ -2,6 +2,7 @@
 
 namespace Modules\Accounts\Http\Controllers;
 
+use Fxweb\Models\User;
 use Pingpong\Modules\Routing\Controller;
 use Modules\Accounts\Http\Requests\AccountsRequest;
 use Illuminate\Http\Request;
@@ -946,4 +947,22 @@ class AccountsController extends Controller
 
     }
 
+
+    public function getMt4AssignedUsers(Request $oRequest){
+        $login=$oRequest->login;
+        $server_id=$oRequest->server_id;
+
+        $oResults=$this->oUsers->getMt4AssignedUsers($login,$server_id);
+        return view('accounts::mt4AssignedUsers',[
+            'oResults'=>$oResults,
+            'login'=>$login,
+            'server_id'=>$server_id
+        ]);
+    }
+
+    public function getUnssignUserFromMt4User(Request $oRequest){
+
+        $this->oUsers->unsignMt4UsersToAccount($oRequest->user_id, [$oRequest->login.','. $oRequest->server_id],3);
+return $this->getMt4AssignedUsers($oRequest);
+    }
 }

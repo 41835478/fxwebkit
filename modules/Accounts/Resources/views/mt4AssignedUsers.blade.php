@@ -17,7 +17,7 @@
                     <li>
                         <a href="{{ route('accounts.mt4UserDetails').'?login='.$login.'&server_id='.$server_id}}&from_date=&to_date=&search=Search&sort=asc&order=login">{{ trans('accounts::accounts.summry') }}</a>
                     </li>
-                    <li class="active">
+                    <li class="">
 
                         <a href="{{ route('accounts.mt4Leverage').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.leverage') }}</a>
                     </li>
@@ -30,45 +30,47 @@
                     <li class="">
                         <a href="{{ route('accounts.withDrawal').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.withDrawal') }}</a>
                     </li>
-
-                    <li class="">
+                    <li class="active">
                         <a href="{{ route('accounts.mt4AssignedUsers').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.assignedUsers') }}</a>
                     </li>
-
                 </ul>
 
 
-                <div class="row">
 
 
-                    <div class="col-sm-6">
-                        <div class="form-group no-margin-hr">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th class="no-warp">{!! th_sort(trans('accounts::accounts.id'), 'id', $oResults) !!}</th>
+                        <th class="no-warp">{!! th_sort(trans('accounts::accounts.first_name'), 'first_name', $oResults) !!}</th>
+                        <th class="no-warp">{!! th_sort(trans('accounts::accounts.last_name'), 'last_name', $oResults) !!}</th>
+                        <th class="no-warp">{!! th_sort(trans('accounts::accounts.Email'), 'email', $oResults) !!}</th>
+                        <th class="no-warp"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if (count($oResults))
+                        {{-- */$i=0;/* --}}
+                        {{-- */$class='';/* --}}
+                        @foreach($oResults as $oResult)
+                            {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                            <tr class='{{ $class }}'>
+                                <td>{{ $oResult->id }}</td>
+                                <td>{{ $oResult->first_name }}</td>
+                                <td>{{ $oResult->last_name }}</td>
+                                <td>{{ $oResult->email }}</td>
+                                <td>
+                                    <a href="{{ route('accounts.unssignUserFromMt4User').'?user_id='.$oResult->id.'&login='.$login.'&server_id='.$server_id }}"
+                                       class="fa fa-unlink tooltip_number" data-original-title="{{trans('accounts::accounts.editAccount')}}"></a>
 
-                            <label class="control-label">{{ trans('accounts::accounts.leverage') }}</label>
-                            {!! Form::select('leverage',$Result,'',['id'=>'jq-validation-select2','class'=>'form-control']) !!}
-                        </div>
-                    </div>
-                    <!-- col-sm-6 -->
-                    @if($Pssword==true)
-                        <div class="col-sm-6">
-                            <div class="form-group no-margin-hr">
-                                <label class="control-label">{{ trans('accounts::accounts.mt4AccountPassword') }}</label>
-                                {!! Form::password("password",["class"=>"form-control","value"=>$changeleverage['oldPassword']]) !!}
-
-                            </div>
-                        </div><!-- col-sm-6 -->
-                        @endif<!-- col-sm-6 -->
-                </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
+                    </tbody>
+                </table>
 
 
-                <!-- col-sm-6 -->
-
-
-                <div class="panel-footer text-right">
-                    {!! Form::hidden('login',$login)!!}
-                    {!! Form::hidden('server_id',$server_id)!!}
-                    {!! Form::submit(trans('accounts::accounts.submit'), ['class'=>'btn btn-info btn-sm', 'name' => 'save']) !!}
-                </div>
             </div>
 
 
@@ -84,17 +86,3 @@
         </div>
         @stop
 
-        @section("script")
-            @parent
-            <script>
-
-
-                $('#jq-validation-select2').select2({
-                    allowClear: true,
-                    placeholder: 'Select a country...'
-                }).change(function () {
-                    $(this).valid();
-                });
-
-            </script>
-@stop

@@ -24,6 +24,10 @@
                     <li class="active">
                         <a href="{{ route('accounts.mt4Operation').'?login='.$login}}" >{{ trans('accounts::accounts.operation') }}</a>
                     </li>
+
+                    <li class="">
+                        <a href="{{ route('accounts.mt4AssignedUsers').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.assignedUsers') }}</a>
+                    </li>
                 </ul>
             </div>
     

@@ -23,6 +23,8 @@ Route::group(['middleware' => ['authenticate.admin'], 'prefix' => 'admin', 'name
         'getUnAllowedLiveAccount' => 'accounts.unAllowedLiveAccount',
         'getAccountsSettings'=>'accounts.accountsSettings',
         'getWithDrawal'=>'accounts.withDrawal',
+        'getMt4AssignedUsers'=>'accounts.mt4AssignedUsers',
+        'getUnssignUserFromMt4User'=>'accounts.unssignUserFromMt4User'
 
     ]);
 });

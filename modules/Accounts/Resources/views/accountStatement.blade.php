@@ -28,6 +28,10 @@
                     <li class="">
                         <a href="{{ route('accounts.withDrawal').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}">{{ trans('accounts::accounts.withDrawal') }}</a>
                     </li>
+
+                    <li >
+                        <a href="{{ route('accounts.mt4AssignedUsers').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}">{{ trans('accounts::accounts.assignedUsers') }}</a>
+                    </li>
                 </ul>
             </div>
 
