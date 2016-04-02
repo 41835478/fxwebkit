@@ -35,6 +35,11 @@
 
                     <li>
                         <div class=" nav-input-div  ">
+                            {!! Form::select('active', $aActive, $aFilterParams['active'], ['class'=>'form-control  input-sm']) !!}</div>
+                    </li>
+
+                    <li>
+                        <div class=" nav-input-div  ">
                             {!! Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                         </div>
                     </li>
@@ -88,6 +93,7 @@
                                         <td>{{ $oResult->last_name }}</td>
                                         <td>{{ $oResult->email }}</td>
                                         <td>{{ $oResult->last_login }}</td>
+
                                         <td>
                                             <a href="{{ route('accounts.editAccount').'?edit_id='.$oResult->id }}"
                                                class="fa fa-edit tooltip_number" data-original-title="{{trans('accounts::accounts.editAccount')}}"></a>
@@ -119,6 +125,11 @@
                                                 <a href="{{ route('accounts.allowLiveAccoun').'?account_id='.$oResult->id }}"
                                                    class="fa fa-check-circle-o tooltip_number" data-original-title= "{{trans('accounts::accounts.allowLiveAccoun')}}"></a>
                                             @endif
+
+                                            @if(!count($oResult->activations))
+                                            <a href="{{ route('accounts.activateUser').'?account_id='.$oResult->id }}"
+                                               class="fa fa-check tooltip_number" data-original-title="{{trans('accounts::accounts.activateUser')}}"></a>
+@endif
                                         </td>
                                     </tr>
                                 @endforeach

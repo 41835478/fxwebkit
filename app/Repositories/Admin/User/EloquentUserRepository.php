@@ -71,6 +71,25 @@ public function getDashboardStatistics(){
         });
 
 
+
+        /* =============== active Filters =============== */
+        if (isset($aFilters['active']) && $aFilters['active']!=0) {
+
+
+            if ($aFilters['active'] == 1) {
+                $oResult = $oResult->with('activations')->whereHas('activations',function ($query){
+                    $query->whereNotNull('user_id');
+                });
+            } else {
+                $oResult = $oResult->whereNotIn('id', function ($query) {
+
+                    $query->select(DB::raw('activations.user_id'))
+                        ->from('activations')
+                        ->whereRaw('activations.user_id = users.id');
+
+                });
+            }
+        }
         /* =============== id Filter  =============== */
         if (isset($aFilters['id']) && !empty($aFilters['id'])) {
             $oResult = $oResult->where('id', $aFilters['id']);

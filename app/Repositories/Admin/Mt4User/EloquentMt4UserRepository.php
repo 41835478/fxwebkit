@@ -92,6 +92,8 @@ class EloquentMt4UserRepository implements Mt4UserContract {
             }
         }
 
+
+
         /* =================================== */
         /* =============== Login Filters =============== */
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {

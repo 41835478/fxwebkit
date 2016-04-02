@@ -23,6 +23,11 @@ class User extends SentinelUser
         return $this->hasOne('Modules\Ibportal\Entities\IbportalUserIbid','user_id');
     }
 
+
+    public function isActive(){
+        return $this->hasOne('Modules\Ibportal\Entities\IbportalUserIbid','user_id');
+    }
+
     public function mt4Users(){
 
        return $this->hasMany('Modules\Accounts\Entities\mt4_users_users','users_id');

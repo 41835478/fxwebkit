@@ -18,6 +18,7 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Carbon\Carbon;
 use Modules\Accounts\Http\Controllers\ApiController;
 use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
+use Cartalyst\Sentinel\Laravel\Facades\Activation;
 
 class AccountsController extends Controller
 {
@@ -57,6 +58,7 @@ class AccountsController extends Controller
             'email' => '',
             'sort' => $sSort,
             'order' => $sOrder,
+            'active'=>0
         ];
 
         if ($oRequest->has('search')) {
@@ -64,6 +66,7 @@ class AccountsController extends Controller
             $aFilterParams['first_name'] = $oRequest->first_name;
             $aFilterParams['last_name'] = $oRequest->last_name;
             $aFilterParams['email'] = $oRequest->email;
+            $aFilterParams['active'] = $oRequest->active;
 
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
@@ -77,9 +80,21 @@ class AccountsController extends Controller
 
         return view('accounts::accountsList')
             ->with('oResults', $oResults)
-            ->with('aFilterParams', $aFilterParams);
+            ->with('aFilterParams', $aFilterParams)
+            ->with('aActive',[
+                    trans('accounts::accounts.all'),
+                    trans('accounts::accounts.active'),
+                    trans('accounts::accounts.notActive')
+                ]
+            );
     }
 
+
+    public function getActivateUser(Request $oRequest){
+$user=Sentinel::findById($oRequest->account_id);
+        $oActivation = Activation::create($user);
+        return Redirect::route('accounts.accountsList');
+    }
     public function getDeleteAccount(Request $oRequest)
     {
         $result = $this->oUsers->deleteUser($oRequest->delete_id);
