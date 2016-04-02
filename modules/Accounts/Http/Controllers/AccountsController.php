@@ -476,6 +476,7 @@ $user=Sentinel::findById($oRequest->account_id);
             'all_groups' => true,
             'group' => '',
             'server_id'=>'',
+            'assigned'=>0,
             'sort' => $sSort,
             'order' => $sOrder,
         ];
@@ -495,6 +496,8 @@ $user=Sentinel::findById($oRequest->account_id);
             $aFilterParams['all_groups'] = true;
             $aFilterParams['group'] = $oRequest->group;
             $aFilterParams['server_id'] = $oRequest->server_id;
+            $aFilterParams['assigned'] = $oRequest->assigned;
+
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
             $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
@@ -505,7 +508,12 @@ $user=Sentinel::findById($oRequest->account_id);
             ->with('aGroups', $aGroups)
             ->with('oResults', $oResults)
             ->with('serverTypes',$serverTypes)
-            ->with('aFilterParams', $aFilterParams);
+            ->with('aFilterParams', $aFilterParams)
+            ->with('aAssigned',[
+                trans('accounts::accounts.all'),
+                trans('accounts::accounts.assigned'),
+                trans('accounts::accounts.notAssigned')
+            ]);
     }
 
     public function getMt4UserDetails(Request $oRequest)

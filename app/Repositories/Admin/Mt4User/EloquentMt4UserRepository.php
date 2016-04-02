@@ -93,6 +93,32 @@ class EloquentMt4UserRepository implements Mt4UserContract {
         }
 
 
+        /* =============== active Filters =============== */
+        if (isset($aFilters['assigned']) && $aFilters['assigned']!=0) {
+
+
+            if ($aFilters['assigned'] == 1) {
+                $oResult = $oResult->with('account')->whereHas('account',function ($query){
+
+                    $query->whereRaw('mt4_users_users.server_id = mt4_users.server_id');
+                    $query->whereNotNull('mt4_users_id');
+
+                });
+            } else {
+
+                $oResult = $oResult->whereNotIn('login', function ($query) {
+
+                    $query->select(DB::raw('mt4_users_users.mt4_users_id'))
+                        ->from('mt4_users_users')
+                        ->whereRaw('mt4_users_users.mt4_users_id = mt4_users.login')
+                    ->whereRaw('mt4_users_users.server_id = mt4_users.server_id');
+
+                });
+
+
+            }
+        }
+
 
         /* =================================== */
         /* =============== Login Filters =============== */

@@ -195,7 +195,9 @@ return [
     'assignedMt4Users'=>'assigned MT4 Users',
     'active'=>'Active',
     'notActive'=>'Not Active',
-    'activateUser'=>'Activate User'
+    'activateUser'=>'Activate User',
+    'assigned'=>'Assigned',
+    'notAssigned'=>'Not Assigned'
 
 
 

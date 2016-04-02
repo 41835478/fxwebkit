@@ -35,6 +35,9 @@
                         <div class=" nav-input-div  ">{!! Form::select('server_id', $serverTypes, $aFilterParams['server_id'], ['class'=>'form-control  input-sm']) !!}</div>
                     </li>
                     <li>
+                        <div class=" nav-input-div  ">{!! Form::select('assigned', $aAssigned, $aFilterParams['assigned'], ['class'=>'form-control  input-sm']) !!}</div>
+                    </li>
+                    <li>
                         <div class=" nav-input-div  ">
                             {!! Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                         </div>
