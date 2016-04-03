@@ -108,7 +108,7 @@ public function changeServer($server_id){
 */
 
 
-		$admin=($this->admin)? '|admin=1':'';
+		$admin=($this->admin)? '|ADMIN=1':'';
 
 
 
