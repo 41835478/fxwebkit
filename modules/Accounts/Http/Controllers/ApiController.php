@@ -27,13 +27,24 @@ class ApiController extends Controller {
 		'error'=>'Internal Error,Please try again later'
 	];
 	public $server_id;
+
+	public $admin;
+public $directOrderToMt4Server;
 	public function __construct()
 	{
 		$this->apiReqiredConfirmMt4Password=Config('accounts.apiReqiredConfirmMt4Password');
 		$this->apiMasterPassword=Config('accounts.apiMasterPassword');
 		$this->mt4Host=Config('fxweb.mt4CheckHost');
 		$this->mt4Port=Config('fxweb.mt4CheckPort');
+
 		$this->server_id=0;
+
+
+		$user = current_user()->getUser();
+
+		$this->admin=($user->InRole('admin'))? true:false;
+
+		$this->directOrderToMt4Server=(Config('accounts.directOrderToMt4Server') || $this->admin);
 	}
 public function changeServer($server_id){
 	if($server_id==1){
@@ -96,10 +107,15 @@ public function changeServer($server_id){
 		return json_encode($string);
 */
 
+
+		$admin=($this->admin)? '|admin=1':'';
+
+
+
 		$fp =@fsockopen($this->mt4Host,$this->mt4Port,$error,$error2,10);
 		$result = '';
 		if ($fp) {
-			fwrite($fp, $message. "\nQUIT\n");
+			fwrite($fp, $message.$admin. "\nQUIT\n");
 		while(!feof($fp)){
 		$result .= fgets($fp, 1024);
 		}
@@ -122,7 +138,7 @@ public function changeServer($server_id){
 	public function changeMt4Password($login,$newPassword,$oldPassword=null){
 
 		$requestLog =new RequestLog();
-		if(Config('accounts.directOrderToMt4Server')==false){
+		if($this->directOrderToMt4Server==false){
 			$notExist=$requestLog->insertChangePasswordRequest($login,$this->server_id,$newPassword);
 
 			return (!$notExist)? trans('accounts::accounts.youHavePendingRequest'):trans('accounts::accounts.the_request');
@@ -176,7 +192,7 @@ public function changeServer($server_id){
 	public function changeMt4Leverage($login,$leverage,$oldPassword=null){
 
 		$requestLog =new RequestLog();
-		if(Config('accounts.directOrderToMt4Server')==false){
+		if($this->directOrderToMt4Server==false){
 
 			$notExist=$requestLog->insertChangeLeverageRequest($login,$this->server_id,$leverage);
 			return (!$notExist)? trans('accounts::accounts.youHavePendingRequest'):trans('accounts::accounts.the_request');
@@ -239,7 +255,7 @@ $this->changeServer($server_id);
 	public function internalTransfer($login1,$login2,$oldPassword=null,$amount){
 
 		$requestLog =new RequestLog();
-		if(Config('accounts.directOrderToMt4Server')==false){
+		if($this->directOrderToMt4Server==false){
 			$notExist=$requestLog->insertInternalTransferRequest($login1,$login2,$this->server_id,$amount);
 
 
@@ -300,7 +316,7 @@ $this->changeServer($server_id);
 	public function withDrawal($login1,$amount,$oldPassword=null){
 
 		$requestLog =new RequestLog();
-		if(Config('accounts.directOrderToMt4Server')==false){
+		if($this->directOrderToMt4Server==false){
 
 			$notExist=$requestLog->insertWithDrawalRequest($login1,$this->server_id,$amount);
 
@@ -374,7 +390,7 @@ $this->changeServer($server_id);
 
 
 			$requestLog =new RequestLog();
-			if(Config('accounts.directOrderToMt4Server')==false){
+			if($this->directOrderToMt4Server==false){
 				$notExist=$requestLog->insertMt4UserFullDetailsRequest($this->server_id,$mt4_user_details,0,$accountId);
 
 				return (!$notExist)? trans('accounts::accounts.youHavePendingRequest'):trans('accounts::accounts.the_request');
@@ -457,7 +473,7 @@ if(is_object($result) &&  property_exists ($result ,'result')){
 	public function AssignAccount($login,$password,$server_id=1){
 		$this->changeServer($server_id);
 		$requestLog =new RequestLog();
-		if(Config('accounts.directOrderToMt4Server')==false){
+		if($this->directOrderToMt4Server==false ){
 			$notExist=$requestLog->insertAssignAccountRequest($login,$this->server_id,$password);
 			return (!$notExist)? trans('accounts::accounts.youHavePendingRequest'):trans('accounts::accounts.the_request');
 		}
