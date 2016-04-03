@@ -27,9 +27,18 @@ class EloquentUserRepository implements UserContract
     }
 
 public function getDashboardStatistics(){
-    $statistics['usersNumber']=User::count();
-    $statistics['activeUsersNumber']=User::with('activations')->whereHas('activations',function ($query){
-        $query->whereNotNull('user_id');
+
+    $oRole = Sentinel::findRoleBySlug('client');
+    $role_id = $oRole->id;
+
+    $statistics['usersNumber']=User::with('roles')->whereHas('roles', function ($query) use ($role_id) {
+        $query->where('id', $role_id);
+    })->count();
+
+    $statistics['activeUsersNumber']=User::with('activations')->distinct('user_id')->whereHas('activations',function ($query){
+        $query->where('completed',1);
+    })->with('roles')->whereHas('roles', function ($query) use ($role_id) {
+        $query->where('id', $role_id);
     })->count();
 
     $statistics['mt4UsersNumber']=Mt4User::count();
@@ -78,13 +87,14 @@ public function getDashboardStatistics(){
 
             if ($aFilters['active'] == 1) {
                 $oResult = $oResult->with('activations')->whereHas('activations',function ($query){
-                    $query->whereNotNull('user_id');
+                    $query->where('completed',1);
                 });
             } else {
                 $oResult = $oResult->whereNotIn('id', function ($query) {
 
                     $query->select(DB::raw('activations.user_id'))
                         ->from('activations')
+                        ->where('completed',1)
                         ->whereRaw('activations.user_id = users.id');
 
                 });
