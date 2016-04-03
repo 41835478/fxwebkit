@@ -1,10 +1,9 @@
 
-
 INSERT INTO `cms_customhtml` (`id`, `title`, `body`, `created_at`, `updated_at`) VALUES
-(1, 'headerContactUs', '<nav>\r\n\r\n\r\n<ul class="nav nav-pills nav-top">\r\n	<li class="phone"><span><i class="icon-phone"></i>(123) 456-7890</span></li>\r\n</ul>\r\n</nav>\r\n', '2016-02-09 08:43:19', '2016-02-17 08:18:06'),
+(1, 'headerContactUs', '<nav style="margin-bottom:12px;">\r\n<ul class="nav nav-pills nav-top">\r\n	<li><a href="/admin"><i class="icon-user"></i> Admin</a></li>\r\n	<li><a href="/client"><i class="icon-group"></i> Client </a></li>\r\n</ul>\r\n</nav>\r\n', '2016-02-09 08:43:19', '2016-04-03 12:07:19'),
 (2, 'headerSocialIcons', '<div class="social-icons" data-original-title="" facebook="" style="padding-top:10px;">\r\n<a data-original-title="facebook" data-placement="bottom" href="http://www.facebook.com" rel="tooltip" title="">\r\n<i class="icon-facebook"></i><span>Facebook</span>\r\n</a>\r\n <a data-original-title="Twitter" data-placement="bottom" href="http://www.twitter.com" rel="tooltip" title=""><i class="icon-twitter"></i><span>Twitter</span></a> <a data-original-title="Linkedin" data-placement="bottom" href="http://www.linkedin.com" rel="tooltip" title=""><i class="icon-linkedin"></i><span>Linkedin</span></a></div>\r\n\r\n<div style="clear:both">&nbsp;</div>\r\n', '2016-02-09 09:02:26', '2016-02-17 08:34:55'),
 (3, 'searchForm', '<div class="search">\r\n						<form class="form-search">\r\n							<input type="text" class="input-medium search-query" placeholder="Search...">\r\n							<button class="search" type="submit"><i class="icon-search"></i></button>\r\n						</form>\r\n					</div>', '2016-02-09 09:42:33', '2016-02-09 09:42:33'),
-(4, 'headerLogo', '<h1 class="logo"><a href="/"><img alt="Porto Website Template" src="/cms_assets/porto/img/logo.png" width="300" /> </a></h1>\r\n', '2016-02-09 09:46:37', '2016-03-09 13:28:58'),
+(4, 'headerLogo', '<h1 class="logo"><a href="/"><img alt="Porto Website Template" src="/cms_assets/porto/img/logo.png" width="200" /> </a></h1>\r\n', '2016-02-09 09:46:37', '2016-04-03 11:51:10'),
 (5, 'slider', '<div class="slider-container">\r\n<div class="slider" id="revolutionSlider">\r\n<ul>\r\n	<li data-masterspeed="300" data-slotamount="10" data-transition="fade"><img alt="" data-fullwidthcentering="on" src="/cms_assets/porto/img/slides/slide-bg.jpg" />\r\n	<div class="caption sft stb" data-easing="easeOutExpo" data-speed="300" data-start="1000" data-x="70" data-y="180"><img alt="" src="/cms_assets/porto/img/slides/slide-title-border.png" /></div>\r\n\r\n	<div class="caption top-label lfl stl" data-easing="easeOutExpo" data-speed="300" data-start="500" data-x="120" data-y="180">LOOKING FOR A</div>\r\n\r\n	<div class="caption sft stb" data-easing="easeOutExpo" data-speed="300" data-start="1000" data-x="310" data-y="180"><img alt="" src="/cms_assets/porto/img/slides/slide-title-border.png" /></div>\r\n\r\n	<div class="caption main-label sft stb" data-easing="easeOutExpo" data-speed="300" data-start="1500" data-x="0" data-y="235">Mohammad ?</div>\r\n\r\n	<div class="caption bottom-label sft stb" data-easing="easeOutExpo" data-speed="500" data-start="2000" data-x="43" data-y="290">Check out our options and features.</div>\r\n\r\n	<div class="caption fade" data-easing="easeOutExpo" data-speed="500" data-start="2500" data-x="500" data-y="50"><img alt="" src="/cms_assets/porto/img/slides/slide-concept.png" /></div>\r\n	</li>\r\n</ul>\r\n</div>\r\n</div>\r\n', '2016-02-09 10:18:14', '2016-02-10 05:23:37'),
 (6, 'homeIntro', '		<div class="home-intro">\r\n						<div class="container">\r\n\r\n							<div class="row">\r\n								<div class="span8">\r\n									<p>\r\n										The fastest way to grow your business with the leader in <em>Technology.</em>\r\n										<span>Check out our options and features included.</span>\r\n									</p>\r\n								</div>\r\n								<div class="span4">\r\n									<div class="get-started">\r\n										<a href="#" class="btn btn-large btn-primary">Get Started Now!</a>\r\n										<div class="learn-more">or <a href="index.html">learn more.</a></div>\r\n									</div>\r\n								</div>\r\n							</div>\r\n\r\n						</div>\r\n					</div>\r\n', '2016-02-10 03:36:39', '2016-02-10 03:36:39'),
 (7, 'aboutWebSiteText', '<div class="row center">\r\n                    <div class="span12">\r\n                        <h2 class="short">Porto is <strong class="inverted">incredibly</strong> beautiful and responsive design.</h2>\r\n                        <p class="featured lead">\r\n                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce elementum, nulla vel pellentesque consequat, ante nulla hendrerit arcu, ac tincidunt mauris lacus sed leo. vamus suscipit molestie vestibulum. Integer elementum congue.\r\n                        </p>\r\n                    </div>\r\n                </div>', '2016-02-10 03:39:17', '2016-02-10 03:39:17'),
@@ -22,35 +21,49 @@ INSERT INTO `cms_customhtml` (`id`, `title`, `body`, `created_at`, `updated_at`)
 (19, 'article(who we are)', '\r\n<h3><strong>Who</strong> We Are</h3>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula. Fusce eget metus lorem, ac viverra leo. Nullam convallis, arcu vel pellentesque sodales, nisi est varius diam, ac ultrices sem ante quis sem. Proin ultricies volutpat sapien, nec scelerisque ligula mollis lobortis.</p>\r\n\r\n<p>Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc vehicula lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing <span class="alternative-font">metus</span> sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula. Fusce eget metus lorem, ac viverra leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula. Fusce eget metus lorem, ac viverra leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula.</p>\r\n\r\n', '2016-02-10 07:16:49', '2016-02-10 08:10:02'),
 (20, 'rightTabs', '\r\n<div class="featured-box featured-box-quaternary" style="height: auto;">\r\n<div class="box-content">\r\n<h4>Behind the scenes</h4>\r\n\r\n<ul class="flickr-feed" data-plugin-options="{" qstrings="">\r\n</ul>\r\n</div>\r\n</div>\r\n', '2016-02-10 07:18:09', '2016-02-10 08:10:19'),
 (21, 'text with right button', '<div class="row">\r\n						<div class="span10">\r\n							<p class="lead">\r\n								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum pellentesque imperdiet. Nulla lacinia iaculis nulla non pulvinar. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut eu risus enim, ut pulvinar lectus. Sed hendrerit nibh <span class="alternative-font">metus.</span>\r\n							</p>\r\n						</div>\r\n						<div class="span2">\r\n							<a href="#" class="btn btn-large btn-primary pull-top">Join Our Team!</a>\r\n						</div>\r\n					</div>', '2016-02-10 07:20:03', '2016-02-10 07:20:03'),
-(22, 'blackTitle(new way)', '<h2>The New Way to <strong>Success</strong></h2>', '2016-02-10 07:49:38', '2016-02-10 07:49:38')
+(22, 'blackTitle(new way)', '<h2>The New Way to <strong>Success</strong></h2>', '2016-02-10 07:49:38', '2016-02-10 07:49:38'),
+(23, 'Features_breadcrumbs', '<section class="page-top">\r\n<div class="container">\r\n<div class="row">\r\n<div class="span12">\r\n<ul class="breadcrumb">\r\n	<li><a href="index.html">Home</a> <span class="divider">/</span></li>\r\n	<li class="active">Features&nbsp;</li>\r\n</ul>\r\n</div>\r\n</div>\r\n\r\n<div class="row">\r\n<div class="span12">\r\n<h2>Features&nbsp;</h2>\r\n</div>\r\n</div>\r\n</div>\r\n</section>\r\n', '2016-04-03 12:04:46', '2016-04-03 12:04:46');
+
 
 --|||
+
 
 INSERT INTO `cms_languages` (`id`, `name`, `charset`, `code`, `dir`) VALUES
 (1, 'English', 'Utf-8', 'en', 'ltr'),
-(2, 'Arabic', 'utf-8', 'ar', 'rtl')
+(2, 'Arabic', 'utf-8', 'ar', 'rtl');
+
+
 --|||
 
 INSERT INTO `cms_customhtml_languages` (`id`, `cms_customhtml_id`, `cms_languages_id`, `title`, `body`, `created_at`, `updated_at`) VALUES
-(1, 15, 2, 'تابعنا', '<p>تابعنا على</p>\r\n', '2016-03-08 07:45:49', '2016-03-08 07:45:49')
+(1, 15, 2, 'تابعنا', '<p>تابعنا على</p>\r\n', '2016-03-08 07:45:49', '2016-03-08 07:45:49');
+
 
 --|||
 
 INSERT INTO `cms_menus` (`id`, `title`, `created_at`, `updated_at`) VALUES
-(1, 'porto', '2016-02-09 07:55:34', '2016-02-09 07:55:34')
+(1, 'porto', '2016-02-09 07:55:34', '2016-02-09 07:55:34');
+
 
 --|||
 
 INSERT INTO `cms_menus_items` (`id`, `name`, `parent_item_id`, `menu_id`, `disable`, `hide`, `type`, `content_id`, `page_id`, `created_at`, `updated_at`) VALUES
 (1, 'home', 0, 1, 0, 0, 0, 0, 3, '2016-02-09 07:56:19', '2016-02-10 08:13:23'),
-(2, 'aboutus', 0, 1, 0, 0, 0, 0, 2, '2016-02-09 08:32:02', '2016-02-09 08:32:02')
+(2, 'aboutus', 0, 1, 0, 0, 0, 0, 2, '2016-02-09 08:32:02', '2016-02-09 08:32:02'),
+(3, 'features ', 0, 1, 0, 0, 0, 0, 4, '2016-04-03 12:03:10', '2016-04-03 12:03:10');
+
+
 --|||
+
 
 INSERT INTO `cms_pages` (`id`, `title`, `created_at`, `updated_at`) VALUES
 (2, 'aboutus', '2016-02-09 08:31:03', '2016-02-09 08:31:03'),
-(3, 'index', '2016-02-10 07:45:30', '2016-02-10 07:45:30')
+(3, 'index', '2016-02-10 07:45:30', '2016-02-10 07:45:30'),
+(4, 'features ', '2016-04-03 12:01:20', '2016-04-03 12:01:20');
+
 
 --|||
+
 
 INSERT INTO `cms_pages_contents` (`id`, `module_id`, `type`, `page_id`, `module_name`, `order`, `float`, `display`, `position`, `all_pages`, `created_at`, `updated_at`) VALUES
 (4, '1', 0, 2, 'delete', 2, 0, 0, 'position_2', 0, '2016-02-09 08:43:43', '2016-02-17 08:27:44'),
@@ -71,11 +84,16 @@ INSERT INTO `cms_pages_contents` (`id`, `module_id`, `type`, `page_id`, `module_
 (29, '20', 0, 2, 'delete', 0, 0, 0, 'position_11', 1, '2016-02-10 07:54:08', '2016-02-10 08:10:51'),
 (31, '17', 0, 2, 'delete', 0, 0, 0, 'position_6', 1, '2016-02-10 07:57:36', '2016-02-10 07:57:36'),
 (32, '18', 0, 2, 'delete', 2, 0, 0, 'position_6', 1, '2016-02-10 07:58:14', '2016-02-10 07:59:22'),
-(33, '2', 0, 3, 'delete', 1, 2, 0, 'position_2', 0, '2016-02-10 08:15:39', '2016-02-17 08:27:48'),
 (34, '4', 0, 3, 'delete', 0, 0, 0, 'position_2', 0, '2016-02-10 08:15:59', '2016-02-17 08:27:48'),
 (35, '1', -1, 3, 'delete', 3, 0, 0, 'position_2', 0, '2016-02-10 08:16:35', '2016-02-17 08:27:44'),
-(36, '15', 0, 3, 'delete', 0, 0, 0, 'position_9', 0, '2016-02-10 08:19:27', '2016-02-10 08:19:27');
+(36, '15', 0, 3, 'delete', 0, 0, 0, 'position_9', 0, '2016-02-10 08:19:27', '2016-02-10 08:19:27'),
+(37, '9', 0, 4, 'delete', 0, 0, 0, 'position_10', 1, '2016-04-03 12:01:49', '2016-04-03 12:01:49'),
+(38, '10', 0, 4, 'delete', 0, 0, 0, 'position_11', 1, '2016-04-03 12:02:07', '2016-04-03 12:02:13'),
+(39, '23', 0, 4, 'delete', 0, 0, 0, 'position_3', 1, '2016-04-03 12:05:19', '2016-04-03 12:05:32');
+
+
 --|||
+
 
 INSERT INTO `cms_pages_contents_pages` (`pages_id`, `pages_contents_id`) VALUES
 (3, 23),
@@ -94,5 +112,9 @@ INSERT INTO `cms_pages_contents_pages` (`pages_id`, `pages_contents_id`) VALUES
 (2, 28),
 (2, 29),
 (2, 31),
-(2, 32)
+(2, 32),
+(4, 37),
+(4, 38),
+(4, 39);
+
 --|||
