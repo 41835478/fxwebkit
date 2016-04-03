@@ -32,7 +32,7 @@
         <div class="col-sm-12">
             <div class="form-group no-margin-hr">
 
-                <label class="control-label">{{ trans('accounts::accounts.Country') }}</label>
+                <label class="control-label">{{ trans('request::request.status') }}</label>
                 {!! Form::select('status',$addAccount['status_array'],$addAccount['status'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->

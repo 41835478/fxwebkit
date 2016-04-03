@@ -168,7 +168,6 @@ class RequestController extends Controller
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
 
-        /* TODO[moaid]  translate this array in language file then in the .blade.php file insert trans() method */
         $aRequestStatus = config('request.requestStatus');
 
         $oResults = null;
@@ -179,13 +178,12 @@ class RequestController extends Controller
             $aFilterParams['login'] = $oRequest->login;
 
             $oResults = $this->RequestLog->getChangePasswordRequestByFilters($aFilterParams, false, $sOrder, $sSort);
-
-
         }
 
+        $loginPasswordType=Config('accounts.loginPasswordType');
 
-        return view('request::admin/changePasswordRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus);
-    }
+
+        return view('request::admin/changePasswordRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus)->with('loginPasswordType', $loginPasswordType);    }
 
 
     public function getForwordChangePasswordRequest(Request $oRequest)
@@ -201,6 +199,7 @@ class RequestController extends Controller
             $requestChangePassword->login,
             $requestChangePassword->server_id,
             $requestChangePassword->newPassword,
+            $requestChangePassword->password_type,
             $requestChangePassword->comment,
             $requestChangePassword->reason,
             $requestChangePassword->status);

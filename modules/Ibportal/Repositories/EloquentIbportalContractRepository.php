@@ -97,11 +97,10 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     }
 
-    public function addPlan($planName, $planType, $public)
+    public function addPlan($planName, $public)
     {
         $planId = Plan::create([
             'name' => $planName,
-            'type' => $planType,
             'public' => $public
         ]);
 

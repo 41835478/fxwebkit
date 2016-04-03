@@ -47,5 +47,6 @@ return [
     'liveDemo'=>'Live/Demo',
     'demo'=>'Demo',
     'live'=>'Live',
+    'password_type'=>'Password Type',
 
 ];

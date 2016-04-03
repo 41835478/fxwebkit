@@ -135,36 +135,38 @@ public function changeServer($server_id){
 
 	}
 
-	public function changeMt4Password($login,$newPassword,$oldPassword=null){
+	public function changeMt4Password($login,$newPassword,$passwordType,$oldPassword=null){
 
 		$requestLog =new RequestLog();
+
 		if($this->directOrderToMt4Server==false){
-			$notExist=$requestLog->insertChangePasswordRequest($login,$this->server_id,$newPassword);
+			$notExist=$requestLog->insertChangePasswordRequest($login,$this->server_id,$newPassword,$passwordType);
 
 			return (!$notExist)? trans('accounts::accounts.youHavePendingRequest'):trans('accounts::accounts.the_request');
 		}
 		$password=($this->apiReqiredConfirmMt4Password)? "CPASS=".$oldPassword."|":"";
 
-		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=2|LOGIN='.$login.'|'.$password.'NPASS='.$newPassword.'|TYPE=0|MANAGER=1';
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=2|LOGIN='.$login.'|'.$password.'NPASS='.$newPassword.'|TYPE='.$passwordType.'|MANAGER=1';
 		$result=$this->sendApiMessage($message);
 
 
 
 		if( $result->result ==0 ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
-			$requestLog->insertChangePasswordRequest($login,$this->server_id,$newPassword,'','',1);
+
+			$requestLog->insertChangePasswordRequest($login,$this->server_id,$newPassword,$passwordType,'','',1);
 
 			$email=new Email();
-			$email->changeMt4Password(['email'=>config('fxweb.adminEmail'),'login'=>$login,'newPassword'=>$newPassword]);
+			$email->changeMt4Password(['email'=>config('fxweb.adminEmail'),'login'=>$login,'newPassword'=>$newPassword,'passwordType'=>$passwordType]);
 
 		}else{
 
-			$requestLog->insertChangePasswordRequest($login,$this->server_id,$newPassword,'','',2);
+			$requestLog->insertChangePasswordRequest($login,$this->server_id,$newPassword,$passwordType,'','',2);
 		}
 		return $this->getApiResponseMessage($result);
 	}
 
-	public function adminForwordChangeMt4Password($logId,$login,$server_id,$newPassword,$oldPassword=null){
+	public function adminForwordChangeMt4Password($logId,$login,$server_id,$newPassword,$passwordType,$oldPassword=null){
 
 		$this->changeServer($server_id);
 		$requestLog =new RequestLog();
@@ -172,7 +174,7 @@ public function changeServer($server_id){
 		/* TODO[Galya] when the admin forword the request allows there will be no password  please tell me if this logic is right */
 		$password="";
 
-		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=2|LOGIN='.$login.'|'.$password.'NPASS='.$newPassword.'|TYPE=0|MANAGER=1';
+		$message='WMQWEBAPI MASTER='.$this->apiMasterPassword.'|MODE=2|LOGIN='.$login.'|'.$password.'NPASS='.$newPassword.'|TYPE='.$passwordType.'|MANAGER=1';
 		$result=$this->sendApiMessage($message);
 
 
@@ -180,11 +182,11 @@ public function changeServer($server_id){
 
 		if($result->result ==0  ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
-			$requestLog->updateChangePasswordRequest($logId,$login,$newPassword,'','',1);
+			$requestLog->updateChangePasswordRequest($logId,$login,$newPassword,$passwordType,'','',1);
 
 		}else{
 
-			$requestLog->updateChangePasswordRequest($logId,$login,$newPassword,'','',2);
+			$requestLog->updateChangePasswordRequest($logId,$login,$newPassword,$passwordType,'','',2);
 		}
 		return $this->getApiResponseMessage($result);
 	}
@@ -442,6 +444,7 @@ $this->changeServer($server_id);
 
 		if($result->result ==0  ){
 			/* TODO comment and reason should be from addmin not $result,$result  */
+
 			$requestLog->updateMt4UserFullDetailsRequest($logId,$mt4_user_details,1,$result->data[0]->login,$mt4_user_details['accountId']);
 
 

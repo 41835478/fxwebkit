@@ -465,6 +465,8 @@ public function getDashboardStatistics(){
             'country' => '',
             'city' => '',
             'zip_code' => '',
+            'last_login'=>'',
+            'created_at'=>'',
             'gender' => 0
         ];
         if ($fullDetails) {

@@ -53,6 +53,7 @@
                             <th class="no-warp">{!! th_sort(trans('request::request.login'), 'login', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.newPassord'), 'newPassord', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.password_type'), 'password_type', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.reason'), 'reason', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.status'), 'status', $oResults) !!}</th>
@@ -69,6 +70,7 @@
                                     <td>{{ $oResult->login }}</td>
                                     <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
                                     <td>{{ $oResult->newPassword }}</td>
+                                    <td>{{ $loginPasswordType[$oResult->password_type] }}</td>
                                     <td>{{ $oResult->comment }}</td>
                                     <td>{{ $oResult->reason }}</td>
                                     <td>{{ $aRequestStatus[$oResult->status] }}

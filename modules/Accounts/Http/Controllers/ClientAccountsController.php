@@ -218,16 +218,21 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
     public function getMt4ChangePassword(Request $oRequest)
     {
         $Password = Config('accounts.apiReqiredConfirmMt4Password');
+        $loginPasswordType = Config('accounts.loginPasswordType');
 
         $changePassword = [
             'login' => '',
             'oldPassword' => '',
-            'newPassword' => ''];
+            'newPassword' => '',
+         'passwordType_array'=>$loginPasswordType,
+            'passwordType'=>''
+        ];
 
         return view('accounts::client.changePassword')
             ->with('Password', $Password)
             ->with('changePassword', $changePassword)
             ->with('login', $oRequest->login)
+            ->with('loginPasswordType', $loginPasswordType)
             ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
             ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
@@ -238,11 +243,14 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
     public function postMt4ChangePassword(Request $oRequest)
     {
         $Password = Config('accounts.apiReqiredConfirmMt4Password');
+        $loginPasswordType = Config('accounts.loginPasswordType');
 
         $changePassword = [
             'login' => '',
             'oldPassword' => '',
-            'newPassword' => ''];
+            'newPassword' => '',
+            'passwordType_array'=>$loginPasswordType,
+            'passwordType'=>''];
 
         $mT4ChangePassword = new ApiController();
 
@@ -252,12 +260,13 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
             $mT4ChangePassword->server_id=1;
         }
 
-        $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'], $oRequest['oldPassword']);
+        $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'] ,$oRequest['passwordType'],$oRequest['oldPassword']);
         /* TODO with success */
         return view('accounts::client.changePassword')
             ->withErrors($result)
             ->with('Password', $Password)
             ->with('changePassword', $changePassword)
+            ->with('loginPasswordType', $loginPasswordType)
             ->with('login', $oRequest->login)
             ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage',config('accounts.showMt4Leverage'))

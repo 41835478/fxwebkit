@@ -8,8 +8,6 @@
         </div>
 
 
-
-
         <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
             <li class="active">
                 <a href="{{ route('accounts.detailsAccount').'?edit_id='.$user_details['id'] }}">{{ trans('accounts::accounts.details') }}</a>
@@ -18,8 +16,7 @@
 
                 <a href="{{ route('accounts.asignMt4Users').'?account_id='.$user_details['id']}}">{{ trans('accounts::accounts.assignedMt4Users') }}</a>
             </li>
-  </ul>
-
+        </ul>
 
 
         <div class="panel">
@@ -172,7 +169,6 @@
                     </div>
 
 
-
                     <div class="col-sm-2 text-right">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{ trans('accounts::accounts.lastLogin') }}: </label>
@@ -184,8 +180,6 @@
                             <label class="control-label">{{$user_details['last_login'] }}</label>
                         </div>
                     </div>
-
-
 
 
                     <div class="col-sm-2 text-right">

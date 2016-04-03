@@ -19,7 +19,7 @@
 
                 <div class="from_row_div">
                     <label class="form_lable">
-                        {!! Form::radio('type', 0, ($menu_item===0 || $menu_item->type)? false:true,['checked'=>'true']) !!}
+                        {{trans('cms::cms.link_to_page')}}{!! Form::radio('type', 0, ($menu_item===0 || $menu_item->type)? false:true,['checked'=>'true']) !!}
                     </label>
                     {!! Form::select('page_id',$pages,($menu_item===0 || $menu_item->type)? 0:$menu_item->page_id,['class'=>'form-control ']) !!}
                 </div>

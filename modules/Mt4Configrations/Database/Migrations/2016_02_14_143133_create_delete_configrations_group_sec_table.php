@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConfigrationsGroupSecTable extends Migration {
+class CreateDeleteConfigrationsGroupSecTable extends Migration {
 
     /**
      * Run the migrations.

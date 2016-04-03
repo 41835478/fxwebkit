@@ -22,13 +22,7 @@
         <!-- col-sm-6 -->
 
 
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('ibportal::ibportal.type:') }}</label>
-                <label class="control-label">{{$oPlanDetails->type  }}</label>
-            </div>
-        </div>
-        <!-- col-sm-6 -->
+
 
         <div class="col-sm-12">
 

@@ -60,6 +60,14 @@
                                 {!! Form::password("newPassword",["class"=>"form-control","value"=>$changePassword['newPassword']]) !!}
                             </div>
                         </div><!-- col-sm-6 -->
+
+                    <div class="col-sm-6">
+                        <div class="form-group no-margin-hr">
+                            <label class="control-label">{{ trans('accounts::accounts.newPassword') }}</label>
+                            {{--{!! Form::password("type",$aType,$changePassword['type'],["class"=>"form-control"]) !!}--}}
+                            {!! Form::select('passwordType',$loginPasswordType,'',['id'=>'jq-validation-select2','class'=>'form-control']) !!}
+                        </div>
+                    </div><!-- col-sm-6 -->
             </div>
 
 

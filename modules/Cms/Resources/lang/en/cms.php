@@ -86,4 +86,5 @@ return [
     'admin_theme'=>'Admin Theme',
     'theme_folder'=>'Theme Folder',
     'themeSettings'=>'Theme Settings',
+    'link_to_page'=>'Link To Page ',
 ];

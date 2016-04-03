@@ -752,6 +752,7 @@ class AccountsController extends Controller
         $Password = Config('accounts.apiReqiredConfirmMt4Password');
         $loginPasswordType = Config('accounts.loginPasswordType');
 
+
         $changePassword = [
             'login' => '',
             'oldPassword' => '',
@@ -766,11 +767,13 @@ class AccountsController extends Controller
             $mT4ChangePassword->server_id=1;
         }
 
-        $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'], $oRequest['oldPassword']);
+
+        $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'],$oRequest['passwordType'], $oRequest['oldPassword']);
         /* TODO with success */
         return view('accounts::changePassword')
             ->withErrors($result)
             ->with('Password', $Password)
+            ->with('loginPasswordType', $loginPasswordType)
             ->with('changePassword', $changePassword)
             ->with('server_id', $oRequest->server_id)
             ->with('login', $oRequest->login);

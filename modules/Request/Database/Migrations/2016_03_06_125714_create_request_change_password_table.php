@@ -18,6 +18,7 @@ class CreateRequestChangePasswordTable extends Migration {
             $table->integer('login');
             $table->tinyInteger('server_id');
             $table->string('newPassword', 100);
+            $table->tinyInteger('password_type');
             $table->text('comment');
             $table->text('reason');
             $table->tinyInteger('status');

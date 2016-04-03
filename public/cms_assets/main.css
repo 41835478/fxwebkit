@@ -94,9 +94,11 @@ border:none;
 
 /*_______icons*/
 .icon_button{ border:none; background-color: transparent;
-width: auto;}
-.red_icon{ color:#f00 ;}
-.blue_icon{ color:#00f ;}
+width: auto;
+    color:#C7C4C4;
+}
+
+
 
 /*_____END__icons*/
 

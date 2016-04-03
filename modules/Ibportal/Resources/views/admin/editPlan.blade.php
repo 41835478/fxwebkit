@@ -22,21 +22,16 @@
         <!-- col-sm-6 -->
 
 
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-                <label class="control-label">{{ trans('ibportal::ibportal.type') }}</label>
 
-                {!! Form::select('planType', $data['planTypes'],$oPlanDetails['type'],['class'=>'form-control']) !!}
-            </div>
-        </div>
-        <!-- col-sm-6 -->
-        <div class="col-sm-6">
-            <div class="form-group no-margin-hr">
-
-                <label class="control-label">  {!! Form::checkbox('public',1,$oPlanDetails['public'],[]) !!}{{ trans('ibportal::ibportal.publicPlan') }}</label>
-
+        <div class="col-sm-12">
+            <div class="checkbox">
+                <label>
+                    {!! Form::checkbox('public', 1, false, ['class'=>'px','id'=>'public']) !!}
+                    <span class="lbl">{{ trans('ibportal::ibportal.publicPlan') }}</span>
+                </label>
 
             </div>
+            <br>
         </div>
         <!-- col-sm-6 -->
 

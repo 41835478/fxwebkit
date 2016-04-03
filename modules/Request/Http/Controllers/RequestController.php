@@ -151,13 +151,15 @@ class RequestController extends Controller
     }
 
 
-    public function insertChangePasswordRequest($login,$server_id, $newPassword, $comment = '', $reason = '', $status = 0)
+    public function insertChangePasswordRequest($login,$server_id, $newPassword, $passwordType,$comment = '', $reason = '', $status = 0)
     {
+
         $existResult= ChangePassword::where([
 
             'login' => $login,
             'server_id' => $server_id,
             'newPassword' => $newPassword,
+            'password_type'=>$passwordType,
             'status' => 0
         ])->get();
         if(count($existResult)){ return false;}
@@ -167,6 +169,7 @@ class RequestController extends Controller
             'login' => $login,
             'server_id' => $server_id,
             'newPassword' => $newPassword,
+            'password_type'=>$passwordType,
             //	'comment'=>$comment,
             //	'reason'=>$reason,
             'status' => $status
@@ -175,7 +178,7 @@ class RequestController extends Controller
         return true;
     }
 
-    public function updateChangePasswordRequest($logId, $login, $newPassword = 0, $comment = '', $reason = '', $status = 0)
+    public function updateChangePasswordRequest($logId, $login, $newPassword = 0,$passwordType, $comment = '', $reason = '', $status = 0)
     {
 
 
@@ -185,6 +188,8 @@ class RequestController extends Controller
         $log->login = $login;
      //   $log->newPassword = $newPassword;
         $log->status = $status;
+        $log->status = $passwordType;
+
         $log->save();
         return true;
 
