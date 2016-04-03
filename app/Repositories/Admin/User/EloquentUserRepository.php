@@ -78,13 +78,14 @@ public function getDashboardStatistics(){
 
             if ($aFilters['active'] == 1) {
                 $oResult = $oResult->with('activations')->whereHas('activations',function ($query){
-                    $query->whereNotNull('user_id');
+                    $query->where('completed',1);
                 });
             } else {
                 $oResult = $oResult->whereNotIn('id', function ($query) {
 
                     $query->select(DB::raw('activations.user_id'))
                         ->from('activations')
+                        ->where('completed',1)
                         ->whereRaw('activations.user_id = users.id');
 
                 });

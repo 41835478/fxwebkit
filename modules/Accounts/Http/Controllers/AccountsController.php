@@ -91,8 +91,28 @@ class AccountsController extends Controller
 
 
     public function getActivateUser(Request $oRequest){
-$user=Sentinel::findById($oRequest->account_id);
-        $oActivation = Activation::create($user);
+        $user=Sentinel::findById($oRequest->account_id);
+        $activation = Activation::exists($user);
+
+
+        if ($activation)
+        {
+           Activation::where('user_id',$oRequest->account_id)->update(['completed'=>1]);
+
+
+        }
+        else
+        {
+            if(Activation::create($user))
+            {
+                Activation::where('user_id',$oRequest->account_id)->update(['completed'=>1]);
+            }else{
+            /* TODO please translate this message */
+            return Redirect::route('accounts.accountsList')
+                ->withErrors('Error, please try again later .');
+            }
+        }
+
         return Redirect::route('accounts.accountsList');
     }
     public function getDeleteAccount(Request $oRequest)
