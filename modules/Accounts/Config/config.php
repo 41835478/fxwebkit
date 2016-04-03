@@ -6,7 +6,7 @@ return [
     'name' => 'accounts',
     'icon' => 'fa fa-user',
     'route' => '',
-    'directOrderToMt4Server'=>false,
+    'directOrderToMt4Server' => false,
     'operation' => [
         '0' => 'Credit In',
         '1' => 'Credit Out',
@@ -18,12 +18,17 @@ return [
     'apiMasterPassword' => 'PASSWORD',
     'allowTransferToUnsignedMT4' => true,
 
-'changeLeverageWarning'=>'Please, be careful with this operation !. ',
+    'changeLeverageWarning' => 'Please, be careful with this operation !. ',
     'denyLiveAccount' => false,
     'showMt4Leverage' => true,
     'showWithDrawal' => true,
     'showMt4ChangePassword' => true,
     'showMt4Transfer' => true,
+
+    'loginPasswordType' => [
+        '0' => 'PASS',
+        '1' => 'OUT',
+    ],
 
 
     'admin_menu' => [
