@@ -65,7 +65,9 @@ select{ height: 30px; width: 200px !important;  display: inline;}
 
 /*___________________________end__form_*/
 
-/*______________________________table*
+/*______________________________table*/
+
+/*
 .primary_table{ width: 100%;
 border:none;
 
@@ -87,6 +89,23 @@ border:none;
                          background-color: #eee;
     
 }
+*/
+.cms_table td{
+    padding:5px !important;
+}
+.cms_table tbody tr.odd td{
+    background-color:#FFFFFF !important;
+
+}
+.cms_table  tbody tr.even td{
+    background-color:#f9f9f9 !important;
+
+}
+
+.cms_table thead tr th:last-child{
+    max-width:70px;
+}
+.cms_table button.icon_button{float:left; max-height: 10px;}
 
 /*__________________________END____table*/
 
@@ -96,6 +115,7 @@ border:none;
 .icon_button{ border:none; background-color: transparent;
 width: auto;
     color:#C7C4C4;
+    font-size: 14px;
 }
 
 
@@ -105,3 +125,4 @@ width: auto;
 .language_select_form{
     float:right;
 }
+

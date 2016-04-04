@@ -41,7 +41,7 @@
         </div>
         @if($selected_language==1)
             {!! Form::open(['url'=>asset('cms/menus/menus')]) !!}
-            <table border="0" class="table table-bordered table-striped">
+            <table border="0" class="table table-bordered table-striped cms_table">
                 <thead>
                 <th>{{ trans('cms::cms.id') }}</th>
                 <th>{{ trans('cms::cms.title') }}</th>

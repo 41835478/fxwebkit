@@ -21,7 +21,7 @@
                 </div>
             </div>
             {!! Form::open(['url'=>asset('cms/articles/articles')]) !!}
-            <table border="0" class="table table-bordered table-striped">
+            <table border="0" class="table table-bordered table-striped cms_table">
                 <thead>
                 <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('cms::cms.select_all')) !!}</th>
                 <th>{{ trans('cms::cms.id') }}</th>
@@ -41,7 +41,7 @@
                         <td>{{ $pages[$article->page_id] }}</td>
                         </td>
                         <td>
-                            {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_article_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete articles with its links")) return false;','class'=>'icon_button red_icon','type'=>'submit','value'=>$article->id ]) !!}
+                            {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_article_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete articles with its links")) return false;','class'=>'icon_button','type'=>'submit','value'=>$article->id ]) !!}
                             {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_article_page' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$article->id ]) !!}
                         </td>
                     <tr>
@@ -50,12 +50,12 @@
                 <tfoot>
                 <tr>
                     <td colspan="5">
-                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_groub_article_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete articles with its links")) return false;','class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_groub_article_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete articles with its links")) return false;','class'=>'icon_button','type'=>'submit' ]) !!}
 
                         <div style="width:250px;display: inline-block; ">
                             {!! Form::select('pages_select',$pages,0) !!}
                         </div>
-                        {!! Form::button(trans('cms::cms.change_articles_page'),['name'=>'change_groub_article_pages_submit' ,'type'=>'submit' ]) !!}
+                        {!! Form::button(trans('cms::cms.change_articles_page'),['name'=>'change_groub_article_pages_submit' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}
                     </td>
                 </tr>
                 </tfoot>

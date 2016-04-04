@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     {!! Form::open(['url'=>asset('cms/pages/pages')]) !!}
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped cms_table">
                         <thead>
                         <tr>
                             <th class="no-warp">{{ trans('cms::cms.id') }}</th>

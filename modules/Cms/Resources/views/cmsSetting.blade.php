@@ -2,11 +2,11 @@
 @section('title', trans('cms::cms.settings'))
 @section('content')
     <div id="content-wrapper">
-    <div class="page-header">
-        <h1>{{ trans('cms::cms.settings') }}</h1>
-    </div>
+        <div class="page-header">
+            <h1>{{ trans('cms::cms.settings') }}</h1>
+        </div>
 
-    <div class="panel">
+        < class="panel">
         {!! Form::open(['class'=>'panel form-horizontal']) !!}
         <div class="panel-heading">
             <span class="panel-title">{{ trans('cms::cms.settings') }}</span>
@@ -53,36 +53,33 @@
 
                             </div>
                         </div>
-                        </div>
-                        <!-- / .panel-body -->
                     </div>
-                    <!-- / .collapse -->
+                    <!-- / .panel-body -->
                 </div>
-                <!-- / .panel -->
+                <!-- / .collapse -->
+            </div>
+            <!-- / .panel -->
+
+        </div>
+        <!-- / .panel-group -->
+
+
+        @if($errors->any())
+            <div class="alert alert-danger alert-dark">
+                @foreach($errors->all() as $key=>$error)
+                    <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>
+                @endforeach
 
             </div>
-            <!-- / .panel-group -->
+        @endif
+        <div class="panel-footer text-right">
 
+            <button type="submit" class="btn btn-primary" name="edit_id"
+                    value="0">{{ trans('cms::cms.save') }}</button>
+            </a>
+
+            {!! Form::close() !!}
         </div>
-
-
-
-    @if($errors->any())
-        <div class="alert alert-danger alert-dark">
-            @foreach($errors->all() as $key=>$error)
-                <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>
-            @endforeach
-
-        </div>
-    @endif
-    <div class="panel-footer text-right">
-
-        <button type="submit" class="btn btn-primary" name="edit_id"
-                value="0">{{ trans('cms::cms.save') }}</button>
-        </a>
-
-        {!! Form::close() !!}
-    </div>
     </div>
 
 @stop
