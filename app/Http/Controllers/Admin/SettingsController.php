@@ -482,4 +482,53 @@ return $this->getMassMailer($oRequest);
         return Redirect::route('admin.settings');
 
     }
+
+
+    public function getMassGroupsList(Request $oRequest)
+    {
+
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+        $aGroups = [];
+        $oResults = null;
+        $aFilterParams = [
+            'id' => '',
+            'group' => '',
+            'sort' => $sSort,
+            'order' => $sOrder
+        ];
+
+        if ($oRequest->has('search')) {
+            $aFilterParams['id'] = $oRequest->id;
+            $aFilterParams['group'] = $oRequest->first_name;
+
+            $aFilterParams['sort'] = $oRequest->sort;
+            $aFilterParams['order'] = $oRequest->order;
+
+
+
+            $oResults = $this->oUsers->getMassGroupsList($aFilterParams, false, $sOrder, $sSort);
+
+        }
+
+
+        return view('admin.email.massGroupsList')
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
+    }
+
+
+
+
+    public function getAddMassGroup(Request $request)
+    {
+
+    }
+
+    public function postAddMassGroup(Request $request)
+    {
+
+        return 'post';
+
+    }
 }

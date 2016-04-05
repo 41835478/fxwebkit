@@ -2,6 +2,7 @@
 
 namespace Fxweb\Repositories\Admin\User;
 
+
 use Fxweb\Models\User;
 use Fxweb\Models\UsersDetails;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
@@ -11,6 +12,9 @@ use Config;
 use Fxweb\Helpers\Fx;
 use Illuminate\Support\Facades\DB;
 use Fxweb\Models\Mt4User;
+
+use App\Models\SettingsMassGroupsUsers;
+use App\Models\SettingsMassGroups;
 
 /**
  * Class EloquentUserRepository
@@ -772,6 +776,8 @@ public function getDashboardStatistics(){
     }
 
 
+
+
     public function getMt4AssignedUsers($login,$server_id){
 
         $oResults=User::with('mt4Users')->whereHas('mt4Users',function ($query) use($login,$server_id){
@@ -782,4 +788,41 @@ public function getDashboardStatistics(){
 
         return $oResults;
     }
+
+
+    public function getMassGroupsList($aFilters, $bFullSet = false, $sOrderBy = 'id', $sSort = 'ASC')
+    {
+
+
+        $oResult=new SettingsMassGroups();
+
+
+
+
+
+
+        /* =============== group Filter  =============== */
+        if (isset($aFilters['group']) && !empty($aFilters['group'])) {
+            $oResult = $oResult->where('group', 'like', '%' . $aFilters['group'] . '%');
+        }
+
+
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+
+        } else {
+            $oResult = $oResult->get();
+
+        }
+
+
+
+        return $oResult;
+    }
+
 }

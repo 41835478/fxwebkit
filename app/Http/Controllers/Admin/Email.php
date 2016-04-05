@@ -206,7 +206,7 @@ class Email extends Controller {
         $userResults = $this->getUsersEmail($last_user_id,$limit);
 
         $bcc=[];
-      
+
         foreach ($userResults as $user) {
 
             $bcc[]=$user['email'];

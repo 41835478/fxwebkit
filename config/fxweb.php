@@ -77,11 +77,12 @@ return [
             'title' => 'Settings',
             'icon' => 'fa fa-gears',
             'subMenus' => [
-                [
+
+            [
                     'route' => 'admin.adminsList',
-                    'title' => 'adminsList',
-                    'icon' => 'fa fa-users',
-                ],
+        'title' => 'adminsList',
+        'icon' => 'fa fa-users',
+    ],
                 [
                     'route' => 'admin.addEmailTemplates',
                     'title' => 'addEmailTemplates',
@@ -101,6 +102,10 @@ return [
                     'route' => 'admin.language.editLanguage',
                     'title' => 'language',
                     'icon' => 'fa fa-globe',
+                ],[
+                    'route' => 'admin.massGroupsList',
+                    'title' => 'massGroupsList',
+                    'icon' => 'fa fa-mail',
                 ]
 
 
