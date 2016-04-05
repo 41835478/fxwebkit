@@ -142,6 +142,73 @@ class EloquentUserRepository implements UserContract
 
         return $oResult;
     }
+    public function getUsersWithMassGroup($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
+    {
+
+        $oRole = Sentinel::findRoleBySlug($role);
+        $role_id = $oRole->id;
+        $oResult = User::with('roles')->whereHas('roles', function ($query) use ($role_id) {
+            $query->where('id', $role_id);
+        });
+
+
+        /* =============== active Filters =============== */
+        if (isset($aFilters['active']) && $aFilters['active'] != 0) {
+
+
+            if ($aFilters['active'] == 1) {
+                $oResult = $oResult->with('activations')->whereHas('activations', function ($query) {
+                    $query->where('completed', 1);
+                });
+            } else {
+                $oResult = $oResult->whereNotIn('id', function ($query) {
+
+                    $query->select(DB::raw('activations.user_id'))
+                        ->from('activations')
+                        ->where('completed', 1)
+                        ->whereRaw('activations.user_id = users.id');
+
+                });
+            }
+        }
+        /* =============== id Filter  =============== */
+        if (isset($aFilters['id']) && !empty($aFilters['id'])) {
+            $oResult = $oResult->where('id', $aFilters['id']);
+        }
+
+        /* =============== Nmae Filter  =============== */
+        if (isset($aFilters['first_name']) && !empty($aFilters['first_name'])) {
+            $oResult = $oResult->where('first_name', 'like', '%' . $aFilters['first_name'] . '%');
+        }
+
+        if (isset($aFilters['last_name']) && !empty($aFilters['last_name'])) {
+            $oResult = $oResult->where('last_name', 'like', '%' . $aFilters['last_name'] . '%');
+        }
+
+        /* =============== email Filter  =============== */
+        if (isset($aFilters['email']) && !empty($aFilters['email'])) {
+            $oResult = $oResult->where('email', 'like', '%' . $aFilters['email'] . '%');
+        }
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+
+        } else {
+            $oResult = $oResult->get();
+
+        }
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+
+        }
+        /* =============== Preparing Output  =============== */
+
+        return $oResult;
+    }
 
     public function getAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
     {

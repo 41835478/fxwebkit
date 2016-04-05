@@ -84,11 +84,11 @@
 
                     <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                         <li>
-                            <a href="{{ route('accounts.detailsAccount').'?edit_id='.$aFilterParams['account_id'] }}">{{ trans('accounts::accounts.details') }}</a>
+                            <a href="{{ route('admin.accountsList').'?edit_id='.$aFilterParams['account_id'] }}">{{ trans('accounts::accounts.details') }}</a>
                         </li>
                         <li class="active">
 
-                            <a href="{{ route('accounts.asignMt4Users').'?account_id='.$aFilterParams['account_id']}}">{{ trans('accounts::accounts.assignedMt4Users') }}</a>
+                            <a href="{{ route('admin.assignToMassGroup').'?account_id='.$aFilterParams['account_id']}}">{{ trans('accounts::accounts.assignedMt4Users') }}</a>
                         </li>
                     </ul>
 
