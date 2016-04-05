@@ -30,7 +30,7 @@ return [
     'displayName'=>'Mqplanet',
 
 
-    'adminEmail'=>'taylorsuccessor@gmail.com',
+    'adminEmail'=>'mag@mqplanet.com',
 
     'facebookLoginCallback'=>'http://www.fxwebkit.com/client/facebook-callback-login',
     'facebookLoginProvider'=>'facebook',

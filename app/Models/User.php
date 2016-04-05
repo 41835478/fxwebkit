@@ -32,4 +32,11 @@ class User extends SentinelUser
 
        return $this->hasMany('Modules\Accounts\Entities\mt4_users_users','users_id');
     }
+
+    public function massGroup(){
+
+
+        return $this->hasMany('Fxweb\Models\SettingsMassGroupsUsers','user_id');
+    }
+
 }

@@ -18,7 +18,9 @@ class CreateSettingsMassMailTable extends Migration
             $table->text('mail');
             $table->char('language', 3)->nullable();
             $table->integer('last_user_id')->unsigned();
+            $table->integer('last_mt4_user_id')->unsigned();
             $table->boolean('completed');
+            $table->integer('group_id');
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
