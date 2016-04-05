@@ -47,6 +47,7 @@ return [
     'entries'=>'entries',
     'of'=>'of',
     'showing'=>'Showing',
+    'addContract'=>'Add Contract',
 
 
 

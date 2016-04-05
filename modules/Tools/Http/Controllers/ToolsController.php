@@ -14,6 +14,8 @@ use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Fxweb\Http\Controllers\admin\Email;
 use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\View;
+use Fxweb\Models\SettingsMassMail;
 
 class ToolsController extends Controller
 {
@@ -87,60 +89,33 @@ class ToolsController extends Controller
 
     public function getSendExpiryDate(Request $oRequest)
     {
-
-
-        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
-        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
-        $aGroups = [];
-        $oResults = null;
-        $aFilterParams = [
-            'id' => '',
-            'name' => '',
-            'symbol' => '',
-            'exchange' => '',
-            'month' => '',
-            'year' => '',
-            'start_date' => '',
-            'expiry_date' => '',
-            'all_groups' => true,
-            'sort' => $sSort,
-            'order' => $sOrder,
-        ];
-
-        if ($oRequest->has('deleteContract')) {
-
-            $result = $this->oFuture->deleteContract($oRequest->contract_checkbox);
-            /* TODO with success */
-            return Redirect::route('tools.futureContract')->withErrors($result);
-        }
-
-        $aFilterParams['id'] = $oRequest->id;
-        $aFilterParams['name'] = $oRequest->name;
-        $aFilterParams['symbol'] = $oRequest->symbol;
-        $aFilterParams['exchange'] = $oRequest->exchange;
-        $aFilterParams['all_groups'] = (($oRequest->has('all_groups')) ? true : false);
-        $aFilterParams['sort'] = $oRequest->sort;
-        $aFilterParams['order'] = $oRequest->order;
-
-
-        $role = explode(',', Config::get('fxweb.client_default_role'));
         $expiryResults = $this->oFuture->sendExpiryNotificationsEmail();
-        $userResults = $this->oUsers->getUsersEmail();
 
-        $userArray = [];
-        $expiryArray = [];
+        if (!count($expiryResults))
+            return '';
 
         $tabelHtml = '';
+
         foreach ($expiryResults as $expiry) {
 
             $tabelHtml .= '<tr><td>' . $expiry['expiry_date'] . '</td><td>' . $expiry['symbol'] . '</td></tr>';
         }
 
-        foreach ($userResults as $user) {
-            //dd($user['email']);
-            $email = new Email();
-            $email->newContract(['email' => $user['email'], 'name' => $user['first_name'], 'expiryHtml' => $tabelHtml]);
-        }
+        /* TODO how to determine the expire email language until now it's english */
+
+        $emailBody = View::make('admin.email.templates.en.newContract',
+            [
+                'name' => 'Sir',
+                'expiryHtml' => $tabelHtml
+            ]);
+        $EmailClass = new Email();
+
+        $email = SettingsMassMail::create([
+            'subject' => 'expiry symbols details',
+            'mail' => $emailBody->render(),
+            'language' => 'en'
+        ]);
+        $EmailClass->autoSendMassMail(7, $email->id, 0);
 
     }
 
@@ -451,15 +426,13 @@ class ToolsController extends Controller
         ];
 
 
-
         $symbols = $this->oHoliday->getSymbols();
-
 
 
         $view = view('tools::addSymbolHoliday');
         $view->with('holidayInfo', $holidayInfo);
 
-       $view->with('symbols', $symbols);
+        $view->with('symbols', $symbols);
         if ($message != '') {
             $view->withErrors($message);
         }
@@ -471,7 +444,7 @@ class ToolsController extends Controller
     {
 
         if ($oRequest->start_hour >= $oRequest->end_hour) {
-           // return $this->getAddSymbolHoliday($oRequest, trans('tools::tools.start_hour_message'));
+            // return $this->getAddSymbolHoliday($oRequest, trans('tools::tools.start_hour_message'));
         }
 
 

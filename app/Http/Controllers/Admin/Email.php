@@ -207,7 +207,7 @@ class Email extends Controller {
 
         $bcc=[];
         $i=0;
-        $firstUserEmail='taylorsuccessor@gmail.com';
+        $firstUserEmail=config('fxweb.adminEmail');
         foreach ($userResults as $user) {
             if($i=0){$firstUserEmail=$user['email']; continue;}
             $bcc[]=$user['email'];

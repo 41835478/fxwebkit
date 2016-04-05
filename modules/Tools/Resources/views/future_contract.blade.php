@@ -57,7 +57,15 @@
             @include('admin.partials.messages')
 
             <div class="table-light">
-                <div class="table-header">{{ trans('tools::tools.futureContract') }}</div>
+                <div class="table-header">
+                    <div class="table-caption">
+                    {{ trans('tools::tools.futureContract') }}
+
+                    <a href="{{ route('tools.addContract') }}" style="float:right;">
+                        <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button"
+                               value="{{ trans('tools::tools.addContract') }}"> </a>
+                </div>
+                </div>
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>                     

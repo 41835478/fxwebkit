@@ -118,7 +118,8 @@ class EloquentFutureContractRepository implements FutureContract {
             
             $oResult = $oResult->select('expiry_date','symbol');
           
-            $oResult = $oResult->get()->toArray();    
+            $oResult = $oResult->get()->toArray();
+
         return $oResult;
     }
     
