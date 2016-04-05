@@ -608,7 +608,7 @@ return $this->getMassMailer($oRequest);
 
     public function getAssignToMassGroup(Request $oRequest)
     {
-        $account_id = $oRequest->account_id;
+        $group_id = $oRequest->group_id;
 
         $oGroups = $this->oMt4User->getAllGroups();
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
@@ -626,7 +626,7 @@ return $this->getMassMailer($oRequest);
             'sort' => $sSort,
             'order' => $sOrder,
             'signed' => 1,
-            'account_id' => $account_id,
+            'group_id' => $group_id,
         ];
 
         foreach ($oGroups as $oGroup) {
@@ -644,46 +644,20 @@ return $this->getMassMailer($oRequest);
             $aFilterParams['group'] = $oRequest->group;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['signed'] = $oRequest->signed;
-            $aFilterParams['account_id'] = $account_id;
+            $aFilterParams['group_id'] = $group_id;
             $aFilterParams['order'] = $oRequest->order;
 
         }
         $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
 
 
-        if ($oRequest->has('export')) {
-            $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, true, $sOrder, $sSort);
 
-            $sOutput = $oRequest->export;
-            $aData = [];
-            $aHeaders = [
-                trans('reports::reports.Login'),
-                trans('reports::reports.Name'),
-                trans('reports::reports.Group'),
-                trans('reports::reports.Equity'),
-                trans('reports::reports.Balance'),
-                trans('reports::reports.Comments')
-            ];
-
-            foreach ($oResults as $oResult) {
-                $aData[] = [
-                    $oResult->LOGIN,
-                    $oResult->NAME,
-                    $oResult->GROUP,
-                    $oResult->EQUITY,
-                    $oResult->BALANCE,
-                    $oResult->COMMENTS,
-                ];
-            }
-            $oExport = new Export($aHeaders, $aData);
-            return $oExport->export($sOutput);
-        }
 
 
         return view('admin.email.assignTo')
             ->with('aGroups', $aGroups)
             ->with('oResults', $oResults)
-            ->with('account_id', $account_id)
+            ->with('group_id', $group_id)
             ->with('aFilterParams', $aFilterParams);
 
     }
@@ -695,14 +669,12 @@ return $this->getMassMailer($oRequest);
 
             $users_checkbox = ($oRequest->has('asign_mt4_users_submit_id')) ? [$oRequest->get('asign_mt4_users_submit_id')] : $oRequest->users_checkbox;
 
-            $account_id = $oRequest->account_id;
-            if($oRequest->has('server_id')){
-                $this->oUsers->assignMt4ToMassGroup($account_id, $users_checkbox,0);
-            }else{
-                $this->oUsers->assignMt4ToMassGroup($account_id, $users_checkbox,3);
-            }
+            $group_id = $oRequest->group_id;
+
+                $this->oUsers->assignMt4ToMassGroup($group_id, $users_checkbox,1);
+
             return $this->getAssignTo($oRequest);
-            return Redirect::route('admin.assignToMassGroup')->with('account_id', $account_id);
+
         }
 
         if ($oRequest->has('un_sign_mt4_users_submit') || $oRequest->has('un_sign_mt4_users_submit_id')) {

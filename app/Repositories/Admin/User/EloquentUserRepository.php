@@ -866,32 +866,23 @@ class EloquentUserRepository implements UserContract
         }
     }
 
-    public function assignMt4ToMassGroup($account_id, $users_id, $server_id = 1)
+    public function assignMt4ToMassGroup($group_id, $users_id, $type = 1)
     {
 
-        if (is_array($users_id)) {
-            foreach ($users_id as $id => $user_id) {
-                if ($server_id == 3) {
-                    $mt4 = explode(',', $user_id);
-                    $user_id = $mt4[0];
-                    $server_id = ($mt4[1] == '') ? 0 : $mt4[1];
-                }
-                $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id, 'server_id' => $server_id])->first();
-                if ($asign) {
-                    $asign->users_id = $account_id;
-                    $asign->mt4_users_id = $user_id;
-                    $asign->server_id = $server_id;
-                    $asign->save();
-                } else {
-                    $asign = new mt4_users_users;
+        if (!is_array($users_id)) { return false;}
 
-                    $asign->users_id = $account_id;
-                    $asign->mt4_users_id = $user_id;
-                    $asign->server_id = $server_id;
-                    $asign->save();
+            foreach ($users_id as $id => $user_id) {
+
+                $asign = SettingsMassGroups::where(['group_id' => $group_id, 'user_id' => $user_id, 'type' => $type])->first();
+                if (!$asign) {
+                    $asign = new mt4_users_users;
                 }
+                $asign->group_id = $group_id;
+                $asign->user_id = $user_id;
+                $asign->server_id = $type;
+                $asign->save();
             }
-        }
+
         return true;
     }
 

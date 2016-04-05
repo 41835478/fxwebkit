@@ -205,7 +205,88 @@ class EloquentMt4UserRepository implements Mt4UserContract {
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
             $oResult = $oResult->where('LOGIN', $aFilters['login']);
         } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
-                (isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
+
+            if (!empty($aFilters['from_login'])) {
+                $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
+            }
+
+            if (!empty($aFilters['to_login'])) {
+                $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
+            }
+        }
+        /* =============== Nmae Filter  =============== */
+        if (isset($aFilters['name']) && !empty($aFilters['name'])) {
+            $oResult = $oResult->where('name', 'like', '%' . $aFilters['name'] . '%');
+        }
+
+        /* =============== Nmae Filter  =============== */
+        if (isset($aFilters['server_id'])) {
+            $oResult = $oResult->where('server_id', '=', $aFilters['server_id']);
+        }
+
+        /* =============== Groups Filter  =============== */
+        if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
+            $aUsers = $this->getLoginsInGroup($aFilters['group']);
+            $oResult = $oResult->whereIn('LOGIN', $aUsers);
+        }
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+        }
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+            $oResult[$dKey]->BALANCE = round($oResult[$dKey]->BALANCE, 2);
+            $oResult[$dKey]->EQUITY = round($oResult[$dKey]->EQUITY, 2);
+            $oResult[$dKey]->AGENT_ACCOUNT = round($oResult[$dKey]->AGENT_ACCOUNT, 2);
+            $oResult[$dKey]->MARGIN = round($oResult[$dKey]->MARGIN, 2);
+            $oResult[$dKey]->MARGIN_FREE = round($oResult[$dKey]->MARGIN_FREE, 2);
+            $oResult[$dKey]->LEVERAGE = round($oResult[$dKey]->LEVERAGE, 2);
+        }
+        /* =============== Preparing Output  =============== */
+        return $oResult;
+    }
+
+
+
+    public function getUsersMt4UsersWithMassGroup($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC') {
+
+        $group_id= (isset($aFilters['group_id'])) ? $aFilters['group_id'] : 0;
+
+        $oResult =new Mt4User();
+
+
+
+        /* =============== signed filter ============== */
+        if ((isset($aFilters['signed']) && !empty($aFilters['signed']))) {
+
+            if ($aFilters['signed'] == 1) {
+
+                $oResult = $oResult->with('massGroup')->whereHas('massGroup', function($query) use($group_id) {
+                    $query->where(DB::raw('settings_mass_groups_users.user_id'),'=',DB::raw(' mt4_users.uid'));
+                    $query->where('group_id', $group_id);
+                });
+
+            }
+        }else{
+
+            $oResult=  Mt4User::leftJoin('settings_mass_groups_users', function($join) use($group_id) {
+
+                $join->on('mt4_users.uid', '=', 'settings_mass_groups_users.users_id')
+                    ->on('settings_mass_groups_users.type', '=',1);
+                $join->where('settings_mass_groups_users.user_id', '=',$group_id );
+            })->select(['mt4_users.*','settings_mass_groups_users.user_id']);
+        }
+        /* =============== Login Filters =============== */
+        if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
+            $oResult = $oResult->where('LOGIN', $aFilters['login']);
+        } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
 
             if (!empty($aFilters['from_login'])) {
                 $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);

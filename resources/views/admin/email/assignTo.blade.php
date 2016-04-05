@@ -64,7 +64,7 @@
                     <li class="divider"></li>
                 </ul>
 
-                {!! Form::hidden('account_id', $aFilterParams['account_id']) !!}
+                {!! Form::hidden('group_id', $aFilterParams['group_id']) !!}
                 {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                 {!! Form::hidden('order', $aFilterParams['order']) !!}
                 {!! Form::close() !!}
@@ -84,11 +84,11 @@
 
                     <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                         <li>
-                            <a href="{{ route('accounts.detailsAccount').'?edit_id='.$aFilterParams['account_id'] }}">{{ trans('accounts::accounts.details') }}</a>
+                            <a href="{{ route('accounts.detailsAccount').'?edit_id='.$aFilterParams['group_id'] }}">{{ trans('accounts::accounts.details') }}</a>
                         </li>
                         <li class="active">
 
-                            <a href="{{ route('accounts.asignMt4Users').'?account_id='.$aFilterParams['account_id']}}">{{ trans('accounts::accounts.assignedMt4Users') }}</a>
+                            <a href="{{ route('accounts.asignMt4Users').'?group_id='.$aFilterParams['group_id']}}">{{ trans('accounts::accounts.assignedMt4Users') }}</a>
                         </li>
                     </ul>
 
@@ -119,7 +119,7 @@
                             <!-- col-sm-6 -->
 
                             <div class="col-sm-2">
-                                {!! Form::hidden('account_id', $aFilterParams['account_id']) !!}
+                                {!! Form::hidden('group_id', $aFilterParams['group_id']) !!}
                                 {!! Form::hidden('server_id',0) !!}
                                 {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                                 {!! Form::hidden('order', $aFilterParams['order']) !!}
@@ -155,17 +155,17 @@
                             @foreach($oResults as $oResult)
                                 <tr>
 
-                                    <td>{!! Form::checkbox('users_checkbox[]',$oResult->LOGIN.','.$oResult->server_id,false,['class'=>'users_checkbox']) !!}{{ $oResult->LOGIN }}</td>
+                                    <td>{!! Form::checkbox('users_checkbox[]',$oResult->uid,false,['class'=>'users_checkbox']) !!} {{ $oResult->LOGIN }}</td>
                                     <td>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
                                     <td>{{ $oResult->NAME }}</td>
                                     <td>{{ $oResult->GROUP }}</td>
                                     <td>
 
-                                        @if(isset($oResult->users_id ) || (isset($oResult->account) && $oResult->account->users_id>0))
-                                            {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+                                        @if(isset($oResult->users_id ) || (isset($oResult->massGroup) && $oResult->massGroup->user_id>0))
+                                            {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->uid  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
                                         @else
 
-                                            {!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+                                            {!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->uid ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
                                         @endif
                                     </td>
                                 </tr>
@@ -175,7 +175,7 @@
                             <tr>
                                 <td colspan="5">
 
-                                    {!! Form::hidden('account_id', $aFilterParams['account_id']) !!}
+                                    {!! Form::hidden('group_id', $aFilterParams['group_id']) !!}
                                     {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                                     {!! Form::hidden('order', $aFilterParams['order']) !!}
 
@@ -198,7 +198,7 @@
                                 <div class="DT-lf-right change_page_all_div">
                                     {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
 
-                                    {!! Form::hidden('account_id', $aFilterParams['account_id']) !!}
+                                    {!! Form::hidden('group_id', $aFilterParams['group_id']) !!}
                                     {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                                     {!! Form::hidden('order', $aFilterParams['order']) !!}
                                     {!! Form::hidden('group', (is_array($aFilterParams['group']))?join(',',$aFilterParams['group']):$aFilterParams['group']) !!}
