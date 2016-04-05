@@ -18,7 +18,6 @@
                         </li>
 
 
-
                         <li>
                             <div class=" nav-input-div  ">
                                 {!! Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
@@ -69,11 +68,16 @@
                                         <td>{{ $oResult->group }}</td>
 
                                         <td>
-                                            <a href="{{ route('admin.editMassGroup').'?edit_id='.$oResult->id }}"
+                                            <a href="{{ route('admin.editMassGroup').'?id='.$oResult->id }}"
                                                class="fa fa-edit tooltip_number"
                                                data-original-title="{{trans('editMassGroup')}}"></a>
 
+                                            <a href="{{ route('admin.deleteMassGroup').'?delete_id='.$oResult->id }}"
+                                               class="fa fa-trash-o tooltip_number" data-original-title="{{trans('deleteMassGroup')}}"></a>
 
+                                            <a href="{{ route('admin.assignToMassGroup').'?id='.$oResult->id }}"
+                                               class="fa fa-link tooltip_number"
+                                               data-original-title="{{trans('asignMt4Users')}}"></a>
 
                                         </td>
                                     </tr>

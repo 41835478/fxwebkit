@@ -16,7 +16,11 @@ Route::group(['middleware' => ['authenticate.admin']], function () {
         'getMassMailer' => 'admin.massMailer',
         'getSettings'=>'admin.settings',
         'getMassGroupsList'=>'admin.massGroupsList',
-        'getAddMassGroup'=>'admin.addMassGroup'
+        'getAddMassGroup'=>'admin.addMassGroup',
+         'getEditMassGroup'=>'admin.editMassGroup',
+        'getDeleteContract'=>'admin.deleteMassGroup',
+        'getAssignToMassGroup'=>'admin.assignToMassGroup',
+
     ]);
 });
 

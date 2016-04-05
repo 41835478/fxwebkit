@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Fxweb\Models\Mt4User;
 
 use App\Models\SettingsMassGroupsUsers;
-use App\Models\SettingsMassGroups;
+use Fxweb\Models\SettingsMassGroups;
 
 /**
  * Class EloquentUserRepository
@@ -30,27 +30,28 @@ class EloquentUserRepository implements UserContract
         //
     }
 
-public function getDashboardStatistics(){
+    public function getDashboardStatistics()
+    {
 
-    $oRole = Sentinel::findRoleBySlug('client');
-    $role_id = $oRole->id;
+        $oRole = Sentinel::findRoleBySlug('client');
+        $role_id = $oRole->id;
 
-    $statistics['usersNumber']=User::with('roles')->whereHas('roles', function ($query) use ($role_id) {
-        $query->where('id', $role_id);
-    })->count();
+        $statistics['usersNumber'] = User::with('roles')->whereHas('roles', function ($query) use ($role_id) {
+            $query->where('id', $role_id);
+        })->count();
 
-    $statistics['activeUsersNumber']=User::with('activations')->distinct('user_id')->whereHas('activations',function ($query){
-        $query->where('completed',1);
-    })->with('roles')->whereHas('roles', function ($query) use ($role_id) {
-        $query->where('id', $role_id);
-    })->count();
+        $statistics['activeUsersNumber'] = User::with('activations')->distinct('user_id')->whereHas('activations', function ($query) {
+            $query->where('completed', 1);
+        })->with('roles')->whereHas('roles', function ($query) use ($role_id) {
+            $query->where('id', $role_id);
+        })->count();
 
-    $statistics['mt4UsersNumber']=Mt4User::count();
-    $statistics['liveMt4UsersNumber']=Mt4User::where('server_id',1)->count();
+        $statistics['mt4UsersNumber'] = Mt4User::count();
+        $statistics['liveMt4UsersNumber'] = Mt4User::where('server_id', 1)->count();
 
 
-    return $statistics;
-}
+        return $statistics;
+    }
 
     public function getLoginsInGroup($aGroups, $sOrderBy = 'LOGIN', $sSort = 'ASC')
     {
@@ -84,21 +85,20 @@ public function getDashboardStatistics(){
         });
 
 
-
         /* =============== active Filters =============== */
-        if (isset($aFilters['active']) && $aFilters['active']!=0) {
+        if (isset($aFilters['active']) && $aFilters['active'] != 0) {
 
 
             if ($aFilters['active'] == 1) {
-                $oResult = $oResult->with('activations')->whereHas('activations',function ($query){
-                    $query->where('completed',1);
+                $oResult = $oResult->with('activations')->whereHas('activations', function ($query) {
+                    $query->where('completed', 1);
                 });
             } else {
                 $oResult = $oResult->whereNotIn('id', function ($query) {
 
                     $query->select(DB::raw('activations.user_id'))
                         ->from('activations')
-                        ->where('completed',1)
+                        ->where('completed', 1)
                         ->whereRaw('activations.user_id = users.id');
 
                 });
@@ -146,24 +146,24 @@ public function getDashboardStatistics(){
     public function getAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
     {
 
-        $agents=$aFilters['agents'];
+        $agents = $aFilters['agents'];
         //$oResult =new User();
 
 
         $oRole = Sentinel::findRoleBySlug('admin');
         $role_id = $oRole->id;
         $oResult = User::with('roles')->whereHas('roles', function ($query) use ($role_id) {
-            $query->where('id','!=', $role_id);
+            $query->where('id', '!=', $role_id);
         });
 
-        if($agents == 1){
-            $oResult=   $oResult->with('isAgent')->whereHas('isAgent', function ($query) use ($agents) {
+        if ($agents == 1) {
+            $oResult = $oResult->with('isAgent')->whereHas('isAgent', function ($query) use ($agents) {
 
                 $query->whereNotNull('user_id');
 
             });
-        }else{
-            $oResult=  $oResult->whereNotIn('id', function ($query) {
+        } else {
+            $oResult = $oResult->whereNotIn('id', function ($query) {
 
                 $query->select(DB::raw('ibportal_user_ibid.user_id'))
                     ->from('ibportal_user_ibid')
@@ -213,13 +213,13 @@ public function getDashboardStatistics(){
     public function getClientAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
     {
 
-        $agents=$aFilters['agent_id'];
-        $oResult =new User();
+        $agents = $aFilters['agent_id'];
+        $oResult = new User();
 
-            $oResult=   $oResult->with('agentPlan')->whereHas('agentPlan',function($query)use ($agents){
-                $query->where('agent_id',$agents);
-                $query->with('plan');
-            });
+        $oResult = $oResult->with('agentPlan')->whereHas('agentPlan', function ($query) use ($agents) {
+            $query->where('agent_id', $agents);
+            $query->with('plan');
+        });
 
 
         /* =============== id Filter  =============== */
@@ -259,12 +259,12 @@ public function getDashboardStatistics(){
         return $oResult;
     }
 
-    public function getUsersEmail($last_user_id=0,$limit=0)
+    public function getUsersEmail($last_user_id = 0, $limit = 0)
     {
 
-        $oResult = User::select('first_name', 'email','id')->where('id','>',$last_user_id);
+        $oResult = User::select('first_name', 'email', 'id')->where('id', '>', $last_user_id);
 
-        if($limit > 0){
+        if ($limit > 0) {
             $oResult = $oResult->limit($limit);
         }
         $oResult = $oResult->get();
@@ -288,8 +288,6 @@ public function getDashboardStatistics(){
 
         $oClientRole->users()->attach($oUser);
         $oActivation = Activation::create($oUser);
-
-
 
 
         $fullDetails = new UsersDetails();
@@ -382,15 +380,15 @@ public function getDashboardStatistics(){
         return [trans('general.deleted_successfully')];
     }
 
-    public function asignMt4UsersToAccount($account_id, $users_id,$server_id=1)
+    public function asignMt4UsersToAccount($account_id, $users_id, $server_id = 1)
     {
 
         if (is_array($users_id)) {
             foreach ($users_id as $id => $user_id) {
-                if($server_id==3){
-                    $mt4=explode(',',$user_id);
-                    $user_id=$mt4[0];
-                    $server_id=($mt4[1]=='')? 0:$mt4[1];
+                if ($server_id == 3) {
+                    $mt4 = explode(',', $user_id);
+                    $user_id = $mt4[0];
+                    $server_id = ($mt4[1] == '') ? 0 : $mt4[1];
                 }
                 $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id, 'server_id' => $server_id])->first();
                 if ($asign) {
@@ -433,17 +431,17 @@ public function getDashboardStatistics(){
 //        return true;
 //    }
 
-    public function unsignMt4UsersToAccount($account_id, $users_id,$server_id=1)
+    public function unsignMt4UsersToAccount($account_id, $users_id, $server_id = 1)
     {
 
         if (is_array($users_id)) {
             foreach ($users_id as $id => $user_id) {
-                if($server_id==3){
-                    $mt4=explode(',',$user_id);
-                    $user_id=$mt4[0];
-                    $server_id=($mt4[1]=='')? 0:$mt4[1];
+                if ($server_id == 3) {
+                    $mt4 = explode(',', $user_id);
+                    $user_id = $mt4[0];
+                    $server_id = ($mt4[1] == '') ? 0 : $mt4[1];
                 }
-                $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id,'server_id'=>$server_id])->first();
+                $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id, 'server_id' => $server_id])->first();
                 if ($asign) {
                     $asign->delete();
                 }
@@ -469,8 +467,8 @@ public function getDashboardStatistics(){
             'country' => '',
             'city' => '',
             'zip_code' => '',
-            'last_login'=>'',
-            'created_at'=>'',
+            'last_login' => '',
+            'created_at' => '',
             'gender' => 0
         ];
         if ($fullDetails) {
@@ -760,30 +758,30 @@ public function getDashboardStatistics(){
         }
     }
 
-    public function getUsersNames(){
+    public function getUsersNames()
+    {
 
         $oRole = Sentinel::findRoleBySlug('client');
         $role_id = $oRole->id;
-        $oResult = User::select(['id','first_name','last_name'])->with('roles')->whereHas('roles', function ($query) use ($role_id) {
+        $oResult = User::select(['id', 'first_name', 'last_name'])->with('roles')->whereHas('roles', function ($query) use ($role_id) {
             $query->where('id', $role_id);
         })->get();
-        $users=[];
-        foreach($oResult as $result){
-            $users[$result->id] = $result->first_name .' '.$result->last_name;
+        $users = [];
+        foreach ($oResult as $result) {
+            $users[$result->id] = $result->first_name . ' ' . $result->last_name;
         }
 
         return $users;
     }
 
 
+    public function getMt4AssignedUsers($login, $server_id)
+    {
 
+        $oResults = User::with('mt4Users')->whereHas('mt4Users', function ($query) use ($login, $server_id) {
 
-    public function getMt4AssignedUsers($login,$server_id){
-
-        $oResults=User::with('mt4Users')->whereHas('mt4Users',function ($query) use($login,$server_id){
-
-            $query->where('mt4_users_id',$login);
-            $query->where('server_id',$server_id);
+            $query->where('mt4_users_id', $login);
+            $query->where('server_id', $server_id);
         })->paginate(Config::get('fxweb.pagination_size'));
 
         return $oResults;
@@ -792,22 +790,12 @@ public function getDashboardStatistics(){
 
     public function getMassGroupsList($aFilters, $bFullSet = false, $sOrderBy = 'id', $sSort = 'ASC')
     {
-
-
-        $oResult=new SettingsMassGroups();
-
-
-
-
-
+        $oResult = new SettingsMassGroups();
 
         /* =============== group Filter  =============== */
         if (isset($aFilters['group']) && !empty($aFilters['group'])) {
             $oResult = $oResult->where('group', 'like', '%' . $aFilters['group'] . '%');
         }
-
-
-
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
@@ -821,8 +809,91 @@ public function getDashboardStatistics(){
         }
 
 
-
         return $oResult;
     }
+
+    public function addMassGroup($oRequest)
+    {
+        $massGroup = new SettingsMassGroups();
+
+
+        $massGroup->group = $oRequest->group_name;
+
+        $massGroup->save();
+
+        return $massGroup->id;
+    }
+
+    public function getMassGroupDetails($groupId)
+    {
+        $group = SettingsMassGroups::find($groupId);
+
+        $groupDetails = [
+            'group' => $group->group,
+        ];
+
+        return $groupDetails;
+    }
+
+    public function updateGroup($oRequest)
+    {
+        $group = SettingsMassGroups::find($oRequest->id);
+        $fullDetails = SettingsMassGroups::where('id', $group->id)->first();
+
+        if ($fullDetails) {
+
+            $fullDetails->group = $oRequest->group_name;
+            $fullDetails->save();
+        } else {
+
+            $fullDetails = new SettingsMassGroups();
+
+            $fullDetails->group = $oRequest->group_name;
+            $fullDetails->save();
+        }
+        return $group->id;
+    }
+
+    public function deleteGroup($id)
+    {
+        $id = (is_array($id)) ? $id : [$id];
+        $group = SettingsMassGroups::whereIn('id', $id)->delete();
+
+        if ($group) {
+            return [trans('general.deleted_successfully_message')];
+        } else {
+            return [trans('general.deleted_faild_message')];
+        }
+    }
+
+    public function assignMt4ToMassGroup($account_id, $users_id, $server_id = 1)
+    {
+
+        if (is_array($users_id)) {
+            foreach ($users_id as $id => $user_id) {
+                if ($server_id == 3) {
+                    $mt4 = explode(',', $user_id);
+                    $user_id = $mt4[0];
+                    $server_id = ($mt4[1] == '') ? 0 : $mt4[1];
+                }
+                $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id, 'server_id' => $server_id])->first();
+                if ($asign) {
+                    $asign->users_id = $account_id;
+                    $asign->mt4_users_id = $user_id;
+                    $asign->server_id = $server_id;
+                    $asign->save();
+                } else {
+                    $asign = new mt4_users_users;
+
+                    $asign->users_id = $account_id;
+                    $asign->mt4_users_id = $user_id;
+                    $asign->server_id = $server_id;
+                    $asign->save();
+                }
+            }
+        }
+        return true;
+    }
+
 
 }

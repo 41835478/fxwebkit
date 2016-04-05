@@ -194,4 +194,7 @@ return [
     'average_loss_tooltip' => 'Average loss is a quotient of the gross loss and the amount of losing trades.',
 
     'clickOnYourLogin'=>'Click On Your Login',
+
+    'deleted_successfully_message'=>'deleted successfully.',
+    'deleted_faild_message'=>'deleted faild please try again later.',
 ];
