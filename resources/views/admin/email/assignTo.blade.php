@@ -84,11 +84,13 @@
 
                     <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                         <li>
+
                             <a href="{{ route('accounts.detailsAccount').'?edit_id='.$aFilterParams['group_id'] }}">{{ trans('accounts::accounts.details') }}</a>
                         </li>
                         <li class="active">
 
                             <a href="{{ route('accounts.asignMt4Users').'?group_id='.$aFilterParams['group_id']}}">{{ trans('accounts::accounts.assignedMt4Users') }}</a>
+
                         </li>
                     </ul>
 

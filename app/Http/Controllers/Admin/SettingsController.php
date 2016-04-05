@@ -688,4 +688,50 @@ return $this->getMassMailer($oRequest);
             return Redirect::route('accounts.asignMt4Users')->with('account_id', $account_id);
         }
     }
+
+
+    public function getAccountsList(Request $oRequest)
+    {
+
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+        $aGroups = [];
+        $oResults = null;
+        $aFilterParams = [
+            'id' => '',
+            'first_name' => '',
+            'last_name' => '',
+            'email' => '',
+            'sort' => $sSort,
+            'order' => $sOrder,
+            'active'=>0
+        ];
+
+        if ($oRequest->has('search')) {
+            $aFilterParams['id'] = $oRequest->id;
+            $aFilterParams['first_name'] = $oRequest->first_name;
+            $aFilterParams['last_name'] = $oRequest->last_name;
+            $aFilterParams['email'] = $oRequest->email;
+            $aFilterParams['active'] = $oRequest->active;
+
+            $aFilterParams['sort'] = $oRequest->sort;
+            $aFilterParams['order'] = $oRequest->order;
+
+            $role = explode(',', Config::get('fxweb.client_default_role'));
+
+            $oResults = $this->oUser->getUsersWithMassGroup($aFilterParams, false, $sOrder, $sSort, $role);
+
+        }
+
+
+        return view('admin.email.accountsList')
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams)
+            ->with('aActive',[
+                    trans('accounts::accounts.all'),
+                    trans('accounts::accounts.active'),
+                    trans('accounts::accounts.notActive')
+                ]
+            );
+    }
 }
