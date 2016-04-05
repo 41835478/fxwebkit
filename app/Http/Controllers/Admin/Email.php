@@ -206,10 +206,9 @@ class Email extends Controller {
         $userResults = $this->getUsersEmail($last_user_id,$limit);
 
         $bcc=[];
-        $i=0;
-        $firstUserEmail=config('fxweb.adminEmail');
+      
         foreach ($userResults as $user) {
-            if($i=0){$firstUserEmail=$user['email']; continue;}
+
             $bcc[]=$user['email'];
             /* TODO distinct first email to know to email or bcc avoiding to send email twice to the same user */
             $last_user_id=$user['id'];
@@ -217,7 +216,7 @@ class Email extends Controller {
 
         $this->massMailler([
             'subject'=>$massMail->subject,
-            'email' => $firstUserEmail,
+            'email' => config('fxweb.adminEmail'),
             'content' => $massMail->mail,
             'bcc'=>$bcc
         ]);
