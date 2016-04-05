@@ -39,5 +39,11 @@ class Mt4User extends Model {
         return $this->belongsToMany('Modules\Ibportal\Entities\IbportalAgentUser', 'mt4_users_users', 'mt4_users_id', 'users_id', 'login');
     }
 
+    public function massGroup(){
+
+     $this->primaryKey = 'uid';
+
+        return $this->hasMany('Fxweb\Models\SettingsMassGroupsUsers','user_id');
+    }
 
 }

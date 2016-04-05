@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Models;
+<?php namespace Fxweb\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
