@@ -95,7 +95,7 @@ return [
                 ],[
                     'route' => 'admin.massGroupsList',
                     'title' => 'massGroupsList',
-                    'icon' => 'fa fa-mail-forward',
+                    'icon' => 'fa fa-users',
                 ],
                 [
                     'route' => 'admin.language.editLanguage',
