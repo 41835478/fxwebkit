@@ -548,21 +548,12 @@ return $this->getMassMailer($oRequest);
 
         $result = $this->oUser->addMassGroup($oRequest);
 
-
         if ($result > 0) {
 
             $oRequest->id = $result;
-
-            $oResult = $this->oUser->getMassGroupDetails($oRequest->id);
-
-            $massGroup = [
-                'id' => $oRequest->id,
-                'group_name' => $oResult['group'],
-            ];
-
-            return Redirect::route('admin.massGroupsList');
+            return Redirect::to(route('admin.assignToMassGroup').'?group_id='.$result);
         }
-
+        return Redirect::route('admin.addMassGroup')->withErrors(trans('general.error_please_try'));
     }
 
     public function getEditMassGroup(Request $oRequest)
@@ -570,10 +561,8 @@ return $this->getMassMailer($oRequest);
         $massGroup = [
             'id'=>0,
             'group_name' => '',
-
         ];
-
-
+        
         if ($oRequest->has('id')) {
 
             $oResult = $this->oUser->getMassGroupDetails($oRequest->id);
@@ -618,6 +607,7 @@ return $this->getMassMailer($oRequest);
 
     public function getAssignToMassGroup(Request $oRequest)
     {
+
         $group_id = $oRequest->group_id;
 
         $oGroups = $this->oMt4User->getAllGroups();

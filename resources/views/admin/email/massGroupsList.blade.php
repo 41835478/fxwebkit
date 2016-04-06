@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('massGroupsList'))
+@section('title', trans('general.massGroupsList'))
 @section('content')
 
     <div class="padding">
@@ -9,18 +9,18 @@
                     {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
                     <ul class="sections">
                         <li class="active"><a href="#"> <i
-                                        class="fa fa-search"></i> {{ trans('search') }} </a></li>
+                                        class="fa fa-search"></i> {{ trans('general.Search') }} </a></li>
 
                         <li>
                             <div class=" nav-input-div  ">
-                                {!! Form::text('group', $aFilterParams['group'], ['placeholder'=>trans('group'),'class'=>'form-control input-sm']) !!}
+                                {!! Form::text('group', $aFilterParams['group'], ['placeholder'=>trans('general.group'),'class'=>'form-control input-sm']) !!}
                             </div>
                         </li>
 
 
                         <li>
                             <div class=" nav-input-div  ">
-                                {!! Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                                {!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                             </div>
                         </li>
                         <li class="divider"></li>
@@ -36,7 +36,7 @@
 
             <div class="mail-container ">
                 <div class="mail-container-header">
-                    {{ trans('accounts::accounts.accounts') }}
+                    {{ trans('general.massMailGroups') }}
                 </div>
                 <div class="center_page_all_div">
                     @include('admin.partials.messages')
@@ -44,10 +44,10 @@
                     <div class="table-light">
                         <div class="table-header">
                             <div class="table-caption">
-                                {{ trans('accounts::accounts.accounts') }}
+                                {{ trans('general.massMailGroups') }}
                                 <a href="{{ route('admin.addMassGroup') }}" style="float:right;">
                                     <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button"
-                                           value="{{ trans('addMassGroup') }}"> </a>
+                                           value="{{ trans('general.addMassGroup') }}"> </a>
                             </div>
                         </div>
                         <table class="table table-bordered table-striped">
@@ -70,14 +70,14 @@
                                         <td>
                                             <a href="{{ route('admin.editMassGroup').'?id='.$oResult->id }}"
                                                class="fa fa-edit tooltip_number"
-                                               data-original-title="{{trans('editMassGroup')}}"></a>
+                                               data-original-title="{{trans('general.editMassGroup')}}"></a>
 
                                             <a href="{{ route('admin.deleteMassGroup').'?delete_id='.$oResult->id }}"
-                                               class="fa fa-trash-o tooltip_number" data-original-title="{{trans('deleteMassGroup')}}"></a>
+                                               class="fa fa-trash-o tooltip_number" data-original-title="{{trans('general.deleteMassGroup')}}"></a>
 
                                             <a href="{{ route('admin.assignToMassGroup').'?group_id='.$oResult->id }}"
                                                class="fa fa-link tooltip_number"
-                                               data-original-title="{{trans('asignMt4Users')}}"></a>
+                                               data-original-title="{{trans('general.assignMt4ToMassGroup')}}"></a>
 
                                         </td>
                                     </tr>
@@ -93,18 +93,18 @@
                                     <div class="DT-lf-right change_page_all_div">
 
 
-                                        {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}
+                                        {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('general.page'),'class'=>'form-control input-sm']) !!}
 
 
 
-                                        {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                                        {!! Form::submit(trans('general.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
 
 
                                     </div>
                                 @endif
 
                                 <div class="col-sm-3">
-                                    <span class="text-xs">{{trans('accounts::accounts.showing')}} {{ $oResults->firstItem() }} {{trans('accounts::accounts.to')}} {{ $oResults->lastItem() }} {{trans('accounts::accounts.of')}} {{ $oResults->total() }} {{trans('accounts::accounts.entries')}}</span>
+                                    <span class="text-xs">{{trans('general.showing')}} {{ $oResults->firstItem() }} {{trans('general.to')}} {{ $oResults->lastItem() }} {{trans('general.of')}} {{ $oResults->total() }} {{trans('general.entries')}}</span>
                                 </div>
                             @endif
                         </div>
