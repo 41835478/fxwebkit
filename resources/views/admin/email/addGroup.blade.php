@@ -29,8 +29,9 @@
         </div>
     @endif
     <div class="panel-footer text-right">
+
         <button type="submit" class="btn btn-primary" name="id"
-                value="{{ $massGroup['id']  or 0 }}">{{ trans('accounts::accounts.save') }}</button>
+                value="{{ $massGroup['id'] }}">{{ trans('accounts::accounts.save') }}</button>
     </div>
 </div>
     {!! Form::close() !!}
