@@ -254,6 +254,7 @@ class EloquentMt4UserRepository implements Mt4UserContract {
 
 
 
+
     public function getUsersMt4UsersWithMassGroup($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC') {
 
         $group_id= (isset($aFilters['group_id'])) ? $aFilters['group_id'] : 0;
@@ -277,9 +278,9 @@ class EloquentMt4UserRepository implements Mt4UserContract {
 
             $oResult=  Mt4User::leftJoin('settings_mass_groups_users', function($join) use($group_id) {
 
-                $join->on('mt4_users.uid', '=', 'settings_mass_groups_users.users_id')
-                    ->on('settings_mass_groups_users.type', '=',1);
-                $join->where('settings_mass_groups_users.user_id', '=',$group_id );
+                $join->on('mt4_users.uid', '=', 'settings_mass_groups_users.user_id')
+                    ->where('settings_mass_groups_users.type', '=',1);
+                $join->where('settings_mass_groups_users.group_id', '=',$group_id );
             })->select(['mt4_users.*','settings_mass_groups_users.user_id']);
         }
         /* =============== Login Filters =============== */

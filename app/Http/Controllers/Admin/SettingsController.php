@@ -625,7 +625,7 @@ return $this->getMassMailer($oRequest);
             'group' => '',
             'sort' => $sSort,
             'order' => $sOrder,
-            'signed' => 1,
+            'signed' => 0,
             'group_id' => $group_id,
         ];
 
@@ -648,7 +648,7 @@ return $this->getMassMailer($oRequest);
             $aFilterParams['order'] = $oRequest->order;
 
         }
-        $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
+        $oResults = $this->oMt4User->getUsersMt4UsersWithMassGroup($aFilterParams, false, $sOrder, $sSort);
 
 
 
@@ -662,7 +662,7 @@ return $this->getMassMailer($oRequest);
 
     }
 
-    public function postAssignTo(Request $oRequest)
+    public function postAssignToMassGroup(Request $oRequest)
     {
 
         if ($oRequest->has('asign_mt4_users_submit') || $oRequest->has('asign_mt4_users_submit_id')) {
@@ -671,9 +671,9 @@ return $this->getMassMailer($oRequest);
 
             $group_id = $oRequest->group_id;
 
-                $this->oUsers->assignMt4ToMassGroup($group_id, $users_checkbox,1);
+                $this->oUser->assignMt4ToMassGroup($group_id, $users_checkbox,1);
 
-            return $this->getAssignTo($oRequest);
+            return $this->getAssignToMassGroup($oRequest);
 
         }
 
@@ -681,16 +681,17 @@ return $this->getMassMailer($oRequest);
 
             $users_checkbox = ($oRequest->has('un_sign_mt4_users_submit_id')) ? [$oRequest->get('un_sign_mt4_users_submit_id')] : $oRequest->users_checkbox;
 
-            $account_id = $oRequest->account_id;
-            $this->oUsers->unsignMt4UsersToAccount($account_id, $users_checkbox,3);
+            $group_id = $oRequest->group_id;
+            $this->oUser->unassignMt4ToMassGroup($group_id, $users_checkbox,1);
 
-            return $this->getAsignMt4Users($oRequest);
-            return Redirect::route('accounts.asignMt4Users')->with('account_id', $account_id);
+            return $this->getAssignToMassGroup($oRequest);
+
+
         }
     }
 
 
-    public function getAccountsList(Request $oRequest)
+    public function getAssginToMassAccountsList(Request $oRequest)
     {
 
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
@@ -698,21 +699,23 @@ return $this->getMassMailer($oRequest);
         $aGroups = [];
         $oResults = null;
         $aFilterParams = [
-            'id' => '',
+            'id'=>'',
+            'group_id' => '',
             'first_name' => '',
             'last_name' => '',
             'email' => '',
             'sort' => $sSort,
             'order' => $sOrder,
-            'active'=>0
+            'signed' => 0,
         ];
 
         if ($oRequest->has('search')) {
             $aFilterParams['id'] = $oRequest->id;
+            $aFilterParams['group_id'] = $oRequest->group_id;
             $aFilterParams['first_name'] = $oRequest->first_name;
             $aFilterParams['last_name'] = $oRequest->last_name;
             $aFilterParams['email'] = $oRequest->email;
-            $aFilterParams['active'] = $oRequest->active;
+            $aFilterParams['signed'] = $oRequest->signed;
 
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;

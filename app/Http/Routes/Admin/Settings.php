@@ -20,7 +20,7 @@ Route::group(['middleware' => ['authenticate.admin']], function () {
          'getEditMassGroup'=>'admin.editMassGroup',
         'getDeleteContract'=>'admin.deleteMassGroup',
         'getAssignToMassGroup'=>'admin.assignToMassGroup',
-        'getAccountsList'=>'admin.accountsList',
+        'getAssginToMassAccountsList'=>'admin.assginToMassAccountsList',
 
     ]);
 });

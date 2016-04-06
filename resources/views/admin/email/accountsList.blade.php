@@ -63,15 +63,19 @@
                     @include('admin.partials.messages')
 
                     <div class="table-light">
+
                         <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                             <li class="active">
-                                <a href="{{ route('admin.accountsList').'?edit_id='.$aFilterParams['id'] }}">{{ trans('accounts::accounts.details') }}</a>
-                            </li>
-                            <li >
 
-                                <a href="{{ route('admin.assignToMassGroup').'?account_id='.$aFilterParams['id']}}">{{ trans('accounts::accounts.assignedMt4Users') }}</a>
+                                <a href="{{ route('admin.assginToMassAccountsList').'?group_id='.$aFilterParams['group_id'] }}">{{ trans('general.AssginToUsers') }}</a>
+                            </li>
+                            <li>
+
+                                <a href="{{ route('admin.assignToMassGroup').'?group_id='.$aFilterParams['group_id']}}">{{ trans('general.assignedMt4Users') }}</a>
+
                             </li>
                         </ul>
+
                         <div class="table-header">
 
                             <div class="table-caption">

@@ -85,57 +85,18 @@
                     <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                         <li>
 
-                            <a href="{{ route('accounts.detailsAccount').'?edit_id='.$aFilterParams['group_id'] }}">{{ trans('accounts::accounts.details') }}</a>
+                            <a href="{{ route('admin.assginToMassAccountsList').'?group_id='.$aFilterParams['group_id'] }}">{{ trans('general.AssginToUsers') }}</a>
                         </li>
                         <li class="active">
 
-                            <a href="{{ route('accounts.asignMt4Users').'?group_id='.$aFilterParams['group_id']}}">{{ trans('accounts::accounts.assignedMt4Users') }}</a>
+                            <a href="{{ route('admin.assignToMassGroup').'?group_id='.$aFilterParams['group_id']}}">{{ trans('general.assignedMt4Users') }}</a>
 
                         </li>
                     </ul>
 
 
-                    <div class="table-header">
-                        <div class="table-caption">
-                            {{ trans('accounts::accounts.asignMt4User') }}
-
-                        </div>
-                    </div>
-
-                    {!! Form::open(['class'=>'panel form-horizontal']) !!}
-
-                    <div class="panel-heading">
-                        <span class="panel-title">{{ trans('accounts::accounts.enterMt4User') }}</span>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-2">
-                                <label class="control-label">{{ trans('accounts::accounts.Login') }}</label>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group no-margin-hr">
-
-                                    {!! Form::text('users_checkbox[]','',['class'=>'form-control']) !!}
-                                </div>
-                            </div>
-                            <!-- col-sm-6 -->
-
-                            <div class="col-sm-2">
-                                {!! Form::hidden('group_id', $aFilterParams['group_id']) !!}
-                                {!! Form::hidden('server_id',0) !!}
-                                {!! Form::hidden('sort', $aFilterParams['sort']) !!}
-                                {!! Form::hidden('order', $aFilterParams['order']) !!}
-
-                                {!! Form::button(trans('accounts::accounts.assign'),['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary']) !!}
 
 
-                            </div>
-                        </div>
-                        <!-- row -->
-
-                    </div>
-
-                    {!! Form::close() !!}
                     <div class="panel-footer text-right">
 
                     </div>
@@ -163,7 +124,7 @@
                                     <td>{{ $oResult->GROUP }}</td>
                                     <td>
 
-                                        @if(isset($oResult->users_id ) || (isset($oResult->massGroup) && $oResult->massGroup->user_id>0))
+                                        @if(isset($oResult->user_id ) || (isset($oResult->massGroup->first()->user_id) ))
                                             {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->uid  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
                                         @else
 

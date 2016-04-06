@@ -13,7 +13,8 @@ use Fxweb\Helpers\Fx;
 use Illuminate\Support\Facades\DB;
 use Fxweb\Models\Mt4User;
 
-use App\Models\SettingsMassGroupsUsers;
+
+use Fxweb\Models\SettingsMassGroupsUsers;
 use Fxweb\Models\SettingsMassGroups;
 
 /**
@@ -940,17 +941,32 @@ class EloquentUserRepository implements UserContract
 
             foreach ($users_id as $id => $user_id) {
 
-                $asign = SettingsMassGroups::where(['group_id' => $group_id, 'user_id' => $user_id, 'type' => $type])->first();
+                $asign = SettingsMassGroupsUsers::where(['group_id' => $group_id, 'user_id' => $user_id, 'type' => $type])->first();
                 if (!$asign) {
-                    $asign = new mt4_users_users;
+                    $asign = new SettingsMassGroupsUsers;
                 }
                 $asign->group_id = $group_id;
                 $asign->user_id = $user_id;
-                $asign->server_id = $type;
+                $asign->type = $type;
                 $asign->save();
             }
 
         return true;
+    }
+
+    public function unassignMt4ToMassGroup($group_id, $users_id, $type = 1)
+    {
+
+        if (!is_array($users_id)) { return false;}
+        foreach ($users_id as $id => $user_id) {
+
+            $asign = SettingsMassGroupsUsers::where(
+                ['group_id' => $group_id,
+                    'user_id' => $user_id,
+                    'type' => $type])
+                ->first();
+            if ($asign) {$asign->delete();}
+        }
     }
 
 

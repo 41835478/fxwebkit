@@ -75,7 +75,7 @@
                                             <a href="{{ route('admin.deleteMassGroup').'?delete_id='.$oResult->id }}"
                                                class="fa fa-trash-o tooltip_number" data-original-title="{{trans('deleteMassGroup')}}"></a>
 
-                                            <a href="{{ route('admin.assignToMassGroup').'?id='.$oResult->id }}"
+                                            <a href="{{ route('admin.assignToMassGroup').'?group_id='.$oResult->id }}"
                                                class="fa fa-link tooltip_number"
                                                data-original-title="{{trans('asignMt4Users')}}"></a>
 
