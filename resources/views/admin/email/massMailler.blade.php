@@ -25,8 +25,6 @@
 
                             </div>
                         </div>
-                        <!-- col-sm-6 -->
-
 
                         <div class="col-sm-12">
                             <div class="form-group no-margin-hr">
@@ -35,10 +33,9 @@
 
                             </div>
                         </div>
-                        <!-- col-sm-6 -->
 
                         {!! Form::close() !!}
-                        <div style='clear:both'></div>
+
 
                         {!! Form::open(array('class'=>'form-horizontal')) !!}
 
@@ -74,8 +71,6 @@
 
                     </div>
                 </div>
-
-
             </fieldset>
             @stop
             @section('script')
