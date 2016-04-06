@@ -352,6 +352,9 @@ public function getAddAccountRequestByFilters($aFilters, $bFullSet = false, $sOr
         }
 
 
+        if (isset($aFilters['status']) && $aFilters['status']>=0) {
+            $oResult = $oResult->where('status', $aFilters['status']);
+        }
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
         if (!$bFullSet) {

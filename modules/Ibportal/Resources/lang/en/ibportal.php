@@ -115,4 +115,5 @@
 'allowAgentTransferToAll'=>'Allow Agent Transfer To All',
 'allowAgentTransferToHisAgentUsers'=>'Allow Agent Transfer To His Agent Users',
 'allowAgentTransferToHisAgent'=>'Allow Agent Transfer To His Agent',
-];\n ?>
+'makeUserAgent'=>'Make User Agent'
+]; ?>

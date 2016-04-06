@@ -12,17 +12,20 @@ use Modules\Request\Entities\RequestChangePassword;
 use Modules\Request\Entities\RequestChangeLeverage;
 use Modules\Request\Entities\RequestAssignAccount;
 use Modules\Request\Entities\RequestAddAccount as AddAccount;
+use Fxweb\Repositories\Admin\User\UserContract as Users;
 
 class RequestController extends Controller
 {
 
     protected $RequestLog;
+    protected $oUsers;
 
     public function __construct(
-        RequestLog $RequestLog
+        Users $oUsers,RequestLog $RequestLog
     )
     {
         $this->RequestLog = $RequestLog;
+        $this->oUsers = $oUsers;
 
     }
 
@@ -482,20 +485,25 @@ class RequestController extends Controller
         /* TODO[moaid]  translate this array in language file then in the .blade.php file insert trans() method */
         $aRequestStatus=config('request.requestStatus');
 
+        $status = (isset($oRequest->status)) ? $oRequest->status : -1;
+
         $oResults = null;
 
 
         if ($oRequest->has('search')) {
 
             $aFilterParams['login'] = $oRequest->login;
-
+            $aFilterParams['status']=$status;
             $oResults = $this->RequestLog->getAssignAccountRequestByFilters($aFilterParams, false, $sOrder, $sSort);
 
 
         }
 
 
-        return view('request::admin/assignAccountRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus);
+        return view('request::admin/assignAccountRequestList')
+            ->with('oResults', $oResults)
+            ->with('aRequestStatus', $aRequestStatus)
+            ->with('status',$status);
     }
 
 
@@ -540,7 +548,12 @@ class RequestController extends Controller
     public function postAssignAccountEdit(Request $oRequest)
     {
 
-
+$oResult= $this->RequestLog->getAssignAccountById($oRequest->logId);
+        if($oRequest->status ==1){
+            $this->oUsers->asignMt4UsersToAccount($oResult->accountId,[$oResult->login],$oResult->server_id);
+        }else{
+            $this->oUsers->unsignMt4UsersToAccount($oResult->accountId,[$oResult->login],$oResult->server_id);
+        }
         $assignAccount = [
             'logId' => $oRequest->logId,
             'comment' => $oRequest->comment,

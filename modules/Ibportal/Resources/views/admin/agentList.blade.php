@@ -98,11 +98,11 @@
                                            data-original-title="{{trans('ibportal::ibportal.agentCommission')}}"></a>
                                         @if(!$oResult->isAgent)
                                             <a href="{{ route('admin.ibportal.addAgents').'?agentId='.$oResult->id }}"
-                                               class="fa fa-user tooltip_number"
-                                               data-original-title="{{trans('ibportal::ibportal.addAgents')}}"></a>
+                                               class="fa fa-plus tooltip_number"
+                                               data-original-title="{{trans('ibportal::ibportal.makeUserAgent')}}"></a>
                                         @endif
                                         <a href="{{ route('admin.ibportal.assignAgents').'?agentId='.$oResult->id }}"
-                                           class="fa fa-plus tooltip_number"
+                                           class="fa  fa-link  tooltip_number"
                                            data-original-title="{{trans('ibportal::ibportal.assignAgents')}}"></a>
 
                                         <a href="{{ route('admin.ibportal.agentMoney').'?agentId='.$oResult->id }}"

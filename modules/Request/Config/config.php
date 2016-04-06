@@ -9,6 +9,7 @@ return [
     'icon' => 'fa-user',
     'route' => '',
 	'requestStatus'=>[
+		'-1'=>'All',
 		0=>'pending',
 		1=>'complete',
 		2=>'fail'

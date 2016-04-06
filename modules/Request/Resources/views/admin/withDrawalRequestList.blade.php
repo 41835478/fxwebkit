@@ -72,17 +72,17 @@
                                     <td>{{ $oResult->comment }}</td>
                                     <td>{{ $oResult->reason }}</td>
                                     <td>{{ $aRequestStatus[$oResult->status] }}
-                                    @if($oResult->status != 1)
 
-                                            <a href="{{ route('admin.request.forwordWithDrawal').'?logId='.$oResult->id }}"
-                                               class="fa fa-mail-forward"></a>
-                                        @endif
                                     </td>
                                     <td>
 
                                         <a href="{{ route('admin.request.withDrawalEdit').'?logId='.$oResult->id }}"
                                            class="fa fa-edit"></a>
+                                        @if($oResult->status != 1)
 
+                                            <a href="{{ route('admin.request.forwordWithDrawal').'?logId='.$oResult->id }}"
+                                               class="fa fa-mail-forward"></a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
