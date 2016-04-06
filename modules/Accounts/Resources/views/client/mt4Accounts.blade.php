@@ -2,48 +2,10 @@
 @section('title', trans('accounts::accounts.mt4UsersList'))
 @section('content')
 
-        <div class="theme-default page-mail">
-            <div class="mail-nav">
-                <div class="navigation">
-                    {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
-                    <ul class="sections">
-                        <li class="active"><a href="#"> <i
-                                        class="fa fa-search"></i> {{ trans('accounts::accounts.search') }} </a></li>
-                        <li>
-                            <div class="nav-input-div">
-                                <div class="checkbox">
-                                    <label>
-                                        {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
-                                        <span class="lbl">{{ trans('accounts::accounts.ExactLogin') }}</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </li>
-                        <li id="from_login_li">
-                            <div class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('accounts::accounts.FromLogin'),'class'=>'form-control input-sm']) !!}</div>
-                        </li>
-                        <li id="to_login_li">
-                            <div class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('accounts::accounts.ToLogin'),'class'=>'form-control input-sm']) !!}</div>
-                        </li>
-                        <li id="login_li">
-                            <div class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']) !!}</div>
-                        </li>
-                        <li>
-                            <div class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']) !!}</div>
-                        </li>
+        <div class="theme-default page-mail ">
 
 
-                        <li class="divider"></li>
-                    </ul>
-
-                    {!! Form::hidden('sort', $aFilterParams['sort']) !!}
-                    {!! Form::hidden('order', $aFilterParams['order']) !!}
-
-
-                </div>
-            </div>
-
-            <div class="mail-container ">
+            <div class="mail-container page-left">
                 <div class="mail-container-header">
                     {{ trans('accounts::accounts.mt4_users_lists') }}
                 </div>

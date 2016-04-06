@@ -496,7 +496,7 @@ class ToolsController extends Controller
             'id' => $holiday_id,
             'name' => $oResult['name'],
             'start_date' => $oResult['start_date'],
-            'end_date' => $oResult['start_date'],
+            'end_date' => $oResult['end_date'],
 
         ];
         $date = ($oRequest->has('date')) ? $oRequest->date : '';
@@ -519,10 +519,7 @@ class ToolsController extends Controller
     public function getToolsSettings()
     {
         $toolsSetting = [
-
             'is_client' => Config('tools.is_client'),
-
-
         ];
 
         return view('tools::toolsSetting')->with('toolsSetting', $toolsSetting);
