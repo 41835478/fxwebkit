@@ -116,7 +116,8 @@ class EloquentFutureContractRepository implements FutureContract {
             $oResult = EntitiesFutureContract::where('expiry_date', '>', $startOfWeek->addWeek(0)->format('Y-m-d'));
             $oResult =$oResult->where('expiry_date', '<', $startOfWeek->addWeek(1)->format('Y-m-d'));
             
-            $oResult = $oResult->select('expiry_date','symbol');
+
+
           
             $oResult = $oResult->get()->toArray();
 

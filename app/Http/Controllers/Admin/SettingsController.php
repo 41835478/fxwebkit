@@ -56,6 +56,7 @@ class SettingsController extends Controller
             'withdrawRequest' => 'Admin-Withdraw Request',
             'changeLeverage' => 'Admin-User Change Leverage',
             'newUserSignUp' => 'Admin-New User Sign Up',
+            'expiryContract'=>'Expiry Contract'
         ];
     }
 
