@@ -700,7 +700,7 @@ return $this->getMassMailer($oRequest);
         $oResults = null;
         $aFilterParams = [
             'id'=>'',
-            'group_id' => '',
+            'group_id' => $oRequest->group_id,
             'first_name' => '',
             'last_name' => '',
             'email' => '',
@@ -720,12 +720,12 @@ return $this->getMassMailer($oRequest);
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
 
-            $role = explode(',', Config::get('fxweb.client_default_role'));
 
-            $oResults = $this->oUser->getUsersWithMassGroup($aFilterParams, false, $sOrder, $sSort, $role);
 
         }
 
+
+        $oResults = $this->oUser->getUsersWithMassGroup($aFilterParams, false, $sOrder, $sSort);
 
         return view('admin.email.accountsList')
             ->with('oResults', $oResults)
@@ -737,4 +737,34 @@ return $this->getMassMailer($oRequest);
                 ]
             );
     }
+
+
+    public function postAssginToMassAccountsList(Request $oRequest)
+    {
+
+        if ($oRequest->has('asign_mt4_users_submit') || $oRequest->has('asign_mt4_users_submit_id')) {
+
+            $users_checkbox = ($oRequest->has('asign_mt4_users_submit_id')) ? [$oRequest->get('asign_mt4_users_submit_id')] : $oRequest->users_checkbox;
+
+            $group_id = $oRequest->group_id;
+
+            $this->oUser->assignMt4ToMassGroup($group_id, $users_checkbox,0);
+
+            return $this->getAssginToMassAccountsList($oRequest);
+
+        }
+
+        if ($oRequest->has('un_sign_mt4_users_submit') || $oRequest->has('un_sign_mt4_users_submit_id')) {
+
+            $users_checkbox = ($oRequest->has('un_sign_mt4_users_submit_id')) ? [$oRequest->get('un_sign_mt4_users_submit_id')] : $oRequest->users_checkbox;
+
+            $group_id = $oRequest->group_id;
+            $this->oUser->unassignMt4ToMassGroup($group_id, $users_checkbox,0);
+
+            return $this->getAssginToMassAccountsList($oRequest);
+
+
+        }
+    }
+
 }

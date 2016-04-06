@@ -146,35 +146,37 @@ class EloquentUserRepository implements UserContract
     public function getUsersWithMassGroup($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
     {
 
-        $oRole = Sentinel::findRoleBySlug($role);
-        $role_id = $oRole->id;
-        $oResult = User::with('roles')->whereHas('roles', function ($query) use ($role_id) {
-            $query->where('id', $role_id);
-        });
+        $oResult =new User();
+        $group_id= (isset($aFilters['group_id'])) ? $aFilters['group_id'] : 0;
 
 
-        /* =============== active Filters =============== */
-        if (isset($aFilters['active']) && $aFilters['active'] != 0) {
 
+        /* =============== signed filter ============== */
+        if ((isset($aFilters['signed']) && !empty($aFilters['signed']))) {
 
-            if ($aFilters['active'] == 1) {
-                $oResult = $oResult->with('activations')->whereHas('activations', function ($query) {
-                    $query->where('completed', 1);
+       if ($aFilters['signed'] == 1) {
+
+                $oResult = $oResult->with('massGroup')->whereHas('massGroup', function($query) use($group_id) {
+                    $query->where(DB::raw('settings_mass_groups_users.user_id'),'=',DB::raw(' users.id'));
+                    $query->where('group_id', $group_id);
                 });
-            } else {
-                $oResult = $oResult->whereNotIn('id', function ($query) {
 
-                    $query->select(DB::raw('activations.user_id'))
-                        ->from('activations')
-                        ->where('completed', 1)
-                        ->whereRaw('activations.user_id = users.id');
-
-                });
             }
+        }else{
+
+            $oResult=  User::leftJoin('settings_mass_groups_users', function($join) use($group_id) {
+
+                $join->on('users.id', '=', 'settings_mass_groups_users.user_id')
+                    ->on('settings_mass_groups_users.type', '=',DB::raw(0));
+                $join->where('settings_mass_groups_users.group_id', '=',$group_id );
+            })->select(['users.*','settings_mass_groups_users.user_id']);
         }
+
+
+
         /* =============== id Filter  =============== */
         if (isset($aFilters['id']) && !empty($aFilters['id'])) {
-            $oResult = $oResult->where('id', $aFilters['id']);
+            $oResult = $oResult->where(DB::raw('users.id'), $aFilters['id']);
         }
 
         /* =============== Nmae Filter  =============== */
@@ -202,10 +204,8 @@ class EloquentUserRepository implements UserContract
             $oResult = $oResult->get();
 
         }
-        /* =============== Preparing Output  =============== */
-        foreach ($oResult as $dKey => $oValue) {
 
-        }
+
         /* =============== Preparing Output  =============== */
 
         return $oResult;

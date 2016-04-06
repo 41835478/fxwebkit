@@ -106,7 +106,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('accounts::accounts.Login')) !!}</th>
+                                <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.Form::label('check_all',trans('accounts::accounts.Login')) !!}</th>
                                 <th class="no-warp">{!! th_sort(trans('accounts::accounts.liveDemo'), 'server_id', $oResults) !!}</th>
                                 <th class="no-warp">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
                                 <th class="no-warp">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</th>
