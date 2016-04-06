@@ -16,6 +16,7 @@ class CreateSettingsMassTemplatesTable extends Migration
             $table->increments('id');
             $table->string('subject', 255)->nullable();
             $table->text('mail');
+            $table->integer('group_id');
             $table->char('language', 3)->nullable();
             $table->timestamps();
             $table->engine = 'InnoDB';
