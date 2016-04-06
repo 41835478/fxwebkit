@@ -92,20 +92,20 @@ return [
                     'route' => 'admin.massMailer',
                     'title' => 'massMailler',
                     'icon' => 'fa fa-plus',
-                ],
-                [
-                    'route' => 'admin.settings',
-                    'title' => 'settings',
-                    'icon' => 'fa fa-gears',
+                ],[
+                    'route' => 'admin.massGroupsList',
+                    'title' => 'massGroupsList',
+                    'icon' => 'fa fa-mail-forward',
                 ],
                 [
                     'route' => 'admin.language.editLanguage',
                     'title' => 'language',
                     'icon' => 'fa fa-globe',
-                ],[
-                    'route' => 'admin.massGroupsList',
-                    'title' => 'massGroupsList',
-                    'icon' => 'fa fa-mail',
+                ],
+                [
+                    'route' => 'admin.settings',
+                    'title' => 'settings',
+                    'icon' => 'fa fa-gears',
                 ]
 
 

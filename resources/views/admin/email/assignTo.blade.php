@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('accounts::accounts.accounts'))
+@section('title', trans('general.assignMt4ToMassGroup'))
 @section('content')
 
     <div class="  theme-default page-mail">
@@ -9,37 +9,37 @@
                 <ul class="sections">
                     <li class="active">
                         <a href="#"> <i
-                                    class="fa fa-search"></i> {{ trans('accounts::accounts.search') }} </a>
+                                    class="fa fa-search"></i> {{ trans('general.Search') }} </a>
                     </li>
                     <li>
                         <div class="nav-input-div">
                             <div class="checkbox">
                                 <label>
                                     {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
-                                    <span class="lbl">{{ trans('accounts::accounts.ExactLogin') }}</span>
+                                    <span class="lbl">{{ trans('general.ExactLogin') }}</span>
                                 </label>
                             </div>
                         </div>
                     </li>
                     <li id="from_login_li">
-                        <div class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('accounts::accounts.FromLogin'),'class'=>'form-control input-sm']) !!}</div>
+                        <div class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('general.FromLogin'),'class'=>'form-control input-sm']) !!}</div>
                     </li>
                     <li id="to_login_li">
-                        <div class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('accounts::accounts.ToLogin'),'class'=>'form-control input-sm']) !!}</div>
+                        <div class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('general.ToLogin'),'class'=>'form-control input-sm']) !!}</div>
                     </li>
                     <li id="login_li">
-                        <div class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']) !!}</div>
+                        <div class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('general.Login'),'class'=>'form-control input-sm']) !!}</div>
                     </li>
 
                     <li>
-                        <div class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']) !!}</div>
+                        <div class=" nav-input-div  ">{!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('general.name '),'class'=>'form-control input-sm']) !!}</div>
                     </li>
                     <li>
                         <div class=" nav-input-div  ">
                             {!! Form::radio('signed',0,$aFilterParams['signed'],['id'=>'signed_0','checked'=>'true']) !!}
-                            <label for="signed_0">{{ trans('accounts::accounts.all') }}</label>
+                            <label for="signed_0">{{ trans('general.all') }}</label>
                             {!! Form::radio('signed',1,($aFilterParams['signed']==1),['id'=>'signed_1']) !!}<label
-                                    for="signed_1">{{ trans('accounts::accounts.assigned') }}</label>
+                                    for="signed_1">{{ trans('general.assigned') }}</label>
 
                         </div>
                     </li>
@@ -49,7 +49,7 @@
                             <div class="checkbox">
                                 <label>
                                     {!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
-                                    <span class="lbl">{{ trans('accounts::accounts.AllGroups') }}</span>
+                                    <span class="lbl">{{ trans('general.AllGroups') }}</span>
                                 </label>
                             </div>
                             {!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','id'=>'all-groups-slc']) !!}
@@ -58,7 +58,7 @@
                     </li>
                     <li>
                         <div class=" nav-input-div  ">
-                            {!! Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                            {!! Form::submit(trans('general.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                         </div>
                     </li>
                     <li class="divider"></li>
@@ -74,7 +74,7 @@
 
         <div class="mail-container ">
             <div class="mail-container-header">
-                {{ trans('accounts::accounts.accounts') }}
+                {{ trans('general.assignMt4ToMassGroup') }}
             </div>
             <div class="center_page_all_div">
                 @include('admin.partials.messages')
@@ -85,7 +85,7 @@
                     <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                         <li>
 
-                            <a href="{{ route('admin.assginToMassAccountsList').'?group_id='.$aFilterParams['group_id'] }}">{{ trans('general.AssginToUsers') }}</a>
+                            <a href="{{ route('admin.assginToMassAccountsList').'?group_id='.$aFilterParams['group_id'] }}">{{ trans('general.assginToUsers') }}</a>
                         </li>
                         <li class="active">
 
@@ -106,11 +106,11 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.Form::label('check_all',trans('accounts::accounts.Login')) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('accounts::accounts.liveDemo'), 'server_id', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</th>
-                                <th class="no-warp">{!! trans('accounts::accounts.action') !!}</th>
+                                <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.Form::label('check_all',trans('general.Login')) !!}</th>
+                                <th class="no-warp">{!! th_sort(trans('general.liveDemo'), 'server_id', $oResults) !!}</th>
+                                <th class="no-warp">{!! th_sort(trans('general.name '), 'NAME', $oResults) !!}</th>
+                                <th class="no-warp">{!! th_sort(trans('general.group'), 'GROUP', $oResults) !!}</th>
+                                <th class="no-warp">{!! trans('general.action') !!}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -142,8 +142,8 @@
                                     {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                                     {!! Form::hidden('order', $aFilterParams['order']) !!}
 
-                                    {!! Form::button( trans('accounts::accounts.assign') ,['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
-                                    {!! Form::button(trans('accounts::accounts.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}
+                                    {!! Form::button( trans('general.assign') ,['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
+                                    {!! Form::button(trans('general.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}
                                 </td>
                             </tr>
                             </tfoot>
@@ -169,20 +169,20 @@
                                     {!! Form::hidden('all_groups', $aFilterParams['all_groups']) !!}
                                     {!! Form::hidden('exactLogin', $aFilterParams['exactLogin']) !!}
 
-                                    {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']) !!}
+                                    {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('general.page'),'class'=>'form-control input-sm']) !!}
 
-                                    {!! Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                                    {!! Form::submit(trans('general.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                                     {!! Form::close() !!}
                                 </div>
 
                             @endif
 
                             <div class="col-sm-3">
-                                <span class="text-xs">{{trans('accounts::accounts.showing')}} {{ $oResults->firstItem() }} {{trans('accounts::accounts.to')}} {{ $oResults->lastItem() }} {{trans('accounts::accounts.of')}} {{ $oResults->total() }} {{trans('accounts::accounts.entries')}}</span>
+                                <span class="text-xs">{{trans('general.showing')}} {{ $oResults->firstItem() }} {{trans('general.to')}} {{ $oResults->lastItem() }} {{trans('general.of')}} {{ $oResults->total() }} {{trans('general.entries')}}</span>
                             </div>
                         @else
                             <div class="col-sm text-left">
-                                <span class="text-xs"><h3>{{trans('accounts::accounts.no_assign_account')}}</h3></span>
+                                <span class="text-xs"><h3>{{trans('general.no_assign_account')}}</h3></span>
                             </div>
                         @endif
 
