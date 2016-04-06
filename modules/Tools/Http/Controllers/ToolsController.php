@@ -94,19 +94,43 @@ class ToolsController extends Controller
         if (!count($expiryResults))
             return '';
 
-        $tabelHtml = '';
+
+
+        $ids=[];
+        $names=[];
+        $symbols=[];
+        $exchanges=[];
+        $months=[];
+        $years=[];
+        $start_dates=[];
+        $expiry_dates=[];
 
         foreach ($expiryResults as $expiry) {
+            $ids[]=$expiry['id'];
+            $names[]=$expiry['name'];
+            $symbols[]=$expiry['symbol'];
+            $exchanges[]=$expiry['exchange'];
+            $months[]=$expiry['month'];
+            $years[]=$expiry['year'];
+            $start_dates[]=$expiry['start_date'];
+            $expiry_dates[]=$expiry['expiry_date'];
 
-            $tabelHtml .= '<tr><td>' . $expiry['expiry_date'] . '</td><td>' . $expiry['symbol'] . '</td></tr>';
+
         }
 
         /* TODO how to determine the expire email language until now it's english */
 
-        $emailBody = View::make('admin.email.templates.en.newContract',
+        $emailBody = View::make('admin.email.templates.en.expiryContract',
             [
                 'name' => 'Sir',
-                'expiryHtml' => $tabelHtml
+                'ids'=>$ids,
+                'names'=>$names,
+        'symbols'=>$symbols,
+        'exchanges'=>$exchanges,
+        'months'=>$months,
+        'years'=>$years,
+        'start_dates'=>$start_dates,
+        'expiry_dates'=>$expiry_dates,
             ]);
         $EmailClass = new Email();
 

@@ -49,7 +49,7 @@ class Email extends Controller {
 
     public function newContract($info) {
 
-        $this->sendEmail('admin.email.templates.en.newContract',
+        $this->sendEmail('admin.email.templates.en.expiryContract',
             [
                 'name' => $info['name'],
                 'expiryHtml'=>$info['expiryHtml']
