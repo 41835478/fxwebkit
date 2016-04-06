@@ -225,4 +225,7 @@ return [
     'dear'=>'Dear',
     'expired'=>'Expired',
     'restData'=>'Rest Data',
+    'subject'=>'Subject',
+    'sendTo'=>'Send To',
+    'saveAndSend'=>'Save And Send',
 ];
