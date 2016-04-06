@@ -4,7 +4,7 @@
 	<div class="signin-container">
 
 		<div class="signin-info">
-			<a href="" class="logo">
+			<a href="{{ route('client.auth.login') }}" class="logo">
 				{!! HTML::image('assets/img/logo.png', '', ['style' => 'margin-top: -5px']) !!}&nbsp;
 				{{ app_name() }}
 			</a>

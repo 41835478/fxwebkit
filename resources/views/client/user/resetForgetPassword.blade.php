@@ -7,7 +7,7 @@
 
 		<div class="signin-form">
 
-			<a href="" class="logo">
+			<a href="{{ route('client.auth.login') }}" class="logo">
 
 				{!! HTML::image('assets/img/logo.png', '', ['style' => 'margin-top: -5px;width:90px;height:28px;']) !!}
 				&nbsp;

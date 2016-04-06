@@ -124,7 +124,7 @@
                                     <td>{{ $oResult->GROUP }}</td>
                                     <td>
 
-                                        @if(isset($oResult->user_id ) || (isset($oResult->massGroup->first()->user_id) ))
+                                        @if(isset($oResult->user_id ) || (isset($oResult->massGroup) && $oResult->massGroup->first()->user_id) )
                                             {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->uid  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
                                         @else
 

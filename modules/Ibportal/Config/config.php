@@ -53,9 +53,23 @@ return [
     ],
     'client_menu' => [
         [
-            'route' => 'clients.ibportal.closedOrders',
-            'title' => 'ClosedOrders',
-            'icon' => 'fa-briefcase',
+            'route' => 'clients.ibportal.agentSummary',
+            'title' => 'summary',
+            'icon' => 'fa fa-bar-chart-o',
+        ], [
+            'route' => 'client.ibportal.agentUser',
+            'title' => 'agent_users',
+            'icon' => 'fa fa-user',
+        ],[
+            'route' => 'clients.ibportal.agentMoney',
+            'title' => 'agentMoney',
+            'icon' => 'fa fa-money',
+        ],
+
+        [
+            'route' => 'client.ibportal.agentCommission',
+            'title' => 'agentCommission',
+            'icon' => 'fa fa-money',
         ],
         [
             'route' => 'clients.ibportal.openOrders',
@@ -63,28 +77,14 @@ return [
             'icon' => 'fa-folder-open-o',
         ],
         [
-            'route' => 'clients.ibportal.agentSummary',
-            'title' => 'summary',
-            'icon' => 'fa fa-bar-chart-o',
+            'route' => 'clients.ibportal.closedOrders',
+            'title' => 'ClosedOrders',
+            'icon' => 'fa-briefcase',
         ],
         [
             'route' => 'client.ibportal.planList',
             'title' => 'plans',
             'icon' => 'fa-briefcase',
-        ], [
-            'route' => 'client.ibportal.agentUser',
-            'title' => 'agent_users',
-            'icon' => 'fa fa-user',
-        ],
-
-        [
-            'route' => 'client.ibportal.agentCommission',
-            'title' => 'agentCommission',
-            'icon' => 'fa fa-money',
-        ],[
-            'route' => 'clients.ibportal.agentMoney',
-            'title' => 'agentMoney',
-            'icon' => 'fa fa-money',
         ]
     ]
 

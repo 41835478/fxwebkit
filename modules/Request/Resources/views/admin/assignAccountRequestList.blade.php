@@ -21,6 +21,13 @@
 
                     <li>
                         <div class=" nav-input-div  ">
+                            {!! Form::select('status',$aRequestStatus,$status, ['class'=>'form-control input-sm']) !!}
+                        </div>
+                    </li>
+
+
+                    <li>
+                        <div class=" nav-input-div  ">
                             {!! Form::submit(trans('request::request.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                         </div>
                     </li>
@@ -76,15 +83,15 @@
                                     <td>{{ $oResult->comment }}</td>
                                     <td>{{ $oResult->reason }}</td>
                                     <td>{{ $aRequestStatus[$oResult->status] }}
-                                    @if($oResult->status != 1)
-
-                                            <a href="{{ route('admin.request.forwordAssignAccount').'?logId='.$oResult->id }}" class="fa fa-mail-forward"></a>
-                                     @endif
                                     </td>
                                     <td>
 
                                         <a href="{{ route('admin.request.assignAccountEdit').'?logId='.$oResult->id }}" class="fa fa-edit"></a>
 
+                                        @if($oResult->status != 1)
+
+                                            <a href="{{ route('admin.request.forwordAssignAccount').'?logId='.$oResult->id }}" class="fa fa-mail-forward"></a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
