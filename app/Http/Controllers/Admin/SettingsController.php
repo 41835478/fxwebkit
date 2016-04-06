@@ -2,6 +2,7 @@
 
 namespace Fxweb\Http\Controllers\admin;
 
+use Fxweb\Models\SettingsMassGroups;
 use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as User;
 use Fxweb\Http\Requests\AdminsListRequest;
@@ -311,7 +312,7 @@ class SettingsController extends Controller
     {
 
         $sLanguage = ($oRequest->has('lang')) ? $oRequest->lang : 'en';
-
+        $group_id=($oRequest->has('group_id')) ? $oRequest->group_id : 0;
 
         $aTemplates = SettingsMassTemplates::select(['id','subject'])->where('language',$sLanguage)->lists('subject','id');
 
@@ -334,14 +335,18 @@ class SettingsController extends Controller
             $tMail=$massMail->mail;
             $tSubject=$massMail->subject;
         }
+        $aMassGroups=SettingsMassGroups::select(['id','group'])->lists('group','id')->toArray();
 
+        $aMassGroups=['-2'=>'All Clients','-1'=>'All Admins','0'=>'All']+$aMassGroups ;
         return view('admin.email.massMailler')
             ->with('aTemplates', $aTemplates)
             ->with('templateId', $templateId)
             ->with('aLanguages', $aLanguages)
             ->with('sLanguage', $sLanguage)
             ->with('sContent', $tMail)
-            ->with('subject',$tSubject);
+            ->with('subject',$tSubject)
+            ->with('aMassGroups',$aMassGroups)
+            ->with('group_id',$group_id);
     }
 
 
@@ -354,6 +359,7 @@ class SettingsController extends Controller
             $email= SettingsMassTemplates::create([
                 'subject'=>$oRequest->subject,
                 'mail' => $oRequest->template_body,
+                'group_id' => $oRequest->group_id,
                 'language' => $oRequest->lang
             ]);
             $oRequest->templateId=$email->id;
@@ -363,6 +369,7 @@ class SettingsController extends Controller
            $emailTemplate= SettingsMassTemplates::create([
                'subject'=>$oRequest->subject,
                'mail' => $oRequest->template_body,
+               'group_id' => $oRequest->group_id,
                'language' => $oRequest->lang
            ]);
 
@@ -370,6 +377,7 @@ class SettingsController extends Controller
            $email= SettingsMassMail::create([
                'subject'=>$oRequest->subject,
                'mail' => $oRequest->template_body,
+               'group_id' => $oRequest->group_id,
                'language' => $oRequest->lang
            ]);
             $EmailClass-> autoSendMassMail(7,$email->id,0);
@@ -379,6 +387,7 @@ class SettingsController extends Controller
             $email= SettingsMassMail::create([
                 'subject'=>$oRequest->subject,
                 'mail' => $oRequest->template_body,
+                'group_id' => $oRequest->group_id,
                 'language' => $oRequest->lang
             ]);
             $EmailClass-> autoSendMassMail(7,$email->id,0);

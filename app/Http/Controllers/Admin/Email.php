@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Config;
 use Mail;
 use Fxweb\Models\SettingsMassMail;
 use Fxweb\Models\User;
+use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 
 class Email extends Controller {
 

@@ -50,6 +50,13 @@
                             </div>
                         </div>
 
+                        <div class="col-xm-12">
+                            <div class="form-group no-margin-hr  body">
+                                <label class="control-label">{{ trans('general.sendTo') }}</label>
+                                {!! Form::select('group_id', $aMassGroups, $group_id, array('class' => 'form-control')) !!}
+
+                            </div>
+                        </div>
 
                         <div class="well body">
                             {!! Form::textarea('template_body', $sContent, array('id'=>'editor1','class' => 'form-control ckeditor')) !!}
