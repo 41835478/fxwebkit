@@ -221,4 +221,8 @@ return [
     'assginToUsers'=>'Assgin To Users',
     'assignedMt4Users'=>'Assigned Mt4 Users',
     'massGroupsList'=>'Mass Mailer Groups',
+    'expiry'=>'Expiry',
+    'dear'=>'Dear',
+    'expired'=>'Expired',
+    'restData'=>'Rest Data',
 ];
