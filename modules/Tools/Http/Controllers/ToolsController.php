@@ -137,7 +137,7 @@ class ToolsController extends Controller
         $email = SettingsMassMail::create([
             'subject' => 'expiry symbols details',
             'mail' => $emailBody->render(),
-            'group' =>-1,
+            'group_id' =>-1,
             'language' => 'en'
         ]);
         $EmailClass->autoSendMassMail(7, $email->id, 0);
