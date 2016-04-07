@@ -40,7 +40,7 @@
 
 
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.date') }}</label>
                     {!! Form::text('date',$holidayInfo['date'],['class'=>'form-control']) !!}
@@ -48,7 +48,7 @@
             </div>
             <!-- col-sm-6 -->
 
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.start_time') }}</label>
                     {!! Form::text('start_hour',$holidayInfo['start_hour'],['class'=>'form-control']) !!}
@@ -56,12 +56,7 @@
             </div>
             <!-- col-sm-6 -->
 
-        </div>
-        <!-- row -->
-
-
-        <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('tools::tools.end_time') }}</label>
                     {!! Form::text('end_hour',$holidayInfo['end_hour'],['class'=>'form-control']) !!}
