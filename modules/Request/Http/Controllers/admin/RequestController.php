@@ -41,7 +41,9 @@ class RequestController extends Controller
         $oResults = null;
 
 
+        $status = (isset($oRequest->status))? $oRequest->status : -1;
         if ($oRequest->has('search')) {
+            $aFilterParams['status']=$status;
 
             $aFilterParams['login'] = $oRequest->login;
 
@@ -51,7 +53,9 @@ class RequestController extends Controller
         }
 
 
-        return view('request::admin/internalTransferRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus);
+        return view('request::admin/internalTransferRequestList')->with('oResults', $oResults)
+            ->with('aRequestStatus', $aRequestStatus)
+            ->with('status',$status);
     }
 
 
@@ -91,7 +95,9 @@ class RequestController extends Controller
         $oResults = null;
 
 
+        $status = (isset($oRequest->status))? $oRequest->status : -1;
         if ($oRequest->has('search')) {
+            $aFilterParams['status']=$status;
 
             $aFilterParams['login'] = $oRequest->login;
 
@@ -101,7 +107,9 @@ class RequestController extends Controller
         }
 
 
-        return view('request::admin/changeLeverageRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus);
+        return view('request::admin/changeLeverageRequestList')->with('oResults', $oResults)
+            ->with('aRequestStatus', $aRequestStatus)
+            ->with('status',$status);
     }
 
 
@@ -176,7 +184,9 @@ class RequestController extends Controller
         $oResults = null;
 
 
+        $status = (isset($oRequest->status))? $oRequest->status : -1;
         if ($oRequest->has('search')) {
+            $aFilterParams['status']=$status;
 
             $aFilterParams['login'] = $oRequest->login;
 
@@ -186,7 +196,12 @@ class RequestController extends Controller
         $loginPasswordType=Config('accounts.loginPasswordType');
 
 
-        return view('request::admin/changePasswordRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus)->with('loginPasswordType', $loginPasswordType);    }
+        return view('request::admin/changePasswordRequestList')
+            ->with('oResults', $oResults)
+            ->with('aRequestStatus', $aRequestStatus)
+            ->with('loginPasswordType', $loginPasswordType)
+            ->with('status',$status);
+    }
 
 
     public function getForwordChangePasswordRequest(Request $oRequest)
@@ -324,7 +339,9 @@ class RequestController extends Controller
         $oResults = null;
 
 
+        $status = (isset($oRequest->status))? $oRequest->status : -1;
         if ($oRequest->has('search')) {
+            $aFilterParams['status']=$status;
 
             $aFilterParams['id'] = $oRequest->id;
 
@@ -334,7 +351,8 @@ class RequestController extends Controller
         }
 
 
-        return view('request::admin/withDrawalRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus);
+        return view('request::admin/withDrawalRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus)
+            ->with('status',$status);
     }
 
     public function getWithDrawalEdit(Request $oRequest)
@@ -388,7 +406,10 @@ class RequestController extends Controller
         $oResults = null;
 
 
+
+        $status = (isset($oRequest->status))? $oRequest->status : -1;
         if ($oRequest->has('search')) {
+            $aFilterParams['status']=$status;
 
             $aFilterParams['first_name'] = $oRequest->first_name;
 
@@ -397,7 +418,8 @@ class RequestController extends Controller
 
         }
 
-        return view('request::admin/addAccountRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus);
+        return view('request::admin/addAccountRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus)
+            ->with('status',$status);
     }
 
 
@@ -485,19 +507,15 @@ class RequestController extends Controller
         /* TODO[moaid]  translate this array in language file then in the .blade.php file insert trans() method */
         $aRequestStatus=config('request.requestStatus');
 
-        $status = (isset($oRequest->status))
 
-
-
-            ? $oRequest->status : -1;
 
         $oResults = null;
 
-
+        $status = (isset($oRequest->status))? $oRequest->status : -1;
         if ($oRequest->has('search')) {
+            $aFilterParams['status']=$status;
 
             $aFilterParams['login'] = $oRequest->login;
-            $aFilterParams['status']=$status;
             $oResults = $this->RequestLog->getAssignAccountRequestByFilters($aFilterParams, false, $sOrder, $sSort);
 
 

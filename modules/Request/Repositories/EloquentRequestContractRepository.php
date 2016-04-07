@@ -46,6 +46,9 @@ class EloquentRequestContractRepository implements RequestContract
             $oResult = $oResult->where('from_login', 'like', '%' . $aFilters['login'] . '%');
         }
 
+        if (isset($aFilters['status']) && $aFilters['status']>=0) {
+            $oResult = $oResult->where('status', $aFilters['status']);
+        }
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
@@ -69,6 +72,9 @@ class EloquentRequestContractRepository implements RequestContract
             $oResult = $oResult->where('from_login', 'like', '%' . $aFilters['login'] . '%');
         }
 
+        if (isset($aFilters['status']) && $aFilters['status']>=0) {
+            $oResult = $oResult->where('status', $aFilters['status']);
+        }
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
@@ -92,6 +98,9 @@ class EloquentRequestContractRepository implements RequestContract
         }
 
 
+        if (isset($aFilters['status']) && $aFilters['status']>=0) {
+            $oResult = $oResult->where('status', $aFilters['status']);
+        }
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
         if (!$bFullSet) {
@@ -114,6 +123,9 @@ class EloquentRequestContractRepository implements RequestContract
             $oResult = $oResult->where('login', 'like', '%' . $aFilters['login'] . '%');
         }
 
+        if (isset($aFilters['status']) && $aFilters['status']>=0) {
+            $oResult = $oResult->where('status', $aFilters['status']);
+        }
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
@@ -326,6 +338,9 @@ public function getAddAccountRequestByFilters($aFilters, $bFullSet = false, $sOr
         $oResult = $oResult->where('first_name', 'like', '%' . $aFilters['first_name'] . '%');
     }
 
+    if (isset($aFilters['status']) && $aFilters['status']>=0) {
+        $oResult = $oResult->where('status', $aFilters['status']);
+    }
 
     $oResult = $oResult->orderBy($sOrderBy, $sSort);
 

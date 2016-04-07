@@ -21,6 +21,13 @@
 
                     <li>
                         <div class=" nav-input-div  ">
+                            {!! Form::select('status',$aRequestStatus,$status, ['class'=>'form-control input-sm']) !!}
+                        </div>
+                    </li>
+
+
+                    <li>
+                        <div class=" nav-input-div  ">
                             {!! Form::submit(trans('request::request.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                         </div>
                     </li>
