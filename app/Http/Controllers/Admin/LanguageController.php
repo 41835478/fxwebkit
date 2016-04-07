@@ -16,15 +16,15 @@ class LanguageController extends Controller
 
 
 
-        $modules=[''=>'public',
-            'modules/Accounts'=>'Account',
-            'modules/Cms'=>'Cms',
-            'modules/Ibportal'=>'Ibportal',
-            'modules/Mt4Configrations'=>'Configrations',
-            'modules/Reports'=>'Reports',
-            'modules/Request'=>'Request',
-            'modules/Tools'=>'Tools'];
-        $module=($request->has('module'))? $request->module:'';
+        $modules=['/resources'=>'public',
+            'modules/Accounts/Resources'=>'Account',
+            'modules/Cms/Resources'=>'Cms',
+            'modules/Ibportal/Resources'=>'Ibportal',
+            'modules/Mt4Configrations/Resources'=>'Configrations',
+            'modules/Reports/Resources'=>'Reports',
+            'modules/Request/Resources'=>'Request',
+            'modules/Tools/Resources'=>'Tools'];
+        $module=($request->has('module'))? $request->module:'/Resources';
         $resourceFolder=base_path($module);
 
 
@@ -34,18 +34,18 @@ class LanguageController extends Controller
         $language = ($request->has('language')) ? $request->language : 'en';
 
 
-        list($files, $firstFiles) = $this->getFilesList($resourceFolder . '/resources/lang/' . $language);
+        list($files, $firstFiles) = $this->getFilesList($resourceFolder . '/lang/' . $language);
 
         $file = ($request->has('file') && array_key_exists($request->file, $files)) ? $request->file : $firstFiles;
 
 
-        $enArray = include($resourceFolder . '/resources/lang/en/' . $file);
+        $enArray = include($resourceFolder . '/lang/en/' . $file);
         $otherLanguageArray = [];
         if ($language == 'en') {
             $otherLanguageArray = $enArray;
         } else {
 
-            $otherLanguageArray = include($resourceFolder . '/resources/lang/' . $language . '/' . $file);
+            $otherLanguageArray = include($resourceFolder . '/lang/' . $language . '/' . $file);
 
         }
 
@@ -67,7 +67,7 @@ class LanguageController extends Controller
     {
 
 
-        $this->directWriteArrayToFile(base_path($request->module . '/resources/lang/' . $request->language . '/' . $request->file), $request->translate);
+        $this->directWriteArrayToFile(base_path($request->module . '/lang/' . $request->language . '/' . $request->file), $request->translate);
 
 
         return $this->getEditLanguage($request);
