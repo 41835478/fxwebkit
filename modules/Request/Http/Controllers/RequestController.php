@@ -290,7 +290,7 @@ class RequestController extends Controller
 
         $log->insert([
             'accountId'=>$user->id,
-            'name'=>$user->first_name,
+            'name'=>$user->first_name .' '.$user->last_name,
             'login' => $login,
             'server_id'=>$server_id,
             'password' => $password,

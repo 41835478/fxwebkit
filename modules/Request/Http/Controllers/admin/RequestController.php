@@ -485,7 +485,11 @@ class RequestController extends Controller
         /* TODO[moaid]  translate this array in language file then in the .blade.php file insert trans() method */
         $aRequestStatus=config('request.requestStatus');
 
-        $status = (isset($oRequest->status)) ? $oRequest->status : -1;
+        $status = (isset($oRequest->status))
+
+
+
+            ? $oRequest->status : -1;
 
         $oResults = null;
 
