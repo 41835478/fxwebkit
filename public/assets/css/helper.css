@@ -6,6 +6,11 @@ body {
     overflow: auto
 }
 
+.margin-left{
+    margin-left: 00px;
+    min-height: 400px;
+}
+
 .table th a {
     color: #000;
     font-size: 14px;
@@ -142,6 +147,11 @@ body {
 
 #selectedUsers, #usersList {
     min-height: 300px;
+}
+
+.page-left{
+    margin-left: 0px !important;
+    min-height: 400px;
 }
 
 /*___________________End__assign_users*/
