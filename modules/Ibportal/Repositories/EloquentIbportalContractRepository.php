@@ -650,8 +650,9 @@ class EloquentIbportalContractRepository implements IbportalContract
 
         /* =================================== */
 
+        if(isset($aFilters['agentId']) && $aFilters['agentId'] > 0){
         $oResult = $oResult->where('LOGIN',$aFilters['login']);
-
+    }
 
         $oResult = $oResult->where('server_id',0);
 
@@ -810,7 +811,7 @@ public function getAgentStatistics($agentId){
 
     public function getAgents() {
         return [
-            0=>trans('ibportal::ibportal.all'),
+          //  0=>trans('ibportal::ibportal.all'),
             1 => trans('ibportal::ibportal.agents'),
             2 => trans('ibportal::ibportal.nonAgents'),
         ];

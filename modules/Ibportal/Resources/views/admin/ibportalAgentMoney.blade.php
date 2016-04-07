@@ -8,7 +8,21 @@
             {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
             <ul class="sections" >
                 <li class="active"><a href="#"> <i class="fa fa-search"></i> {{ trans('ibportal::ibportal.search') }} </a></li>
-                <li id="login_li" ><div  class=" nav-input-div  ">{!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('ibportal::ibportal.Login'),'class'=>'form-control input-sm']) !!}</div></li>
+
+
+                <li id="login_li" >
+                    <div  class=" nav-input-div  ">
+                        {!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('ibportal::ibportal.Login'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </li>
+
+
+                <li  >
+                    <div  class=" nav-input-div  ">
+                        {!! Form::text('agentId', $aFilterParams['agentId'], ['placeholder'=>trans('ibportal::ibportal.agentId'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </li>
+
                 <li><div  class=" nav-input-div  ">
 
                         <div class="input-group date datepicker-warpper">
@@ -38,7 +52,7 @@
             </ul>
 
 
-            {!! Form::hidden('agentId', $aFilterParams['agentId']) !!}
+
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
             {!! Form::hidden('order', $aFilterParams['order']) !!}
             {!! Form::close() !!}

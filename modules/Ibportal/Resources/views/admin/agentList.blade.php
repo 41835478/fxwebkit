@@ -31,7 +31,7 @@
                         </div>
                     </li>
 
-                    <li><div  class=" nav-input-div  ">{!! Form::select('agents', $agents, $aFilterParams['agents'], ['class'=>'form-control  input-sm']) !!}</div></li>
+                    <li><div  class=" nav-input-div  ">{!! Form::select('agents', $agents, $agent, ['class'=>'form-control  input-sm']) !!}</div></li>
 
 
 

@@ -45,6 +45,13 @@ return [
             'icon' => 'fa fa-money',
         ],
         [
+            'route' => 'admin.ibportal.agentMoney',
+            'title' => 'agentMoney',
+            'icon' => 'fa fa-money',
+        ],
+
+
+        [
             'route' => 'admin.ibportal.ibportalSettings',
             'title' => 'settings',
             'icon' => 'fa fa-gears',

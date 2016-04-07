@@ -220,6 +220,7 @@ class IbportalController extends Controller
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
         $agents= $this->Ibportal->getAgents();
+        $agent=($oRequest->agents)?$oRequest->agents:1;
 
         $oResults = null;
         $aFilterParams = [
@@ -227,10 +228,11 @@ class IbportalController extends Controller
             'first_name' => '',
             'last_name' => '',
             'email' => '',
-            'agents' => '',
+            'agents' => 1,
             'sort' => $sSort,
             'order' => $sOrder,
         ];
+
 
         if ($oRequest->has('search')) {
 
@@ -238,22 +240,18 @@ class IbportalController extends Controller
             $aFilterParams['first_name'] = $oRequest->first_name;
             $aFilterParams['last_name'] = $oRequest->last_name;
             $aFilterParams['email'] = $oRequest->email;
-            $aFilterParams['agents'] = $oRequest->agents;
+            $aFilterParams['agents'] = $agent;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
 
-            $role = explode(',', Config::get('fxweb.client_default_role'));
-
-            if ($oRequest->agents == 0) {
-                $oResults = $this->Users->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
-            } else
-
-                $oResults = $this->Users->getAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
-        }
+               }
+        $role = explode(',', Config::get('fxweb.client_default_role'));
+        $oResults = $this->Users->getAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
 
         return view('ibportal::admin.agentList')
             ->with('oResults', $oResults)
             ->with('agents',$agents)
+            ->with('agent',$agent)
             ->with('aFilterParams', $aFilterParams);
     }
 
@@ -660,7 +658,11 @@ class IbportalController extends Controller
 
     public function getAgentMoney(Request $oRequest)
     {
-        $login=UserIbid::select('login')->where('user_id',$oRequest->agentId)->first()->login;
+       $agentId=($oRequest->has('agentId'))?  $oRequest->agentId:'';
+        $login=UserIbid::select('login')->where('user_id',$agentId)->first();
+
+    $login=($login)? $login->login:0;
+
         $oSymbols = $this->Ibportal->getClosedTradesSymbols();
         $aTradeTypes = ['' => 'ALL'] + $this->Ibportal->getAgentCommissionTypes();
         $serverTypes = $this->Ibportal->getServerTypes();
@@ -680,7 +682,7 @@ class IbportalController extends Controller
             'symbol' => '',
             'sort' => 'ASC',
             'order' => 'TICKET',
-            'agentId' => $oRequest->agentId
+            'agentId' => $agentId
         ];
 
 
@@ -693,7 +695,7 @@ class IbportalController extends Controller
         }
         if ($oRequest->has('search')) {
             $aFilterParams['login'] = $login;
-            $aFilterParams['agentId'] = $oRequest->agentId;
+            $aFilterParams['agentId'] = $agentId;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['all_groups'] = true;
@@ -703,7 +705,7 @@ class IbportalController extends Controller
             $aFilterParams['symbol'] = $oRequest->symbol;
         }
 
-        if ($oRequest->has('search')) {
+        if ($oRequest->has('search') ) {
 
             $oResults = $this->Ibportal->getAgentsAccountantByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults[0]->order = $aFilterParams['order'];
