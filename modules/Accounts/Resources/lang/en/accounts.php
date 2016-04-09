@@ -185,6 +185,8 @@ return [
     'assign' => 'Assign',
     'fillFullDetailsToAllowLive'=>'Fill Full Details To Allow Live',
     'showWithDrawal'=>'Show Withdrawal',
+    'changeLeverageWarning'=>'Change Leverage Warning',
+
     'youHavePendingRequest'=>'Please wait until finishing current pending request . ',
 
 
