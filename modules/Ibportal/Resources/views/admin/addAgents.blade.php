@@ -9,7 +9,7 @@
     <div class="panel">
         {!! Form::open(['class'=>'panel form-horizontal']) !!}
         <div class="panel-heading">
-            <span class="panel-title">{{ trans('ibportal::ibportal.assignAgents') }}</span>
+            <span class="panel-title">{{ trans('ibportal::ibportal.assignAgents').trans('ibportal::ibportal.currentAgentMt4Is').$userInfo['login'].trans('ibportal::ibportal.liveUsre')}}</span>
         </div>
 
         <div class="panel-body">
