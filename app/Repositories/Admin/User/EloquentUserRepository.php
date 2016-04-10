@@ -48,7 +48,7 @@ class EloquentUserRepository implements UserContract
         })->count();
 
         $statistics['mt4UsersNumber'] = Mt4User::count();
-        $statistics['liveMt4UsersNumber'] = Mt4User::where('server_id', 1)->count();
+        $statistics['liveMt4UsersNumber'] = Mt4User::where('server_id', 0)->count();
 
 
         return $statistics;

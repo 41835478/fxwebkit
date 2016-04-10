@@ -325,12 +325,20 @@ class ClientIbportalController extends Controller
             $oResults[0]->sorts = $aFilterParams['sort'];
         }
 
-        return view('ibportal::client.ibportalAgentMoney')
-            ->with('aSymbols', $aSymbols)
-            ->with('aTradeTypes', $aTradeTypes)
-            ->with('oResults', $oResults)
-            ->with('serverTypes', $serverTypes)
-            ->with('aFilterParams', $aFilterParams);
+        $userIbid = UserIbid::where('user_id', current_user()->getUser()->id)->first();
+
+        if (count($userIbid)) {
+            return view('ibportal::client.ibportalAgentMoney')
+                ->with('aSymbols', $aSymbols)
+                ->with('aTradeTypes', $aTradeTypes)
+                ->with('oResults', $oResults)
+                ->with('serverTypes', $serverTypes)
+                ->with('aFilterParams', $aFilterParams);
+        } else {
+            return $this->getAgreemmentPlan();
+        }
+
+
     }
 
     public function getAgentSummary()
@@ -341,13 +349,20 @@ class ClientIbportalController extends Controller
         list($horizontal_line_numbers, $balance_array, $balance, $statistics,$commission_horizontal_line_numbers,
             $commission_array) = $this->Ibportal->getAgentStatistics($clientId);
 
-        return view('ibportal::client.agentSummary',
-            [
-                'horizontal_line_numbers' => $horizontal_line_numbers,
-                'balance_array' => $balance_array,
-                'balance' => $balance,
-                'commission_horizontal_line_numbers'=> $commission_horizontal_line_numbers,
-                'commission_array'=>$commission_array])->withStatistics($statistics);
+        $userIbid = UserIbid::where('user_id', current_user()->getUser()->id)->first();
+
+
+        if (count($userIbid)) {
+            return view('ibportal::client.agentSummary',
+                [
+                    'horizontal_line_numbers' => $horizontal_line_numbers,
+                    'balance_array' => $balance_array,
+                    'balance' => $balance,
+                    'commission_horizontal_line_numbers'=> $commission_horizontal_line_numbers,
+                    'commission_array'=>$commission_array])->withStatistics($statistics);
+        } else {
+            return $this->getAgreemmentPlan();
+        }
     }
 
     public function getAgentUserMt4Users(Request $oRequest)
@@ -469,12 +484,22 @@ class ClientIbportalController extends Controller
             $oResults->sorts = $aFilterParams['sort'];
         }
 
-        return view('reports::client.closedOrders')
-            ->with('aSymbols', $aSymbols)
-            ->with('aTradeTypes', $aTradeTypes)
-            ->with('oResults', $oResults)
-            ->with('serverTypes', $serverTypes)
-            ->with('aFilterParams', $aFilterParams);
+        $userIbid = UserIbid::where('user_id', current_user()->getUser()->id)->first();
+
+
+        if (count($userIbid)) {
+            return view('reports::client.closedOrders')
+                ->with('aSymbols', $aSymbols)
+                ->with('aTradeTypes', $aTradeTypes)
+                ->with('oResults', $oResults)
+                ->with('serverTypes', $serverTypes)
+                ->with('aFilterParams', $aFilterParams);
+        } else {
+            return $this->getAgreemmentPlan();
+        }
+
+
+
     }
 
     public function getOpenOrders(Request $oRequest)
@@ -525,12 +550,21 @@ class ClientIbportalController extends Controller
             $oResults = $this->oMt4Trade->getAgentOpenTradesByFilters($aFilterParams, false, $sOrder, $sSort,current_user()->getUser()->id);
         }
 
-        return view('reports::client.openOrders')
-            ->with('aSymbols', $aSymbols)
-            ->with('aTradeTypes', $aTradeTypes)
-            ->with('serverTypes', $serverTypes)
-            ->with('oResults', $oResults)
-            ->with('aFilterParams', $aFilterParams);
+        $userIbid = UserIbid::where('user_id', current_user()->getUser()->id)->first();
+
+
+        if (count($userIbid)) {
+            return view('reports::client.openOrders')
+                ->with('aSymbols', $aSymbols)
+                ->with('aTradeTypes', $aTradeTypes)
+                ->with('serverTypes', $serverTypes)
+                ->with('oResults', $oResults)
+                ->with('aFilterParams', $aFilterParams);
+        } else {
+            return $this->getAgreemmentPlan();
+        }
+
+
     }
 
     public function getAgentInternalTransfer()

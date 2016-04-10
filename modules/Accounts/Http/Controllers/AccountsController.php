@@ -71,11 +71,16 @@ class AccountsController extends Controller
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
 
+        }
+
+        if ($oRequest->has('search')||$oRequest->has('active')) {
+
+            $aFilterParams['active'] = $oRequest->active;
             $role = explode(',', Config::get('fxweb.client_default_role'));
 
             $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
-
         }
+
 
 
         return view('accounts::accountsList')
@@ -520,6 +525,11 @@ class AccountsController extends Controller
 
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
+            $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
+        }
+
+        if ($oRequest->has('search')||$oRequest->has('server_id')) {
+            $aFilterParams['server_id'] = $oRequest->server_id;
             $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
         }
 
