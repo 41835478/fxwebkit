@@ -72,6 +72,13 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     }
 
+    public function getAssignAgents($agnetId)
+    {
+        $oResult = UserIbid::where('user_id', $agnetId)->first();
+
+        return $oResult->login;
+    }
+
     public function getClientPlansByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $clientID)
     {
 

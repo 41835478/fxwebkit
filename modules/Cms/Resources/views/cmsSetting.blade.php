@@ -6,7 +6,7 @@
             <h1>{{ trans('cms::cms.settings') }}</h1>
         </div>
 
-        < class="panel">
+        <div class="panel">
         {!! Form::open(['class'=>'panel form-horizontal']) !!}
         <div class="panel-heading">
             <span class="panel-title">{{ trans('cms::cms.settings') }}</span>

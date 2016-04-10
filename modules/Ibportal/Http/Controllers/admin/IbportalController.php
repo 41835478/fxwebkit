@@ -628,10 +628,14 @@ class IbportalController extends Controller
     /*TODO [moayd] please do the same for client area*/
     public function getAssignAgents(Request $oRequest)
     {
+
         $agentId = $oRequest->agentId;
+
+        $result=$this->Ibportal->getAssignAgents($agentId);
+
         $userInfo = [
-            'login' => $oRequest['login'],
-            'password' => $oRequest['password'],
+            'login' => $result,
+            'password' => '',
         ];
 
 
