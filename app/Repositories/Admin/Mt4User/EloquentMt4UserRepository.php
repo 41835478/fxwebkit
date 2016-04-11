@@ -348,9 +348,10 @@ class EloquentMt4UserRepository implements Mt4UserContract {
 
     public function getUsersMt4Users($account_id) {
 
- $oResult = Mt4User::leftJoin('mt4_users_users', function($join) use($account_id) {
+ $oResult = Mt4User::join('mt4_users_users', function($join) use($account_id) {
             $join->on('mt4_users.LOGIN', '=', 'mt4_users_users.mt4_users_id')
-                ->on('mt4_users.server_id', '=', 'mt4_users_users.server_id')->where('mt4_users_users.users_id', '=', $account_id);
+                ->on('mt4_users.server_id', '=', 'mt4_users_users.server_id')
+                ->where('mt4_users_users.users_id', '=', $account_id);
         });
 
         $oResult = $oResult->with('account')->whereHas('account', function($query) use($account_id) {
