@@ -14,6 +14,7 @@ use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
 use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
+use Modules\Ibportal\Entities\IbportalAgentUser as AgentUser;
 
 class IbportalController extends Controller
 {
@@ -741,6 +742,33 @@ class IbportalController extends Controller
                 'commission_array'=>$commission_array
             ])->withStatistics($statistics);
     }
+
+
+
+    private function assignNewUserToAgent($agentId, $aUserId, $planId)
+    {
+
+        $aUserId=(is_array($aUserId))?$aUserId:[$aUserId];
+
+        $rows=[];
+        foreach($aUserId as $userId){
+            $rows[]=[
+                'agent_id' => $agentId,
+                'user_id' => $userId,
+                'plan_id' => $planId];
+        }
+
+        $result=false;
+        if(count($rows)){
+            $result= AgentUser::insert($rows);
+        }
+        return ($result)? true:false;
+
+
+
+    }
+
+
 
 
 }

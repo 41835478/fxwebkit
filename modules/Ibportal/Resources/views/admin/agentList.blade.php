@@ -93,9 +93,11 @@
                                         <a href="{{ route('admin.ibportal.agentPlans').'?agentId='.$oResult->id }}"
                                            class="fa fa-briefcase tooltip_number"
                                            data-original-title="{{trans('ibportal::ibportal.agentPlans')}}"></a>
+                                        <!--
                                         <a href="{{ route('admin.ibportal.agentCommission').'?agentId='.$oResult->id }}"
                                            class="fa fa-money tooltip_number"
                                            data-original-title="{{trans('ibportal::ibportal.agentCommission')}}"></a>
+                                           -->
                                         @if(!$oResult->isAgent)
                                             <a href="{{ route('admin.ibportal.addAgents').'?agentId='.$oResult->id }}"
                                                class="fa fa-plus tooltip_number"
