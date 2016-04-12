@@ -645,19 +645,19 @@ class IbportalController extends Controller
     public function postAssignAgents(Request $oRequest)
     {
 
-        $oApiController = new ApiController();
+//        $oApiController = new ApiController();
 
-        $result = $oApiController->AssignAgents($oRequest['login'], $oRequest['password']);
+//        $result = $oApiController->AssignAgents($oRequest['login'], $oRequest['password']);
 
-        if ($result === true) {
-            $asign_result = $this->Ibportal->assignMt4Agents($oRequest->agentId, $oRequest['login']);
-            return Redirect::route('admin.ibportal.assignAgents')->withErrors('The User has been assigned successfully');
+//        if ($result === true) {
+            $asign_result = $this->Ibportal->assignMt4Agents($oRequest->agentId, $oRequest->login);
+            return $this->getAssignAgents($oRequest)->withErrors('The User has been assigned successfully');
 
-        } else {
-            return view('ibportal::admin.addAgents')
-                ->with('agentId', $oRequest->agentId)
-                ->with('userInfo', ['login' => $oRequest['login'], 'password' => $oRequest['password']])->withErrors($result);
-        }
+//        } else {
+//            return view('ibportal::admin.addAgents')
+//                ->with('agentId', $oRequest->agentId)
+//                ->with('userInfo', ['login' => $oRequest['login'], 'password' => $oRequest['password']])->withErrors($result);
+//        }
     }
 
     public function getAgentMoney(Request $oRequest)

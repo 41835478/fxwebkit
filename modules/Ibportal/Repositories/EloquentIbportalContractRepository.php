@@ -76,7 +76,7 @@ class EloquentIbportalContractRepository implements IbportalContract
     {
         $oResult = UserIbid::where('user_id', $agnetId)->first();
 
-        return $oResult->login;
+        return ($oResult)? $oResult->login:0;
     }
 
     public function getClientPlansByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $clientID)
@@ -812,7 +812,9 @@ public function getAgentStatistics($agentId){
 
 
     public function assignMt4Agents($agentId, $login){
+
         $userIbid=UserIbid::where('user_id',$agentId)->update(['login' =>$login]);
+        return ($userIbid)?true:false;
 
     }
 
