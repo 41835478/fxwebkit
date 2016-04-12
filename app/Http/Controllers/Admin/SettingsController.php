@@ -269,20 +269,19 @@ class SettingsController extends Controller
     {
 
         $aTemplates = $this->aTemplates;
-        $sTemplate = $oRequest->name;
-        $sLanguage = $oRequest->lang;
+        $sTemplate = ($oRequest->has('sTemplate'))? $oRequest->sTemplate:'signUpWelcome';
+        $sLanguage =($oRequest->has('lang'))? $oRequest->lang:'en';
         $sContent = '';
 
-        $aLanguages = ['ar' => 'Arabic', 'en' => 'English'];
+        $aLanguages =config('app.language');
 
 
-        if (!empty($sTemplate) && !empty($sLanguage)) {
             $sPath = base_path() . '/resources/views/admin/email/templates/' . $sLanguage . '/' . $sTemplate . '.blade.php';
 
             if (file_exists($sPath)) {
                 $sContent = File::get($sPath);
             }
-        }
+
 
         return view('admin.email.addEmailTemplates')
             ->with('aLanguages', $aLanguages)
