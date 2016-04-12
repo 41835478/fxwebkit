@@ -115,7 +115,7 @@
                                            class="fa fa-bar-chart-o tooltip_number"
                                            data-original-title="{{trans('ibportal::ibportal.summary')}}"></a>
 
-                                        <a href="{{ route('admin.ibportal.assignUsresAgent').'?agentId='.$oResult->id }}"
+                                        <a href="{{ route('admin.ibportal.assignUsresAgent').'?agent_id='.$oResult->id }}"
                                            class="fa  fa-link  tooltip_number"
                                            data-original-title="{{trans('ibportal::ibportal.assignAgents')}}"></a>
 

@@ -747,24 +747,47 @@ class IbportalController extends Controller
 
     public function getAssignUsresAgent(Request $oRequest)
     {
+        $agent_id = ($oRequest->agent_id) ? $oRequest->agent_id : '';
+
+
+
+        $aPlansFilterParams = ['name' => '','sort' => 'desc','order' =>  'id','agentId' => $agent_id,'plan_id'];
+
+        $oPlans = $this->Ibportal->getClientPlansByFilters($aPlansFilterParams, false, 'id', 'desc', $agent_id);
+
+        $aPlans=[];
+        $firstPlan=0;
+
+        foreach($oPlans as $plan){
+            if($firstPlan==0){$firstPlan=$plan->id;}
+            $aPlans[$plan->id]=$plan->name;
+
+        }
+
+        $plan_id = ($oRequest->plan_id) ? $oRequest->plan_id : $firstPlan;
+
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
         $aGroups = [];
         $oResults = null;
+
+
+
         $aFilterParams = [
             'id'=>'',
-            'group_id' => $oRequest->group_id,
+            'agent_id' => $agent_id,
             'first_name' => '',
             'last_name' => '',
             'email' => '',
             'sort' => $sSort,
             'order' => $sOrder,
             'signed' => 0,
+            'plan_id'=>$plan_id
         ];
 
         if ($oRequest->has('search')) {
             $aFilterParams['id'] = $oRequest->id;
-            $aFilterParams['group_id'] = $oRequest->group_id;
+            $aFilterParams['agent_id'] =$agent_id;
             $aFilterParams['first_name'] = $oRequest->first_name;
             $aFilterParams['last_name'] = $oRequest->last_name;
             $aFilterParams['email'] = $oRequest->email;
@@ -777,12 +800,17 @@ class IbportalController extends Controller
 
         }
 
-
         $oResults = $this->Ibportal->getAssignUsresToAgent($aFilterParams, false, $sOrder, $sSort);
+
+
+
+
 
         return view('ibportal::admin.assignUsresToAgent')
             ->with('oResults', $oResults)
             ->with('aFilterParams', $aFilterParams)
+            ->with('aPlans',$aPlans)
+            ->with('plan_id',$plan_id)
             ->with('aActive',[
                     trans('accounts::accounts.all'),
                     trans('accounts::accounts.active'),
@@ -798,11 +826,11 @@ class IbportalController extends Controller
 
             $users_checkbox = ($oRequest->has('asign_mt4_users_submit_id')) ? [$oRequest->get('asign_mt4_users_submit_id')] : $oRequest->users_checkbox;
 
-            $group_id = $oRequest->group_id;
+            $agent_id = $oRequest->agent_id;
 
-            $this->oUser->assignMt4ToMassGroup($group_id, $users_checkbox,0);
+            $this->assignNewUserToAgent($agent_id, $users_checkbox,$oRequest->plan_id);
 
-            return $this->getAssginToMassAccountsList($oRequest);
+
 
         }
 
@@ -810,34 +838,59 @@ class IbportalController extends Controller
 
             $users_checkbox = ($oRequest->has('un_sign_mt4_users_submit_id')) ? [$oRequest->get('un_sign_mt4_users_submit_id')] : $oRequest->users_checkbox;
 
-            $group_id = $oRequest->group_id;
-            $this->oUser->unassignMt4ToMassGroup($group_id, $users_checkbox,0);
+            $agent_id = $oRequest->agent_id;
+            $this->unassignNewUserToAgent($agent_id, $users_checkbox,$oRequest->plan_id);
 
-            return $this->getAssginToMassAccountsList($oRequest);
+
 
 
         }
+
+        return $this->getAssignUsresAgent($oRequest);
     }
 
 
     private function assignNewUserToAgent($agentId, $aUserId, $planId)
     {
-
+if(empty($aUserId)) return false;
         $aUserId=(is_array($aUserId))?$aUserId:[$aUserId];
 
         $rows=[];
         foreach($aUserId as $userId){
-            $rows[]=[
+            $data=[
                 'agent_id' => $agentId,
                 'user_id' => $userId,
                 'plan_id' => $planId];
+            $exist=AgentUser::where($data)->first();
+
+
+            if(!$exist){
+                AgentUser::create($data);
+            }
         }
 
-        $result=false;
-        if(count($rows)){
-            $result= AgentUser::insert($rows);
+
+
+
+
+
+    }
+
+
+    private function unassignNewUserToAgent($agentId, $aUserId, $planId)
+    {
+        if(empty($aUserId)) return false;
+        $aUserId=(is_array($aUserId))?$aUserId:[$aUserId];
+
+
+        foreach($aUserId as $userId){
+            $result= AgentUser::where(['agent_id'=>$agentId,'user_id'=>$userId,'plan_id'=>$planId])->first();
+            if($result){
+                $result->delete();
+            }
         }
-        return ($result)? true:false;
+
+
 
 
 

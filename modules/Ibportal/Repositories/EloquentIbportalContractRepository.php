@@ -829,29 +829,36 @@ class EloquentIbportalContractRepository implements IbportalContract
     {
 
             $oResult =new User();
-            $group_id= (isset($aFilters['group_id'])) ? $aFilters['group_id'] : 0;
+        $agents= (isset($aFilters['agent_id'])) ? $aFilters['agent_id'] : 0;
 
 
 
+        $plan_id=$aFilters['plan_id'];
             /* =============== signed filter ============== */
             if ((isset($aFilters['signed']) && !empty($aFilters['signed']))) {
 
                 if ($aFilters['signed'] == 1) {
 
-                    $oResult = $oResult->with('massGroup')->whereHas('massGroup', function($query) use($group_id) {
-                        $query->where(DB::raw('settings_mass_groups_users.user_id'),'=',DB::raw(' users.id'));
-                        $query->where('group_id', $group_id);
+
+
+
+                    $oResult = $oResult->with('agentPlan')->whereHas('agentPlan', function ($query) use ($agents,$plan_id) {
+                        $query->where('agent_id', $agents);
+                        $query->where('plan_id', $plan_id);
+
+                        $query->with('plan');
                     });
+
 
                 }
             }else{
 
-                $oResult=  User::leftJoin('settings_mass_groups_users', function($join) use($group_id) {
+                $oResult=  User::leftJoin('ibportal_agent_user', function($join) use($agents,$plan_id) {
 
-                    $join->on('users.id', '=', 'settings_mass_groups_users.user_id')
-                        ->on('settings_mass_groups_users.type', '=',DB::raw(0));
-                    $join->where('settings_mass_groups_users.group_id', '=',$group_id );
-                })->select(['users.*','settings_mass_groups_users.user_id']);
+                    $join->on('users.id', '=', 'ibportal_agent_user.user_id');
+                    $join->where('ibportal_agent_user.agent_id', '=',$agents );
+                    $join->where('ibportal_agent_user.plan_id', '=',$plan_id );
+                })->select(['users.*','ibportal_agent_user.user_id']);
             }
 
 

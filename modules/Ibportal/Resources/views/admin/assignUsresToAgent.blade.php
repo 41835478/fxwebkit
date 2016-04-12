@@ -51,7 +51,8 @@
                     </ul>
 
 
-                    {!! Form::hidden('group_id', $aFilterParams['group_id']) !!}
+                    {!! Form::hidden('agent_id', $aFilterParams['agent_id']) !!}
+                    {!! Form::hidden('plan_id', $aFilterParams['plan_id']) !!}
                     {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                     {!! Form::hidden('order', $aFilterParams['order']) !!}
                     {!!  Form::close() !!}
@@ -59,10 +60,12 @@
                 </div>
             </div>
 
+
             <div class="mail-container ">
 
                 <div class="mail-container-header">
                     {{ trans('accounts::accounts.accounts') }}
+
                 </div>
 
                 <div class="center_page_all_div">
@@ -74,12 +77,23 @@
                         <div class="table-header">
 
                             <div class="table-caption">
-                                {{ trans('accounts::accounts.accounts') }}
+                                {{ trans('accounts::accounts.agentPlans') }}
                             </div>
                         </div>
 
-                        @if (count($oResults))
-                            {!! Form::open() !!}
+                        {!! Form::open(['id'=>'assign_form']) !!}
+
+                        <div class="col-xm-12">
+
+                        {!! Form::select('plan_id',$aPlans,$plan_id, ['class'=>'form-control input-sm','onChange'=>'$(\'#assign_form\').submit();']) !!}
+
+                            <br>
+                        </div>
+
+
+
+                    @if (count($oResults))
+
                             <table class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
@@ -104,7 +118,7 @@
                                         <td>{{ $oResult->email }}</td>
                                         <td>{{ $oResult->last_login }}</td>
                                         <td>
-                                            @if(isset($oResult->user_id ) || (isset($oResult->massGroup) && $oResult->massGroup->first()->user_id) )
+                                            @if(isset($oResult->user_id ) || (isset($oResult->agentPlan) && $oResult->agentPlan->first()->user_id) )
                                                 {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->id  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
                                             @else
 
@@ -120,10 +134,6 @@
                                 <tr>
                                     <td colspan="5">
 
-                                        {!! Form::hidden('group_id', $aFilterParams['group_id']) !!}
-                                        {!! Form::hidden('sort', $aFilterParams['sort']) !!}
-                                        {!! Form::hidden('order', $aFilterParams['order']) !!}
-
                                         {!! Form::button( trans('accounts::accounts.assign') ,['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
                                         {!! Form::button(trans('accounts::accounts.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}
                                     </td>
@@ -132,9 +142,15 @@
                             </table>
 
 
-                            {!! Form::close() !!}
 
                         @endif
+
+                        {!! Form::hidden('agent_id', $aFilterParams['agent_id']) !!}
+
+
+                        {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+                        {!! Form::hidden('order', $aFilterParams['order']) !!}
+                        {!! Form::close() !!}
 
 
 
@@ -154,7 +170,9 @@
 
 
                                 </div>
-                                {!! Form::hidden('group_id', $aFilterParams['group_id']) !!}
+
+                                {!! Form::hidden('plan_id', $aFilterParams['plan_id']) !!}
+                                {!! Form::hidden('agent_id', $aFilterParams['agent_id']) !!}
                                 {!! Form::close() !!}
                             @endif
 
