@@ -36,9 +36,6 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     function editConfigFile($filePath, $variables)
     {
-
-//$config = new Larapack\ConfigWriter\Repository('modules/Accounts/Config/config.php'); // loading the config from config/app.php
-//        $config = new Larapack\ConfigWriter\Repository('Config/fxweb.php'); // loading the config from config/app.php
         $config = new \Larapack\ConfigWriter\Repository($filePath);
 
         if (count($variables)) {
@@ -387,12 +384,6 @@ class EloquentIbportalContractRepository implements IbportalContract
             }
         }
 
-        /* =============== Server Id Filter  =============== */
-
-//        if (isset($aFilters['server_id']) &&in_array($aFilters['server_id'],[0,1])) {
-//
-//            $oResult = $oResult->where('server_id',$aFilters['server_id']);
-//        }
 
         /*=================== agents=================*/
         if (isset($aFilters['agentName']) && count($aFilters['agentName'])) {
@@ -419,7 +410,6 @@ class EloquentIbportalContractRepository implements IbportalContract
 
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
-
 
 
         if (!$bFullSet) {
@@ -558,7 +548,6 @@ class EloquentIbportalContractRepository implements IbportalContract
     }
 
 
-
     public function getAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
     {
 
@@ -609,7 +598,8 @@ class EloquentIbportalContractRepository implements IbportalContract
     }
 
 
-    public function getClosedTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC') {
+    public function getClosedTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC')
+    {
         /* TODO[Galya] we will delete this table where we should get symbols */
         return Mt4Closed::distinct()
             ->select('SYMBOL')
@@ -620,7 +610,8 @@ class EloquentIbportalContractRepository implements IbportalContract
     }
 
 
-    public function getAccountantTypes() {
+    public function getAccountantTypes()
+    {
 
         return [
             1 => 'BalanceOperations',
@@ -632,7 +623,8 @@ class EloquentIbportalContractRepository implements IbportalContract
         ];
     }
 
-    public function getAgentCommissionTypes() {
+    public function getAgentCommissionTypes()
+    {
 
         return [
             6 => 'Commission',
@@ -641,15 +633,17 @@ class EloquentIbportalContractRepository implements IbportalContract
     }
 
 
-    public function getServerTypes() {
+    public function getServerTypes()
+    {
         return [
-            -1=>'All',
+            -1 => 'All',
             0 => config('fxweb.liveServerName'),
             1 => config('fxweb.demoServerName'),
         ];
     }
 
-    public function getAgentsAccountantByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC') {
+    public function getAgentsAccountantByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC')
+    {
         $oFxHelper = new Fx();
         $oResult = new Mt4ClosedBalance();
         $aSummury = [];
@@ -657,17 +651,17 @@ class EloquentIbportalContractRepository implements IbportalContract
 
         /* =================================== */
 
-        if(isset($aFilters['agentId']) && $aFilters['agentId'] > 0){
-        $oResult = $oResult->where('LOGIN',$aFilters['login']);
-    }
+        if (isset($aFilters['agentId']) && $aFilters['agentId'] > 0) {
+            $oResult = $oResult->where('LOGIN', $aFilters['login']);
+        }
 
-        $oResult = $oResult->where('server_id',0);
-
+        $oResult = $oResult->where('server_id', 0);
 
 
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
-            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))) {
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
+        ) {
 
             if (!empty($aFilters['from_date'])) {
                 $oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
@@ -692,13 +686,13 @@ class EloquentIbportalContractRepository implements IbportalContract
          */
 
         if (isset($aFilters['type']) && !empty($aFilters['type'])) {
-if($aFilters['type'] == 6){
+            if ($aFilters['type'] == 6) {
 
-    $oResult = $oResult->where('PROFIT', '>', 0);
-}else if($aFilters['type'] == 7){
+                $oResult = $oResult->where('PROFIT', '>', 0);
+            } else if ($aFilters['type'] == 7) {
 
-    $oResult = $oResult->where('PROFIT', '<', 0);
-}
+                $oResult = $oResult->where('PROFIT', '<', 0);
+            }
 
 
         }
@@ -725,14 +719,15 @@ if($aFilters['type'] == 6){
         return [$oResult, $aSummury];
     }
 
-    public function getAgentCommissionChart($login){
+    public function getAgentCommissionChart($login)
+    {
 
 
         $oGrowthResults = Mt4ClosedBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'), 'CMD'])
             ->where('login', $login)
             ->where('server_id', 0)
-            ->where('cmd','=', 6)
-            ->where('PROFIT','>', 0)
+            ->where('cmd', '=', 6)
+            ->where('PROFIT', '>', 0)
             ->orderBy('CLOSE_TIME')
             ->get();
 
@@ -741,87 +736,160 @@ if($aFilters['type'] == 6){
 
         $pastCommission = 0;
         $i = 0;
-        $commission=0;
+        $commission = 0;
         foreach ($oGrowthResults as $row) {
 
 
-            $pastCommission+=$row->netProfit;
-            $commission=round($pastCommission, 2);
+            $pastCommission += $row->netProfit;
+            $commission = round($pastCommission, 2);
             $commission_array[] = $commission;
             $i++;
-            $commission_horizontal_line_numbers[] =   $i;
+            $commission_horizontal_line_numbers[] = $i;
         }
 
 
-        return [ $commission_horizontal_line_numbers,
+        return [$commission_horizontal_line_numbers,
             $commission_array
         ];
     }
 
-public function getAgentStatistics($agentId){
-    
-    $login=UserIbid::select('login')->where('user_id',$agentId)->first();
-    if($login){
-        $login=$login->login;
-    }else{
-        $login=0;
+    public function getAgentStatistics($agentId)
+    {
+
+        $login = UserIbid::select('login')->where('user_id', $agentId)->first();
+        if ($login) {
+            $login = $login->login;
+        } else {
+            $login = 0;
         }
 
-    $oGrowthResults = Mt4ClosedBalance::select([DB::raw('sum(PROFIT+COMMISSION+SWAPS) as netProfit,concat(YEAR(CLOSE_TIME),concat("-",MONTH(CLOSE_TIME))) as month'), 'CMD'])
-        ->where('login', $login)
-        ->where('server_id', 0)
-        ->where('cmd','=', 6)
-        ->where('PROFIT','>', 0)
-        ->groupby('month')
-        ->orderBy('CLOSE_TIME')
-        ->get();
+        $oGrowthResults = Mt4ClosedBalance::select([DB::raw('sum(PROFIT+COMMISSION+SWAPS) as netProfit,concat(YEAR(CLOSE_TIME),concat("-",MONTH(CLOSE_TIME))) as month'), 'CMD'])
+            ->where('login', $login)
+            ->where('server_id', 0)
+            ->where('cmd', '=', 6)
+            ->where('PROFIT', '>', 0)
+            ->groupby('month')
+            ->orderBy('CLOSE_TIME')
+            ->get();
 
-    $balance_array = [];
-    $horizontal_line_numbers = [];
+        $balance_array = [];
+        $horizontal_line_numbers = [];
 
-    $pastBalance = 0;
-    $i = 0;
-    $balance=0;
-    foreach ($oGrowthResults as $row) {
-
-
-        $pastBalance=$row->netProfit;
-        $balance=round($pastBalance, 2);
-        $balance_array[] = $balance;
-        $i++;
-        $horizontal_line_numbers[] = date('M, Y',strtotime($row->month));
-    }
-    $statistics['users_number']=AgentUser::where('agent_id',$agentId)->count();
-    $statistics['mt4_users_number']=mt4_users_users::with('agentUsers')->whereHas('agentUsers',function ($query) use($agentId){
-        $query->where('agent_id',$agentId);
-    })->where('server_id',0)->count();
-
-    $statistics['planes_number']=PlanUsers::where('user_id',$agentId)->count();
-
-    list($commission_horizontal_line_numbers,
-        $commission_array
-    )=$this->getAgentCommissionChart($login);
-    return [ $horizontal_line_numbers,
-        $balance_array,
-        $balance,
-        $statistics,
-        $commission_horizontal_line_numbers,
-        $commission_array
-       ];
-}
+        $pastBalance = 0;
+        $i = 0;
+        $balance = 0;
+        foreach ($oGrowthResults as $row) {
 
 
-    public function assignMt4Agents($agentId, $login){
-        $userIbid=UserIbid::where('user_id',$agentId)->update(['login' =>$login]);
+            $pastBalance = $row->netProfit;
+            $balance = round($pastBalance, 2);
+            $balance_array[] = $balance;
+            $i++;
+            $horizontal_line_numbers[] = date('M, Y', strtotime($row->month));
+        }
+        $statistics['users_number'] = AgentUser::where('agent_id', $agentId)->count();
+        $statistics['mt4_users_number'] = mt4_users_users::with('agentUsers')->whereHas('agentUsers', function ($query) use ($agentId) {
+            $query->where('agent_id', $agentId);
+        })->where('server_id', 0)->count();
 
+        $statistics['planes_number'] = PlanUsers::where('user_id', $agentId)->count();
+
+        list($commission_horizontal_line_numbers,
+            $commission_array
+            ) = $this->getAgentCommissionChart($login);
+        return [$horizontal_line_numbers,
+            $balance_array,
+            $balance,
+            $statistics,
+            $commission_horizontal_line_numbers,
+            $commission_array
+        ];
     }
 
-    public function getAgents() {
+
+    public function assignMt4Agents($agentId, $login)
+    {
+        $userIbid = UserIbid::where('user_id', $agentId)->update(['login' => $login]);
+
+    }
+
+    public function getAgents()
+    {
         return [
-          //  0=>trans('ibportal::ibportal.all'),
+            //  0=>trans('ibportal::ibportal.all'),
             1 => trans('ibportal::ibportal.agents'),
             2 => trans('ibportal::ibportal.nonAgents'),
         ];
     }
+
+    public function getAssignUsresToAgent($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
+    {
+
+            $oResult =new User();
+            $group_id= (isset($aFilters['group_id'])) ? $aFilters['group_id'] : 0;
+
+
+
+            /* =============== signed filter ============== */
+            if ((isset($aFilters['signed']) && !empty($aFilters['signed']))) {
+
+                if ($aFilters['signed'] == 1) {
+
+                    $oResult = $oResult->with('massGroup')->whereHas('massGroup', function($query) use($group_id) {
+                        $query->where(DB::raw('settings_mass_groups_users.user_id'),'=',DB::raw(' users.id'));
+                        $query->where('group_id', $group_id);
+                    });
+
+                }
+            }else{
+
+                $oResult=  User::leftJoin('settings_mass_groups_users', function($join) use($group_id) {
+
+                    $join->on('users.id', '=', 'settings_mass_groups_users.user_id')
+                        ->on('settings_mass_groups_users.type', '=',DB::raw(0));
+                    $join->where('settings_mass_groups_users.group_id', '=',$group_id );
+                })->select(['users.*','settings_mass_groups_users.user_id']);
+            }
+
+
+
+            /* =============== id Filter  =============== */
+            if (isset($aFilters['id']) && !empty($aFilters['id'])) {
+                $oResult = $oResult->where(DB::raw('users.id'), $aFilters['id']);
+            }
+
+            /* =============== Nmae Filter  =============== */
+            if (isset($aFilters['first_name']) && !empty($aFilters['first_name'])) {
+                $oResult = $oResult->where('first_name', 'like', '%' . $aFilters['first_name'] . '%');
+            }
+
+            if (isset($aFilters['last_name']) && !empty($aFilters['last_name'])) {
+                $oResult = $oResult->where('last_name', 'like', '%' . $aFilters['last_name'] . '%');
+            }
+
+            /* =============== email Filter  =============== */
+            if (isset($aFilters['email']) && !empty($aFilters['email'])) {
+                $oResult = $oResult->where('email', 'like', '%' . $aFilters['email'] . '%');
+            }
+
+
+            $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+
+            if (!$bFullSet) {
+                $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+
+            } else {
+                $oResult = $oResult->get();
+
+            }
+
+
+            /* =============== Preparing Output  =============== */
+
+            return $oResult;
+
+    }
+
 
 }

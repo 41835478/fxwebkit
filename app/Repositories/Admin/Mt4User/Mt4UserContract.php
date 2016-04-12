@@ -28,6 +28,7 @@ interface Mt4UserContract
 	 * @return array
 	 */
          public function getUsersMt4UsersByFilter($aFilters, $bFullSet=false, $sOrderBy = 'LOGIN', $sSort = 'ASC');
+
          public function getAllGroups();
          /**
 	 * @param int $login
@@ -35,4 +36,8 @@ interface Mt4UserContract
 	 */
         public function getUserInfo($login);
 
+
+    public function getUsersMt4UsersWithMassGroup($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC');
+
+    public function delete($id);
 }

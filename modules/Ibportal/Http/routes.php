@@ -33,6 +33,7 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'admin', 'names
 		'getAssignAgents'=>'admin.ibportal.assignAgents',
 		'getAgentMoney'=>'admin.ibportal.agentMoney',
 		'getSummary'=>'admin.ibportal.summary',
+		'getAssignUsresAgent'=>'admin.ibportal.assignUsresAgent',
 	]);
 });
 

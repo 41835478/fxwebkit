@@ -26,6 +26,7 @@ interface Mt4TradeContract {
      */
     public function getOpenTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC');
 
+
     /**
      * Gets the orders types
      *
@@ -140,5 +141,23 @@ interface Mt4TradeContract {
      * @return object
      */
     public function getAccountantByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC');
+
+    public function getAgentSymbols();
+
+    public function getServerTypes();
+
+    public function getAccountantTypes();
+
+    public function getClientGrowthChart($login, $server_id);
+
+    public function getClinetBalanceChart($login, $server_id);
+
+    public function getClinetSymbolsChart($login, $server_id);
+
+    public function getStatistics($login, $server_id);
+
+    public function getAgentClosedTradesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC',$agent_id);
+
+    public function getAgentOpenTradesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC',$agent_id);
 
 }

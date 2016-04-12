@@ -607,7 +607,6 @@ return $this->getMassMailer($oRequest);
 
     public function getAssignToMassGroup(Request $oRequest)
     {
-
         $group_id = $oRequest->group_id;
 
         $oGroups = $this->oMt4User->getAllGroups();

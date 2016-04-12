@@ -143,6 +143,7 @@ class EloquentUserRepository implements UserContract
 
         return $oResult;
     }
+
     public function getUsersWithMassGroup($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
     {
 
@@ -215,8 +216,6 @@ class EloquentUserRepository implements UserContract
     {
 
         $agents = $aFilters['agents'];
-        //$oResult =new User();
-
 
         $oRole = Sentinel::findRoleBySlug('admin');
         $role_id = $oRole->id;
@@ -418,13 +417,6 @@ class EloquentUserRepository implements UserContract
             $aCredentials['password'] = $oRequest->password;
         }
 
-//        $updateResult = Sentinel::validForUpdate($user, $aCredentials);
-//       
-//        if($updateResult){
-//            $fullDetails->save();
-//        }else{
-//            return ['The email has already been taken.'];
-//        }
         try {
             $user = Sentinel::update($user, $aCredentials);
             $fullDetails->save();
@@ -476,28 +468,6 @@ class EloquentUserRepository implements UserContract
         }
         return true;
     }
-//
-//    public function assignAgents($account_id, $users_id)
-//    {
-//        if (is_array($users_id)) {
-//            foreach ($users_id as $id => $user_id) {
-//
-//                $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id])->first();
-//                if ($asign) {
-//                    $asign->users_id = $account_id;
-//                    $asign->mt4_users_id = $user_id;
-//                    $asign->save();
-//                } else {
-//                    $asign = new mt4_users_users;
-//
-//                    $asign->users_id = $account_id;
-//                    $asign->mt4_users_id = $user_id;
-//                    $asign->save();
-//                }
-//            }
-//        }
-//        return true;
-//    }
 
     public function unsignMt4UsersToAccount($account_id, $users_id, $server_id = 1)
     {

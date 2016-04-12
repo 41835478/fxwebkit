@@ -169,8 +169,6 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
                     'default_leverage' => $group->default_leverage,
                     'default_deposit' => $group->default_deposit,
                     'maxsecurities' => $group->maxsecurities,
-//                    'ConGroupSec' => $group->secgroups,
-//                    'ConGroupMargin' => $group->secmargins,
                     'secmargins_total' => $group->secmargins_total,
                     'currency' =>$group->currency,
                     'credit' => $group->credit,
@@ -312,8 +310,6 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
             foreach($apiSymbols->data as $symbol){
 
                 $symbols[] = [
-
-           //         'name'=>'',
                     'securities_id'=>'securities_id',
                     'symbol'=>$symbol->symbol,
                     'description'=>$symbol->description,
@@ -329,7 +325,6 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
                     'realtime'=>$symbol->realtime,
                     'starting'=>$symbol->starting,
                     'expiration'=>$symbol->expiration,
-                    //'sessions'=>$symbol->sessions,/////////////////////
                     'profit_mode'=>$symbol->profit_mode,
                     'profit_reserved'=>$symbol->profit_reserved,
                     'filter'=>$symbol->filter,
@@ -369,7 +364,6 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
                     'quotes_delay'=>$symbol->quotes_delay,
                     'swap_openprice'=>$symbol->swap_openprice,
                     'swap_variation_margin'=>$symbol->swap_variation_margin,
-              //      'unused'=>''
               ];
 
 
@@ -383,11 +377,8 @@ class EloquentMt4ConfigrationsContractRepository implements Mt4ConfigrationsCont
                             'trade'=>serialize($session->trade),
                             'quote_overnight'=>$session->quote_overnight,
                             'trade_overnight'=>$session->trade_overnight,
-                            // 'reserved'=>$session->reserved
                         ];
                     }
-
-
                 }
 
                 if($emptyAliases){

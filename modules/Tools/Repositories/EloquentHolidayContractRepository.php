@@ -8,6 +8,7 @@ use Modules\Tools\Entities\ToolsSecurities as Securities;
 use Modules\Tools\Entities\ToolsHolidaySymbols;
 use Modules\Mt4Configrations\Entities\ConfigrationsSymbols;
 use Config;
+
 class EloquentHolidayContractRepository implements HolidayContract
 {
 
@@ -72,13 +73,13 @@ class EloquentHolidayContractRepository implements HolidayContract
         $result = ToolsHoliday::find($holidayId);
 
 
-
         return ($result) ? $result : 0;
 
     }
 
 
-    public function getUpdateholiday($oRequest) {
+    public function getUpdateholiday($oRequest)
+    {
 
 
         $result = ToolsHoliday::find($oRequest->edit_id);
@@ -90,24 +91,24 @@ class EloquentHolidayContractRepository implements HolidayContract
             'end_date' => $oRequest->end_date
         ];
 
-            $result->update($aCredentials);
+        $result->update($aCredentials);
 
         return $result->id;
     }
 
-    public function getSymbols(){
+    public function getSymbols()
+    {
 
-        $aSymbols=ConfigrationsSymbols::select(['id','symbol'])->distinct('symbol')->lists('symbol','id');
+        $aSymbols = ConfigrationsSymbols::select(['id', 'symbol'])->distinct('symbol')->lists('symbol', 'id');
 
-return $aSymbols;
+        return $aSymbols;
     }
 
     public function addSymbolsHoliday($aSymbols, $holiday_id, $start_hour, $end_hour, $date)
     {
-        $result=false;
-        if(count($aSymbols)){
+        $result = false;
+        if (count($aSymbols)) {
             foreach ($aSymbols as $symbol) {
-                //$symbol=explode(',',$symbol);
                 $row = ['holiday_id' => $holiday_id,
                     'securities_id' => $symbol,
                     'symbols_id' => $symbol,
@@ -117,14 +118,11 @@ return $aSymbols;
                 $result = ToolsHolidaySymbols::create($row);
             }
         }
-
-
-        return ($result) ? true :false;
+        return ($result) ? true : false;
     }
 
     public function deleteHoliday($id)
     {
-
         $id = (is_array($id)) ? $id : [$id];
         $deleteResult = ToolsHoliday::whereIn('id', $id)->delete();
 
@@ -136,35 +134,37 @@ return $aSymbols;
     }
 
 
-    private function convertHourToPercent($hour){
-        $aHour=explode(':',$hour);
-        $percent=$aHour[0]*1/24+($aHour[1]*1/(60*24))+($aHour[2]*1/(60*24*24));
-        return round($percent,7)*100;
+    private function convertHourToPercent($hour)
+    {
+        $aHour = explode(':', $hour);
+        $percent = $aHour[0] * 1 / 24 + ($aHour[1] * 1 / (60 * 24)) + ($aHour[2] * 1 / (60 * 24 * 24));
+        return round($percent, 7) * 100;
     }
 
-    public function getHolidaySymbolsDetails($holiday_id,$date=''){
+    public function getHolidaySymbolsDetails($holiday_id, $date = '')
+    {
+        $oHolidayDaysResults = ToolsHolidaySymbols::select('date')->distinct('date')->where('holiday_id', $holiday_id)->get();
+        $firstDate = '';
+        $aDates = [];
 
-        $oHolidayDaysResults=ToolsHolidaySymbols::select('date')->distinct('date')->where('holiday_id',$holiday_id)->get();
-
-        $firstDate='';
-        $aDates=[];
-
-        foreach($oHolidayDaysResults as $result){
-            if($firstDate ==''){$firstDate=$result->date;}
-            $aDates[]=$result->date;
+        foreach ($oHolidayDaysResults as $result) {
+            if ($firstDate == '') {
+                $firstDate = $result->date;
+            }
+            $aDates[] = $result->date;
         }
-        $date=($date=='')? $firstDate:$date;
+        $date = ($date == '') ? $firstDate : $date;
 
-        $oResults=ToolsHolidaySymbols::with('symbols')
-            ->where('holiday_id',$holiday_id)
-            ->where('date',$date)
-            ->orderBy('symbols_id','desc')
-        ->paginate();
+        $oResults = ToolsHolidaySymbols::with('symbols')
+            ->where('holiday_id', $holiday_id)
+            ->where('date', $date)
+            ->orderBy('symbols_id', 'desc')
+            ->paginate();
 
-        $aSymbolsHours=[];
+        $aSymbolsHours = [];
 
 
-        foreach($oResults as $result) {
+        foreach ($oResults as $result) {
             $aSymbolsHours[$result->symbols->symbol][] =
                 [
                     $this->convertHourToPercent($result->start_hour),
@@ -176,7 +176,7 @@ return $aSymbols;
 
         }
 
-        return [$aSymbolsHours,$aDates,$date];
+        return [$aSymbolsHours, $aDates, $date];
     }
 
     public function deleteSymbol($id)
@@ -190,7 +190,6 @@ return $aSymbols;
             return [trans('tools::tools.deleted_faild_message')];
         }
     }
-
 
 
 }

@@ -743,4 +743,79 @@ class IbportalController extends Controller
     }
 
 
+    public function getAssignUsresAgent(Request $oRequest)
+    {
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+        $aGroups = [];
+        $oResults = null;
+        $aFilterParams = [
+            'id'=>'',
+            'group_id' => $oRequest->group_id,
+            'first_name' => '',
+            'last_name' => '',
+            'email' => '',
+            'sort' => $sSort,
+            'order' => $sOrder,
+            'signed' => 0,
+        ];
+
+        if ($oRequest->has('search')) {
+            $aFilterParams['id'] = $oRequest->id;
+            $aFilterParams['group_id'] = $oRequest->group_id;
+            $aFilterParams['first_name'] = $oRequest->first_name;
+            $aFilterParams['last_name'] = $oRequest->last_name;
+            $aFilterParams['email'] = $oRequest->email;
+            $aFilterParams['signed'] = $oRequest->signed;
+
+            $aFilterParams['sort'] = $oRequest->sort;
+            $aFilterParams['order'] = $oRequest->order;
+
+
+
+        }
+
+
+        $oResults = $this->Ibportal->getAssignUsresToAgent($aFilterParams, false, $sOrder, $sSort);
+
+        return view('ibportal::admin.assignUsresToAgent')
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams)
+            ->with('aActive',[
+                    trans('accounts::accounts.all'),
+                    trans('accounts::accounts.active'),
+                    trans('accounts::accounts.notActive')
+                ]
+            );
+    }
+
+    public function postAssignUsresAgent(Request $oRequest)
+    {
+
+        if ($oRequest->has('asign_mt4_users_submit') || $oRequest->has('asign_mt4_users_submit_id')) {
+
+            $users_checkbox = ($oRequest->has('asign_mt4_users_submit_id')) ? [$oRequest->get('asign_mt4_users_submit_id')] : $oRequest->users_checkbox;
+
+            $group_id = $oRequest->group_id;
+
+            $this->oUser->assignMt4ToMassGroup($group_id, $users_checkbox,0);
+
+            return $this->getAssginToMassAccountsList($oRequest);
+
+        }
+
+        if ($oRequest->has('un_sign_mt4_users_submit') || $oRequest->has('un_sign_mt4_users_submit_id')) {
+
+            $users_checkbox = ($oRequest->has('un_sign_mt4_users_submit_id')) ? [$oRequest->get('un_sign_mt4_users_submit_id')] : $oRequest->users_checkbox;
+
+            $group_id = $oRequest->group_id;
+            $this->oUser->unassignMt4ToMassGroup($group_id, $users_checkbox,0);
+
+            return $this->getAssginToMassAccountsList($oRequest);
+
+
+        }
+    }
+
+
 }

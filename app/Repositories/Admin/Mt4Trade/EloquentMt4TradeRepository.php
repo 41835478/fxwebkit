@@ -346,12 +346,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         $oResult = new Mt4Open();
 
         /* =============== Login Filters =============== */
-        //if ((isset($aFilters['login']) && !empty($aFilters['login'])) ) {
 
         $oResult = $oResult->where('LOGIN', '=', $aFilters['login'])->where('server_id', '=', $aFilters['server_id']);
 
-
-        //}
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
             (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
@@ -408,15 +405,15 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
      */
     public function getClosedTradesByDate($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC')
     {
-//dd($aFilters);
+
         $oFxHelper = new Fx();
         $oResult = new Mt4Closed();
 
         /* =============== Login Filters =============== */
-        //if ((isset($aFilters['login']) && !empty($aFilters['login'])) ) {
+
 
         $oResult = $oResult->where('LOGIN', '=', $aFilters['login'])->where('server_id', '=', $aFilters['server_id']);
-        //}
+
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
             (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
@@ -472,7 +469,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
     public function getOpenTradesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC')
     {
         $oFxHelper = new Fx();
-        //$oResult = Mt4Trade::where('CLOSE_TIME', '=', '1970-01-01 00:00:00');
+
         /* ===============================check admin or user================ */
         $oResult = '';
         if ($user = current_user()->getUser()) {
@@ -878,7 +875,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         $totalLots = $totalLotsResult->where('COMMISSION', '!=', 0)->sum('VOLUME');
 
         $oResult->groupBy('SYMBOL');
-        //$oResult = $oResult;
+
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
         if (!$bFullSet) {
@@ -1034,17 +1031,13 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
     public function getClientGrowthChart($login, $server_id)
     {
 
-
-        // $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
-
-
         $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'), 'CMD'])
             ->where('login', $login)
             ->where('server_id', $server_id)
             ->orderBy('CLOSE_TIME')
             ->get();
 
-        // $growth_array = [0.00, 590.00, 100.00, 150.00, 200.00, 250.00, 300.00, 350.00, 400.00, 450.00];
+
         $growth_array = [];
         $horizontal_line_numbers = [];
         $pastK = 1;
@@ -1066,8 +1059,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
                 $pastK *= ($lastBalance != 0) ? ($pastBalance + $lastBalance / ($lastBalance * $lastBalance)) : 1;
                 $pastK /= ($lastBalance != 0) ? $lastBalance : 1;
 
-                //$pastBalance+=$row->netProfit;
-
                 $lastBalance = $pastBalance + $row->netProfit;
             }
 
@@ -1075,13 +1066,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         }
 
         $averages_array = [];
-
-        /*
-         * $result=Enumerable::from(array(1, 2, 3));
-         * dd($result);
-         */
-        //Trades: Profit Trades:  Loss Trade: Best Trade: Worst Trade: Gross Profit: Gross Loss: Maximum consecutive wins: Maximal consecutive profit: Sharpe Ratio: Recovery Factor: Long Trades: Shart Trades: Profits Factor: Expected Payoff: Average Profit: Average Loss: Maximum consecutive losses: Maximal consecutive loss: Monthly grouth: Annual Farecast:
-        //trades profit_trades loss_trade best_trade worst_trade gross_profit gross_loss maximum__consecutive_wins maximal_consecutive_profit sharpe_ratio recovery_factor long_trades shart_trades profits_factor expected_payoff average_profit average_loss maximum_consecutive_losses maximal_consecutive_loss monthly_grouth annual_farecast
 
         list($symbols_pie_array, $sell_array, $buy_array, $sell_buy_horizontal_line_numbers) = $this->getClinetSymbolsChart($login, $server_id);
 
@@ -1096,10 +1080,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
     public function getClinetBalanceChart($login, $server_id)
     {
-
-
-        // $horizontal_line_numbers = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
-
 
         $oGrowthResults = Mt4ClosedActualBalance::select([DB::raw('PROFIT+COMMISSION+SWAPS as netProfit'), 'CMD'])
             ->where('login', $login)
@@ -1258,8 +1238,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             ->orderBy('PROFIT', 'asc')
             ->first();
         $statistics['worst_trade'] = (count($oWorst_trade)) ? $oWorst_trade->PROFIT : 0;
-        //$statistics['worst_trade'] = '<span class="' . (( $statistics['worst_trade'] < 0) ? 'red_font' : 'blue_font') . '">' . $statistics['worst_trade'] . '</span> ';
-
 
         /* ==== gross_profit ==== */   /* ==== gross_loss ==== */ /* ==== profit ==== */
 
@@ -1270,7 +1248,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             ->get()
             ->sum('PROFIT');
 
-        //dd($gross_profit_result);
+
         $statistics['gross_profit'] = $gross_profit_result;
 
 
@@ -1284,11 +1262,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
 
         $statistics['profit'] = $statistics['gross_profit'] + $statistics['gross_loss'];
-
-
-//        $statistics['gross_profit'] =  $statistics['gross_profit'] ;
-//
-//        $statistics['gross_loss'] =  $statistics['gross_loss'];
 
 
         /* === maximal_consecutive_profit === */
@@ -1388,226 +1361,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         }
 
         /*_________________________________________________*/
-
-
-//
-//        $maxWin=0;
-//        $maxWinNumber=0;
-//
-//        $currentMaxWin=0;
-//        $currentMaxWinNumber=0;
-//
-//        $pastMaxWin=0;
-//        $pastMaxWinNumber=0;
-//
-//
-//        $minWin=0;
-//        $minWinNumber=0;
-//
-//        $currentMinWin=0;
-//        $currentMinWinNumber=0;
-//
-//        $pastMinWin=0;
-//        $pastMinWinNumber=0;
-//
-//        $pastTradeLossOrWin='win';
-//        foreach($consecutive_result as $row){
-//            if($row->total >=0){
-//                if($pastTradeLossOrWin!='win'){
-//                    $currentMaxWinNumber=1;
-//                    $currentMaxWin=$row->total;
-//
-//                    $pastMinWinNumber=$currentMinWinNumber;
-//                    $pastMinWin=$currentMinWin;
-//                }else{
-//                    $currentMaxWinNumber+=1;
-//                    $currentMaxWin+=$row->total;
-//                }
-//                if($pastMaxWinNumber>$currentMaxWinNumber){
-//                    $maxWinNumber=$pastMaxWinNumber;
-//                    $maxWin=$pastMaxWin;
-//                }else if($pastMaxWinNumber==$currentMaxWinNumber){
-//                    $maxWin=($pastMaxWin>$currentMaxWin)? $pastMaxWin:$currentMaxWin;
-//                }else{
-//                    $maxWinNumber=$currentMaxWinNumber;
-//                    $maxWin=$currentMaxWin;
-//                }
-//
-//                $pastTradeLossOrWin='win';
-//            }else{
-//                if($pastTradeLossOrWin!='loss'){
-//                    $pastMaxWinNumber=$currentMaxWinNumber;
-//                    $pastMaxWin=$currentMaxWin;
-//
-//                    $currentMinWinNumber=1;
-//                    $currentMinWin=$row->total;
-//
-//
-//                }else{
-//
-//                    $currentMinWinNumber+=1;
-//                    $currentMinWin+=$row->total;
-//                }
-//                if($pastMinWinNumber<$currentMinWinNumber){
-//                    $minWinNumber=$currentMinWinNumber;
-//                    $minWin=$currentMinWin;
-//                }else if($pastMinWinNumber==$currentMinWinNumber){
-//                    $minWin=($pastMinWin<$currentMinWin)? $pastMinWin:$currentMinWin;
-//                }else{
-//                    $minWinNumber=$pastMinWinNumber;
-//                    $minWin=$pastMinWin;
-//                }
-//
-//                $pastTradeLossOrWin='loss';
-//            }
-//
-//        }
-//
-//
-//
-//
-//
-//
-//
-//        $maxProfit=0;
-//        $maxProfitNumber=0;
-//
-//        $currentMaxProfit=0;
-//        $currentMaxProfitNumber=0;
-//
-//        $pastMaxProfit=0;
-//        $pastMaxProfitNumber=0;
-//
-//
-//        $minProfit=0;
-//        $minProfitNumber=0;
-//
-//        $currentMinProfit=0;
-//        $currentMinProfitNumber=0;
-//
-//        $pastMinProfit=0;
-//        $pastMinProfitNumber=0;
-//
-//        $pastTradeLossOrWin='win';
-//        foreach($consecutive_result as $row){
-//            if($row->total >=0){
-//                if($pastTradeLossOrWin!='win'){
-//                    $currentMaxProfitNumber=1;
-//                    $currentMaxProfit=$row->total;
-//
-//                    $pastMinProfitNumber=$currentMinProfitNumber;
-//                    $pastMinProfit=$currentMinProfit;
-//                }else{
-//                    $currentMaxProfitNumber+=1;
-//                    $currentMaxProfit+=$row->total;
-//                }
-//                if($pastMaxProfit>$currentMaxProfit){
-//                    $maxProfitNumber=$pastMaxProfitNumber;
-//                    $maxProfit=$pastMaxProfit;
-//                }else if($pastMaxProfit==$currentMaxProfit){
-//                    $maxProfitNumber=($pastMaxProfitNumber>$currentMaxProfitNumber)? $pastMaxProfitNumber:$currentMaxProfitNumber;
-//                }else{
-//                    $maxWinNumber=$currentMaxProfitNumber;
-//                    $maxWin=$currentMaxProfit;
-//                }
-//
-//                $pastTradeLossOrWin='win';
-//            }else{
-//                if($pastTradeLossOrWin!='loss'){
-//                    $pastMaxProfitNumber=$currentMaxProfitNumber;
-//                    $pastMaxProfit=$currentMaxProfit;
-//
-//                    $currentMinProfitNumber=1;
-//                    $currentMinProfit=$row->total;
-//
-//
-//                }else{
-//
-//                    $currentMinProfitNumber+=1;
-//                    $currentMinProfit+=$row->total;
-//                }
-//                if($pastMinProfit<$currentMinProfit){
-//                    $minProfitNumber=$currentMinProfitNumber;
-//                    $minProfit=$currentMinProfit;
-//                }else if($pastMinProfit==$currentMinProfit){
-//                    $minProfitNumber=($pastMinProfitNumber<$currentMinProfitNumber)? $pastMinProfitNumber:$currentMinProfitNumber;
-//                }else{
-//                    $minProfitNumber=$pastMinProfitNumber;
-//                    $minProfit=$pastMinProfit;
-//                }
-//
-//                $pastTradeLossOrWin='loss';
-//            }
-//
-//        }
-
-
-//        foreach($consecutive_result as $row){
-//
-//            if($row->total >= 0){
-//                if($pastTradeLossOrWin == 'loss'){
-//
-//                    $pastMinWin=$currentMinWin;
-//                    $pastMinWinNumber=$currentMinWinNumber;
-//
-//                    $currentMaxWin=0;
-//                    $currentMaxWinNumber=1;
-//                }else{
-//
-//                    $currentMaxWin+=$row->total;
-//                    $currentMaxWinNumber+=1;
-//
-//                }
-//
-//                if($pastMaxWinNumber > $currentMaxWinNumber){
-//                    $maxWinNumber = $pastMaxWinNumber ;
-//                    $maxWin= $pastMaxWin;
-//
-//                }else if($pastMaxWinNumber = $currentMaxWinNumber){
-//                    $maxWin=($pastMaxWin>$currentMaxWin )? $pastMaxWin:$currentMaxWin;
-//                }else{
-//
-//                    $maxWinNumber= $currentMaxWinNumber;
-//                    $maxWin= $currentMaxWin;
-//                }
-//
-//
-//
-//
-//                $pastTradeLossOrWin='win';
-//
-//            }else if($row->total < 0){
-//
-//                if($pastTradeLossOrWin == 'win'){
-//                    $pastMaxWin=$currentMaxWin;
-//                    $pastMaxWinNumber=$currentMaxWinNumber;
-//
-//                    $currentMinWin=$row->total;
-//                    $currentMinWinNumber+=1;
-//                }else{
-//
-//                    $currentMinWin=0;
-//                    $currentMinWinNumber=1;
-//                }
-//
-//
-//                if($pastMinWinNumber >$currentMinWinNumber){
-//                    $minWinNumber = $pastMinWinNumber ;
-//                    $minWin= $pastMinWin;
-//
-//                }else if($pastMinWinNumber = $currentMinWinNumber){
-//                    $minWin=($pastMinWin<$currentMinWin )? $pastMinWin:$currentMinWin;
-//                }else{
-//
-//                    $minWinNumber= $currentMinWinNumber;
-//                    $minWin= $currentMinWin;
-//                }
-//
-//
-//                $pastTradeLossOrWin='loss';
-//            }
-//
-//        }
 
         $statistics['maximum_consecutive_wins_number'] = $maxWinNumber;
         $statistics['maximum_consecutive_wins'] = $maxWin;

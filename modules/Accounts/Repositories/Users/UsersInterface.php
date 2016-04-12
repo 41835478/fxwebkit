@@ -26,6 +26,8 @@ interface Mt4UserContract
 	 * @return array
 	 */
         public function getUserInfo($login);
+
+    public function asignMt4UsersToAccount($account_id,$users_id,$server_id=1);
         
         
         

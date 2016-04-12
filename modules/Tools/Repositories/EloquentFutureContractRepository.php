@@ -7,15 +7,18 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Config;
 use Carbon\Carbon;
 
-class EloquentFutureContractRepository implements FutureContract {
+class EloquentFutureContractRepository implements FutureContract
+{
 
     /**
      */
-    public function __construct() {
+    public function __construct()
+    {
         //
     }
 
-    public function addContract($oRequest) {
+    public function addContract($oRequest)
+    {
 
         $oAddContract = new EntitiesFutureContract();
 
@@ -34,7 +37,8 @@ class EloquentFutureContractRepository implements FutureContract {
         return $oAddContract->id;
     }
 
-    public function getContractByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin') {
+    public function getContractByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
+    {
 
 
         $oContract = Sentinel::findRoleBySlug($role);
@@ -80,12 +84,12 @@ class EloquentFutureContractRepository implements FutureContract {
         if (isset($aFilters['expiry_date']) && !empty($aFilters['expiry_date'])) {
             $oResult = $oResult->where('expiry_date', 'like', '%' . $aFilters['expiry_date'] . '%');
         }
-        if ($aFilters['all_groups']== true) {
-         
+        if ($aFilters['all_groups'] == true) {
+
             $carbon = new Carbon();
             $dt = $carbon->now();
             $oResult = $oResult->where('expiry_date', '>=', $dt->format('Y-m-d'));
-              
+
         }
 
 
@@ -95,37 +99,37 @@ class EloquentFutureContractRepository implements FutureContract {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
         } else {
             $oResult = $oResult->get();
-         
+
         }
-        
-        foreach ($oResult as $dKey => $oValue) {         
+
+        foreach ($oResult as $dKey => $oValue) {
         }
-       
+
         return $oResult;
     }
 
-     public function sendExpiryNotificationsEmail() {
+    public function sendExpiryNotificationsEmail()
+    {
 
         $oResult = new EntitiesFutureContract();
-        
-         $carbon = new Carbon();
-            $dt = $carbon->now();
-         Carbon::setWeekStartsAt(Carbon::SATURDAY);
-        
-           $startOfWeek=$dt->startOfWeek();
-            $oResult = EntitiesFutureContract::where('expiry_date', '>', $startOfWeek->addWeek(0)->format('Y-m-d'));
-            $oResult =$oResult->where('expiry_date', '<', $startOfWeek->addWeek(1)->format('Y-m-d'));
-            
+
+        $carbon = new Carbon();
+        $dt = $carbon->now();
+        Carbon::setWeekStartsAt(Carbon::SATURDAY);
+
+        $startOfWeek = $dt->startOfWeek();
+        $oResult = EntitiesFutureContract::where('expiry_date', '>', $startOfWeek->addWeek(0)->format('Y-m-d'));
+        $oResult = $oResult->where('expiry_date', '<', $startOfWeek->addWeek(1)->format('Y-m-d'));
 
 
-          
-            $oResult = $oResult->get()->toArray();
+        $oResult = $oResult->get()->toArray();
 
         return $oResult;
     }
-    
-    
-    public function deleteContract($id) {
+
+
+    public function deleteContract($id)
+    {
 
         $id = (is_array($id)) ? $id : [$id];
         $contract = EntitiesFutureContract::whereIn('id', $id)->delete();
@@ -137,7 +141,8 @@ class EloquentFutureContractRepository implements FutureContract {
         }
     }
 
-    public function getContractDetails($contractId) {
+    public function getContractDetails($contractId)
+    {
 
         $contract = EntitiesFutureContract::find($contractId);
 
@@ -164,7 +169,8 @@ class EloquentFutureContractRepository implements FutureContract {
         return $contractDetails;
     }
 
-    public function updateContract($oRequest) {
+    public function updateContract($oRequest)
+    {
 
         $contract = EntitiesFutureContract::find($oRequest->id);
         $fullDetails = EntitiesFutureContract::where('id', $contract->id)->first();
@@ -194,7 +200,8 @@ class EloquentFutureContractRepository implements FutureContract {
         return $contract->id;
     }
 
-    public function getExchange() {
+    public function getExchange()
+    {
 
         $aExchange = EntitiesFutureContract::select('exchange')->distinct()->get()->toArray();
 
@@ -209,7 +216,8 @@ class EloquentFutureContractRepository implements FutureContract {
         return $exchangeJavaArray;
     }
 
-    public function getName() {
+    public function getName()
+    {
 
         $aName = EntitiesFutureContract::select('name')->distinct()->get()->toArray();
 
@@ -224,7 +232,8 @@ class EloquentFutureContractRepository implements FutureContract {
         return $nameJavaArray;
     }
 
-    public function getMonth($iso2) {
+    public function getMonth($iso2)
+    {
 
         $month_arr = [
             "1" => "January",
@@ -242,10 +251,11 @@ class EloquentFutureContractRepository implements FutureContract {
         ];
         if ($iso2 === null) {
             return $month_arr;
-        }if (isset($month_arr[$iso2])) {
+        }
+        if (isset($month_arr[$iso2])) {
             return $month_arr[$iso2];
         } else {
-           
+
             return $iso2;
         }
     }

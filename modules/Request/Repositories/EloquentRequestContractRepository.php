@@ -24,9 +24,6 @@ class EloquentRequestContractRepository implements RequestContract
 
     function editConfigFile($filePath, $variables)
     {
-
-//$config = new Larapack\ConfigWriter\Repository('modules/Accounts/Config/config.php'); // loading the config from config/app.php
-//        $config = new Larapack\ConfigWriter\Repository('Config/fxweb.php'); // loading the config from config/app.php
         $config = new \Larapack\ConfigWriter\Repository($filePath);
 
         if (count($variables)) {
@@ -46,7 +43,7 @@ class EloquentRequestContractRepository implements RequestContract
             $oResult = $oResult->where('from_login', 'like', '%' . $aFilters['login'] . '%');
         }
 
-        if (isset($aFilters['status']) && $aFilters['status']>=0) {
+        if (isset($aFilters['status']) && $aFilters['status'] >= 0) {
             $oResult = $oResult->where('status', $aFilters['status']);
         }
 
@@ -72,7 +69,7 @@ class EloquentRequestContractRepository implements RequestContract
             $oResult = $oResult->where('from_login', 'like', '%' . $aFilters['login'] . '%');
         }
 
-        if (isset($aFilters['status']) && $aFilters['status']>=0) {
+        if (isset($aFilters['status']) && $aFilters['status'] >= 0) {
             $oResult = $oResult->where('status', $aFilters['status']);
         }
 
@@ -88,6 +85,7 @@ class EloquentRequestContractRepository implements RequestContract
         return $oResult;
 
     }
+
     public function getChangeLeverageRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
     {
 
@@ -98,7 +96,7 @@ class EloquentRequestContractRepository implements RequestContract
         }
 
 
-        if (isset($aFilters['status']) && $aFilters['status']>=0) {
+        if (isset($aFilters['status']) && $aFilters['status'] >= 0) {
             $oResult = $oResult->where('status', $aFilters['status']);
         }
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
@@ -123,7 +121,7 @@ class EloquentRequestContractRepository implements RequestContract
             $oResult = $oResult->where('login', 'like', '%' . $aFilters['login'] . '%');
         }
 
-        if (isset($aFilters['status']) && $aFilters['status']>=0) {
+        if (isset($aFilters['status']) && $aFilters['status'] >= 0) {
             $oResult = $oResult->where('status', $aFilters['status']);
         }
 
@@ -144,7 +142,7 @@ class EloquentRequestContractRepository implements RequestContract
     public function getInternalTransferById($logId)
     {
 
-        $oResult =InternalTransfer::find($logId);
+        $oResult = InternalTransfer::find($logId);
 
         return $oResult;
 
@@ -154,12 +152,12 @@ class EloquentRequestContractRepository implements RequestContract
     public function internalTransferEdit($internalTransfer)
     {
 
-        $log= InternalTransfer::find($internalTransfer['logId']);
+        $log = InternalTransfer::find($internalTransfer['logId']);
 
 
-        $log->comment=$internalTransfer['comment'];
-        $log->reason=$internalTransfer['reason'];
-        $log->status=$internalTransfer['status'];
+        $log->comment = $internalTransfer['comment'];
+        $log->reason = $internalTransfer['reason'];
+        $log->status = $internalTransfer['status'];
         $log->save();
         /* TODO before return true please check if the record saved correctly */
 
@@ -172,7 +170,7 @@ class EloquentRequestContractRepository implements RequestContract
     public function getWithDrawalById($logId)
     {
 
-        $oResult =WithDrawal::find($logId);
+        $oResult = WithDrawal::find($logId);
 
         return $oResult;
 
@@ -181,7 +179,7 @@ class EloquentRequestContractRepository implements RequestContract
     public function getAddAccountById($logId)
     {
 
-        $oResult =AddAccount::find($logId);
+        $oResult = AddAccount::find($logId);
 
         return $oResult;
 
@@ -190,7 +188,7 @@ class EloquentRequestContractRepository implements RequestContract
     public function getChangeLeverageById($logId)
     {
 
-        $oResult =ChangeLeverage::find($logId);
+        $oResult = ChangeLeverage::find($logId);
 
         return $oResult;
 
@@ -199,7 +197,7 @@ class EloquentRequestContractRepository implements RequestContract
     public function getChangePasswordById($logId)
     {
 
-        $oResult =ChangePassword::find($logId);
+        $oResult = ChangePassword::find($logId);
 
         return $oResult;
 
@@ -208,7 +206,7 @@ class EloquentRequestContractRepository implements RequestContract
     public function getAssignAccountById($logId)
     {
 
-        $oResult =AssignAccount::find($logId);
+        $oResult = AssignAccount::find($logId);
 
         return $oResult;
 
@@ -218,16 +216,14 @@ class EloquentRequestContractRepository implements RequestContract
     public function withDrawalEdit($withDrawal)
     {
 
-        $log= WithDrawal::find($withDrawal['logId']);
+        $log = WithDrawal::find($withDrawal['logId']);
 
 
-        $log->comment=$withDrawal['comment'];
-        $log->reason=$withDrawal['reason'];
-        $log->status=$withDrawal['status'];
+        $log->comment = $withDrawal['comment'];
+        $log->reason = $withDrawal['reason'];
+        $log->status = $withDrawal['status'];
         $log->save();
         /* TODO before return true please check if the record saved correctly */
-
-
         return true;
 
     }
@@ -235,12 +231,12 @@ class EloquentRequestContractRepository implements RequestContract
     public function assignAccountEdit($assignAccount)
     {
 
-        $log= AssignAccount::find($assignAccount['logId']);
+        $log = AssignAccount::find($assignAccount['logId']);
 
 
-        $log->comment=$assignAccount['comment'];
-        $log->reason=$assignAccount['reason'];
-        $log->status=$assignAccount['status'];
+        $log->comment = $assignAccount['comment'];
+        $log->reason = $assignAccount['reason'];
+        $log->status = $assignAccount['status'];
         $log->save();
         /* TODO before return true please check if the record saved correctly */
 
@@ -252,12 +248,12 @@ class EloquentRequestContractRepository implements RequestContract
     public function addAccountEdit($addAccount)
     {
 
-        $log= AddAccount::find($addAccount['logId']);
+        $log = AddAccount::find($addAccount['logId']);
 
 
-        $log->comment=$addAccount['comment'];
-        $log->reason=$addAccount['reason'];
-        $log->status=$addAccount['status'];
+        $log->comment = $addAccount['comment'];
+        $log->reason = $addAccount['reason'];
+        $log->status = $addAccount['status'];
         $log->save();
         /* TODO before return true please check if the record saved correctly */
 
@@ -270,12 +266,12 @@ class EloquentRequestContractRepository implements RequestContract
     public function changePasswordEdit($changePassword)
     {
 
-        $log= ChangePassword::find($changePassword['logId']);
+        $log = ChangePassword::find($changePassword['logId']);
 
 
-        $log->comment=$changePassword['comment'];
-        $log->reason=$changePassword['reason'];
-        $log->status=$changePassword['status'];
+        $log->comment = $changePassword['comment'];
+        $log->reason = $changePassword['reason'];
+        $log->status = $changePassword['status'];
         $log->save();
         /* TODO before return true please check if the record saved correctly */
 
@@ -288,12 +284,12 @@ class EloquentRequestContractRepository implements RequestContract
     public function changeLeverageEdit($changeLeverage)
     {
 
-        $log= ChangeLeverage::find($changeLeverage['logId']);
+        $log = ChangeLeverage::find($changeLeverage['logId']);
 
 
-        $log->comment=$changeLeverage['comment'];
-        $log->reason=$changeLeverage['reason'];
-        $log->status=$changeLeverage['status'];
+        $log->comment = $changeLeverage['comment'];
+        $log->reason = $changeLeverage['reason'];
+        $log->status = $changeLeverage['status'];
         $log->save();
         /* TODO before return true please check if the record saved correctly */
 
@@ -302,60 +298,34 @@ class EloquentRequestContractRepository implements RequestContract
 
     }
 
-//    public function insertInternalTransferRequest($fromLogin,$toLogin,$amount,$comment,$reason,$status){
-//       $log= new InternalTransfer();
-//
-//        $log->insert([
-//            'from_login'=>$fromLogin,
-//            'to_login'=>$toLogin,
-//            'amount'=>$amount,
-//            'comment'=>$comment,
-//            'reason'=>$reason,
-//            'status'=>$status
-//        ]);
-//        return true;
-//
-//    }
-//
-//public function updateInternalTransferRequest($logId,$fromLogin,$toLogin,$amount,$comment,$reason,$status){
-//$log= InternalTransfer::find($logId);
-//
-//$log->from_login=$fromLogin;
-//    $log->to_login=$toLogin;
-//$log->amount=$amount;
-//$log->comment=$comment;
-//$log->reason=$reason;
-//$log->status=$status;
-//
-//return true;
-//}
-public function getAddAccountRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'id', $sSort = 'ASC'){
+    public function getAddAccountRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'id', $sSort = 'ASC')
+    {
 
-    $oResult = new  AddAccount();
+        $oResult = new  AddAccount();
 
 
-    if (isset($aFilters['first_name']) && !empty($aFilters['first_name'])) {
-        $oResult = $oResult->where('first_name', 'like', '%' . $aFilters['first_name'] . '%');
-    }
+        if (isset($aFilters['first_name']) && !empty($aFilters['first_name'])) {
+            $oResult = $oResult->where('first_name', 'like', '%' . $aFilters['first_name'] . '%');
+        }
 
-    if (isset($aFilters['status']) && $aFilters['status']>=0) {
-        $oResult = $oResult->where('status', $aFilters['status']);
-    }
+        if (isset($aFilters['status']) && $aFilters['status'] >= 0) {
+            $oResult = $oResult->where('status', $aFilters['status']);
+        }
 
-    $oResult = $oResult->orderBy($sOrderBy, $sSort);
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
 
-    if (!$bFullSet) {
-        $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
 
-    } else {
-        $oResult = $oResult->get();
+        } else {
+            $oResult = $oResult->get();
+
+        }
+
+        return $oResult;
 
     }
-
-    return $oResult;
-
-}
 
     public function getAssignAccountRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
     {
@@ -367,7 +337,7 @@ public function getAddAccountRequestByFilters($aFilters, $bFullSet = false, $sOr
         }
 
 
-        if (isset($aFilters['status']) && $aFilters['status']>=0) {
+        if (isset($aFilters['status']) && $aFilters['status'] >= 0) {
             $oResult = $oResult->where('status', $aFilters['status']);
         }
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
