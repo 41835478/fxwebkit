@@ -69,6 +69,8 @@
                                 <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults) !!}</th>
                                 <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults) !!}</th>
 
+
+
                             </tr>
                             </thead>
                             <tbody>
