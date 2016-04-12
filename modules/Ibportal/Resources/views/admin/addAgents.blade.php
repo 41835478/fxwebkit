@@ -22,13 +22,7 @@
                         {!! Form::text('login',$userInfo['login'],['class'=>'form-control']) !!}
                     </div>
                 </div>
-                <!-- col-sm-6 -->
-                <div class="col-sm-6">
-                    <div class="form-group no-margin-hr">
-                        <label class="control-label">{{ trans('ibportal::ibportal.password') }}</label>
-                        {!! Form::password("password",["class"=>"form-control","value"=>$userInfo['password']]) !!}
-                    </div>
-                </div>
+
                 <!-- col-sm-6 -->
             </div>
             <!-- row -->

@@ -14,6 +14,7 @@ use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
 use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
 use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
+use Modules\Ibportal\Entities\IbportalAgentUser as AgentUser;
 
 class IbportalController extends Controller
 {
@@ -645,19 +646,19 @@ class IbportalController extends Controller
     public function postAssignAgents(Request $oRequest)
     {
 
-        $oApiController = new ApiController();
+//        $oApiController = new ApiController();
 
-        $result = $oApiController->AssignAgents($oRequest['login'], $oRequest['password']);
+//        $result = $oApiController->AssignAgents($oRequest['login'], $oRequest['password']);
 
-        if ($result === true) {
-            $asign_result = $this->Ibportal->assignMt4Agents($oRequest->agentId, $oRequest['login']);
-            return Redirect::route('admin.ibportal.assignAgents')->withErrors('The User has been assigned successfully');
+//        if ($result === true) {
+            $asign_result = $this->Ibportal->assignMt4Agents($oRequest->agentId, $oRequest->login);
+            return $this->getAssignAgents($oRequest)->withErrors('The User has been assigned successfully');
 
-        } else {
-            return view('ibportal::admin.addAgents')
-                ->with('agentId', $oRequest->agentId)
-                ->with('userInfo', ['login' => $oRequest['login'], 'password' => $oRequest['password']])->withErrors($result);
-        }
+//        } else {
+//            return view('ibportal::admin.addAgents')
+//                ->with('agentId', $oRequest->agentId)
+//                ->with('userInfo', ['login' => $oRequest['login'], 'password' => $oRequest['password']])->withErrors($result);
+//        }
     }
 
     public function getAgentMoney(Request $oRequest)
@@ -743,6 +744,7 @@ class IbportalController extends Controller
     }
 
 
+
     public function getAssignUsresAgent(Request $oRequest)
     {
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
@@ -816,6 +818,31 @@ class IbportalController extends Controller
 
         }
     }
+
+
+    private function assignNewUserToAgent($agentId, $aUserId, $planId)
+    {
+
+        $aUserId=(is_array($aUserId))?$aUserId:[$aUserId];
+
+        $rows=[];
+        foreach($aUserId as $userId){
+            $rows[]=[
+                'agent_id' => $agentId,
+                'user_id' => $userId,
+                'plan_id' => $planId];
+        }
+
+        $result=false;
+        if(count($rows)){
+            $result= AgentUser::insert($rows);
+        }
+        return ($result)? true:false;
+
+
+
+    }
+
 
 
 }

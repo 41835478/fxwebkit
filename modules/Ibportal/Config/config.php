@@ -39,11 +39,11 @@ return [
             'title' => 'agent',
             'icon' => 'fa fa-user',
         ],
-        [
-            'route' => 'admin.ibportal.agentsCommission',
-            'title' => 'agentsCommission',
-            'icon' => 'fa fa-money',
-        ],
+//        [
+//            'route' => 'admin.ibportal.agentsCommission',
+//            'title' => 'agentsCommission',
+//            'icon' => 'fa fa-money',
+//        ],
         [
             'route' => 'admin.ibportal.agentMoney',
             'title' => 'agentMoney',
@@ -72,12 +72,12 @@ return [
             'title' => 'agentMoney',
             'icon' => 'fa fa-money',
         ],
-
-        [
-            'route' => 'client.ibportal.agentCommission',
-            'title' => 'agentCommission',
-            'icon' => 'fa fa-money',
-        ],
+//
+//        [
+//            'route' => 'client.ibportal.agentCommission',
+//            'title' => 'agentCommission',
+//            'icon' => 'fa fa-money',
+//        ],
         [
             'route' => 'clients.ibportal.openOrders',
             'title' => 'OpenOrders',

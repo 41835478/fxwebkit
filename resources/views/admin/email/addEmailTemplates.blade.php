@@ -58,7 +58,9 @@
         @stop
         @section('script')
             @parent
+        @if($sTemplate !='expiryContract')
             <script src="/cms_assets/ckeditor/ckeditor.js"></script>
+
             <script>
                 //CKEDITOR.replace( textarea );
                 CKEDITOR.replace('editor1', {
@@ -66,5 +68,6 @@
                     filebrowserUploadUrl: "{{ asset('/cms/articles/upload-image' ).'?_token='. csrf_token() }}"
                 });
             </script>
+            @endif
     </div>
 @stop

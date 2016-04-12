@@ -73,7 +73,7 @@ class EloquentIbportalContractRepository implements IbportalContract
     {
         $oResult = UserIbid::where('user_id', $agnetId)->first();
 
-        return $oResult->login;
+        return ($oResult)? $oResult->login:0;
     }
 
     public function getClientPlansByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $clientID)
@@ -763,6 +763,7 @@ class EloquentIbportalContractRepository implements IbportalContract
             $login = 0;
         }
 
+
         $oGrowthResults = Mt4ClosedBalance::select([DB::raw('sum(PROFIT+COMMISSION+SWAPS) as netProfit,concat(YEAR(CLOSE_TIME),concat("-",MONTH(CLOSE_TIME))) as month'), 'CMD'])
             ->where('login', $login)
             ->where('server_id', 0)
@@ -774,6 +775,7 @@ class EloquentIbportalContractRepository implements IbportalContract
 
         $balance_array = [];
         $horizontal_line_numbers = [];
+
 
         $pastBalance = 0;
         $i = 0;
@@ -809,7 +811,8 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     public function assignMt4Agents($agentId, $login)
     {
-        $userIbid = UserIbid::where('user_id', $agentId)->update(['login' => $login]);
+        $userIbid=UserIbid::where('user_id',$agentId)->update(['login' =>$login]);
+        return ($userIbid)?true:false;
 
     }
 
