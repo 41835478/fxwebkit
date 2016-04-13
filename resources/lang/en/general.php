@@ -228,4 +228,6 @@ return [
     'subject'=>'Subject',
     'sendTo'=>'Send To',
     'saveAndSend'=>'Save And Send',
+    'accounts'=>'Accounts',
+    'lastLogin'=>'Last Login',
 ];

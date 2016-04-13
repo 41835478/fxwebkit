@@ -1,6 +1,6 @@
 <?php
 
-Route::post('changeLanguage','\client\AuthController@postChangeLanguage');
+//Route::post('changeLanguage','\client\AuthController@postChangeLanguage');
 //$password=\Illuminate\Support\Facades\Hash::make('admin');dd($password);
 //$2y$10$TuVA/eIMmfxa4.wEGCXokOg5c71hAWpgpeiKRxacM7hgUrTHROLVO
 Route::group(['prefix' => env('ADMIN_NAME'), 'namespace' => 'Admin'], function() {

@@ -119,4 +119,8 @@
     'agentId' => 'Agent Id',
     'currentAgentMt4Is' => ' (Current Agent Mt4 Is ',
     'liveUsre' => ' Live Usre)',
+    'lastLogin'=>'Last Login',
+    'accounts'=>'Accounts',
+    'assigned'=>'Assigned',
+    'un_assign'=>'UnAssign',
 ]; ?>
