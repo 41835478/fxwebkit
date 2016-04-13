@@ -739,4 +739,24 @@ padding-top:150px;
 }
 
 
+#search-panel-toggle{
+    border: none;
+    background-color: #F8F8F8;
+    /*background: #f00;*/
+    height: 47px;
+    margin: -10px 0px -10px -10px;
+}
+#search-panel-toggle .fa-search{
+    padding:0px 5px 0px 5px  !important;}
 
+
+/*#search-panel-toggle  .fa-search:before{*/
+
+    /*content: "\f0da";*/
+/*}*/
+
+/*#search-panel-toggle  .fa-search:after{*/
+    /*content: "\f002";*/
+    /*padding-left:5px;*/
+    /*right: -10px;*/
+/*}*/
