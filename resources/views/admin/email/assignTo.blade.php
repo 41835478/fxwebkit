@@ -84,7 +84,6 @@
 
                     <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                         <li>
-
                             <a href="{{ route('admin.assginToMassAccountsList').'?group_id='.$aFilterParams['group_id'] }}">{{ trans('general.assginToUsers') }}</a>
                         </li>
                         <li class="active">
@@ -141,7 +140,6 @@
                                     {!! Form::hidden('group_id', $aFilterParams['group_id']) !!}
                                     {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                                     {!! Form::hidden('order', $aFilterParams['order']) !!}
-
                                     {!! Form::button( trans('general.assign') ,['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
                                     {!! Form::button(trans('general.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}
                                 </td>
