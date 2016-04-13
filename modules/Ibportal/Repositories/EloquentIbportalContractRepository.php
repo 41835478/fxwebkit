@@ -844,7 +844,7 @@ class EloquentIbportalContractRepository implements IbportalContract
 
                     $oResult = $oResult->with('agentPlan')->whereHas('agentPlan', function ($query) use ($agents,$plan_id) {
                         $query->where('agent_id', $agents);
-                        $query->where('plan_id', $plan_id);
+//                        $query->where('plan_id', $plan_id);
 
                         $query->with('plan');
                     });
@@ -853,11 +853,11 @@ class EloquentIbportalContractRepository implements IbportalContract
                 }
             }else{
 
-                $oResult=  User::leftJoin('ibportal_agent_user', function($join) use($agents,$plan_id) {
+                $oResult=  User::with('agentPlan')->leftJoin('ibportal_agent_user', function($join) use($agents,$plan_id) {
 
                     $join->on('users.id', '=', 'ibportal_agent_user.user_id');
                     $join->where('ibportal_agent_user.agent_id', '=',$agents );
-                    $join->where('ibportal_agent_user.plan_id', '=',$plan_id );
+//                    $join->where('ibportal_agent_user.plan_id', '=',$plan_id );
                 })->select(['users.*','ibportal_agent_user.user_id']);
             }
 

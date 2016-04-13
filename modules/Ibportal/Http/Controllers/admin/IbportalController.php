@@ -857,14 +857,18 @@ if(empty($aUserId)) return false;
 
         $rows=[];
         foreach($aUserId as $userId){
-            $data=[
+
+            $exist=AgentUser::where([
                 'agent_id' => $agentId,
-                'user_id' => $userId,
-                'plan_id' => $planId];
-            $exist=AgentUser::where($data)->first();
+                'user_id' => $userId])->first();
 
 
             if(!$exist){
+
+                $data=[
+                'agent_id' => $agentId,
+                'user_id' => $userId,
+                'plan_id' => $planId];
                 AgentUser::create($data);
             }
         }
@@ -884,7 +888,8 @@ if(empty($aUserId)) return false;
 
 
         foreach($aUserId as $userId){
-            $result= AgentUser::where(['agent_id'=>$agentId,'user_id'=>$userId,'plan_id'=>$planId])->first();
+//            $result= AgentUser::where(['agent_id'=>$agentId,'user_id'=>$userId,'plan_id'=>$planId])->first();
+            $result= AgentUser::where(['agent_id'=>$agentId,'user_id'=>$userId])->first();
             if($result){
                 $result->delete();
             }
