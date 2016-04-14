@@ -102,6 +102,7 @@
                                     <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults) !!}</th>
                                     <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults) !!}</th>
                                     <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.lastLogin'), 'last_login', $oResults) !!}</th>
+                                    <th class="no-warp">{!! trans('ibportal::ibportal.plan') !!}</th>
                                     <th class="no-warp"></th>
                                 </tr>
                                 </thead>
@@ -117,6 +118,8 @@
                                         <td>{{ $oResult->last_name }}</td>
                                         <td>{{ $oResult->email }}</td>
                                         <td>{{ $oResult->last_login }}</td>
+
+                                        <td>@if(isset($oResult->agentPlan)) {{  $oResult->agentPlan->plan->name }} @endif</td>
                                         <td>
                                             @if(isset($oResult->user_id ) || (isset($oResult->agentPlan) && $oResult->agentPlan->first()->user_id) )
                                                 {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->id  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
