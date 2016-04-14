@@ -348,7 +348,7 @@ class ClientIbportalController extends Controller
 
         list($horizontal_line_numbers, $balance_array, $balance, $statistics,$commission_horizontal_line_numbers,
             $commission_array) = $this->Ibportal->getAgentStatistics($clientId);
-
+    //    dd(102);
         $userIbid = UserIbid::where('user_id', current_user()->getUser()->id)->first();
 
 
