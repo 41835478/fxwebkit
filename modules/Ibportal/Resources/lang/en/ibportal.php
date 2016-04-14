@@ -123,4 +123,5 @@
     'accounts'=>'Accounts',
     'assigned'=>'Assigned',
     'un_assign'=>'UnAssign',
+    'assignUsersToAgent'=>'Assign Users To Agent',
 ]; ?>

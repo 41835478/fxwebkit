@@ -134,16 +134,17 @@
                                             @endif
 
 
-                                            @if(!count($oResult->activations))
+                                            {{--@if(!count($oResult->activations))--}}
+                                                {{--<a href="{{ route('accounts.activateUser').'?account_id='.$oResult->id }}"--}}
+                                                   {{--class="fa fa-check tooltip_number"--}}
+                                                   {{--data-original-title="{{trans('accounts::accounts.activateUser')}}"></a>--}}
+                                            {{--@endif--}}
+
+                                            @if((count($oResult->activations) && $oResult->activations[0]->completed ==0) || !count($oResult->activations))
                                                 <a href="{{ route('accounts.activateUser').'?account_id='.$oResult->id }}"
                                                    class="fa fa-check tooltip_number"
                                                    data-original-title="{{trans('accounts::accounts.activateUser')}}"></a>
                                             @endif
-
-                                            @if((count($oResult->activations) && $oResult->activations[0]->completed ==0) || !count($oResult->activations))
-                                            <a href="{{ route('accounts.activateUser').'?account_id='.$oResult->id }}"
-                                               class="fa fa-check tooltip_number" data-original-title="{{trans('accounts::accounts.activateUser')}}"></a>
-@endif
 
                                         </td>
                                     </tr>

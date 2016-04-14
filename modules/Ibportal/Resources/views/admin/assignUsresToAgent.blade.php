@@ -77,7 +77,7 @@
                         <div class="table-header">
 
                             <div class="table-caption">
-                                {{ trans('ibportal::ibportal.agentPlans') }}
+                                {{ trans('ibportal::ibportal.assignUsersToAgent') }}
                             </div>
                         </div>
 

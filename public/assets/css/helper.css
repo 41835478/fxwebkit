@@ -739,4 +739,13 @@ padding-top:150px;
 }
 
 
+.icon_button{ border:none; background-color: transparent;
+    width: auto;
+    color:#C7C4C4 !important;
+    font-size: 14px;
 
+}
+
+.icon_button i{
+    color: #C7C4C4 !important;
+}
