@@ -82,15 +82,16 @@
                         </div>
 
                         {!! Form::open(['id'=>'assign_form']) !!}
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="col-xm-6">
+                                    {!! Form::label('plan_id',trans('ibportal::ibportal.agentPlanes')) !!}
+                                    {!! Form::select('plan_id',$aPlans,$plan_id, ['class'=>'form-control input-sm','onChange'=>'$(\'#assign_form\').submit();']) !!}
 
-                        <div class="col-xm-12">
-
-                        {!! Form::select('plan_id',$aPlans,$plan_id, ['class'=>'form-control input-sm','onChange'=>'$(\'#assign_form\').submit();']) !!}
-
-                            <br>
+                                    <br>
+                                </div>
+                            </div>
                         </div>
-
-
 
                     @if (count($oResults))
 
@@ -135,7 +136,7 @@
 
                                 <tfoot>
                                 <tr>
-                                    <td colspan="5">
+                                    <td colspan="7">
 
                                         {!! Form::button( trans('ibportal::ibportal.assign') ,['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
                                         {!! Form::button(trans('ibportal::ibportal.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}

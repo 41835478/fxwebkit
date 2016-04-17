@@ -26,7 +26,7 @@
         <div class="col-sm-12">
             <div class="checkbox">
                 <label>
-                    {!! Form::checkbox('public', 1, false, ['class'=>'px','id'=>'public']) !!}
+                    {!! Form::checkbox('public', 1, $oPlanDetails['public'], ['class'=>'px','id'=>'public']) !!}
                     <span class="lbl">{{ trans('ibportal::ibportal.publicPlan') }}</span>
                 </label>
 

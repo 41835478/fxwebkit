@@ -93,7 +93,8 @@ class IbportalController extends Controller
         if ($request->has('selectedSymbols') && $planId > 0) {
             $selectedSymbols = $request->selectedSymbols;
             $symbolsValue = $request->symbolsValue;
-            $this->Ibportal->addPlanSymbols($planId, $selectedSymbols,  $symbolsValue);
+            $symbolsType = $request->symbolsType;
+            $this->Ibportal->addPlanSymbols($planId, $selectedSymbols,  $symbolsValue,$symbolsType);
         }
 
         if ($planId > 0) {
@@ -255,6 +256,46 @@ class IbportalController extends Controller
             ->with('agent',$agent)
             ->with('aFilterParams', $aFilterParams);
     }
+
+
+
+    public function getPlanUserstList(Request $oRequest)
+    {
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+        $plan_id=($oRequest->plan_id)?$oRequest->plan_id:1;
+
+        $oResults = null;
+        $aFilterParams = [
+            'id' => '',
+            'first_name' => '',
+            'last_name' => '',
+            'email' => '',
+            'plan_id' => $plan_id,
+            'sort' => $sSort,
+            'order' => $sOrder,
+        ];
+
+
+        if ($oRequest->has('search')) {
+
+            $aFilterParams['id'] = $oRequest->id;
+            $aFilterParams['first_name'] = $oRequest->first_name;
+            $aFilterParams['last_name'] = $oRequest->last_name;
+            $aFilterParams['email'] = $oRequest->email;
+            $aFilterParams['plan_id'] = $plan_id;
+            $aFilterParams['sort'] = $oRequest->sort;
+            $aFilterParams['order'] = $oRequest->order;
+
+        }
+
+        $oResults = $this->Users->getPlanUsersByFilter($aFilterParams, false, $sOrder, $sSort, 'client');
+
+        return view('ibportal::admin.planUsersList')
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
+    }
+
 
     public function getAgentUsers(Request $oRequest)
     {
