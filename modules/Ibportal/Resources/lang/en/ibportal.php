@@ -124,4 +124,9 @@
     'assigned'=>'Assigned',
     'un_assign'=>'UnAssign',
     'assignUsersToAgent'=>'Assign Users To Agent',
+    'thisPlanIsPublic'=>'This PlanIs Public',
+    'planUsersList'=>'Plan Users List',
+    'allAgents'=>'All Agents',
+    'usersList'=>'Users List',
+    'planUsers'=>'Plan Users',
 ]; ?>

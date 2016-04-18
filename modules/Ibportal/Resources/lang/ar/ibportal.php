@@ -124,4 +124,9 @@
 'assigned'=>'تعيين',
 'un_assign'=>'الغاء التعيين',
 'assignUsersToAgent'=>'تعيين المستخدمين للوكيل',
+'thisPlanIsPublic'=>'خطة عامة',
+'planUsersList'=>'قائمة خطط المستخدمين',
+'allAgents'=>'كل العملاء',
+'usersList'=>'قائمة المستخدمين',
+'planUsers'=>'خطة المستخدمين',
 ]; ?>

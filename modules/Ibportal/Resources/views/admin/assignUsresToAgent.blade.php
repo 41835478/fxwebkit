@@ -85,7 +85,7 @@
                         <div class="panel">
                             <div class="panel-body">
                                 <div class="col-xm-6">
-                                    {!! Form::label('plan_id',trans('ibportal::ibportal.agentPlanes')) !!}
+                                    {!! Form::label('plan_id',trans('ibportal::ibportal.agentPlans')) !!}
                                     {!! Form::select('plan_id',$aPlans,$plan_id, ['class'=>'form-control input-sm','onChange'=>'$(\'#assign_form\').submit();']) !!}
 
                                     <br>
