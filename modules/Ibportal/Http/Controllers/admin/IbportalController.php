@@ -93,7 +93,8 @@ class IbportalController extends Controller
         if ($request->has('selectedSymbols') && $planId > 0) {
             $selectedSymbols = $request->selectedSymbols;
             $symbolsValue = $request->symbolsValue;
-            $this->Ibportal->addPlanSymbols($planId, $selectedSymbols,  $symbolsValue);
+            $symbolsType = $request->symbolsType;
+            $this->Ibportal->addPlanSymbols($planId, $selectedSymbols,  $symbolsValue,$symbolsType);
         }
 
         if ($planId > 0) {
@@ -118,6 +119,7 @@ class IbportalController extends Controller
         $oPlanDetails = $this->Ibportal->getPlanDetails($request->edit_id);
 
         return view('ibportal::admin.detailsPlan')
+            ->with('plan_id',$request->edit_id)
             ->with('oPlanDetails', $oPlanDetails->first());
     }
 
@@ -249,12 +251,59 @@ class IbportalController extends Controller
         $role = explode(',', Config::get('fxweb.client_default_role'));
         $oResults = $this->Users->getAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
 
+
+
         return view('ibportal::admin.agentList')
             ->with('oResults', $oResults)
             ->with('agents',$agents)
             ->with('agent',$agent)
             ->with('aFilterParams', $aFilterParams);
     }
+
+
+
+    public function getPlanUserstList(Request $oRequest)
+    {
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+        $plan_id=($oRequest->plan_id)?$oRequest->plan_id:1;
+
+        $oResults = null;
+        $aFilterParams = [
+            'id' => '',
+            'first_name' => '',
+            'last_name' => '',
+            'email' => '',
+            'plan_id' => $plan_id,
+            'sort' => $sSort,
+            'order' => $sOrder,
+        ];
+
+
+        if ($oRequest->has('search')) {
+
+            $aFilterParams['id'] = $oRequest->id;
+            $aFilterParams['first_name'] = $oRequest->first_name;
+            $aFilterParams['last_name'] = $oRequest->last_name;
+            $aFilterParams['email'] = $oRequest->email;
+            $aFilterParams['plan_id'] = $plan_id;
+            $aFilterParams['sort'] = $oRequest->sort;
+            $aFilterParams['order'] = $oRequest->order;
+
+        }
+
+        $oResults = $this->Users->getPlanUsersByFilter($aFilterParams, false, $sOrder, $sSort, 'client');
+
+
+        $oPlanDetails = $this->Ibportal->getPlanDetails($plan_id);
+
+        return view('ibportal::admin.planUsersList')
+            ->with('oResults', $oResults)
+            ->with('plan_id',$plan_id)
+            ->with('oPlanDetails',$oPlanDetails->first())
+            ->with('aFilterParams', $aFilterParams);
+    }
+
 
     public function getAgentUsers(Request $oRequest)
     {

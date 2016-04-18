@@ -146,9 +146,15 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     public function deletePlan($id)
     {
-
         $id = (is_array($id)) ? $id : [$id];
+
+        $oAgentPlanUsers=AgentUser::whereIn('plan_id',$id)->get();
+
+        if(count($oAgentPlanUsers)){return [trans('ibportal::ibportal.cannot_delete_plan_users_exists')];}
+
+
         $plan = Plan::whereIn('id', $id)->delete();
+        $oPlanUsers=PlanUsers::whereIn('plan_id',$id)->delete();
 
 
         if ($plan) {
@@ -510,8 +516,9 @@ class EloquentIbportalContractRepository implements IbportalContract
     public function editPlan($planId, $planName, $planType, $public)
     {
         $plan = Plan::find($planId);
+
+        $pastPublicField=$plan->public;
         $plan->name = $planName;
-        $plan->type = $planType;
         $plan->public = $public;
 
         $plan->save();
@@ -523,8 +530,10 @@ class EloquentIbportalContractRepository implements IbportalContract
             foreach ($agents as $agent) {
                 $assignPlanUsers[] = ['user_id' => $agent->user_id, 'plan_id' => $plan->id];
             }
+
+            PlanUsers::where('plan_id', $plan->id)->delete();
             PlanUsers::insert($assignPlanUsers);
-        } else {
+        } elseif($pastPublicField) {
             PlanUsers::where('plan_id', $plan->id)->delete();
         }
         return $plan->id;
@@ -828,6 +837,11 @@ class EloquentIbportalContractRepository implements IbportalContract
     public function getAssignUsresToAgent($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
     {
 
+        $oRole = Sentinel::findRoleBySlug('client');
+        $role_id = $oRole->id;
+
+
+
             $oResult =new User();
         $agents= (isset($aFilters['agent_id'])) ? $aFilters['agent_id'] : 0;
 
@@ -842,7 +856,9 @@ class EloquentIbportalContractRepository implements IbportalContract
 
 
 
-                    $oResult = $oResult->with('agentPlan')->whereHas('agentPlan', function ($query) use ($agents,$plan_id) {
+                    $oResult = $oResult->with('roles')->whereHas('roles', function ($query) use ($role_id) {
+                        $query->where('id', $role_id);
+                    })->with('agentPlan')->whereHas('agentPlan', function ($query) use ($agents,$plan_id) {
                         $query->where('agent_id', $agents);
 //                        $query->where('plan_id', $plan_id);
 
@@ -853,7 +869,9 @@ class EloquentIbportalContractRepository implements IbportalContract
                 }
             }else{
 
-                $oResult=  User::with('agentPlan')->leftJoin('ibportal_agent_user', function($join) use($agents,$plan_id) {
+                $oResult=  User::with('roles')->whereHas('roles', function ($query) use ($role_id) {
+                    $query->where('id', $role_id);
+                })->with('agentPlan')->leftJoin('ibportal_agent_user', function($join) use($agents,$plan_id) {
 
                     $join->on('users.id', '=', 'ibportal_agent_user.user_id');
                     $join->where('ibportal_agent_user.agent_id', '=',$agents );
@@ -861,7 +879,7 @@ class EloquentIbportalContractRepository implements IbportalContract
                 })->select(['users.*','ibportal_agent_user.user_id']);
             }
 
-
+$oResult=$oResult->where('users.id','!=',$agents);
 
             /* =============== id Filter  =============== */
             if (isset($aFilters['id']) && !empty($aFilters['id'])) {

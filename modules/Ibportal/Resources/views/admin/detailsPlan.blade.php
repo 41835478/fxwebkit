@@ -6,6 +6,21 @@
         <h1>{{ trans('ibportal::ibportal.detilsPlan') }}</h1>
     </div>
 
+
+        <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+            <li class="active">
+                <a href="{{ route('admin.ibportal.detailPlan').'?edit_id='.$plan_id }}">{{trans('ibportal::ibportal.detailPlan')}}</a>
+            </li>
+
+            <li>
+
+                <a href="{{ route('admin.ibportal.planUsersList').'?plan_id='.$plan_id }}">{{ trans('ibportal::ibportal.planUsersList') }} @if($oPlanDetails->public)  ( {{ trans('ibportal::ibportal.allAgents') }}  )   @endif</a>
+            </li>
+
+
+
+        </ul>
+
     <div class="panel">
         {!! Form::open(['class'=>'panel form-horizontal']) !!}
         <div class="panel-heading">
@@ -18,6 +33,11 @@
                 <label class="control-label">{{ trans('ibportal::ibportal.name:') }}</label>
                 <label class="control-label">{{$oPlanDetails->name }}</label>
             </div>
+            @if($oPlanDetails->public)
+            <div class="form-group no-margin-hr">
+                <label class="control-label">{{ trans('ibportal::ibportal.thisPlanIsPublic') }}</label>
+            </div>
+            @endif
         </div>
         <!-- col-sm-6 -->
 

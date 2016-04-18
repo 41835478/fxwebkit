@@ -276,6 +276,54 @@ class EloquentUserRepository implements UserContract
         return $oResult;
     }
 
+    public function getPlanUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
+    {
+
+        $plan_id = $aFilters['plan_id'];
+
+        $oResult = User::with('plans')->whereHas('plans', function ($query) use ($plan_id) {
+            $query->where('plan_id', '=', $plan_id);
+        });
+
+
+
+        /* =============== id Filter  =============== */
+        if (isset($aFilters['id']) && !empty($aFilters['id'])) {
+            $oResult = $oResult->where('id', $aFilters['id']);
+        }
+
+        /* =============== Nmae Filter  =============== */
+        if (isset($aFilters['first_name']) && !empty($aFilters['first_name'])) {
+            $oResult = $oResult->where('first_name', 'like', '%' . $aFilters['first_name'] . '%');
+        }
+
+        if (isset($aFilters['last_name']) && !empty($aFilters['last_name'])) {
+            $oResult = $oResult->where('last_name', 'like', '%' . $aFilters['last_name'] . '%');
+        }
+
+        /* =============== email Filter  =============== */
+        if (isset($aFilters['email']) && !empty($aFilters['email'])) {
+            $oResult = $oResult->where('email', 'like', '%' . $aFilters['email'] . '%');
+        }
+
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+        }
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+
+        }
+        /* =============== Preparing Output  =============== */
+
+        return $oResult;
+    }
+
 
     public function getClientAgentUsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
     {
