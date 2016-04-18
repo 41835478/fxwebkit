@@ -119,6 +119,7 @@ class IbportalController extends Controller
         $oPlanDetails = $this->Ibportal->getPlanDetails($request->edit_id);
 
         return view('ibportal::admin.detailsPlan')
+            ->with('plan_id',$request->edit_id)
             ->with('oPlanDetails', $oPlanDetails->first());
     }
 
@@ -293,6 +294,7 @@ class IbportalController extends Controller
 
         return view('ibportal::admin.planUsersList')
             ->with('oResults', $oResults)
+            ->with('plan_id',$plan_id)
             ->with('aFilterParams', $aFilterParams);
     }
 

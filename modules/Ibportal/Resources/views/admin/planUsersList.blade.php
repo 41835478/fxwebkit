@@ -9,7 +9,6 @@
                 <ul class="sections">
                     <li class="active"><a href="#"> <i
                                     class="fa fa-search"></i> {{ trans('ibportal::ibportal.search') }} </a></li>
-
                     <li>
                         <div class=" nav-input-div  ">
                             {!! Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('ibportal::ibportal.id'),'class'=>'form-control input-sm']) !!}
@@ -38,6 +37,7 @@
 
                             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                             {!! Form::hidden('order', $aFilterParams['order']) !!}
+                            {!! Form::hidden('plan_id', $plan_id) !!}
                             {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                         </div>
                     </li>
@@ -55,12 +55,29 @@
             <div class="center_page_all_div">
                 @include('admin.partials.messages')
 
+
+
+                <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+                    <li>
+                        <a href="{{ route('admin.ibportal.detailPlan').'?edit_id='.$plan_id }}">{{trans('ibportal::ibportal.detailPlan')}}</a>
+                    </li>
+                    <li class="active">
+
+                        <a href="{{ route('admin.ibportal.planUsersList').'?plan_id='.$plan_id }}">{{ trans('ibportal::ibportal.planUsersList')  }}</a>
+                    </li>
+
+                </ul>
+
+
                 <div class="table-light">
                     <div class="table-header">
                         <div class="table-caption">
                             {{ trans('ibportal::ibportal.usersList') }}
                         </div>
                     </div>
+
+
+
 
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -102,6 +119,7 @@
 
 
 
+                                    {!! Form::hidden('plan_id', $plan_id) !!}
                                     {!! Form::submit(trans('ibportal::ibportal.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
 
 
