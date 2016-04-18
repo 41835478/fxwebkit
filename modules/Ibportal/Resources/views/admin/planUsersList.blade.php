@@ -73,6 +73,10 @@
                     <div class="table-header">
                         <div class="table-caption">
                             {{ trans('ibportal::ibportal.usersList') }}
+
+                            @if($oPlanDetails->public)
+                                 - {{ trans('ibportal::ibportal.thisPlanIsPublic') }} ( {{ trans('ibportal::ibportal.allAgents') }} )
+                                @endif
                         </div>
                     </div>
 

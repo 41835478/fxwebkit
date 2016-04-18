@@ -251,6 +251,8 @@ class IbportalController extends Controller
         $role = explode(',', Config::get('fxweb.client_default_role'));
         $oResults = $this->Users->getAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
 
+
+
         return view('ibportal::admin.agentList')
             ->with('oResults', $oResults)
             ->with('agents',$agents)
@@ -292,9 +294,13 @@ class IbportalController extends Controller
 
         $oResults = $this->Users->getPlanUsersByFilter($aFilterParams, false, $sOrder, $sSort, 'client');
 
+
+        $oPlanDetails = $this->Ibportal->getPlanDetails($plan_id);
+
         return view('ibportal::admin.planUsersList')
             ->with('oResults', $oResults)
             ->with('plan_id',$plan_id)
+            ->with('oPlanDetails',$oPlanDetails->first())
             ->with('aFilterParams', $aFilterParams);
     }
 
