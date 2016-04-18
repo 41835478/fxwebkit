@@ -1,1 +1,10 @@
-<?php return ['PageTitle'=>'Dashfffffffffffffffboard','content_here'=>'Contضصضent here.','activeAccount'=>'Active Account','notActive'=>'Not Active','user'=>' User','liveMt4User'=>' Live Mt4 User','demoMt4User'=>' Demo Mt4 User','mt4User'=>' Mt4 User',];?>
+<?php return [
+'PageTitle'=>'لوحة التحكم',
+'content_here'=>'المحتوى هنا',
+'activeAccount'=>'حساب فعال',
+'notActive'=>'حساب غير فعال',
+'user'=>' مستخدم',
+'liveMt4User'=>'حقيقي Mt4  مستخدم',
+'demoMt4User'=>'تجريبي Mt4  مستخدم',
+'mt4User'=>'Mt4  مستخدم',
+]; ?>
