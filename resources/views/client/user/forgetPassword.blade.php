@@ -16,7 +16,7 @@
                             {{ trans('user.language') }}</a>
                         <ul class="dropdown-menu">
                             @foreach(config('app.language')  as $locale=>$name)
-                                <li><a href="?locale={{$locale}}">{{ $name }}</a></li>
+                                <li><a href="?locale={{$locale}}">{{ trans('general.'.$name) }}</a></li>
 
                             @endforeach
                         </ul>

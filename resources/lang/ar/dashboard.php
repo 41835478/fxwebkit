@@ -4,7 +4,7 @@
 'activeAccount'=>'حساب فعال',
 'notActive'=>'حساب غير فعال',
 'user'=>' مستخدم',
-'liveMt4User'=>'حقيقي Mt4  مستخدم',
-'demoMt4User'=>'تجريبي Mt4  مستخدم',
-'mt4User'=>'Mt4  مستخدم',
+'liveMt4User'=>'  مستخدم ميتا4 حقيقي',
+'demoMt4User'=>'  مستخدم ميتا4 تجريبي',
+'mt4User'=>'  مستخدم ميتا4',
 ]; ?>

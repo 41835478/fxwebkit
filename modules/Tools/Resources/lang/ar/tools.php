@@ -1,7 +1,7 @@
 <?php return [
 'ModuleTitle'=>'ادوات',
 'futureContract'=>'عقود مستقبلية',
-'marketWatch'=>'Markeشيسشt Watch',
+'marketWatch'=>'أوقات الاسواق',
 'id'=>'الرقم التسلسلي',
 'symbol'=>'رمز',
 'name'=>'الاسم',

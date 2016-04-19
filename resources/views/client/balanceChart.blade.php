@@ -50,9 +50,9 @@
                                             class="text-lg text-slim"></span><strong> {{$oneLogin[0]}}</strong>/@if($oneLogin[1]==0){{config('fxweb.liveServerName')}}@else {{config('fxweb.demoServerName')}}@endif </span><br>
                             <!-- Big text -->
                                 <span class="text-bg">{{ trans('user.growth') }} @if($oneLogin[0].$oneLogin[1] ==$login.$server_id  ) {{ $balance }}  @else
-                                        Click here  @endif % </span><br> <!-- Big text -->
+                                        {{ trans('user.click_here') }}  @endif % </span><br> <!-- Big text -->
                                 <span class="text-bg">{{ trans('user.profit') }} @if($oneLogin[0].$oneLogin[1] ==$login.$server_id  ){{$statistics['profit']}} @else
-                                        Click here @endif </span><br>
+                                        {{ trans('user.click_here') }} @endif </span><br>
                             <!-- Small text -->
                             <span class="text-sm"></span>
                         </a> <!-- /.stat-cell -->

@@ -14,15 +14,16 @@
 
             <div class="panel-heading-controls ">
                 <div class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i> {{ trans('user.language') }}</a>
-                <ul class="dropdown-menu">
-                    @foreach(config('app.language')  as $locale=>$name)
-                        <li><a href="?locale={{$locale}}">{{ $name }}</a></li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                                class="fa fa-language"></i> {{ trans('user.language') }}</a>
+                    <ul class="dropdown-menu">
+                        @foreach(config('app.language')  as $locale=>$name)
+                            <li><a href="?locale={{$locale}}">{{ trans('general.'.$name) }}</a></li>
 
-                    @endforeach
-                </ul></div>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
-
 
 
             {!! Form::open(['id'=>'signin-form_id']) !!}
@@ -42,13 +43,14 @@
 
                 {!! Form::submit(Lang::get('user.SignIn'), ['class'=>'signin-btn bg-primary']) !!}
                 <a href="{{ route('client.auth.recover') }}"
-                   class="forgot-password">{{ Lang::get('user.ForgotYourPassword') }}?</a>
+                   class="forgot-password">{{ Lang::get('user.ForgotYourPassword') }}</a>
 
 
             </div>
             {!! Form::close() !!}
 
             <div class="signin-with">
+
                 <a href="{{ route('client.facebook.login') }}" class="signin-with-btn"
                    style="background:#4f6faa;background:rgba(79, 111, 170, .8);">
                     {{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.Facebook') }}</span>
@@ -65,12 +67,19 @@
                    style=" display: none;background:#0077B5;background:rgba(0, 119, 181, .8);">
                     {{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.twitter') }}</span>
                 </a>
+
+
             </div>
+
+            <div class="text-center">
+
+                {{ Lang::get('user.not_a_member') }} <a
+                        href="{{ route('client.auth.register') }}">{{ Lang::get('user.sign_up_now') }}</a>
+            </div>
+
         </div>
     </div>
 
-    <div class="not-a-member">
-        Not a member? <a href="{{ route('client.auth.register') }}">Sign up now</a>
-    </div>
+
 
 @stop

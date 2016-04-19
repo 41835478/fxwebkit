@@ -83,7 +83,7 @@
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
 
-                <label class="control-label">{{ trans('user.Country').$userInfo['country'] }}</label>
+                <label class="control-label">{{ trans('user.Country') }}</label>
                 {!! Form::select('country',$userInfo['country_array'],$userInfo['country'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
             </div>
         </div><!-- col-sm-6 -->

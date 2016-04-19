@@ -230,4 +230,8 @@ return [
     'saveAndSend'=>'Save And Send',
     'accounts'=>'Accounts',
     'lastLogin'=>'Last Login',
+    'English'=>'English',
+    'Arabic'=>'العربية',
+
+
 ];

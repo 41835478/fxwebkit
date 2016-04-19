@@ -63,11 +63,19 @@
                                 {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                                 <tr class='{{ $class }}'>
                                     <td>{{ $oResult->name }}</td>
-                                    <td>@if($oResult->public) {{trans('ibportal::ibportal.public') }}@endif </td>
                                     <td>
+                                        @if($oResult->public)
+                                            {{trans('ibportal::ibportal.public') }}
+                                        @endif
+                                    </td>
+
+                                    <td>
+                                        @if(!$oResult->public)
                                         <a href="{{ route('admin.ibportal.assignAgentPlan').'?planId='.$oResult->id.'&agentId='.$aFilterParams['agentId'] }}"
                                            class="fa fa-link"></a>
+                                        @endif
                                     </td>
+
                                 </tr>
                             @endforeach
                         @endif

@@ -1,5 +1,5 @@
 <?php return [
-'ModuleTitle'=>'MT4 اعدادات ',
+'ModuleTitle'=>' اعدادات ميتا4',
 'symbolsList'=>'قائمة الرموز',
 'securitiesList'=>'قائمة المجموعات',
 'groupsList'=>'قائمة المجموعات',
@@ -28,6 +28,6 @@
 'showing'=>'تظهر',
 'sync'=>'مزامنة',
 'settings'=>'الاعدادات',
-'apiAdminPassword'=>'API Admin Password',
+'apiAdminPassword'=>'API كلمة سر المدير  ',
 'save'=>'حفظ',
 ]; ?>

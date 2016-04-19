@@ -94,5 +94,8 @@ return [
     'growth'=>'Growth :',
     'profit'=>'Profit :',
     'balance'=>'Balance :',
+    'sign_up_now'=>'Sign Up Now',
+    'not_a_member'=>'Not a member?',
+    'click_here'=>'Click Here',
 
 ];

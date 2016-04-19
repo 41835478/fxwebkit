@@ -129,4 +129,5 @@
     'allAgents'=>'All Agents',
     'usersList'=>'Users List',
     'planUsers'=>'Plan Users',
+    'no_assign_account'=>'No Assign Account',
 ]; ?>

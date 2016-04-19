@@ -34,7 +34,7 @@
         <div class="mail-container ">
 
             <div class="mail-container-header">
-                {{ trans('ibportal::ibportal.plan') }}
+                {{ trans('ibportal::ibportal.plans') }}
             </div>
             <div class="center_page_all_div">
                 @include('admin.partials.messages')
@@ -43,7 +43,7 @@
                     <div class="table-header">
                         <div class="table-caption">
 
-                            {{ trans('ibportal::ibportal.plan') }}
+                            {{ trans('ibportal::ibportal.plans') }}
                             <a href="{{ route('admin.ibportal.addPlan') }}" style="float:right;">
                                 <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button"
                                        value="{{ trans('ibportal::ibportal.addPlan') }}"> </a>
@@ -68,7 +68,10 @@
                                 <tr class='{{ $class }}'>
                                     <td>{{ $oResult->name }}</td>
 
-                                    <td>@if($oResult->public) {{trans('ibportal::ibportal.public') }}@endif </td>
+                                    <td>@if($oResult->public)
+                                            {{trans('ibportal::ibportal.public') }}
+                                        @endif
+                                    </td>
                                     <td>
                                         <a href="{{ route('admin.ibportal.editPlan').'?edit_id='.$oResult->id }}"
                                            class="fa fa-edit tooltip_number" data-original-title="{{trans('ibportal::ibportal.editPlan')}}"></a>
@@ -76,12 +79,14 @@
                                            class="fa fa-trash-o tooltip_number" data-original-title="{{trans('ibportal::ibportal.deletePlan')}}"></a>
                                         <a href="{{ route('admin.ibportal.detailPlan').'?edit_id='.$oResult->id }}"
                                            class="fa fa-file-text tooltip_number" data-original-title="{{trans('ibportal::ibportal.detailPlan')}}"></a>
-                                        @if(!$oResult->public)
-                                        <a href="{{ route('admin.ibportal.assignPlan').'?planId='.$oResult->id }}"
-                                           class="fa fa-link tooltip_number" data-original-title="{{trans('ibportal::ibportal.assignPlan')}}"></a>
-                                            @endif
+
                                         <a href="{{ route('admin.ibportal.planUsersList').'?plan_id='.$oResult->id }}"
                                            class="fa fa-user tooltip_number" data-original-title="{{trans('ibportal::ibportal.planUsers')}}"></a>
+
+                                        @if(!$oResult->public)
+                                            <a href="{{ route('admin.ibportal.assignPlan').'?planId='.$oResult->id }}"
+                                               class="fa fa-link tooltip_number" data-original-title="{{trans('ibportal::ibportal.assignPlan')}}"></a>
+                                        @endif
 
 
                                     </td>

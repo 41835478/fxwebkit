@@ -57,10 +57,7 @@
             </div>
             <div class="center_page_all_div">
                 @include('admin.partials.messages')
-
                 <div class="table-light">
-
-
 
                     <div class="panel-footer text-right">
 
