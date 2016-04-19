@@ -210,7 +210,7 @@
                     type: 'bar'
                 },
                 title: {
-                    text: 'Accountant Total'
+                    text: '{!! trans('reports::reports.accountant_total') !!}'
                 },
                 xAxis: {
                     /*
@@ -225,7 +225,7 @@
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Total'
+                        text: '{!! trans('reports::reports.total') !!}'
                     }
                 },
                 legend: {

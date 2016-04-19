@@ -105,5 +105,6 @@ return [
     'liveDemo'=>'Live/Demo',
     'clientSettings'=>'Client Settings',
     'accountStatement'=>'Account Statement',
-
+    'accountant_total'=>'Accountant Total',
+    'total'=>'Total',
 ];

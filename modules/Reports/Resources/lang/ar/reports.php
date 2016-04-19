@@ -22,7 +22,7 @@
 'Summary'=>'ملخص',
 'commission'=>'عمولة',
 'agentCommission'=>'عمولة الوكيل',
-'accountant'=>'محاسب',
+'accountant'=>'ايداع / سحب',
 'AgentAccount'=>'حساب الوكيل',
 'Margin'=>'الهامش',
 'MarginFree'=>'الهامش الحر',
@@ -87,4 +87,5 @@
 'live'=>'حقيقي',
 'liveDemo'=>'حقيقي/تجريبي',
 'clientSettings'=>'اعدادات العميل',
+'accountant_total'=>'ايداع / سحب',
 ]; ?>
