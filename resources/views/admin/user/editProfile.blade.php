@@ -37,7 +37,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group no-margin-hr">
-                            <label class="control-label">{{ trans('user.Email') }}</label>
+                            <label class="control-label">{{ trans('user.email') }}</label>
                             {!! Form::text('email',$userInfo['email'],['class'=>'form-control']) !!}
                         </div>
                     </div>

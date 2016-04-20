@@ -21,7 +21,7 @@
         </div><!-- ol-sm-6 -->
         <div class="col-sm-4 text-left">
             <div class="form-group no-margin-hr">
-                <label class="control-label">{{$user_details['first_name'].$user_details['last_name'] }}</label>
+                <label class="control-label">{{$user_details['first_name'].' '.$user_details['last_name'] }}</label>
             </div>
         </div><!--ol-sm-6 -->
 

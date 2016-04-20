@@ -37,14 +37,14 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group no-margin-hr">
-                        <label class="control-label">{{ trans('user.Email') }}</label>
+                        <label class="control-label">{{ trans('user.email') }}</label>
                         {!! Form::text('email',$userInfo['email'],['class'=>'form-control']) !!}
                     </div>
                 </div>
                 <!-- col-sm-6 -->
                 <div class="col-sm-6">
                     <div class="form-group no-margin-hr">
-                        <label class="control-label">{{ trans('user.Password') }}</label>
+                        <label class="control-label">{{ trans('user.password') }}</label>
                         {!! Form::password('password',['class'=>'form-control','value'=>$userInfo['password']]) !!}
 
                     </div>
