@@ -14,11 +14,12 @@
             {!! Form::open(array('method'=>'get','id'=>'showTemplateForm')) !!}
             <fieldset>
                 <div class="panel-body">
+
                     <div class="well">
                         <div class="col-sm-12">
                             <div class="form-group no-margin-hr">
                                 <label class="control-label">{{ trans('general.template') }}</label>
-                                {!! Form::select('name', $aTemplates, $sTemplate, array('class' => ' form-control', 'id' => 'template-name','onchange'=>'$("#showTemplateForm").submit()')) !!}
+                                {!! Form::select('templateId', $aTemplates, $templateId, array('class' => ' form-control', 'id' => 'template-name','onchange'=>'$("#showTemplateForm").submit()')) !!}
 
                             </div>
                         </div>
@@ -37,19 +38,28 @@
 
                         <div style='clear:both'></div>
                     </div>
-                    @if ($sContent)
                         {!! Form::open(array('class'=>'form-horizontal')) !!}
-                        <div class="well body">
+
+                    <div class="col-xm-12">
+                        <div class="form-group no-margin-hr  body">
+                            <label class="control-label">{{ trans('general.subject') }}</label>
+                            {!! Form::text('subject', $subject, ['class' => ' form-control']) !!}
+                        </div>
+                    </div>
+
+
+
+                    <div class="well body">
                             {!! Form::textarea('template_body', $sContent, array('id'=>'editor1','class' => 'form-control ckeditor')) !!}
                         </div>
                         <div class="panel-footer text-right">
-                            {!! Form::hidden('name',$sTemplate) !!}
+                            {!! Form::hidden('templateId',$templateId) !!}
                             {!! Form::hidden('lang',$sLanguage) !!}
-                            {!! Form::submit(trans('general.save'), array('class'=>'btn btn-primary btn-flat')) !!}
+                            {!! Form::submit(trans('general.save'), array('name'=>'save','class'=>'btn btn-primary btn-flat')) !!}
+                            {!! Form::submit(trans('general.saveNew'), array('name'=>'saveNew','class'=>'btn btn-primary btn-flat')) !!}
                         </div>
 
                         {!! Form::close() !!}
-                    @endif
                 </div>
 
             </fieldset>
@@ -58,7 +68,6 @@
         @stop
         @section('script')
             @parent
-        @if($sTemplate !='expiryContract')
             <script src="/cms_assets/ckeditor/ckeditor.js"></script>
 
             <script>
@@ -68,6 +77,5 @@
                     filebrowserUploadUrl: "{{ asset('/cms/articles/upload-image' ).'?_token='. csrf_token() }}"
                 });
             </script>
-            @endif
     </div>
 @stop

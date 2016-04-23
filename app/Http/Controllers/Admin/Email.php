@@ -11,7 +11,9 @@ use Mail;
 use Fxweb\Models\SettingsMassMail;
 use Fxweb\Models\User;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Fxweb\Models\SettingsEmailTemplates;
 
+use Session;
 class Email extends Controller {
 
     protected $fromEmail = '';
@@ -23,6 +25,59 @@ class Email extends Controller {
     }
 
     public function sendEmail($sTemplate, $aTemplateVariables, $toEmail, $subject) {
+
+
+
+        $mail=SettingsEmailTemplates::where([
+            'subject'=>$sTemplate,
+        'language'=>Session::get('locale')
+        ])->first();
+
+        $emailBody='';
+        if(count($mail)){
+
+            $emailBody=$mail->mail;
+
+            foreach($aTemplateVariables as $key=>$value){
+
+                $emailBody=preg_replace('/[^\{\{][\s]*'.$key.'[\s\]*[\}\}]$/i',
+                    $value,
+                    $emailBody);
+            }
+        }else{
+
+            foreach($aTemplateVariables as $key=>$value){
+                $emailBody.=$key.' : '.$value .'<br>' ;
+            }
+        }
+
+
+        $info = [
+            'to' => $toEmail,
+            'subject' => $subject,
+            'from' => $this->fromEmail,
+            'fromName' => $this->fromName,
+            'content'=>$emailBody
+        ];
+
+        Mail::raw($info['subject'], function ($message) use ($info)
+        {
+
+            $message->from(config('fxweb.senderEmail'), config('fxweb.displayName'));
+
+            $message->getHeaders()->addTextHeader('Content-type', 'text/html');
+            $message->to($info['to']);
+            $message->subject($info['subject']);
+            if(array_key_exists('bcc' ,$info)){
+                $message->bcc($info['bcc']);
+            }
+            $message ->setBody($info['content'], 'text/html');
+        });
+
+
+    }
+
+    public function OLD_sendEmail($sTemplate, $aTemplateVariables, $toEmail, $subject) {
         $info = [
             'to' => $toEmail,
             'subject' => $subject,
@@ -38,7 +93,7 @@ class Email extends Controller {
 
     public function signUpWelcome($aUserInfo) {
 
-        $this->sendEmail('admin.email.templates.en.signUpWelcome',
+        $this->sendEmail('signUpWelcome',
                 [
                     'first_name' => $aUserInfo['first_name'],
                     'last_name' => $aUserInfo['last_name']
@@ -49,7 +104,7 @@ class Email extends Controller {
 
     public function newContract($info) {
 
-        $this->sendEmail('admin.email.templates.en.expiryContract',
+        $this->sendEmail('expiryContract',
             [
                 'name' => $info['name'],
                 'expiryHtml'=>$info['expiryHtml']
@@ -83,7 +138,7 @@ class Email extends Controller {
     public function newUserSignUp($info) {
 
 
-        $this->sendEmail('admin.email.templates.en.newUserSignUp',
+        $this->sendEmail('newUserSignUp',
             [
                 'first_name' => $info['first_name'],
                 'last_name' => $info['last_name']
@@ -98,7 +153,7 @@ class Email extends Controller {
     public function activeAccount($info) {
 
 
-        $this->sendEmail('admin.email.templates.en.activeAccount',
+        $this->sendEmail('activeAccount',
             [
               'code'=>$info['code'],
                 'userId'=>$info['userId'],
@@ -113,7 +168,7 @@ class Email extends Controller {
     public function forgetPassword($info) {
 
 
-        $this->sendEmail('admin.email.templates.en.forgetPassword',
+        $this->sendEmail('forgetPassword',
             [
                 'userEmail' =>$info['userEmail'],
                 'code'=>$info['code'],
@@ -131,7 +186,7 @@ class Email extends Controller {
     public function changeLeverage($info) {
 
 
-        $this->sendEmail('admin.email.templates.en.changeLeverage',
+        $this->sendEmail('changeLeverage',
             [
                 'login' =>$info['login'],
                 'leverage'=>$info['leverage']
@@ -147,7 +202,7 @@ class Email extends Controller {
     public function changeMt4Password($info) {
 
 
-        $this->sendEmail('admin.email.templates.en.changeMt4Password',
+        $this->sendEmail('changeMt4Password',
             [
                 'login'=>$info['login'],
                 'newPassword'=>$info['newPassword']
@@ -163,7 +218,7 @@ class Email extends Controller {
     public function internalTransfers($info) {
 
 
-        $this->sendEmail('admin.email.templates.en.internalTransfers',
+        $this->sendEmail('internalTransfers',
             [
                 'login1'=>$info['login1'],
                 'login2'=>$info['login2'],
@@ -178,7 +233,7 @@ class Email extends Controller {
     public function withDrawal($info) {
 
 
-        $this->sendEmail('admin.email.templates.en.withDrawal',
+        $this->sendEmail('withDrawal',
             [
                 'login'=>$info['login'],
                 'amount'=>$info['amount']

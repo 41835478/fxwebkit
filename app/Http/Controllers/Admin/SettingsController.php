@@ -22,6 +22,7 @@ use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
 
 use Fxweb\Models\SettingsMassMail;
 use Fxweb\Models\SettingsMassTemplates;
+use Fxweb\Models\SettingsEmailTemplates;
 
 class SettingsController extends Controller
 {
@@ -268,43 +269,71 @@ class SettingsController extends Controller
     public function getEmailTemplates(Request $oRequest)
     {
 
-        $aTemplates = $this->aTemplates;
-        $sTemplate = ($oRequest->has('name'))? $oRequest->name:'signUpWelcome';
         $sLanguage =($oRequest->has('lang'))? $oRequest->lang:'en';
-        $sContent = '';
+        $aTemplates =SettingsEmailTemplates::select(['id','subject'])->where('language',$sLanguage)->lists('subject','id');
+        ;
+        $templateId = ($oRequest->has('templateId'))? $oRequest->templateId:1;
+        $oEmail= SettingsEmailTemplates::find($templateId);
+
+        $subject='';
+        $sContent='';
+        if(count($oEmail)){
+            $sContent =$oEmail->mail;
+            $subject =$oEmail->subject;
+        }
 
         $aLanguages =config('app.language');
 
-
-        $sPath = base_path() . '/resources/views/admin/email/templates/' . $sLanguage . '/' . $sTemplate . '.blade.php';
-
-        if (file_exists($sPath)) {
-            $sContent = File::get($sPath);
-        }
 
 
         return view('admin.email.addEmailTemplates')
             ->with('aLanguages', $aLanguages)
             ->with('aTemplates', $aTemplates)
-            ->with('sTemplate', $sTemplate)
+            ->with('templateId', $templateId)
             ->with('sLanguage', $sLanguage)
+            ->with('subject', $subject)
             ->with('sContent', $sContent);
     }
 
     public function postEmailTemplates(Request $oRequest)
     {
-        $sTemplate = $oRequest->name;
+        $templateId = $oRequest->templateId;
+        $subject=$oRequest->subject;
         $sLanguage = $oRequest->lang;
         $sContent = $oRequest->template_body;
-        if (!empty($sTemplate) && !empty($sLanguage) && !empty($sContent)) {
-            $sPath = base_path() . '/resources/views/admin/email/templates/' . $sLanguage . '/' . $sTemplate . '.blade.php';
 
-            if (file_exists($sPath)) {
-                File::put($sPath, $sContent);
-            }
+        if($oRequest->has('save')){
+
+            $email= SettingsEmailTemplates::find($templateId);
+                if(count($email)){
+                $email->update([
+                'subject'=>$subject,
+                'mail' => $sContent,
+                'language' => $sLanguage
+            ]);
+}else{
+
+                    $email= SettingsEmailTemplates::create([
+                        'subject'=>$subject,
+                        'mail' => $sContent,
+                        'language' =>$sLanguage
+                    ]);
+                    $templateId=$email->id;
+
+                }
+        }else if($oRequest->has('saveNew')){
+
+
+            $email= SettingsEmailTemplates::create([
+                'subject'=>$subject,
+                'mail' => $sContent,
+                'language' =>$sLanguage
+            ]);
+            $templateId=$email->id;
         }
 
-        return Redirect::to(route('admin.addEmailTemplates') . '?name=' . $sTemplate . '&lang=' . $sLanguage);
+
+        return Redirect::to(route('admin.addEmailTemplates') . '?templateId=' . $templateId . '&lang=' . $sLanguage);
     }
 
 
