@@ -272,7 +272,19 @@ class SettingsController extends Controller
         $sLanguage =($oRequest->has('lang'))? $oRequest->lang:'en';
         $aTemplates =SettingsEmailTemplates::select(['id','subject'])->where('language',$sLanguage)->lists('subject','id');
         ;
-        $templateId = ($oRequest->has('templateId'))? $oRequest->templateId:1;
+
+        $templateId = 1;
+        if($oRequest->has('templateId')){
+            $templateId = $oRequest->templateId;
+
+        }else{
+            foreach($aTemplates as $key=>$value){
+
+                $templateId = $key;break;
+            }
+        }
+        
+
         $oEmail= SettingsEmailTemplates::find($templateId);
 
         $subject='';
