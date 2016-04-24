@@ -55,8 +55,12 @@
                         <div class="panel-footer text-right">
                             {!! Form::hidden('templateId',$templateId) !!}
                             {!! Form::hidden('lang',$sLanguage) !!}
-                            {!! Form::submit(trans('general.save'), array('name'=>'save','class'=>'btn btn-primary btn-flat')) !!}
-                            {!! Form::submit(trans('general.saveNew'), array('name'=>'saveNew','class'=>'btn btn-primary btn-flat')) !!}
+
+                            {!! Form::submit(trans('general.delete'), array('name'=>'delete','class'=>'btn btn-danger pull-right btn-flat')) !!}
+
+                            {!! Form::submit(trans('general.save'), array('name'=>'save','style'=>'margin:0px 10px;','class'=>'btn btn-primary pull-left btn-flat')) !!}
+
+                            {!! Form::submit(trans('general.saveNew'), array('name'=>'saveNew','class'=>'btn btn-primary  pull-left btn-flat')) !!}
                         </div>
 
                         {!! Form::close() !!}

@@ -40,7 +40,7 @@ class Email extends Controller {
 
             foreach($aTemplateVariables as $key=>$value){
 
-                $emailBody=preg_replace('/[^\{\{][\s]*'.$key.'[\s\]*[\}\}]$/i',
+                $emailBody=preg_replace('/[^\{\{][\s]*\$'.$key.'[\s\]*[\}\}]$/i',
                     $value,
                     $emailBody);
             }
@@ -155,7 +155,7 @@ class Email extends Controller {
 
         $this->sendEmail('activeAccount',
             [
-              'code'=>$info['code'],
+              'code'=>$info['website'].'/client/activateAccount/'.$info['userId'].'/'.$info['code'],
                 'userId'=>$info['userId'],
                 'website'=>$info['website']
             ],
@@ -171,7 +171,7 @@ class Email extends Controller {
         $this->sendEmail('forgetPassword',
             [
                 'userEmail' =>$info['userEmail'],
-                'code'=>$info['code'],
+                'code'=>$info['website'].'/client/resetForgetPassword/'.$info['userId'].'/'.$info['code'],
                 'website'=>$info['website'],
                 'userId'=>$info['userId']
             ],

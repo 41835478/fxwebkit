@@ -274,7 +274,7 @@ class SettingsController extends Controller
         ;
 
         $templateId = 1;
-        if($oRequest->has('templateId')){
+        if($oRequest->has('templateId') && $oRequest->templateId !=0 ){
             $templateId = $oRequest->templateId;
 
         }else{
@@ -283,7 +283,7 @@ class SettingsController extends Controller
                 $templateId = $key;break;
             }
         }
-        
+
 
         $oEmail= SettingsEmailTemplates::find($templateId);
 
@@ -342,6 +342,9 @@ class SettingsController extends Controller
                 'language' =>$sLanguage
             ]);
             $templateId=$email->id;
+        }elseif($oRequest->has('delete')){
+            SettingsEmailTemplates::find($templateId)->delete();
+            $templateId=0;
         }
 
 
