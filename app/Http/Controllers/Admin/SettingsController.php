@@ -274,6 +274,7 @@ class SettingsController extends Controller
         ;
 
         $templateId = 1;
+        $oEmail=[];
         if($oRequest->has('templateId') && $oRequest->templateId !=0 ){
             $templateId = $oRequest->templateId;
 
@@ -285,13 +286,24 @@ class SettingsController extends Controller
         }
 
 
+
         $oEmail= SettingsEmailTemplates::find($templateId);
 
         $subject='';
         $sContent='';
         if(count($oEmail)){
+            if($sLanguage == $oEmail->language){
             $sContent =$oEmail->mail;
             $subject =$oEmail->subject;
+            }else{
+                $oEmailLanguage= SettingsEmailTemplates::where(['subject'=>$oEmail->subject,'language'=>$sLanguage])->first();
+                if(count($oEmailLanguage)){
+
+                    $sContent =$oEmailLanguage->mail;
+                    $subject =$oEmailLanguage->subject;
+                    $templateId = $oEmailLanguage->id;
+                }
+            }
         }
 
         $aLanguages =config('app.language');
@@ -316,7 +328,7 @@ class SettingsController extends Controller
 
         if($oRequest->has('save')){
 
-            $email= SettingsEmailTemplates::find($templateId);
+            $email= SettingsEmailTemplates::where(['id'=>$templateId,'language'=>$sLanguage])->first();
                 if(count($email)){
                 $email->update([
                 'subject'=>$subject,
