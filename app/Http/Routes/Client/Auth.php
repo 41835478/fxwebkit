@@ -72,12 +72,14 @@ Route::get('resetForgetPassword/{userId}/{code}', [
     'uses' => 'AuthController@getResetForgetPassword'
 ]);
 Route::post('resetForgetPassword/{userId}/{code}', [
+    'before'=>'changeLanguage',
     'as' => 'client.auth.resetForgetPassword',
     'uses' => 'AuthController@postResetForgetPassword'
 ]);
 
 
 Route::get('activateAccount/{userId}/{code}', [
+    'before'=>'changeLanguage',
     'as' => 'client.auth.activateAccount',
     'uses' => 'AuthController@getActivateAccount'
 ]);

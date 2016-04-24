@@ -40,7 +40,7 @@ class Email extends Controller {
 
             foreach($aTemplateVariables as $key=>$value){
 
-                $emailBody=preg_replace('/[^\{\{][\s]*\$'.$key.'[\s\]*[\}\}]$/i',
+                $emailBody=preg_replace('/\{\{[\s]*\$'.$key.'[\s]*\}\}/i',
                     $value,
                     $emailBody);
             }
@@ -168,7 +168,7 @@ class Email extends Controller {
     public function forgetPassword($info) {
 
 
-        $this->sendEmail('forgetPassword',
+        $this->sendEmail('Forget Password',
             [
                 'userEmail' =>$info['userEmail'],
                 'code'=>$info['website'].'/client/resetForgetPassword/'.$info['userId'].'/'.$info['code'],
