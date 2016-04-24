@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-	<title>{{ trans('general.expiry') }}</title>
+	<title>Expiry</title>
 <style>
 table, th, td {
     border: 1px solid black;
@@ -22,10 +22,10 @@ th, td {
 {{--$years--}}
 {{--$start_dates--}}
 {{--$expiry_dates--}}
-	<p>{{ trans('general.dear') }} {{ $name }}</p>
+	<p>Dear {{ $name }}</p>
         <table>
     <tr>
-    <th>{{ trans('general.Expired') }}</th><th>{{ trans('general.Symbol') }}</th><th>{{ trans('general.restData') }}</th>
+    <th>Expired</th><th>Symbol</th><th>Rest Data</th>
     </tr>
             @for($i=0;$i<count($ids);$i++)
                 <tr>
