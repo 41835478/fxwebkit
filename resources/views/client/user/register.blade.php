@@ -24,12 +24,13 @@
                 </ul></div>
         </div>
 
-        @include('client.partials.messages')
+
         {!! Form::open(['id'=>'signup-form_id']) !!}
         <div class="signup-text">
             <span>{{ Lang::get('user.SignUpText') }}</span>
 
         </div>
+        @include('client.partials.messages')
         <div class="form-group w-icon">
             {!! Form::text('first_name', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.FirstName')]) !!}
             <span class="fa fa-info signup-form-icon"></span>
@@ -136,10 +137,6 @@
                 <span>{{ Lang::get('user.AlreadyHaveAnAccount') }}</span>    {{ trans('user.PageTitleSignIn') }}
             </a>
         </div>
-
-
-
-
     </div>
 
     <div id="terms-and-conditions-modal" class="modal fade modal-blur" tabindex="-1" role="dialog" style="display: none;">

@@ -93,7 +93,7 @@ class Email extends Controller {
 
     public function signUpWelcome($aUserInfo) {
 
-        $this->sendEmail('signUpWelcome',
+        $this->sendEmail('Sign Up Welcome',
                 [
                     'first_name' => $aUserInfo['first_name'],
                     'last_name' => $aUserInfo['last_name']
@@ -104,7 +104,7 @@ class Email extends Controller {
 
     public function newContract($info) {
 
-        $this->sendEmail('expiryContract',
+        $this->sendEmail('Expiry Contract',
             [
                 'name' => $info['name'],
                 'expiryHtml'=>$info['expiryHtml']
@@ -114,7 +114,6 @@ class Email extends Controller {
     }
 
     public function massMailler($info) {
-
 
         Mail::raw($info['subject'], function ($message) use ($info)
         {
@@ -138,7 +137,7 @@ class Email extends Controller {
     public function newUserSignUp($info) {
 
 
-        $this->sendEmail('newUserSignUp',
+        $this->sendEmail('New User Sign Up',
             [
                 'first_name' => $info['first_name'],
                 'last_name' => $info['last_name']
@@ -153,7 +152,7 @@ class Email extends Controller {
     public function activeAccount($info) {
 
 
-        $this->sendEmail('activeAccount',
+        $this->sendEmail('Active Account',
             [
               'code'=>$info['website'].'/client/activateAccount/'.$info['userId'].'/'.$info['code'],
                 'userId'=>$info['userId'],
@@ -186,7 +185,7 @@ class Email extends Controller {
     public function changeLeverage($info) {
 
 
-        $this->sendEmail('changeLeverage',
+        $this->sendEmail('Change Leverage',
             [
                 'login' =>$info['login'],
                 'leverage'=>$info['leverage']
@@ -202,7 +201,7 @@ class Email extends Controller {
     public function changeMt4Password($info) {
 
 
-        $this->sendEmail('changeMt4Password',
+        $this->sendEmail('Change Mt4 Password',
             [
                 'login'=>$info['login'],
                 'newPassword'=>$info['newPassword']
@@ -218,7 +217,7 @@ class Email extends Controller {
     public function internalTransfers($info) {
 
 
-        $this->sendEmail('internalTransfers',
+        $this->sendEmail('Internal Transfers',
             [
                 'login1'=>$info['login1'],
                 'login2'=>$info['login2'],
@@ -233,7 +232,7 @@ class Email extends Controller {
     public function withDrawal($info) {
 
 
-        $this->sendEmail('withDrawal',
+        $this->sendEmail('Withdrawal',
             [
                 'login'=>$info['login'],
                 'amount'=>$info['amount']

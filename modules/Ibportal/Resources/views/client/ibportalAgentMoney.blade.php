@@ -234,7 +234,7 @@
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Total'
+                        text: '{!! trans('ibportal::ibportal.total') !!}'
                     }
                 },
                 legend: {

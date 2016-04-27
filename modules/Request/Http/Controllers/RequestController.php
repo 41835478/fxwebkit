@@ -178,7 +178,7 @@ class RequestController extends Controller
         return true;
     }
 
-    public function updateChangePasswordRequest($logId, $login, $newPassword = 0,$passwordType, $comment = '', $reason = '', $status = 0)
+    public function updateChangePasswordRequest($logId, $login, $newPassword = 0, $comment = '', $reason = '', $status = 0,$passwordType)
     {
 
 
@@ -188,7 +188,7 @@ class RequestController extends Controller
         $log->login = $login;
      //   $log->newPassword = $newPassword;
         $log->status = $status;
-        $log->status = $passwordType;
+        $log->password_type = $passwordType;
 
         $log->save();
         return true;

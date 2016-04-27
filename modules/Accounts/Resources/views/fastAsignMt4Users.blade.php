@@ -8,7 +8,7 @@
                 {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
                 <ul class="sections">
                     <li class="active">
-                        <a href="#"> <i
+                        <a href="#"><i
                                     class="fa fa-search"></i> {{ trans('accounts::accounts.search') }} </a>
                     </li>
                     <li>
