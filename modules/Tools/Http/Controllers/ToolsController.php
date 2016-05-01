@@ -125,13 +125,15 @@ class ToolsController extends Controller
                 'name' => 'Sir',
                 'ids'=>$ids,
                 'names'=>$names,
-        'symbols'=>$symbols,
-        'exchanges'=>$exchanges,
-        'months'=>$months,
-        'years'=>$years,
-        'start_dates'=>$start_dates,
-        'expiry_dates'=>$expiry_dates,
+                'symbols'=>$symbols,
+                'exchanges'=>$exchanges,
+                'months'=>$months,
+                'years'=>$years,
+                'start_dates'=>$start_dates,
+                'expiry_dates'=>$expiry_dates,
             ]);
+
+
         $EmailClass = new Email();
 
         $email = SettingsMassMail::create([

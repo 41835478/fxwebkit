@@ -400,7 +400,7 @@ class EloquentUserRepository implements UserContract
             'password' => $oRequest->password,
         ];
 
-        $oUser = Sentinel::register($aCredentials);
+        $oUser = Sentinel::registerAndActivate($aCredentials);
 
         $oClientRole->users()->attach($oUser);
         $oActivation = Activation::create($oUser);
