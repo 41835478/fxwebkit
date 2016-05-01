@@ -46,6 +46,7 @@ class AccountsController extends Controller
 
     public function getAccountsList(AccountsRequest $oRequest)
     {
+
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
         $aGroups = [];
@@ -680,8 +681,8 @@ class AccountsController extends Controller
     public function getMt4Leverage(Request $oRequest)
     {
 
-        $Result = Config('fxweb.leverage');
-        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
+        $Result = config('fxweb.leverage');
+        $Pssword = config('accountsConfig.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);
 
 
@@ -703,8 +704,8 @@ class AccountsController extends Controller
     public function postMt4Leverage(Request $oRequest)
     {
 
-        $Result = Config('fxweb.leverage');
-        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
+        $Result = config('fxweb.leverage');
+        $Pssword = config('accountsConfig.apiReqiredConfirmMt4Password');
 
 
         $changeleverage = [
@@ -716,8 +717,8 @@ class AccountsController extends Controller
 
         $oApiController = new ApiController();
         if($oRequest['server_id']==1){
-            $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
-            $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+            $oApiController->mt4Host=config('fxweb.mt4CheckDemoHost');
+            $oApiController->mt4Port=config('fxweb.mt4CheckDemoPort');
             $oApiController->server_id=1;
         }
         $result = $oApiController->changeMt4Leverage($oRequest['login'], $oRequest['leverage'], $oRequest['oldPassword']);
@@ -735,8 +736,8 @@ class AccountsController extends Controller
     public function getMt4ChangePassword(Request $oRequest)
     {
 
-        $Password = Config('accountsConfig.apiReqiredConfirmMt4Password');
-        $loginPasswordType = Config('accountsConfig.loginPasswordType');
+        $Password = config('accountsConfig.apiReqiredConfirmMt4Password');
+        $loginPasswordType = config('accountsConfig.loginPasswordType');
 
 
         $changePassword = [
@@ -758,8 +759,8 @@ class AccountsController extends Controller
     public function postMt4ChangePassword(Request $oRequest)
     {
 
-        $Password = Config('accountsConfig.apiReqiredConfirmMt4Password');
-        $loginPasswordType = Config('accountsConfig.loginPasswordType');
+        $Password = config('accountsConfig.apiReqiredConfirmMt4Password');
+        $loginPasswordType = config('accountsConfig.loginPasswordType');
 
 
         $changePassword = [
@@ -771,8 +772,8 @@ class AccountsController extends Controller
 
         $mT4ChangePassword = new ApiController();
         if($oRequest['server_id']==1){
-            $mT4ChangePassword->mt4Host=Config('fxweb.mt4CheckDemoHost');
-            $mT4ChangePassword->mt4Port=Config('fxweb.mt4CheckDemoPort');
+            $mT4ChangePassword->mt4Host=config('fxweb.mt4CheckDemoHost');
+            $mT4ChangePassword->mt4Port=config('fxweb.mt4CheckDemoPort');
             $mT4ChangePassword->server_id=1;
         }
 
@@ -790,7 +791,7 @@ class AccountsController extends Controller
 
     public function getMt4InternalTransfer(Request $oRequest)
     {
-        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
+        $Pssword = config('accountsConfig.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);
 
 
@@ -812,7 +813,7 @@ class AccountsController extends Controller
     {
 
 
-        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
+        $Pssword = config('accountsConfig.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);
 
         $internalTransfer = [
@@ -823,8 +824,8 @@ class AccountsController extends Controller
 
         $oApiController = new ApiController();
         if($oRequest['server_id']==1){
-            $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
-            $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+            $oApiController->mt4Host=config('fxweb.mt4CheckDemoHost');
+            $oApiController->mt4Port=config('fxweb.mt4CheckDemoPort');
             $oApiController->server_id=1;
         }
 
@@ -842,7 +843,7 @@ class AccountsController extends Controller
 
     public function getWithDrawal(Request $oRequest)
     {
-        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
+        $Pssword = config('accountsConfig.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);
 
 
@@ -864,7 +865,7 @@ class AccountsController extends Controller
     {
 
 
-        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
+        $Pssword = config('accountsConfig.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);
 
         $internalTransfer = [
@@ -874,8 +875,8 @@ class AccountsController extends Controller
 
         $oApiController = new ApiController();
         if($oRequest['server_id']==1){
-            $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
-            $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
+            $oApiController->mt4Host=config('fxweb.mt4CheckDemoHost');
+            $oApiController->mt4Port=config('fxweb.mt4CheckDemoPort');
             $oApiController->server_id=1;
         }
 
@@ -895,8 +896,8 @@ class AccountsController extends Controller
     public function getMt4Operation(Request $oRequest)
     {
 
-        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
-        $Result = Config('accountsConfig.operation');
+        $Pssword = config('accountsConfig.apiReqiredConfirmMt4Password');
+        $Result = config('accountsConfig.operation');
 
         $changeOperation = [
             'login1' => '',
@@ -915,8 +916,8 @@ class AccountsController extends Controller
     public function postMt4Operation(Request $oRequest)
     {
 
-        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
-        $Result = Config('accountsConfig.operation');
+        $Pssword = config('accountsConfig.apiReqiredConfirmMt4Password');
+        $Result = config('accountsConfig.operation');
 
         if ($oRequest->operation == '0') {
             $operation = 5;
@@ -954,15 +955,15 @@ class AccountsController extends Controller
 
         $accountsSetting = [
             'changeLeverageWarning'=>config('accountsConfig.changeLeverageWarning'),
-            'showMt4Leverage' => Config('accountsConfig.showMt4Leverage'),
-            'showMt4ChangePassword' => Config('accountsConfig.showMt4ChangePassword'),
-            'showMt4Transfer' => Config('accountsConfig.showMt4Transfer'),
-            'denyLiveAccount' => Config('accountsConfig.denyLiveAccount'),
-            'apiReqiredConfirmMt4Password' => Config('accountsConfig.apiReqiredConfirmMt4Password'),
-            'allowTransferToUnsignedMT4' => Config('accountsConfig.allowTransferToUnsignedMT4'),
-            'directOrderToMt4Server' => Config('accountsConfig.directOrderToMt4Server'),
-            'showWithDrawal' => Config('accountsConfig.showWithDrawal'),
-            'is_client' => Config('accountsConfig.is_client'),
+            'showMt4Leverage' => config('accountsConfig.showMt4Leverage'),
+            'showMt4ChangePassword' => config('accountsConfig.showMt4ChangePassword'),
+            'showMt4Transfer' => config('accountsConfig.showMt4Transfer'),
+            'denyLiveAccount' => config('accountsConfig.denyLiveAccount'),
+            'apiReqiredConfirmMt4Password' => config('accountsConfig.apiReqiredConfirmMt4Password'),
+            'allowTransferToUnsignedMT4' => config('accountsConfig.allowTransferToUnsignedMT4'),
+            'directOrderToMt4Server' => config('accountsConfig.directOrderToMt4Server'),
+            'showWithDrawal' => config('accountsConfig.showWithDrawal'),
+            'is_client' => config('accountsConfig.is_client'),
 
         ];
         

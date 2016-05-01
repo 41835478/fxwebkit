@@ -45,6 +45,12 @@
 
 
         <div class="row">
+<br><br>
+            <label class="label label-primary label-tag">{{ trans('accounts::accounts.Balance') }} : <b>{{ $oCurrentInternalTransfer['BALANCE'] }}</b> </label>
+            <label class="label label-primary label-tag">{{ trans('accounts::accounts.MarginFree') }} : <b>{{ $oCurrentInternalTransfer['MARGIN_FREE'] }}</b> </label>
+            <label class="label label-primary label-tag">{{ trans('accounts::accounts.equity :') }} <b>{{ $oCurrentInternalTransfer['EQUITY'] }}</b> </label>
+            <div class="clearfix"></div>
+
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('accounts::accounts.toMt4Account') }}</label>

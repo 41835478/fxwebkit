@@ -49,7 +49,6 @@
                     <li class="divider"></li>
                 </ul>
 
-
                 {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                 {!! Form::hidden('order', $aFilterParams['order']) !!}
                 {!! Form::close() !!}
@@ -72,12 +71,12 @@
                     </li>
 
                     <li >
-                        <a href="{{ route('clients.ibportal.agentInternalTransfer')}}">{{ trans('ibportal::ibportal.agentInternalTransfer') }}</a>
+                        <a href="{{ route('clients.ibportal.agentInternalTransfer').'?login='.$aFilterParams['login']}}">{{ trans('ibportal::ibportal.agentInternalTransfer') }}</a>
                     </li>
 
 
                     <li>
-                        <a href="{{ route('client.ibportal.agentwithDrawal')}}">{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
+                        <a href="{{ route('client.ibportal.agentwithDrawal').'?login='.$aFilterParams['login']}}">{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
                     </li>
 
                 </ul>

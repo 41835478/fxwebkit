@@ -50,7 +50,7 @@ class ClientAccountsController extends Controller
             'name' => '',
             'all_groups' => true,
             'group' => '',
-            'server_id'=>'',
+            'server_id' => '',
             'sort' => $sSort,
             'order' => $sOrder,
         ];
@@ -69,11 +69,10 @@ class ClientAccountsController extends Controller
         $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
 
 
-
         return view('accounts::client.mt4Accounts')
             ->with('aGroups', $aGroups)
             ->with('oResults', $oResults)
-            ->with('serverTypes',$serverTypes)
+            ->with('serverTypes', $serverTypes)
             ->with('aFilterParams', $aFilterParams);
     }
 
@@ -108,7 +107,7 @@ class ClientAccountsController extends Controller
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-            $oResults = $this->oMt4User->getUserInfo($aFilterParams['login'],$aFilterParams['server_id']);
+            $oResults = $this->oMt4User->getUserInfo($aFilterParams['login'], $aFilterParams['server_id']);
 
             $aSummery = [
                 'deposit' => $this->oMt4Trade->getDepositByLogin($aFilterParams),
@@ -124,10 +123,10 @@ class ClientAccountsController extends Controller
             ->with('oResults', $oResults)
             ->with('aSummery', $aSummery)
             ->with('aFilterParams', $aFilterParams)
-            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
-            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
-            ->with('showWithDrawal',config('accounts.showWithDrawal'))
-            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
+            ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal', config('accounts.showWithDrawal'))
+            ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
     }
 
     public function getMt4Leverage(Request $oRequest)
@@ -142,29 +141,29 @@ class ClientAccountsController extends Controller
             'leverage' => ''];
 
 
-$oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->login,'server_id'=>$oRequest->server_id])->first()->LEVERAGE;
+        $oCurrentLeverage = modelMt4User::select('LEVERAGE')->where(['login' => $oRequest->login, 'server_id' => $oRequest->server_id])->first()->LEVERAGE;
 
 
-        $currentLeverage=[0,0];
-        if(array_key_exists($oCurrentLeverage,$Result)){
-        $currentLeverage=[$currentLeverage,$Result[$oCurrentLeverage]];
-     unset($Result[$oCurrentLeverage]);
-    }
-    else{$currentLeverage=[$oCurrentLeverage,$oCurrentLeverage];}
-
+        $currentLeverage = [0, 0];
+        if (array_key_exists($oCurrentLeverage, $Result)) {
+            $currentLeverage = [$currentLeverage, $Result[$oCurrentLeverage]];
+            unset($Result[$oCurrentLeverage]);
+        } else {
+            $currentLeverage = [$oCurrentLeverage, $oCurrentLeverage];
+        }
 
 
         return view('accounts::client.addLeverage')
             ->with('Pssword', $Pssword)
             ->with('Result', $Result)
-            ->with('currentLeverage',$currentLeverage)
+            ->with('currentLeverage', $currentLeverage)
             ->with('changeleverage', $changeleverage)
             ->with('login', $oRequest->login)
             ->with('server_id', $oRequest->server_id)
-            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
-            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
-            ->with('showWithDrawal',config('accounts.showWithDrawal'))
-            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
+            ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal', config('accounts.showWithDrawal'))
+            ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
     }
 
     public function postMt4Leverage(Request $oRequest)
@@ -174,15 +173,16 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
 
 
-        $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->login,'server_id'=>$oRequest->server_id])->first()->LEVERAGE;
+        $oCurrentLeverage = modelMt4User::select('LEVERAGE')->where(['login' => $oRequest->login, 'server_id' => $oRequest->server_id])->first()->LEVERAGE;
 
 
-        $currentLeverage=[0,0];
-        if(array_key_exists($oCurrentLeverage,$Result)){
-            $currentLeverage=[$currentLeverage,$Result[$oCurrentLeverage]];
+        $currentLeverage = [0, 0];
+        if (array_key_exists($oCurrentLeverage, $Result)) {
+            $currentLeverage = [$currentLeverage, $Result[$oCurrentLeverage]];
             unset($Result[$oCurrentLeverage]);
+        } else {
+            $currentLeverage = [$oCurrentLeverage, $oCurrentLeverage];
         }
-        else{$currentLeverage=[$oCurrentLeverage,$oCurrentLeverage];}
 
         $changeleverage = [
             'login' => '',
@@ -192,27 +192,27 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
         $oApiController = new ApiController();
 
 
-        if($oRequest['server_id']==1){
+        if ($oRequest['server_id'] == 1) {
 
-            $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
-            $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
-            $oApiController->server_id=1;
+            $oApiController->mt4Host = Config('fxweb.mt4CheckDemoHost');
+            $oApiController->mt4Port = Config('fxweb.mt4CheckDemoPort');
+            $oApiController->server_id = 1;
         }
         $result = $oApiController->changeMt4Leverage($oRequest['login'], $oRequest['leverage'], $oRequest['oldPassword']);
 
         /* TODO with success */
         return view('accounts::client.addLeverage')
             ->with('Result', $Result)
-            ->with('currentLeverage',$currentLeverage)
+            ->with('currentLeverage', $currentLeverage)
             ->with('Pssword', $Pssword)
             ->with('login', $oRequest->login)
             ->with('changeleverage', $changeleverage)
             ->withErrors($result)
             ->with('server_id', $oRequest->server_id)
-            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
-            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
-            ->with('showWithDrawal',config('accounts.showWithDrawal'))
-            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
+            ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal', config('accounts.showWithDrawal'))
+            ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
     }
 
     public function getMt4ChangePassword(Request $oRequest)
@@ -224,8 +224,8 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
             'login' => '',
             'oldPassword' => '',
             'newPassword' => '',
-         'passwordType_array'=>$loginPasswordType,
-            'passwordType'=>''
+            'passwordType_array' => $loginPasswordType,
+            'passwordType' => ''
         ];
 
         return view('accounts::client.changePassword')
@@ -234,10 +234,10 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
             ->with('login', $oRequest->login)
             ->with('loginPasswordType', $loginPasswordType)
             ->with('server_id', $oRequest->server_id)
-            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
-            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
-            ->with('showWithDrawal',config('accounts.showWithDrawal'))
-            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
+            ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal', config('accounts.showWithDrawal'))
+            ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
     }
 
     public function postMt4ChangePassword(Request $oRequest)
@@ -249,18 +249,18 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
             'login' => '',
             'oldPassword' => '',
             'newPassword' => '',
-            'passwordType_array'=>$loginPasswordType,
-            'passwordType'=>''];
+            'passwordType_array' => $loginPasswordType,
+            'passwordType' => ''];
 
         $mT4ChangePassword = new ApiController();
 
-        if($oRequest['server_id']==1){
-            $mT4ChangePassword->mt4Host=Config('fxweb.mt4CheckDemoHost');
-            $mT4ChangePassword->mt4Port=Config('fxweb.mt4CheckDemoPort');
-            $mT4ChangePassword->server_id=1;
+        if ($oRequest['server_id'] == 1) {
+            $mT4ChangePassword->mt4Host = Config('fxweb.mt4CheckDemoHost');
+            $mT4ChangePassword->mt4Port = Config('fxweb.mt4CheckDemoPort');
+            $mT4ChangePassword->server_id = 1;
         }
 
-        $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'] ,$oRequest['passwordType'],$oRequest['oldPassword']);
+        $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'], $oRequest['passwordType'], $oRequest['oldPassword']);
         /* TODO with success */
         return view('accounts::client.changePassword')
             ->withErrors($result)
@@ -269,10 +269,10 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
             ->with('loginPasswordType', $loginPasswordType)
             ->with('login', $oRequest->login)
             ->with('server_id', $oRequest->server_id)
-            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
-            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
-            ->with('showWithDrawal',config('accounts.showWithDrawal'))
-            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
+            ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal', config('accounts.showWithDrawal'))
+            ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
     }
 
     public function getMt4InternalTransfer(Request $oRequest)
@@ -285,15 +285,18 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
             'login2' => '',
             'amount' => ''];
 
+        $oCurrentInternalTransfer = modelMt4User::where(['login' => $oRequest->login, 'server_id' => $oRequest->server_id])->first();
+
         return view('accounts::client.internalTransfer')
             ->with('Pssword', $Pssword)
+            ->with('oCurrentInternalTransfer', $oCurrentInternalTransfer)
             ->with('internalTransfer', $internalTransfer)
             ->with('login', $oRequest->login)
             ->with('server_id', $oRequest->server_id)
-            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
-            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
-            ->with('showWithDrawal',config('accounts.showWithDrawal'))
-            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
+            ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal', config('accounts.showWithDrawal'))
+            ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
     }
 
     public function postMt4InternalTransfer(Request $oRequest)
@@ -334,10 +337,10 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
         $result = '';
         if ($allowed) {
             $oApiController = new ApiController();
-            if($oRequest['server_id']==1){
-                $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
-                $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
-                $oApiController->server_id=1;
+            if ($oRequest['server_id'] == 1) {
+                $oApiController->mt4Host = Config('fxweb.mt4CheckDemoHost');
+                $oApiController->mt4Port = Config('fxweb.mt4CheckDemoPort');
+                $oApiController->server_id = 1;
             }
 
             $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['oldPassword'], $oRequest['amount']);
@@ -351,10 +354,10 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
             ->with('internalTransfer', $internalTransfer)
             ->with('login', $oRequest->login)
             ->with('server_id', $oRequest->server_id)
-            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
-            ->with('showWithDrawal',config('accounts.showWithDrawal'))
-            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
-            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
+            ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
+            ->with('showWithDrawal', config('accounts.showWithDrawal'))
+            ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
+            ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
     }
 
 
@@ -366,37 +369,34 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
             'password' => $oRequest['password']
         ];
 
-        $denyLiveAccount=(current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount'])  )? true:false;
+        $denyLiveAccount = (current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount'])) ? true : false;
 
-        if($denyLiveAccount){
+        if ($denyLiveAccount) {
             return Redirect::route('client.accounts.mt4DemoAccount');
         }
         return view('accounts::client.addMt4User')->with('userInfo', $userInfo)
-            ->with('denyLiveAccount',$denyLiveAccount);
+            ->with('denyLiveAccount', $denyLiveAccount);
     }
 
     public function postAddMt4User(Request $oRequest)
     {
 
 
-
-        $denyLiveAccount=(current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount']) )? true:false;
-
-
+        $denyLiveAccount = (current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount'])) ? true : false;
 
 
         $oApiController = new ApiController();
 
 
-        $result = $oApiController->AssignAccount($oRequest['login'],$oRequest['password'],0);
-        if($result===true){
-            $asign_result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$oRequest['login']],0);
-            return Redirect::route('clients.accounts.Mt4UsersList') ->withErrors('The User has been assigned successfully');
+        $result = $oApiController->AssignAccount($oRequest['login'], $oRequest['password'], 0);
+        if ($result === true) {
+            $asign_result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$oRequest['login']], 0);
+            return Redirect::route('clients.accounts.Mt4UsersList')->withErrors('The User has been assigned successfully');
 
-        }else{
+        } else {
             return view('accounts::client.addMt4User')
                 ->with('userInfo', ['login' => $oRequest['login'], 'password' => $oRequest['password']])
-                ->withErrors($result)->with('denyLiveAccount',$denyLiveAccount);
+                ->withErrors($result)->with('denyLiveAccount', $denyLiveAccount);
         }
     }
 
@@ -432,14 +432,14 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
             'array_leverage' => $array_leverage,
         ];
 
-        $denyLiveAccount=(current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount']) )? true:false;
+        $denyLiveAccount = (current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount'])) ? true : false;
 
 
         return view('accounts::client.mt4DemoAccount')
             ->with('mt4_user_details', $mt4_user_details)
             ->with('array_group', $array_group)
             ->with('array_leverage', $array_leverage)
-            ->with('array_deposit', $array_deposit)->with('denyLiveAccount',$denyLiveAccount);
+            ->with('array_deposit', $array_deposit)->with('denyLiveAccount', $denyLiveAccount);
     }
 
     public function postMt4DemoAccount(Request $oRequest)
@@ -477,17 +477,17 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
 
         $oApiController = new ApiController();
 
-        $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
-        $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
-        $oApiController->server_id=1;
+        $oApiController->mt4Host = Config('fxweb.mt4CheckDemoHost');
+        $oApiController->mt4Port = Config('fxweb.mt4CheckDemoPort');
+        $oApiController->server_id = 1;
 
-        $result = $oApiController->mt4UserFullDetails(current_user()->getUser()->id,$mt4_user_details);
+        $result = $oApiController->mt4UserFullDetails(current_user()->getUser()->id, $mt4_user_details);
 
-if($result*1 >0 ){
-    $result= $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result],1);
-    $result=($result==true)? 'the user assigned successfully':'error,the Mt4 user does not assigned to this account';
-}
-        return Redirect::route('client.accounts.mt4DemoAccount')->withErrors($result) ;
+        if ($result * 1 > 0) {
+            $result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result], 1);
+            $result = ($result == true) ? 'the user assigned successfully' : 'error,the Mt4 user does not assigned to this account';
+        }
+        return Redirect::route('client.accounts.mt4DemoAccount')->withErrors($result);
 
     }
 
@@ -523,14 +523,14 @@ if($result*1 >0 ){
         ];
 
 
-        $denyLiveAccount=(current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount']) )? true:false;
+        $denyLiveAccount = (current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount'])) ? true : false;
 
 
         return view('accounts::client.mt4LiveAccount')
             ->with('mt4_user_details', $mt4_user_details)
             ->with('array_group', $array_group)
             ->with('array_leverage', $array_leverage)
-            ->with('array_deposit', $array_deposit)->with('denyLiveAccount',$denyLiveAccount);
+            ->with('array_deposit', $array_deposit)->with('denyLiveAccount', $denyLiveAccount);
     }
 
     public function postMt4LiveAccount(Request $oRequest)
@@ -567,11 +567,11 @@ if($result*1 >0 ){
 
 
         $oApiController = new ApiController();
-        $result = $oApiController->mt4UserFullDetails(current_user()->getUser()->id,$mt4_user_details);
+        $result = $oApiController->mt4UserFullDetails(current_user()->getUser()->id, $mt4_user_details);
 
-        if($result*1 >0 ){
-            $result= $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result],0);
-            $result=($result==true)? 'the user assigned successfully':'error,the Mt4 user does not assigned to this account';
+        if ($result * 1 > 0) {
+            $result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result], 0);
+            $result = ($result == true) ? 'the user assigned successfully' : 'error,the Mt4 user does not assigned to this account';
         }
         return Redirect::route('client.accounts.mt4LiveAccount')->withErrors($result);
 
@@ -590,16 +590,19 @@ if($result*1 >0 ){
             'login2' => '',
             'amount' => ''];
 
+        $oCurrentWithDrawal = modelMt4User::where(['login' => $oRequest->login, 'server_id' => $oRequest->server_id])->first();
+
         return view('accounts::client.withDrawal')
             ->with('Pssword', $Pssword)
             ->with('internalTransfer', $internalTransfer)
+            ->with('oCurrentWithDrawal', $oCurrentWithDrawal)
             ->with('oResults', $oResults)
             ->with('login', $oRequest->login)
             ->with('server_id', $oRequest->server_id)
-            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
-            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
-            ->with('showWithDrawal',config('accounts.showWithDrawal'))
-            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
+            ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal', config('accounts.showWithDrawal'))
+            ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
     }
 
     public function postWithDrawal(Request $oRequest)
@@ -615,13 +618,13 @@ if($result*1 >0 ){
             'amount' => ''];
 
         $oApiController = new ApiController();
-        if($oRequest['server_id']==1){
-            $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
-            $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
-            $oApiController->server_id=1;
+        if ($oRequest['server_id'] == 1) {
+            $oApiController->mt4Host = Config('fxweb.mt4CheckDemoHost');
+            $oApiController->mt4Port = Config('fxweb.mt4CheckDemoPort');
+            $oApiController->server_id = 1;
         }
 
-        $result = $oApiController->withDrawal($oRequest['login'], $oRequest['amount'],$oRequest['oldPassword']);
+        $result = $oApiController->withDrawal($oRequest['login'], $oRequest['amount'], $oRequest['oldPassword']);
 
         /* TODO with success */
         return view('accounts::client.withDrawal')
@@ -631,10 +634,10 @@ if($result*1 >0 ){
             ->with('oResults', $oResults)
             ->with('server_id', $oRequest->server_id)
             ->with('login', $oRequest->login)
-            ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
-            ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
-            ->with('showWithDrawal',config('accounts.showWithDrawal'))
-            ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
+            ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
+            ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
+            ->with('showWithDrawal', config('accounts.showWithDrawal'))
+            ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
     }
 
 }

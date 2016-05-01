@@ -17,15 +17,15 @@
             <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
 
                 <li>
-                    <a href="{{ route('clients.ibportal.agentMoney')}}">{{ trans('ibportal::ibportal.agentMoney') }}</a>
+                    <a href="{{ route('clients.ibportal.agentMoney').'?login='.$login}}">{{ trans('ibportal::ibportal.agentMoney') }}</a>
                 </li>
 
                 <li class="active">
-                    <a href="{{ route('clients.ibportal.agentInternalTransfer')}}">{{ trans('ibportal::ibportal.agentInternalTransfer') }}</a>
+                    <a href="{{ route('clients.ibportal.agentInternalTransfer').'?login='.$login}}">{{ trans('ibportal::ibportal.agentInternalTransfer') }}</a>
                 </li>
 
                     <li >
-                        <a href="{{ route('client.ibportal.agentwithDrawal')}}">{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
+                        <a href="{{ route('client.ibportal.agentwithDrawal').'?login='.$login}}">{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
                     </li>
 
 
@@ -34,6 +34,13 @@
 
 
         <div class="row">
+            <br><br>
+            <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.Balance') }} : <b>{{ $oCurrentInternalTransfer['BALANCE'] }}</b> </label>
+            <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.MarginFree') }} : <b>{{ $oCurrentInternalTransfer['MARGIN_FREE'] }}</b> </label>
+            <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.equity :') }} <b>{{ $oCurrentInternalTransfer['EQUITY'] }}</b> </label>
+
+            <div class="clearfix"></div>
+
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('ibportal::ibportal.toMt4Account') }}</label>
@@ -66,6 +73,7 @@
         </div>
 
         <div class="panel-footer text-right">
+            {!! Form::hidden('login',$login)!!}
             {!! Form::submit(trans('ibportal::ibportal.submit'), ['class'=>'btn btn-info btn-sm', 'name' => 'save']) !!}
         </div>
         </div>

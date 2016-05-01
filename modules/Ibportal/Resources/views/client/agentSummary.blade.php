@@ -12,8 +12,12 @@
 
     <div class="col-xs-4">
 
+
+
         <div class="stat-panel">
+
             <div class="stat-row">
+
                 <!-- Info background, without padding, horizontally centered text, super large text -->
                 <div class="stat-cell bg-info no-padding text-center text-slg">
                     <i class="fa fa-user"></i>
@@ -27,12 +31,12 @@
                 </div>
             </div> <!-- /.stat-row -->
         </div>
-
         <div class="clearFix"></div>
     </div>
 
 
-    <div class="col-xs-4">
+
+        <div class="col-xs-4">
         <div class="stat-panel">
             <div class="stat-row">
                 <!-- Info background, without padding, horizontally centered text, super large text -->
@@ -69,6 +73,10 @@
         </div>
     </div>
 
+        <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.agentAccount') }} : <b></b> {{$login}}</label>
+        <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.Commission') }} : <b></b> {{$commission}}</label>
+        <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.Withdrawal') }} : <b></b>{{$withdrawals*-1}} </label>
+        <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.equity') }} : <b></b>{{$commission+$withdrawals}} </label>
 
 <div class="clearFix" style="clear:both;"></div>
 

@@ -48,7 +48,7 @@
                     <strong></strong>  {{config('accounts.changeLeverageWarning') }}<br>
                 </div>
 
-               <label class="label label-primary label-tag">current Leverage : <b>{{ $currentLeverage[1] }}</b> </label> <br>
+               <label class="label label-primary label-tag">{{ trans('accounts::accounts.currentLeverage') }}: <b>{{ $currentLeverage[1] }}</b> </label> <br>
                 <div class="col-sm-6">
                     <div class="form-group no-margin-hr">
                         <label class="control-label">{{ trans('accounts::accounts.leverage') }}</label>

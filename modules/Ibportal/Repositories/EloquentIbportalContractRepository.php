@@ -765,6 +765,7 @@ class EloquentIbportalContractRepository implements IbportalContract
     {
 
         $login = UserIbid::select('login')->where('user_id', $agentId)->first();
+
         if ($login) {
             $login = $login->login;
         } else {
@@ -785,6 +786,14 @@ class EloquentIbportalContractRepository implements IbportalContract
         $horizontal_line_numbers = [];
 
 
+//        $commission= Mt4ClosedBalance::select([DB::raw('sum(PROFIT+COMMISSION+SWAPS) as netProfit')])
+//            ->where(['CMD'=>6,'login'=>$login,'server_id'=>0])->where('PROFIT', '>', 0)->sum(DB::raw('netProfit'));
+      $commission=0;
+        $withdrawals=0;
+        $aWithdrawals = Mt4ClosedBalance::select([DB::raw('sum(PROFIT+COMMISSION+SWAPS) as netProfit')])
+        ->where(['CMD'=>6,'login'=>$login,'server_id'=>0])->where('PROFIT', '<', 0)->get();
+
+
         $pastBalance = 0;
         $i = 0;
         $balance = 0;
@@ -792,11 +801,18 @@ class EloquentIbportalContractRepository implements IbportalContract
 
 
             $pastBalance = $row->netProfit;
+            $commission+=$row->netProfit;
             $balance = round($pastBalance, 2);
             $balance_array[] = $balance;
             $i++;
             $horizontal_line_numbers[] = date('M, Y', strtotime($row->month));
         }
+        foreach ($aWithdrawals as $row) {
+
+
+            $withdrawals += $row->netProfit;
+        }
+
         $statistics['users_number'] = AgentUser::where('agent_id', $agentId)->count();
         $statistics['mt4_users_number'] = mt4_users_users::with('agentUsers')->whereHas('agentUsers', function ($query) use ($agentId) {
             $query->where('agent_id', $agentId);
@@ -812,7 +828,10 @@ class EloquentIbportalContractRepository implements IbportalContract
             $balance,
             $statistics,
             $commission_horizontal_line_numbers,
-            $commission_array
+            $commission_array,
+            $withdrawals,
+            $commission,
+            $login
         ];
     }
 

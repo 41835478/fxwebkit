@@ -65,7 +65,7 @@
 'group'=>'Group',
 'gender'=>'Gender',
 'group :'=>'Group :',
-'equity :'=>'Equity:',
+'equity :'=>'Equity :',
 'all'=>'All',
 'signed'=>'Signed',
 'details'=>'Details',
@@ -175,4 +175,5 @@
 'notActive'=>'Not Active',
 'activateUser'=>'Activate User',
 'notAssigned'=>'Not Assigned',
+    'currentLeverage'=>'current Leverage',
 ]; ?>

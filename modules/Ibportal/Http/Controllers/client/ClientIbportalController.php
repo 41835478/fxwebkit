@@ -10,6 +10,7 @@ use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4Users;
 use Illuminate\Support\Facades\Config;
 use Modules\Accounts\Http\Controllers\ApiController;
+use Fxweb\Models\Mt4User as modelMt4User;
 
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
@@ -327,6 +328,7 @@ class ClientIbportalController extends Controller
 
         $userIbid = UserIbid::where('user_id', current_user()->getUser()->id)->first();
 
+
         if (count($userIbid)) {
             return view('ibportal::client.ibportalAgentMoney')
                 ->with('aSymbols', $aSymbols)
@@ -347,8 +349,8 @@ class ClientIbportalController extends Controller
         $clientId = current_user()->getUser()->id;
 
         list($horizontal_line_numbers, $balance_array, $balance, $statistics,$commission_horizontal_line_numbers,
-            $commission_array) = $this->Ibportal->getAgentStatistics($clientId);
-    //    dd(102);
+            $commission_array,$withdrawals,$commission,$login) = $this->Ibportal->getAgentStatistics($clientId);
+
         $userIbid = UserIbid::where('user_id', current_user()->getUser()->id)->first();
 
 
@@ -358,6 +360,9 @@ class ClientIbportalController extends Controller
                     'horizontal_line_numbers' => $horizontal_line_numbers,
                     'balance_array' => $balance_array,
                     'balance' => $balance,
+                    'withdrawals'=>$withdrawals,
+                    'commission'=>$commission,
+                    'login'=>$login,
                     'commission_horizontal_line_numbers'=> $commission_horizontal_line_numbers,
                     'commission_array'=>$commission_array])->withStatistics($statistics);
         } else {
@@ -504,6 +509,7 @@ class ClientIbportalController extends Controller
 
     public function getOpenOrders(Request $oRequest)
     {
+
         $oSymbols = $this->oMt4Trade->getAgentSymbols();
         $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
         $serverTypes = $this->oMt4Trade->getServerTypes();
@@ -567,9 +573,10 @@ class ClientIbportalController extends Controller
 
     }
 
-    public function getAgentInternalTransfer()
+    public function getAgentInternalTransfer(Request $oRequest)
     {
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+
 
         $internalTransfer = [
             'login1' => '',
@@ -577,7 +584,13 @@ class ClientIbportalController extends Controller
             'login2' => '',
             'amount' => ''];
 
-        return view('ibportal::client.internalTransfer')->with('internalTransfer', $internalTransfer)  ->with('Pssword', $Pssword);
+        $oCurrentInternalTransfer = modelMt4User::where(['login' => $oRequest->login, 'server_id' =>0])->first();
+
+        return view('ibportal::client.internalTransfer')
+            ->with('login', $oRequest->login)
+            ->with('internalTransfer', $internalTransfer)
+            ->with('oCurrentInternalTransfer', $oCurrentInternalTransfer)
+            ->with('Pssword', $Pssword);
     }
 
     public function postAgentInternalTransfer(Request $oRequest)
@@ -666,7 +679,7 @@ class ClientIbportalController extends Controller
             ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
-    public function getAgentwithDrawal()
+    public function getAgentwithDrawal(Request $oRequest)
     {
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
 
@@ -676,7 +689,13 @@ class ClientIbportalController extends Controller
             'login2' => '',
             'amount' => ''];
 
-        return view('ibportal::client.withDrawal')->with('internalTransfer', $internalTransfer)  ->with('Pssword', $Pssword);
+        $oCurrentAgentwithDrawal = modelMt4User::where(['login' => $oRequest->login, 'server_id' =>0])->first();
+
+        return view('ibportal::client.withDrawal')
+            ->with('login', $oRequest->login)
+            ->with('oCurrentAgentwithDrawal', $oCurrentAgentwithDrawal)
+            ->with('internalTransfer', $internalTransfer)
+            ->with('Pssword', $Pssword);
     }
 
     public function postAgentwithDrawal(Request $oRequest)

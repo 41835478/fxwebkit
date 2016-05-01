@@ -133,4 +133,11 @@
     'asignMt4Users'=>'Assign MT4 User',
     'detailsPlan'=>'Details Plan',
     'currentMt4Password'=>'Current Mt4 Password',
+    'Withdrawal'=>'Withdrawal',
+    'equity'=>'Equity',
+    'agentAccount'=>'Agent Account',
+    'Balance'=>'Balance',
+    'MarginFree'=>'Free Margin',
+    'equity :'=>'Equity :',
+
 ]; ?>
