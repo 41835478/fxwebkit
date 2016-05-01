@@ -49,7 +49,7 @@ return [
     'googleDriver' => 'Google',
     'googleIdentifier' => '550013315281-l4e78dgaou1i5up951shripl599ivb6o.apps.googleusercontent.com',
     'googleSecret' => 'FROszwzxu9ahiCqU40nRb28u',
-    'EnableGoogleRegister'=>false,
+    'EnableGoogleRegister'=>true,
     'googleScopes' => ['email'],
 
 
@@ -57,7 +57,7 @@ return [
     'linkedinProvider' => 'linkedin',
     'linkedinDriver' => 'LinkedIn',
     'linkedinIdentifier' => '77pt0cs5p0duu6',
-    'EnableLinkedinRegister'=>true,
+    'EnableLinkedinRegister'=>false,
     'linkedinSecret' => 'ddVzvRTG0Nmkyy6u',
 
     'key' => 'fgh',

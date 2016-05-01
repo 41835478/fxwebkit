@@ -3,11 +3,11 @@
 return [
 
     'is_admin' => 1,
-    'is_client' => 0,
+    'is_client' => 1,
     'name' => 'accounts',
     'icon' => 'fa fa-user',
     'route' => '',
-    'directOrderToMt4Server' => true,
+    'directOrderToMt4Server' => false,
     'operation' => [
         '0' => 'Credit In',
         '1' => 'Credit Out',
@@ -21,7 +21,7 @@ return [
 
     'changeLeverageWarning' => 'Please, be careful with this operation !',
     'denyLiveAccount' => true,
-    'showMt4Leverage' => false,
+    'showMt4Leverage' => true,
     'showWithDrawal' => true,
     'showMt4ChangePassword' => true,
     'showMt4Transfer' => true,

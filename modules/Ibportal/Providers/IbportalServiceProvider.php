@@ -46,10 +46,10 @@ class IbportalServiceProvider extends ServiceProvider {
 	protected function registerConfig()
 	{
 		$this->publishes([
-		    __DIR__.'/../../../Config/ibportalConfig.php' => config_path('ibportal.php'),
+		    __DIR__.'/../../../config/ibportalConfig.php' => config_path('ibportal.php'),
 		]);
 		$this->mergeConfigFrom(
-		    __DIR__.'/../../../Config/ibportalConfig.php', 'ibportal'
+		    __DIR__.'/../../../config/ibportalConfig.php', 'ibportal'
 		);
 	}
 

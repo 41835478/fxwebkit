@@ -51,33 +51,37 @@
 
             <div class="signin-with">
 
-                <a href="{{ route('client.facebook.login') }}" class="signin-with-btn"
-                   style="background:#4f6faa;background:rgba(79, 111, 170, .8);">
-                    {{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.Facebook') }}</span>
-                </a>
-                <a href="{{ route('client.google.login') }}" class="signin-with-btn"
-                   style="background:#4285F4;background:rgba(66, 133, 244, .8);">
-                    {{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.google') }}</span>
-                </a>
-                <a href="{{ route('client.linkedin.login') }}" class="signin-with-btn"
-                   style="background:#0077B5;background:rgba(0, 119, 181, .8);">
-                    {{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.linkedin') }}</span>
-                </a>
-                <a href="{{ route('client.twitter.login') }}" class="signin-with-btn"
-                   style=" display: none;background:#0077B5;background:rgba(0, 119, 181, .8);">
-                    {{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.twitter') }}</span>
-                </a>
+                @if(config('fxweb.EnableFacebookRegister'))
+                    <a href="{{ route('client.facebook.login') }}" class="signin-with-btn"
+                       style="background:#4f6faa;background:rgba(79, 111, 170, .8);">
+                        {{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.Facebook') }}</span>
+                    </a>
+                @endif
+                @if(config('fxweb.EnableGoogleRegister'))
+                    <a href="{{ route('client.google.login') }}" class="signin-with-btn"
+                       style="background:#4285F4;background:rgba(66, 133, 244, .8);">
+                        {{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.google') }}</span>
+                    </a>
+                @endif
+                @if(config('fxweb.EnableLinkedinRegister'))
+                    <a href="{{ route('client.linkedin.login') }}" class="signin-with-btn"
+                       style="background:#0077B5;background:rgba(0, 119, 181, .8);">
+                        {{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.linkedin') }}</span>
+                    </a>
+                @endif
 
 
-            </div>
+                <div class="text-center">
+                    <div class="clearfix"></div>
+                    {{ Lang::get('user.not_a_member') }}
+                    <a href="{{ route('client.auth.register') }}">{{ Lang::get('user.sign_up_now') }}</a>
 
-            <div class="text-center">
-
-                {{ Lang::get('user.not_a_member') }} <a
-                        href="{{ route('client.auth.register') }}">{{ Lang::get('user.sign_up_now') }}</a>
+                    <div class="clearfix"></div>
+                </div>
             </div>
 
         </div>
+
     </div>
 
 

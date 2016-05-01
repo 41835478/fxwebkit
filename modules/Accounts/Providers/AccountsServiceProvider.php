@@ -41,10 +41,10 @@ class AccountsServiceProvider extends ServiceProvider {
 	protected function registerConfig()
 	{
 		$this->publishes([
-		    __DIR__.'/../../../Config/accountsConfig.php' => config_path('accounts.php'),
+		    __DIR__.'/../../../config/accountsConfig.php' => config_path('accounts.php'),
 		]);
 		$this->mergeConfigFrom(
-		    __DIR__.'/../../../Config/accountsConfig.php', 'accounts'
+		    __DIR__.'/../../../config/accountsConfig.php', 'accounts'
 		);
 	}
 

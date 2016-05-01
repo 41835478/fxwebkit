@@ -50,7 +50,7 @@
                     <!-- ol-sm-6 -->
                     <div class="col-sm-4 text-left">
                         <div class="form-group no-margin-hr">
-                            <label class="control-label">{{$user_details['email'] }}:</label>
+                            <label class="control-label">{{$user_details['email'] }}</label>
                         </div>
                     </div>
                     <!--ol-sm-6 -->

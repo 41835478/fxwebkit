@@ -46,10 +46,10 @@ class RequestServiceProvider extends ServiceProvider {
 	protected function registerConfig()
 	{
 		$this->publishes([
-		    __DIR__.'/../../../Config/requestConfig.php' => config_path('request.php'),
+		    __DIR__.'/../../../config/requestConfig.php' => config_path('request.php'),
 		]);
 		$this->mergeConfigFrom(
-		    __DIR__.'/../../../Config/requestConfig.php', 'request'
+		    __DIR__.'/../../../config/requestConfig.php', 'request'
 		);
 	}
 

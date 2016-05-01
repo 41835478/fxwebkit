@@ -46,10 +46,10 @@ class Mt4ConfigrationsServiceProvider extends ServiceProvider {
 	protected function registerConfig()
 	{
 		$this->publishes([
-		    __DIR__.'/../../../Config/mt4ConfigrationsConfig.php' => config_path('mt4configrations.php'),
+		    __DIR__.'/../../../config/mt4ConfigrationsConfig.php' => config_path('mt4configrations.php'),
 		]);
 		$this->mergeConfigFrom(
-		    __DIR__.'/../../../Config/mt4ConfigrationsConfig.php', 'mt4configrations'
+		    __DIR__.'/../../../config/mt4ConfigrationsConfig.php', 'mt4configrations'
 		);
 	}
 

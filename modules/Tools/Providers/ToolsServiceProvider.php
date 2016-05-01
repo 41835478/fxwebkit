@@ -44,10 +44,10 @@ class ToolsServiceProvider extends ServiceProvider {
 	protected function registerConfig()
 	{
 		$this->publishes([
-		    __DIR__.'/../../../Config/toolsConfig.php' => config_path('tools.php'),
+		    __DIR__.'/../../../config/toolsConfig.php' => config_path('tools.php'),
 		]);
 		$this->mergeConfigFrom(
-		    __DIR__.'/../../../Config/toolsConfig.php','tools'
+		    __DIR__.'/../../../config/toolsConfig.php','tools'
 		);
 	}
 

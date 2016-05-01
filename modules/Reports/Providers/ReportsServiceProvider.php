@@ -41,10 +41,10 @@ class ReportsServiceProvider extends ServiceProvider {
 	protected function registerConfig()
 	{
 		$this->publishes([
-		    __DIR__.'/../../../Config/reportsConfig.php' => config_path('reports.php'),
+		    __DIR__.'/../../../config/reportsConfig.php' => config_path('reports.php'),
 		]);
 		$this->mergeConfigFrom(
-		    __DIR__.'/../../../Config/reportsConfig.php', 'reports'
+		    __DIR__.'/../../../config/reportsConfig.php', 'reports'
 		);
 	}
 

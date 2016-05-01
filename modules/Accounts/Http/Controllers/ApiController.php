@@ -73,6 +73,7 @@ class ApiController extends Controller
 
         $fp = @fsockopen($this->mt4Host, $this->mt4Port, $error, $error2, 10);
         $result = '';
+
         if ($fp) {
             fwrite($fp, $message . $admin . "\nQUIT\n");
             while (!feof($fp)) {
@@ -80,7 +81,7 @@ class ApiController extends Controller
             }
             fclose($fp);
         }
-     //   dd($message . $admin . "\nQUIT\n");
+
 
         $result = preg_replace("#}[^}]*$#", '}', $result);
         $result = json_decode($result);
@@ -106,7 +107,7 @@ class ApiController extends Controller
         $result = $this->sendApiMessage($message);
 
 
-        if ($result->result == 0) {
+        if ($result->result === 0) {
             /* TODO comment and reason should be from addmin not $result,$result  */
 
             $requestLog->insertChangePasswordRequest($login, $this->server_id, $newPassword, '', '', 1,$passwordType);
@@ -163,7 +164,7 @@ class ApiController extends Controller
         $result = $this->sendApiMessage($message);
 
 
-        if ($result->result == 0) {
+        if ($result->result === 0) {
             /* TODO comment and reason should be from addmin not $result,$result  */
             $requestLog->insertChangeLeverageRequest($login, $this->server_id, $leverage, '', '', 1);
 
@@ -230,7 +231,7 @@ class ApiController extends Controller
 
         $result = $this->sendApiMessage($message);
 
-        if ($result->result == 0) {
+        if ($result->result === 0) {
             /* TODO comment and reason should be from addmin not $result,$result  */
             $requestLog->insertInternalTransferRequest($login1, $login2, $this->server_id, $amount, '', '', 1);
 
@@ -293,7 +294,7 @@ class ApiController extends Controller
         $result = $this->sendApiMessage($message);
 
 
-        if ($result->result == 0) {
+        if ($result->result === 0) {
             /* TODO comment and reason should be from addmin not $result,$result  */
             $requestLog->insertWithDrawalRequest($login1, $this->server_id, $amount, '', '', 1);
 
@@ -369,7 +370,7 @@ class ApiController extends Controller
 
         $result = $this->sendApiMessage($message);
 
-        if ($result->result == 0) {
+        if ($result->result === 0) {
 
             /* TODO comment and reason should be from addmin not $result,$result  */
             $requestLog->insertMt4UserFullDetailsRequest($this->server_id, $mt4_user_details, 1, $accountId);
@@ -447,7 +448,7 @@ class ApiController extends Controller
         $result = $this->sendApiMessage($message);
 
 
-        if ($result->result == 0) {
+        if ($result->result === 0) {
             /* TODO comment and reason should be from addmin not $result,$result  */
             $requestLog->insertAssignAccountRequest($login, $this->server_id, $password, '', '', 1);
 
@@ -495,7 +496,7 @@ class ApiController extends Controller
         $message = 'WMQWEBAPI MASTER=' . $this->apiMasterPassword . '|MODE=7|LOGIN=' . $login . '|CPASS=' . $password;
         $result = $this->sendApiMessage($message);
 
-        if ($result->result == 0) {
+        if ($result->result === 0) {
 
 
             return true;
