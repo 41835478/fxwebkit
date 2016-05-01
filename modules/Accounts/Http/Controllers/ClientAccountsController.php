@@ -369,7 +369,7 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
         $denyLiveAccount=(current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount'])  )? true:false;
 
         if($denyLiveAccount){
-            return Redirect::route('client.mt4DemoAccount');
+            return Redirect::route('client.accounts.mt4DemoAccount');
         }
         return view('accounts::client.addMt4User')->with('userInfo', $userInfo)
             ->with('denyLiveAccount',$denyLiveAccount);
@@ -403,6 +403,7 @@ $oCurrentLeverage=modelMt4User::select('LEVERAGE')->where(['login'=>$oRequest->l
 
     public function getMt4DemoAccount(Request $oRequest)
     {
+
         $user = current_user()->getUser();
 
         $oResult = $this->oUsers->getUserDetails($user->id);

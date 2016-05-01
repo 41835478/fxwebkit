@@ -657,10 +657,9 @@ class EloquentIbportalContractRepository implements IbportalContract
         $oResult = new Mt4ClosedBalance();
         $aSummury = [];
 
-
         /* =================================== */
 
-        if (isset($aFilters['agentId']) && $aFilters['agentId'] > 0) {
+        if (isset($aFilters['login']) && $aFilters['login'] > 0) {
             $oResult = $oResult->where('LOGIN', $aFilters['login']);
         }
 
