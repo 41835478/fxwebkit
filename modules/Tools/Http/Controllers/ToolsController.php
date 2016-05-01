@@ -516,10 +516,17 @@ class ToolsController extends Controller
         return Redirect::to(route('tools.holidayDetails') . '?holiday_id=' . $oRequest->holiday_id . '&date=' . $oRequest->date)->withErrors($result);
     }
 
+
+
+
+
     public function getToolsSettings()
     {
         $toolsSetting = [
-            'is_client' => Config('tools.is_client'),
+
+            'is_client' => Config('toolsConfig.is_client'),
+
+
         ];
 
         return view('tools::toolsSetting')->with('toolsSetting', $toolsSetting);
@@ -528,15 +535,15 @@ class ToolsController extends Controller
     public function postToolsSettings(Request $oRequest)
     {
         $is_client = ($oRequest->is_client) ? 1 : 0;
+
         $toolsSetting = [
             'is_client' => $is_client,
         ];
 
         $editConfig = new EditConfig();
+        $editConfig->editConfigFile('Config/toolsConfig.php', $toolsSetting);
 
-        $editConfig->editConfigFile('modules/Tools/Config/config.php', $toolsSetting);
-
-        return view('reports::reportsSetting')->with('reportsSetting', $toolsSetting);
+        return view('tools::toolsSetting')->with('toolsSetting', $toolsSetting);
 
     }
 

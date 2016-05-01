@@ -41,10 +41,10 @@ class CmsServiceProvider extends ServiceProvider {
 	protected function registerConfig()
 	{
 		$this->publishes([
-		    __DIR__.'/../Config/config.php' => config_path('cms.php'),
+		    __DIR__.'/../../../Config/cmsConfig.php' => config_path('cms.php'),
 		]);
 		$this->mergeConfigFrom(
-		    __DIR__.'/../Config/config.php', 'cms'
+		    __DIR__.'/../../../Config/cmsConfig.php', 'cms'
 		);
 	}
 

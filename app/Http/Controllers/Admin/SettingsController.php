@@ -483,6 +483,9 @@ return $this->getMassMailer($oRequest);
 
 
         $enableLinkTradeForUser = ($oRequest->EnableLinkTradeForUser) ? true : false;
+        $enableLinkedinRegister= ($oRequest->EnableLinkedinRegister) ? true : false;
+        $enableGoogleRegister= ($oRequest->EnableGoogleRegister) ? true : false;
+        $enableFacebookRegister= ($oRequest->EnableFacebookRegister) ? true : false;
 
         $aSetting = [
 
@@ -505,6 +508,7 @@ return $this->getMassMailer($oRequest);
             'facebookLoginIdentifier'=>$oRequest->facebookLoginIdentifier,
             'facebookLoginApp_id'=>$oRequest->facebookLoginApp_id,
             'facebookLoginSecret'=>$oRequest->facebookLoginSecret,
+            'EnableFacebookRegister'=>$enableFacebookRegister,
 
 
 
@@ -513,12 +517,14 @@ return $this->getMassMailer($oRequest);
             'googleDriver'=>$oRequest->googleDriver,
             'googleIdentifier'=>$oRequest->googleIdentifier,
             'googleSecret'=>$oRequest->googleSecret,
+            'EnableGoogleRegister'=>$enableGoogleRegister,
 
             'linkedinCallback'=>$oRequest->linkedinCallback,
             'linkedinProvider'=>$oRequest->linkedinProvider,
             'linkedinDriver'=>$oRequest->linkedinDriver,
             'linkedinIdentifier'=>$oRequest->linkedinIdentifier,
             'linkedinSecret'=>$oRequest->linkedinSecret,
+            'EnableLinkedinRegister'=>$enableLinkedinRegister,
 
 
             

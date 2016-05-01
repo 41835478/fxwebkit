@@ -85,7 +85,7 @@
                                         <td>{{ $oResult->email }}</td>
                                         <td>{{ $oResult->agentPlan->plan->name}}</td>
                                         <td> <a href="{{ route('clients.ibportal.agentUserMt4Users').'?account_id='.$oResult->id }}"
-                                                class="fa fa-users tooltip_number" data-original-title="{{trans('accounts::accounts.asignMt4Users')}}"></a>
+                                                class="fa fa-users tooltip_number" data-original-title="{{trans('ibportal::ibportal.asignMt4Users')}}"></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -123,6 +123,8 @@
     <script>
         init.push(function () {
 
+
+            $('.tooltip_number').tooltip();
 
             $('#all-groups-chx').change(function () {
 

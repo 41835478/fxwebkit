@@ -194,7 +194,7 @@ class Mt4ConfigrationsController extends Controller
     {
         $mt4ConfigurationsSetting = [
 
-            'apiAdminPassword' => Config('mt4configrations.apiAdminPassword'),
+            'apiAdminPassword' => Config('mt4configrationsConfig.apiAdminPassword'),
 
 
 
@@ -217,7 +217,7 @@ class Mt4ConfigrationsController extends Controller
 
         $editConfig = new EditConfig();
 
-        $editConfig->editConfigFile('modules/Mt4configrations/Config/config.php', $mt4ConfigurationsSetting);
+        $editConfig->editConfigFile('Config/mt4configrationsConfig.php', $mt4ConfigurationsSetting);
 
         return view('mt4configrations::mt4ConfigurationsSetting')->with('mt4ConfigurationsSetting', $mt4ConfigurationsSetting);
 

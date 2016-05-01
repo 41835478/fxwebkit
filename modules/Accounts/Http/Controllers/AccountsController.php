@@ -682,7 +682,7 @@ class AccountsController extends Controller
     {
 
         $Result = Config('fxweb.leverage');
-        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);
 
 
@@ -705,7 +705,7 @@ class AccountsController extends Controller
     {
 
         $Result = Config('fxweb.leverage');
-        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
 
 
         $changeleverage = [
@@ -736,8 +736,8 @@ class AccountsController extends Controller
     public function getMt4ChangePassword(Request $oRequest)
     {
 
-        $Password = Config('accounts.apiReqiredConfirmMt4Password');
-        $loginPasswordType = Config('accounts.loginPasswordType');
+        $Password = Config('accountsConfig.apiReqiredConfirmMt4Password');
+        $loginPasswordType = Config('accountsConfig.loginPasswordType');
 
 
         $changePassword = [
@@ -759,8 +759,8 @@ class AccountsController extends Controller
     public function postMt4ChangePassword(Request $oRequest)
     {
 
-        $Password = Config('accounts.apiReqiredConfirmMt4Password');
-        $loginPasswordType = Config('accounts.loginPasswordType');
+        $Password = Config('accountsConfig.apiReqiredConfirmMt4Password');
+        $loginPasswordType = Config('accountsConfig.loginPasswordType');
 
 
         $changePassword = [
@@ -791,7 +791,7 @@ class AccountsController extends Controller
 
     public function getMt4InternalTransfer(Request $oRequest)
     {
-        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);
 
 
@@ -813,7 +813,7 @@ class AccountsController extends Controller
     {
 
 
-        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);
 
         $internalTransfer = [
@@ -843,7 +843,7 @@ class AccountsController extends Controller
 
     public function getWithDrawal(Request $oRequest)
     {
-        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);
 
 
@@ -865,7 +865,7 @@ class AccountsController extends Controller
     {
 
 
-        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
+        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);
 
         $internalTransfer = [
@@ -896,8 +896,8 @@ class AccountsController extends Controller
     public function getMt4Operation(Request $oRequest)
     {
 
-        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
-        $Result = Config('accounts.operation');
+        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
+        $Result = Config('accountsConfig.operation');
 
         $changeOperation = [
             'login1' => '',
@@ -916,8 +916,8 @@ class AccountsController extends Controller
     public function postMt4Operation(Request $oRequest)
     {
 
-        $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
-        $Result = Config('accounts.operation');
+        $Pssword = Config('accountsConfig.apiReqiredConfirmMt4Password');
+        $Result = Config('accountsConfig.operation');
 
         if ($oRequest->operation == '0') {
             $operation = 5;
@@ -954,16 +954,16 @@ class AccountsController extends Controller
     {
 
         $accountsSetting = [
-'changeLeverageWarning'=>config('accounts.changeLeverageWarning'),
-            'showMt4Leverage' => Config('accounts.showMt4Leverage'),
-            'showMt4ChangePassword' => Config('accounts.showMt4ChangePassword'),
-            'showMt4Transfer' => Config('accounts.showMt4Transfer'),
-            'denyLiveAccount' => Config('accounts.denyLiveAccount'),
-            'apiReqiredConfirmMt4Password' => Config('accounts.apiReqiredConfirmMt4Password'),
-            'allowTransferToUnsignedMT4' => Config('accounts.allowTransferToUnsignedMT4'),
-            'directOrderToMt4Server' => Config('accounts.directOrderToMt4Server'),
-            'showWithDrawal' => Config('accounts.showWithDrawal'),
-            'is_client' => Config('accounts.is_client'),
+            'changeLeverageWarning'=>config('accountsConfig.changeLeverageWarning'),
+            'showMt4Leverage' => Config('accountsConfig.showMt4Leverage'),
+            'showMt4ChangePassword' => Config('accountsConfig.showMt4ChangePassword'),
+            'showMt4Transfer' => Config('accountsConfig.showMt4Transfer'),
+            'denyLiveAccount' => Config('accountsConfig.denyLiveAccount'),
+            'apiReqiredConfirmMt4Password' => Config('accountsConfig.apiReqiredConfirmMt4Password'),
+            'allowTransferToUnsignedMT4' => Config('accountsConfig.allowTransferToUnsignedMT4'),
+            'directOrderToMt4Server' => Config('accountsConfig.directOrderToMt4Server'),
+            'showWithDrawal' => Config('accountsConfig.showWithDrawal'),
+            'is_client' => Config('accountsConfig.is_client'),
 
         ];
         
@@ -1012,7 +1012,7 @@ class AccountsController extends Controller
 
 
         $editConfig = new EditConfig();
-        $editConfig->editConfigFile('modules/Accounts/Config/config.php', $accountsSetting);
+        $editConfig->editConfigFile('Config/accountsConfig.php', $accountsSetting);
 
         return  Redirect::route('accounts.accountsSettings')->with('accountsSetting', $accountsSetting);
 
@@ -1034,6 +1034,6 @@ class AccountsController extends Controller
     public function getUnssignUserFromMt4User(Request $oRequest){
 
         $this->oUsers->unsignMt4UsersToAccount($oRequest->user_id, [$oRequest->login.','. $oRequest->server_id],3);
-return $this->getMt4AssignedUsers($oRequest);
+                return $this->getMt4AssignedUsers($oRequest);
     }
 }

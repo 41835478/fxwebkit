@@ -41,7 +41,7 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('client.ibportal.detailsPlan').'?edit_id='.$oResult->id }}"
-                                       class="fa fa-file-text"></a>
+                                       class="fa fa-file-text tooltip_number" data-original-title="{{trans('ibportal::ibportal.detailsPlan')}}"></a>
 
                                 </td>
                             </tr>
@@ -81,6 +81,8 @@
     <script>
         init.push(function () {
 
+
+            $('.tooltip_number').tooltip();
 
             $('#all-groups-chx').change(function () {
 

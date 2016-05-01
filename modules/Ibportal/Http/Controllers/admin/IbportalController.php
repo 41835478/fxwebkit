@@ -220,6 +220,7 @@ class IbportalController extends Controller
 
     public function getAgentList(Request $oRequest)
     {
+
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
         $agents= $this->Ibportal->getAgents();
@@ -629,11 +630,11 @@ class IbportalController extends Controller
 
         $ibportalSetting = [
 
-            'agreemment' => Config('ibportal.agreemment'),
-            'is_client' => Config('ibportal.is_client'),
-            'allowAgentTransferToAll'=> Config('ibportal.allowAgentTransferToAll'),
-            'allowAgentTransferToHisAgentUsers'=> Config('ibportal.allowAgentTransferToHisAgentUsers'),
-            'allowAgentTransferToHisAgent'=> Config('ibportal.allowAgentTransferToHisAgent')
+            'agreemment' => Config('ibportalConfig.agreemment'),
+            'is_client' => Config('ibportalConfig.is_client'),
+            'allowAgentTransferToAll'=> Config('ibportalConfig.allowAgentTransferToAll'),
+            'allowAgentTransferToHisAgentUsers'=> Config('ibportalConfig.allowAgentTransferToHisAgentUsers'),
+            'allowAgentTransferToHisAgent'=> Config('ibportalConfig.allowAgentTransferToHisAgent')
 
         ];
 
@@ -656,7 +657,7 @@ class IbportalController extends Controller
         ];
 
         $editConfig = new EditConfig();
-        $editConfig->editConfigFile('modules/Ibportal/Config/config.php', $ibportalSetting);
+        $editConfig->editConfigFile('Config/ibportalConfig.php', $ibportalSetting);
 
         return view('ibportal::admin.ibportalSetting')->with('ibportalSetting', $ibportalSetting);
 

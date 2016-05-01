@@ -49,8 +49,6 @@
 
         </div>
 
-</div>
-
     @if($errors->any())
         <div class="alert alert-danger alert-dark">
             @foreach($errors->all() as $key=>$error)

@@ -33,8 +33,6 @@ class ToolsServiceProvider extends ServiceProvider {
 		$this->app->bind(
 			'Modules\Tools\Repositories\HolidayContract',
 			'Modules\Tools\Repositories\EloquentHolidayContractRepository'
-
-
 		);
 	}
 
@@ -46,10 +44,10 @@ class ToolsServiceProvider extends ServiceProvider {
 	protected function registerConfig()
 	{
 		$this->publishes([
-		    __DIR__.'/../Config/config.php' => config_path('tools.php'),
+		    __DIR__.'/../../../Config/toolsConfig.php' => config_path('tools.php'),
 		]);
 		$this->mergeConfigFrom(
-		    __DIR__.'/../Config/config.php', 'tools'
+		    __DIR__.'/../../../Config/toolsConfig.php','tools'
 		);
 	}
 

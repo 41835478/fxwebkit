@@ -565,7 +565,7 @@ class ReportsController extends Controller
     {
         $reportsSetting = [
 
-            'is_client' => Config('reports.is_client'),
+            'is_client' => Config('reportsConfig.is_client'),
 
 
         ];
@@ -582,7 +582,7 @@ class ReportsController extends Controller
 
         $editConfig = new EditConfig();
 
-        $editConfig->editConfigFile('modules/Reports/Config/config.php', $reportsSetting);
+        $editConfig->editConfigFile('Config/reportsConfig.php', $reportsSetting);
 
         return view('reports::reportsSetting')->with('reportsSetting', $reportsSetting);
 

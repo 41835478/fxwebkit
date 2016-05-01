@@ -532,7 +532,7 @@ $page_modules=DB::select( $query_string);
     {
         $aSetting= [
 
-            'is_client' => Config('tools.is_client'),
+            'is_client' => Config('toolsConfig.is_client'),
 
 
         ];
@@ -557,7 +557,7 @@ $page_modules=DB::select( $query_string);
 
         $editConfig = new EditConfig();
 
-        $editConfig->editConfigFile('modules/Cms/Config/config.php', $aSetting);
+        $editConfig->editConfigFile('Config/cmsConfig.php', $aSetting);
 
         return Redirect::route('cms.cmsSettings');
 

@@ -130,4 +130,6 @@
 'usersList'=>'Users List',
 'planUsers'=>'Plan Users',
 'no_assign_account'=>'No Assign Account',
+    'asignMt4Users'=>'Assign MT4 User',
+    'detailsPlan'=>'Details Plan',
 ]; ?>

@@ -24,7 +24,7 @@ return [
     'EnableLinkTradeForUser' => true,
     'mt4CheckHost' => '192.168.15.10',
     'mt4CheckPort' => '443',
-    'liveServerName' => 'liveA',
+    'liveServerName' => 'liveAAA',
     'mt4CheckDemoHost' => '192.168.15.10',
     'mt4CheckDemoPort' => '443',
     'demoServerName' => 'demo',
@@ -40,6 +40,7 @@ return [
     'facebookLoginIdentifier' => '905239722928440',
     'facebookLoginApp_id' => '905239722928440',
     'facebookLoginSecret' => '8dfda7399b0793451f6dcc49370dadf6',
+    'EnableFacebookRegister'=>false,
     'facebookLoginScopes' => ['email'],
 
 
@@ -48,6 +49,7 @@ return [
     'googleDriver' => 'Google',
     'googleIdentifier' => '550013315281-l4e78dgaou1i5up951shripl599ivb6o.apps.googleusercontent.com',
     'googleSecret' => 'FROszwzxu9ahiCqU40nRb28u',
+    'EnableGoogleRegister'=>false,
     'googleScopes' => ['email'],
 
 
@@ -55,6 +57,7 @@ return [
     'linkedinProvider' => 'linkedin',
     'linkedinDriver' => 'LinkedIn',
     'linkedinIdentifier' => '77pt0cs5p0duu6',
+    'EnableLinkedinRegister'=>true,
     'linkedinSecret' => 'ddVzvRTG0Nmkyy6u',
 
     'key' => 'fgh',

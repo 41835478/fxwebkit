@@ -229,6 +229,18 @@
                                     </div>
 
                                 </div>
+
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                {!! Form::checkbox('EnableFacebookRegister', 1, config('fxweb.EnableFacebookRegister'), ['class'=>'px','id'=>'EnableFacebookRegister']) !!}
+                                                <span class="lbl">{{ trans('general.EnableFacebookRegister') }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- / .panel-body -->
                             </div>
                             <!-- / .collapse -->
@@ -293,6 +305,18 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                {!! Form::checkbox('EnableGoogleRegister', 1, config('fxweb.EnableGoogleRegister'), ['class'=>'px','id'=>'EnableGoogleRegister']) !!}
+                                                <span class="lbl">{{ trans('general.EnableGoogleRegister') }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -354,6 +378,18 @@
                                         </div>
                                     </div>
 
+                                </div>
+
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                {!! Form::checkbox('EnableLinkedinRegister', 1, config('fxweb.EnableLinkedinRegister'), ['class'=>'px','id'=>'EnableLinkedinRegister']) !!}
+                                                <span class="lbl">{{ trans('general.EnableLinkedinRegister') }}</span>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- / .panel-body -->
                             </div>

@@ -1,8 +1,10 @@
 <?php
 
 
-Route::group(['middleware' => ['authenticate.admin'], 'prefix' => 'admin', 'namespace' => 'Modules\Accounts\Http\Controllers'], function () {
-    Route::controller('accounts', 'AccountsController', [
+Route::group(['middleware' => ['authenticate.admin'], 'prefix' => 'admin', 'namespace' => 'Modules\Accounts\Http\Controllers'], function ()
+{
+    Route::controller('accounts', 'AccountsController',
+        [
         'getAccountsList' => 'accounts.accountsList',
         'getAddAccount' => 'accounts.addAccount',
         'getAsignMt4Users' => 'accounts.asignMt4Users',

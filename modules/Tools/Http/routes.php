@@ -1,7 +1,9 @@
 <?php
+
 	Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'admin', 'namespace' => 'Modules\Tools\Http\Controllers'], function()
 {
-        Route::controller('tools','ToolsController',[
+        Route::controller('tools','ToolsController',
+            [
             'getFutureContract'=>'tools.futureContract',
             'sendExpiryDate'=>'tools.sendExpiryDate',
             'getMarketWatch'=>'tools.marketWatch',

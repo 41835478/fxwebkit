@@ -205,4 +205,7 @@
     'Arabic' => 'العربية',
     'delete' => 'Delete',
     'saveNew' => 'New E-mail Template',
+    'EnableGoogleRegister'=>'Enable Google Register',
+    'EnableFacebookRegister'=>'Enable Facebook Register',
+    'EnableLinkedinRegister'=>'Enable Linkedin Register',
 ]; ?>
