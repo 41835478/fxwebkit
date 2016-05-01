@@ -40,14 +40,20 @@ class LanguageController extends Controller
 
 
         $enArray = include($resourceFolder . '/lang/en/' . $file);
+
+
+        $enArray=$this->convertArrayToOneLevel($enArray);
+
         $otherLanguageArray = [];
+
         if ($language == 'en') {
             $otherLanguageArray = $enArray;
         } else {
 
             $otherLanguageArray = include($resourceFolder . '/lang/' . $language . '/' . $file);
-
+            $otherLanguageArray=$this->convertArrayToOneLevel($otherLanguageArray);
         }
+
 
         return view('admin.language', [
             'languages' => $languages,
@@ -61,6 +67,19 @@ class LanguageController extends Controller
 
         ]);
 
+    }
+
+    private function convertArrayToOneLevel($array,$parent=''){
+        $returnArray=[];
+        foreach($array as $key=>$value){
+            if(is_array($value)){
+                $returnArray+= $this->convertArrayToOneLevel($value,$parent.(($parent=='')? $key.']':'['.$key.']'));
+            }else{
+                $key =$parent.(($parent=='')? $key.']':'['.$key.']');
+                $returnArray[$key]=$value;
+            }
+        }
+       return  $returnArray;
     }
 
     public function postEditLanguage(Request $request)
@@ -89,18 +108,22 @@ class LanguageController extends Controller
     }
 
 
-    public function arrayToString($array)
+    public function arrayToString($array,$sub='')
     {
         if(!is_array($array)){return "<?php  return []; ?>";}
 
-        $sArray = "<?php return [\n";
+        $sArray =($sub=='')? "<?php return [\n":"[\n";
+
         foreach ($array as $key => $value) {
 
-            $sArray .= "'" . $key . "'=>'" . $value . "',\n";
-
-
+            $sArray.="'" . $key . "'=>" ;
+            if(is_array($value)){
+                $sArray.= $this->arrayToString($value,1);
+            }else{
+                $sArray .= "'".$value . "',\n";
+            }
         }
-        $sArray .= ']; ?>';
+        $sArray .= ($sub=='')? ']; ?>':"],\n";
         return $sArray;
     }
 
@@ -111,6 +134,7 @@ class LanguageController extends Controller
 
     public function directWriteArrayToFile($filePath, $array)
     {
+      //  dd($this->arrayToString($array));
         file_put_contents($filePath, $this->arrayToString($array));
     }
 

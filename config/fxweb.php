@@ -40,7 +40,7 @@ return [
     'facebookLoginIdentifier' => '905239722928440',
     'facebookLoginApp_id' => '905239722928440',
     'facebookLoginSecret' => '8dfda7399b0793451f6dcc49370dadf6',
-    'EnableFacebookRegister'=>false,
+    'EnableFacebookRegister'=>true,
     'facebookLoginScopes' => ['email'],
 
 
@@ -57,7 +57,7 @@ return [
     'linkedinProvider' => 'linkedin',
     'linkedinDriver' => 'LinkedIn',
     'linkedinIdentifier' => '77pt0cs5p0duu6',
-    'EnableLinkedinRegister'=>false,
+    'EnableLinkedinRegister'=>true,
     'linkedinSecret' => 'ddVzvRTG0Nmkyy6u',
 
     'key' => 'fgh',

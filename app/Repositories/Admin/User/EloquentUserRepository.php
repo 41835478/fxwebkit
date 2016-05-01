@@ -16,7 +16,6 @@ use Fxweb\Models\Mt4User;
 
 use Fxweb\Models\SettingsMassGroupsUsers;
 use Fxweb\Models\SettingsMassGroups;
-
 /**
  * Class EloquentUserRepository
  * @package App\Repositories\User
@@ -403,7 +402,7 @@ class EloquentUserRepository implements UserContract
         $oUser = Sentinel::registerAndActivate($aCredentials);
 
         $oClientRole->users()->attach($oUser);
-        $oActivation = Activation::create($oUser);
+       // $oActivation = Activation::create($oUser);
 
 
         $fullDetails = new UsersDetails();
@@ -419,6 +418,8 @@ class EloquentUserRepository implements UserContract
         $fullDetails->zip_code = $oRequest->zip_code;
         $fullDetails->gender = $oRequest->gender;
         $fullDetails->save();
+
+
 
         return $oUser->id;
     }
