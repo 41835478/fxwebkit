@@ -132,4 +132,5 @@
 'no_assign_account'=>'No Assign Account',
     'asignMt4Users'=>'Assign MT4 User',
     'detailsPlan'=>'Details Plan',
+    'currentMt4Password'=>'Current Mt4 Password',
 ]; ?>
