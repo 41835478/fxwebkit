@@ -1,7 +1,7 @@
 <?php return [
-'accepted'=>'The :attribute must be accepted.',
-'active_url'=>'The :attribute is not a valid URL.',
-'after'=>'The :attribute must be a date after :date.',
+'accepted'=>'يجب قبول هذا الحقل',
+'active_url'=>'يجب أن يكون رابط الموقع رابط حقيقي',
+'after'=>'يجب أن يكون التاريخ المدخل أكبر من تاريخ :date.',
 'alpha'=>'The :attribute may only contain letters.',
 'alpha_dash'=>'The :attribute may only contain letters, numbers, and dashes.',
 'alpha_num'=>'The :attribute may only contain letters and numbers.',
@@ -20,7 +20,7 @@
 'different'=>'The :attribute and :other must be different.',
 'digits'=>'The :attribute must be :digits digits.',
 'digits_between'=>'The :attribute must be between :min and :max digits.',
-'email'=>'  البريد الإلكتروني :attribute يجب أن يكون حقيق',
+'email'=>'يجب أن يكون البريد الإلكتروني حقيقي',
 'filled'=>'The :attribute field is required.',
 'exists'=>'The selected :attribute is invalid.',
 'image'=>'The :attribute must be an image.',
@@ -43,7 +43,7 @@
 'not_in'=>'The selected :attribute is invalid.',
 'numeric'=>'The :attribute must be a number.',
 'regex'=>'The :attribute format is invalid.',
-'required'=>'The :attribute field is required.',
+'required'=>'   مطلوب :attribute إن حقل ',
 'required_if'=>'The :attribute field is required when :other is :value.',
 'required_with'=>'The :attribute field is required when :values is present.',
 'required_with_all'=>'The :attribute field is required when :values is present.',
@@ -61,7 +61,7 @@
 'timezone'=>'The :attribute must be a valid zone.',
 'custom'=>[
 'agreement'=>[
-'required'=>'You need to agree on the Terms and Conditions',
+'required'=>'يجب الموافقة على شروط الإتفاقية .',
 ],
 ],
 ]; ?>
