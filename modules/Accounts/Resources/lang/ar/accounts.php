@@ -141,7 +141,7 @@
 'is_client'=>'اظهار الوحدة للعميل',
 'apiMasterPassword'=>'API كلمة السر الرئيسية ',
 'apiReqiredConfirmMt4Password'=>'API Reqired Confirm Mt4 Password',
-'allowTransferToUnsignedMT4'=>'Allow Transfer To Unsigned MT4',
+'allowTransferToUnsignedMT4'=>'التحويل لاي مستخدم ميتا4',
 'clientSettings'=>'اعدادات العميل',
 'operationsSettings'=>'اعدادات العمليات',
 'apiSettings'=>'API اعدادات ',
@@ -166,7 +166,7 @@
 'fillFullDetailsToAllowLive'=>'Fill Full Details To Allow Live',
 'showWithDrawal'=>'اظهار المسحوبات',
 'changeLeverageWarning'=>'رسالة تحذير تغيير الرافعة المالية',
-'youHavePendingRequest'=>'Please wait until finishing current pending request . ',
+'youHavePendingRequest'=>' Please wait until finishing current pending request . ',
 'assignedUsers'=>'تعيين المستخدمين',
 'lastLogin'=>'اخر تسجيل دخول',
 'registrationDate'=>'تاريخ التسجيل',
@@ -175,4 +175,5 @@
 'notActive'=>'غير نشط',
 'activateUser'=>'تفعيل المستخدم',
 'notAssigned'=>'لم يتم تعيين',
+'currentLeverage'=>'الرافعة المالية الحالية',
 ]; ?>

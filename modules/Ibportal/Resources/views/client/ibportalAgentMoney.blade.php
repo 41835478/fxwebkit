@@ -205,7 +205,7 @@
 
 @section('script')
     @parent
-    {!! HTML::script('assets/js/highcharts.js') !!}
+    {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/highcharts.js') !!}
 
 
 

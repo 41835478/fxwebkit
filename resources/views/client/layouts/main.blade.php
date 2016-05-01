@@ -15,14 +15,14 @@
         <title>@yield('title') - {{ app_name() }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
-        {!! HTML::style('assets/css/bootstrap.min.css') !!}
-        {!! HTML::style('assets/css/pixel-admin.min.css') !!}
-        {!! HTML::style('assets/css/pages.min.css') !!}
-        {!! HTML::style('assets/css/rtl.min.css') !!}
-        {!! HTML::style('assets/css/themes.min.css') !!}
-        {!! HTML::style('assets/css/helper.css') !!}
+        {!! HTML::style('assets/'.config('fxweb.layoutAssetsFolder').'/css/bootstrap.min.css') !!}
+        {!! HTML::style('assets/'.config('fxweb.layoutAssetsFolder').'/css/pixel-admin.min.css') !!}
+        {!! HTML::style('assets/'.config('fxweb.layoutAssetsFolder').'/css/pages.min.css') !!}
+        {!! HTML::style('assets/'.config('fxweb.layoutAssetsFolder').'/css/rtl.min.css') !!}
+        {!! HTML::style('assets/'.config('fxweb.layoutAssetsFolder').'/css/themes.min.css') !!}
+        {!! HTML::style('assets/'.config('fxweb.layoutAssetsFolder').'/css/helper.css') !!}
         <!--[if lt IE 9]>
-        {!! HTML::script('assets/js/ie.min.js') !!}
+        {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/ie.min.js') !!}
         <![endif]-->
     </head>
     <body class="{{ theme_attr() }}">
@@ -39,14 +39,14 @@
 
         @section('script')
         <!--[if !IE]> -->
-        {!! HTML::script('assets/js/jquery.2.0.3.min.js') !!}
+        {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/jquery.2.0.3.min.js') !!}
         <!-- <![endif]-->
         <!--[if lte IE 9]>
-        {!! HTML::script('assets/js/jquery.1.8.3.min.js') !!}
+        {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/jquery.1.8.3.min.js') !!}
         <![endif]-->
 
-        {!! HTML::script('assets/js/bootstrap.min.js') !!}
-        {!! HTML::script('assets/js/pixel-admin.min.js') !!}
+        {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/bootstrap.min.js') !!}
+        {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/pixel-admin.min.js') !!}
 
         <script type="text/javascript">
             window.PixelAdmin.start(init);

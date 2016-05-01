@@ -281,7 +281,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
-                                            <label class="control-label">{{ trans('generaldriver') }}</label>
+                                            <label class="control-label">{{ trans('general.driver') }}</label>
                                             {!! Form::text('googleDriver',config('fxweb.googleDriver'),['class'=>'form-control']) !!}
                                         </div>
                                     </div>
@@ -428,6 +428,29 @@
                                                 {!! Form::checkbox('EnableLinkTradeForUser', 1, config('fxweb.EnableLinkTradeForUser'), ['class'=>'px','id'=>'EnableLinkTradeForUser']) !!}
                                                 <span class="lbl">{{ trans('general.EnableLinkTradeForUser') }}</span>
                                             </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse"
+                               data-parent="#accordion-example"
+                               href="#collapseEight">
+                                {{ trans('general.layoutAssetsFolder') }}
+                            </a>
+                        </div>
+                        <!-- / .panel-heading -->
+                        <div id="collapseEight" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">{{ trans('general.layoutAssetsFolder') }}</label>
+                                            {!! Form::text('layoutAssetsFolder',config('fxweb.layoutAssetsFolder'),['class'=>'form-control']) !!}
                                         </div>
                                     </div>
                                 </div>

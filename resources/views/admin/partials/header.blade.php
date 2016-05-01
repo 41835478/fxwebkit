@@ -8,7 +8,7 @@
         <div class="navbar-header">
             <a href="/" class="navbar-brand">
 
-                {!! HTML::image('assets/img/logo.png',app_name(),['style'=>'width:90px;height:28px;']) !!}
+                {!! HTML::image('assets/'.config('fxweb.layoutAssetsFolder').'/img/logo.png',app_name(),['style'=>'width:90px;height:28px;']) !!}
 
             </a>
 

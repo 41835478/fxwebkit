@@ -208,4 +208,5 @@
     'EnableGoogleRegister'=>'Enable Google Register',
     'EnableFacebookRegister'=>'Enable Facebook Register',
     'EnableLinkedinRegister'=>'Enable Linkedin Register',
+    'layoutAssetsFolder'=>'Layout Assets Folder',
 ]; ?>

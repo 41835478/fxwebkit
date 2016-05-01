@@ -149,8 +149,7 @@
 @stop
 @section('script')
     @parent
-
-    {!! HTML::script('assets/js/highcharts.js') !!}
+    {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/highcharts.js') !!}
     <script>
 
         init.push(function () {

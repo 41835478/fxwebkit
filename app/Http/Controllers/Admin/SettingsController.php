@@ -527,7 +527,7 @@ return $this->getMassMailer($oRequest);
             'EnableLinkedinRegister'=>$enableLinkedinRegister,
 
 
-            
+            'layoutAssetsFolder'=>$oRequest->layoutAssetsFolder,
             'LinkTradeForUser'=>$oRequest->LinkTradeForUser,
             'EnableLinkTradeForUser'=>$enableLinkTradeForUser,
 

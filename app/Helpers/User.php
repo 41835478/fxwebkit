@@ -19,7 +19,7 @@ class User {
 
     public function getAvatar() {
         if (is_null($this->oUser->avatar)) {
-            return File::get(public_path() . '/assets/img/avatar');
+            return File::get(public_path() . '/assets/'.config('fxweb.layoutAssetsFolder').'/img/avatar');
         }
         return $this->oUser->avatar;
     }
