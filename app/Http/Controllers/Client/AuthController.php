@@ -49,6 +49,10 @@ class AuthController extends Controller
 
     public function getLogin()
     {
+
+//        $socialNumber=config('fxweb.EnableFacebookRegister')+ config('fxweb.EnableGoogleRegister')+config('fxweb.EnableLinkedinRegister');
+//        $width=(socialNumber>0)? 85/socialNumber:0;
+
         return view('client.user.login')
             ->with('random', rand(1, 3));
     }

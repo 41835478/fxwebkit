@@ -26,12 +26,12 @@
                     @foreach($enArray as $key=>$value)
                         <div class="col-sm-6">
                             <div class="form-group no-margin-hr">
-                                <label class="control-label col-xs-4">{{ $key  }}</label>
+                                <label class="control-label col-xs-4">{!! str_replace(']','',$key) !!} </label>
 
                                 @if(array_key_exists($key,$otherLanguageArray))
-                                    {!! Form::text('translate['.$key.']',$otherLanguageArray[$key],['class'=>'col-xs-8']) !!}
+                                    {!! Form::text('translate['.$key,$otherLanguageArray[$key],['class'=>'col-xs-8']) !!}
                                 @else
-                                    {!! Form::text('translate['.$key.']',$value,['class'=>'col-xs-8']) !!}
+                                    {!! Form::text('translate['.$key,$value,['class'=>'col-xs-8']) !!}
                                 @endif
 
                             </div>
