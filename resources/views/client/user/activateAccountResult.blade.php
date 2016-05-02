@@ -5,7 +5,7 @@
 
 		<div class="signin-info">
 			<a href="{{ route('client.auth.login') }}" class="logo">
-				{!! HTML::image('assets/img/logo.png', '', ['style' => 'margin-top: -5px']) !!}&nbsp;
+				{!! HTML::image('assets/'.config('fxweb.layoutAssetsFolder').'/img/logo.png', '', ['style' => 'margin-top: -5px']) !!}&nbsp;
 				{{ app_name() }}
 			</a>
 			<div class="slogan">

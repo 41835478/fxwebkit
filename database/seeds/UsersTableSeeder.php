@@ -42,52 +42,52 @@ class UsersTableSeeder extends Seeder {
         Sentinel::getRoleRepository()->createModel()->fill($cRole)->save();
         $clientRole = Sentinel::getRoleRepository()->findBySlug($cRole['slug']);
 
-        $admins = [
-            [
-                'first_name'=>'Mohammad',
-                'last_name'=>'Galya',
-                'email'    => 'admin@mqplanet.com',
-                'password' => 'admin'
-            ],
-            [
-                'first_name'=>'Mohammad',
-                'last_name'=>'Galya',
-                'email'    => 'Galya@mqplanet.com',
-                'password' => 'galya'
-            ]
-        ];
-
-
-
-        foreach ($admins as $admin) {
-            $adminUser = Sentinel::registerAndActivate($admin);
-            $adminUser->roles()->attach($adminRole);
-        }
-
-        $users = [
-            [
-                'first_name'=>'Mohammad',
-                'last_name'=>'Hashim',
-                'email'    => 'm.hashim@mqplanet.com',
-                'password' => 'm.hashim',
-            ],
-            [
-                'first_name'=>'demo',
-                'last_name'=>'demo',
-                'email'    => 'demo@mqplanet.com',
-                'password' => 'demo',
-            ],
-            [
-                'first_name'=>'Moayd',
-                'last_name'=>'Galya',
-                'email'    => 'mag@mqplanet.com',
-                'password' => 'mag',
-            ],
-        ];
-        foreach ($users as $user)
-        {
-            $clientUser = Sentinel::registerAndActivate($user);
-            $clientUser->roles()->attach($clientRole);
-        }
+//        $admins = [
+//            [
+//                'first_name'=>'Mohammad',
+//                'last_name'=>'Galya',
+//                'email'    => 'admin@mqplanet.com',
+//                'password' => 'admin'
+//            ],
+//            [
+//                'first_name'=>'Mohammad',
+//                'last_name'=>'Galya',
+//                'email'    => 'Galya@mqplanet.com',
+//                'password' => 'galya'
+//            ]
+//        ];
+//
+//
+//
+//        foreach ($admins as $admin) {
+//            $adminUser = Sentinel::registerAndActivate($admin);
+//            $adminUser->roles()->attach($adminRole);
+//        }
+//
+//        $users = [
+//            [
+//                'first_name'=>'Mohammad',
+//                'last_name'=>'Hashim',
+//                'email'    => 'm.hashim@mqplanet.com',
+//                'password' => 'm.hashim',
+//            ],
+//            [
+//                'first_name'=>'demo',
+//                'last_name'=>'demo',
+//                'email'    => 'demo@mqplanet.com',
+//                'password' => 'demo',
+//            ],
+//            [
+//                'first_name'=>'Moayd',
+//                'last_name'=>'Galya',
+//                'email'    => 'mag@mqplanet.com',
+//                'password' => 'mag',
+//            ],
+//        ];
+//        foreach ($users as $user)
+//        {
+//            $clientUser = Sentinel::registerAndActivate($user);
+//            $clientUser->roles()->attach($clientRole);
+//        }
     }
 }
