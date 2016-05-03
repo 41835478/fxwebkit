@@ -31,6 +31,7 @@ class Kernel extends HttpKernel {
 		 */
 		'authenticate.admin' => 'Fxweb\Http\Middleware\Admin\Authenticate',
 		'authorize.admin' => 'Fxweb\Http\Middleware\Admin\Authorize',
+		'ACLAdmin.admin' => 'Fxweb\Http\Middleware\Admin\ACLAdmin',
 
 		/*
 		 * Client Middlewares

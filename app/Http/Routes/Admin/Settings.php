@@ -3,7 +3,7 @@
 /*
  * Admin Routes that needs login
  */
-Route::group(['middleware' => ['authenticate.admin']], function () {
+Route::group(['middleware' => ['authenticate.admin','ACLAdmin.admin']], function () {
     Route::controller('settings', 'SettingsController', [
         'getAdminsList' => 'admin.adminsList',
         'getEditUser' => 'general.editUser',

@@ -24,6 +24,7 @@ use Fxweb\Models\SettingsMassMail;
 use Fxweb\Models\SettingsMassTemplates;
 use Fxweb\Models\SettingsEmailTemplates;
 
+
 class SettingsController extends Controller
 {
 
@@ -59,6 +60,10 @@ class SettingsController extends Controller
             'newUserSignUp' => 'Admin-New User Sign Up',
             'expiryContract'=>'Expiry Contract'
         ];
+
+
+        //$this->middleware('SubAdmin.admin',['except'=>['getAdminsList']]);
+        //$this->middleware('SubAdmin.admin');
     }
 
     /**

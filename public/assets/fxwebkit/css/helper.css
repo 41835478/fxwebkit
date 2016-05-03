@@ -652,7 +652,7 @@ g.highcharts-legend {
 .stat-cell.bg-info {
     border-bottom: 3px solid #25BAE6;
 }
-
+.stat-row a.stat-cell.bg-info{border-bottom:none !important;}
 .stat-cell.bg-default {
     border-bottom: 3px solid #cfcece;
 }
