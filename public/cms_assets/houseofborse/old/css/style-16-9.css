@@ -1,0 +1,540 @@
+.inner-page-title
+{
+    font-family:arial;
+    font-weight:bold;
+    color:#59585a;
+
+}
+.inner-page-title h1
+{
+    margin:0;
+    font-size:28.45px;
+}
+.list-title {
+    color: #868686;
+    font-family: arial;
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.list-descrption
+{
+    margin-top:23px;
+}
+.list-descrption ul
+{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+.list-descrption ul li {
+    background-image: url("../images/list-icon.png");
+    background-position: 0 4px;
+    background-repeat: no-repeat;
+    color: #6f6f6e;
+    font-family: arial;
+    font-size: 14px;
+    padding-bottom: 4px;
+    padding-left: 30px;
+    padding-top: 4px;
+}
+.inner-box-gray-container
+{
+    height:134px;
+    width:100%;
+    background-color:#f4f4f4;
+    margin-top:29px;
+}
+.box-gray-content
+{
+    padding:20px;
+}
+.box-gray-descrption
+{
+    color:#6f6f6e;
+    font-family: arial;
+    font-size: 14px;
+}
+.box-gray-descrption p
+{
+    margin:0;
+}
+.inner-form-container
+{
+    min-height:272px;
+    width:100%;
+    background-color:#f4f4f4;
+    margin-top:40px;
+    float: left;
+}
+.inner-form-content
+{
+    padding:21px 44px;
+    float: left;
+}
+.inner-form-content .form-title
+{
+    color:#868686;
+    font-family:arial;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+.inner-form-content .form-title h2
+{
+    font-size:26px;
+    margin:0;
+}
+
+.inner-form-container .form-field {
+    float: left;
+    font-size: 11px;
+    padding-right: 10px;
+    font-family:Calibri;
+    font-size:14.16px;
+}
+.inner-form-container .label-cont {
+    float: left;
+    margin-bottom: 2px;
+    margin-left: 1px;
+    padding-top: 10px;
+}
+.inner-form-container .label-cont label {
+    color: #808184;
+    float: left;
+    font-size: 13px;
+    margin-left: 4px;
+}
+.inner-form-container .form-field input {
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    float: left;
+    padding-left: 28px;
+    width: 277px;
+    height:46px;
+    margin-top:2px;
+}
+.inner-form-container .form-field select {
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    float: left;
+    padding-left: 28px;
+    width: 277px;
+    height:46px;
+    margin-top:2px;
+    color: #808184;
+}
+.inner-form-container .form-field .demo-form-submit
+{
+    background-color: #80b230;
+    border: 1px solid #bad392;
+    color: white;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 31px;
+    padding: 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+.download-button > a:hover {
+    opacity: 0.7;
+}
+.download-button a {
+    background-color: #f2b50c;
+    border-color: #f9da86 #f9da86 #cb940a;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    color: white;
+    float: left;
+    font-family: Calibri;
+    font-size: 21.54px;
+    height: 46px;
+    line-height: 44px;
+    margin-top: 20px;
+    opacity: 1;
+    text-align: center;
+    text-decoration: none;
+    transition: opacity 1s ease 0s;
+    width: 100%;
+}
+
+.icon-box-container {
+    border-bottom: 1px solid #d8d9da;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 23px;
+    padding-bottom: 10px;
+}
+.icon-box-container .windows-icon {
+ float: left;
+    height: 85px;
+    list-style: none outside none;
+    margin: 4px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 85px;
+}
+.windows-icon.blue
+{
+    border:1px solid #8eceee;
+    background-color:#35a8e0;
+
+}
+
+.windows-icon.blue a li {
+    background-image: url("../images/windows8-icon.png");
+    background-position: 4px 12px;
+    background-repeat: no-repeat;
+    float: left;
+    height: 85px;
+    width: 100%;
+}
+.windows-icon.orange
+{
+    border:1px solid #f29c7f;
+    background-color:#e84e1b;
+
+}
+
+.windows-icon.orange a li {
+    background-image: url("../images/windows8-icon.png");
+    background-position: -89px 12px;
+    background-repeat: no-repeat;
+    float: left;
+    height: 85px;
+    width: 100%;
+}
+.windows-icon.gold
+{
+    border:1px solid #f5c061;
+    background-color:#f2ab2c;
+
+}
+
+.windows-icon.gold a li {
+    background-image: url("../images/windows8-icon.png");
+    background-position: -183px 12px;
+    background-repeat: no-repeat;
+    float: left;
+    height: 85px;
+    width: 100%;
+}
+.windows-icon.green
+{
+    border:1px solid #a9daa7;
+    background-color:#39a935;
+
+}
+
+.windows-icon.green a li {
+    background-image: url("../images/windows8-icon.png");
+    background-position: 7px -81px;
+    background-repeat: no-repeat;
+    float: left;
+    height: 85px;
+    width: 100%;
+}
+.windows-icon.green1
+{
+    border:1px solid #d0e49d;
+    background-color:#93c01f;
+
+}
+
+.windows-icon.green1 a li {
+    background-image: url("../images/windows8-icon.png");
+    background-position: -89px -81px;
+    background-repeat: no-repeat;
+    float: left;
+    height: 85px;
+    width: 100%;
+}
+.windows-icon.red
+{
+    border:1px solid #f29398;
+    background-color:#e20613;
+
+}
+
+.windows-icon.red a li {
+    background-image: url("../images/windows8-icon.png");
+    background-position: -180px -80px;
+    background-repeat: no-repeat;
+    float: left;
+    height: 85px;
+    width: 100%;
+}
+/*real-inner*/
+
+.real-form-button {
+    margin-top: 24px;
+}
+
+.real-button-container {
+    background-color: #1d1d1b;
+    cursor: pointer;
+    float: left;
+    height: 71px;
+    margin-right: 17px;
+    width: 210px;
+}
+
+.real-button-container .green-area{
+    background-color: #93c01f;
+    border-right: 1px solid #586e1d;
+
+}
+
+.real-button-container .green-area .true-icon
+{
+    background-image: url("../images/real-step-done.png");
+    background-position: 17px 20px;
+    background-repeat: no-repeat;
+    float: left;
+    height: 71px;
+    width: 100%;
+}
+
+
+.real-button-container .text {
+    color: white;
+    font-family: "PT Sans",sans-serif;
+    font-size: 13.25px;
+    padding-top: 17px;
+    text-align: center;
+}
+
+.real-button-container .area-size > span {
+    color: white;
+    float: left;
+    font-family: arial;
+    font-size: 28.45px;
+    font-weight: bold;
+    height: 71px;
+    line-height: 66px;
+    text-align: center;
+    width: 100%;
+}
+
+.real-button-container.last {
+    float: right;
+    margin: 0;
+}
+
+.inner-form-container .form-field .date {
+    margin-right: 4px;
+    padding-left: 8px;
+    width: 89px;
+}
+
+.inner-form-container .form-field-real-button {
+    float: right;
+    padding-right: 10px;
+    margin-top: 31px;
+}
+.inner-form-container .form-field-real-button .demo-form-reset
+{
+    width:134px;
+    height:46px;
+    float:left;
+    font-family:Calibri;
+    font-weight:bold;
+    font-size:17px;
+    background-color:#6f6f6e;
+    border-left:1px solid #c0c0c0;
+    border-right:1px solid #c0c0c0; 
+    border-top:1px solid #c0c0c0;
+    border-bottom:1px solid #424241;
+    color:white;
+    cursor:pointer;
+    opacity: 1;
+    transition: opacity 1s ease 0s;
+}
+.inner-form-container .form-field-real-button .demo-form-continue
+{
+    width:134px;
+    height:46px;
+    float:left;
+    font-family:Calibri;
+    font-weight:bold;
+    font-size:17px;
+    background-color:#80b230;
+    border-left:1px solid #c8dda5;
+    border-right:1px solid #c8dda5; 
+    border-top:1px solid #c8dda5;
+    border-bottom:1px solid #719729;
+    color:white;
+    cursor:pointer;
+    margin-left: 10px;
+    opacity: 1;
+    transition: opacity 1s ease 0s;
+}
+.inner-form-container .form-field-real-button .demo-form-continue:hover
+{
+    opacity: 0.7;
+}
+.inner-form-container .form-field-real-button .demo-form-reset:hover
+{
+    opacity: 0.7;
+}
+.inner-form-container .form-field-real-button .demo-form-continue:active
+{
+    border:none;
+}
+.inner-form-container .form-field-real-button .demo-form-reset:active
+{
+    border:none;
+}
+.real-button-container .area-size
+{
+    float: left;
+    height: 71px;
+    width: 69px;
+}
+
+.form-field.optional input {
+    float: left;
+    margin-right: 10px;
+    width: 0;
+}
+
+
+.form-field.optional label {
+    float: left;
+    line-height: 50px;
+    margin-right: 20px;
+    color: #808184;
+}
+
+.form-field.optional .accept-check {
+    display: none;
+}
+.form-field.optional input.accept-check[type="checkbox"] + label.accept-check-style {
+    background-position: 0 -25px;
+    background-repeat: no-repeat;
+    color: #808184;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    height: 22px;
+    line-height: 17px;
+    padding-left: 27px;
+    vertical-align: middle;
+}
+.form-field.optional input.accept-check[type="checkbox"] + label.accept-check-style {
+    font-size: 15px;
+    height: 25px;
+    line-height: 15px;
+}
+.form-field.optional label.accept-check-style {
+    -moz-user-select: none;
+    background-image: url("../images/check-box-style.png");
+}
+
+.form-field.optional input.accept-check[type="checkbox"]:checked + label.accept-check-style {
+    background-position: 0 0;
+}
+
+.inner-form-content h2 {
+    color: #808184;
+    font-size: 22px;
+    margin-bottom: 0;
+}
+/*end-real-inner*/
+/*box-right-effect*/
+
+.windows-icon > a {
+    color: white;
+    text-decoration: none;
+}
+.windows-icon a li {
+    transition: all 1s ease 0s;
+}
+.effect-blue {
+    background-color: #2c94d1;
+    background-image: none !important;
+    border: 1px solid #35a8e0;
+    left: -1px;
+    padding-top: 29px;
+    position: absolute;
+    text-align: center;
+    top: 85px;
+}
+
+.windows-icon:hover .effect-blue {
+    top: -1px;
+}
+.effect-orange {
+    background-color: #db4315;
+    background-image: none !important;
+    border: 1px solid #e84e1b;
+    left: -1px;
+    padding-top: 29px;
+    position: absolute;
+    text-align: center;
+    top: -116px;
+}
+
+.windows-icon:hover .effect-orange{
+   top: -1px;
+}
+.effect-gold {
+    background-color: #e5a330;
+    background-image: none !important;
+    border: 1px solid #f2ab2c;
+    left: 86px;
+    padding-top: 29px;
+    position: absolute;
+    text-align: center;
+    top: -1px;
+}
+.windows-icon:hover .effect-gold{
+    left: -1px;
+}
+.effect-green {
+    background-color: #309F35;
+    background-image: none !important;
+    border: 1px solid #39a935;
+    left: -1px;
+    padding-top: 29px;
+    position: absolute;
+    text-align: center;
+    top: -116px;
+}
+
+.windows-icon:hover .effect-green{
+   top: -1px;
+}
+.effect-green1 {
+    background-color: #83aa0d;
+    background-image: none !important;
+    border: 1px solid #93c01f;
+    left: -1px;
+    padding-top: 29px;
+    position: absolute;
+    text-align: center;
+    top: 85px;
+}
+
+.windows-icon:hover .effect-green1 {
+    top: -1px;
+}
+.effect-red {
+    background-color: #D80813;
+    background-image: none !important;
+    border: 1px solid #e20613;
+    left: -97px;
+    padding-top: 29px;
+    position: absolute;
+    text-align: center;
+    top: -1px;
+}
+.windows-icon:hover .effect-red{
+    left: -1px;
+}
+
+/*end-box-right-effect*/

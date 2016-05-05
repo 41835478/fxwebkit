@@ -49,7 +49,7 @@ body {
     margin-left: 3px;
 }
 
-.gradeA even {
+.gradeA .even {
     border: none;
     background-color: transparent;
     width: auto;
