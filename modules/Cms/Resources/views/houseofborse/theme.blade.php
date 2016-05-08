@@ -57,8 +57,9 @@
     <link type="text/css" rel='stylesheet' href="{{ asset($asset_folder.'houseofborse') }}/js/rs-plugin/css/settings-custom.css">
     <link type="text/css" rel='stylesheet' href="{{ asset($asset_folder.'houseofborse') }}/js/rs-plugin/videojs/video-js.css">
 
+    <!--
     <link href="{{ asset($asset_folder.'houseofborse') }}/old/css/style.min.css" rel="stylesheet" type="text/css" />
-
+-->
 
     <meta charset="UTF-8">
 
@@ -162,7 +163,9 @@ counters" href="http://statcounter.com/"
 
 <section id="main-warp">
 
+    <section id="page-warp">
 
+        <div class="container" style="padding:0px; width:100%;">
 @if(isset($positions["house_main_slider"]) )
     @foreach($positions['house_main_slider'] as $position)
         {!! $position !!}
@@ -174,8 +177,6 @@ counters" href="http://statcounter.com/"
 
 @if(isset($positions["house_aside"]) || isset($positions["house_body"]) )
 
-<section id="main-warp">
-    <section id="page-warp">
         <div class="container">
 
 
@@ -199,8 +200,6 @@ counters" href="http://statcounter.com/"
             </div><!--#page-contents-->
 
         </div><!--.container-->
-    </section><!--#page-warp-->
-</section><!--#main-warp-->
 @endif
 
 
@@ -232,6 +231,8 @@ counters" href="http://statcounter.com/"
     @endforeach
 @endif
 
+</div>
+    </section><!--#page-warp-->
     </section>
 
 
