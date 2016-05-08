@@ -29,7 +29,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('cms::cms.asset_folder') }}</label>
-                                        {!! Form::text('asset_folder',config('cms.asset_folder'),['class'=>'form-control']) !!}
+                                        {!! Form::text('asset_folder',config('cmsConfig.asset_folder'),['class'=>'form-control']) !!}
                                     </div>
                                 </div>
 
@@ -37,7 +37,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('cms::cms.admin_theme') }}</label>
-                                        {!! Form::text('admin_theme',config('cms.admin_theme'),['class'=>'form-control']) !!}
+                                        {!! Form::text('admin_theme',config('cmsConfig.admin_theme'),['class'=>'form-control']) !!}
                                     </div>
                                 </div>
 
@@ -47,7 +47,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('cms::cms.theme_folder') }}</label>
-                                        {!! Form::text('theme_folder',config('cms.theme_folder'),['class'=>'form-control']) !!}
+                                        {!! Form::text('theme_folder',config('cmsConfig.theme_folder'),['class'=>'form-control']) !!}
                                     </div>
                                 </div>
 
