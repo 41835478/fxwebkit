@@ -25,10 +25,24 @@ class DashboardController extends Controller {
 
     public function index() {
 
+        $AssingAccounts=$this->oUsers->RequestAssignAccount();
+        $ChangeLeverage=$this->oUsers->RequestChangeLeverage();
+        $ChangePassword=$this->oUsers->RequestChangePassword();
+        $AddAccount=$this->oUsers->RequestAddAccount();
+        $InternalTransfer=$this->oUsers->RequestInternalTransfer();
+        $Withdrawal=$this->oUsers->RequestWithdrawal();
 
         return view('admin.dashboard')
-            ->withStatistics($this->oUsers->getDashboardStatistics());
+            ->withStatistics($this->oUsers->getDashboardStatistics())
+            ->with('AssingAccounts',$AssingAccounts)
+            ->with('ChangeLeverage',$ChangeLeverage)
+            ->with('ChangePassword',$ChangePassword)
+            ->with('AddAccount',$AddAccount)
+            ->with('InternalTransfer',$InternalTransfer)
+            ->with('Withdrawal',$Withdrawal);
     }
+
+
 /*
     protected $oUsers;
 
