@@ -57,8 +57,9 @@
     <link type="text/css" rel='stylesheet' href="{{ asset($asset_folder.'houseofborse') }}/js/rs-plugin/css/settings-custom.css">
     <link type="text/css" rel='stylesheet' href="{{ asset($asset_folder.'houseofborse') }}/js/rs-plugin/videojs/video-js.css">
 
+    <!--
     <link href="{{ asset($asset_folder.'houseofborse') }}/old/css/style.min.css" rel="stylesheet" type="text/css" />
-
+-->
 
     <meta charset="UTF-8">
 

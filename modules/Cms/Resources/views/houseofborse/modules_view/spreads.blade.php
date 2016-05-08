@@ -1,3 +1,4 @@
+<div id="spreads-bar-container">
 <section id="spread-bar" class="hidden-xs">
 	<div class="container">
             <h2><span>Live Spread</span></h2>
@@ -22,3 +23,4 @@
             </ul>
 	</div>
 </section><!--#spread-bar-->
+</div>
