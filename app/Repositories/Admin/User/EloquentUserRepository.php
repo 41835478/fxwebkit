@@ -8,6 +8,12 @@ use Fxweb\Models\UsersDetails;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Modules\Accounts\Entities\mt4_users_users;
+use Modules\Request\Entities\RequestAssignAccount as AssignAccount;
+use Modules\Request\Entities\RequestChangeLeverage as ChangeLeverage;
+use Modules\Request\Entities\RequestChangePassword as ChangePassword;
+use Modules\Request\Entities\RequestAddAccount as AddAccount;
+use Modules\Request\Entities\RequestInternalTransfer as InternalTransfer;
+use Modules\Request\Entities\RequestWithdrawal as Withdrawal;
 use Config;
 use Fxweb\Helpers\Fx;
 use Illuminate\Support\Facades\DB;
@@ -28,6 +34,70 @@ class EloquentUserRepository implements UserContract
     public function __construct()
     {
         //
+    }
+
+    public function RequestChangeLeverage()
+    {
+
+        $statistics['pending'] = ChangeLeverage::where('STATUS',0)->count();
+        $statistics['fail'] = ChangeLeverage::where('STATUS',2)->count();
+        $statistics['complete'] = ChangeLeverage::where('STATUS',1)->count();
+
+        return $statistics;
+
+    }
+
+    public function RequestChangePassword()
+    {
+
+        $statistics['pending'] = ChangePassword::where('STATUS',0)->count();
+        $statistics['fail'] = ChangePassword::where('STATUS',2)->count();
+        $statistics['complete'] = ChangePassword::where('STATUS',1)->count();
+
+        return $statistics;
+
+    }
+
+    public function RequestAddAccount()
+    {
+
+        $statistics['pending'] = AddAccount::where('STATUS',0)->count();
+        $statistics['fail'] = AddAccount::where('STATUS',2)->count();
+        $statistics['complete'] = AddAccount::where('STATUS',1)->count();
+
+        return $statistics;
+
+    }
+    public function RequestInternalTransfer()
+    {
+
+        $statistics['pending'] = InternalTransfer::where('STATUS',0)->count();
+        $statistics['fail'] = InternalTransfer::where('STATUS',2)->count();
+        $statistics['complete'] = InternalTransfer::where('STATUS',1)->count();
+
+        return $statistics;
+
+    }
+    public function RequestWithdrawal()
+    {
+
+        $statistics['pending'] = Withdrawal::where('STATUS',0)->count();
+        $statistics['fail'] = Withdrawal::where('STATUS',2)->count();
+        $statistics['complete'] = Withdrawal::where('STATUS',1)->count();
+
+        return $statistics;
+
+    }
+    
+    public function RequestAssignAccount()
+    {
+
+        $statistics['pending'] = AssignAccount::where('STATUS',0)->count();
+        $statistics['fail'] = AssignAccount::where('STATUS',2)->count();
+        $statistics['complete'] = AssignAccount::where('STATUS',1)->count();
+
+        return $statistics;
+
     }
 
     public function getDashboardStatistics()
