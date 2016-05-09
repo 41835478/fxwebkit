@@ -14,6 +14,7 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespa
         Route::controller('modules', 'ModulesListController');
 });
 
+include 'formsRoutes.php';
 //Route::get('/{page_name}', 'Modules\Cms\Http\Controllers\PagesController@getRenderPage');
 
 

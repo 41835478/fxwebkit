@@ -16,6 +16,7 @@ Route::group(['prefix' => env('ADMIN_NAME'), 'namespace' => 'Admin'], function()
 });
 
 
+Route::resource('posts', 'PostsController');
 
 
 if (class_exists("Module") && Module::find('cms')) {
@@ -44,5 +45,3 @@ if (class_exists("Module") && Module::find('cms')) {
 //{
 //    var_dump($query);
 //});
-
-Route::resource('posts', 'PostsController');
