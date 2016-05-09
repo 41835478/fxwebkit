@@ -18,12 +18,12 @@
     @if($i <12)
     <tr>
         <th>{{$key}}</th>
-        <td>{{round(($aResults[$key][1]/$buy_sum*100),2)}}%</td>
+        <td>{{round(($aResults[$key][0]/$buy_sum*100),2)}}%</td>
         <td><div class="progress">
-        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuetransitiongoal="{{($aResults[$key][1]/$buy_sum*100)}}" style="background-color:#B4A87F;"></div>
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuetransitiongoal="{{($aResults[$key][0]/$buy_sum*100)}}" style="background-color:#B4A87F;"></div>
         </div></td>
-        <td><div class="progress"><div class="progress-bar progress-bar-danger" role="progressbar" aria-valuetransitiongoal="{{($aResults[$key][0]/$sell_sum*100)}}" style="background-color:#3B3D3C;"></div></div></td>
-        <td>{{round(($aResults[$key][0]/$sell_sum*100),2)}}%</td>
+        <td><div class="progress"><div class="progress-bar progress-bar-danger" role="progressbar" aria-valuetransitiongoal="{{($aResults[$key][1]/$sell_sum*100)}}" style="background-color:#3B3D3C;"></div></div></td>
+        <td>{{round(($aResults[$key][1]/$sell_sum*100),2)}}%</td>
     </tr>
     @endif
 @endforeach

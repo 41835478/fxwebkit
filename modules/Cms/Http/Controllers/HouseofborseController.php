@@ -64,8 +64,8 @@ public function getSymbolsSpreads(){
         foreach($oResults as $result){
             $aResults[$result->SYMBOL][$result->CMD]=$result->total;
 
-            $sell_sum +=($result->CMD == 0)? $result->total: 0;
-            $buy_sum += ($result->CMD == 1)? $result->total: 0;
+            $sell_sum +=($result->CMD == 1)? $result->total: 0;
+            $buy_sum += ($result->CMD == 0)? $result->total: 0;
 
         }
 
