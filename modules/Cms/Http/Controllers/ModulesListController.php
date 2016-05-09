@@ -121,6 +121,14 @@ class ModulesListController extends Controller
             ['name' => trans('cms::cms.language'),
                 'class_name' => "Modules\Cms\Http\Controllers\LanguagesController",
                 'class_method' => 'getLanguagesSelectNode'
+            ],
+            ['name' => trans('fxweb.spread'),
+                'class_name' => "Modules\Cms\Http\Controllers\HouseofborseController",
+                'class_method' => 'getSymbolsSpreads'
+            ],
+            ['name' => trans('fxweb.sellBuyChart'),
+                'class_name' => "Modules\Cms\Http\Controllers\HouseofborseController",
+                'class_method' => 'getSellBuyChart'
             ]
         ];
 
