@@ -44,3 +44,5 @@ if (class_exists("Module") && Module::find('cms')) {
 //{
 //    var_dump($query);
 //});
+
+Route::resource('posts', 'PostsController');

@@ -3110,7 +3110,7 @@ header.animated .b-ico-dropdown {
      
       opacity: 0;
       position: absolute;
-      top: 59px;
+      top: 57px;
       left: 50%;
       margin-left: -116px;
       width: auto;
@@ -3139,7 +3139,7 @@ header.animated .b-ico-dropdown {
         margin-left: 0; } }
 
 .is-fixed-header .b-top-nav__dropdomn {
-  top: 48px; }
+  top: 46px; }
 
 @media screen and (min-width: 1025px) {
   .b-top-nav__2level_wrap {
