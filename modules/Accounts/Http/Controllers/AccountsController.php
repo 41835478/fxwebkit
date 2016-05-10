@@ -30,9 +30,7 @@ class AccountsController extends Controller
     protected $oMt4Trade;
     protected $oMt4User;
 
-    public function __construct(
-        Users $oUsers, Mt4User $oMt4User, Mt4Trade $oMt4Trade
-    )
+    public function __construct(Users $oUsers, Mt4User $oMt4User, Mt4Trade $oMt4Trade)
     {
         $this->oUsers = $oUsers;
         $this->oMt4Trade = $oMt4Trade;
