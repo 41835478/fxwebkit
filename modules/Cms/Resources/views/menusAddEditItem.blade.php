@@ -32,6 +32,15 @@
                     {!! Form::select('article_id',$articles,($menu_item!==0 && $menu_item->type)? $menu_item->page_id:0,['class'=>'form-control ']) !!}
                 </div>
 
+
+                <div class="from_row_div">
+                    <label class="form_lable">
+                        {{ trans('cms::cms.link_to_form') }}
+                        {!! Form::radio('type',2, ($menu_item!==0 && $menu_item->type==2)? true:false ) !!}
+                    </label>
+                    {!! Form::select('form_id',$forms,($menu_item!==0 && $menu_item->type==2)? $menu_item->page_id:0,['class'=>'form-control ']) !!}
+                </div>
+
                 <div class="from_row_div">
                     {!! Form::label('item_name_input',trans('cms::cms.link_name'),['class'=>'form_lable']) . Form::text('item_name_input',  ($menu_item===0)? '':$menu_item->name,  ['placeholder' => 'menu item name']) !!}
                 </div>

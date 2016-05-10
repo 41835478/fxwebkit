@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
 use Modules\Cms\Http\Requests\CreateMenusRequest;
 use Modules\Cms\Http\Requests\CreateMenuItemRequest;
-
+use Modules\Cms\Entities\CmsForms as Forms;
 class MenusController extends Controller
 {
     /* __________________________________________________menus */
@@ -38,9 +38,15 @@ class MenusController extends Controller
         $languages = cms_languages::lists('name', 'id');
         $selected_language = (Input::get('selected_language') != null) ? Input::get('selected_language') : 1;
         //$menu_items = cms_menus_items::with('cms_menus_items', 'page', 'article')->where('menu_id', $selected_id)->get();
-        $menu_items = cms_menus_items::with(['article' => function ($query) {
-            $query->where('page_id', "!=", "0");
-        }, 'cms_menus_items', 'page', 'cms_menus_items_languages' => function ($query) use ($selected_language) {
+
+
+
+        $menu_items = cms_menus_items::with([
+            'article' => function ($query) { $query->where('page_id', "!=", "0"); }
+            ,'cms_menus_items',
+            'page',
+            'form',
+            'cms_menus_items_languages' => function ($query) use ($selected_language) {
             $query->where('cms_languages_id', '=', $selected_language);
         }])->where('menu_id', $selected_id)->get();
 
@@ -102,6 +108,9 @@ class MenusController extends Controller
         $links = $links->toArray();
         $menu_preview = $this->order_menu_get_html(0, $links);
 
+        $forms = Forms::lists('name', 'id');
+
+//dd($forms);
         return view("cms::menusAddEditItem", [
                 'menu_item' => $menu_item,
                 'menu_items' => $menu_items,
@@ -110,6 +119,7 @@ class MenusController extends Controller
                 'hide_array' => $hide_array,
                 'pages' => $pages,
                 'articles' => $articles,
+                'forms' => $forms,
                 'menu_preview' => $menu_preview,
                 'render_menu_html' => $this->render_menu($menu_id),
                 'languages' => $languages,
@@ -190,7 +200,18 @@ class MenusController extends Controller
         $item->menu_id = Input::get('selected_id');
         $item->disable = Input::get('disable');
         $item->hide = Input::get('hide');
-        $item->page_id = ($type == 0) ? Input::get('page_id') : Input::get('article_id');
+
+       // $item->page_id = ($type == 0) ? Input::get('page_id') : Input::get('article_id');
+        if($type == 0){
+            $item->page_id = Input::get('page_id');
+        }elseif($type == 1){
+
+            $item->page_id = Input::get('article_id');
+        }elseif($type == 2){
+
+            $item->page_id = Input::get('form_id');
+        }
+
         $item->type = $type;
         $item->parent_item_id = Input::get('parent_item_id');
         $item->name = Input::get('item_name_input');

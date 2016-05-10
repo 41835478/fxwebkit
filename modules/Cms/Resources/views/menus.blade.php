@@ -58,8 +58,10 @@
                                 <td>
                                     @if($item->type == 0)
                                         page  ({{ $item->page['title'] }})
-                                    @else
+                                    @elseif($item->type == 1)
                                         article ({{ $item->article['title'] }})
+                                    @elseif($item->type == 2)
+                                        form ({{ $item->form['name'] }})
                                     @endif
                                 </td>
                                 <td>
