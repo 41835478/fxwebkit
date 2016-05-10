@@ -79,6 +79,7 @@ class AccountsController extends Controller
             $role = explode(',', Config::get('fxweb.client_default_role'));
 
             $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
+
         }
 
 
@@ -117,6 +118,8 @@ class AccountsController extends Controller
                 ->withErrors('Error, please try again later .');
             }
         }
+
+        $assignMt4UsresByEmail=$this->oMt4User->getMt4UsersByEmail($user);
 
         return Redirect::route('accounts.accountsList');
     }

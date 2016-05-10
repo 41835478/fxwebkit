@@ -29,6 +29,7 @@ use Fxweb\Repositories\Admin\User\UserContract;
 
 use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
 use Modules\Ibportal\Entities\IbportalAgentUser as AgentUser;
+use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 
 use Cartalyst\Sentinel\Laravel\Facades\Reminder;
 
@@ -37,14 +38,16 @@ class AuthController extends Controller
 
 
     protected $oUsers;
+    protected $oMt4User;
     protected $oUserRepostry;
 
     public function __construct(
-        Users $oUsers, UserContract $oUserRepostry
+        Users $oUsers, UserContract $oUserRepostry,Mt4User $oMt4User
     )
     {
         $this->oUserRepostry = $oUserRepostry;
         $this->oUsers = $oUsers;
+        $this->oMt4User = $oMt4User;
     }
 
     public function getLogin()
@@ -132,6 +135,7 @@ class AuthController extends Controller
 
             $oUser = Sentinel::registerAndActivate($aCredentials);
             $oClientRole->users()->attach($oUser);
+
             Sentinel::login($oUser);
             $this->assignNewUserToAgent($ibid, $oUser->id, $planId);
             $aCredentialsFullDetails = [
@@ -182,9 +186,10 @@ class AuthController extends Controller
 
             $details = new UsersDetails($aCredentialsFullDetails);
             $details->save();
+
             /* TODO[moaid] test sign up with auto activate and not auto activate from .env CLIENT_AUTO_ACTIVATE and check activate email*/
             $oEmail = new Email;
-            @$oEmail->activeAccount(['email'=>$oRequest->email,
+            $oEmail->activeAccount(['email'=>$oRequest->email,
                 'code'=>$oActivation->code,
                 'userId'=>$oUser->id,
             'website'=>$oRequest->root()
@@ -196,6 +201,7 @@ class AuthController extends Controller
                 'user.denyLiveAccount' => true
             ];
                 $oUser->save();}
+
             return redirect()->route('client.auth.login');
         }
     }
@@ -288,13 +294,18 @@ class AuthController extends Controller
 
 
     function getActivateAccount(Request $oRequest,$userId,$code){
+
         $message=trans('PleaseTryAgain');
         $user = Sentinel::findById($userId);
 
         if (Activation::complete($user,$code)) {
             // Reminder was successfull
+          dd($user);
+            $assignMt4UsresByEmail=$this->oMt4User->getMt4UsersByEmail($user);
+
             return Redirect::route('client.auth.login');
         }
+
 
 
         return view('client.user.activateAccountResult')

@@ -5,6 +5,7 @@ namespace Fxweb\Repositories\Admin\Mt4User;
 use Fxweb\Models\Mt4User;
 use Fxweb\Helpers\Fx;
 use Config;
+use fxweb\Repositories\Admin\User\UserContract as Usres;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\DB;
 
@@ -17,8 +18,13 @@ class EloquentMt4UserRepository implements Mt4UserContract{
 
     /**
      */
-    public function __construct() {
-        //
+    protected $oUsers;
+
+    /**
+     */
+    public function __construct(Usres $oUsers)
+    {
+        $this->oUsers = $oUsers;
     }
 
     /**
@@ -348,7 +354,7 @@ class EloquentMt4UserRepository implements Mt4UserContract{
 
     public function getUsersMt4Users($account_id) {
 
- $oResult = Mt4User::join('mt4_users_users', function($join) use($account_id) {
+         $oResult = Mt4User::join('mt4_users_users', function($join) use($account_id) {
             $join->on('mt4_users.LOGIN', '=', 'mt4_users_users.mt4_users_id')
                 ->on('mt4_users.server_id', '=', 'mt4_users_users.server_id')
                 ->where('mt4_users_users.users_id', '=', $account_id);
@@ -373,6 +379,20 @@ class EloquentMt4UserRepository implements Mt4UserContract{
             $aResult[] = [$oResult[$dKey]->LOGIN,$oResult[$dKey]->server_id];
         }
         return [$firstLogin,$firstLoginServerID,$aResult];
+    }
+
+    public function getMt4UsersByEmail($user)
+    {
+        $oResult=  Mt4User::select('LOGIN', 'server_id')->where('email',$user->email)->get();
+        $mt4Users=[];
+        foreach($oResult as $result){
+            $mt4Users[]=$result->LOGIN.','.$result->server_id;
+        }
+
+        $oResult=$this->oUsers->asignMt4UsersToAccount($user->id, $mt4Users,3);
+
+        return $oResult;
+
     }
 
 }

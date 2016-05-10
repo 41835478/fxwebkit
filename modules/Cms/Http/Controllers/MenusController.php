@@ -44,7 +44,6 @@ class MenusController extends Controller
             $query->where('cms_languages_id', '=', $selected_language);
         }])->where('menu_id', $selected_id)->get();
 
-
         $pages = cms_pages::lists('title', 'id');
         $disable_array = ['0' => 'enable', '1' => 'disable'];
         $hide_array = ['0' => 'show', '1' => 'hide'];
@@ -58,6 +57,7 @@ class MenusController extends Controller
         $menu_preview = $this->order_menu_get_html(0, $links);
         $disable_icons = ["fa fa-check", "fa fa-ban"];
         $hide_icons = ["fa fa-eye", "fa fa-eye-slash"];
+
         return view("cms::menus", ['menus' => $menus,
                 'selected_id' => $selected_id,
                 'disable_array' => $disable_array,
@@ -131,7 +131,8 @@ class MenusController extends Controller
         $menus = CmsMenus::with(['cms_menus_languages' => function ($query) use ($selected_language) {
 
             $query->where('cms_languages_id', '=', $selected_language);
-        }])->get();
+        }])->paginate();
+
 
         $asset_folder = Config::get('cms.asset_folder');
         return view("cms::menusList", [

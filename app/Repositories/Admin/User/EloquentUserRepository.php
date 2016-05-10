@@ -564,6 +564,7 @@ class EloquentUserRepository implements UserContract
     {
 
         if (is_array($users_id)) {
+
             foreach ($users_id as $id => $user_id) {
                 if ($server_id == 3) {
                     $mt4 = explode(',', $user_id);

@@ -12,6 +12,8 @@ interface Mt4UserContract
 	 * @return array
 	 */
 	public function getLoginsInGroup($aGroups, $sOrderBy = 'LOGIN', $sSort = 'ASC');
+
+    public function getAllUsers();
 	/**
 	 * @param mixed $aFilters
 	 * @param boolean $bFullSet
@@ -40,4 +42,9 @@ interface Mt4UserContract
     public function getUsersMt4UsersWithMassGroup($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC');
 
     public function delete($id);
+
+    public function getUsersMt4Users($account_id);
+
+    public function getMt4UsersByEmail($user);
+
 }

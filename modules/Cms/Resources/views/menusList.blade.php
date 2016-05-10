@@ -73,8 +73,8 @@
             {!! Form::open(['url'=>asset('cms/menus/save-translate')]) !!}
             <table border="0" class="table table-bordered">
                 <thead>
-                <th>id</th>
-                <th>title</th>
+                <th>{{ trans('cms::cms.id') }}</th>
+                <th>{{ trans('cms::cms.title') }}</th>
                 <th>
                     {!! Form::hidden('selected_language',$selected_language) !!}
                     {!! Form::submit('save '.$languages[$selected_language].' translate',["name"=>'save_menu_name_translate','class'=>'btn btn-primary btn-flat' ]) !!}
@@ -96,6 +96,7 @@
             {!! Form::close() !!}
         @endif
     </div>
+
         </div>
 
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'main.css') }}">
