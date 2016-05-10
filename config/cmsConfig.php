@@ -44,6 +44,10 @@ return [
 			'route' => 'cms.cmsSettings',
 			'title' => 'settings',
 			'icon' => 'fa fa-gears',
-		]
+		],[
+		'route' => 'cms.formsList',
+		'title' => 'forms',
+		'icon' => 'fa fa-file-text-o',
+	],
 	]
 ];

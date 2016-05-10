@@ -5,9 +5,10 @@ namespace Fxweb\Repositories\Admin\Mt4User;
 use Fxweb\Models\Mt4User;
 use Fxweb\Helpers\Fx;
 use Config;
-use fxweb\Repositories\Admin\User\UserContract as Usres;
+use fxweb\Repositories\Admin\User\UserContract ;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\DB;
+use Fxweb\Repositories\Admin\User\UserContract as Users;
 
 
 /**
@@ -18,11 +19,13 @@ class EloquentMt4UserRepository implements Mt4UserContract{
 
     /**
      */
-    protected $oUsers;
+
 
     /**
      */
-    public function __construct(Usres $oUsers)
+
+    protected $oUsers;
+    public function __construct(Users $oUsers)
     {
         $this->oUsers = $oUsers;
     }
