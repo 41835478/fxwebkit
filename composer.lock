@@ -4,53 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "31bb55c81de0b23f935c6ab214196c87",
-    "content-hash": "13a8c20b165eee550c0d4c56a6109fdd",
+    "hash": "6a2dbb1eb55b6248abf343f3bcc11a62",
+    "content-hash": "d225d00614884604ea81c07dfbe13af1",
     "packages": [
-        {
-            "name": "appzcoder/crud-generator",
-            "version": "v1.0.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/appzcoder/crud-generator.git",
-                "reference": "f1dee5a78f963fada17bb0d003b988e3137c4fe9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/f1dee5a78f963fada17bb0d003b988e3137c4fe9",
-                "reference": "f1dee5a78f963fada17bb0d003b988e3137c4fe9",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~5.1",
-                "php": ">=5.5.9"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Appzcoder\\CrudGenerator\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sohel Amin",
-                    "email": "sohelamincse@gmail.com",
-                    "homepage": "http://www.appzcoder.com"
-                }
-            ],
-            "description": "Laravel 5 CRUD Generator",
-            "keywords": [
-                "crud",
-                "crud generator",
-                "laravel",
-                "laravel crud generator"
-            ],
-            "time": "2016-04-26 18:29:26"
-        },
         {
             "name": "athari/yalinqo",
             "version": "v2.4.0",
