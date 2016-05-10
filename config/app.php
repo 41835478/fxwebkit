@@ -159,7 +159,8 @@ return [
 
 			       'Cartalyst\Sentinel\Addons\Social\Laravel\SocialServiceProvider',
 
-	'Greggilbert\Recaptcha\RecaptchaServiceProvider'
+	'Greggilbert\Recaptcha\RecaptchaServiceProvider',
+		'Appzcoder\CrudGenerator\CrudGeneratorServiceProvider',
 	],
 
 	/*

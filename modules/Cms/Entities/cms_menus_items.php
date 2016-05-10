@@ -13,7 +13,10 @@ class cms_menus_items extends Model {
        return $this->belongsTo('Modules\Cms\Entities\cms_pages','page_id');
     }
     public function article(){
-      return  $this->belongsTo('Modules\Cms\Entities\cms_articles','page_id');
+        return  $this->belongsTo('Modules\Cms\Entities\cms_articles','page_id');
+    }
+    public function form(){
+        return  $this->belongsTo('Modules\Cms\Entities\cms_forms','page_id');
     }
     
     public function cms_menus_items_languages(){

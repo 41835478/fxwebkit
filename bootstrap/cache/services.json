@@ -33,7 +33,8 @@
         "Maatwebsite\\Excel\\ExcelServiceProvider",
         "Pingpong\\Modules\\ModulesServiceProvider",
         "Cartalyst\\Sentinel\\Addons\\Social\\Laravel\\SocialServiceProvider",
-        "Greggilbert\\Recaptcha\\RecaptchaServiceProvider"
+        "Greggilbert\\Recaptcha\\RecaptchaServiceProvider",
+        "Appzcoder\\CrudGenerator\\CrudGeneratorServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -56,7 +57,8 @@
         "Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider",
         "Maatwebsite\\Excel\\ExcelServiceProvider",
         "Pingpong\\Modules\\ModulesServiceProvider",
-        "Greggilbert\\Recaptcha\\RecaptchaServiceProvider"
+        "Greggilbert\\Recaptcha\\RecaptchaServiceProvider",
+        "Appzcoder\\CrudGenerator\\CrudGeneratorServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
