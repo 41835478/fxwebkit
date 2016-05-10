@@ -300,7 +300,7 @@ class AuthController extends Controller
 
         if (Activation::complete($user,$code)) {
             // Reminder was successfull
-          dd($user);
+
             $assignMt4UsresByEmail=$this->oMt4User->getMt4UsersByEmail($user);
 
             return Redirect::route('client.auth.login');
