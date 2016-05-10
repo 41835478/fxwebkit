@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Redirect;
 use Modules\Cms\Http\Requests\CreatePagesRequest;
 use Pingpong\Modules\Facades\Module;
 use \SimpleXMLElement;
-
+use Modules\Cms\Entities\cms_forms;
 class PagesController extends Controller
 {
 
@@ -313,7 +313,7 @@ class PagesController extends Controller
         $page_type = $menu_item->type;
         if ($page_type == 0) {
             $page_id = $menu_item->page_id;
-        } else {
+        } elseif($page_type == 1)  {
             $article_id = $menu_item->page_id;
 
             $results = cms_articles::find($article_id);
@@ -331,7 +331,20 @@ class PagesController extends Controller
                 $page_id = $article->page_id;
             }
         }
+elseif($page_type == 2)  {
+        $form_id = $menu_item->page_id;
 
+        $results = cms_forms::find($form_id);
+
+    $article_html='';
+
+     eval('$html= new \Modules\Cms\Http\Controllers\forms\\'.$results->name.'Controller(); $article_html=$html->cms_create();' );
+
+
+        if ($results) {
+            $page_id = $results->page_id;
+        }
+    }
         return $this->website($page_id, $article_html, $language,$menu_item->id);
     }
 
