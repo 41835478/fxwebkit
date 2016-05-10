@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Redirect;
 use Modules\Cms\Http\Requests\CreateMenusRequest;
 use Modules\Cms\Http\Requests\CreateMenuItemRequest;
-use Modules\Cms\Entities\CmsForms as Forms;
+use Modules\Cms\Entities\cms_forms as Forms;
 class MenusController extends Controller
 {
     /* __________________________________________________menus */

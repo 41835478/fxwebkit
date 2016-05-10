@@ -22,6 +22,30 @@
 </div>
 <div class="panel-body">
     {!! Form::text('name',(isset($edit_form->name))?  $edit_form->name:'',['id'=>'name','placeholder'=>trans('cms::cms.name'),'class'=>'form-control ']) !!}
+
+  <table id="fieldsTable" class="table table-bordered table-striped cms_table">
+   
+      <thead>
+      <tr>
+          <td>field name</td>
+          <td>field type</td>
+          <td></td>
+      </tr>
+   </thead>
+  <tbody>
+
+
+  
+  </tbody>
+      <tfoot>
+      <tr>
+          <td>{!! Form::text('fieldNameInput','',['id'=>'fieldNameInput']) !!}</td>
+          <td>{!! Form::select('fieldTypeInput',$fieldTypes,'text',['id'=>'fieldTypeInput']) !!}</td>
+          <td>{!! Form::button('Add',['id'=>'addFieldButton']) !!}</td>
+      </tr>
+      </tfoot>
+  </table>
+
     {!! Form::hidden('form_id' ,$selected_id) !!}
 
 
@@ -77,10 +101,10 @@
 <script src="{{ asset($asset_folder.'cms_forms.js') }}"></script>
 <script>
 //CKEDITOR.replace( textarea );
-CKEDITOR.replace('editor1', {
-    filebrowserBrowseUrl: " {{ asset('/cms/forms/file-browser') }}",
-    filebrowserUploadUrl: "{{ asset('/cms/forms/upload-image' ).'?_token='. csrf_token() }}"
-});
+{{--CKEDITOR.replace('editor1', {--}}
+    {{--filebrowserBrowseUrl: " {{ asset('/cms/forms/file-browser') }}",--}}
+    {{--filebrowserUploadUrl: "{{ asset('/cms/forms/upload-image' ).'?_token='. csrf_token() }}"--}}
+{{--});--}}
 init.push(function () {
     // Single select
     $("select[name='page_id']").select2({
@@ -90,6 +114,23 @@ init.push(function () {
 
 
 });
+
+
+    $('#addFieldButton').click(function(){
+        $fieldName=$('#fieldNameInput').val().replace(/\s/g, "");
+        $fieldType=$('#fieldTypeInput').val();
+
+        if($fieldName=='')
+        {$('#fieldNameInput').css('border','1px solid #f00'); return false;}
+        else
+        {$('#fieldNameInput').val('');$('#fieldNameInput').css('border','1px solid #A9A9A9');}
+        $('#fieldsTable tbody').append(' <tr>'
+                +'<td>'+$fieldName+'<input type="hidden" name="fields['+$fieldType+']" value="'+$fieldName+'"></td>'
+                +'<td>'+$fieldType+'</td>'
+                +'<td><i onclick="$(this).parent().parent().remove();">delete</i></td>'
+                +'</tr>');
+
+    });
 </script>
 
 @stop

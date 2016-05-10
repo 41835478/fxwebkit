@@ -3,6 +3,7 @@
 namespace Modules\Cms\Http\Controllers;
 
 use Modules\Cms\Entities\cms_forms;
+use Modules\Cms\Entities\cms_forms_fields;
 use Pingpong\Modules\Routing\Controller;
 use Modules\Cms\Entities\cms_pages;
 use Modules\Cms\Entities\cms_languages;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Config;
 use Modules\Cms\Http\Requests\CreateEditForm;
+use Illuminate\Support\Facades\Artisan;
 
 class FormsController extends Controller
 {
@@ -41,6 +43,35 @@ class FormsController extends Controller
         }
 
         $asset_folder = Config::get('cms.asset_folder');
+
+        $fieldTypes=[
+            'string'=>'string',
+            'char'=>'char',
+            'varchar'=>'varchar',
+            'password'=>'password',
+            'password'=>'password',
+            'date'=> 'date',
+            'datetime'=> 'datetime',
+            'time'=> 'time',
+            'timestamp' =>'timestamp',
+            'text'=>'text',
+            'mediumtext'=> 'mediumtext',
+            'longtext'=>'longtext',
+            'json'=>'json',
+            'jsonb'=>'jsonb',
+            'binary'=>'binary',
+            'number'=>'number',
+            'integer'=>'integer',
+            'bigint' =>'bigint',
+            'mediumint' =>'mediumint',
+            'tinyint'=>'tinyint',
+            'smallint'=>'smallint',
+            'boolean'=>'boolean',
+            'decimal'=> 'decimal',
+            'double' =>'double',
+            'float'=>'float'
+        ];
+
         return view('cms::forms', [
                 'pages' => $pages,
                 'selected_id' => $form_id,
@@ -49,6 +80,7 @@ class FormsController extends Controller
                 'languages' => $languages,
                 'selected_language' => $selected_language,
                 'asset_folder' => $asset_folder,
+                'fieldTypes'=>$fieldTypes
             ]
         );
     }
@@ -140,10 +172,37 @@ class FormsController extends Controller
             $forms = cms_forms::find(Input::get('edit_form_id'));
         }
 
-        $forms->name = Input::get('name');
+
+
+        $forms->name  = preg_replace('/\s+/', '', Input::get('name'));
         $forms->page_id = Input::get('page_id');
         $forms->save();
 
+        cms_forms_fields::where('cms_forms_id',$forms->id)->delete();
+
+        $fields=$request->fields;
+
+        if(count($fields)){
+             $rows=[];
+$commandFields=[];
+        foreach($fields as $type=>$name){
+        $rows[]=[
+            'name'=>$name,
+            'cms_forms_id'=>$forms->id,
+            'type'=>$type
+
+        ];
+            $commandFields[]=' '.$name.':'.$type;
+    }
+    cms_forms_fields::insert($rows);
+
+    Artisan::call('crud:generate', [
+        'name' =>  $forms->name, '--fields' => implode(',',$commandFields)
+    ]);
+
+    Artisan::call('module:migrate',[]);
+
+}
         return Redirect::to('/cms/forms/form/' . $forms->id);
     }
 
