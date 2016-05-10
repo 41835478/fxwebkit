@@ -179,13 +179,13 @@ counters" href="http://statcounter.com/"
 
         <div class="container">
 
-
+<div id="sidebar"class="col-xs-3">
             @if(isset($positions["house_aside"]) )
                 @foreach($positions['house_aside'] as $position)
                     {!! $position !!}
                 @endforeach
             @endif
-
+</div>
 
 
 
