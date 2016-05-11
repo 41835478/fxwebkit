@@ -34,8 +34,15 @@
    </thead>
   <tbody>
 
-
-  
+  @if(count($fields))
+      @foreach($fields as $type=>$name)
+  <tr>
+      <td>{{$name}}<input type="hidden" name="fields[{{$name}}]" value="{{$type}}"></td>
+      <td>{{$type}}</td>
+      <td><i onclick="$(this).parent().parent().remove();">delete</i></td>
+  </tr>
+  @endforeach
+@endif
   </tbody>
       <tfoot>
       <tr>
@@ -125,7 +132,7 @@ init.push(function () {
         else
         {$('#fieldNameInput').val('');$('#fieldNameInput').css('border','1px solid #A9A9A9');}
         $('#fieldsTable tbody').append(' <tr>'
-                +'<td>'+$fieldName+'<input type="hidden" name="fields['+$fieldType+']" value="'+$fieldName+'"></td>'
+                +'<td>'+$fieldName+'<input type="hidden" name="fields['+$fieldName+']" value="'+$fieldType+'"></td>'
                 +'<td>'+$fieldType+'</td>'
                 +'<td><i onclick="$(this).parent().parent().remove();">delete</i></td>'
                 +'</tr>');

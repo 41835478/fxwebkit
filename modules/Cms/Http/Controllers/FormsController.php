@@ -31,6 +31,11 @@ class FormsController extends Controller
             $form_id = (Input::get('form_id') !== null) ? Input::get('form_id') : 0;
         }
 
+        $fields=Input::get('fields');
+        if($form_id != 0){
+            $fields=cms_forms_fields::where('cms_forms_id',$form_id)->lists('name', 'type');
+        }
+
         $languages = cms_languages::lists('name', 'id');
         $selected_language = (Input::get('selected_language') != null) ? Input::get('selected_language') : 1;
 
@@ -46,30 +51,30 @@ class FormsController extends Controller
 
         $fieldTypes=[
             'string'=>'string',
-            'char'=>'char',
+//            'char'=>'char',
             'varchar'=>'varchar',
             'password'=>'password',
-            'password'=>'password',
-            'date'=> 'date',
-            'datetime'=> 'datetime',
+//            'password'=>'password',
+//            'date'=> 'date',
+//            'datetime'=> 'datetime',
             'time'=> 'time',
-            'timestamp' =>'timestamp',
+//            'timestamp' =>'timestamp',
             'text'=>'text',
-            'mediumtext'=> 'mediumtext',
-            'longtext'=>'longtext',
-            'json'=>'json',
-            'jsonb'=>'jsonb',
-            'binary'=>'binary',
-            'number'=>'number',
-            'integer'=>'integer',
-            'bigint' =>'bigint',
-            'mediumint' =>'mediumint',
-            'tinyint'=>'tinyint',
-            'smallint'=>'smallint',
+//            'mediumtext'=> 'mediumtext',
+//            'longtext'=>'longtext',
+//            'json'=>'json',
+//            'jsonb'=>'jsonb',
+//            'binary'=>'binary',
+//            'number'=>'number',
+//            'integer'=>'integer',
+//            'bigint' =>'bigint',
+//            'mediumint' =>'mediumint',
+//            'tinyint'=>'tinyint',
+//            'smallint'=>'smallint',
             'boolean'=>'boolean',
-            'decimal'=> 'decimal',
-            'double' =>'double',
-            'float'=>'float'
+//            'decimal'=> 'decimal',
+//            'double' =>'double',
+//            'float'=>'float'
         ];
 
         return view('cms::forms', [
@@ -80,7 +85,8 @@ class FormsController extends Controller
                 'languages' => $languages,
                 'selected_language' => $selected_language,
                 'asset_folder' => $asset_folder,
-                'fieldTypes'=>$fieldTypes
+                'fieldTypes'=>$fieldTypes,
+                'fields'=>$fields
             ]
         );
     }
@@ -185,7 +191,7 @@ class FormsController extends Controller
         if(count($fields)){
              $rows=[];
 $commandFields=[];
-        foreach($fields as $type=>$name){
+        foreach($fields as $name=>$type){
         $rows[]=[
             'name'=>$name,
             'cms_forms_id'=>$forms->id,
