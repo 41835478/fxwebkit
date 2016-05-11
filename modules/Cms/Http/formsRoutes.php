@@ -106,4 +106,11 @@ Route::get('dfgdg/form', [
 ]);
 Route::post('dfgdg/form', [
     'uses' => 'Modules\Cms\Http\Controllers\forms\dfgdgController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_liveaccount', 'Modules\Cms\Http\Controllers\forms\cms_forms_liveaccountController');});
+Route::get('cms_forms_liveaccount/form', [
+    'as' => 'cms_forms_liveaccount.form', 'uses' => 'Modules\Cms\Http\Controllers\forms\cms_forms_liveaccountController@cms_create'
+]);
+Route::post('cms_forms_liveaccount/form', [
+    'uses' => 'Modules\Cms\Http\Controllers\forms\cms_forms_liveaccountController@cms_store'
 ]);

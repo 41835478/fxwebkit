@@ -4,7 +4,7 @@
 <div class="container">
 
     <div id="content-wrapper">
-    <h1>Edit %%modelName%%</h1>
+    <h1>Edit %%crudAlias%%</h1>
     <hr/>
 
     {!! Form::model($%%crudNameSingular%%, [

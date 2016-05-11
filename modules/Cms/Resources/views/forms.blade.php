@@ -21,9 +21,10 @@
     <span class="panel-title">{{ trans('cms::cms.form') }} </span>
 </div>
 <div class="panel-body">
-    {!! Form::text('name',(isset($edit_form->name))?  $edit_form->name:'',['id'=>'name','placeholder'=>trans('cms::cms.name'),'class'=>'form-control ']) !!}
 
-  <table id="fieldsTable" class="table table-bordered table-striped cms_table">
+    {!! Form::text('alias',(isset($edit_form->alias))?  $edit_form->alias:'',['id'=>'alias','placeholder'=>trans('cms::cms.name'),'class'=>'form-control ']) !!}
+
+    <table id="fieldsTable" class="table table-bordered table-striped cms_table">
    
       <thead>
       <tr>

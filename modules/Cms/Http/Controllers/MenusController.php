@@ -108,7 +108,7 @@ class MenusController extends Controller
         $links = $links->toArray();
         $menu_preview = $this->order_menu_get_html(0, $links);
 
-        $forms = Forms::lists('name', 'id');
+        $forms = Forms::lists('alias', 'id');
 
 //dd($forms);
         return view("cms::menusAddEditItem", [

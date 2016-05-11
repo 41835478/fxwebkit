@@ -17,6 +17,7 @@ class CreateCmsFormsTable extends Migration {
             $table->increments('id');
 
             $table->string('name',255);
+            $table->string('alias',255);
 
             $table->integer('page_id')->unsigned();
             $table->timestamps();

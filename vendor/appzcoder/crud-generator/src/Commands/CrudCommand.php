@@ -14,6 +14,7 @@ class CrudCommand extends Command
      */
     protected $signature = 'crud:generate
                             {name : The name of the Crud.}
+                            {alias : The alias of the Crud.}
                             {--fields= : Fields name for the form & model.}
                             {--route=yes : Include Crud route to routes.php? yes|no.}
                             {--pk=id : The name of the primary key.}
@@ -55,6 +56,7 @@ class CrudCommand extends Command
     {
 
         $name = $this->argument('name');
+        $alias = $this->argument('alias');
         $name = strtolower($name);
         $modelName = str_singular($name);
         $migrationName = str_plural(snake_case($name));
@@ -96,7 +98,7 @@ class CrudCommand extends Command
         $this->call('crud:controller', ['name' => $controllerNamespace . '\\' . $name . 'Controller', '--crud-name' => $name, '--model-name' => $modelName, '--view-path' => $viewPath, '--required-fields' => $requiredFields, '--route-group' => $routeGroup]);
         $this->call('crud:model', ['name' => $modelName, '--fillable' => $fillable, '--table' => $tableName, '--pk' => $primaryKey]);
         $this->call('crud:migration', ['name' => $migrationName, '--schema' => $fields, '--pk' => $primaryKey]);
-        $this->call('crud:view', ['name' => $viewName, '--fields' => $fields, '--view-path' => $viewPath, '--route-group' => $routeGroup, '--localize' => $localize, '--pk' => $primaryKey]);
+        $this->call('crud:view', ['name' => $viewName, '--alias' => $alias, '--fields' => $fields, '--view-path' => $viewPath, '--route-group' => $routeGroup, '--localize' => $localize, '--pk' => $primaryKey]);
         if ($this->option('localize') == 'yes') {
 //            $this->call('crud:lang', ['name' => $viewName, '--fields' => $fields, '--locales' => $locales]);
         }

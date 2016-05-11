@@ -178,8 +178,9 @@ class FormsController extends Controller
 
 
 
+        $forms->alias = Input::get('alias');
 
-        $forms->name  = preg_replace('/\s+/', '', Input::get('name'));
+        $forms->name  = 'cms_forms_'.preg_replace('/\s+/', '',$forms->alias);
 
         $formExist=cms_forms::where('name',$forms->name)->first();
         if($formExist){
@@ -208,7 +209,9 @@ $commandFields=[];
     cms_forms_fields::insert($rows);
 
     Artisan::call('crud:generate', [
-        'name' =>  $forms->name, '--fields' => implode(',',$commandFields)
+        'alias'=>$forms->alias,
+        'name' =>  $forms->name,
+        '--fields' => implode(',',$commandFields)
     ]);
 
     Artisan::call('module:migrate',[]);
