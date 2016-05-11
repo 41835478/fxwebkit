@@ -214,42 +214,4 @@ $commandFields=[];
 
     /* ______________________________________________END__forms */
 
-    /* _________________________________________upload_image */
-
-    public function postUploadImage()
-    {
-        $file = Input::file('upload');
-        $allowed_ext = ["png", "jpg", "jpeg", "gif", "bmp", "svg"];
-        $fileExt = strtolower($file->getClientOriginalExtension());
-
-        if (in_array($fileExt, $allowed_ext)) {
-            $imageName = rand() . '_' . rand() . $file->getClientOriginalName();
-            if ($file->move(Config::get('cms.asset_folder') . '/files/', $imageName)) {
-                return 'the image was uploaded successfully .';
-            }//uploaded successfully
-            else {
-                return 'error, not uploaded ...';
-            }//error uploaded
-        } //allowed extinsions 
-        else {
-            return 'this file extension not allowed';
-        }//not allowed file extintion
-    }
-
-//function upload_image() 
-
-    public function getFileBrowser()
-    {
-        $funnum = Input::get('CKEditorFuncNum');
-        $asset_folder = Config::get('cms.asset_folder');
-        $files = File::allFiles($asset_folder . '/files/');
-        return view('cms::file_browser', [
-                'files' => $files,
-                'funnum' => $funnum,
-                'asset_folder' => $asset_folder
-            ]
-        );
-    }
-
-    /* _____________________________________end__upload_image */
 }

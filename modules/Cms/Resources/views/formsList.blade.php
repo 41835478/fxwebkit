@@ -50,7 +50,6 @@
                 <tfoot>
                 <tr>
                     <td colspan="5">
-                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_groub_form_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete forms with its links")) return false;','class'=>'icon_button','type'=>'submit' ]) !!}
 
                         <div style="width:250px;display: inline-block; ">
                             {!! Form::select('pages_select',$pages,0) !!}

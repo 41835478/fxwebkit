@@ -22,4 +22,11 @@ Route::get('ggggvvvvvvvv/form', [
 ]);
 Route::post('ggggvvvvvvvv/form', [
     'uses' => 'Modules\Cms\Http\Controllers\forms\ggggvvvvvvvvController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('aaaaaa', 'Modules\Cms\Http\Controllers\forms\aaaaaaController');});
+Route::get('aaaaaa/form', [
+    'as' => 'aaaaaa.form', 'uses' => 'Modules\Cms\Http\Controllers\forms\aaaaaaController@cms_create'
+]);
+Route::post('aaaaaa/form', [
+    'uses' => 'Modules\Cms\Http\Controllers\forms\aaaaaaController@cms_store'
 ]);
