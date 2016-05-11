@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Config;
 use Modules\Cms\Http\Requests\CreateEditForm;
 use Illuminate\Support\Facades\Artisan;
 
+use Schema;
+
 class FormsController extends Controller
 {
     /* _________________Forms Entities__and __migration______________articles */
@@ -144,20 +146,16 @@ class FormsController extends Controller
 
         if (null !== Input::get('delete_form_submit')) {
             $form_id = Input::get('delete_form_submit');
-            $menu_item = cms_menus_items::where(['type' => '1', 'page_id' => $form_id]);
-            $menu_item->delete();
-            $forms = cms_forms::find($form_id);
-
-            $forms->delete();
+            $this->deleteForm($form_id);
+//            $menu_item = cms_menus_items::where(['type' => '1', 'page_id' => $form_id]);
+//            $menu_item->delete();
+//            $forms = cms_forms::find($form_id);
+//
+//            $forms->delete();
 
             return Redirect::route('cms.formsList');
         }
-        if (null !== Input::get('delete_groub_form_submit')) {
-            $forms = Input::get('forms_checkbox');
-            $forms_result = cms_forms::whereIn('id', $forms)->delete();
-            $menu_item = cms_menus_items::where(['type' => '1'])->whereIn('page_id', $forms)->delete();
-            return Redirect::route('cms.formsList');
-        }
+
 
         if (null !== Input::get('change_groub_form_pages_submit')) {
             $forms = Input::get('forms_checkbox');
@@ -180,7 +178,14 @@ class FormsController extends Controller
 
 
 
+
         $forms->name  = preg_replace('/\s+/', '', Input::get('name'));
+
+        $formExist=cms_forms::where('name',$forms->name)->first();
+        if($formExist){
+
+             return Redirect::to('/cms/forms/form')->withErrors('this form is already exist,please select another name');
+        }
         $forms->page_id = Input::get('page_id');
         $forms->save();
 
@@ -214,4 +219,32 @@ $commandFields=[];
 
     /* ______________________________________________END__forms */
 
+    function deleteForm($form_id){
+        $form=cms_forms::find($form_id);
+        $formName=$form->name;
+        $viewsPath= base_path('modules/Cms/Resources/views/forms/'.$formName);
+        $controllerPath= base_path('modules/Cms/Http/Controllers/forms/'.$formName.'Controller.php');
+        $modelPath= base_path('modules/Cms/Entities/forms/'.$formName.'.php');
+        $migrationPath= base_path('modules/Cms/Database/Migrations/*create_'.$formName.'s_table.php');
+
+
+        foreach (glob($migrationPath) as $filename) {
+            @unlink($filename);
+        }
+        @unlink($modelPath);
+        @unlink($controllerPath);
+
+        foreach (glob($viewsPath.'/*.*') as $filename) {
+
+            @unlink($filename);
+        }
+        @rmdir($viewsPath);
+
+
+        cms_menus_items::where(['type'=>2,'page_id'=>$form_id])->delete();
+        cms_forms_fields::where('cms_forms_id',$form_id)->delete();
+        $form->delete();
+
+        @Schema::drop($formName.'s');
+    }
 }

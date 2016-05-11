@@ -75,7 +75,7 @@
 
     {!! Form::submit(trans('cms::cms.insert_new_form'),["name"=>'insert_form_submit','id'=>'insert_form_submit','class'=>'btn btn-primary' ]) !!}
 
-    @if($selected_id > 0)
+    @if(false && $selected_id > 0)
         {!! Form::hidden('edit_form_id',$selected_id) !!}
         {!! Form::submit(trans('cms::cms.save_edits'),["name"=>'edit_form_submit','id'=>'edit_form_submit','class'=>'btn btn-primary' ]) !!}
 
