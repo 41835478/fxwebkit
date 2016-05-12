@@ -14,6 +14,7 @@ class CrudViewCommand extends Command
      */
     protected $signature = 'crud:view
                             {name : The name of the Crud.}
+                            {--alias= : The alias name for the form.}
                             {--fields= : The fields name for the form.}
                             {--view-path= : The name of the view path.}
                             {--route-group= : Prefix of the route group.}
@@ -94,6 +95,13 @@ class CrudViewCommand extends Command
      * @var string
      */
     protected $crudName = '';
+
+    /**
+     * alias Name of the Crud.
+     *
+     * @var string
+     */
+    protected $crudAlias = '';
 
     /**
      * Crud Name in capital form.
@@ -177,6 +185,7 @@ class CrudViewCommand extends Command
     public function handle()
     {
         $this->crudName = $this->argument('name');
+        $this->crudAlias = $this->option('alias');
         $this->crudNameCap = ucwords($this->crudName);
         $this->crudNameSingular = str_singular($this->crudName);
         $this->modelName = ucwords($this->crudNameSingular);
@@ -231,7 +240,7 @@ class CrudViewCommand extends Command
             $field = $value['name'];
             $label = ucwords(str_replace('_', ' ', $field));
             if($this->option('localize') == 'yes') {
-                $label = 'trans(\'' . $this->crudName . '.' . $field . '\')';
+                $label = 'trans(\'' . $field . '\')';
             }
             $this->formHeadingHtml .= '<th>{{ ' . $label . ' }}</th>';
 
@@ -304,6 +313,8 @@ class CrudViewCommand extends Command
      */
     public function templateIndexVars($newIndexFile)
     {
+        File::put($newIndexFile, str_replace('%%crudAlias%%', $this->crudAlias, File::get($newIndexFile)));
+
         File::put($newIndexFile, str_replace('%%formHeadingHtml%%', $this->formHeadingHtml, File::get($newIndexFile)));
         File::put($newIndexFile, str_replace('%%formBodyHtml%%', $this->formBodyHtml, File::get($newIndexFile)));
         File::put($newIndexFile, str_replace('%%crudName%%', $this->crudName, File::get($newIndexFile)));
@@ -322,6 +333,7 @@ class CrudViewCommand extends Command
      */
     public function templateCreateVars($newCreateFile)
     {
+        File::put($newCreateFile, str_replace('%%crudAlias%%', $this->crudAlias, File::get($newCreateFile)));
         File::put($newCreateFile, str_replace('%%crudName%%', $this->crudName, File::get($newCreateFile)));
         File::put($newCreateFile, str_replace('%%crudNameCap%%', $this->crudNameCap, File::get($newCreateFile)));
         File::put($newCreateFile, str_replace('%%modelName%%', $this->modelName, File::get($newCreateFile)));
@@ -339,6 +351,8 @@ class CrudViewCommand extends Command
      */
     public function templateEditVars($newEditFile)
     {
+        File::put($newEditFile, str_replace('%%crudAlias%%', $this->crudAlias, File::get($newEditFile)));
+
         File::put($newEditFile, str_replace('%%crudName%%', $this->crudName, File::get($newEditFile)));
         File::put($newEditFile, str_replace('%%crudNameSingular%%', $this->crudNameSingular, File::get($newEditFile)));
         File::put($newEditFile, str_replace('%%crudNameCap%%', $this->crudNameCap, File::get($newEditFile)));
@@ -357,6 +371,7 @@ class CrudViewCommand extends Command
      */
     public function templateShowVars($newShowFile)
     {
+        File::put($newShowFile, str_replace('%%crudAlias%%', $this->crudAlias, File::get($newShowFile)));
         File::put($newShowFile, str_replace('%%formHeadingHtml%%', $this->formHeadingHtml, File::get($newShowFile)));
         File::put($newShowFile, str_replace('%%formBodyHtml%%', $this->formBodyHtmlForShowView, File::get($newShowFile)));
         File::put($newShowFile, str_replace('%%crudNameSingular%%', $this->crudNameSingular, File::get($newShowFile)));
@@ -388,7 +403,7 @@ EOD;
         $labelText = "'".ucwords(strtolower(str_replace('_', ' ', $item['name'])))."'";
 
         if($this->option('localize') == 'yes') {
-            $labelText = 'trans(\'' . $this->crudName . '.' . $item['name'] . '\')';
+            $labelText = 'trans(\'' . $item['name'] . '\')';
         }
 
         return sprintf($formGroup, $item['name'], $labelText, $field);

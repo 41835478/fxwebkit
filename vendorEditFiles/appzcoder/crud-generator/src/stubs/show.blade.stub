@@ -4,7 +4,7 @@
 <div class="container">
 
     <div id="content-wrapper">
-    <h1>%%modelName%%</h1>
+    <h1>%%crudAlias%%</h1>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
             <thead>

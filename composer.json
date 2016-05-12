@@ -28,7 +28,8 @@
 		"phpunit/phpunit": "~4.0",
 		"phpspec/phpspec": "~2.1"
 	},
-	"repositories": [{
+	"repositories": [
+	  {
 		"type": "package",
 		"package": {
 		  "name": "cartalyst/sentinel-social",
@@ -42,7 +43,33 @@
 			"classmap": ["."]
 		  }
 		}
-	}],
+	  }
+	  ,
+	  {
+		"type": "package",
+		"package": {
+		  "name": "appzcoder/crud-generator",
+		  "license": "MIT",
+		  "version": "1.0.0",
+		  "dist": {
+			"type": "zip",
+			"url": "./vendorEditFiles/crud-generator-1.0.zip",
+			"reference": "1.0.0"
+		  },
+		  "require": {
+			"php": ">=5.5.9",
+			"illuminate/support": "~5.1"
+		  },
+		  "autoload": {
+			"psr-4": {
+			  "Appzcoder\\CrudGenerator\\": "src/"
+			}
+		  }
+		}
+	  }
+
+
+	],
 	"autoload": {
 		"classmap": [
 			"database"

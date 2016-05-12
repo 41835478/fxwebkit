@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "31bb55c81de0b23f935c6ab214196c87",
-    "content-hash": "13a8c20b165eee550c0d4c56a6109fdd",
+    "hash": "e44db12582fce01837f427f30512f544",
+    "content-hash": "43ccee4944f02b214bf74fcd2b526cf8",
     "packages": [
         {
             "name": "appzcoder/crud-generator",
-            "version": "v1.0.8",
+            "version": "v1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/appzcoder/crud-generator.git",
-                "reference": "f1dee5a78f963fada17bb0d003b988e3137c4fe9"
+                "reference": "9f3ccfe438bf82842117538478eaddf0372362c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/f1dee5a78f963fada17bb0d003b988e3137c4fe9",
-                "reference": "f1dee5a78f963fada17bb0d003b988e3137c4fe9",
+                "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/9f3ccfe438bf82842117538478eaddf0372362c6",
+                "reference": "9f3ccfe438bf82842117538478eaddf0372362c6",
                 "shasum": ""
             },
             "require": {
@@ -49,7 +49,7 @@
                 "laravel",
                 "laravel crud generator"
             ],
-            "time": "2016-04-26 18:29:26"
+            "time": "2016-05-11 13:12:28"
         },
         {
             "name": "athari/yalinqo",

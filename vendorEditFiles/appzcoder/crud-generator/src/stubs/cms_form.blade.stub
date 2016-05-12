@@ -1,5 +1,5 @@
 
-    <h1>Create New %%modelName%%</h1>
+    <h1>Create New %%crudAlias%%</h1>
     <hr/>
 
     {!! Form::open(['route' => '%%crudName%%.form', 'class' => 'form-horizontal']) !!}
