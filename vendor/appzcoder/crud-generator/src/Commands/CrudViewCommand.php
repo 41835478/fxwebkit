@@ -240,7 +240,7 @@ class CrudViewCommand extends Command
             $field = $value['name'];
             $label = ucwords(str_replace('_', ' ', $field));
             if($this->option('localize') == 'yes') {
-                $label = 'trans(\'' . $this->crudName . '.' . $field . '\')';
+                $label = 'trans(\'' . $field . '\')';
             }
             $this->formHeadingHtml .= '<th>{{ ' . $label . ' }}</th>';
 
@@ -403,7 +403,7 @@ EOD;
         $labelText = "'".ucwords(strtolower(str_replace('_', ' ', $item['name'])))."'";
 
         if($this->option('localize') == 'yes') {
-            $labelText = 'trans(\'' . $this->crudName . '.' . $item['name'] . '\')';
+            $labelText = 'trans(\'' . $item['name'] . '\')';
         }
 
         return sprintf($formGroup, $item['name'], $labelText, $field);
