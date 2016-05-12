@@ -4,7 +4,7 @@
 <div class="container">
 
     <div id="content-wrapper">
-    <h1>%%crudNameCap%% <a href="{{ url('cms/%%routeGroup%%%%crudName%%/create') }}" class="btn btn-primary pull-right btn-sm">Add New %%crudAlias%%</a></h1>
+    <h1>%%crudAlias%% <a href="{{ url('cms/%%routeGroup%%%%crudName%%/create') }}" class="btn btn-primary pull-right btn-sm">Add New %%crudAlias%%</a></h1>
     <div class="table">
         <table class="table table-bordered table-striped table-hover">
             <thead>

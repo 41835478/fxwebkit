@@ -113,4 +113,32 @@ Route::get('cms_forms_liveaccount/form', [
 ]);
 Route::post('cms_forms_liveaccount/form', [
     'uses' => 'Modules\Cms\Http\Controllers\forms\cms_forms_liveaccountController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_mohammadhashim', 'Modules\Cms\Http\Controllers\forms\cms_forms_mohammadhashimController');});
+Route::get('cms_forms_mohammadhashim/form', [
+    'as' => 'cms_forms_mohammadhashim.form', 'uses' => 'Modules\Cms\Http\Controllers\forms\cms_forms_mohammadhashimController@cms_create'
+]);
+Route::post('cms_forms_mohammadhashim/form', [
+    'uses' => 'Modules\Cms\Http\Controllers\forms\cms_forms_mohammadhashimController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_dfsdf', 'Modules\Cms\Http\Controllers\forms\cms_forms_dfsdfController');});
+Route::get('cms_forms_dfsdf/form', [
+    'as' => 'cms_forms_dfsdf.form', 'uses' => 'Modules\Cms\Http\Controllers\forms\cms_forms_dfsdfController@cms_create'
+]);
+Route::post('cms_forms_dfsdf/form', [
+    'uses' => 'Modules\Cms\Http\Controllers\forms\cms_forms_dfsdfController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_formname', 'Modules\Cms\Http\Controllers\forms\cms_forms_formnameController');});
+Route::get('cms_forms_formname/form', [
+    'as' => 'cms_forms_formname.form', 'uses' => 'Modules\Cms\Http\Controllers\forms\cms_forms_formnameController@cms_create'
+]);
+Route::post('cms_forms_formname/form', [
+    'uses' => 'Modules\Cms\Http\Controllers\forms\cms_forms_formnameController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_vfvvd', 'Modules\Cms\Http\Controllers\forms\cms_forms_vfvvdController');});
+Route::get('cms_forms_vfvvd/form', [
+    'as' => 'cms_forms_vfvvd.form', 'uses' => 'Modules\Cms\Http\Controllers\forms\cms_forms_vfvvdController@cms_create'
+]);
+Route::post('cms_forms_vfvvd/form', [
+    'uses' => 'Modules\Cms\Http\Controllers\forms\cms_forms_vfvvdController@cms_store'
 ]);

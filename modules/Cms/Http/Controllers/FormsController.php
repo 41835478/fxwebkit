@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Config;
 use Modules\Cms\Http\Requests\CreateEditForm;
 use Illuminate\Support\Facades\Artisan;
 
+use Illuminate\Database\QueryException;
 use Schema;
 
 class FormsController extends Controller
@@ -180,12 +181,17 @@ class FormsController extends Controller
 
         $forms->alias = Input::get('alias');
 
-        $forms->name  = 'cms_forms_'.preg_replace('/\s+/', '',$forms->alias);
+        $forms->name  = 'cms_forms_'.preg_replace(['/\s+/','/[^a-zA-Z]/'],['',''] ,$forms->alias);
+
+        if($forms->name =='cms_forms_'){
+
+            return Redirect::back()->withErrors('Please insert valid name for form');
+        }
 
         $formExist=cms_forms::where('name',$forms->name)->first();
         if($formExist){
 
-             return Redirect::to('/cms/forms/form')->withErrors('this form is already exist,please select another name');
+             return Redirect::back()->withErrors('this form is already exist,please select another name');
         }
         $forms->page_id = Input::get('page_id');
         $forms->save();
@@ -198,6 +204,12 @@ class FormsController extends Controller
              $rows=[];
 $commandFields=[];
         foreach($fields as $name=>$type){
+
+            $name  = preg_replace(['/\s+/','/[^a-zA-Z]/'],['',''] ,$name);
+            if($name=='' || $type==''){
+
+                return Redirect::back()->withErrors('Field name not valid , please select anothe name.');
+            }
         $rows[]=[
             'name'=>$name,
             'cms_forms_id'=>$forms->id,
@@ -247,7 +259,8 @@ $commandFields=[];
         cms_menus_items::where(['type'=>2,'page_id'=>$form_id])->delete();
         cms_forms_fields::where('cms_forms_id',$form_id)->delete();
         $form->delete();
-
+try{
         @Schema::drop($formName.'s');
+}catch (QueryException $e){}
     }
 }

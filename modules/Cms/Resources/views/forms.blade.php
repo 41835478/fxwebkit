@@ -4,7 +4,7 @@
     <div id="content-wrapper">
 <div class="page-header">
     <h1>{{ trans('cms::cms.newForms') }}</h1>
-    @if($selected_id>0)               
+    @if(false)
     {!! Form::open(['url'=>asset('/cms/forms/forms'),'class'=>'language_select_form']) !!}
     {!! Form::hidden('form_id',$selected_id) !!}
     {!! Form::select('selected_language',$languages,$selected_language,['class'=>'language_select']) !!}
@@ -40,7 +40,7 @@
   <tr>
       <td>{{$name}}<input type="hidden" name="fields[{{$name}}]" value="{{$type}}"></td>
       <td>{{$type}}</td>
-      <td><i onclick="$(this).parent().parent().remove();">delete</i></td>
+      <td><i class="fa fa-trash-o" onclick="$(this).parent().parent().remove();"></i></td>
   </tr>
   @endforeach
 @endif
@@ -135,7 +135,7 @@ init.push(function () {
         $('#fieldsTable tbody').append(' <tr>'
                 +'<td>'+$fieldName+'<input type="hidden" name="fields['+$fieldName+']" value="'+$fieldType+'"></td>'
                 +'<td>'+$fieldType+'</td>'
-                +'<td><i onclick="$(this).parent().parent().remove();">delete</i></td>'
+                +'<td><i class="fa fa-trash-o"  onclick="$(this).parent().parent().remove();"></i></td>'
                 +'</tr>');
 
     });
