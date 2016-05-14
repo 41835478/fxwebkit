@@ -17,8 +17,7 @@
 
 	  "cartalyst/support": "~1.0",
 	  "league/oauth1-client": "1.2.*",
-	  "league/oauth2-client": "0.12.*",
-		"appzcoder/crud-generator": "^1.0"
+	  "league/oauth2-client": "0.12.*"
 
 	},
 	"require-dev": {
@@ -28,8 +27,7 @@
 		"phpunit/phpunit": "~4.0",
 		"phpspec/phpspec": "~2.1"
 	},
-	"repositories": [
-	  {
+	"repositories": [{
 		"type": "package",
 		"package": {
 		  "name": "cartalyst/sentinel-social",
@@ -43,41 +41,14 @@
 			"classmap": ["."]
 		  }
 		}
-	  }
-	  ,
-	  {
-		"type": "package",
-		"package": {
-		  "name": "appzcoder/crud-generator",
-		  "license": "MIT",
-		  "version": "1.0.0",
-		  "dist": {
-			"type": "zip",
-			"url": "./vendorEditFiles/crud-generator-1.0.zip",
-			"reference": "1.0.0"
-		  },
-		  "require": {
-			"php": ">=5.5.9",
-			"illuminate/support": "~5.1"
-		  },
-		  "autoload": {
-			"psr-4": {
-			  "Appzcoder\\CrudGenerator\\": "src/"
-			}
-		  }
-		}
-	  }
-
-
-	],
+	}],
 	"autoload": {
 		"classmap": [
 			"database"
 		],
 		"psr-4": {
 			"Fxweb\\": "app/",
-		  "Modules\\": "modules/",
-		  "modules\\": "modules/"
+		  	"Modules\\": "modules/"
 		},
 		"files": [
 			"app/helpers.php"
