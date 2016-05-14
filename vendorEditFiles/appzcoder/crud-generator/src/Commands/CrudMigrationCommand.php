@@ -54,7 +54,7 @@ class CrudMigrationCommand extends GeneratorCommand
         $name = str_replace($this->laravel->getNamespace(), '', $name);
         $datePrefix = date('Y_m_d_His');
 
-        return base_path('Modules/Cms/Database/Migrations/' . $datePrefix . '_create_' . $name . '_table.php');
+        return base_path('modules/Cms/Database/Migrations/' . $datePrefix . '_create_' . $name . '_table.php');
      //   return database_path('/migrations/') . $datePrefix . '_create_' . $name . '_table.php';
     }
 

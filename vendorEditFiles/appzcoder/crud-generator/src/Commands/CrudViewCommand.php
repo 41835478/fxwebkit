@@ -196,8 +196,8 @@ class CrudViewCommand extends Command
         if ($this->option('view-path')) {
             $userPath = $this->option('view-path');
             if(strpos($userPath,'::')){
-                $userPath= str_replace('::','/Resources/views/',$userPath);
-                $path = base_path('Modules/' . $userPath . '/' . $this->crudName . '/');
+                $userPath= str_replace('cms::','Cms/Resources/views/',$userPath);
+                $path = base_path('modules/' . $userPath . '/' . $this->crudName . '/');
 
             }else{
             $path = $viewDirectory . $userPath . '/' . $this->crudName . '/';
@@ -205,7 +205,6 @@ class CrudViewCommand extends Command
         } else {
             $path = $viewDirectory . $this->crudName . '/';
         }
-
         if (!File::isDirectory($path)) {
             File::makeDirectory($path, 0755, true);
         }

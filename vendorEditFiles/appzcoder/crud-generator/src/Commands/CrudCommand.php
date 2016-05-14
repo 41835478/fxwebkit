@@ -66,7 +66,7 @@ class CrudCommand extends Command
         $routeGroup = $this->option('route-group');
         $this->routeName = ($routeGroup) ? $routeGroup . '/' . snake_case($name, '-') : snake_case($name, '-');
 
-        $controllerNamespace = ($this->option('namespace')) ? $this->option('namespace') . '\\' : 'Modules\Cms\Http\Controllers\forms';
+        $controllerNamespace = ($this->option('namespace')) ? $this->option('namespace') . '\\' : 'modules\Cms\Http\Controllers\forms';
 
         $fields = $this->option('fields');
         $primaryKey = $this->option('pk');
