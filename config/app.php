@@ -157,9 +157,9 @@ return [
 		'Pingpong\Modules\ModulesServiceProvider',
 
 
-			       'Cartalyst\Sentinel\Addons\Social\Laravel\SocialServiceProvider',
+		'Cartalyst\Sentinel\Addons\Social\Laravel\SocialServiceProvider',
 
-	'Greggilbert\Recaptcha\RecaptchaServiceProvider',
+		'Greggilbert\Recaptcha\RecaptchaServiceProvider',
 		'Appzcoder\CrudGenerator\CrudGeneratorServiceProvider',
 	],
 
