@@ -4,17 +4,22 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "33f6a77f00b0d2a9549aec48b4c80d3f",
-    "content-hash": "b179918048d1c80f768f6d07260957f1",
+    "hash": "92de8acf099a260df4c9e30075d97817",
+    "content-hash": "13a8c20b165eee550c0d4c56a6109fdd",
     "packages": [
         {
             "name": "appzcoder/crud-generator",
-            "version": "1.0.0",
+            "version": "v1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/appzcoder/crud-generator.git",
+                "reference": "9f3ccfe438bf82842117538478eaddf0372362c6"
+            },
             "dist": {
                 "type": "zip",
-                "url": "./vendorEditFiles/crud-generator-1.0.zip",
-                "reference": "1.0.0",
-                "shasum": null
+                "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/9f3ccfe438bf82842117538478eaddf0372362c6",
+                "reference": "9f3ccfe438bf82842117538478eaddf0372362c6",
+                "shasum": ""
             },
             "require": {
                 "illuminate/support": "~5.1",
@@ -26,9 +31,25 @@
                     "Appzcoder\\CrudGenerator\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
-            ]
+            ],
+            "authors": [
+                {
+                    "name": "Sohel Amin",
+                    "email": "sohelamincse@gmail.com",
+                    "homepage": "http://www.appzcoder.com"
+                }
+            ],
+            "description": "Laravel 5 CRUD Generator",
+            "keywords": [
+                "crud",
+                "crud generator",
+                "laravel",
+                "laravel crud generator"
+            ],
+            "time": "2016-05-11 13:12:28"
         },
         {
             "name": "athari/yalinqo",
@@ -1296,22 +1317,38 @@
         },
         {
             "name": "larapack/config-writer",
-            "version": "1.0.0",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/larapack/config-writer.git",
+                "reference": "b36a716833240fe9e8b4b4d007b68ef9e91a1124"
+            },
             "dist": {
                 "type": "zip",
-                "url": "./vendorEditFiles/config-writer-1.0.zip",
-                "reference": "1.0.0",
-                "shasum": null
+                "url": "https://api.github.com/repos/larapack/config-writer/zipball/b36a716833240fe9e8b4b4d007b68ef9e91a1124",
+                "reference": "b36a716833240fe9e8b4b4d007b68ef9e91a1124",
+                "shasum": ""
             },
-            "type": "library",
+            "type": "package",
             "autoload": {
                 "psr-4": {
                     "": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
-            ]
+            ],
+            "description": "Save changes to the configuration file in script.",
+            "keywords": [
+                "config",
+                "larapack",
+                "laravel",
+                "package",
+                "save",
+                "writer"
+            ],
+            "time": "2016-04-28 12:45:27"
         },
         {
             "name": "laravel/framework",
