@@ -29,4 +29,11 @@ Route::get('cms_forms_sdfs/form', [
 ]);
 Route::post('cms_forms_sdfs/form', [
     'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_sdfsController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_sdfg', 'modules\Cms\Http\Controllers\forms\cms_forms_sdfgController');});
+Route::get('cms_forms_sdfg/form', [
+    'as' => 'cms_forms_sdfg.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_sdfgController@cms_create'
+]);
+Route::post('cms_forms_sdfg/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_sdfgController@cms_store'
 ]);
