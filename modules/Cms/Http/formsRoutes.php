@@ -36,4 +36,32 @@ Route::get('cms_forms_sdfg/form', [
 ]);
 Route::post('cms_forms_sdfg/form', [
     'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_sdfgController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_gfbsh', 'modules\Cms\Http\Controllers\forms\cms_forms_gfbshController');});
+Route::get('cms_forms_gfbsh/form', [
+    'as' => 'cms_forms_gfbsh.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_gfbshController@cms_create'
+]);
+Route::post('cms_forms_gfbsh/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_gfbshController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_liveaccount', 'modules\Cms\Http\Controllers\forms\cms_forms_liveaccountController');});
+Route::get('cms_forms_liveaccount/form', [
+    'as' => 'cms_forms_liveaccount.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_liveaccountController@cms_create'
+]);
+Route::post('cms_forms_liveaccount/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_liveaccountController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_liveaccount', 'modules\Cms\Http\Controllers\forms\cms_forms_liveaccountController');});
+Route::get('cms_forms_liveaccount/form', [
+    'as' => 'cms_forms_liveaccount.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_liveaccountController@cms_create'
+]);
+Route::post('cms_forms_liveaccount/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_liveaccountController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_liveaccount', 'modules\Cms\Http\Controllers\forms\cms_forms_liveaccountController');});
+Route::get('cms_forms_liveaccount/form', [
+    'as' => 'cms_forms_liveaccount.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_liveaccountController@cms_create'
+]);
+Route::post('cms_forms_liveaccount/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_liveaccountController@cms_store'
 ]);
