@@ -1,24 +1,29 @@
 <?php
 
-namespace {{customNamespace}};
+namespace ;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DummyClass extends Model
+class fff extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = '{{table}}';
+    protected $table = 'fffs';
 
-    {{primaryKey}}
+    /**
+    * The database primary key value.
+    *
+    * @var string
+    */
+    protected $primaryKey = 'id';
 
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = {{fillable}};
+    protected $fillable = ['name'];
 }

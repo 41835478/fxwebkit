@@ -81,7 +81,7 @@ class CrudModelCommand extends GeneratorCommand
 EOD;
 
         }
-
+       $this->replaceCustomNamespace($stub, $this->getDefaultNamespace('dummy'));
         return $this->replaceNamespace($stub, $name)
             ->replaceTable($stub, $table)
             ->replaceFillable($stub, $fillable)
@@ -89,6 +89,14 @@ EOD;
             ->replaceClass($stub, $name);
     }
 
+    protected function replaceCustomNamespace(&$stub, $customNameSpace)
+    {
+        $stub = str_replace(
+            '{{customNamespace}}', $customNameSpace, $stub
+        );
+
+        return $this;
+    }
     /**
      * Replace the table for the given stub.
      *
@@ -138,5 +146,17 @@ EOD;
         );
 
         return $this;
+    }
+
+    protected function parseName($name)
+    {
+
+        return $name;
+    }
+
+    protected function getPath($name)
+    {
+
+        return base_path(str_replace('\\', '/', 'modules\Cms\Entities\forms\\'.$name).'.php');
     }
 }

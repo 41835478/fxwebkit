@@ -46,6 +46,7 @@ class CrudControllerCommand extends GeneratorCommand
         : __DIR__ . '/../stubs/controller.stub';
     }
 
+
     /**
      * Get the default namespace for the class.
      *
@@ -190,5 +191,15 @@ class CrudControllerCommand extends GeneratorCommand
         );
 
         return $this;
+    }
+
+    protected function parseName($name)
+    {
+
+        return $name;
+    }
+    protected function getPath($name)
+    {
+        return base_path(str_replace('\\', '/', $name).'.php');
     }
 }
