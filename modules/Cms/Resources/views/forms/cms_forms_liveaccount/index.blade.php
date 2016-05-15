@@ -9,8 +9,9 @@
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
-                    <th>S.No</th><th>{{ trans('name') }}</th><th>{{ trans('email') }}</th><th>Actions</th>
-                </tr>
+
+                    <th>S.No</th><th>{{ trans('user_id') }}</th><th>{{ trans('title') }}</th><th>{{ trans('gender') }}</th><th>Actions</th>
+               </tr>
             </thead>
             <tbody>
             {{-- */$x=0;/* --}}
@@ -18,8 +19,9 @@
                 {{-- */$x++;/* --}}
                 <tr>
                     <td>{{ $x }}</td>
-                    <td><a href="{{ url('cms\cms_forms_liveaccount', $item->id) }}">{{ $item->name }}</a></td><td>{{ $item->email }}</td>
-                    <td>
+
+                    <td><a href="{{ url('cms\cms_forms_liveaccount', $item->id) }}">{{ $item->user_id }}</a></td><td>{{ $item->title }}</td><td>{{ $item->gender }}</td>
+                   <td>
                         <a href="{{ url('/cms/cms_forms_liveaccount/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs">Update</a>
                         {!! Form::open([
                             'method'=>'DELETE',

@@ -1,18 +1,8 @@
-@extends('admin.layouts.main')
 
-@section('content')
-<div class="container">
-
-    <div id="content-wrapper">
-    <h1>Edit live account</h1>
+    <h1>Create New live account</h1>
     <hr/>
 
-    {!! Form::model($cms_forms_liveaccount, [
-        'method' => 'PATCH',
-        'url' => ['/cms/cms_forms_liveaccount', $cms_forms_liveaccount->id],
-        'class' => 'form-horizontal'
-    ]) !!}
-
+    {!! Form::open(['route' => 'cms_forms_liveaccount.form', 'class' => 'form-horizontal']) !!}
 
                 <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
                 {!! Form::label('user_id', trans('user_id'), ['class' => 'col-sm-3 control-label']) !!}
@@ -1132,14 +1122,13 @@
                 <div class="col-sm-6">
                     {!! Form::text('proof_of_residence', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('proof_of_residence', '<p class="help-block">:message</p>') !!}
-
                 </div>
             </div>
 
 
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-3">
-            {!! Form::submit('Update', ['class' => 'btn btn-primary form-control']) !!}
+            {!! Form::submit('Create', ['class' => 'btn btn-primary form-control']) !!}
         </div>
     </div>
     {!! Form::close() !!}
@@ -1151,6 +1140,3 @@
             @endforeach
         </ul>
     @endif
-</div>
-</div>
-@endsection

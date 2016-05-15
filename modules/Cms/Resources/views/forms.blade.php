@@ -28,8 +28,8 @@
    
       <thead>
       <tr>
-          <td>field name</td>
-          <td>field type</td>
+          <td>{{ trans('cms::cms.field_name') }}</td>
+          <td>{{ trans('cms::cms.field_type') }}</td>
           <td></td>
       </tr>
    </thead>
@@ -49,7 +49,7 @@
       <tr>
           <td>{!! Form::text('fieldNameInput','',['id'=>'fieldNameInput']) !!}</td>
           <td>{!! Form::select('fieldTypeInput',$fieldTypes,'text',['id'=>'fieldTypeInput']) !!}</td>
-          <td>{!! Form::button('Add',['id'=>'addFieldButton']) !!}</td>
+          <td>{!! Form::button(trans('cms::cms.add'),['id'=>'addFieldButton','class'=>'btn btn-primary']) !!}</td>
       </tr>
       </tfoot>
   </table>

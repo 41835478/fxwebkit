@@ -122,7 +122,11 @@ class cms_forms_liveaccountController extends Controller
          */
         public function cms_create()
         {
-         return View::make('cms::forms.cms_forms_liveaccount.cms_form')->render();
+            $arrays=[];
+
+           $arrays['default_platform']= ['MT4'=>'MT4','Multi-products'=>'Multi-products','Both'=>'Both'];
+
+         return View::make('cms::forms.cms_forms_liveaccount.cms_form',['arrays'=>$arrays])->render();
 
         }
 
