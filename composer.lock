@@ -4,22 +4,17 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e44db12582fce01837f427f30512f544",
-    "content-hash": "43ccee4944f02b214bf74fcd2b526cf8",
+    "hash": "33f6a77f00b0d2a9549aec48b4c80d3f",
+    "content-hash": "b179918048d1c80f768f6d07260957f1",
     "packages": [
         {
             "name": "appzcoder/crud-generator",
-            "version": "v1.0.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/appzcoder/crud-generator.git",
-                "reference": "9f3ccfe438bf82842117538478eaddf0372362c6"
-            },
+            "version": "1.0.0",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/9f3ccfe438bf82842117538478eaddf0372362c6",
-                "reference": "9f3ccfe438bf82842117538478eaddf0372362c6",
-                "shasum": ""
+                "url": "./vendorEditFiles/crud-generator-1.0.zip",
+                "reference": "1.0.0",
+                "shasum": null
             },
             "require": {
                 "illuminate/support": "~5.1",
@@ -31,25 +26,9 @@
                     "Appzcoder\\CrudGenerator\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sohel Amin",
-                    "email": "sohelamincse@gmail.com",
-                    "homepage": "http://www.appzcoder.com"
-                }
-            ],
-            "description": "Laravel 5 CRUD Generator",
-            "keywords": [
-                "crud",
-                "crud generator",
-                "laravel",
-                "laravel crud generator"
-            ],
-            "time": "2016-05-11 13:12:28"
+            ]
         },
         {
             "name": "athari/yalinqo",
@@ -110,16 +89,16 @@
         },
         {
             "name": "cartalyst/sentinel",
-            "version": "v2.0.11",
+            "version": "v2.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cartalyst/sentinel.git",
-                "reference": "3c55c1c202cf52e7a9e48b0c52801abb6533daa4"
+                "reference": "5054be235f5501c5f05aebbacdfd1971fb64b52e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/sentinel/zipball/3c55c1c202cf52e7a9e48b0c52801abb6533daa4",
-                "reference": "3c55c1c202cf52e7a9e48b0c52801abb6533daa4",
+                "url": "https://api.github.com/repos/cartalyst/sentinel/zipball/5054be235f5501c5f05aebbacdfd1971fb64b52e",
+                "reference": "5054be235f5501c5f05aebbacdfd1971fb64b52e",
                 "shasum": ""
             },
             "require": {
@@ -134,7 +113,7 @@
                 "illuminate/session": "~5.0",
                 "ircmaxell/password-compat": "~1.0",
                 "mockery/mockery": "~0.9",
-                "paragonie/random_compat": "~1.1",
+                "paragonie/random_compat": "^1.4|^2",
                 "phpunit/phpunit": "~4.0"
             },
             "suggest": {
@@ -195,7 +174,7 @@
                 "php",
                 "security"
             ],
-            "time": "2016-04-28 13:18:37"
+            "time": "2016-05-13 16:34:19"
         },
         {
             "name": "cartalyst/sentinel-social",
@@ -1317,38 +1296,22 @@
         },
         {
             "name": "larapack/config-writer",
-            "version": "v1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/larapack/config-writer.git",
-                "reference": "b36a716833240fe9e8b4b4d007b68ef9e91a1124"
-            },
+            "version": "1.0.0",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/larapack/config-writer/zipball/b36a716833240fe9e8b4b4d007b68ef9e91a1124",
-                "reference": "b36a716833240fe9e8b4b4d007b68ef9e91a1124",
-                "shasum": ""
+                "url": "./vendorEditFiles/config-writer-1.0.zip",
+                "reference": "1.0.0",
+                "shasum": null
             },
-            "type": "package",
+            "type": "library",
             "autoload": {
                 "psr-4": {
                     "": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
-            ],
-            "description": "Save changes to the configuration file in script.",
-            "keywords": [
-                "config",
-                "larapack",
-                "laravel",
-                "package",
-                "save",
-                "writer"
-            ],
-            "time": "2016-04-28 12:45:27"
+            ]
         },
         {
             "name": "laravel/framework",
@@ -3945,20 +3908,23 @@
         },
         {
             "name": "phpunit/php-timer",
-            "version": "1.0.7",
+            "version": "1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "3e82f4e9fc92665fafd9157568e4dcb01d014e5b"
+                "reference": "38e9124049cf1a164f1e4537caf19c99bf1eb260"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
-                "reference": "3e82f4e9fc92665fafd9157568e4dcb01d014e5b",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/38e9124049cf1a164f1e4537caf19c99bf1eb260",
+                "reference": "38e9124049cf1a164f1e4537caf19c99bf1eb260",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4|~5"
             },
             "type": "library",
             "autoload": {
@@ -3982,7 +3948,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2015-06-21 08:01:12"
+            "time": "2016-05-12 18:03:57"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -4035,16 +4001,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.24",
+            "version": "4.8.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "a1066c562c52900a142a0e2bbf0582994671385e"
+                "reference": "6d1588a6542a52ed89636e5a9876bc7502bbb853"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a1066c562c52900a142a0e2bbf0582994671385e",
-                "reference": "a1066c562c52900a142a0e2bbf0582994671385e",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6d1588a6542a52ed89636e5a9876bc7502bbb853",
+                "reference": "6d1588a6542a52ed89636e5a9876bc7502bbb853",
                 "shasum": ""
             },
             "require": {
@@ -4058,7 +4024,7 @@
                 "phpunit/php-code-coverage": "~2.1",
                 "phpunit/php-file-iterator": "~1.4",
                 "phpunit/php-text-template": "~1.2",
-                "phpunit/php-timer": ">=1.0.6",
+                "phpunit/php-timer": "^1.0.6",
                 "phpunit/phpunit-mock-objects": "~2.3",
                 "sebastian/comparator": "~1.1",
                 "sebastian/diff": "~1.2",
@@ -4103,7 +4069,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-03-14 06:16:08"
+            "time": "2016-05-10 18:47:12"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
