@@ -64,4 +64,18 @@ Route::get('cms_forms_liveaccount/form', [
 ]);
 Route::post('cms_forms_liveaccount/form', [
     'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_liveaccountController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_demoaccount', 'modules\Cms\Http\Controllers\forms\cms_forms_demoaccountController');});
+Route::get('cms_forms_demoaccount/form', [
+    'as' => 'cms_forms_demoaccount.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_demoaccountController@cms_create'
+]);
+Route::post('cms_forms_demoaccount/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_demoaccountController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_demoaccount', 'modules\Cms\Http\Controllers\forms\cms_forms_demoaccountController');});
+Route::get('cms_forms_demoaccount/form', [
+    'as' => 'cms_forms_demoaccount.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_demoaccountController@cms_create'
+]);
+Route::post('cms_forms_demoaccount/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_demoaccountController@cms_store'
 ]);
