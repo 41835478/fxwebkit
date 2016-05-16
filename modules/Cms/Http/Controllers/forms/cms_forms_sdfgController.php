@@ -5,14 +5,14 @@ namespace modules\Cms\Http\Controllers\forms;
 use Fxweb\Http\Requests;
 use Fxweb\Http\Controllers\Controller;
 
-use  Modules\Cms\Entities\forms\cms_forms_liveaccount;
+use  Modules\Cms\Entities\forms\cms_forms_sdfg;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
-class cms_forms_liveaccountController extends Controller
+class cms_forms_sdfgController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,9 +21,9 @@ class cms_forms_liveaccountController extends Controller
      */
     public function index()
     {
-        $cms_forms_liveaccount = cms_forms_liveaccount::paginate(15);
+        $cms_forms_sdfg = cms_forms_sdfg::paginate(15);
 
-        return view('cms::forms.cms_forms_liveaccount.index', compact('cms_forms_liveaccount'));
+        return view('cms::forms.cms_forms_sdfg.index', compact('cms_forms_sdfg'));
     }
 
     /**
@@ -33,7 +33,7 @@ class cms_forms_liveaccountController extends Controller
      */
     public function create()
     {
-        return view('cms::forms.cms_forms_liveaccount.create');
+        return view('cms::forms.cms_forms_sdfg.create');
     }
 
     /**
@@ -44,11 +44,11 @@ class cms_forms_liveaccountController extends Controller
     public function store(Request $request)
     {
         
-        cms_forms_liveaccount::create($request->all());
+        cms_forms_sdfg::create($request->all());
 
-        Session::flash('flash_message', 'cms_forms_liveaccount added!');
+        Session::flash('flash_message', 'cms_forms_sdfg added!');
 
-        return redirect('cms/cms_forms_liveaccount');
+        return redirect('cms/cms_forms_sdfg');
     }
 
     /**
@@ -60,9 +60,9 @@ class cms_forms_liveaccountController extends Controller
      */
     public function show($id)
     {
-        $cms_forms_liveaccount = cms_forms_liveaccount::findOrFail($id);
+        $cms_forms_sdfg = cms_forms_sdfg::findOrFail($id);
 
-        return view('cms::forms.cms_forms_liveaccount.show', compact('cms_forms_liveaccount'));
+        return view('cms::forms.cms_forms_sdfg.show', compact('cms_forms_sdfg'));
     }
 
     /**
@@ -74,9 +74,9 @@ class cms_forms_liveaccountController extends Controller
      */
     public function edit($id)
     {
-        $cms_forms_liveaccount = cms_forms_liveaccount::findOrFail($id);
+        $cms_forms_sdfg = cms_forms_sdfg::findOrFail($id);
 
-        return view('cms::forms.cms_forms_liveaccount.edit', compact('cms_forms_liveaccount'));
+        return view('cms::forms.cms_forms_sdfg.edit', compact('cms_forms_sdfg'));
     }
 
     /**
@@ -89,12 +89,12 @@ class cms_forms_liveaccountController extends Controller
     public function update($id, Request $request)
     {
         
-        $cms_forms_liveaccount = cms_forms_liveaccount::findOrFail($id);
-        $cms_forms_liveaccount->update($request->all());
+        $cms_forms_sdfg = cms_forms_sdfg::findOrFail($id);
+        $cms_forms_sdfg->update($request->all());
 
-        Session::flash('flash_message', 'cms_forms_liveaccount updated!');
+        Session::flash('flash_message', 'cms_forms_sdfg updated!');
 
-        return redirect('cms/cms_forms_liveaccount');
+        return redirect('cms/cms_forms_sdfg');
     }
 
     /**
@@ -106,11 +106,11 @@ class cms_forms_liveaccountController extends Controller
      */
     public function destroy($id)
     {
-        cms_forms_liveaccount::destroy($id);
+        cms_forms_sdfg::destroy($id);
 
-        Session::flash('flash_message', 'cms_forms_liveaccount deleted!');
+        Session::flash('flash_message', 'cms_forms_sdfg deleted!');
 
-        return redirect('cms/cms_forms_liveaccount');
+        return redirect('cms/cms_forms_sdfg');
     }
 
 
@@ -122,11 +122,7 @@ class cms_forms_liveaccountController extends Controller
          */
         public function cms_create()
         {
-            $arrays=[];
-
-           $arrays['default_platform']= ['MT4'=>'MT4','Multi-products'=>'Multi-products','Both'=>'Both'];
-
-         return View::make('cms::forms.cms_forms_liveaccount.cms_form',['arrays'=>$arrays])->render();
+         return View::make('cms::forms.cms_forms_sdfg.cms_form')->render();
 
         }
 
@@ -138,11 +134,11 @@ class cms_forms_liveaccountController extends Controller
         public function cms_store(Request $request)
         {
             
-            cms_forms_liveaccount::create($request->all());
+            cms_forms_sdfg::create($request->all());
 
-            Session::flash('flash_message', 'cms_forms_liveaccount added!');
+            Session::flash('flash_message', 'cms_forms_sdfg added!');
 return Redirect::back();
-        //    return redirect('cms/cms_forms_liveaccount');
+        //    return redirect('cms/cms_forms_sdfg');
         }
 
 }

@@ -4,28 +4,26 @@
 <div class="container">
 
     <div id="content-wrapper">
-    <h1>live account <a href="{{ url('cms/cms_forms_liveaccount/create') }}" class="btn btn-primary pull-right btn-sm">Add New live account</a></h1>
+    <h1>dfgdfg <a href="{{ url('cms/pofffsts/create') }}" class="btn btn-primary pull-right btn-sm">Add New dfgdfg</a></h1>
     <div class="table">
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
-
-                    <th>S.No</th><th>{{ trans('user_id') }}</th><th>{{ trans('title') }}</th><th>{{ trans('gender') }}</th><th>Actions</th>
-               </tr>
+                    <th>S.No</th><th>{{ trans('title') }}</th><th>{{ trans('body') }}</th><th>Actions</th>
+                </tr>
             </thead>
             <tbody>
             {{-- */$x=0;/* --}}
-            @foreach($cms_forms_liveaccount as $item)
+            @foreach($pofffsts as $item)
                 {{-- */$x++;/* --}}
                 <tr>
                     <td>{{ $x }}</td>
-
-                    <td><a href="{{ url('cms\cms_forms_liveaccount', $item->id) }}">{{ $item->user_id }}</a></td><td>{{ $item->title }}</td><td>{{ $item->gender }}</td>
-                   <td>
-                        <a href="{{ url('/cms/cms_forms_liveaccount/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs">Update</a>
+                    <td><a href="{{ url('cms\pofffsts', $item->id) }}">{{ $item->title }}</a></td><td>{{ $item->body }}</td>
+                    <td>
+                        <a href="{{ url('/cms/pofffsts/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs">Update</a>
                         {!! Form::open([
                             'method'=>'DELETE',
-                            'url' => ['/cms/cms_forms_liveaccount', $item->id],
+                            'url' => ['/cms/pofffsts', $item->id],
                             'style' => 'display:inline'
                         ]) !!}
                             {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
@@ -35,7 +33,7 @@
             @endforeach
             </tbody>
         </table>
-        <div class="pagination"> {!! $cms_forms_liveaccount->render() !!} </div>
+        <div class="pagination"> {!! $pofffsts->render() !!} </div>
     </div>
 </div>
 </div>

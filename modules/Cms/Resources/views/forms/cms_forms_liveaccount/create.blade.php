@@ -1127,6 +1127,7 @@
                 <div class="col-sm-6">
                     {!! Form::text('proof_of_residence', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('proof_of_residence', '<p class="help-block">:message</p>') !!}
+
                 </div>
             </div>
 

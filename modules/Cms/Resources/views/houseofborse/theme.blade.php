@@ -11,9 +11,9 @@
     <link rel="icon" type="image/png" href="{{ asset($asset_folder.'houseofborse') }}/images/logo-HD.png"/>
 
 
-    <link href="{{ asset($asset_folder.'houseofborse') }}/css/style-en.css" rel="stylesheet">
+    <link href="{{ asset($asset_folder.'houseofborse') }}/old/css/style-en.css" rel="stylesheet">
 
-    <link href="{{ asset($asset_folder.'houseofborse') }}/css/style.min.css" rel="stylesheet">
+    <link href="{{ asset($asset_folder.'houseofborse') }}/old/css/style.min.css" rel="stylesheet">
 
 
 
