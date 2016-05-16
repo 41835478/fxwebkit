@@ -107,7 +107,8 @@
 </li>
 
    <div class="col-xm-12 col-sm-4">
-       {!! Form::text('PortalUser.first_name', null, ['class' => 'form-control']) !!}
+       <label>{{trans('first_name')}}</label>
+       {!! Form::text('first_name', null, ['class' => 'form-control','placeholder'=>trans('first_name')]) !!}
        <div class="input_all_div" id="date_of_birth_div">
            {!! Form::label('date_of_birth', trans('date_of_birth')) !!}
            <div class="clearfix">
@@ -117,17 +118,36 @@
        </div>
    </div>
    <div class="col-xm-12 col-sm-4 ">
-       {!! Form::text('PortalUser.second_name', null, ['class' => 'form-control']) !!}
+       <div class="input_all_div">
+       <label>{{trans('second_name')}}</label>
+       {!! Form::text('second_name', null, ['class' => 'form-control','placeholder'=>trans('second_name')]) !!}
+</div>
 
-       {!! Form::text('nationality', null, ['class' => 'form-control']) !!}
+<div class="input_all_div">
+       <label>{{trans('nationality')}}</label>
+       {!! Form::text('nationality', null, ['class' => 'form-control','placeholder'=>trans('nationality')]) !!}
+    </div>
+
+
    </div>
    <div class="col-xm-12 col-sm-4">
-       {!! Form::text('PortalUser.last_name', null, ['class' => 'form-control']) !!}
-       {!! Form::text('gender', null, ['class' => 'form-control']) !!}
+       <div class="input_all_div">
+           <label>{{trans('last_name')}}</label>
+       {!! Form::text('last_name', null, ['class' => 'form-control','placeholder'=>trans('last_name')]) !!}
+           </div>
+
+       <div class="input_all_div">
+           <label>{{trans('gender')}}</label>
+           {!! Form::radio('gender','Male',true, ['class' => 'form-control','id'=>'gender_male']) !!}
+           <label for="gender_male">Male</label>
+           {!! Form::radio('gender', 'Female',false, ['class' => 'form-control','id'=>'gender_female']) !!}
+           <label for="gender_female">Female</label>
+           </div>
    </div>
    <div class="clearfix"></div>
    <div class="col-xm-12 col-sm-4 clearfix">
        <div class="input_all_div">
+
            {!! Form::label('marital_status', trans('marital_status')) !!}
            <div class="clearfix">
                {!! Form::text('marital_status', null, ['class' => 'form-control']) !!}
@@ -136,17 +156,42 @@
        </div>
    </div>
 
-   <div class="col-xm-12 col-sm-4">
-       {!! Form::text('resident_status', null, ['class' => 'form-control']) !!}
-   </div>
+    <div class="col-xm-12 col-sm-4">
+        <div class="input_all_div">
+            <label>{{trans('resident_status')}}</label>
+            {!! Form::text('resident_status', null, ['class' => 'form-control']) !!}
+        </div>
+    </div>
 
    <div class="joint_div" id="a_joint">
 
        <div class="clearfix"></div>
        <h4>A. PERSONAL DETAILS (HEREAFTER “CLIENT”) (for Joint Account)</h4>
-       {!! Form::text('title_joint', null, ['class' => 'form-control']) !!}
+
+
+       <li>
+           <label class="required">Title</label>
+           <div>
+               {!! Form::radio('title_joint','Mr', true, ['class' => '','id'=>'title_joint_0']) !!}
+               <label for="title_joint_0">Mr</label>
+               {!! Form::radio('title_joint','Ms', false, ['class' => '','id'=>'title_joint_1']) !!}
+               <label for="title_joint_1">Ms</label>
+               {!! Form::radio('title_joint','Mrs', false, ['class' => '','id'=>'title_joint_2']) !!}
+               <label for="title_joint_2">Mrs</label>
+               {!! Form::radio('title_joint','Dr', false, ['class' => '','id'=>'title_joint_3']) !!}
+               <label for="title_joint_3">Dr</label>
+           </div>
+       </li>
+
+
        <div class="col-xm-12 col-sm-4">
-           {!! Form::text('first_name_joint', null, ['class' => 'form-control']) !!}
+
+           <div class="input_all_div">
+               <label><label>{{trans('first_name')}}</label></label>
+               {!! Form::text('first_name_joint', null, ['class' => 'form-control','placeholder'=>trans('first_name')]) !!}
+           </div>
+
+
            <div class="input_all_div" id="date_of_birth_div">
                {!! Form::label('date_of_birth_joint', trans('date_of_birth_joint')) !!}
                <div class="clearfix">
@@ -156,18 +201,35 @@
            </div>
        </div>
        <div class="col-xm-12 col-sm-4 ">
-           {!! Form::text('second_name_joint', null, ['class' => 'form-control']) !!}
 
-           {!! Form::text('nationality_joint', null, ['class' => 'form-control']) !!}
+           <div class="input_all_div">
+               <label><label>{{trans('second_name')}}</label></label>
+           {!! Form::text('second_name_joint', null, ['class' => 'form-control','placeholder'=>trans('second_name_joint')]) !!}
+               </div>
+
+           <div class="input_all_div">
+               <label><label>{{trans('nationality')}}</label></label>
+           {!! Form::text('nationality_joint', null, ['class' => 'form-control','placeholder'=>trans('nationality')]) !!}
+               </div>
        </div>
        <div class="col-xm-12 col-sm-4">
-           {!! Form::text('last_name_joint', null, ['class' => 'form-control']) !!}
-           {!! Form::text('gender_joint', null, ['class' => 'form-control']) !!}
+
+           <div class="input_all_div">
+               <label>{{trans('last_name')}}</label>
+           {!! Form::text('last_name_joint', null, ['class' => 'form-control','placeholder'=>trans('last_name')]) !!}
+               </div>
+
+           <div class="input_all_div">
+               <label>{{trans('gender')}}</label>
+
+
+               {!! Form::text('gender_joint', null, ['class' => 'form-control','placeholder'=>trans('gender')]) !!}
        </div>
+           </div>
        <div class="clearfix"></div>
        <div class="col-xm-12 col-sm-4 clearfix">
            <div class="input_all_div">
-               {!! Form::label('marital_status_joint', trans('marital_status_joint')) !!}
+               {!! Form::label('marital_status_joint', trans('marital_status')) !!}
                <div class="clearfix">
                    {!! Form::text('marital_status_joint', null, ['class' => 'form-control']) !!}
                </div>
@@ -176,7 +238,10 @@
        </div>
 
        <div class="col-xm-12 col-sm-4">
+           <div class="input_all_div">
+               <label>{{trans('resident_status')}}</label>
            {!! Form::text('resident_status_joint', null, ['class' => 'form-control']) !!}
+               </div>
        </div>
 
    </div>
