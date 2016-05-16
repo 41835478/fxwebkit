@@ -19,7 +19,7 @@
         <div class="input_all_div">
             <p></p>
             <label>{!! Form::label('postal_code', trans('postal_code'), ['class' => 'col-sm-3 control-label']) !!}</label>
-            {!! Form::text('postal_code', null, ['class' => 'form-control']) !!}
+            {!! Form::select('default_platform',$arrays['default_platform'], 'MT4', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
             <span> {!! $errors->first('postal_code', '<p class="help-block">:message</p>') !!}</span>
         </div>
     </div>
