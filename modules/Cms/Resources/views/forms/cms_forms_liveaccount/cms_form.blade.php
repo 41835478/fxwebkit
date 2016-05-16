@@ -80,15 +80,32 @@
    <div class="clearfix"></div>
    <div class="left_div">
        <div class="input_all_div">
-           {!! Form::radio('sole_joint_account',0, true, ['class' => '']) !!}
-           {!! Form::radio('sole_joint_account',1, false, ['class' => '']) !!}
+           {!! Form::radio('sole_joint_account',0, true, ['class' => '','id'=>'sole_joint_account_0']) !!}
+           <label for="sole_joint_account_0">Sole personal account</label>
+
+           {!! Form::radio('sole_joint_account',1, false, ['class' => '','id'=>'sole_joint_account_1']) !!}
+           <label for="sole_joint_account_1">Joint account</label>
            <span>{!! $errors->first('sole_joint_account', '<p class="help-block">:message</p>') !!}</span>
        </div>
    </div>
 
    <div class="clearfix"></div>
    <h4>A. PERSONAL DETAILS (HEREAFTER “CLIENT”)</h4>
-   {!! Form::text('title', null, ['class' => 'form-control']) !!}
+
+<li>
+    <label class="required">Title</label>
+    <div>
+    {!! Form::radio('title','Mr', true, ['class' => '','id'=>'title_0']) !!}
+    <label for="title_0">Mr</label>
+    {!! Form::radio('title','Ms', false, ['class' => '','id'=>'title_1']) !!}
+    <label for="title_1">Ms</label>
+    {!! Form::radio('title','Mrs', false, ['class' => '','id'=>'title_2']) !!}
+    <label for="title_2">Mrs</label>
+    {!! Form::radio('title','Dr', false, ['class' => '','id'=>'title_3']) !!}
+    <label for="title_3">Dr</label>
+    </div>
+</li>
+
    <div class="col-xm-12 col-sm-4">
        {!! Form::text('PortalUser.first_name', null, ['class' => 'form-control']) !!}
        <div class="input_all_div" id="date_of_birth_div">
