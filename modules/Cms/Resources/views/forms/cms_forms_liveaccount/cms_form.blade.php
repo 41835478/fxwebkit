@@ -92,7 +92,7 @@
    <div class="clearfix"></div>
    <h4>A. PERSONAL DETAILS (HEREAFTER “CLIENT”)</h4>
 
-<li>
+<div>
     <label class="required">Title</label>
     <div>
     {!! Form::radio('title','Mr', true, ['class' => '','id'=>'title_0']) !!}
@@ -104,7 +104,7 @@
     {!! Form::radio('title','Dr', false, ['class' => '','id'=>'title_3']) !!}
     <label for="title_3">Dr</label>
     </div>
-</li>
+</div>
 
    <div class="col-xm-12 col-sm-4">
        <label>{{trans('first_name')}}</label>
@@ -169,7 +169,7 @@
        <h4>A. PERSONAL DETAILS (HEREAFTER “CLIENT”) (for Joint Account)</h4>
 
 
-       <li>
+       <div>
            <label class="required">Title</label>
            <div>
                {!! Form::radio('title_joint','Mr', true, ['class' => '','id'=>'title_joint_0']) !!}
@@ -181,7 +181,7 @@
                {!! Form::radio('title_joint','Dr', false, ['class' => '','id'=>'title_joint_3']) !!}
                <label for="title_joint_3">Dr</label>
            </div>
-       </li>
+       </div>
 
 
        <div class="col-xm-12 col-sm-4">
