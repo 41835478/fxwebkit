@@ -570,78 +570,160 @@
 
     <div class="full_width_div">
         <div class="col-sm-4">
-            {!! Form::text('number_of_years_cfd', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('number_of_years_cfd',trans('cms::cms.number_of_years_cfd')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('number_of_years_cfd', '<p class="help-block">:message</p>') !!}</span>
+            </div>
         </div>
         <div class="col-sm-4">
-            {!! Form::text('number_of_transactions_cfd', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('number_of_transactions_cfd',trans('cms::cms.number_of_transactions_cfd')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('number_of_transactions_cfd', '<p class="help-block">:message</p>') !!}</span>
+            </div>
         </div>
+
         <div class="col-sm-4">
-            {!! Form::text('average_trading_cfd', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('average_trading_cfd',trans('cms::cms.average_trading_cfd')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('average_trading_cfd', '<p class="help-block">:message</p>') !!}</span>
+            </div>
         </div>
     </div>
 
 
     <div class="full_width_div">
         <div class="col-sm-4">
-            {!! Form::text('number_of_years_commodities', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('number_of_years_commodities',trans('cms::cms.number_of_years_commodities')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('number_of_years_commodities', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="input_all_div">
+                <label>{!! Form::label('number_of_transactions_commodities',trans('cms::cms.number_of_transactions_commodities')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('number_of_transactions_commodities', '<p class="help-block">:message</p>') !!}</span>
+            </div>
         </div>
         <div class="col-sm-4">
-            {!! Form::text('number_of_transactions_commodities', null, ['class' => 'form-control']) !!}
-        </div>
-        <div class="col-sm-4">
-            {!! Form::text('average_trading_commodities', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('average_trading_commodities',trans('cms::cms.average_trading_commodities')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('average_trading_commodities', '<p class="help-block">:message</p>') !!}</span>
+            </div>
         </div>
     </div>
 
 
     <div class="full_width_div">
         <div class="col-sm-4">
-            {!! Form::text('number_of_years_forex', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('number_of_years_forex',trans('cms::cms.number_of_years_forex')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('number_of_years_forex', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
         </div>
         <div class="col-sm-4">
-            {!! Form::text('number_of_transactions_forex', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('number_of_transactions_forex',trans('cms::cms.number_of_transactions_forex')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('number_of_transactions_forex', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
         </div>
         <div class="col-sm-4">
-            {!! Form::text('average_trading_forex', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('average_trading_forex',trans('cms::cms.average_trading_forex')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('average_trading_forex', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
         </div>
     </div>
 
 
     <div class="full_width_div">
         <div class="col-sm-4">
-            {!! Form::text('number_of_years_futures', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('number_of_years_futures',trans('cms::cms.number_of_years_futures')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('number_of_years_futures', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
         </div>
         <div class="col-sm-4">
-            {!! Form::text('number_of_transactions_futures', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('number_of_transactions_futures',trans('cms::cms.number_of_transactions_futures')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('number_of_transactions_futures', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
         </div>
         <div class="col-sm-4">
-            {!! Form::text('average_trading_futures', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('average_trading_futures',trans('cms::cms.average_trading_futures')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('average_trading_futures', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
         </div>
     </div>
 
 
     <div class="full_width_div">
         <div class="col-sm-4">
-            {!! Form::text('number_of_years_options', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('number_of_years_options',trans('cms::cms.number_of_years_options')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('number_of_years_options', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
         </div>
         <div class="col-sm-4">
-            {!! Form::text('number_of_transactions_options', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('number_of_transactions_options',trans('cms::cms.number_of_transactions_options')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('number_of_transactions_options', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
         </div>
         <div class="col-sm-4">
-            {!! Form::text('average_trading_options', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('average_trading_options',trans('cms::cms.average_trading_options')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('average_trading_options', '<p class="help-block">:message</p>') !!}</span>
+            </div>
         </div>
     </div>
 
 
     <div class="full_width_div">
         <div class="col-sm-4">
-            {!! Form::text('number_of_years_securities', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('number_of_years_securities',trans('cms::cms.number_of_years_securities')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('number_of_years_securities', '<p class="help-block">:message</p>') !!}</span>
+            </div>
         </div>
         <div class="col-sm-4">
-            {!! Form::text('number_of_transactions_securities', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('number_of_transactions_securities',trans('cms::cms.number_of_transactions_securities')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('number_of_transactions_securities', '<p class="help-block">:message</p>') !!}</span>
+            </div>
         </div>
         <div class="col-sm-4">
-            {!! Form::text('average_trading_securities', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                <label>{!! Form::label('average_trading_securities',trans('cms::cms.average_trading_securities')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('average_trading_securities', '<p class="help-block">:message</p>') !!}</span>
+            </div>
         </div>
     </div>
 
@@ -652,88 +734,168 @@
         <h3>5. TRADING EXPERIENCE ( for Joint Account)</h3>
 
         <div class="full_width_div">
-
             <h4>B. FINANCIAL MARKETS EXPERIENCE (for Joint Account)</h4>
-
-
         </div>
 
         <div class="full_width_div">
             <div class="col-sm-4">
-                {!! Form::text('number_of_years_cfd_joint', null, ['class' => 'form-control']) !!}
+                <div class="input_all_div">
+                    <label>{!! Form::label('number_of_years_cfd_joint',trans('cms::cms.number_of_years_cfd_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('number_of_years_cfd_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
             </div>
             <div class="col-sm-4">
-                {!! Form::text('number_of_transactions_cfd_joint', null, ['class' => 'form-control']) !!}
+                <div class="input_all_div">
+                    <label>{!! Form::label('number_of_transactions_cfd_joint',trans('cms::cms.number_of_transactions_cfd_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('number_of_transactions_cfd_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
             </div>
+
             <div class="col-sm-4">
-                {!! Form::text('average_trading_cfd_joint', null, ['class' => 'form-control']) !!}
+                <div class="input_all_div">
+                    <label>{!! Form::label('average_trading_cfd_joint',trans('cms::cms.average_trading_cfd_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('average_trading_cfd_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
             </div>
         </div>
 
-
         <div class="full_width_div">
             <div class="col-sm-4">
-                {!! Form::text('number_of_years_commodities_joint', null, ['class' => 'form-control']) !!}
+                <div class="input_all_div">
+                    <label>{!! Form::label('number_of_years_commodities_joint',trans('cms::cms.number_of_years_commodities_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('number_of_years_commodities_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
             </div>
-            <div class="col-sm-4">
-                {!! Form::text('number_of_transactions_commodities_joint', null, ['class' => 'form-control']) !!}
-            </div>
-            <div class="col-sm-4">
-                {!! Form::text('average_trading_commodities_joint', null, ['class' => 'form-control']) !!}
-            </div>
-        </div>
 
-
-        <div class="full_width_div">
             <div class="col-sm-4">
-                {!! Form::text('number_of_years_forex_joint', null, ['class' => 'form-control']) !!}
+                <div class="input_all_div">
+                    <label>{!! Form::label('number_of_transactions_commodities_joint',trans('cms::cms.number_of_transactions_commodities_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('number_of_transactions_commodities_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
             </div>
             <div class="col-sm-4">
-                {!! Form::text('number_of_transactions_forex_joint', null, ['class' => 'form-control']) !!}
-            </div>
-            <div class="col-sm-4">
-                {!! Form::text('average_trading_forex_joint', null, ['class' => 'form-control']) !!}
-            </div>
-        </div>
-
-
-        <div class="full_width_div">
-            <div class="col-sm-4">
-                {!! Form::text('number_of_years_futures_joint', null, ['class' => 'form-control']) !!}
-            </div>
-            <div class="col-sm-4">
-                {!! Form::text('number_of_transactions_futures_joint', null, ['class' => 'form-control']) !!}
-            </div>
-            <div class="col-sm-4">
-                {!! Form::text('average_trading_futures_joint', null, ['class' => 'form-control']) !!}
+                <div class="input_all_div">
+                    <label>{!! Form::label('average_trading_commodities_joint',trans('cms::cms.average_trading_commodities_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('average_trading_commodities_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
             </div>
         </div>
 
 
         <div class="full_width_div">
             <div class="col-sm-4">
-                {!! Form::text('number_of_years_options_joint', null, ['class' => 'form-control']) !!}
+                <div class="input_all_div">
+                    <label>{!! Form::label('number_of_years_forex_joint',trans('cms::cms.number_of_years_forex_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('number_of_years_forex_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
+
             </div>
             <div class="col-sm-4">
-                {!! Form::text('number_of_transactions_options_joint', null, ['class' => 'form-control']) !!}
+                <div class="input_all_div">
+                    <label>{!! Form::label('number_of_transactions_forex_joint',trans('cms::cms.number_of_transactions_forex_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('number_of_transactions_forex_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
+
             </div>
             <div class="col-sm-4">
-                {!! Form::text('average_trading_options_joint', null, ['class' => 'form-control']) !!}
+                <div class="input_all_div">
+                    <label>{!! Form::label('average_trading_forex_joint',trans('cms::cms.average_trading_forex_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('average_trading_forex_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="full_width_div">
+            <div class="col-sm-4">
+                <div class="input_all_div">
+                    <label>{!! Form::label('number_of_years_futures_joint',trans('cms::cms.number_of_years_futures_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('number_of_years_futures_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+                <div class="input_all_div">
+                    <label>{!! Form::label('number_of_transactions_futures_joint',trans('cms::cms.number_of_transactions_futures_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('number_of_transactions_futures_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+                <div class="input_all_div">
+                    <label>{!! Form::label('average_trading_futures_joint',trans('cms::cms.average_trading_futures_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('average_trading_futures_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
+
             </div>
         </div>
 
 
         <div class="full_width_div">
             <div class="col-sm-4">
-                {!! Form::text('number_of_years_securities_joint', null, ['class' => 'form-control']) !!}
+                <div class="input_all_div">
+                    <label>{!! Form::label('number_of_years_options_joint',trans('cms::cms.number_of_years_options_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('number_of_years_options_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
+
             </div>
             <div class="col-sm-4">
-                {!! Form::text('number_of_transactions_securities_joint', null, ['class' => 'form-control']) !!}
+                <div class="input_all_div">
+                    <label>{!! Form::label('number_of_transactions_options_joint',trans('cms::cms.number_of_transactions_options_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('number_of_transactions_options_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
+
             </div>
             <div class="col-sm-4">
-                {!! Form::text('average_trading_securities_joint', null, ['class' => 'form-control']) !!}
+                <div class="input_all_div">
+                    <label>{!! Form::label('average_trading_options_joint',trans('cms::cms.average_trading_options_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('average_trading_options_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
             </div>
         </div>
+
+
+        <div class="full_width_div">
+            <div class="col-sm-4">
+                <div class="input_all_div">
+                    <label>{!! Form::label('number_of_years_securities_joint',trans('cms::cms.number_of_years_securities_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('number_of_years_securities_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="input_all_div">
+                    <label>{!! Form::label('number_of_transactions_securities_joint',trans('cms::cms.number_of_transactions_securities_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('number_of_transactions_securities_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="input_all_div">
+                    <label>{!! Form::label('average_trading_securities_joint',trans('cms::cms.average_trading_securities_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <span>{!! $errors->first('average_trading_securities_joint', '<p class="help-block">:message</p>') !!}</span>
+                </div>
+            </div>
+        </div>
+        
 
     </div>
 
