@@ -3,6 +3,7 @@
 <ul class="b-top-nav__1level_wrap ">
 
     @foreach($menu_array as $menu)
+
     <li class=" b-top-nav__1level f-top-nav__1level  f-primary-b  @if($menu['id'] == $selected_id )  active @endif ">
         <a href='{{ asset($menu['name']) }}' >
 
@@ -30,7 +31,6 @@
 
 
     </li>
-
 
 
     @endforeach

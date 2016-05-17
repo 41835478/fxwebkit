@@ -334,7 +334,7 @@ class ModulesListController extends Controller
 
        $parentId= \Illuminate\Support\Facades\Session::get('parentId');
 
-        $links = \Modules\Cms\Entities\cms_menus_items::where('parent_item_id',$parentId)->whereOr('id' , $parentId)->orderBy('id')->get();
+        $links = \Modules\Cms\Entities\cms_menus_items::where('parent_item_id',$parentId)->orWhere('id' , $parentId)->orderBy('id')->get();
 
         $menuHtml='<div style="clear:both;"><div class="b-categories-filter">';
         $i=0;

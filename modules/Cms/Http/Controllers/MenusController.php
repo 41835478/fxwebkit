@@ -298,6 +298,7 @@ class MenusController extends Controller
 
         $return = array();
         foreach ($links as $key => $link) {
+            if($link['hide']==1) continue;
             $child = $link['id'];
             $parent = $link['parent_item_id'];
             $translate = (isset($link["cms_menus_items_languages"][0]["translate"])) ? $link["cms_menus_items_languages"][0]["translate"] : "";
