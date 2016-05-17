@@ -129,6 +129,14 @@ class ModulesListController extends Controller
             ['name' => trans('fxweb.sellBuyChart'),
                 'class_name' => "Modules\Cms\Http\Controllers\HouseofborseController",
                 'class_method' => 'getSellBuyChart'
+            ],
+            ['name' => trans('fxweb.siteMap'),
+                'class_name' => "Modules\Cms\Http\Controllers\ModulesListController",
+                'class_method' => 'siteMap'
+            ],
+            ['name' => trans('fxweb.leftMenu'),
+                'class_name' => "Modules\Cms\Http\Controllers\ModulesListController",
+                'class_method' => 'left_menu'
             ]
         ];
 
@@ -283,5 +291,62 @@ class ModulesListController extends Controller
         return $options_html;
     }
 
+
+    public function siteMap(){
+
+
+
+        $links = \Modules\Cms\Entities\cms_menus_items::where(['menu_id' => 3])->get();
+
+        $links = $links->toArray();
+        return '<div class="container">'.$this->site_map_html(0, $links).'</div>';
+    }
+
+
+    private function site_map_html($root, $links)
+    {
+
+
+        $menu_html = '';
+        if (!is_null($links) && count($links) > 0) {
+            $menu_html .= ($root == 0) ? '' : '<ul >';
+            foreach ($links as $key => $link) {
+                $child = $link['id'];
+                $parent = $link['parent_item_id'];
+                if ($parent == $root) {
+                    unset($links[$key]);
+                    if ($link['hide'])
+                        continue;
+                    $sub_menu = $this->site_map_html($child, $links);
+
+                    $menu_html .=($parent==0)? '<h3>' . $link['name'] . '</h3>'.$sub_menu:'<li ><a href="/'.$link['name'].'"  ><i class="fa fa-angle-double-right"></i>' . $link['name'] . '</a>'.$sub_menu.'</li>';
+
+                }
+            }
+            $menu_html .= ($root == 0) ? '' : '</ul >';
+        }
+        return $menu_html;
+    }
+
+
+
+    public function left_menu(){
+
+       $parentId= \Illuminate\Support\Facades\Session::get('parentId');
+
+        $links = \Modules\Cms\Entities\cms_menus_items::where('parent_item_id',$parentId)->whereOr('id' , $parentId)->orderBy('id')->get();
+
+        $menuHtml='<div style="clear:both;"><div class="b-categories-filter">';
+        $i=0;
+        foreach($links as $link){
+            if($i==0){$i++;
+                $menuHtml .= '<h4 class="f-primary-b b-h4-special f-h4-special--gray f-h4-special">'.$link->name .'</h4><ul>';
+           continue;
+            }
+            $menuHtml .= '<li><a class="f-categories-filter_name" href="/'.str_replace(' ','-',$link->name).'"><i class="fa fa-plus"></i> '.$link->name.'</a></li>';
+        }
+
+        return $menuHtml.'</ul></div></div>';
+    }
 // get_module_options($id){
 }

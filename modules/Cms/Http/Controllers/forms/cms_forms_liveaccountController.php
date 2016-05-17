@@ -138,8 +138,10 @@ class cms_forms_liveaccountController extends Controller
          */
         public function cms_store(Request $request)
         {
-            
-            cms_forms_liveaccount::create($request->all());
+
+
+             cms_forms_liveaccount::create($request->all());
+ return view('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
 
             Session::flash('flash_message', 'cms_forms_liveaccount added!');
 return Redirect::back();

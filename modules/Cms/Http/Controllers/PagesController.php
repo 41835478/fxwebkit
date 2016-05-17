@@ -303,13 +303,22 @@ class PagesController extends Controller
         if (!cms_menus_items::first() && $menu_item == '') {
             return view('cms::static_pages/home');
         }
-        $menu_item = ($menu_item == '') ? 'home' : $menu_item;
+        $orgini_menu_item=$menu_item;
+        $menu_item = ($menu_item == '') ? 'home' : str_replace('-',' ',$menu_item);
+        \Illuminate\Support\Facades\Session::set('pageName',$menu_item);
+
+
         $menu_item = cms_menus_items::where(['name' => $menu_item])->first();
 
-        if (empty($menu_item)) {
 
-            return view('errors/404');
+        if (empty($menu_item)) {
+            $menu_item = cms_menus_items::where(['name' => $orgini_menu_item])->first();
+            if (empty($menu_item)) {
+                return view('errors/404');
+            }
         }
+
+        \Illuminate\Support\Facades\Session::set('parentId',$menu_item->parent_item_id);
         $page_type = $menu_item->type;
         if ($page_type == 0) {
             $page_id = $menu_item->page_id;

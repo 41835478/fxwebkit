@@ -78,4 +78,32 @@ Route::get('cms_forms_demoaccount/form', [
 ]);
 Route::post('cms_forms_demoaccount/form', [
     'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_demoaccountController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_referringpartner', 'modules\Cms\Http\Controllers\forms\cms_forms_referringpartnerController');});
+Route::get('cms_forms_referringpartner/form', [
+    'as' => 'cms_forms_referringpartner.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_referringpartnerController@cms_create'
+]);
+Route::post('cms_forms_referringpartner/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_referringpartnerController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_contactus', 'modules\Cms\Http\Controllers\forms\cms_forms_contactusController');});
+Route::get('cms_forms_contactus/form', [
+    'as' => 'cms_forms_contactus.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_contactusController@cms_create'
+]);
+Route::post('cms_forms_contactus/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_contactusController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_careercenter', 'modules\Cms\Http\Controllers\forms\cms_forms_careercenterController');});
+Route::get('cms_forms_careercenter/form', [
+    'as' => 'cms_forms_careercenter.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_careercenterController@cms_create'
+]);
+Route::post('cms_forms_careercenter/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_careercenterController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_currencyconvertor', 'modules\Cms\Http\Controllers\forms\cms_forms_currencyconvertorController');});
+Route::get('cms_forms_currencyconvertor/form', [
+    'as' => 'cms_forms_currencyconvertor.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_currencyconvertorController@cms_create'
+]);
+Route::post('cms_forms_currencyconvertor/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_currencyconvertorController@cms_store'
 ]);

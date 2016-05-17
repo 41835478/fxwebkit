@@ -326,6 +326,9 @@ class MenusController extends Controller
             $query->where('cms_languages_id', '=', $language);
         }])->where('menu_id', $menu_id)->get();
         $links = $links->toArray();
+        foreach($links as &$link){
+            $link['name']=str_replace(' ','-',$link['name']);
+        }
         return view('cms::' . Config::get('cms.theme_folder') . '.theme_menu', [
                 'menu_array' => $this->order_menu($links),
                 'selected_id' => $selected_id

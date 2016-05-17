@@ -2,7 +2,7 @@
     <div class="b-inner-page-header__content">
         <div class="container">
 
-            <h1 class="f-primary-l c-default"></h1>
+            <h1 class="f-primary-l c-default">{{ Session::get('pageName') }}</h1>
 
         </div>
     </div>
@@ -12,7 +12,7 @@
     <div class="container">
         <ul>
             <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
-            <li><i class="fa fa-angle-right"></i><span></span></li>
+            <li><i class="fa fa-angle-right"></i><span>{{ Session::get('pageName') }}</span></li>
         </ul>
     </div>
 </div>

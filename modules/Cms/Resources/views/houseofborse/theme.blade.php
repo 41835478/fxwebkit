@@ -165,7 +165,7 @@ counters" href="http://statcounter.com/"
 
     <section id="page-warp">
 
-        <div class="container" style="padding:0px; width:100%;">
+
 @if(isset($positions["house_main_slider"]) )
     @foreach($positions['house_main_slider'] as $position)
         {!! $position !!}
@@ -174,7 +174,13 @@ counters" href="http://statcounter.com/"
 
 
 
+    @if(isset($positions["house_top_banner"]) )
+        @foreach($positions['house_top_banner'] as $position)
+            {!! $position !!}
+        @endforeach
+    @endif
 
+    <div class="container" style="padding:0px; width:100%;">
 @if(isset($positions["house_aside"]) || isset($positions["house_body"]) )
 
         <div class="container">
@@ -216,6 +222,7 @@ counters" href="http://statcounter.com/"
 @endif
 
 
+    </div>
 
 
 @if(isset($positions["house_footer_upper"]) )
@@ -231,7 +238,6 @@ counters" href="http://statcounter.com/"
     @endforeach
 @endif
 
-</div>
     </section><!--#page-warp-->
     </section>
 
