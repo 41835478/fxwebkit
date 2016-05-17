@@ -2,7 +2,7 @@
 <hr/>
 
 {!! Form::open(['route' => 'cms_forms_liveaccount.form', 'class' => 'form-horizontal']) !!}
-<div class="fieldset_div">
+    <div class="fieldset_div">
     <div class="clearfix"></div>
     <h1>{{ trans('cms::cms.PERSONAL ACCOUNT OPENING FORM') }}</h1>
 
@@ -42,7 +42,7 @@
         <h4>C.{{ trans('cms::cms.PLATFORMS') }} </h4>
 
         <div class="input_all_div">
-            <p> Please select which platform you wish to utilise for trading with House of Borse Limited:</p>
+            <p> {{ trans('cms::cms.default_platform') }}</p>
             <label></label>
 
             {!! Form::select('default_platform',$arrays['default_platform'], 'MT4', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
@@ -79,7 +79,7 @@
     <div class="clearfix"></div>
     <h3>3. {{ trans('cms::cms.PERSONAL DETAILS') }}</h3>
 
-    <p>{{ trans('cms::cms.if you are opening a joint account with House .please also complete the secondary account holder!') }}</p>
+    <p>{{ trans('cms::cms.if_you_are') }}</p>
 
     <div class="clearfix"></div>
     <div class="left_div">
@@ -187,53 +187,53 @@
 
         <div class="col-xm-12 col-sm-4">
             <label>{{ trans('cms::cms.first_name_joint') }}</label>
-            {!! Form::text('first_name', null, ['class' => '','placeholder'=>trans('cms::cms.first_name_joint')]) !!}
-            <div class="input_all_div" id="date_of_birth_div">
-                {!! Form::label('date_of_birth', trans('cms::cms.date_of_birth')) !!}
+            {!! Form::text('first_name_joint', null, ['class' => '','placeholder'=>trans('cms::cms.first_name_joint')]) !!}
+            <div class="input_all_div" id="date_of_birth_joint_div">
+                {!! Form::label('date_of_birth_joint', trans('cms::cms.date_of_birth_joint')) !!}
                 <div class="clearfix">
-                    {!! Form::text('date_of_birth', null, ['class' => '']) !!}
+                    {!! Form::text('date_of_birth_joint', null, ['class' => '']) !!}
                 </div>
-                {!! $errors->first('date_of_birth', '<p class="help-block">:message</p>') !!}
+                {!! $errors->first('date_of_birth_joint', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
         <div class="col-xm-12 col-sm-4 ">
             <div class="input_all_div">
                 <label>{{trans('cms::cms.second_name_joint')}}</label>
-                {!! Form::text('second_name', null, ['class' => '','placeholder'=>trans('cms::cms.second_name_joint')]) !!}
+                {!! Form::text('second_name_joint', null, ['class' => '','placeholder'=>trans('cms::cms.second_name_joint')]) !!}
             </div>
 
             <div class="input_all_div">
-                <label>{{trans('cms::cms.nationality')}}</label>
-                {!! Form::select('nationality',$arrays['nationality'], 'MT4', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <label>{{trans('cms::cms.nationality_joint')}}</label>
+                {!! Form::select('nationality_joint',$arrays['nationality'], 'MT4', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
             </div>
 
 
         </div>
         <div class="col-xm-12 col-sm-4">
             <div class="input_all_div">
-                <label>{{trans('cms::cms.last_name')}}</label>
-                {!! Form::text('last_name', null, ['class' => '','placeholder'=>trans('cms::cms.last_name_joint')]) !!}
+                <label>{{trans('cms::cms.last_name_joint')}}</label>
+                {!! Form::text('last_name_joint', null, ['class' => '','placeholder'=>trans('cms::cms.last_name_joint')]) !!}
             </div>
             <div class="input_all_div">
-                <label class="required">{{ trans('cms::cms.gender') }}</label>
-                {!! Form::select('gender',$arrays['gender'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <label class="required">{{ trans('cms::cms.gender_joint') }}</label>
+                {!! Form::select('gender_joint',$arrays['gender'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
             </div>
         </div>
         <div class="clearfix"></div>
         <div class="col-xm-12 col-sm-4 clearfix">
             <div class="input_all_div">
-                {!! Form::label('marital_status', trans('cms::cms.marital_status')) !!}
+                {!! Form::label('marital_status_joint', trans('cms::cms.marital_status_joint')) !!}
                 <div class="clearfix">
-                    {!! Form::select('marital_status',$arrays['marital_status'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('marital_status_joint',$arrays['marital_status'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 </div>
-                {!! $errors->first('marital_status', '<p class="help-block">:message</p>') !!}
+                {!! $errors->first('marital_status_joint', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
 
         <div class="col-xm-12 col-sm-4">
             <div class="input_all_div">
-                <label>{{trans('cms::cms.resident_status')}}</label>
-                {!! Form::select('resident_status',$arrays['resident_status'], 'Non Resident', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <label>{{trans('cms::cms.resident_status_joint')}}</label>
+                {!! Form::select('resident_status_joint',$arrays['resident_status'], 'Non Resident', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
             </div>
         </div>
 
@@ -288,36 +288,36 @@
 
         <div class="left_div">
             <div class="input_all_div">
-                <label>{!! Form::label('street_and_number',  trans('cms::cms.street_and_number')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::text('street_and_number', null, ['class' => '','placeholder'=>trans('cms::.cms.street_and_number')]) !!}
-                <span>{!! $errors->first('street_and_number', '<p class="help-block">:message</p>') !!}</span>
+                <label>{!! Form::label('street_and_number_joint',  trans('cms::cms.street_and_number_joint')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::text('street_and_number_joint', null, ['class' => '','placeholder'=>trans('cms::.cms.street_and_number_joint')]) !!}
+                <span>{!! $errors->first('street_and_number_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
         </div>
 
         <div class="right_div">
 
             <div class="input_all_div">
-                <label>{!! Form::label('postal_code',trans('cms::cms.postal_code')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::text('postal_code', null, ['class' => '','placeholder'=>trans('cms::cms.postal_code')]) !!}
-                <span>{!! $errors->first('postal_code', '<p class="help-block">:message</p>') !!}</span>
+                <label>{!! Form::label('postal_code_joint',trans('cms::cms.postal_code_joint')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::text('postal_code_joint', null, ['class' => '','placeholder'=>trans('cms::cms.postal_code_joint')]) !!}
+                <span>{!! $errors->first('postal_code_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
         </div>
 
 
         <div class="left_div">
             <div class="input_all_div">
-                <label>{!! Form::label('city',  trans('cms::cms.city')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::text('city', null, ['class' => '','placeholder'=>trans('cms::.cms.city')]) !!}
-                <span>{!! $errors->first('city', '<p class="help-block">:message</p>') !!}</span>
+                <label>{!! Form::label('city_joint',  trans('cms::cms.city_joint')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::text('city_joint', null, ['class' => '','placeholder'=>trans('cms::.cms.city_joint')]) !!}
+                <span>{!! $errors->first('city_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
         </div>
 
         <div class="right_div">
 
             <div class="input_all_div">
-                <label>{!! Form::label('country',trans('cms::cms.country')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('country',$arrays['country'], 'Non Resident', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
-                <span>{!! $errors->first('country', '<p class="help-block">:message</p>') !!}</span>
+                <label>{!! Form::label('country_joint',trans('cms::cms.country_joint')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::select('country_joint',$arrays['country'], 'Non Resident', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                <span>{!! $errors->first('country_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
         </div>
 
@@ -370,48 +370,48 @@
     <div class="joint_div" id="c_joint">
 
         <div class="clearfix"></div>
-        <h4>C. {{trans('cms::.cms.CONTACT DETAILS (for Joint Account)')}}</h4>
+        <h4>C. {{trans('cms::cms.CONTACT DETAILS (for Joint Account)')}}</h4>
 
         <div class="left_div">
             <div class="input_all_div">
-                <label>{!! Form::label('main_phone',  trans('cms::cms.street_and_number')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::text('main_phone', null, ['class' => '','placeholder'=>trans('cms::.cms.main_phone')]) !!}
-                <span>{!! $errors->first('main_phone', '<p class="help-block">:message</p>') !!}</span>
+                <label>{!! Form::label('main_phone_joint',  trans('cms::cms.main_phone_joint')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::text('main_phone_joint', null, ['class' => '','placeholder'=>trans('cms::.cms.main_phone_joint')]) !!}
+                <span>{!! $errors->first('main_phone_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
 
             <div class="input_all_div">
-                <label>{!! Form::label('primary_email',  trans('cms::cms.primary_email')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::text('primary_email', null, ['class' => '','placeholder'=>trans('cms::.cms.primary_email')]) !!}
-                <span>{!! $errors->first('primary_email', '<p class="help-block">:message</p>') !!}</span>
+                <label>{!! Form::label('primary_email_joint',  trans('cms::cms.primary_email_joint')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::text('primary_email_joint', null, ['class' => '','placeholder'=>trans('cms::.cms.primary_email_joint')]) !!}
+                <span>{!! $errors->first('primary_email_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
 
             <div class="input_all_div">
-                <label>{!! Form::label('fax',  trans('cms::cms.fax')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::text('fax', null, ['class' => '','placeholder'=>trans('cms::.cms.fax')]) !!}
-                <span>{!! $errors->first('fax', '<p class="help-block">:message</p>') !!}</span>
+                <label>{!! Form::label('fax_joint',  trans('cms::cms.fax_joint')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::text('fax_joint', null, ['class' => '','placeholder'=>trans('cms::.cms.fax_joint')]) !!}
+                <span>{!! $errors->first('fax_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
         </div>
 
 
         <div class="right_div">
             <div class="input_all_div">
-                <label>{!! Form::label('secondary_phone',trans('cms::cms.secondary_phone')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::text('secondary_phone', null, ['class' => '','placeholder'=>trans('cms::cms.secondary_phone')]) !!}
-                <span>{!! $errors->first('secondary_phone', '<p class="help-block">:message</p>') !!}</span>
+                <label>{!! Form::label('secondary_phone_joint',trans('cms::cms.secondary_phone_joint')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::text('secondary_phone_joint', null, ['class' => '','placeholder'=>trans('cms::cms.secondary_phone_joint')]) !!}
+                <span>{!! $errors->first('secondary_phone_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
 
 
             <div class="input_all_div">
-                <label>{!! Form::label('secondary_email',trans('cms::cms.secondary_email')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::text('secondary_email', null, ['class' => '','placeholder'=>trans('cms::cms.secondary_email')]) !!}
-                <span>{!! $errors->first('secondary_email', '<p class="help-block">:message</p>') !!}</span>
+                <label>{!! Form::label('secondary_email_joint',trans('cms::cms.secondary_email_joint')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::text('secondary_email_joint', null, ['class' => '','placeholder'=>trans('cms::cms.secondary_email_joint')]) !!}
+                <span>{!! $errors->first('secondary_email_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
 
         </div>
 
     </div>
     <div class="clearfix"></div>
-    <h4>D. POSTAL ADDRESS (IF DIFFERENTFROM RESIDENTIAL ADDRESS)</h4>
+    <h4>D. {{trans('cms::cms.POSTAL ADDRESS (IF DIFFERENTFROM RESIDENTIAL ADDRESS)')}}</h4>
 
     <div class="left_div">
 
@@ -441,7 +441,7 @@
 
         <div class="input_all_div">
             <label>{!! Form::label('postal_country',trans('cms::cms.postal_country')  , ['class' => 'control-label']) !!}</label>
-            {!! Form::select('country',$arrays['country'], 'Non Resident', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+            {!! Form::select('postal_country',$arrays['country'], 'Non Resident', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
             <span>{!! $errors->first('postal_country', '<p class="help-block">:message</p>') !!}</span>
         </div>
 
@@ -452,7 +452,7 @@
     <div class="clearfix"></div>
     <div class="joint_div" id="d_joint">
         <div class="clearfix"></div>
-        <h4>D. POSTAL ADDRESS (IF DIFFERENTFROM RESIDENTIAL ADDRESS) (for Joint Account)</h4>
+        <h4>D. {{trans('cms::cms.POSTAL ADDRESS (IF DIFFERENTFROM RESIDENTIAL ADDRESS) (for Joint Account)')}}</h4>
 
         <div class="left_div">
             <div class="input_all_div">
@@ -479,7 +479,7 @@
 
             <div class="input_all_div">
                 <label>{!! Form::label('postal_country_joint',trans('cms::cms.postal_country_joint')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('country',$arrays['country'], 'Non Resident', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('postal_country_joint',$arrays['country'], 'Non Resident', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('postal_country_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
 
@@ -487,10 +487,10 @@
     </div>
 
     <div class="clearfix"></div>
-    <h3>4. FINANCIAL INFORMATION</h3>
+    <h3>4. {{trans('cms::cms.FINANCIAL INFORMATION')}}</h3>
 
     <div class="clearfix"></div>
-    <h4>A. FINANCIAL BACKGROUND</h4>
+    <h4>A. {{trans('cms::cms.FINANCIAL BACKGROUND')}}</h4>
 
     <div class="full_width_div">
         <div class="input_all_div">
@@ -501,7 +501,7 @@
 
     </div>
     <div class="joint_div" id="4_a_joint">
-        <h4>A. FINANCIAL BACKGROUND (for Joint Account)</h4>
+        <h4>A. {{trans('cms::cms.FINANCIAL BACKGROUND (for Joint Account)')}}</h4>
 
         <div class="full_width_div">
             <div class="input_all_div">
@@ -516,12 +516,12 @@
     </div>
 
     <div class="clearfix"></div>
-    <h4>B. SOURCE OF FUNDS DEPOSITED WITH HOUSE OF BORSE (IF YOU SELECT“OTHER” PLEASE SPECIFY)</h4>
+    <h4>B. {{trans('cms::cms.SOURCE OF FUNDS DEPOSITED WITH HOUSE OF BORSE (IF YOU SELECT“OTHER” PLEASE SPECIFY)')}}</h4>
 
     <div class="left_div">
         <div class="input_all_div">
             <label>{!! Form::label('source_funds_deposited',trans('cms::cms.source_funds_deposited')  , ['class' => 'control-label']) !!}</label>
-            {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+            {!! Form::select('source_funds_deposited',$arrays['source_funds_deposited'], 'Employment inheritance investment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
             <span>{!! $errors->first('source_funds_deposited', '<p class="help-block">:message</p>') !!}</span>
         </div>
 
@@ -540,8 +540,7 @@
     <div class="clear:fix"></div>
     <div class="joint_div" id="4_b_joint">
         <div class="clearfix"></div>
-        <h4>B. SOURCE OF FUNDS DEPOSITED WITH HOUSE OF BORSE (IF YOU SELECT“OTHER” PLEASE SPECIFY) (for Joint
-            Account)</h4>
+        <h4>B. {{trans('cms::cms.SOURCE OF FUNDS DEPOSITED WITH HOUSE OF BORSE (IF YOU SELECT“OTHER” PLEASE SPECIFY) (for JointAccount)')}}</h4>
 
         <div class="left_div">
 
@@ -563,23 +562,23 @@
     </div>
 
     <div class="clearfix"></div>
-    <h3>5. TRADING EXPERIENCE</h3>
+    <h3>5. {{trans('cms::cms.TRADING EXPERIENCE')}}</h3>
 
 
-    <h4>B. FINANCIAL MARKETS EXPERIENCE</h4>
+    <h4>B. {{trans('cms::cms.FINANCIAL MARKETS EXPERIENCE')}}</h4>
 
     <div class="full_width_div">
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_years_cfd',trans('cms::cms.number_of_years_cfd')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('number_of_years_cfd',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('number_of_years_cfd', '<p class="help-block">:message</p>') !!}</span>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_transactions_cfd',trans('cms::cms.number_of_transactions_cfd')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('number_of_transactions_cfd',$arrays['number_of_transactions'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('number_of_transactions_cfd', '<p class="help-block">:message</p>') !!}</span>
             </div>
         </div>
@@ -587,7 +586,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('average_trading_cfd',trans('cms::cms.average_trading_cfd')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('average_trading_cfd',$arrays['average_trading'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('average_trading_cfd', '<p class="help-block">:message</p>') !!}</span>
             </div>
         </div>
@@ -598,7 +597,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_years_commodities',trans('cms::cms.number_of_years_commodities')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('number_of_years_commodities',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('number_of_years_commodities', '<p class="help-block">:message</p>') !!}</span>
             </div>
         </div>
@@ -606,14 +605,14 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_transactions_commodities',trans('cms::cms.number_of_transactions_commodities')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('number_of_transactions_commodities',$arrays['number_of_transactions'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('number_of_transactions_commodities', '<p class="help-block">:message</p>') !!}</span>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('average_trading_commodities',trans('cms::cms.average_trading_commodities')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('average_trading_commodities',$arrays['average_trading'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('average_trading_commodities', '<p class="help-block">:message</p>') !!}</span>
             </div>
         </div>
@@ -624,7 +623,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_years_forex',trans('cms::cms.number_of_years_forex')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('number_of_years_forex',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('number_of_years_forex', '<p class="help-block">:message</p>') !!}</span>
             </div>
 
@@ -632,7 +631,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_transactions_forex',trans('cms::cms.number_of_transactions_forex')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('number_of_transactions_forex',$arrays['number_of_transactions'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('number_of_transactions_forex', '<p class="help-block">:message</p>') !!}</span>
             </div>
 
@@ -640,7 +639,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('average_trading_forex',trans('cms::cms.average_trading_forex')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('average_trading_forex',$arrays['average_trading'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('average_trading_forex', '<p class="help-block">:message</p>') !!}</span>
             </div>
 
@@ -652,7 +651,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_years_futures',trans('cms::cms.number_of_years_futures')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('number_of_years_futures',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('number_of_years_futures', '<p class="help-block">:message</p>') !!}</span>
             </div>
 
@@ -660,7 +659,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_transactions_futures',trans('cms::cms.number_of_transactions_futures')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('number_of_transactions_futures',$arrays['number_of_transactions'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('number_of_transactions_futures', '<p class="help-block">:message</p>') !!}</span>
             </div>
 
@@ -668,7 +667,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('average_trading_futures',trans('cms::cms.average_trading_futures')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('average_trading_futures',$arrays['average_trading'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('average_trading_futures', '<p class="help-block">:message</p>') !!}</span>
             </div>
 
@@ -680,7 +679,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_years_options',trans('cms::cms.number_of_years_options')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('number_of_years_options',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('number_of_years_options', '<p class="help-block">:message</p>') !!}</span>
             </div>
 
@@ -688,7 +687,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_transactions_options',trans('cms::cms.number_of_transactions_options')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('number_of_transactions_options',$arrays['number_of_transactions'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('number_of_transactions_options', '<p class="help-block">:message</p>') !!}</span>
             </div>
 
@@ -696,7 +695,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('average_trading_options',trans('cms::cms.average_trading_options')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('average_trading_options',$arrays['average_trading'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('average_trading_options', '<p class="help-block">:message</p>') !!}</span>
             </div>
         </div>
@@ -707,21 +706,21 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_years_securities',trans('cms::cms.number_of_years_securities')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('number_of_years_securities',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('number_of_years_securities', '<p class="help-block">:message</p>') !!}</span>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_transactions_securities',trans('cms::cms.number_of_transactions_securities')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('number_of_transactions_securities',$arrays['number_of_transactions'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('number_of_transactions_securities', '<p class="help-block">:message</p>') !!}</span>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('average_trading_securities',trans('cms::cms.average_trading_securities')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('average_trading_securities',$arrays['average_trading'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('average_trading_securities', '<p class="help-block">:message</p>') !!}</span>
             </div>
         </div>
@@ -731,24 +730,24 @@
     <div class="joint_div" id="5_joint">
 
         <div class="clearfix"></div>
-        <h3>5. TRADING EXPERIENCE ( for Joint Account)</h3>
+        <h3>5. {{trans('cms::cms.TRADING EXPERIENCE ( for Joint Account)')}} </h3>
 
         <div class="full_width_div">
-            <h4>B. FINANCIAL MARKETS EXPERIENCE (for Joint Account)</h4>
+            <h4>B. {{trans('cms::cms.FINANCIAL MARKETS EXPERIENCE (for Joint Account)')}}</h4>
         </div>
 
         <div class="full_width_div">
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('number_of_years_cfd_joint',trans('cms::cms.number_of_years_cfd_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('number_of_years_cfd_joint',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('number_of_years_cfd_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('number_of_transactions_cfd_joint',trans('cms::cms.number_of_transactions_cfd_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('number_of_transactions_cfd_joint',$arrays['number_of_transactions'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('number_of_transactions_cfd_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
             </div>
@@ -756,7 +755,7 @@
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('average_trading_cfd_joint',trans('cms::cms.average_trading_cfd_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('average_trading_cfd_joint',$arrays['average_trading'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('average_trading_cfd_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
             </div>
@@ -766,7 +765,7 @@
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('number_of_years_commodities_joint',trans('cms::cms.number_of_years_commodities_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('number_of_years_commodities_joint',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('number_of_years_commodities_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
             </div>
@@ -774,14 +773,14 @@
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('number_of_transactions_commodities_joint',trans('cms::cms.number_of_transactions_commodities_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('number_of_transactions_commodities_joint',$arrays['number_of_transactions'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('number_of_transactions_commodities_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('average_trading_commodities_joint',trans('cms::cms.average_trading_commodities_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('average_trading_commodities_joint',$arrays['average_trading'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('average_trading_commodities_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
             </div>
@@ -792,7 +791,7 @@
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('number_of_years_forex_joint',trans('cms::cms.number_of_years_forex_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('number_of_years_forex_joint',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('number_of_years_forex_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
 
@@ -800,7 +799,7 @@
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('number_of_transactions_forex_joint',trans('cms::cms.number_of_transactions_forex_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('number_of_transactions_forex_joint',$arrays['number_of_transactions'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('number_of_transactions_forex_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
 
@@ -808,7 +807,7 @@
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('average_trading_forex_joint',trans('cms::cms.average_trading_forex_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('average_trading_forex_joint',$arrays['average_trading'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('average_trading_forex_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
 
@@ -821,7 +820,7 @@
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('number_of_years_futures_joint',trans('cms::cms.number_of_years_futures_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('number_of_years_futures_joint',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('number_of_years_futures_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
 
@@ -829,7 +828,7 @@
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('number_of_transactions_futures_joint',trans('cms::cms.number_of_transactions_futures_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('number_of_transactions_futures_joint',$arrays['number_of_transactions'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('number_of_transactions_futures_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
 
@@ -837,7 +836,7 @@
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('average_trading_futures_joint',trans('cms::cms.average_trading_futures_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('average_trading_futures_joint',$arrays['average_trading'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('average_trading_futures_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
 
@@ -848,8 +847,8 @@
         <div class="full_width_div">
             <div class="col-sm-4">
                 <div class="input_all_div">
-                    <label>{!! Form::label('number_of_years_options_joint',trans('cms::cms.number_of_years_options_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <label>{!! Form::label('number_of_years_securities_joint',trans('cms::cms.number_of_years_options_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('number_of_years_securities_joint',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('number_of_years_options_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
 
@@ -857,7 +856,7 @@
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('number_of_transactions_options_joint',trans('cms::cms.number_of_transactions_options_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('number_of_transactions_options_joint',$arrays['number_of_transactions'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('number_of_transactions_options_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
 
@@ -865,7 +864,7 @@
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('average_trading_options_joint',trans('cms::cms.average_trading_options_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('average_trading_options_joint',$arrays['average_trading'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('average_trading_options_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
             </div>
@@ -876,93 +875,262 @@
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('number_of_years_securities_joint',trans('cms::cms.number_of_years_securities_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('number_of_years_securities_joint',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('number_of_years_securities_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('number_of_transactions_securities_joint',trans('cms::cms.number_of_transactions_securities_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('number_of_transactions_securities_joint',$arrays['number_of_transactions'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('number_of_transactions_securities_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="input_all_div">
                     <label>{!! Form::label('average_trading_securities_joint',trans('cms::cms.average_trading_securities_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('source_funds_deposited_joint',$arrays['source_funds_deposited_joint'], 'Employment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    {!! Form::select('average_trading_securities_joint',$arrays['average_trading'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('average_trading_securities_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
             </div>
         </div>
-        
+
 
     </div>
 
     <div class="clearfix"></div>
-    <h4>I. UNDERSTANDING OF THE MARKETS</h4>
+    <h4>I. {{trans('cms::cms.UNDERSTANDING OF THE MARKETS')}}</h4>
 
     <div class="col-sm-4">
-        {!! Form::text('understand_market_cfd', null, ['class' => 'form-control']) !!}
-        {!! Form::text('understand_market_years_cfd', null, ['class' => 'form-control']) !!}
+        <div class="input_all_div">
+            {!! Form::radio('understand_market_cfd',0, true, ['class' => '','id'=>'understand_market_cfd_0']) !!}
+            <label for="understand_market_cfd_0">{{ trans('cms::cms.yes') }}</label>
 
-        {!! Form::text('understand_market_futures', null, ['class' => 'form-control']) !!}
-        {!! Form::text('understand_market_years_futures', null, ['class' => 'form-control']) !!}
+            {!! Form::radio('understand_market_cfd',1, false, ['class' => '','id'=>'understand_market_cfd_1']) !!}
+            <label for="understand_market_cfd_1">{{ trans('cms::cms.no') }}</label>
+            <span>{!! $errors->first('understand_market_cfd', '<p class="help-block">:message</p>') !!}</span>
+        </div>
+
+        <div class="input_all_div">
+            <label>{!! Form::label('understand_market_years_cfd',trans('cms::cms.understand_market_years_cfd')  , ['class' => 'control-label']) !!}</label>
+            {!! Form::text('understand_market_years_cfd', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_cfd')]) !!}
+            <span>{!! $errors->first('understand_market_years_cfd', '<p class="help-block">:message</p>') !!}</span>
+        </div>
+
+
+
+
+        <div class="input_all_div">
+            {!! Form::radio('understand_market_futures',0, true, ['class' => '','id'=>'understand_market_futures_0']) !!}
+            <label for="understand_market_futures_0">{{ trans('cms::cms.yes') }}</label>
+
+            {!! Form::radio('understand_market_futures',1, false, ['class' => '','id'=>'understand_market_futures_1']) !!}
+            <label for="understand_market_futures_1">{{ trans('cms::cms.no') }}</label>
+            <span>{!! $errors->first('understand_market_futures', '<p class="help-block">:message</p>') !!}</span>
+        </div>
+
+        <div class="input_all_div">
+            <label>{!! Form::label('understand_market_years_futures',trans('cms::cms.understand_market_years_futures')  , ['class' => 'control-label']) !!}</label>
+            {!! Form::text('understand_market_years_futures', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_futures')]) !!}
+            <span>{!! $errors->first('understand_market_years_futures', '<p class="help-block">:message</p>') !!}</span>
+        </div>
+
     </div>
 
     <div class="col-sm-4">
-        {!! Form::text('understand_market_commodities', null, ['class' => 'form-control']) !!}
-        {!! Form::text('understand_market_years_commodities', null, ['class' => 'form-control']) !!}
+        <div class="input_all_div">
+            {!! Form::radio('understand_market_commodities',0, true, ['class' => '','id'=>'understand_market_commodities_0']) !!}
+            <label for="understand_market_commodities_0">{{ trans('cms::cms.yes') }}</label>
 
-        {!! Form::text('understand_market_options', null, ['class' => 'form-control']) !!}
-        {!! Form::text('understand_market_years_options', null, ['class' => 'form-control']) !!}
+            {!! Form::radio('understand_market_commodities',1, false, ['class' => '','id'=>'understand_market_commodities_1']) !!}
+            <label for="understand_market_commodities_1">{{ trans('cms::cms.no') }}</label>
+            <span>{!! $errors->first('understand_market_commodities', '<p class="help-block">:message</p>') !!}</span>
+        </div>
+
+        <div class="input_all_div">
+            <label>{!! Form::label('understand_market_years_commodities',trans('cms::cms.understand_market_years_commodities')  , ['class' => 'control-label']) !!}</label>
+            {!! Form::text('understand_market_years_commodities', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_commodities')]) !!}
+            <span>{!! $errors->first('understand_market_years_commodities', '<p class="help-block">:message</p>') !!}</span>
+        </div>
+
+        <div class="input_all_div">
+            {!! Form::radio('understand_market_options',0, true, ['class' => '','id'=>'understand_market_options_0']) !!}
+            <label for="understand_market_options_0">{{ trans('cms::cms.yes') }}</label>
+
+            {!! Form::radio('understand_market_options',1, false, ['class' => '','id'=>'understand_market_options_1']) !!}
+            <label for="understand_market_options_1">{{ trans('cms::cms.no') }}</label>
+            <span>{!! $errors->first('understand_market_options', '<p class="help-block">:message</p>') !!}</span>
+        </div>
+
+        <div class="input_all_div">
+            <label>{!! Form::label('understand_market_years_options',trans('cms::cms.understand_market_years_options')  , ['class' => 'control-label']) !!}</label>
+            {!! Form::text('understand_market_years_options', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_options')]) !!}
+            <span>{!! $errors->first('understand_market_years_options', '<p class="help-block">:message</p>') !!}</span>
+        </div>
+
     </div>
 
     <div class="col-sm-4">
-        {!! Form::text('understand_market_forex', null, ['class' => 'form-control']) !!}
-        {!! Form::text('understand_market_years_forex', null, ['class' => 'form-control']) !!}
 
-        {!! Form::text('understand_market_securities', null, ['class' => 'form-control']) !!}
-        {!! Form::text('understand_market_years_securities', null, ['class' => 'form-control']) !!}
+        <div class="input_all_div">
+            {!! Form::radio('understand_market_forex',0, true, ['class' => '','id'=>'understand_market_forex_0']) !!}
+            <label for="understand_market_forex_0">{{ trans('cms::cms.yes') }}</label>
+
+            {!! Form::radio('understand_market_forex',1, false, ['class' => '','id'=>'understand_market_forex_1']) !!}
+            <label for="understand_market_forex_1">{{ trans('cms::cms.no') }}</label>
+            <span>{!! $errors->first('understand_market_forex', '<p class="help-block">:message</p>') !!}</span>
+        </div>
+
+        <div class="input_all_div">
+            <label>{!! Form::label('understand_market_years_forex',trans('cms::cms.understand_market_years_forex')  , ['class' => 'control-label']) !!}</label>
+            {!! Form::text('understand_market_years_forex', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_forex')]) !!}
+            <span>{!! $errors->first('understand_market_years_forex', '<p class="help-block">:message</p>') !!}</span>
+        </div>
+
+
+        <div class="input_all_div">
+            {!! Form::radio('understand_market_securities',0, true, ['class' => '','id'=>'understand_market_securities_0']) !!}
+            <label for="understand_market_securities_0">{{ trans('cms::cms.yes') }}</label>
+
+            {!! Form::radio('understand_market_securities',1, false, ['class' => '','id'=>'understand_market_securities_1']) !!}
+            <label for="understand_market_securities_1">{{ trans('cms::cms.no') }}</label>
+            <span>{!! $errors->first('understand_market_securities', '<p class="help-block">:message</p>') !!}</span>
+        </div>
+
+        <div class="input_all_div">
+            <label>{!! Form::label('understand_market_years_securities',trans('cms::cms.understand_market_years_securities')  , ['class' => 'control-label']) !!}</label>
+            {!! Form::text('understand_market_years_securities', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_securities')]) !!}
+            <span>{!! $errors->first('understand_market_years_securities', '<p class="help-block">:message</p>') !!}</span>
+        </div>
     </div>
 
     <div class="joint_div" id="i_joint">
 
         <div class="clearfix"></div>
-        <h4>I. UNDERSTANDING OF THE MARKETS (for Joint Account)</h4>
+        <h4>I. {{trans('cms::cms.UNDERSTANDING OF THE MARKETS (for Joint Account)')}}</h4>
 
         <div class="col-sm-4">
-            {!! Form::text('understand_market_cfd_joint', null, ['class' => 'form-control']) !!}
-            {!! Form::text('understand_market_years_cfd_joint', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                {!! Form::radio('understand_market_cfd_joint',0, true, ['class' => '','id'=>'understand_market_cfd_joint_0']) !!}
+                <label for="understand_market_cfd_joint_0">{{ trans('cms::cms.yes') }}</label>
 
-            {!! Form::text('understand_market_futures_joint', null, ['class' => 'form-control']) !!}
-            {!! Form::text('understand_market_years_futures_joint', null, ['class' => 'form-control']) !!}
+                {!! Form::radio('understand_market_cfd_joint',1, false, ['class' => '','id'=>'understand_market_cfd_joint_1']) !!}
+                <label for="understand_market_cfd_joint_1">{{ trans('cms::cms.no') }}</label>
+                <span>{!! $errors->first('understand_market_joint_cfd', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
+            <div class="input_all_div">
+                <label>{!! Form::label('understand_market_years_cfd_joint',trans('cms::cms.understand_market_years_cfd_joint')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::text('understand_market_years_cfd_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_cfd_joint')]) !!}
+                <span>{!! $errors->first('understand_market_years_cfd_joint', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
+
+
+
+            <div class="input_all_div">
+                {!! Form::radio('understand_market_futures_joint',0, true, ['class' => '','id'=>'understand_market_futures_joint_0']) !!}
+                <label for="understand_market_futures_joint_0">{{ trans('cms::cms.yes') }}</label>
+
+                {!! Form::radio('understand_market_futures_joint',1, false, ['class' => '','id'=>'understand_market_futures_joint_1']) !!}
+                <label for="understand_market_futures_joint_1">{{ trans('cms::cms.no') }}</label>
+                <span>{!! $errors->first('understand_market_futures_joint', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
+            <div class="input_all_div">
+                <label>{!! Form::label('understand_market_years_futures_joint',trans('cms::cms.understand_market_years_futures_joint')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::text('understand_market_years_futures_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_futures_joint')]) !!}
+                <span>{!! $errors->first('understand_market_years_futures_joint', '<p class="help-block">:message</p>') !!}</span>
+            </div>
         </div>
 
         <div class="col-sm-4">
-            {!! Form::text('understand_market_commodities_joint', null, ['class' => 'form-control']) !!}
-            {!! Form::text('understand_market_years_commodities_joint', null, ['class' => 'form-control']) !!}
 
-            {!! Form::text('understand_market_options_joint', null, ['class' => 'form-control']) !!}
-            {!! Form::text('understand_market_years_options_joint', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                {!! Form::radio('understand_market_commodities_joint',0, true, ['class' => '','id'=>'understand_market_commodities_joint_0']) !!}
+                <label for="understand_market_commodities_joint_0">{{ trans('cms::cms.yes') }}</label>
+
+                {!! Form::radio('understand_market_commodities_joint',1, false, ['class' => '','id'=>'understand_market_commodities_joint_1']) !!}
+                <label for="understand_market_commodities_joint_1">{{ trans('cms::cms.no') }}</label>
+                <span>{!! $errors->first('understand_market_commodities_joint', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
+            <div class="input_all_div">
+                <label>{!! Form::label('understand_market_years_commodities_joint',trans('cms::cms.understand_market_years_commodities_joint')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::text('understand_market_years_commodities_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_commodities_joint')]) !!}
+                <span>{!! $errors->first('understand_market_years_commodities_joint', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
+            <div class="input_all_div">
+                {!! Form::radio('understand_market_options_joint',0, true, ['class' => '','id'=>'understand_market_options_joint_0']) !!}
+                <label for="understand_market_options_joint_0">{{ trans('cms::cms.yes') }}</label>
+
+                {!! Form::radio('understand_market_options_joint',1, false, ['class' => '','id'=>'understand_market_options_joint_1']) !!}
+                <label for="understand_market_options_joint_1">{{ trans('cms::cms.no') }}</label>
+                <span>{!! $errors->first('understand_market_options_joint', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
+            <div class="input_all_div">
+                <label>{!! Form::label('understand_market_years_options_joint',trans('cms::cms.understand_market_years_options_joint')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::text('understand_market_years_options_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_options_joint')]) !!}
+                <span>{!! $errors->first('understand_market_years_options_joint', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
         </div>
 
         <div class="col-sm-4">
-            {!! Form::text('understand_market_forex_joint', null, ['class' => 'form-control']) !!}
-            {!! Form::text('understand_market_years_forex_joint', null, ['class' => 'form-control']) !!}
 
-            {!! Form::text('understand_market_securities_joint', null, ['class' => 'form-control']) !!}
-            {!! Form::text('understand_market_years_securities_joint', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                {!! Form::radio('understand_market_joint_forex',0, true, ['class' => '','id'=>'understand_market_forex_joint_0']) !!}
+                <label for="understand_market_forex_joint_0">{{ trans('cms::cms.yes') }}</label>
+
+                {!! Form::radio('understand_market_forex_joint',1, false, ['class' => '','id'=>'understand_market_forex_joint_1']) !!}
+                <label for="understand_market_forex_joint_1">{{ trans('cms::cms.no') }}</label>
+                <span>{!! $errors->first('understand_market_forex_joint', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
+            <div class="input_all_div">
+                <label>{!! Form::label('understand_market_years_forex_joint',trans('cms::cms.understand_market_years_forex_joint')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::text('understand_market_years_forex_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_forex_joint')]) !!}
+                <span>{!! $errors->first('understand_market_years_forex_joint', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
+
+            <div class="input_all_div">
+                {!! Form::radio('understand_market_securities_joint',0, true, ['class' => '','id'=>'understand_market_securities_joint_0']) !!}
+                <label for="understand_market_securities_joint_0">{{ trans('cms::cms.yes') }}</label>
+
+                {!! Form::radio('understand_market_securities_joint',1, false, ['class' => '','id'=>'understand_market_securities_joint_1']) !!}
+                <label for="understand_market_securities_joint_1">{{ trans('cms::cms.no') }}</label>
+                <span>{!! $errors->first('understand_market_securities_joint', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
+            <div class="input_all_div">
+                <label>{!! Form::label('understand_market_years_securities_joint',trans('cms::cms.understand_market_years_securities_joint')  , ['class' => 'control-label']) !!}</label>
+                {!! Form::text('understand_market_years_securities_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_securities_joint')]) !!}
+                <span>{!! $errors->first('understand_market_years_securities_joint', '<p class="help-block">:message</p>') !!}</span>
+            </div>
+
         </div>
 
     </div>
 
     <div class="clearfix"></div>
-    <h3>6. Pearsonal Files</h3>
+    <h3>6. {{trans('cms::cms.Pearsonal Files')}}</h3>
 
     <div class="left_div">
-        {!! Form::text('id_type', null, ['class' => 'form-control']) !!}
-        {!! Form::text('proof_of_residence', null, ['class' => 'form-control']) !!}
+        <div class="input_all_div">
+            <label>{!! Form::label('id_type',trans('cms::cms.id_type')  , ['class' => 'control-label']) !!}</label>
+            {!! Form::select('id_type',$arrays['id_type'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+            <span>{!! $errors->first('id_type', '<p class="help-block">:message</p>') !!}</span>
+        </div>
+
+        <div class="input_all_div">
+            <label>{!! Form::label('proof_of_residence',trans('cms::cms.proof_of_residence')  , ['class' => 'control-label']) !!}</label>
+            {!! Form::select('proof_of_residence',$arrays['proof_of_residence'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+            <span>{!! $errors->first('proof_of_residence', '<p class="help-block">:message</p>') !!}</span>
+        </div>
+
     </div>
 
     <div class="right_div">
@@ -990,68 +1158,162 @@
 
 
     <div class="clearfix"></div>
-    <h4>A. Understand risks</h4>
-    Margin trading in financial markets such as stocks, futures, Forex and CFD is one of the riskiest forms of
-    investment available in the financial markets. Traders Must learn that stocks, futures, Forex and Contracts For
-    Differences (’CFDs’) are complex financial products that are traded on margin. It Carries a high level of risk
-    since leverage can work both for or against you. not be suitable for all investors because you may lose all your
-    invested capital. You should not risk more than what you are prepared to lose. Before deciding to trade, you need to
-    ensure that you understand the risks involved, taking into account your investment objectives and level of
-    experience. Past performance In Financial markets is not a reliable indicator of future results. Most CFDs have no
-    set maturity date. Hence, a CFDs position matures on the date you choose to close an existing open position. Please
-    Seek an independent advice, and therefore you should not invest money that you cannot afford to lose. If necessary.
-    Please read House of Borse’s full <a href="path('showPage',{'id':1225,'parentid':2,'slug':'risk-disclosure'})">Risk
-        Disclosure</a> and <a href="path('showPage',{'id':1198,'parentid':2,'slug':'privacy-policy'})">Privacy
-        Policy</a> Statement.
+    <h4>A. {{trans('cms::cms.Understand risks')}}</h4>
+        {{trans('cms::cms.Margin_trading')}} <a href="path('showPage',{'id':1225,'parentid':2,'slug':'risk-disclosure'})">
+            {{trans('cms::cms.Risk Disclosure')}}</a>  {{trans('cms::cms.and')}}
+        <a href="path('showPage',{'id':1198,'parentid':2,'slug':'privacy-policy'})">{{trans('cms::cms.Privacy Policy')}}</a>
+        {{trans('cms::cms.Statement')}}.
     <div class="full_width_div">
-        {!! Form::text('understand_risks', null, ['class' => 'form-control']) !!}
+        <div class="input_all_div">
+            {!! Form::radio('understand_risks',0, true, ['class' => '','id'=>'understand_risks_0']) !!}
+            <label for="understand_risks_0">{{ trans('cms::cms.yes') }}</label>
+
+            {!! Form::radio('understand_risks',1, false, ['class' => '','id'=>'understand_risks_1']) !!}
+            <label for="understand_risks_1">{{ trans('cms::cms.no') }}</label>
+            <span>{!! $errors->first('understand_risks', '<p class="help-block">:message</p>') !!}</span>
+        </div>
 
 
     </div>
 
     <div class="joint_div" id="resk_joint">
         <div class="clearfix"></div>
-        <h4>A. Understand risks (for Joint Account)</h4>
-        Margin trading in financial markets such as stocks, futures, Forex and CFD is one of the riskiest forms of
-        investment available in the financial markets. Traders Must learn that stocks, futures, Forex and Contracts For
-        Differences (’CFDs’) are complex financial products that are traded on margin. It Carries a high level of
-        risk since leverage can work both for or against you. not be suitable for all investors because you may lose all
-        your invested capital. You should not risk more than what you are prepared to lose. Before deciding to trade,
-        you need to ensure that you understand the risks involved, taking into account your investment objectives and
-        level of experience. Past performance In Financial markets is not a reliable indicator of future results. Most
-        CFDs have no set maturity date. Hence, a CFDs position matures on the date you choose to close an existing open
-        position. Please Seek an independent advice, and therefore you should not invest money that you cannot afford to
-        lose. If necessary. Please read House of Borse’s full <a
-                href="path('showPage',{'id':1225,'parentid':2,'slug':'risk-disclosure'})">Risk Disclosure</a> and <a
-                href="path('showPage',{'id':1198,'parentid':2,'slug':'privacy-policy'})">Privacy Policy</a> Statement.
+        <h4>A. {{trans('cms::cms.Understand risks (for Joint Account)')}}</h4>
+        {{trans('cms::cms.Margin_trading')}} <a href="path('showPage',{'id':1225,'parentid':2,'slug':'risk-disclosure'})">
+            {{trans('cms::cms.Risk Disclosure')}}</a>  {{trans('cms::cms.and')}}
+        <a href="path('showPage',{'id':1198,'parentid':2,'slug':'privacy-policy'})">{{trans('cms::cms.Privacy Policy')}}</a>
+        {{trans('cms::cms.Statement')}}.
         <div class="full_width_div">
-            {!! Form::text('understand_risks_joint', null, ['class' => 'form-control']) !!}
+            <div class="input_all_div">
+                {!! Form::radio('understand_risks_joint',0, true, ['class' => '','id'=>'understand_risks_joint_0']) !!}
+                <label for="understand_risks_joint_0">{{ trans('cms::cms.yes') }}</label>
+
+                {!! Form::radio('understand_risks_joint',1, false, ['class' => '','id'=>'understand_risks_joint_1']) !!}
+                <label for="understand_risks_joint_1">{{ trans('cms::cms.no') }}</label>
+                <span>{!! $errors->first('understand_risks_joint', '<p class="help-block">:message</p>') !!}</span>
+            </div>
         </div>
     </div>
 
     <div class="full_width_div">
 
         <div class="clearfix"></div>
-        <h3>7. SIGNATURE AND CONSENT</h3>
-        <h4>I/ WE, THE UNDERSIGNED, HEREBY CERTIFY THAT:</h4>
+        <h3>7.  {{trans('cms::cms.SIGNATURE AND CONSENT')}}</h3>
+        <h4>I/  {{trans('cms::cms.WE, THE UNDERSIGNED, HEREBY CERTIFY THAT')}}:</h4>
 
-        {!! Form::text('agreem_check_1', null, ['class' => 'form-control']) !!}
-        {!! Form::text('agreem_check_2', null, ['class' => 'form-control']) !!}
-        {!! Form::text('agreem_check_3', null, ['class' => 'form-control']) !!}
-        {!! Form::text('agreem_check_4', null, ['class' => 'form-control']) !!}
-        {!! Form::text('agreem_check_5', null, ['class' => 'form-control']) !!}
-        {!! Form::text('agreem_check_6', null, ['class' => 'form-control']) !!}
-        {!! Form::text('agreem_check_7', null, ['class' => 'form-control']) !!}
-        {!! Form::text('agreem_check_8', null, ['class' => 'form-control']) !!}
+        <div class="nav-input-div">
+            <div class="checkbox">
+                <label>
+                    {!! Form::checkbox('agreem_check_1', 1, ['class'=>'px','id'=>'exactLogin']) !!}
+                    <span class="lbl">{{ trans('cms::cms.agreem_check_1') }}</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="nav-input-div">
+            <div class="checkbox">
+                <label>
+                    {!! Form::checkbox('agreem_check_2', 1, ['class'=>'px','id'=>'exactLogin']) !!}
+                    <span class="lbl">{{ trans('cms::cms.agreem_check_2') }}</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="nav-input-div">
+            <div class="checkbox">
+                <label>
+                    {!! Form::checkbox('agreem_check_3', 1, ['class'=>'px','id'=>'exactLogin']) !!}
+                    <span class="lbl">{{ trans('cms::cms.agreem_check_3') }}</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="nav-input-div">
+            <div class="checkbox">
+                <label>
+                    {!! Form::checkbox('agreem_check_4', 1, ['class'=>'px','id'=>'exactLogin']) !!}
+                    <span class="lbl">{{ trans('cms::cms.agreem_check_4') }}</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="nav-input-div">
+            <div class="checkbox">
+                <label>
+                    {!! Form::checkbox('agreem_check_5', 1, ['class'=>'px','id'=>'exactLogin']) !!}
+                    <span class="lbl">{{ trans('cms::cms.agreem_check_5') }}</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="nav-input-div">
+            <div class="checkbox">
+                <label>
+                    {!! Form::checkbox('agreem_check_6', 1, ['class'=>'px','id'=>'exactLogin']) !!}
+                    <span class="lbl">{{ trans('cms::cms.agreem_check_6') }}</span>
+                </label>
+            </div>
+        </div>
 
 
-        <h4>Personal information submitted by me/us to House of Borse may:</h4>
+        <div class="nav-input-div">
+            <div class="checkbox">
+                <label>
+                    {!! Form::checkbox('agreem_check_7', 1, ['class'=>'px','id'=>'exactLogin']) !!}
+                    <span class="lbl">{{ trans('cms::cms.agreem_check_7') }}</span>
+                </label>
+            </div>
+        </div>
 
-        {!! Form::text('agreem_check_9', null, ['class' => 'form-control']) !!}
-        {!! Form::text('agreem_check_10', null, ['class' => 'form-control']) !!}
-        {!! Form::text('agreem_check_11', null, ['class' => 'form-control']) !!}
+        <div class="nav-input-div">
+            <div class="checkbox">
+                <label>
+                    {!! Form::checkbox('agreem_check_8', 1, ['class'=>'px','id'=>'exactLogin']) !!}
+                    <span class="lbl">{{ trans('cms::cms.agreem_check_8') }}</span>
+                </label>
+            </div>
+        </div>
 
-        {!! Form::text('agreem_check_12', null, ['class' => 'form-control']) !!}
+
+
+        <h4>{{trans('cms::cms.Personal information submitted by me/us to House of Borse may')}}:</h4>
+
+        <div class="nav-input-div">
+            <div class="checkbox">
+                <label>
+                    {!! Form::checkbox('agreem_check_9', 1, ['class'=>'px','id'=>'exactLogin']) !!}
+                    <span class="lbl">{{ trans('cms::cms.agreem_check_9') }}</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="nav-input-div">
+            <div class="checkbox">
+                <label>
+                    {!! Form::checkbox('agreem_check_10', 1, ['class'=>'px','id'=>'exactLogin']) !!}
+                    <span class="lbl">{{ trans('cms::cms.agreem_check_10') }}</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="nav-input-div">
+            <div class="checkbox">
+                <label>
+                    {!! Form::checkbox('agreem_check_11', 1, ['class'=>'px','id'=>'exactLogin']) !!}
+                    <span class="lbl">{{ trans('cms::cms.agreem_check_11') }}</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="nav-input-div">
+            <div class="checkbox">
+                <label>
+                    {!! Form::checkbox('agreem_check_12', 1, ['class'=>'px','id'=>'exactLogin']) !!}
+                    <span class="lbl">{{ trans('cms::cms.agreem_check_12') }}</span>
+                </label>
+            </div>
+        </div>
+
 
     </div>
 

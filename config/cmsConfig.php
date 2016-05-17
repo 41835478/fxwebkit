@@ -39,15 +39,15 @@ return [
 			'route' => 'cms.languagesList',
 			'title' => 'languages',
 			'icon' => 'fa fa-globe',
+		],[
+			'route' => 'cms.formsList',
+			'title' => 'forms',
+			'icon' => 'fa fa-file-text-o',
 		],
 		[
 			'route' => 'cms.cmsSettings',
 			'title' => 'settings',
 			'icon' => 'fa fa-gears',
-		],[
-		'route' => 'cms.formsList',
-		'title' => 'forms',
-		'icon' => 'fa fa-file-text-o',
-	],
+		],
 	]
 ];

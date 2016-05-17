@@ -134,7 +134,13 @@ class cms_forms_liveaccountController extends Controller
               $arrays['resident_status']= ['Non Resident'=>'Non Resident','Resident Individual'=>'Resident Individual','Foreign National'=>'Foreign National'];
               $arrays['country']= ['Non Resident'=>'Non Resident','Resident Individual'=>'Resident Individual','Foreign National'=>'Foreign National'];
               $arrays['source_funds_deposited_joint']= ['Employment'=>'Employment inheritance investment','Previous'=>'Previous employment real state','Sale of'=>'Sale of investments savings','Other'=>'Other'];
-
+            $arrays['proof_of_residence']= ['Select One'=>'Select One','Residence ID'=>'Residence ID','Utility Bill'=>'Utility Bill','Bank Statement'=>'Bank Statement'];
+            $arrays['id_type']= ['Select One'=>'Select One','Driving Licence'=>'Driving Licence','Passport'=>'Passport','Residence ID'=>'Residence ID'];
+            $arrays['number_of_years']= ['Select One'=>'Select One','None'=>'None','Less than 1 year'=>'Less than 1 year','1 to 3 years'=>'1 to 3 years','3 to 5 years'=>'3 to 5 years','More than 5 years'=>'More than 5 years'];
+            $arrays['number_of_transactions']= ['Select One'=>'Select One','less than 10 transactions'=>'less than 10 transactions','10 to 20 transactions'=>'10 to 20 transactions','More than 20 transactions'=>'More than 20 transactions'];
+            $arrays['average_trading']= ['Select One'=>'Select One','Less than 30,000 GBP'=>'Less than 30,000 GBP','30,000 to 60,000 GBP'=>'30,000 to 60,000 GBP','60,000 to 300,000 GBP'=>'60,000 to 300,000 GBP','More than 300,000 GBP'=>'More than 300,000 GBP'];
+             $arrays['source_funds_deposited_joint']= ['Employment'=>'Employment','Inheritance'=>'Inheritance','Investment'=>'Investment','Previous Employment'=>'Previous Employment','Real Estate'=>'Real Estate','Sale of investments'=>'Sale of investments','Savings'=>'Savings','Other (specify below)'=>'Other (specify below)',];
+             $arrays['source_funds_deposited']= ['Employment inheritance investment'=>'Employment inheritance investment','Previous employment real state'=>'Previous employment real state','Sale of investments savings'=>'Sale of investments savings','Other'=>'Other',];
          return View::make('cms::forms.cms_forms_liveaccount.cms_form',['arrays'=>$arrays])->render();
 
         }
