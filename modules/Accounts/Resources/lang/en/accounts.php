@@ -176,4 +176,6 @@
 'activateUser'=>'Activate User',
 'notAssigned'=>'Not Assigned',
     'currentLeverage'=>'current Leverage',
+    'yes'=>'Yes',
+    'no'=>'No',
 ]; ?>

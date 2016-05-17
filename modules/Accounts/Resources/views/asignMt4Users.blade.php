@@ -11,7 +11,7 @@
                         <li class="active"><a href="#"> <i
                                         class="fa fa-search"></i>{{ trans('accounts::accounts.search') }}  </a></li>
                         <li>
-                            <div class="   nav-input-div">
+                            <div class="nav-input-div">
                                 <div class="checkbox">
                                     <label>
                                         {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
