@@ -967,12 +967,12 @@
 <p><strong>For joint account holders please also sign below with the joint account holder.</strong></p>
 <div class="col-50">
 <p><strong>Date:</strong></p>
-<div class="rectangle padding-10">{{ "now"|date("m/d/Y") }}</div>
+<div class="rectangle padding-10">{{ date("m/d/Y") }}</div>
 </div><!--.col-50-->
 
 <div class="col-50 no-padding">
 <p><strong>Date:</strong></p>
-<div class="rectangle padding-10">@if($var->sole_joint_account_joint=="Joint account"){{ "now"|date("m/d/Y") }}@endif</div>
+<div class="rectangle padding-10">{{ date("m/d/Y") }}</div>
 </div><!--.col-50-->
 
 
@@ -983,7 +983,7 @@
 
 <div class="col-50 no-padding">
 <p><strong>Full Name:</strong></p>
-<div class="rectangle padding-10">@if($var->sole_joint_account_joint=="Joint account"){{ $var->first_name_joint }} {{ $var->last_name_joint }} @endif</div>
+<div class="rectangle padding-10">{{ $var->first_name_joint }} {{ $var->last_name_joint }}</div>
 </div><!--.col-50-->
 
 <div class="col-50">
@@ -993,7 +993,7 @@
 
 <div class="col-50 no-padding">
 <p><strong>Title:</strong></p>
-<div class="rectangle padding-10">@if($var->sole_joint_account_joint=="Joint account"){{ $var->title_joint }}{% endif)</div>
+<div class="rectangle padding-10">{{ $var->title_joint }}</div>
 </div><!--.col-50-->
 
 <div class="col-50">
@@ -1297,11 +1297,11 @@ Attn.: Client Onboarding
 </ul>
 <div class="rectangle padding-10">{{$var->first_name_joint}}</div>
 <p><strong>Middle Name(s) (if applicable)</strong></p>
-<div class="rectangle padding-10"></div>
-<p><strong>Last Name(s)</strong></p>
 <div class="rectangle padding-10">{{$var->second_name_joint}}</div>
-<p><strong>Date of Birth (DD/MM/YYYY)</strong></p>
+<p><strong>Last Name(s)</strong></p>
 <div class="rectangle padding-10">{{$var->last_name_joint}}</div>
+<p><strong>Date of Birth (DD/MM/YYYY)</strong></p>
+<div class="rectangle padding-10">{{$var->date_of_birth_joint|date('Y-m-d')}}</div>
 </div><!--.col-50-->
 
 <div class="col-50 no-padding">
@@ -1398,17 +1398,19 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <li class="padding-right-10">@if($var->understand_risks_joint==0) &check; @else&#9744;@endif Yes</li>
 <li class="padding-right-10">@if($var->understand_risks_joint==1) &check; @else&#9744;@endif No</li>
 </ul>
+
 <h5 class="margin-top-20">B. Financial markets experience</h5>
 <p>Please indicate below the financial market(s) you have traded in within the past 3 years.</p>
 <ul class="no-margin">
 <li>@if($var->number_of_years_cfd_joint!=0) &check; @else&#9744;@endif Contracts for Difference (CFDs) - if yes, please complete section C</li>
-<li>@if($var->number_of_years_commodities_joint!=0) &check; @else&#9744;@endifCommodities - if yes, please complete section D</li>
+<li>@if($var->number_of_years_commodities_joint!=0) &check; @else&#9744;@endif Commodities - if yes, please complete section D</li>
 <li>@if($var->number_of_years_forex_joint!=0) &check; @else&#9744;@endif Forex - if yes, please complete section E</li>
 <li>@if($var->number_of_years_futures_joint!=0) &check; @else&#9744;@endif Futures - if yes, please complete section F</li>
 <li>@if($var->number_of_years_options_joint!=0) &check; @else&#9744;@endif Options - if yes, please complete section G</li>
 <li>@if($var->number_of_years_securities_joint!=0) &check; @else&#9744;@endif Securities - if yes, please complete section H</li>
 </ul>
      <div style="@if($var->number_of_years_cfd_joint==0)   @endif">
+
 <h5 class="margin-top-20">C. contract for Differences (CFDs) trading experience</h5>
 <p><strong>Number of years you have been trading in CFDs</strong></p>
 <ul class="no-margin">
@@ -1666,33 +1668,33 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <p><strong>For joint account holders please also sign below with the joint account holder.</strong></p>
 <div class="col-50">
 <p><strong>Date:</strong></p>
-<div class="rectangle padding-10">@if($var->sole_joint_account=="Joint account"){{ "now"|date("m/d/Y") }}@endif</div>
+<div class="rectangle padding-10">{{ date("m/d/Y") }}</div>
 </div><!--.col-50-->
 
 <div class="col-50 no-padding">
 <p><strong>Date:</strong></p>
-<div class="rectangle padding-10">@if($var->sole_joint_account_joint=="Joint account"){{ "now"|date("m/d/Y") }}@endif</div>
+<div class="rectangle padding-10">{{ date("m/d/Y") }}</div>
 </div><!--.col-50-->
 
 
 <div class="col-50">
 <p><strong>Full Name:</strong></p>
-<div class="rectangle padding-10">@if($var->sole_joint_account=="Joint account"){{ $var->first_name }} {{ $var->last_name }} @endif</div>
+<div class="rectangle padding-10">{{ $var->first_name }} {{ $var->last_name }} </div>
 </div><!--.col-50-->
 
 <div class="col-50 no-padding">
 <p><strong>Full Name:</strong></p>
-<div class="rectangle padding-10">@if($var->sole_joint_account_joint=="Joint account"){{ $var->first_name_joint }} {{ $var->last_name_joint }} @endif</div>
+<div class="rectangle padding-10">{{ $var->first_name_joint }} {{ $var->last_name_joint }}</div>
 </div><!--.col-50-->
 
 <div class="col-50">
 <p><strong>Title:</strong></p>
-<div class="rectangle padding-10">@if($var->sole_joint_account_joint=="Joint account"){{ $var->Title }} @endif</div>
+<div class="rectangle padding-10">{{ $var->title }} </div>
 </div><!--.col-50-->
 
 <div class="col-50 no-padding">
 <p><strong>Title:</strong></p>
-<div class="rectangle padding-10">@if($var->sole_joint_account_joint=="Joint account"){{ $var->title_Joint }}@endif</div>
+<div class="rectangle padding-10">{{ $var->title_joint}}</div>
 </div><!--.col-50-->
 
 <div class="col-50">
