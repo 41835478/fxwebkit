@@ -59,7 +59,7 @@
 
     <div class="clearfix"></div>
     <div class="left_div">
-        <div class="input_all_div">
+        <div class="input_all_div ">
             <label>{!! Form::label('referring_partner',  trans('cms::cms.referring_partner')  , ['class' => 'control-label']) !!}</label>
             {!! Form::text('referring_partner', null, ['class' => '','placeholder'=>trans('referring_partner')]) !!}
             <span>{!! $errors->first('referring_partner', '<p class="help-block">:message</p>') !!}</span>
@@ -170,17 +170,17 @@
 
 
         <div>
-            <label class="required">{{ trans('cms::cms.title') }}</label>
+            <label class="required">{{ trans('cms::cms.title_joint') }}</label>
 
             <div>
-                {!! Form::radio('title','Mr', true, ['class' => '','id'=>'title_0']) !!}
-                <label for="title_0">{{ trans('cms::cms.Mr') }}</label>
-                {!! Form::radio('title','Ms', false, ['class' => '','id'=>'title_1']) !!}
-                <label for="title_1">{{ trans('cms::cms.Ms') }}</label>
-                {!! Form::radio('title','Mrs', false, ['class' => '','id'=>'title_2']) !!}
-                <label for="title_2">{{ trans('cms::cms.Mrs') }}</label>
-                {!! Form::radio('title','Dr', false, ['class' => '','id'=>'title_3']) !!}
-                <label for="title_3">{{ trans('cms::cms.Dr') }}</label>
+                {!! Form::radio('title_joint','Mr', true, ['class' => '','id'=>'title_joint_0']) !!}
+                <label for="title_joint_0">{{ trans('cms::cms.Mr') }}</label>
+                {!! Form::radio('title_joint','Ms', false, ['class' => '','id'=>'title_joint_1']) !!}
+                <label for="title_joint_1">{{ trans('cms::cms.Ms') }}</label>
+                {!! Form::radio('title_joint','Mrs', false, ['class' => '','id'=>'title_joint_2']) !!}
+                <label for="title_joint_2">{{ trans('cms::cms.Mrs') }}</label>
+                {!! Form::radio('title_joint','Dr', false, ['class' => '','id'=>'title_joint_3']) !!}
+                <label for="title_joint_3">{{ trans('cms::cms.Dr') }}</label>
             </div>
         </div>
 
@@ -847,8 +847,8 @@
         <div class="full_width_div">
             <div class="col-sm-4">
                 <div class="input_all_div">
-                    <label>{!! Form::label('number_of_years_securities_joint',trans('cms::cms.number_of_years_options_joint')  , ['class' => 'control-label']) !!}</label>
-                    {!! Form::select('number_of_years_securities_joint',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                    <label>{!! Form::label('number_of_years_options_joint',trans('cms::cms.number_of_years_options_joint')  , ['class' => 'control-label']) !!}</label>
+                    {!! Form::select('number_of_years_options_joint',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                     <span>{!! $errors->first('number_of_years_options_joint', '<p class="help-block">:message</p>') !!}</span>
                 </div>
 
@@ -1135,19 +1135,17 @@
 
     <div class="right_div">
 
-        <div class="file_input_div">
+        <div class="input_all_div file">
             {!! Form::label('document_id', trans('document_id')) !!}
             <div class="country_list">
-                <i class="fa fa-upload"></i>
                 {!! Form::text('document_id', null, ['class' => 'form-control']) !!}
             </div>
             {!! $errors->first('document_id', '<p class="help-block">:message</p>') !!}
         </div>
 
-        <div class="file_input_div">
+        <div class="input_all_div file">
             {!! Form::label('document_por', trans('document_por')) !!}
             <div class="country_list">
-                <i class="fa fa-upload"></i>
                 {!! Form::text('document_por', null, ['class' => 'form-control']) !!}
             </div>
             {!! $errors->first('document_por', '<p class="help-block">:message</p>') !!}
@@ -1439,6 +1437,65 @@
      });
      });
      */
+</script>
+
+
+<script>
+
+    function upload_file(file_input,resultInputName){
+
+// var formData = new FormData($('form')[0]);
+        var formData = new FormData();
+        //   formData.append("upload_files",true);
+        var fileInput = file_input;
+
+
+        for(var i = 0; i < fileInput.files.length; i ++ ){
+            formData.append('upload', fileInput.files[i]);
+        }// for each file in th array
+
+
+        $.ajax({
+            url: '{{route('uploadFile').'?_token='.csrf_token()}}' ,  //Server script to process data
+            type: 'post',
+            xhr: function() {  // Custom XMLHttpRequest
+                var myXhr = $.ajaxSettings.xhr();
+                if(myXhr.upload){ // Check if upload property exists
+                    //  myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
+                }
+                return myXhr;
+            },
+            //Ajax events
+            beforeSend:  function(){},
+            success:  function(data){
+                var dataArray=data.split('|');
+                if(dataArray[0].trim() == 'success'){
+                    $(file_input).parent().attr('data-content',dataArray[1]);
+                    // $(file_input).parent().data('content',data);
+                    $('input[name="'+resultInputName+'"]').val(dataArray[1]);
+                }else{
+                    alert(dataArray[1]);
+                }
+            },
+            error: function(){},
+            complete:function(){},
+            // Form data
+            data: formData,
+            //Options to tell jQuery not to process data or worry about content-type.
+            cache: false,
+            contentType: false,
+            processData: false
+        });//ajax
+    }//upload_file(file_input)
+
+    $(".file input").each(function(){
+        var uploadHtml='<div class="file_input_div"><div class="country_list" data-content="Choose file">'+
+                '<i class="fa fa-upload"></i><input type="file" onchange="upload_file(this,\''+$(this).attr('name')+'\')"> </div></div>';
+        $(this).parent().prepend(uploadHtml);
+        $(this).attr('type','hidden');
+
+    });
+
 </script>
 </div>
 {!! Form::close() !!}

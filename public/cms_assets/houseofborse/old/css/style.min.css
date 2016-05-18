@@ -12210,7 +12210,7 @@ html[dir=rtl] .select2-container-multi .select2-search-choice-close {
 }
 
 #main-warp #page-warp #spread-bar {
-    background: #333;
+    /*background: #333;*/
     margin: 20px 0px 0px 0px;
     padding: 0!important;
     /* margin-top: 50px; */
@@ -12241,7 +12241,7 @@ html[dir=rtl] .select2-container-multi .select2-search-choice-close {
     padding: 15px 0;
     font-weight: 700;
     font-size: 2.3em;
-    background: #e8a816;
+    /*background: #e8a816;*/
     position: relative;
     min-height: 1px;
     padding-left: 15px;

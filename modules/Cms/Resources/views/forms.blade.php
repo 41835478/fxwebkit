@@ -36,7 +36,7 @@
   <tbody>
 
   @if(count($fields))
-      @foreach($fields as $type=>$name)
+      @foreach($fields as $name=>$type)
   <tr>
       <td>{{$name}}<input type="hidden" name="fields[{{$name}}]" value="{{$type}}"></td>
       <td>{{$type}}</td>
