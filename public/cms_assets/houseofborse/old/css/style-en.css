@@ -1670,7 +1670,7 @@ display: block;
     text-decoration: none;
     font-family: arial;
     padding: 10px;
-    border-radius: 14px;
+    /*border-radius: 14px;*/
     margin-top: 14px;
     float: left;
 }

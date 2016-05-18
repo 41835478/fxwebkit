@@ -213,6 +213,11 @@ counters" href="http://statcounter.com/"
 
 
 
+    </div>
+
+
+
+
 
 
 @if(isset($positions["house_position_1"]) )
@@ -220,10 +225,9 @@ counters" href="http://statcounter.com/"
         {!! $position !!}
     @endforeach
 @endif
+</section><!--#page-warp-->
 
-
-    </div>
-
+</section>
 
 @if(isset($positions["house_footer_upper"]) )
     @foreach($positions['house_footer_upper'] as $position)
@@ -237,10 +241,6 @@ counters" href="http://statcounter.com/"
         {!! $position !!}
     @endforeach
 @endif
-
-    </section><!--#page-warp-->
-    </section>
-
 
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/breakpoints.js"></script>
 <!-- bootstrap -->

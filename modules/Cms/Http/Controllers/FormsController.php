@@ -36,7 +36,9 @@ class FormsController extends Controller
 
         $fields = Input::get('fields');
         if ($form_id != 0) {
-            $fields = cms_forms_fields::where('cms_forms_id', $form_id)->lists('name', 'type');
+            $fields = cms_forms_fields::where('cms_forms_id', $form_id)->lists('type','name' );
+
+
         }
 
         $languages = cms_languages::lists('name', 'id');
@@ -79,7 +81,6 @@ class FormsController extends Controller
 //            'double' =>'double',
 //            'float'=>'float'
         ];
-
         return view('cms::forms', [
                 'pages' => $pages,
                 'selected_id' => $form_id,
@@ -271,5 +272,29 @@ class FormsController extends Controller
             @Schema::drop($formName . 's');
         } catch (QueryException $e) {
         }
+    }
+
+
+    public function postUploadImage()
+    {//http://localhost:8000/cms/forms/upload-image.'?_token='. csrf_token()
+
+        $file = Input::file('upload');
+        $allowed_ext = ["png", "jpg", "jpeg", "gif", "bmp", "svg","pdf","docx"];
+        if($file == null){ echo 'error|no file'; exit();}
+        $fileExt = strtolower($file->getClientOriginalExtension());
+
+        if (in_array($fileExt, $allowed_ext)) {
+            $imageName = rand() . '_' . rand() . $file->getClientOriginalName();
+            if ($file->move(Config::get('cms.asset_folder') . 'upload/', $imageName)) {
+                echo 'success|'.'upload/'. $imageName;
+            }//uploaded successfully
+            else {
+                echo 'error|error';
+            }//error uploaded
+        } //allowed extinsions
+        else {
+            echo 'error|notAllowed';
+        }//not allowed file extintion
+        exit();
     }
 }

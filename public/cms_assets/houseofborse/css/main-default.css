@@ -13062,6 +13062,7 @@ textarea.b-product-card-textarea {
     color: #666;
     vertical-align: middle;
     font-weight: normal;
+  padding:0px 5px !important;
 }
 
 #main-warp #page-warp #spread-bar ul li span,#main-warp #page-warp #spread-bar ul li strong {
