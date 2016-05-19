@@ -140,7 +140,6 @@
             {!! Form::select('nationality',$arrays['country'], 'MT4', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
         </div>
 
-
     </div>
     <div class="col-xm-12 col-sm-4">
         <div class="input_all_div">
@@ -840,6 +839,7 @@
 
 
 
+
         <div class="full_width_div">
             <div class="col-sm-4">
                 <div class="input_all_div">
@@ -1000,27 +1000,27 @@
 
     <div class="col-sm-4">
 
-        <div class="input_all_div">
-            <label class="required">{{ trans('cms::cms.Understand market forex  ').' *' }}</label><br>
-            {!! Form::radio('understand_market_forex',0, false, ['class' => '','id'=>'understand_market_forex_0','required'=>'required']!!}
-            <label for="understand_market_forex_0">{{ trans('cms::cms.yes') }}</label>
+                <div class="input_all_div">
+                    <label class="required">{{ trans('cms::cms.Understand market forex  ').' *' }}</label><br>
+                                  {!! Form::radio('understand_market_forex',0, false, ['class' => '','id'=>'understand_market_forex_0','required'=>'required'])!!}
+                            <label for="understand_market_forex_0">{{ trans('cms::cms.yes') }}</label>
 
-            {!! Form::radio('understand_market_forex',1, false, ['class' => '','id'=>'understand_market_forex_1','required'=>'required'] !!}
-            <label for="understand_market_forex_1">{{ trans('cms::cms.no') }}</label>
-            <span>{!! $errors->first('understand_market_forex', '<p class="help-block">:message</p>') !!}</span>
-        </div>
+                                    {!! Form::radio('understand_market_forex',1, false, ['class' => '','id'=>'understand_market_forex_1','required'=>'required'] !!}
+                                    <label for="understand_market_forex_1">{{ trans('cms::cms.no') }}</label>
+                                    <span>{!! $errors->first('understand_market_forex', '<p class="help-block">:message</p>') !!}</span>
+                                </div>
 
-        <div class="input_all_div">
-            <label>{!! Form::label('understand_market_years_forex',trans('cms::cms.understand_market_years_forex').' *'  , ['class' => 'control-label']) !!}</label>
-            {!! Form::text('understand_market_years_forex', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_forex'),'required'=>'required']) !!}
-            <span>{!! $errors->first('understand_market_years_forex', '<p class="help-block">:message</p>') !!}</span>
-        </div>
+                                <div class="input_all_div">
+                                    <label>{!! Form::label('understand_market_years_forex',trans('cms::cms.understand_market_years_forex').' *'  , ['class' => 'control-label']) !!}</label>
+                                    {!! Form::text('understand_market_years_forex', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_forex'),'required'=>'required']) !!}
+                                    <span>{!! $errors->first('understand_market_years_forex', '<p class="help-block">:message</p>') !!}</span>
+                                </div>
 
 
-        <div class="input_all_div">
-            <label class="required">{{ trans('cms::cms.Understand market securities').' *' }}</label><br>
-            {!! Form::radio('understand_market_securities',0, false, ['class' => '','id'=>'understand_market_securities_0','required'=>'required']) !!}
-            <label for="understand_market_securities_0">{{ trans('cms::cms.yes') }}</label>
+                    <div class="input_all_div">
+                        <label class="required">{{ trans('cms::cms.Understand market securities').' *' }}</label><br>
+                        {!! Form::radio('understand_market_securities',0, false, ['class' => '','id'=>'understand_market_securities_0','required'=>'required']) !!}
+                        <label for="understand_market_securities_0">{{ trans('cms::cms.yes') }}</label>
 
             {!! Form::radio('understand_market_securities',1, false, ['class' => '','id'=>'understand_market_securities_1','required'=>'required']) !!}
             <label for="understand_market_securities_1">{{ trans('cms::cms.no') }}</label>
@@ -1058,21 +1058,21 @@
 
 
 
-            <div class="input_all_div">
-                {!! Form::radio('understand_market_futures_joint',0, true, ['class' => '','id'=>'understand_market_futures_joint_0']) !!}
-                <label for="understand_market_futures_joint_0">{{ trans('cms::cms.yes') }}</label>
+                        <div class="input_all_div">
+                            {!! Form::radio('understand_market_futures_joint',0, true, ['class' => '','id'=>'understand_market_futures_joint_0']) !!}
+                            <label for="understand_market_futures_joint_0">{{ trans('cms::cms.yes') }}</label>
 
-                {!! Form::radio('understand_market_futures_joint',1, false, ['class' => '','id'=>'understand_market_futures_joint_1']) !!}
-                <label for="understand_market_futures_joint_1">{{ trans('cms::cms.no') }}</label>
-                <span>{!! $errors->first('understand_market_futures_joint', '<p class="help-block">:message</p>') !!}</span>
-            </div>
+                            {!! Form::radio('understand_market_futures_joint',1, false, ['class' => '','id'=>'understand_market_futures_joint_1']) !!}
+                            <label for="understand_market_futures_joint_1">{{ trans('cms::cms.no') }}</label>
+                            <span>{!! $errors->first('understand_market_futures_joint', '<p class="help-block">:message</p>') !!}</span>
+                        </div>
 
-            <div class="input_all_div">
-                <label>{!! Form::label('understand_market_years_futures_joint',trans('cms::cms.understand_market_years_futures_joint')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::text('understand_market_years_futures_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_futures_joint')]) !!}
-                <span>{!! $errors->first('understand_market_years_futures_joint', '<p class="help-block">:message</p>') !!}</span>
-            </div>
-        </div>
+                        <div class="input_all_div">
+                            <label>{!! Form::label('understand_market_years_futures_joint',trans('cms::cms.understand_market_years_futures_joint')  , ['class' => 'control-label']) !!}</label>
+                            {!! Form::text('understand_market_years_futures_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_futures_joint')]) !!}
+                            <span>{!! $errors->first('understand_market_years_futures_joint', '<p class="help-block">:message</p>') !!}</span>
+                        </div>
+                    </div>
 
         <div class="col-sm-4">
 
