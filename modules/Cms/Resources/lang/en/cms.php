@@ -307,4 +307,10 @@
     'WE, THE UNDERSIGNED, HEREBY CERTIFY THAT'=>'WE, THE UNDERSIGNED, HEREBY CERTIFY THAT',
     'Personal information submitted by me/us to House of Borse may'=>'Personal information submitted by me/us to House of Borse may',
     'Create New live account'=>'Create New live account',
+    'Understand market cfd'=>'Understand market cfd',
+    'Understand market futures'=>'Understand market futures',
+    'Understand market commodities'=>'Understand market commodities',
+    'Understand market options'=>'Understand market options',
+    'Understand market forex'=>'Understand market forex',
+    'Understand market securities'=>'Understand market securities',
 ]; ?>
