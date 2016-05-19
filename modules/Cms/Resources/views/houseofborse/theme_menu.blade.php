@@ -18,7 +18,7 @@
 
                 @foreach($menu['children'] as $sub_menu)
                         <li class=" b-top-nav__2level f-top-nav__2level f-primary  @if($sub_menu['id'] == $selected_id )   active @endif">
-                            <a href='{{ asset($sub_menu['name']) }}' >
+                            <a href='{{ asset(strtolower($sub_menu['name'])) }}' >
                                 {{  str_replace('-',' ',$sub_menu['name']) }}
                             </a>
                         </li>

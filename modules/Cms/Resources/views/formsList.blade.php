@@ -37,7 +37,7 @@
                     <tr class='{{ $class }}'>
                         <td>{!! Form::checkbox('forms_checkbox[]',$form->id,false,['class'=>'forms_checkbox']) !!}</td>
                         <td>{{ $form->id }}</td>
-                        <td><a href="/cms/{{ $form->name }}">{{ $form->alias }}</a></td>
+                        <td><a href="/cms/{{ strtolower($form->name) }}">{{ $form->alias }}</a></td>
                         <td>{{ $pages[$form->page_id] }}</td>
                         </td>
                         <td>
