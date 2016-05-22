@@ -1043,7 +1043,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label class="required">{{ trans('cms::cms.Understand market cfd') }}</label><br>
-                {!! Form::radio('understand_market_cfd_joint',0, true, ['class' => '','id'=>'understand_market_cfd_joint_0']) !!}
+                {!! Form::radio('understand_market_cfd_joint',0, false, ['class' => '','id'=>'understand_market_cfd_joint_0']) !!}
                 <label for="understand_market_cfd_joint_0">{{ trans('cms::cms.yes') }}</label>
 
                 {!! Form::radio('understand_market_cfd_joint',1, false, ['class' => '','id'=>'understand_market_cfd_joint_1']) !!}
@@ -1059,7 +1059,7 @@
 
             <div class="input_all_div">
                 <label class="required">{{ trans('cms::cms.Understand market futures')}}</label><br>
-                {!! Form::radio('understand_market_futures_joint',0, true, ['class' => '','id'=>'understand_market_futures_joint_0']) !!}
+                {!! Form::radio('understand_market_futures_joint',0, false, ['class' => '','id'=>'understand_market_futures_joint_0']) !!}
                 <label for="understand_market_futures_joint_0">{{ trans('cms::cms.yes') }}</label>
 
                 {!! Form::radio('understand_market_futures_joint',1, false, ['class' => '','id'=>'understand_market_futures_joint_1']) !!}
@@ -1078,7 +1078,7 @@
 
             <div class="input_all_div">
                 <label class="required">{{ trans('cms::cms.Understand market commodities') }}</label><br>
-                {!! Form::radio('understand_market_commodities_joint',0, true, ['class' => '','id'=>'understand_market_commodities_joint_0']) !!}
+                {!! Form::radio('understand_market_commodities_joint',0, false, ['class' => '','id'=>'understand_market_commodities_joint_0']) !!}
                 <label for="understand_market_commodities_joint_0">{{ trans('cms::cms.yes') }}</label>
 
                 {!! Form::radio('understand_market_commodities_joint',1, false, ['class' => '','id'=>'understand_market_commodities_joint_1']) !!}
@@ -1094,7 +1094,7 @@
 
             <div class="input_all_div">
                 <label class="required">{{ trans('cms::cms.Understand market options') }}</label><br>
-                {!! Form::radio('understand_market_options_joint',0, true, ['class' => '','id'=>'understand_market_options_joint_0']) !!}
+                {!! Form::radio('understand_market_options_joint',0, false, ['class' => '','id'=>'understand_market_options_joint_0']) !!}
                 <label for="understand_market_options_joint_0">{{ trans('cms::cms.yes') }}</label>
 
                 {!! Form::radio('understand_market_options_joint',1, false, ['class' => '','id'=>'understand_market_options_joint_1']) !!}
@@ -1114,7 +1114,7 @@
 
             <div class="input_all_div">
                 <label class="required">{{ trans('cms::cms.Understand market forex') }}</label><br>
-                {!! Form::radio('understand_market_forex_joint',0, true, ['class' => '','id'=>'understand_market_forex_joint_0']) !!}
+                {!! Form::radio('understand_market_forex_joint',0, false, ['class' => '','id'=>'understand_market_forex_joint_0']) !!}
                 <label for="understand_market_forex_joint_0">{{ trans('cms::cms.yes') }}</label>
 
                 {!! Form::radio('understand_market_forex_joint',1, false, ['class' => '','id'=>'understand_market_forex_joint_1']) !!}
@@ -1131,7 +1131,7 @@
 
             <div class="input_all_div">
                 <label class="required">{{ trans('cms::cms.Understand market securities')}}</label><br>
-                {!! Form::radio('understand_market_securities_joint',0, true, ['class' => '','id'=>'understand_market_securities_joint_0']) !!}
+                {!! Form::radio('understand_market_securities_joint',0, false, ['class' => '','id'=>'understand_market_securities_joint_0']) !!}
                 <label for="understand_market_securities_joint_0">{{ trans('cms::cms.yes') }}</label>
 
                 {!! Form::radio('understand_market_securities_joint',1, false, ['class' => '','id'=>'understand_market_securities_joint_1']) !!}
