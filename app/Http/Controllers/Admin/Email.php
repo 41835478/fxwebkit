@@ -30,7 +30,7 @@ class Email extends Controller {
 
         $mail=SettingsEmailTemplates::where([
             'subject'=>$sTemplate,
-        'language'=>Session::get('locale')
+            'language'=>Session::get('locale')
         ])->first();
 
         $emailBody='';

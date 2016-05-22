@@ -14,23 +14,23 @@
     ]) !!}
 
                 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                {!! Form::label('name', trans('name'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
+                {!! Form::label('name', trans('name'), ['class' => 'col-sm-12 ']) !!}
+                <div class="col-sm-12">
                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('template') ? 'has-error' : ''}}">
-                {!! Form::label('template', trans('template'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::textarea('template', null, ['class' => 'form-control']) !!}
+                {!! Form::label('template', trans('template'), ['class' => 'col-sm-12 ']) !!}
+                <div class="col-sm-12">
+                    {!! Form::textarea('template', null, ['class' => 'form-control','id'=>'editor1']) !!}
                     {!! $errors->first('template', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
 
 
     <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-3">
+        <div class="col-sm-offset-9 col-sm-3">
             {!! Form::submit('Update', ['class' => 'btn btn-primary form-control']) !!}
         </div>
     </div>
@@ -45,4 +45,18 @@
     @endif
 </div>
 </div>
+@endsection
+
+@section('script')
+    @parent
+    <script src="/cms_assets/ckeditor/ckeditor.js"></script>
+    <script>
+        //CKEDITOR.replace( textarea );
+        CKEDITOR.replace('editor1', {
+            filebrowserBrowseUrl: " {{ asset('/cms/articles/file-browser') }}",
+            filebrowserUploadUrl: "{{ asset('/cms/articles/upload-image' ).'?_token='. csrf_token() }}"
+        });
+    </script>
+    </div>
+
 @endsection

@@ -12,6 +12,7 @@ use Session;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
+use modules\Cms\Http\Controllers\forms\Email;
 class cms_forms_liveaccountController extends Controller
 {
     /**
@@ -165,6 +166,9 @@ $pdfPath=public_path().'/pdf/'.explode('.',basename($htmlPath))[0].'.pdf';
             exec('"'.Config('fxweb.htmlToPdfPath').'" "'.$htmlPath.'" "'.$pdfPath.'"');
 unlink($htmlPath);
              cms_forms_liveaccount::create($request->all());
+
+            $email=new Email();
+            $email->userLiveAccount(['name'=>$request->first_name],$request->primary_email);
  return view('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
 
             Session::flash('flash_message', 'cms_forms_liveaccount added!');

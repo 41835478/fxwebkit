@@ -18,7 +18,7 @@
                 {{-- */$x++;/* --}}
                 <tr>
                     <td>{{ $x }}</td>
-                    <td><a href="{{ url('cms\cms_forms_emailtemplates', $item->id) }}">{{ $item->name }}</a></td><td>{{ $item->alias }}</td><td>{{ $item->template }}</td>
+                    <td><a href="{{ url('cms\cms_forms_emailtemplates', $item->id) }}">{{ $item->name }}</a></td><td>{{ $item->alias }}</td><td>{{ substr($item->template,0,100) }}</td>
                     <td>
                         <a href="{{ url('/cms/cms_forms_emailtemplates/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs">Update</a>
                         {!! Form::open([

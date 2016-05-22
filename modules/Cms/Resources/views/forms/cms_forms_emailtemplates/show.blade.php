@@ -14,7 +14,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ $cms_forms_emailtemplate->id }}</td> <td> {{ $cms_forms_emailtemplate->name }} </td><td> {{ $cms_forms_emailtemplate->alias }} </td><td> {{ $cms_forms_emailtemplate->template }} </td>
+                    <td>{{ $cms_forms_emailtemplate->id }}</td> <td> {{ $cms_forms_emailtemplate->name }} </td><td> {{ $cms_forms_emailtemplate->alias }} </td><td> {!! $cms_forms_emailtemplate->template  !!}  </td>
                 </tr>
             </tbody>
         </table>
