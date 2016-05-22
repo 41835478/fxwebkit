@@ -113,6 +113,7 @@ return [
     ], 'client_menu' => [
 
     ],
+    'htmlToPdfPath'=>'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
 ];
 
 
