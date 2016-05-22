@@ -11,7 +11,7 @@
 
 
 
-    {!! Form::open(['route' => 'cms_forms_liveaccount.form', 'class' => 'form-horizontal']) !!}
+    {!! Form::open(['id'=>'mainForm','route' => 'cms_forms_liveaccount.form','onSubmit'=>'if(!$("#mainForm").checkValidity()) return false;', 'class' => 'form-horizontal']) !!}
     <div class="fieldset_div">
     <div class="clearfix"></div>
     <h1>{{ trans('cms::cms.PERSONAL ACCOUNT OPENING FORM') }}</h1>

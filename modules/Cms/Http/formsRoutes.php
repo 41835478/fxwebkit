@@ -216,4 +216,11 @@ Route::get('cms_forms_downloadcenter/form', [
 ]);
 Route::post('cms_forms_downloadcenter/form', [
     'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_downloadcenterController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_emailtemplates', 'modules\Cms\Http\Controllers\forms\cms_forms_emailtemplatesController');});
+Route::get('cms_forms_emailtemplates/form', [
+    'as' => 'cms_forms_emailtemplates.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_emailtemplatesController@cms_create'
+]);
+Route::post('cms_forms_emailtemplates/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_emailtemplatesController@cms_store'
 ]);

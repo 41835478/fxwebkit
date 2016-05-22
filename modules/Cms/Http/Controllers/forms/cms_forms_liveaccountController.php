@@ -154,11 +154,16 @@ class cms_forms_liveaccountController extends Controller
          */
         public function cms_store(Request $request)
         {
-            $htmlPath=tempnam(sys_get_temp_dir(), 'html');
+            $htmlPath=tempnam(sys_get_temp_dir(), 'fxwebkit');
+            $htmlPath=preg_replace('/tmp$/','html',$htmlPath);
+
 $html=View::make('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
             file_put_contents($htmlPath,$html);
-exec('"'.Config('fxweb.htmlToPdfPath').'" "'.$htmlPath.'" ""');
 
+$pdfPath=public_path().'/pdf/'.explode('.',basename($htmlPath))[0].'.pdf';
+
+            exec('"'.Config('fxweb.htmlToPdfPath').'" "'.$htmlPath.'" "'.$pdfPath.'"');
+unlink($htmlPath);
              cms_forms_liveaccount::create($request->all());
  return view('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
 

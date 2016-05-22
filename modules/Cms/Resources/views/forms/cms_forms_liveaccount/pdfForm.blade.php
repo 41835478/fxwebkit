@@ -33,7 +33,7 @@
             width: 837px;
             height: 1305px;
             margin: 0 auto 10px;
-            background: transparent url('/cms_assets/houseofborse/images/pdf_page.png') no-repeat 0 0;
+            background: transparent url('{{'http://'.Request::getHost()}}/cms_assets/houseofborse/images/pdf_page.png') no-repeat 0 0;
             position: relative;
             padding: 240px 70px 100px 60px;
         }
@@ -301,7 +301,6 @@
 </head>
 <body>
 
-{{$var}}
 
 <div class="page">
     <h2>Personal Account opening Form</h2>
