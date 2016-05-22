@@ -93,10 +93,10 @@
     <div class="clearfix"></div>
     <div class="left_div">
         <div class="input_all_div">
-            {!! Form::radio('sole_joint_account',0, true, ['class' => '','id'=>'sole_joint_account_0']) !!}
+            {!! Form::radio('sole_joint_account','Sole personal account', true, ['class' => '','id'=>'sole_joint_account_0']) !!}
             <label for="sole_joint_account_0">{{ trans('cms::cms.sole_joint_account') }}</label>
 
-            {!! Form::radio('sole_joint_account',1, false, ['class' => '','id'=>'sole_joint_account_1']) !!}
+            {!! Form::radio('sole_joint_account','joint account', false, ['class' => '','id'=>'sole_joint_account_1']) !!}
             <label for="sole_joint_account_1">{{ trans('cms::cms.sole_joint_account_joint') }}</label>
             <span>{!! $errors->first('sole_joint_account', '<p class="help-block">:message</p>') !!}</span>
         </div>
@@ -1378,6 +1378,7 @@
 </section><!--.content-box-->
 
 
+
 <script type="text/javascript">
 
     function add_joint_validation() {
@@ -1401,48 +1402,49 @@
 
 
         $('select[name="number_of_years_cfd"],select[name="number_of_years_commodities"],select[name="number_of_years_forex"],select[name="number_of_years_futures"],select[name="number_of_years_options"],select[name="number_of_years_securities"]').change(function () {
+            //   alert($(this).val());
             if ($(this).val() == 0) {
-                $(this).parent().parent().parent().next().find('select').attr('disabled', 'disabled');
-                $(this).parent().parent().parent().next().next().find('select').attr('disabled', 'disabled');
+                $(this).parent().next().find('select').attr('disabled', 'disabled');
+                $(this).parent().next().next().find('select').attr('disabled', 'disabled');
             } else {
-                $(this).parent().parent().parent().next().find('select').removeAttr('disabled');
-                $(this).parent().parent().parent().next().next().find('select').removeAttr('disabled');
+                $(this).parent().next().find('select').removeAttr('disabled');
+                $(this).parent().next().next().find('select').removeAttr('disabled');
 
             }
         });
         if ($(this).val() == 0) {
-            $(this).parent().parent().parent().next().find('select').attr('disabled', 'disabled');
-            $(this).parent().parent().parent().next().next().find('select').attr('disabled', 'disabled');
+            $(this).parent().next().find('select').attr('disabled', 'disabled');
+            $(this).parent().next().next().find('select').attr('disabled', 'disabled');
         } else {
-            $(this).parent().parent().parent().next().find('select').removeAttr('disabled');
-            $(this).parent().parent().parent().next().next().find('select').removeAttr('disabled');
+            $(this).parent().next().find('select').removeAttr('disabled');
+            $(this).parent().next().next().find('select').removeAttr('disabled');
 
         }
 
 
-        $('#forex_corebundle_portalusers_number_of_years_cfd_joint,#forex_corebundle_portalusers_number_of_years_commodities_joint,#forex_corebundle_portalusers_number_of_years_forex_joint,#forex_corebundle_portalusers_number_of_years_futures_joint,#forex_corebundle_portalusers_number_of_years_options_joint,#forex_corebundle_portalusers_number_of_years_securities_joint').change(function () {
+        $('select[name="number_of_years_cfd_joint"],select[name="number_of_years_commodities_joint"],select[name="number_of_years_forex_joint"],select[name="number_of_years_futures_joint"],select[name="number_of_years_options_joint"],select[name="number_of_years_securities_joint"]').change(function () {
             if ($(this).val() == 0) {
-                $(this).parent().parent().parent().next().find('select').attr('disabled', 'disabled');
-                $(this).parent().parent().parent().next().next().find('select').attr('disabled', 'disabled');
+                $(this).parent().parent().next().find('select').attr('disabled', 'disabled');
+                $(this).parent().parent().next().next().find('select').attr('disabled', 'disabled');
             } else {
-                $(this).parent().parent().parent().next().find('select').removeAttr('disabled');
-                $(this).parent().parent().parent().next().next().find('select').removeAttr('disabled');
+                $(this).parent().parent().next().find('select').removeAttr('disabled');
+                $(this).parent().parent().next().next().find('select').removeAttr('disabled');
 
             }
         });
 
 
         if ($(this).val() == 0) {
-            $(this).parent().parent().parent().next().find('select').attr('disabled', 'disabled');
-            $(this).parent().parent().parent().next().next().find('select').attr('disabled', 'disabled');
+            $(this).parent().parent().next().find('select').attr('disabled', 'disabled');
+            $(this).parent().parent().next().next().find('select').attr('disabled', 'disabled');
         } else {
-            $(this).parent().parent().parent().next().find('select').removeAttr('disabled');
-            $(this).parent().parent().parent().next().next().find('select').removeAttr('disabled');
+            $(this).parent().parent().next().find('select').removeAttr('disabled');
+            $(this).parent().parent().next().next().find('select').removeAttr('disabled');
 
         }
 
-        $('#forex_corebundle_portalusers_sole_joint_account input').change(function () {
-            var radio_value = $('#forex_corebundle_portalusers_sole_joint_account input:checked').val();
+        $('input[name="sole_joint_account"]').change(function () {
+            var radio_value = $('input[name="sole_joint_account"]:checked').val();
             if (radio_value == 'Sole personal account') {
                 $('.joint_div').hide();
                 remove_joint_validation();
@@ -1452,7 +1454,7 @@
             }
         });
 
-        var radio_value = $('#forex_corebundle_portalusers_sole_joint_account input:checked').val();
+        var radio_value = $('input[name="sole_joint_account"]:checked').val();
         if (radio_value == 'Sole personal account') {
             $('.joint_div').hide();
             remove_joint_validation();

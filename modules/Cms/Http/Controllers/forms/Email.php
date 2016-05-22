@@ -58,10 +58,8 @@ class Email extends Controller
             'fromName' => $this->fromName,
             'content'=>$emailBody
         ];
-
         Mail::raw($info['subject'], function ($message) use ($info)
         {
-
             $message->from(config('fxweb.senderEmail'), config('fxweb.displayName'));
 
             $message->getHeaders()->addTextHeader('Content-type', 'text/html');
