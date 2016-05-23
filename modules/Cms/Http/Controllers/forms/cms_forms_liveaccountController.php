@@ -397,8 +397,8 @@ public function addErrorMessage(&$errors,$key,$value){
             if (is_numeric($average_trading_cfd)) {
                  $this->addErrorMessage($errors,'average_trading_cfd', 'Required Field');
             }
-        }else if( ==0){
-        $this->addErrorMessage($errors,'', 'Required Field');
+        }else if( $number_of_years_cfd==0){
+        $this->addErrorMessage($errors,'number_of_years_cfd', 'Required Field');
 
     }
 
@@ -416,8 +416,8 @@ public function addErrorMessage(&$errors,$key,$value){
             if (is_numeric($average_trading_commodities)) {
                  $this->addErrorMessage($errors,'average_trading_commodities', 'Required Field');
             }
-        }else if( ==0){
-        $this->addErrorMessage($errors,'', 'Required Field');
+        }else if($number_of_years_commodities ==0){
+        $this->addErrorMessage($errors,'number_of_years_commodities', 'Required Field');
 
     }
 
@@ -434,8 +434,8 @@ public function addErrorMessage(&$errors,$key,$value){
             if (is_numeric($average_trading_forex)) {
                  $this->addErrorMessage($errors,'average_trading_forex', 'Required Field');
             }
-        }else if( ==0){
-        $this->addErrorMessage($errors,'', 'Required Field');
+        }else if( $number_of_years_forex==0){
+        $this->addErrorMessage($errors,'number_of_years_forex', 'Required Field');
 
     }
 
@@ -452,8 +452,8 @@ public function addErrorMessage(&$errors,$key,$value){
             if (is_numeric($average_trading_futures)) {
                  $this->addErrorMessage($errors,'average_trading_futures', 'Required Field');
             }
-        }else if( ==0){
-        $this->addErrorMessage($errors,'', 'Required Field');
+        }else if($number_of_years_futures ==0){
+        $this->addErrorMessage($errors,'number_of_years_futures', 'Required Field');
 
     }
 
@@ -470,8 +470,8 @@ public function addErrorMessage(&$errors,$key,$value){
             if (is_numeric($average_trading_options)) {
                  $this->addErrorMessage($errors,'average_trading_options', 'Required Field');
             }
-        }else if( ==0){
-        $this->addErrorMessage($errors,'', 'Required Field');
+        }else if( $number_of_years_options==0){
+        $this->addErrorMessage($errors,'number_of_years_options', 'Required Field');
 
     }
 
@@ -488,8 +488,8 @@ public function addErrorMessage(&$errors,$key,$value){
             if (is_numeric($average_trading_securities)) {
                  $this->addErrorMessage($errors,'average_trading_securities', 'Required Field');
             }
-        }else if( ==0){
-        $this->addErrorMessage($errors,'', 'Required Field');
+        }else if($number_of_years_securities ==0){
+        $this->addErrorMessage($errors,'number_of_years_securities', 'Required Field');
 
     }
 
