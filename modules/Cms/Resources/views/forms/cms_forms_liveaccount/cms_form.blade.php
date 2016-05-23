@@ -21,7 +21,7 @@
 
         <div class="input_all_div">
             <p></p>
-            <label>{!! Form::label('account_type', trans('cms::cms.account_type'), ['class' => 'control-label']) !!}</label>
+            <label>{!! Form::label('account_type', trans('cms::cms.account_type').' *', ['class' => 'control-label']) !!}</label>
             {!! Form::select('account_type',$arrays['account_type'], 'Self-trading', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
             <span> {!! $errors->first('account_type', '<p class="help-block">:message</p>') !!}</span>
         </div>
@@ -39,7 +39,7 @@
         <h4>B. {{ trans('cms::cms.TRADING ACCOUNT CURRENCY') }}</h4>
 
         <div class="input_all_div">
-            <label>{!! Form::label('base_currency_limit', trans('cms::cms.base_currency_limit'), ['class' => 'control-label']) !!}</label>
+            <label>{!! Form::label('base_currency_limit', trans('cms::cms.base_currency_limit').' *', ['class' => 'control-label']) !!}</label>
             {!! Form::select('base_currency_limit',$arrays['base_currency_limit'], 'USD', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
             <span>{!! $errors->first('base_currency_limit', '<p class="help-block">:message</p>') !!}</span>
         </div>
@@ -106,7 +106,7 @@
     <h4>A. {{ trans('cms::cms.PERSONAL DETAILS (HEREAFTER “CLIENT”)') }}</h4>
 
     <div>
-        <label class="required">{{ trans('cms::cms.title')}}</label>
+        <label class="required">{{ trans('cms::cms.title').' *'}}</label>
 
         <div>
             {!! Form::radio('title','Mr', true, ['class' => '','id'=>'title_0']) !!}
@@ -122,10 +122,10 @@
 
     <div class="col-xm-12 col-sm-4">
         <label>{{ trans('cms::cms.first_name').' *' }}</label>
-        {!! Form::text('first_name', null, ['class' => '','placeholder'=>trans('cms::cms.first_name_joint')]) !!}
+        {!! Form::text('first_name', null, ['class' => '','placeholder'=>trans('cms::cms.first_name_joint'),'required'=>'required']) !!}
         <div class="input_all_div" id="date_of_birth_div">
 
-            {!! Form::label('date_of_birth', trans('cms::cms.date_of_birth')) !!}
+            {!! Form::label('date_of_birth', trans('cms::cms.date_of_birth')).' *'  !!}
             <div class="clearfix">
                 {!! Form::select('date_of_birth_y',$arrays['years'],1985,['style'=>'width:32%;']) !!}
                 {!! Form::select('date_of_birth_m',$arrays['months'],1,['style'=>'width:32%;']) !!}
@@ -170,7 +170,7 @@
 
     <div class="col-xm-12 col-sm-4">
         <div class="input_all_div">
-            <label>{{trans('cms::cms.resident_status')}}</label>
+            <label>{{trans('cms::cms.resident_status').' *'}}</label>
             {!! Form::select('resident_status',$arrays['resident_status'], 'Non Resident', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
         </div>
     </div>
@@ -182,7 +182,7 @@
 
 
         <div>
-            <label class="required">{{ trans('cms::cms.title_joint') }}</label>
+            <label class="required">{{ trans('cms::cms.title_joint').' *' }}</label>
 
             <div>
                 {!! Form::radio('title_joint','Mr', true, ['class' => '','id'=>'title_joint_0']) !!}
@@ -281,7 +281,7 @@
 
     <div class="left_div">
         <div class="input_all_div">
-            <label>{!! Form::label('city',  trans('cms::cms.city').' *'  , ['class' => 'control-label']) !!}</label>
+            <label>{!! Form::label('city',  trans('cms::cms.city')  , ['class' => 'control-label']) !!}</label>
             {!! Form::text('city', null, ['class' => '','placeholder'=>trans('cms::cms.city'),'required'=>'required']) !!}
             <span>{!! $errors->first('city', '<p class="help-block">:message</p>') !!}</span>
         </div>
@@ -290,7 +290,7 @@
     <div class="right_div">
 
         <div class="input_all_div">
-            <label>{!! Form::label('country',trans('cms::cms.country')  , ['class' => 'control-label']) !!}</label>
+            <label>{!! Form::label('country',trans('cms::cms.country').' *'  , ['class' => 'control-label']) !!}</label>
             {!! Form::select('country',$arrays['country'], 'Non Resident', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
             <span>{!! $errors->first('country', '<p class="help-block">:message</p>') !!}</span>
         </div>
@@ -304,7 +304,7 @@
 
         <div class="left_div">
             <div class="input_all_div">
-                <label>{!! Form::label('street_and_number_joint',  trans('cms::cms.street_and_number_joint').' *'  , ['class' => 'control-label']) !!}</label>
+                <label>{!! Form::label('street_and_number_joint',  trans('cms::cms.street_and_number_joint')  , ['class' => 'control-label']) !!}</label>
                 {!! Form::text('street_and_number_joint', null, ['class' => '','placeholder'=>trans('cms::cms.street_and_number_joint'),'required'=>'required']) !!}
                 <span>{!! $errors->first('street_and_number_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
@@ -313,7 +313,7 @@
         <div class="right_div">
 
             <div class="input_all_div">
-                <label>{!! Form::label('postal_code_joint',trans('cms::cms.postal_code_joint').' *'  , ['class' => 'control-label']) !!}</label>
+                <label>{!! Form::label('postal_code_joint',trans('cms::cms.postal_code_joint') , ['class' => 'control-label']) !!}</label>
                 {!! Form::text('postal_code_joint', null, ['class' => '','placeholder'=>trans('cms::cms.postal_code_joint'),'required'=>'required']) !!}
                 <span>{!! $errors->first('postal_code_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
@@ -322,7 +322,7 @@
 
         <div class="left_div">
             <div class="input_all_div">
-                <label>{!! Form::label('city_joint',  trans('cms::cms.city_joint').' *'  , ['class' => 'control-label']) !!}</label>
+                <label>{!! Form::label('city_joint',  trans('cms::cms.city_joint')  , ['class' => 'control-label']) !!}</label>
                 {!! Form::text('city_joint', null, ['class' => '','placeholder'=>trans('cms::cms.city_joint'),'required'=>'required']) !!}
                 <span>{!! $errors->first('city_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
@@ -399,7 +399,7 @@
 
         <div class="left_div">
             <div class="input_all_div">
-                <label>{!! Form::label('main_phone_joint',  trans('cms::cms.main_phone_joint').' *'  , ['class' => 'control-label']) !!}</label>
+                <label>{!! Form::label('main_phone_joint',  trans('cms::cms.main_phone_joint')  , ['class' => 'control-label']) !!}</label>
 
                 <div class="intl-tel-input">
                     <input type="tel" name="main_phone_joint" class="form-control" required="required">
@@ -408,13 +408,13 @@
             </div>
 
             <div class="input_all_div">
-                <label>{!! Form::label('primary_email_joint',  trans('cms::cms.primary_email_joint').' *'  , ['class' => 'control-label']) !!}</label>
+                <label>{!! Form::label('primary_email_joint',  trans('cms::cms.primary_email_joint')  , ['class' => 'control-label']) !!}</label>
                 {!! Form::text('primary_email_joint', null, ['class' => '','placeholder'=>trans('cms::cms.primary_email_joint'),'required'=>'required']) !!}
                 <span>{!! $errors->first('primary_email_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
 
             <div class="input_all_div">
-                <label>{!! Form::label('fax_joint',  trans('cms::cms.fax_joint').' *'  , ['class' => 'control-label']) !!}</label>
+                <label>{!! Form::label('fax_joint',  trans('cms::cms.fax_joint') , ['class' => 'control-label']) !!}</label>
                 <div class="intl-tel-input">
                     <input type="tel" name="fax_joint" class="form-control" required="required">
                 </div>
@@ -553,7 +553,7 @@
 
     <div class="left_div">
         <div class="input_all_div">
-            <label>{!! Form::label('source_funds_deposited',trans('cms::cms.source_funds_deposited')  , ['class' => 'control-label']) !!}</label>
+            <label>{!! Form::label('source_funds_deposited',trans('cms::cms.source_funds_deposited').' *'  , ['class' => 'control-label']) !!}</label>
             {!! Form::select('source_funds_deposited',$arrays['source_funds_deposited'], 'Employment inheritance investment', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
             <span>{!! $errors->first('source_funds_deposited', '<p class="help-block">:message</p>') !!}</span>
         </div>
@@ -562,7 +562,7 @@
     </div>
     <div class="right_div">
         <div class="input_all_div">
-            <label>{!! Form::label('other_source_funds_deposited',trans('cms::cms.other_source_funds_deposited')  , ['class' => 'control-label']) !!}</label>
+            <label>{!! Form::label('other_source_funds_deposited',trans('cms::cms.other_source_funds_deposited').' *'  , ['class' => 'control-label']) !!}</label>
             {!! Form::text('other_source_funds_deposited', null, ['class' => '','placeholder'=>trans('cms::cms.other_source_funds_deposited')]) !!}
             <span>{!! $errors->first('other_source_funds_deposited', '<p class="help-block">:message</p>') !!}</span>
         </div>
@@ -586,7 +586,7 @@
         </div>
         <div class="right_div">
             <div class="input_all_div">
-                <label>{!! Form::label('other_source_funds_deposited_joint',trans('cms::cms.other_source_funds_deposited_joint')  , ['class' => 'control-label']) !!}</label>
+                <label>{!! Form::label('other_source_funds_deposited_joint',trans('cms::cms.other_source_funds_deposited_joint').' *'  , ['class' => 'control-label']) !!}</label>
                 {!! Form::text('other_source_funds_deposited_joint', null, ['class' => '','placeholder'=>trans('cms::cms.other_source_funds_deposited_joint')]) !!}
                 <span>{!! $errors->first('other_source_funds_deposited_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
@@ -1227,7 +1227,7 @@
         {{trans('cms::cms.Statement')}}.
         <div class="full_width_div">
             <div class="input_all_div">
-                <label class="required">{{ trans('cms::cms.understand_risks') }}</label><br>
+                <label class="required">{{ trans('cms::cms.understand_risks').' *'  }}</label><br>
                 {!! Form::radio('understand_risks_joint',0, false, ['class' => '','id'=>'understand_risks_joint_0']) !!}
                 <label for="understand_risks_joint_0">{{ trans('cms::cms.yes') }}</label>
 
