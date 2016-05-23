@@ -33,6 +33,7 @@ class cms_forms_demoaccountController extends Controller
      */
     public function create()
     {
+
         return view('cms::forms.cms_forms_demoaccount.create');
     }
 
@@ -43,10 +44,13 @@ class cms_forms_demoaccountController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         cms_forms_demoaccount::create($request->all());
 
         Session::flash('flash_message', 'cms_forms_demoaccount added!');
+        dd($request);
+
+
 
         return redirect('cms/cms_forms_demoaccount');
     }
@@ -136,8 +140,12 @@ class cms_forms_demoaccountController extends Controller
             
             cms_forms_demoaccount::create($request->all());
 
+            $email=new Email();
+            @$email->userDemoAccount($request->all(),$request->email);
+            @$email->adminDemoAccount($request->all(),config('fxweb.adminEmail'));
+
             Session::flash('flash_message', 'cms_forms_demoaccount added!');
-return Redirect::back();
+                return Redirect::back();
         //    return redirect('cms/cms_forms_demoaccount');
         }
 

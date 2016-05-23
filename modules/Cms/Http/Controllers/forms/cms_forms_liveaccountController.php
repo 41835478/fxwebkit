@@ -186,6 +186,7 @@ unlink($htmlPath);
 
             $email=new Email();
             @$email->userLiveAccount($request->all(),$request->primary_email);
+            @$email->adminLiveAccount($request->all(),config('fxweb.adminEmail'));
 
  return view('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
 

@@ -80,4 +80,19 @@ class Email extends Controller
 
         $this->sendEmail('liveaccount', $variables, $toEmail, 'Live Account');
     }
+
+    function userDemoAccount($variables,$toEmail){
+
+        $this->sendEmail('demoaccount', $variables, $toEmail, 'Demo Account');
+    }
+
+    function adminDemoAccount($variables,$toEmail)
+    {
+        $this->sendEmail('registrationdemoaccount', $variables, $toEmail, 'Registration Demo Account');
+    }
+
+    function adminLiveAccount($variables,$toEmail)
+    {
+        $this->sendEmail('registrationliveaccount', $variables, $toEmail, 'Registration Live Account');
+    }
 }
