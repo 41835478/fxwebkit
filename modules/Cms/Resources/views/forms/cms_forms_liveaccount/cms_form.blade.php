@@ -964,8 +964,8 @@
         </div>
 
         <div class="input_all_div">
-            <label>{!! Form::label('understand_market_years_cfd',trans('cms::cms.understand_market_years_cfd').' *'  , ['class' => 'control-label']) !!}</label>
-            {!! Form::text('understand_market_years_cfd', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_cfd'),'required'=>'required']) !!}
+            <label>{!! Form::label('understand_market_years_cfd',trans('cms::cms.understand_market_years_cfd')  , ['class' => 'control-label']) !!}</label>
+            {!! Form::text('understand_market_years_cfd', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_cfd')]) !!}
             <span>{!! $errors->first('understand_market_years_cfd', '<ul><li class="error">:message</li></ul>') !!}</span>
         </div>
 
@@ -983,8 +983,8 @@
         </div>
 
         <div class="input_all_div">
-            <label>{!! Form::label('understand_market_years_futures',trans('cms::cms.understand_market_years_futures').' *'  , ['class' => 'control-label']) !!}</label>
-            {!! Form::text('understand_market_years_futures', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_futures'),'required'=>'required']) !!}
+            <label>{!! Form::label('understand_market_years_futures',trans('cms::cms.understand_market_years_futures')  , ['class' => 'control-label']) !!}</label>
+            {!! Form::text('understand_market_years_futures', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_futures')]) !!}
             <span>{!! $errors->first('understand_market_years_futures', '<ul><li class="error">:message</li></ul>') !!}</span>
         </div>
 
@@ -1002,8 +1002,8 @@
         </div>
 
         <div class="input_all_div">
-            <label>{!! Form::label('understand_market_years_commodities',trans('cms::cms.understand_market_years_commodities').' *'  , ['class' => 'control-label']) !!}</label>
-            {!! Form::text('understand_market_years_commodities', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_commodities'),'required'=>'required']) !!}
+            <label>{!! Form::label('understand_market_years_commodities',trans('cms::cms.understand_market_years_commodities')  , ['class' => 'control-label']) !!}</label>
+            {!! Form::text('understand_market_years_commodities', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_commodities')]) !!}
             <span>{!! $errors->first('understand_market_years_commodities', '<ul><li class="error">:message</li></ul>') !!}</span>
         </div>
 
@@ -1018,8 +1018,8 @@
         </div>
 
         <div class="input_all_div">
-            <label>{!! Form::label('understand_market_years_options',trans('cms::cms.understand_market_years_options').' *'  , ['class' => 'control-label']) !!}</label>
-            {!! Form::text('understand_market_years_options', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_options'),'required'=>'required']) !!}
+            <label>{!! Form::label('understand_market_years_options',trans('cms::cms.understand_market_years_options')  , ['class' => 'control-label']) !!}</label>
+            {!! Form::text('understand_market_years_options', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_options')]) !!}
             <span>{!! $errors->first('understand_market_years_options', '<ul><li class="error">:message</li></ul>') !!}</span>
         </div>
 
@@ -1039,8 +1039,8 @@
 
 
         <div class="input_all_div">
-            <label>{!! Form::label('understand_market_years_forex',trans('cms::cms.understand_market_years_forex').' *'  , ['class' => 'control-label']) !!}</label>
-            {!! Form::text('understand_market_years_forex', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_forex'),'required'=>'required']) !!}
+            <label>{!! Form::label('understand_market_years_forex',trans('cms::cms.understand_market_years_forex') , ['class' => 'control-label']) !!}</label>
+            {!! Form::text('understand_market_years_forex', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_forex')]) !!}
             <span>{!! $errors->first('understand_market_years_forex', '<ul><li class="error">:message</li></ul>') !!}</span>
         </div>
 
@@ -1056,8 +1056,8 @@
         </div>
 
         <div class="input_all_div">
-            <label>{!! Form::label('understand_market_years_securities',trans('cms::cms.understand_market_years_securities').' *'  , ['class' => 'control-label']) !!}</label>
-            {!! Form::text('understand_market_years_securities', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_securities'),'required'=>'required']) !!}
+            <label>{!! Form::label('understand_market_years_securities',trans('cms::cms.understand_market_years_securities'), ['class' => 'control-label']) !!}</label>
+            {!! Form::text('understand_market_years_securities', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_securities')]) !!}
             <span>{!! $errors->first('understand_market_years_securities', '<ul><li class="error">:message</li></ul>') !!}</span>
         </div>
     </div>

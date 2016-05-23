@@ -63,7 +63,7 @@ return [
 
     'key' => 'fgh',
 
-    'value' => 'fgh','GroupLive'=>[],'GroupDemo'=>['dfg'=>'ger','mohammd '=>'hashim','sdf'=>'sdfsd','1'=>'2','44'=>'44','demo'=>'demo','gggg'=>'gggggg',],'DepositLive'=>[],'DepositDemo'=>['1000'=>'1000','5000'=>'5000','10000'=>'10000','100000'=>'100000','25'=>'3000','30'=>'60','3'=>'2','ggggggg'=>'ggggggg',],'leverage'=>['50'=>'1:500','100'=>'1:100','150'=>'1:150','123'=>'000',],'leverageDemo'=>['50'=>'1:500','100'=>'1:1000','150'=>'1:1500','aaaa'=>'aaaa',],
+    'value' => 'fgh','GroupLive'=>['1'=>'100','2'=>'300',],'GroupDemo'=>['1'=>'100',],'DepositLive'=>['1'=>'100',],'DepositDemo'=>['1'=>'100',],'leverage'=>['1'=>'1:300',],'leverageDemo'=>['1'=>'1:150',],
 
     'theme' => [
         'color' => env('THEME_COLOR', 'default'),
