@@ -397,7 +397,11 @@ public function addErrorMessage(&$errors,$key,$value){
             if (is_numeric($average_trading_cfd)) {
                  $this->addErrorMessage($errors,'average_trading_cfd', 'Required Field');
             }
-        }
+        }else if( ==0){
+        $this->addErrorMessage($errors,'', 'Required Field');
+
+    }
+
 
 
 
