@@ -359,7 +359,8 @@
 
         <div class="input_all_div">
             <label>{!! Form::label('primary_email',  trans('cms::cms.primary_email').' *'  , ['class' => 'control-label']) !!}</label>
-            {!! Form::text('primary_email', null, ['class' => '','placeholder'=>trans('cms::cms.primary_email'),'required'=>'required']) !!}
+
+            <input type="email" name="primary_email" placeholder="{{trans('cms::cms.primary_email')}}" required="required" class="form-control">
             <span>{!! $errors->first('primary_email', '<p class="help-block">:message</p>') !!}</span>
         </div>
 
