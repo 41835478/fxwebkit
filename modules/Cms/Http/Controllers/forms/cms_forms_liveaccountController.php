@@ -162,7 +162,10 @@ class cms_forms_liveaccountController extends Controller
          */
         public function cms_store(Request $request)
         {
-            dd($this->validateFrequencyFields($request));
+            $errors=$this->validateFrequencyFields($request);
+            if(!empty($errors)){
+                return Redirect::back()->withErrors($errors);
+            }
 
             $date_of_birth=$request->date_of_birth_d.'/'.$request->date_of_birth_m.'/'.$request->date_of_birth_y;
             $date_of_birth_joint=$request->date_of_birth_joint_d.'/'.$request->date_of_birth_joint_m.'/'.$request->date_of_birth_joint_y;
@@ -216,15 +219,19 @@ public function addErrorMessage(&$errors,$key,$value){
             $average_trading_cfd_joint = $request->average_trading_cfd_joint;
             if (!is_numeric($number_of_years_cfd_joint)) {
                  $this->addErrorMessage($errors,'number_of_years_cfd_joint', 'Required Field');
-            } else if ($number_of_years_cfd_joint != 0) {
-                if (!is_numeric($number_of_transactions_cfd_joint)) {
+            } else if ($number_of_years_cfd_joint != 'None') {
+                if (is_numeric($number_of_transactions_cfd_joint)) {
                      $this->addErrorMessage($errors,'number_of_transactions_cfd_joint', 'Required Field');
                 }
 
-                if (!is_numeric($average_trading_cfd_joint)) {
+                if (is_numeric($average_trading_cfd_joint)) {
                      $this->addErrorMessage($errors,'average_trading_cfd_joint', 'Required Field');
                 }
+            }else if( $number_of_years_cfd_joint==0){
+                $this->addErrorMessage($errors,'number_of_years_cfd_joint', 'Required Field');
+
             }
+
 
 
 
@@ -233,15 +240,19 @@ public function addErrorMessage(&$errors,$key,$value){
             $average_trading_commodities_joint = $request->average_trading_commodities_joint;
             if (!is_numeric($number_of_years_commodities_joint)) {
                  $this->addErrorMessage($errors,'number_of_years_commodities_joint', 'Required Field');
-            } else if ($number_of_years_commodities_joint != 0) {
-                if (!is_numeric($number_of_transactions_commodities_joint)) {
+            } else if ($number_of_years_commodities_joint!= 'None') {
+                if (is_numeric($number_of_transactions_commodities_joint)) {
                      $this->addErrorMessage($errors,'number_of_transactions_commodities_joint', 'Required Field');
                 }
 
-                if (!is_numeric($average_trading_commodities_joint)) {
+                if (is_numeric($average_trading_commodities_joint)) {
                      $this->addErrorMessage($errors,'average_trading_commodities_joint', 'Required Field');
                 }
+            }else if( $number_of_years_commodities_joint==0){
+                $this->addErrorMessage($errors,'number_of_years_commodities_joint', 'Required Field');
+
             }
+
 
 
 
@@ -251,64 +262,73 @@ public function addErrorMessage(&$errors,$key,$value){
 
             if (!is_numeric($number_of_years_forex_joint)) {
                  $this->addErrorMessage($errors,'number_of_years_forex_joint', 'Required Field');
-            } else if ($number_of_years_forex_joint != 0) {
-                if (!is_numeric($number_of_transactions_forex_joint)) {
+            } else if ($number_of_years_forex_joint != 'None') {
+                if (is_numeric($number_of_transactions_forex_joint)) {
                      $this->addErrorMessage($errors,'number_of_transactions_forex_joint', 'Required Field');
                 }
 
-                if (!is_numeric($average_trading_forex_joint)) {
+                if (is_numeric($average_trading_forex_joint)) {
                      $this->addErrorMessage($errors,'average_trading_forex_joint', 'Required Field');
                 }
+            }else if( $number_of_years_forex_joint==0){
+                $this->addErrorMessage($errors,'number_of_years_forex_joint', 'Required Field');
+
             }
+
 
 
 
             $number_of_years_futures_joint = $request->number_of_years_futures_joint;
             $number_of_transactions_futures_joint = $request->number_of_transactions_futures_joint;
             $average_trading_futures_joint = $request->average_trading_futures_joint;
-            if (!is_numeric($number_of_years_futures_joint)) {
-                 $this->addErrorMessage($errors,'number_of_years_futures_joint', 'Required Field');
-            } else if ($number_of_years_futures_joint != 0) {
-                if (!is_numeric($number_of_transactions_futures_joint)) {
+            if ($number_of_years_futures_joint != 'None') {
+                if (is_numeric($number_of_transactions_futures_joint)) {
                      $this->addErrorMessage($errors,'number_of_transactions_futures_joint', 'Required Field');
                 }
 
-                if (!is_numeric($average_trading_futures_joint)) {
+                if (is_numeric($average_trading_futures_joint)) {
                      $this->addErrorMessage($errors,'average_trading_futures_joint', 'Required Field');
                 }
+            }else if( $number_of_years_forex_joint==0){
+                $this->addErrorMessage($errors,'number_of_years_forex_joint', 'Required Field');
+
             }
+
 
 
             $number_of_years_options_joint = $request->number_of_years_options_joint;
             $number_of_transactions_options_joint = $request->number_of_transactions_options_joint;
             $average_trading_options_joint = $request->average_trading_options_joint;
 
-            if (!is_numeric($number_of_years_options_joint)) {
-                 $this->addErrorMessage($errors,'number_of_years_options_joint', 'Required Field');
-            } else if ($number_of_years_options_joint != 0) {
-                if (!is_numeric($number_of_transactions_options_joint)) {
+         if ($number_of_years_options_joint != 'None') {
+                if (is_numeric($number_of_transactions_options_joint)) {
                      $this->addErrorMessage($errors,'number_of_transactions_options_joint', 'Required Field');
                 }
 
-                if (!is_numeric($average_trading_options_joint)) {
+                if (is_numeric($average_trading_options_joint)) {
                      $this->addErrorMessage($errors,'average_trading_options_joint', 'Required Field');
                 }
+            }else if( $number_of_years_options_joint==0){
+                $this->addErrorMessage($errors,'number_of_years_options_joint', 'Required Field');
+
             }
+
 
 
             $number_of_years_securities_joint = $request->number_of_years_securities_joint;
             $number_of_transactions_securities_joint = $request->number_of_transactions_securities_joint;
             $average_trading_securities_joint = $request->average_trading_securities_joint;
-            if (!is_numeric($number_of_years_securities_joint)) {
-                 $this->addErrorMessage($errors,'number_of_years_securities_joint', 'Required Field');
-            } else if ($number_of_years_securities_joint != 0) {
-                if (!is_numeric($number_of_transactions_securities_joint)) {
+            if ($number_of_years_securities_joint != 'None') {
+                if (is_numeric($number_of_transactions_securities_joint)) {
                      $this->addErrorMessage($errors,'number_of_transactions_securities_joint', 'Required Field');
                 }
 
-                if (!is_numeric($average_trading_securities_joint)) {
+                if (is_numeric($average_trading_securities_joint)) {
                      $this->addErrorMessage($errors,'average_trading_securities_joint', 'Required Field');
                 }
+            }else if( $number_of_years_securities_joint==0){
+                $this->addErrorMessage($errors,'number_of_years_securities_joint', 'Required Field');
+
             }
 
 
@@ -365,91 +385,110 @@ public function addErrorMessage(&$errors,$key,$value){
              $this->addErrorMessage($errors,'other_source_funds_deposited', 'Required Field');
         }
 
-
         $number_of_years_cfd = $request->number_of_years_cfd;
         $number_of_transactions_cfd = $request->number_of_transactions_cfd;
         $average_trading_cfd = $request->average_trading_cfd;
-        if ($number_of_years_cfd != 0) {
-            if (!is_numeric($number_of_transactions_cfd)) {
+
+        if ($number_of_years_cfd != 'None') {//dd(is_numeric($number_of_transactions_cfd));
+            if (is_numeric($number_of_transactions_cfd)) {
                  $this->addErrorMessage($errors,'number_of_transactions_cfd', 'Required Field');
             }
 
-            if (!is_numeric($average_trading_cfd)) {
+            if (is_numeric($average_trading_cfd)) {
                  $this->addErrorMessage($errors,'average_trading_cfd', 'Required Field');
             }
         }
 
 
 
-
         $number_of_years_commodities = $request->number_of_years_commodities;
         $number_of_transactions_commodities = $request->number_of_transactions_commodities;
         $average_trading_commodities = $request->average_trading_commodities;
-        if ($number_of_years_commodities != 0) {
-            if (!is_numeric($number_of_transactions_commodities)) {
+        if ($number_of_years_commodities != 'None') {
+            if (is_numeric($number_of_transactions_commodities)) {
                  $this->addErrorMessage($errors,'number_of_transactions_commodities', 'Required Field');
             }
 
-            if (!is_numeric($average_trading_commodities)) {
+            if (is_numeric($average_trading_commodities)) {
                  $this->addErrorMessage($errors,'average_trading_commodities', 'Required Field');
             }
-        }
+        }else if( ==0){
+        $this->addErrorMessage($errors,'', 'Required Field');
+
+    }
+
 
 
         $number_of_years_forex = $request->number_of_years_forex;
         $number_of_transactions_forex = $request->number_of_transactions_forex;
         $average_trading_forex = $request->average_trading_forex;
-        if ($number_of_years_forex != 0) {
-            if (!is_numeric($number_of_transactions_forex)) {
+        if ($number_of_years_forex != 'None') {
+            if (is_numeric($number_of_transactions_forex)) {
                  $this->addErrorMessage($errors,'number_of_transactions_forex', 'Required Field');
             }
 
-            if (!is_numeric($average_trading_forex)) {
+            if (is_numeric($average_trading_forex)) {
                  $this->addErrorMessage($errors,'average_trading_forex', 'Required Field');
             }
-        }
+        }else if( ==0){
+        $this->addErrorMessage($errors,'', 'Required Field');
+
+    }
+
 
 
         $number_of_years_futures = $request->number_of_years_futures;
         $number_of_transactions_futures = $request->number_of_transactions_futures;
         $average_trading_futures = $request->average_trading_futures;
-        if ($number_of_years_futures != 0) {
-            if (!is_numeric($number_of_transactions_futures)) {
+        if ($number_of_years_futures != 'None') {
+            if (is_numeric($number_of_transactions_futures)) {
                  $this->addErrorMessage($errors,'number_of_transactions_futures', 'Required Field');
             }
 
-            if (!is_numeric($average_trading_futures)) {
+            if (is_numeric($average_trading_futures)) {
                  $this->addErrorMessage($errors,'average_trading_futures', 'Required Field');
             }
-        }
+        }else if( ==0){
+        $this->addErrorMessage($errors,'', 'Required Field');
+
+    }
+
 
 
         $number_of_years_options = $request->number_of_years_options;
         $number_of_transactions_options = $request->number_of_transactions_options;
         $average_trading_options = $request->average_trading_options;
-        if ($number_of_years_options != 0) {
-            if (!is_numeric($number_of_transactions_options)) {
+        if ($number_of_years_options != 'None') {
+            if (is_numeric($number_of_transactions_options)) {
                  $this->addErrorMessage($errors,'number_of_transactions_options', 'Required Field');
             }
 
-            if (!is_numeric($average_trading_options)) {
+            if (is_numeric($average_trading_options)) {
                  $this->addErrorMessage($errors,'average_trading_options', 'Required Field');
             }
-        }
+        }else if( ==0){
+        $this->addErrorMessage($errors,'', 'Required Field');
+
+    }
+
 
 
         $number_of_years_securities = $request->number_of_years_securities;
         $number_of_transactions_securities = $request->number_of_transactions_securities;
         $average_trading_securities = $request->average_trading_securities;
-        if ($number_of_years_securities != 0) {
-            if (!is_numeric($number_of_transactions_securities)) {
+        if ($number_of_years_securities != 'None') {
+            if (is_numeric($number_of_transactions_securities)) {
                  $this->addErrorMessage($errors,'number_of_transactions_securities', 'Required Field');
             }
 
-            if (!is_numeric($average_trading_securities)) {
+            if (is_numeric($average_trading_securities)) {
                  $this->addErrorMessage($errors,'average_trading_securities', 'Required Field');
             }
-        }
+        }else if( ==0){
+        $this->addErrorMessage($errors,'', 'Required Field');
+
+    }
+
 
 
         $understand_market_cfd = $request->understand_market_cfd;
