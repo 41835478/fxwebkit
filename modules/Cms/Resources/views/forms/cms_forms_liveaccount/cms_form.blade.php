@@ -124,9 +124,12 @@
         <label>{{ trans('cms::cms.first_name').' *' }}</label>
         {!! Form::text('first_name', null, ['class' => '','placeholder'=>trans('cms::cms.first_name_joint')]) !!}
         <div class="input_all_div" id="date_of_birth_div">
+
             {!! Form::label('date_of_birth', trans('cms::cms.date_of_birth')) !!}
             <div class="clearfix">
-                {!! Form::text('date_of_birth', null, ['class' => '']) !!}
+                {!! Form::select('date_of_birth_y',$arrays['years'],1985,['style'=>'width:32%;']) !!}
+                {!! Form::select('date_of_birth_m',$arrays['months'],1,['style'=>'width:32%;']) !!}
+                {!! Form::select('date_of_birth_d',$arrays['days'],1,['style'=>'width:32%;']) !!}
             </div>
             {!! $errors->first('date_of_birth', '<p class="help-block">:message</p>') !!}
         </div>
@@ -200,7 +203,11 @@
             <div class="input_all_div" id="date_of_birth_joint_div">
                 {!! Form::label('date_of_birth_joint', trans('cms::cms.date_of_birth_joint')) !!}
                 <div class="clearfix">
-                    {!! Form::text('date_of_birth_joint', null, ['class' => '']) !!}
+
+                    {!! Form::select('date_of_birth_joint_y',$arrays['years'],1985,['style'=>'width:32%;']) !!}
+                    {!! Form::select('date_of_birth_joint_m',$arrays['months'],1,['style'=>'width:32%;']) !!}
+                    {!! Form::select('date_of_birth_joint_d',$arrays['days'],1,['style'=>'width:32%;']) !!}
+
                 </div>
                 {!! $errors->first('date_of_birth_joint', '<p class="help-block">:message</p>') !!}
             </div>
@@ -927,13 +934,13 @@
     <div class="clearfix"></div>
     <h4>I. {{trans('cms::cms.UNDERSTANDING OF THE MARKETS')}}</h4>
 
-    <div class="col-sm-4">
+    <div class="col-sm-4 understandRadio">
         <div class="input_all_div">
             <label class="required">{{ trans('cms::cms.Understand market cfd').' *'  }}</label><br>
-            {!! Form::radio('understand_market_cfd',0, false, ['class' => '','id'=>'understand_market_cfd_0','required'=>'required']) !!}
+            {!! Form::radio('understand_market_cfd',1, false, ['class' => '','id'=>'understand_market_cfd_0','required'=>'required']) !!}
             <label for="understand_market_cfd_0">{{ trans('cms::cms.yes') }}</label>
 
-            {!! Form::radio('understand_market_cfd',1, false, ['class' => '','id'=>'understand_market_cfd_1','required'=>'required']) !!}
+            {!! Form::radio('understand_market_cfd',0, false, ['class' => '','id'=>'understand_market_cfd_1','required'=>'required']) !!}
             <label for="understand_market_cfd_1">{{ trans('cms::cms.no') }}</label>
             <span>{!! $errors->first('understand_market_cfd', '<p class="help-block">:message</p>') !!}</span>
         </div>
@@ -949,10 +956,10 @@
 
         <div class="input_all_div">
             <label class="required">{{ trans('cms::cms.Understand market futures').' *'  }}</label><br>
-            {!! Form::radio('understand_market_futures',0, false, ['class' => '','id'=>'understand_market_futures_0','required'=>'required']) !!}
+            {!! Form::radio('understand_market_futures',1, false, ['class' => '','id'=>'understand_market_futures_0','required'=>'required']) !!}
             <label for="understand_market_futures_0">{{ trans('cms::cms.yes') }}</label>
 
-            {!! Form::radio('understand_market_futures',1, false, ['class' => '','id'=>'understand_market_futures_1','required'=>'required']) !!}
+            {!! Form::radio('understand_market_futures',0, false, ['class' => '','id'=>'understand_market_futures_1','required'=>'required']) !!}
             <label for="understand_market_futures_1">{{ trans('cms::cms.no') }}</label>
             <span>{!! $errors->first('understand_market_futures', '<p class="help-block">:message</p>') !!}</span>
         </div>
@@ -965,13 +972,13 @@
 
     </div>
 
-    <div class="col-sm-4">
-        <div class="input_all_div">
+    <div class="col-sm-4 understandRadio">
+        <div class="input_all_div ">
             <label class="required">{{ trans('cms::cms.Understand market commodities').' *' }}</label><br>
-            {!! Form::radio('understand_market_commodities',0, false, ['class' => '','id'=>'understand_market_commodities_0','required'=>'required']) !!}
+            {!! Form::radio('understand_market_commodities',1, false, ['class' => '','id'=>'understand_market_commodities_0','required'=>'required']) !!}
             <label for="understand_market_commodities_0">{{ trans('cms::cms.yes') }}</label>
 
-            {!! Form::radio('understand_market_commodities',1, false, ['class' => '','id'=>'understand_market_commodities_1','required'=>'required']) !!}
+            {!! Form::radio('understand_market_commodities',0, false, ['class' => '','id'=>'understand_market_commodities_1','required'=>'required']) !!}
             <label for="understand_market_commodities_1">{{ trans('cms::cms.no') }}</label>
             <span>{!! $errors->first('understand_market_commodities', '<p class="help-block">:message</p>') !!}</span>
         </div>
@@ -984,10 +991,10 @@
 
         <div class="input_all_div">
             <label class="required">{{ trans('cms::cms.Understand market options').' *'  }}</label><br>
-            {!! Form::radio('understand_market_options',0, false, ['class' => '','id'=>'understand_market_options_0','required'=>'required']) !!}
+            {!! Form::radio('understand_market_options',1, false, ['class' => '','id'=>'understand_market_options_0','required'=>'required']) !!}
             <label for="understand_market_options_0">{{ trans('cms::cms.yes') }}</label>
 
-            {!! Form::radio('understand_market_options',1, false, ['class' => '','id'=>'understand_market_options_1','required'=>'required']) !!}
+            {!! Form::radio('understand_market_options',0, false, ['class' => '','id'=>'understand_market_options_1','required'=>'required']) !!}
             <label for="understand_market_options_1">{{ trans('cms::cms.no') }}</label>
             <span>{!! $errors->first('understand_market_options', '<p class="help-block">:message</p>') !!}</span>
         </div>
@@ -1000,14 +1007,14 @@
 
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-sm-4 understandRadio">
 
         <div class="input_all_div">
             <label class="required">{{ trans('cms::cms.Understand market forex').' *'  }}</label><br>
-            {!! Form::radio('understand_market_forex',0, false, ['class' => '','id'=>'understand_market_forex_0','required'=>'required']) !!}
+            {!! Form::radio('understand_market_forex',1, false, ['class' => '','id'=>'understand_market_forex_0','required'=>'required']) !!}
             <label for="understand_market_forex_0">{{ trans('cms::cms.yes') }}</label>
 
-            {!! Form::radio('understand_market_forex',1, false, ['class' => '','id'=>'understand_market_forex_1','required'=>'required']) !!}
+            {!! Form::radio('understand_market_forex',0, false, ['class' => '','id'=>'understand_market_forex_1','required'=>'required']) !!}
             <label for="understand_market_forex_1">{{ trans('cms::cms.no') }}</label>
             <span>{!! $errors->first('understand_market_forex', '<p class="help-block">:message</p>') !!}</span>
         </div>
@@ -1022,10 +1029,10 @@
 
         <div class="input_all_div">
             <label class="required">{{ trans('cms::cms.Understand market securities').' *'  }}</label><br>
-            {!! Form::radio('understand_market_securities',0, false, ['class' => '','id'=>'understand_market_securities_0','required'=>'required']) !!}
+            {!! Form::radio('understand_market_securities',1, false, ['class' => '','id'=>'understand_market_securities_0','required'=>'required']) !!}
             <label for="understand_market_securities_0">{{ trans('cms::cms.yes') }}</label>
 
-            {!! Form::radio('understand_market_securities',1, false, ['class' => '','id'=>'understand_market_securities_1','required'=>'required']) !!}
+            {!! Form::radio('understand_market_securities',0, false, ['class' => '','id'=>'understand_market_securities_1','required'=>'required']) !!}
             <label for="understand_market_securities_1">{{ trans('cms::cms.no') }}</label>
             <span>{!! $errors->first('understand_market_securities', '<p class="help-block">:message</p>') !!}</span>
         </div>
@@ -1037,7 +1044,7 @@
         </div>
     </div>
 
-    <div class="joint_div" id="i_joint">
+    <div class="joint_div understandRadio" id="i_joint">
 
         <div class="clearfix"></div>
         <h4>I. {{trans('cms::cms.UNDERSTANDING OF THE MARKETS (for Joint Account)')}}</h4>
@@ -1045,10 +1052,10 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label class="required">{{ trans('cms::cms.Understand market cfd') }}</label><br>
-                {!! Form::radio('understand_market_cfd_joint',0, false, ['class' => '','id'=>'understand_market_cfd_joint_0']) !!}
+                {!! Form::radio('understand_market_cfd_joint',1, false, ['class' => '','id'=>'understand_market_cfd_joint_0']) !!}
                 <label for="understand_market_cfd_joint_0">{{ trans('cms::cms.yes') }}</label>
 
-                {!! Form::radio('understand_market_cfd_joint',1, false, ['class' => '','id'=>'understand_market_cfd_joint_1']) !!}
+                {!! Form::radio('understand_market_cfd_joint',0, false, ['class' => '','id'=>'understand_market_cfd_joint_1']) !!}
                 <label for="understand_market_cfd_joint_1">{{ trans('cms::cms.no') }}</label>
                 <span>{!! $errors->first('understand_market_joint_cfd', '<p class="help-block">:message</p>') !!}</span>
             </div>
@@ -1061,10 +1068,10 @@
 
             <div class="input_all_div">
                 <label class="required">{{ trans('cms::cms.Understand market futures')}}</label><br>
-                {!! Form::radio('understand_market_futures_joint',0, false, ['class' => '','id'=>'understand_market_futures_joint_0']) !!}
+                {!! Form::radio('understand_market_futures_joint',1, false, ['class' => '','id'=>'understand_market_futures_joint_0']) !!}
                 <label for="understand_market_futures_joint_0">{{ trans('cms::cms.yes') }}</label>
 
-                {!! Form::radio('understand_market_futures_joint',1, false, ['class' => '','id'=>'understand_market_futures_joint_1']) !!}
+                {!! Form::radio('understand_market_futures_joint',0, false, ['class' => '','id'=>'understand_market_futures_joint_1']) !!}
                 <label for="understand_market_futures_joint_1">{{ trans('cms::cms.no') }}</label>
                 <span>{!! $errors->first('understand_market_futures_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
@@ -1078,12 +1085,12 @@
 
         <div class="col-sm-4">
 
-            <div class="input_all_div">
+            <div class="input_all_div ">
                 <label class="required">{{ trans('cms::cms.Understand market commodities') }}</label><br>
-                {!! Form::radio('understand_market_commodities_joint',0, false, ['class' => '','id'=>'understand_market_commodities_joint_0']) !!}
+                {!! Form::radio('understand_market_commodities_joint',1, false, ['class' => '','id'=>'understand_market_commodities_joint_0']) !!}
                 <label for="understand_market_commodities_joint_0">{{ trans('cms::cms.yes') }}</label>
 
-                {!! Form::radio('understand_market_commodities_joint',1, false, ['class' => '','id'=>'understand_market_commodities_joint_1']) !!}
+                {!! Form::radio('understand_market_commodities_joint',0, false, ['class' => '','id'=>'understand_market_commodities_joint_1']) !!}
                 <label for="understand_market_commodities_joint_1">{{ trans('cms::cms.no') }}</label>
                 <span>{!! $errors->first('understand_market_commodities_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
@@ -1096,10 +1103,10 @@
 
             <div class="input_all_div">
                 <label class="required">{{ trans('cms::cms.Understand market options') }}</label><br>
-                {!! Form::radio('understand_market_options_joint',0, false, ['class' => '','id'=>'understand_market_options_joint_0']) !!}
+                {!! Form::radio('understand_market_options_joint',1, false, ['class' => '','id'=>'understand_market_options_joint_0']) !!}
                 <label for="understand_market_options_joint_0">{{ trans('cms::cms.yes') }}</label>
 
-                {!! Form::radio('understand_market_options_joint',1, false, ['class' => '','id'=>'understand_market_options_joint_1']) !!}
+                {!! Form::radio('understand_market_options_joint',0, false, ['class' => '','id'=>'understand_market_options_joint_1']) !!}
                 <label for="understand_market_options_joint_1">{{ trans('cms::cms.no') }}</label>
                 <span>{!! $errors->first('understand_market_options_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
@@ -1116,10 +1123,10 @@
 
             <div class="input_all_div">
                 <label class="required">{{ trans('cms::cms.Understand market forex') }}</label><br>
-                {!! Form::radio('understand_market_forex_joint',0, false, ['class' => '','id'=>'understand_market_forex_joint_0']) !!}
+                {!! Form::radio('understand_market_forex_joint',1, false, ['class' => '','id'=>'understand_market_forex_joint_0']) !!}
                 <label for="understand_market_forex_joint_0">{{ trans('cms::cms.yes') }}</label>
 
-                {!! Form::radio('understand_market_forex_joint',1, false, ['class' => '','id'=>'understand_market_forex_joint_1']) !!}
+                {!! Form::radio('understand_market_forex_joint',0, false, ['class' => '','id'=>'understand_market_forex_joint_1']) !!}
                 <label for="understand_market_forex_joint_1">{{ trans('cms::cms.no') }}</label>
                 <span>{!! $errors->first('understand_market_forex_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
@@ -1133,10 +1140,10 @@
 
             <div class="input_all_div">
                 <label class="required">{{ trans('cms::cms.Understand market securities')}}</label><br>
-                {!! Form::radio('understand_market_securities_joint',0, false, ['class' => '','id'=>'understand_market_securities_joint_0']) !!}
+                {!! Form::radio('understand_market_securities_joint',1, false, ['class' => '','id'=>'understand_market_securities_joint_0']) !!}
                 <label for="understand_market_securities_joint_0">{{ trans('cms::cms.yes') }}</label>
 
-                {!! Form::radio('understand_market_securities_joint',1, false, ['class' => '','id'=>'understand_market_securities_joint_1']) !!}
+                {!! Form::radio('understand_market_securities_joint',0, false, ['class' => '','id'=>'understand_market_securities_joint_1']) !!}
                 <label for="understand_market_securities_joint_1">{{ trans('cms::cms.no') }}</label>
                 <span>{!! $errors->first('understand_market_securities_joint', '<p class="help-block">:message</p>') !!}</span>
             </div>
@@ -1360,12 +1367,12 @@
     </div>
 
     <div id="submit_bottom_buttons_div">
-        <button type="reset" class="reset form-control btn btn-grey "><i class="fa fa-refresh"></i>
-            {%trans%}Reset{%endtrans%}
+        <button type="reset" class="reset b-btn f-btn b-btn-default b-btn-md f-primary-b"><i class="fa fa-refresh"></i>
+            Reset
         </button>
 
-        <button type="submit" class="next form-control btn btn-golden "
-                onclick="$(this).parents('form:first').submit();">{%trans%}Submit{%endtrans%} <i
+        <button type="submit" class="next b-btn f-btn b-btn-default b-btn-md f-primary-b"
+                onclick="/*$(this).parents('form:first').submit();*/">Submit <i
                     class="fa fa-arrow-right"></i></button>
     </div>
     <div class="clearfix"></div>
@@ -1402,46 +1409,59 @@
 
 
         $('select[name="number_of_years_cfd"],select[name="number_of_years_commodities"],select[name="number_of_years_forex"],select[name="number_of_years_futures"],select[name="number_of_years_options"],select[name="number_of_years_securities"]').change(function () {
-            //   alert($(this).val());
-            if ($(this).val() == 0) {
-                $(this).parent().next().find('select').attr('disabled', 'disabled');
-                $(this).parent().next().next().find('select').attr('disabled', 'disabled');
-            } else {
-                $(this).parent().next().find('select').removeAttr('disabled');
-                $(this).parent().next().next().find('select').removeAttr('disabled');
-
-            }
-        });
-        if ($(this).val() == 0) {
-            $(this).parent().next().find('select').attr('disabled', 'disabled');
-            $(this).parent().next().next().find('select').attr('disabled', 'disabled');
-        } else {
-            $(this).parent().next().find('select').removeAttr('disabled');
-            $(this).parent().next().next().find('select').removeAttr('disabled');
-
-        }
 
 
-        $('select[name="number_of_years_cfd_joint"],select[name="number_of_years_commodities_joint"],select[name="number_of_years_forex_joint"],select[name="number_of_years_futures_joint"],select[name="number_of_years_options_joint"],select[name="number_of_years_securities_joint"]').change(function () {
-            if ($(this).val() == 0) {
+            if ($(this).val() == 'None') {
                 $(this).parent().parent().next().find('select').attr('disabled', 'disabled');
                 $(this).parent().parent().next().next().find('select').attr('disabled', 'disabled');
+                $(this).parent().parent().next().find('select').removeAttr('required');
+                $(this).parent().parent().next().next().find('select').removeAttr('required');
             } else {
+
                 $(this).parent().parent().next().find('select').removeAttr('disabled');
                 $(this).parent().parent().next().next().find('select').removeAttr('disabled');
 
+                $(this).parent().parent().next().find('select').attr('required', 'required');
+                $(this).parent().parent().next().next().find('select').attr('required', 'required');
+            }
+        });
+//        if ($(this).val() ==  'None') {
+//            $(this).parent().next().find('select').removeAttr('disabled');
+//            $(this).parent().next().next().find('select').removeAttr('disabled');
+//        } else {
+//
+//            $(this).parent().next().find('select').attr('disabled', 'disabled');
+//            $(this).parent().next().next().find('select').attr('disabled', 'disabled');
+//        }
+
+
+        $('select[name="number_of_years_cfd_joint"],select[name="number_of_years_commodities_joint"],select[name="number_of_years_forex_joint"],select[name="number_of_years_futures_joint"],select[name="number_of_years_options_joint"],select[name="number_of_years_securities_joint"]').change(function () {
+
+
+            if ($(this).val() == 'None') {
+                $(this).parent().parent().next().find('select').attr('disabled', 'disabled');
+                $(this).parent().parent().next().next().find('select').attr('disabled', 'disabled');
+                $(this).parent().parent().next().find('select').removeAttr('required');
+                $(this).parent().parent().next().next().find('select').removeAttr('required');
+            } else {
+
+                $(this).parent().parent().next().find('select').removeAttr('disabled');
+                $(this).parent().parent().next().next().find('select').removeAttr('disabled');
+
+                $(this).parent().parent().next().find('select').attr('required', 'required');
+                $(this).parent().parent().next().next().find('select').attr('required', 'required');
             }
         });
 
 
-        if ($(this).val() == 0) {
-            $(this).parent().parent().next().find('select').attr('disabled', 'disabled');
-            $(this).parent().parent().next().next().find('select').attr('disabled', 'disabled');
-        } else {
-            $(this).parent().parent().next().find('select').removeAttr('disabled');
-            $(this).parent().parent().next().next().find('select').removeAttr('disabled');
-
-        }
+//        if ($(this).val() ==  'None') {
+//            $(this).parent().parent().next().find('select').attr('disabled', 'disabled');
+//            $(this).parent().parent().next().next().find('select').attr('disabled', 'disabled');
+//        } else {
+//            $(this).parent().parent().next().find('select').removeAttr('disabled');
+//            $(this).parent().parent().next().next().find('select').removeAttr('disabled');
+//
+//        }
 
         $('input[name="sole_joint_account"]').change(function () {
             var radio_value = $('input[name="sole_joint_account"]:checked').val();
@@ -1478,6 +1498,18 @@
      });
      });
      */
+    $('.understandRadio input[type="radio"]').change(function(){
+        var value= $(this).parent().find('input:checked').val();
+        var inputYearNode=$(this).parent().next().find('input');
+
+        if(value==0){
+
+            inputYearNode.removeAttr('required');
+        }else{
+
+            inputYearNode.attr('required','true');
+        }
+    });
 </script>
 
 

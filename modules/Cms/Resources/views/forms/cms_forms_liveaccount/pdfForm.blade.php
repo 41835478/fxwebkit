@@ -33,7 +33,7 @@
             width: 837px;
             height: 1305px;
             margin: 0 auto 10px;
-            background: transparent url('{{'http://'.Request::getHost()}}/cms_assets/houseofborse/images/pdf_page.png') no-repeat 0 0;
+            background: transparent url('../{{Config::get('cms.asset_folder')}}houseofborse/images/pdf_page.png') no-repeat 0 0;
             position: relative;
             padding: 240px 70px 100px 60px;
         }
@@ -500,7 +500,7 @@
 <div class="col-box margin-bottom-10">
 <div class="col-33">
 <p>Date of Birth (DD/MM/YYYY)</p>
-<div class="rectangle padding-10">{{$var->date_of_birth|date('Y-m-d')}}</div>
+<div class="rectangle padding-10">{{$var->date_of_birth}}</div>
 </div><!--.col-33-->
 <div class="col-33">
 <p>Nationality</p>
@@ -1300,7 +1300,7 @@ Attn.: Client Onboarding
 <p><strong>Last Name(s)</strong></p>
 <div class="rectangle padding-10">{{$var->last_name_joint}}</div>
 <p><strong>Date of Birth (DD/MM/YYYY)</strong></p>
-<div class="rectangle padding-10">{{$var->date_of_birth_joint|date('Y-m-d')}}</div>
+<div class="rectangle padding-10">{{$var->date_of_birth_joint}}</div>
 </div><!--.col-50-->
 
 <div class="col-50 no-padding">
