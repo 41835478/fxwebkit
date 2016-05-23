@@ -1,7 +1,23 @@
-<h1>{{ trans('cms::cms.Create New live account') }}</h1>
-<hr/>
-
-
+<div id="open-account">
+<h2>Open Real Account</h2>
+    <div id="steps-bar">
+        <ul>
+            <li class="personal active">FILL THE FORM<span class="over_step_line_text">  </span></li>
+            <li class="trading">DUE DILIGENCE<span class="over_step_line_text">   </span></li>
+            <li class="complete ">ACCOUNT ACTIVATION<span class="over_step_line_text">  ONCE APPROVED </span></li>
+            <li class="complete last">START FUNDING</li>
+        </ul>
+</div>
+@if ($errors->any())
+    <ul  >
+        @foreach ($errors->getMessages() as $field=>$error)
+            @foreach ($error as $oneError)
+            <li  class="error">{{ucfirst (str_replace('_',' ',$field)) }} : {{$oneError}}</li>
+                <li style="list-style: none;"><br></li>
+            @endforeach
+        @endforeach
+    </ul>
+@endif
     {!! Form::open(['id'=>'mainForm','route' => 'cms_forms_liveaccount.form','onSubmit'=>'if(!$("#mainForm").checkValidity()) return false;', 'class' => 'form-horizontal']) !!}
     <div class="fieldset_div">
 
@@ -1392,7 +1408,7 @@
 
     function add_joint_validation() {
         $('.joint_div input').attr('required', 'true');
-        $('.select2-input,.select2-search input,.select2-focusser,.select2-offscreen,#forex_corebundle_portalusers_secondary_phone_joint,#forex_corebundle_portalusers_secondary_email_joint,#d_joint input,#i_joint input[type="text"],#4_a_joint input,#forex_corebundle_portalusers_other_source_funds_deposited_joint').removeAttr('required');
+        $('.select2-input,.select2-search input,.select2-focusser,.select2-offscreen,input[name="secondary_phone_joint"],input[name="secondary_email_joint"],#d_joint input,#i_joint input[type="text"],#4_a_joint input,input[name="other_source_funds_deposited_joint"]').removeAttr('required');
     }
     function remove_joint_validation() {
         $('.joint_div input').removeAttr('required');
@@ -1574,11 +1590,4 @@
 </script>
 </div>
 {!! Form::close() !!}
-
-@if ($errors->any())
-    <ul class="alert alert-danger">
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-@endif
+</div>
