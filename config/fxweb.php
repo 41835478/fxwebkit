@@ -63,7 +63,7 @@ return [
 
     'key' => 'fgh',
 
-    'value' => 'fgh','GroupLive'=>['1'=>'100',],'GroupDemo'=>['1'=>'100',],'DepositLive'=>['1'=>'100',],'DepositDemo'=>['1'=>'100',],'leverage'=>['1'=>'1:300',],'leverageDemo'=>['1'=>'1:150',],
+    'value' => 'fgh','GroupLive'=>['1'=>'100','2'=>'300',],'GroupDemo'=>['1'=>'100',],'DepositLive'=>['1'=>'100',],'DepositDemo'=>['1'=>'100',],'leverage'=>['1'=>'1:300',],'leverageDemo'=>['1'=>'1:150',],
 
     'theme' => [
         'color' => env('THEME_COLOR', 'default'),
