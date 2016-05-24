@@ -150,8 +150,13 @@ class cms_forms_demoaccountController extends Controller
             @$email->userDemoAccount($request->all(),$request->email);
             @$email->adminDemoAccount($request->all(),config('fxweb.adminEmail'));
 
-            Session::flash('flash_message', 'cms_forms_demoaccount added!');
-                return Redirect::back();
+            if(isset($demoInfo['Error Message'])){
+
+                return Redirect::back()->withErrors('Error , please try again ');
+            }else{
+                Session::flash('flash_success', 'Demo Account Has been created successfully <p><b> LOGIN :</b>'.$demoInfo['login'].'</p><p><b>PASSWORD :</b>'.$demoInfo['password'].'</p>');
+            }
+                return Redirect::back()->withErrors('Error , please try again ');
         //    return redirect('cms/cms_forms_demoaccount');
         }
 

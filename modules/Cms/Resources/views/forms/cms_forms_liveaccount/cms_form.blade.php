@@ -18,6 +18,24 @@
         @endforeach
     </ul>
 @endif
+
+
+
+
+    @if (Session::get('flash_success'))
+        <div class="alert alert-success">
+            @if(is_array(json_decode(Session::get('flash_success'),true)))
+                {!! implode('', Session::get('flash_success')->all(':message<br/>')) !!}
+            @else
+                {!! Session::get('flash_success') !!}
+            @endif
+        </div>
+
+    @else
+
+
+
+
     {!! Form::open(['id'=>'mainForm','route' => 'cms_forms_liveaccount.form','onSubmit'=>'if(!$("#mainForm").checkValidity()) return false;', 'class' => 'form-horizontal']) !!}
     <div class="fieldset_div">
 
@@ -1589,4 +1607,5 @@
 </script>
 </div>
 {!! Form::close() !!}
+@endif
 </div>
