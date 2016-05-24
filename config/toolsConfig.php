@@ -9,8 +9,8 @@ return [
     'city_array' => [
         ['Local', 6, -1, 'realOffset'],
         ["Sydney Time", 22, 9, 17],
-        ["Tokyo  Time", 24, 9, 1],
-        ["London  Time", 8, 9, 4],
+        ["Tokyo  Time", 24, 9,9],
+        ["London  Time", 8, 9, 1],
         ["New York  Time", 13, 9, 1]
     ],
     'admin_menu' => [

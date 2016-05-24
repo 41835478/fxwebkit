@@ -81,6 +81,10 @@ class Email extends Controller
         $this->sendEmail('liveaccount', $variables, $toEmail, 'Live Account');
     }
 
+function sendDemoError($variables){
+
+        $this->sendEmail('dummy template', $variables,  config('fxweb.adminEmail'), 'Demo account error');
+}
     function userDemoAccount($variables,$toEmail){
 
         $this->sendEmail('demoaccount', $variables, $toEmail, 'Demo Account');

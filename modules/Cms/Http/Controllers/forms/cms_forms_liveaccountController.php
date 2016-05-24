@@ -180,6 +180,15 @@ class cms_forms_liveaccountController extends Controller
 
         $pdfPath=public_path().'/pdf/'.explode('.',basename($htmlPath))[0].'.pdf';
 
+        $protocol='http';
+        if (!empty($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1')) {
+            $protocol = 'https';
+        } else {
+            $protocol = 'http';
+        }
+       $pdf= $protocol.'://'.$request->server->get('SERVER_NAME').':'.$_SERVER['SERVER_PORT'].'/pdf/'.explode('.',basename($htmlPath))[0].'.pdf';
+        $request->merge(['pdf'=>$pdf]);
+
         exec('"'.Config('fxweb.htmlToPdfPath').'" "'.$htmlPath.'" "'.$pdfPath.'"');
         unlink($htmlPath);
         cms_forms_liveaccount::create($request->all());
@@ -190,10 +199,13 @@ class cms_forms_liveaccountController extends Controller
             @$email->adminLiveAccount($request->all(),config('fxweb.adminEmail'));
 
 
+        Session::flash('flash_success', 'Your request has been sent successfully you can check it
+        <a href="'.$pdf.'">HERE</a>
+        ');
+        return Redirect::back();
+
         return view('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
 
-        Session::flash('flash_message', 'cms_forms_liveaccount added!');
-        return Redirect::back();
         //    return redirect('cms/cms_forms_liveaccount');
     }
 
