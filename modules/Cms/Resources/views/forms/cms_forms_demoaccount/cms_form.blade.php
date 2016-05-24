@@ -16,42 +16,42 @@
 {!! Form::open(['route' => 'cms_forms_demoaccount.form','id'=>'demo_form', 'class' => 'form-horizontal']) !!}
 <div id="form-list">
     <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
-        {!! Form::label('email', trans('email'), ['class' => 'col-sm-12 ']) !!}
+        {!! Form::label('email', trans('cms::cms.email'), ['class' => 'col-sm-12 ']) !!}
         <div class="col-sm-6">
-            {!! Form::text('email', null, ['class' => 'form-control','placeholder'=>trans('email'),'required'=>'required']) !!}
+            {!! Form::text('email', null, ['class' => 'form-control','placeholder'=>trans('cms::cms.email'),'required'=>'required']) !!}
             {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
     <div class="form-group  ">
-        {!! Form::label('email', trans('confirmEmail'), ['class' => 'col-sm-12 ']) !!}
+        {!! Form::label('email', trans('cms::cms.confirmEmail'), ['class' => 'col-sm-12 ']) !!}
         <div class="col-sm-6">
-            {!! Form::text('email', null, ['class' => 'form-control','placeholder'=>trans('confirmEmail'),'required'=>'required']) !!}
+            {!! Form::text('email', null, ['class' => 'form-control','placeholder'=>trans('cms::cms.confirmEmail'),'required'=>'required']) !!}
             {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
 <div class="form-group {{ $errors->has('Firstname') ? 'has-error' : ''}}">
-    {!! Form::label('Firstname', trans('Firstname'), ['class' => 'col-sm-12 ']) !!}
+    {!! Form::label('Firstname', trans('cms::cms.first_name_joint'), ['class' => 'col-sm-12 ']) !!}
     <div class="col-sm-6">
-        {!! Form::text('Firstname', null, ['class' => 'form-control','placeholder'=>trans('Firstname'),'required'=>'required']) !!}
+        {!! Form::text('Firstname', null, ['class' => 'form-control','placeholder'=>trans('cms::cms.first_name_joint'),'required'=>'required']) !!}
         {!! $errors->first('Firstname', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 <div class="form-group {{ $errors->has('Lastname') ? 'has-error' : ''}}">
-    {!! Form::label('Lastname', trans('Lastname'), ['class' => 'col-sm-12 ']) !!}
+    {!! Form::label('Lastname', trans('cms::cms.last_name_joint'), ['class' => 'col-sm-12 ']) !!}
     <div class="col-sm-6">
-        {!! Form::text('Lastname', null, ['class' => 'form-control','placeholder'=>trans('Lastname'),'required'=>'required']) !!}
+        {!! Form::text('Lastname', null, ['class' => 'form-control','placeholder'=>trans('cms::cms.last_name_joint'),'required'=>'required']) !!}
         {!! $errors->first('Lastname', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 <div class="form-group {{ $errors->has('Mobilenumber') ? 'has-error' : ''}}">
-    {!! Form::label('Mobilenumber', trans('Mobilenumber'), ['class' => 'col-sm-12 ']) !!}
+    {!! Form::label('Mobilenumber', trans('cms::cms.Mobilenumber'), ['class' => 'col-sm-12 ']) !!}
     <div class="col-sm-6">
         {!! Form::text('Mobilenumber', null, ['class' => 'form-control' ,'id'=>'DemoType_mobile_number','required'=>'required']) !!}
         {!! $errors->first('Mobilenumber', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 <div class="form-group {{ $errors->has('Country') ? 'has-error' : ''}}">
-    {!! Form::label('Country', trans('Country'), ['class' => 'col-sm-12']) !!}
+    {!! Form::label('Country', trans('cms::cms.country'), ['class' => 'col-sm-12']) !!}
     <div class="col-sm-6">
         {!! Form::select('Country',[], null, ['class' => '','id'=>'DemoType_country']) !!}
         {!! $errors->first('Country', '<p class="help-block">:message</p>') !!}

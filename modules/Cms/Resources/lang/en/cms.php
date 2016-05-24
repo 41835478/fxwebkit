@@ -313,4 +313,9 @@
     'Understand market options'=>'Understand market options',
     'Understand market forex'=>'Understand market forex',
     'Understand market securities'=>'Understand market securities',
+    'Please_only'=>'Please only complete this section in the event you have been introduced to House of Borse by a third party. Please ensure to provide the full name of the third party introducer.',
+    'email'=>'E-mail',
+    'confirmEmail'=>'Confirm E-mail',
+    'Mobilenumber'=>'Mobile Number',
+
 ]; ?>
