@@ -80,4 +80,8 @@ class Email extends Controller
 
         $this->sendEmail('liveaccount', $variables, $toEmail, 'Live Account');
     }
+
+function sendDemoError($variables){
+    
+}
 }
