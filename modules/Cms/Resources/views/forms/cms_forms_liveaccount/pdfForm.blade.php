@@ -866,8 +866,8 @@
 <div class="col-33">
 <p><strong>Contracts for difference (CFDs)</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_cfd==0) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_cfd==1) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_cfd==1) &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_cfd==0) &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_cfd}}</div>
@@ -876,8 +876,8 @@
 <div class="col-33">
 <p><strong>Forex (Spot and Forward)</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_forex==0) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_forex==1) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_forex==1) &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_forex==0) &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_forex}}</div>
@@ -887,8 +887,8 @@
 <div class="col-33">
 <p><strong>Securities</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_securities==0) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_securities==1) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_securities==1) &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_securities==0) &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_securities}}</div>
@@ -901,8 +901,8 @@
 <p><strong>Futures</strong></p>
 
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_futures==0) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_futures==1) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_futures==1) &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_futures==0) &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_futures}}</div>
@@ -911,8 +911,8 @@
 <div class="col-33">
 <p><strong>Commodities</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_commodities==0) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_commodities==1) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_commodities==1) &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_commodities==0) &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_commodities}}</div>
@@ -921,8 +921,8 @@
 <div class="col-33">
 <p><strong>Options</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_options==0) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_options==1) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_options==1) &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_options==0) &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_options}}</div>
@@ -1602,8 +1602,8 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <div class="col-33">
 <p><strong>Contracts for difference (CFDs)</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_cfd_joint==0) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_cfd_joint==1) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_cfd_joint==1) &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_cfd_joint==0) &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_cfd_joint}}</div>
@@ -1612,8 +1612,8 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <div class="col-33">
 <p><strong>Forex (Spot or Forward)</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_joint_forex==0) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_joint_forex==1) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_joint_forex==1) &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_joint_forex==0) &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_forex_joint}}</div>
@@ -1622,8 +1622,8 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <div class="col-33">
 <p><strong>Securities</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_securities_joint==0) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_securities_joint==1) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_securities_joint==1) &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_securities_joint==0) &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_securities_joint}}</div>
@@ -1634,8 +1634,8 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <div class="col-33">
 <p><strong>Futures</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_futures_joint==0) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_futures_joint==1) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_futures_joint==1) &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_futures_joint==0) &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_futures_joint}}</div>
@@ -1644,8 +1644,8 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <div class="col-33">
 <p><strong>Commodities</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_commodities_joint==0) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_commodities_joint==1) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_commodities_joint==1) &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_commodities_joint==0) &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_commodities_joint}}</div>
@@ -1654,8 +1654,8 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <div class="col-33">
 <p><strong>Options</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_options_joint==0) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_options_joint==1) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_options_joint==1) &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_options_joint==0) &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_options_joint}}</div>

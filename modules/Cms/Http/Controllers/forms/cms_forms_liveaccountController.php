@@ -219,9 +219,7 @@ class cms_forms_liveaccountController extends Controller
             $number_of_years_cfd_joint = $request->number_of_years_cfd_joint;
             $number_of_transactions_cfd_joint = $request->number_of_transactions_cfd_joint;
             $average_trading_cfd_joint = $request->average_trading_cfd_joint;
-            if (!is_numeric($number_of_years_cfd_joint)) {
-                $this->addErrorMessage($errors,'number_of_years_cfd_joint', 'Required Field');
-            } else if ($number_of_years_cfd_joint != 'None') {
+        if ($number_of_years_cfd_joint != 'None') {
                 if (is_numeric($number_of_transactions_cfd_joint)) {
                     $this->addErrorMessage($errors,'number_of_transactions_cfd_joint', 'Required Field');
                 }
@@ -241,9 +239,8 @@ class cms_forms_liveaccountController extends Controller
             $number_of_years_commodities_joint = $request->number_of_years_commodities_joint;
             $number_of_transactions_commodities_joint = $request->number_of_transactions_commodities_joint;
             $average_trading_commodities_joint = $request->average_trading_commodities_joint;
-            if (!is_numeric($number_of_years_commodities_joint)) {
-                $this->addErrorMessage($errors,'number_of_years_commodities_joint', 'Required Field');
-            } else if ($number_of_years_commodities_joint!= 'None') {
+
+          if ($number_of_years_commodities_joint!= 'None') {
                 if (is_numeric($number_of_transactions_commodities_joint)) {
                     $this->addErrorMessage($errors,'number_of_transactions_commodities_joint', 'Required Field');
                 }
@@ -284,8 +281,11 @@ class cms_forms_liveaccountController extends Controller
             $number_of_years_futures_joint = $request->number_of_years_futures_joint;
             $number_of_transactions_futures_joint = $request->number_of_transactions_futures_joint;
             $average_trading_futures_joint = $request->average_trading_futures_joint;
+
             if ($number_of_years_futures_joint != 'None') {
+
                 if (is_numeric($number_of_transactions_futures_joint)) {
+
                     $this->addErrorMessage($errors,'number_of_transactions_futures_joint', 'Required Field');
                 }
 
@@ -293,8 +293,8 @@ class cms_forms_liveaccountController extends Controller
                     $this->addErrorMessage($errors,'average_trading_futures_joint', 'Required Field');
                 }
             }
-            if( $number_of_years_forex_joint==="0"){
-                $this->addErrorMessage($errors,'number_of_years_forex_joint', 'Required Field');
+            if( $number_of_years_futures_joint==="0"){
+                $this->addErrorMessage($errors,'number_of_years_futures_joint', 'Required Field');
 
             }
 
