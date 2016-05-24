@@ -18,14 +18,15 @@
     <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
         {!! Form::label('email', trans('email'), ['class' => 'col-sm-12 ']) !!}
         <div class="col-sm-6">
-            {!! Form::text('email', null, ['class' => 'form-control','placeholder'=>trans('email'),'required'=>'required']) !!}
+
+            <input name="email" type="email" class="form-control" required="required" placeholder="{{ trans('email')}}">
             {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
     <div class="form-group  ">
         {!! Form::label('email', trans('confirmEmail'), ['class' => 'col-sm-12 ']) !!}
         <div class="col-sm-6">
-            {!! Form::text('email', null, ['class' => 'form-control','placeholder'=>trans('confirmEmail'),'required'=>'required']) !!}
+            {!! Form::text('emailConfirm', null, ['class' => 'form-control','placeholder'=>trans('confirmEmail'),'required'=>'required']) !!}
             {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
@@ -46,14 +47,14 @@
 <div class="form-group {{ $errors->has('Mobilenumber') ? 'has-error' : ''}}">
     {!! Form::label('Mobilenumber', trans('Mobilenumber'), ['class' => 'col-sm-12 ']) !!}
     <div class="col-sm-6">
-        {!! Form::text('Mobilenumber', null, ['class' => 'form-control' ,'id'=>'DemoType_mobile_number','required'=>'required']) !!}
+        <input type="tel" name="Mobilenumber" class="form-control"required="required" id="DemoType_mobile_number">
         {!! $errors->first('Mobilenumber', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 <div class="form-group {{ $errors->has('Country') ? 'has-error' : ''}}">
     {!! Form::label('Country', trans('Country'), ['class' => 'col-sm-12']) !!}
     <div class="col-sm-6">
-        {!! Form::select('Country',[], null, ['class' => '','id'=>'DemoType_country']) !!}
+        {!! Form::select('Country',$arrays['country'], null, ['class' => '','id'=>'DemoType_country','style'=>'width:100%;']) !!}
         {!! $errors->first('Country', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

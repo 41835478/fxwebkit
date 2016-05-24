@@ -34,6 +34,7 @@ class cms_forms_demoaccountController extends Controller
      */
     public function create()
     {
+
         return view('cms::forms.cms_forms_demoaccount.create');
     }
 
@@ -44,10 +45,13 @@ class cms_forms_demoaccountController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         cms_forms_demoaccount::create($request->all());
 
         Session::flash('flash_message', 'cms_forms_demoaccount added!');
+        dd($request);
+
+
 
         return redirect('cms/cms_forms_demoaccount');
     }
@@ -123,7 +127,9 @@ class cms_forms_demoaccountController extends Controller
          */
         public function cms_create()
         {
-         return View::make('cms::forms.cms_forms_demoaccount.cms_form')->render();
+            $arrays['country']=["AX"=>"Åland Islands","AL"=>"Albania","DZ"=>"Algeria","AS"=>"American Samoa","AD"=>"Andorra","AO"=>"Angola","AI"=>"Anguilla","AQ"=>"Antarctica","AG"=>"Antigua and Barbuda","AR"=>"Argentina","AM"=>"Armenia","AW"=>"Aruba","AU"=>"Australia","AT"=>"Austria","AZ"=>"Azerbaijan","BS"=>"Bahamas","BH"=>"Bahrain","BD"=>"Bangladesh","BB"=>"Barbados","BE"=>"Belgium","BZ"=>"Belize","BJ"=>"Benin","BM"=>"Bermuda","BT"=>"Bhutan","BO"=>"Bolivia","BA"=>"Bosnia and Herzegovina","BW"=>"Botswana","BV"=>"Bouvet Island","BR"=>"Brazil","IO"=>"British Indian Ocean Territory","VG"=>"British Virgin Islands","BN"=>"Brunei","BG"=>"Bulgaria","BF"=>"Burkina Faso","BI"=>"Burundi","KH"=>"Cambodia","CM"=>"Cameroon","CA"=>"Canada","CV"=>"Cape Verde","KY"=>"Cayman Islands","TD"=>"Chad","CL"=>"Chile","CN"=>"China","CX"=>"Christmas Island","CC"=>"Cocos [Keeling] Islands","CO"=>"Colombia","KM"=>"Comoros","CK"=>"Cook Islands","CR"=>"Costa Rica","HR"=>"Croatia","CY"=>"Cyprus","CZ"=>"Czech Republic","DK"=>"Denmark","DJ"=>"Djibouti","DM"=>"Dominica","DO"=>"Dominican Republic","EC"=>"Ecuador","EG"=>"Egypt","SV"=>"El Salvador","GQ"=>"Equatorial Guinea","EE"=>"Estonia","ET"=>"Ethiopia","QU"=>"European Union","FK"=>"Falkland Islands","FO"=>"Faroe Islands","FJ"=>"Fiji","FI"=>"Finland","FR"=>"France","GF"=>"French Guiana","PF"=>"French Polynesia","TF"=>"French Southern Territories","GA"=>"Gabon","GM"=>"Gambia","GE"=>"Georgia","DE"=>"Germany","GH"=>"Ghana","GI"=>"Gibraltar","GR"=>"Greece","GL"=>"Greenland","GD"=>"Grenada","GP"=>"Guadeloupe","GU"=>"Guam","GT"=>"Guatemala","GG"=>"Guernsey","GN"=>"Guinea","GY"=>"Guyana","HM"=>"Heard Island and McDonald Islands","HN"=>"Honduras","HK"=>"Hong Kong SAR China","HU"=>"Hungary","IS"=>"Iceland","IN"=>"India","ID"=>"Indonesia","IE"=>"Ireland","IM"=>"Isle of Man","IL"=>"Israel","IT"=>"Italy","JM"=>"Jamaica","JP"=>"Japan","JE"=>"Jersey","JO"=>"Jordan","KZ"=>"Kazakhstan","KE"=>"Kenya","KI"=>"Kiribati","KW"=>"Kuwait","KG"=>"Kyrgyzstan","LA"=>"Laos","LV"=>"Latvia","LS"=>"Lesotho","LI"=>"Liechtenstein","LT"=>"Lithuania","LU"=>"Luxembourg","MO"=>"Macau SAR China","MK"=>"Macedonia","MG"=>"Madagascar","MW"=>"Malawi","MY"=>"Malaysia","MV"=>"Maldives","ML"=>"Mali","MT"=>"Malta","MH"=>"Marshall Islands","MQ"=>"Martinique","MR"=>"Mauritania","MU"=>"Mauritius","YT"=>"Mayotte","MX"=>"Mexico","FM"=>"Micronesia","MD"=>"Moldova","MC"=>"Monaco","MN"=>"Mongolia","ME"=>"Montenegro","MS"=>"Montserrat","MA"=>"Morocco","MZ"=>"Mozambique","NA"=>"Namibia","NR"=>"Nauru","NP"=>"Nepal","NL"=>"Netherlands","AN"=>"Netherlands Antilles","NC"=>"New Caledonia","NI"=>"Nicaragua","NE"=>"Niger","NG"=>"Nigeria","NU"=>"Niue","NF"=>"Norfolk Island","MP"=>"Northern Mariana Islands","NO"=>"Norway","OM"=>"Oman","QO"=>"Outlying Oceania","PK"=>"Pakistan","PW"=>"Palau","PS"=>"Palestinian Territories","PA"=>"Panama","PG"=>"Papua New Guinea","PY"=>"Paraguay","PE"=>"Peru","PH"=>"Philippines","PN"=>"Pitcairn Islands","PL"=>"Poland","PT"=>"Portugal","PR"=>"Puerto Rico","QA"=>"Qatar","RE"=>"Réunion","RO"=>"Romania","RU"=>"Russia","RW"=>"Rwanda","BL"=>"Saint Barthélemy","SH"=>"Saint Helena","KN"=>"Saint Kitts and Nevis","LC"=>"Saint Lucia","MF"=>"Saint Martin","PM"=>"Saint Pierre and Miquelon","VC"=>"Saint Vincent and the Grenadines","WS"=>"Samoa","SM"=>"San Marino","ST"=>"São Tomé and Príncipe","SA"=>"Saudi Arabia","SN"=>"Senegal","RS"=>"Serbia","CS"=>"Serbia and Montenegro","SC"=>"Seychelles","SL"=>"Sierra Leone","SG"=>"Singapore","SK"=>"Slovakia","SI"=>"Slovenia","SB"=>"Solomon Islands","ZA"=>"South Africa","GS"=>"South Georgia and the South Sandwich Islands","KR"=>"South Korea","ES"=>"Spain","LK"=>"Sri Lanka","SR"=>"Suriname","SJ"=>"Svalbard and Jan Mayen","SZ"=>"Swaziland","SE"=>"Sweden","CH"=>"Switzerland","TW"=>"Taiwan","TJ"=>"Tajikistan","TZ"=>"Tanzania","TH"=>"Thailand","TL"=>"Timor-Leste","TG"=>"Togo","TK"=>"Tokelau","TO"=>"Tonga","TT"=>"Trinidad and Tobago","TN"=>"Tunisia","TR"=>"Turkey","TM"=>"Turkmenistan","TC"=>"Turks and Caicos Islands","TV"=>"Tuvalu","UM"=>"U.S. Minor Outlying Islands","VI"=>"U.S. Virgin Islands","UG"=>"Uganda","AE"=>"United Arab Emirates","GB"=>"United Kingdom","UY"=>"Uruguay","UZ"=>"Uzbekistan","VU"=>"Vanuatu","VA"=>"Vatican City","VE"=>"Venezuela","VN"=>"Vietnam","WF"=>"Wallis and Futuna","EH"=>"Western Sahara","ZM"=>"Zambia"];
+
+            return View::make('cms::forms.cms_forms_demoaccount.cms_form',['arrays'=>$arrays])->render();
 
         }
 
@@ -134,11 +140,18 @@ class cms_forms_demoaccountController extends Controller
          */
         public function cms_store(Request $request)
         {
-            
-            cms_forms_demoaccount::create($request->all());
+
+            $demoAccount=cms_forms_demoaccount::create($request->all());
+          $request->merge(['id'=>$demoAccount->id]);
+            $demoInfo=$this->createMt4Demo($request) ;
+            $email=new Email();
+
+            $request->merge($demoInfo);
+            @$email->userDemoAccount($request->all(),$request->email);
+            @$email->adminDemoAccount($request->all(),config('fxweb.adminEmail'));
 
             Session::flash('flash_message', 'cms_forms_demoaccount added!');
-return Redirect::back();
+                return Redirect::back();
         //    return redirect('cms/cms_forms_demoaccount');
         }
 
@@ -152,7 +165,7 @@ return Redirect::back();
 
         $mt4_create_arr = $this->getMt4APIParams($request);
 
-        $logger = $this->get('logger');
+      //  $logger = $this->get('logger');
 
         try {
             $api_response = $this->openAccSocket($host, $port, $mt4_create_arr);
@@ -169,16 +182,22 @@ return Redirect::back();
                     'agent'=>$mt4_create_arr['AGENT'],
                     'deposit'=>$mt4_create_arr['DEPOSIT'],
                 );
+            }else{
+
+            $request->merge(['Error Message'=>'Invalid Data']);
+            $email=new Email();
+            @$email->sendDemoError($request->all());
             }
 
         } catch (\Exception $ex) {
-            $logger->error('cannot create mt4 demo account, error: ' . $ex->getMessage());
+            //$logger->error('cannot create mt4 demo account, error: ' . $ex->getMessage());
+            $request->merge(['Error Message'=>$ex->getMessage()]);
             $email=new Email();
             @$email->sendDemoError($request->all());
 
         }
 
-        return '';
+        return ['Error Message'=>'Invalid Data'];
     }
 
 
@@ -237,7 +256,7 @@ return Redirect::back();
 
 
     protected function openAccSocket($host, $port, $mt4_create_arr) {
-        $logger = $this->get('logger');
+      //  $logger = $this->get('logger');
 
         $socket_parameters = "WNEWACCOUNT ";
         foreach ($mt4_create_arr as $k => $val) {
@@ -246,12 +265,11 @@ return Redirect::back();
         $socket_parameters = trim($socket_parameters, '|');
         $socket_parameters .= " \nQUIT\n";
 
-        $logger->info('MT4_API_REQUEST=' . $socket_parameters);
+      //  $logger->info('MT4_API_REQUEST=' . $socket_parameters);
 
         $errno = '';
         $errstr = '';
         $socket = fsockopen($host, $port, $errno, $errstr, 0.4);
-
         $ret = '';
         if ($socket) {
             if (fputs($socket, $socket_parameters) != false) {
@@ -267,7 +285,7 @@ return Redirect::back();
         } else {
             throw new \Exception('cannot open socket');
         }
-        $logger->info('MT4_API_RESPONSE=' . $ret);
+       // $logger->info('MT4_API_RESPONSE=' . $ret);
 
         return $ret;
     }

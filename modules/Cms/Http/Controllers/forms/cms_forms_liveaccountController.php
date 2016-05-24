@@ -184,8 +184,11 @@ class cms_forms_liveaccountController extends Controller
         unlink($htmlPath);
         cms_forms_liveaccount::create($request->all());
 
-        $email=new Email();
-        @$email->userLiveAccount($request->all(),$request->primary_email);
+
+            $email=new Email();
+            @$email->userLiveAccount($request->all(),$request->primary_email);
+            @$email->adminLiveAccount($request->all(),config('fxweb.adminEmail'));
+
 
         return view('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
 
