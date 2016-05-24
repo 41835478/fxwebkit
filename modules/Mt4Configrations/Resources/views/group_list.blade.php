@@ -57,7 +57,7 @@
                             <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.name'), 'group', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.company'), 'company', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.margin_call').'/'.trans('mt4configrations::mt4configrations.margin_stopout'), 'margin_stopout', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.securities'), 'securities', $oResults) !!}</th>
+                            <th class="no-warp">{!! trans('mt4configrations::mt4configrations.securities') !!}</th>
                         </tr>
                         </thead>
                         <tbody>

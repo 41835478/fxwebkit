@@ -48,7 +48,7 @@
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.name'), 'name', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.description'), 'description', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.symbols'), 'symbol', $oResults) !!}</th>
+                            <th class="no-warp">{!! trans('mt4configrations::mt4configrations.symbols') !!}</th>
 
                         </tr>
                         </thead>

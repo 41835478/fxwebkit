@@ -75,9 +75,16 @@ class cms_forms_liveaccountController extends Controller
      */
     public function edit($id)
     {
+        $arrays=[];
         $cms_forms_liveaccount = cms_forms_liveaccount::findOrFail($id);
 
-        return view('cms::forms.cms_forms_liveaccount.edit', compact('cms_forms_liveaccount'));
+        $arrays['number_of_years']= [0=>'Select One','None'=>'None','Less than 1 year'=>'Less than 1 year','1 to 3 years'=>'1 to 3 years','3 to 5 years'=>'3 to 5 years','More than 5 years'=>'More than 5 years'];
+        $arrays['number_of_transactions']= [0=>'Select One','less than 10 transactions'=>'less than 10 transactions','10 to 20 transactions'=>'10 to 20 transactions','More than 20 transactions'=>'More than 20 transactions'];
+        $arrays['average_trading']= [0=>'Select One','Less than 30,000 GBP'=>'Less than 30,000 GBP','30,000 to 60,000 GBP'=>'30,000 to 60,000 GBP','60,000 to 300,000 GBP'=>'60,000 to 300,000 GBP','More than 300,000 GBP'=>'More than 300,000 GBP'];
+        $arrays['proof_of_residence']= [0=>'Select One','Residence ID'=>'Residence ID','Utility Bill'=>'Utility Bill','Bank Statement'=>'Bank Statement'];
+        $arrays['id_type']= [0=>'Select One','Driving Licence'=>'Driving Licence','Passport'=>'Passport','Residence ID'=>'Residence ID'];
+
+        return view('cms::forms.cms_forms_liveaccount.edit', compact('cms_forms_liveaccount'),['arrays'=>$arrays])->render();
     }
 
     /**

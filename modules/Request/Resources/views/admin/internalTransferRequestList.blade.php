@@ -57,8 +57,8 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th class="no-warp">{!! th_sort(trans('request::request.from_login'), 'fromLogin', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.to_login'), 'toLogin', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.from_login'), 'from_login', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.to_login'), 'to_login', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.amount'), 'amount', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</th>
@@ -74,12 +74,12 @@
                             @foreach($oResults as $oResult)
                                 {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                                 <tr class='{{ $class }}'>
-                                    <td>{{ $oResult->from_login }}</td>
-                                    <td>{{ $oResult->to_login }}</td>
+                                    <td>{{ $oResult->from_login}}</td>
+                                    <td>{{ $oResult->to_login}}</td>
                                     <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
-                                    <td>{{ $oResult->amount }}</td>
-                                    <td>{{ $oResult->comment }}</td>
-                                    <td>{{ $oResult->reason }}</td>
+                                    <td>{{ $oResult->amount}}</td>
+                                    <td>{{ $oResult->comment}}</td>
+                                    <td>{{ $oResult->reason}}</td>
                                     <td>{{ $aRequestStatus[$oResult->status] }}
 
                                     </td>

@@ -59,7 +59,7 @@
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('request::request.login'), 'login', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.newPassord'), 'newPassord', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('request::request.newPassord'), 'newPassword', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.password_type'), 'password_type', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('request::request.reason'), 'reason', $oResults) !!}</th>
