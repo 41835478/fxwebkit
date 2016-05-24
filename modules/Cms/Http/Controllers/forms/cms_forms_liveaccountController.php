@@ -129,8 +129,8 @@ class cms_forms_liveaccountController extends Controller
                                         manager)s','Referring Partner'=>'Referring Partner','Fund manager'=>'Fund manager'];
         $arrays['base_currency_limit']= ['USD'=>'USD','EUR'=>'EUR','GBP'=>'GBP'];
         $arrays['nationality']= ['MT4'=>'MT4','Multi-products'=>'Multi-products','Both'=>'Both'];
-        $arrays['gender']= [0=>'Select One','Male'=>'Male','Female'=>'Female'];
-        $arrays['marital_status']= [0=>'Select One','Single'=>'Single','Married'=>'Married'];
+        $arrays['gender']= ['Male'=>'Male','Female'=>'Female'];
+        $arrays['marital_status']= ['Single'=>'Single','Married'=>'Married'];
         $arrays['resident_status']= ['Non Resident'=>'Non Resident','Resident Individual'=>'Resident Individual','Foreign National'=>'Foreign National'];
         //   $arrays['country']= ['Non Resident'=>'Non Resident','Resident Individual'=>'Resident Individual','Foreign National'=>'Foreign National'];
         $arrays['source_funds_deposited_joint']= ['Employment'=>'Employment inheritance investment','Previous'=>'Previous employment real state','Sale of'=>'Sale of investments savings','Other'=>'Other'];
