@@ -121,7 +121,7 @@ counters" href="http://statcounter.com/"
     <section class="clearfix @if( isset($_COOKIE['accept_cookie_policy']))  hide @endif " id="cookie-bar">
         <p><i class="fa fa-lightbulb-o"></i>
             We use cookies to enhance the performance and functionality of our site, which ultimately improves your browsing experience. By continuing to browse this site you are agreeing to our use of cookies.
-            <a href="path('showPage', {'id':1198,'parentid':0, 'slug':'privacy-policy'})"> LEARN MORE </a><span id="closebox"><i class="fa fa-times" onClick="$(this).parent().parent().parent().hide();document.cookie='accept_cookie_policy=true'"></i></span></p>
+            <a href="/privacy-policy"> LEARN MORE </a><span id="closebox"><i class="fa fa-times" onClick="$(this).parent().parent().parent().hide();document.cookie='accept_cookie_policy=true'"></i></span></p>
     </section>
 
 

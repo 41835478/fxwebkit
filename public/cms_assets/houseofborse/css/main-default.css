@@ -13700,8 +13700,8 @@ list-style:none;margin-top: 10px;}
   color: #d9cea8;
   float: left;
   margin-top: 136px;
-  /* margin-left: 55px; */
-  padding-left: 60px !important;
+  /* margin-left: 55px;
+  padding-left: 60px !important;*/
 
   font-family: Raleway_Light !important;
 }
@@ -13710,7 +13710,7 @@ list-style:none;margin-top: 10px;}
 #main-slider #slider-container .main_all_text_div .header_banner_title {
 
   font-family: "Open Sans", sans-serif !important;
-  font-size: 4em;
+  font-size: 3.5em;
 
   margin-bottom: 0px;
 

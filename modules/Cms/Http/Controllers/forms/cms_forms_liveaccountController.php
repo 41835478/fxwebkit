@@ -157,7 +157,12 @@ class cms_forms_liveaccountController extends Controller
         for($i=1;$i<13;$i++){ $arrays['months'][$i]=$i;}
         $arrays['days']=[];
         for($i=1;$i<32;$i++){ $arrays['days'][$i]=$i;}
-        return View::make('cms::forms.cms_forms_liveaccount.cms_form',['arrays'=>$arrays])->render();
+
+
+       // $liveAccount=cms_forms_payment::find(\Session::get('liveAccount_id'));
+
+
+        return View::make('cms::forms.cms_forms_liveaccount.cms_form')->with('arrays',$arrays)->render();
 
     }
 

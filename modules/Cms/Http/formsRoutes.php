@@ -223,4 +223,18 @@ Route::get('cms_forms_emailtemplates/form', [
 ]);
 Route::post('cms_forms_emailtemplates/form', [
     'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_emailtemplatesController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_search', 'modules\Cms\Http\Controllers\forms\cms_forms_searchController');});
+Route::get('cms_forms_search/form', [
+    'as' => 'cms_forms_search.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_searchController@cms_create'
+]);
+Route::post('cms_forms_search/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_searchController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_payment', 'modules\Cms\Http\Controllers\forms\cms_forms_paymentController');});
+Route::get('cms_forms_payment/form', [
+    'as' => 'cms_forms_payment.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_paymentController@cms_create'
+]);
+Route::post('cms_forms_payment/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_paymentController@cms_store'
 ]);

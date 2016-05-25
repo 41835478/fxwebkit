@@ -202,7 +202,7 @@ class AuthController extends Controller
             ];
                 $oUser->save();}
 
-            return redirect()->route('client.auth.login');
+            return redirect()->route('client.auth.login')->withErrors('Please check your email and activate your account');
         }
     }
 

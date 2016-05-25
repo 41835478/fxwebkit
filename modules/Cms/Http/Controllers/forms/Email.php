@@ -99,4 +99,9 @@ function sendDemoError($variables){
     {
         $this->sendEmail('registrationliveaccount', $variables, $toEmail, 'Registration Live Account');
     }
+
+    function paymentSuccess($variables)
+    {
+        $this->sendEmail('paymentsuccess', $variables, config('fxweb.adminEmail'), 'Success payment');
+    }
 }
