@@ -317,5 +317,6 @@
     'email'=>'E-mail',
     'confirmEmail'=>'Confirm E-mail',
     'Mobilenumber'=>'Mobile Number',
+    'pdf'=>'pdf',
 
 ]; ?>

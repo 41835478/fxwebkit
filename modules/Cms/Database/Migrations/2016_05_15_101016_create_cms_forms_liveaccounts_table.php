@@ -16,6 +16,9 @@ class CreateCmsFormsLiveaccountsTable extends Migration
             $table->increments('id');
             $table->string('user_id',50);
             $table->string('title',50);
+            $table->string('first_name',50);
+            $table->string('middle_name',50);
+            $table->string('last_name',50);
             $table->string('gender',50);
             $table->string('date_of_birth',50);
             $table->string('fax',50);
@@ -174,6 +177,7 @@ class CreateCmsFormsLiveaccountsTable extends Migration
             $table->string('document_por',50);
             $table->string('id_type',50);
             $table->string('proof_of_residence',50);
+            $table->string('pdf',50);
             $table->timestamps();
         });
     }

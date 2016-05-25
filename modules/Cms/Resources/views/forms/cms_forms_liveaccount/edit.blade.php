@@ -21,8 +21,29 @@
                     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
+        <div class="form-group {{ $errors->has('first_name') ? 'has-error' : ''}}">
+            {!! Form::label('first_name', trans('cms::cms.first_name'), ['class' => 'col-sm-3 control-label']) !!}
+            <div class="col-sm-6">
+                {!! Form::text('first_name', null, ['class' => 'form-control']) !!}
+                {!! $errors->first('first_name', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+        <div class="form-group {{ $errors->has('middle_name') ? 'has-error' : ''}}">
+            {!! Form::label('middle_name', trans('cms::cms.middle_name'), ['class' => 'col-sm-3 control-label']) !!}
+            <div class="col-sm-6">
+                {!! Form::text('middle_name', null, ['class' => 'form-control']) !!}
+                {!! $errors->first('middle_name', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+        <div class="form-group {{ $errors->has('last_name') ? 'has-error' : ''}}">
+            {!! Form::label('last_name', trans('cms::cms.last_name'), ['class' => 'col-sm-3 control-label']) !!}
+            <div class="col-sm-6">
+                {!! Form::text('last_name', null, ['class' => 'form-control']) !!}
+                {!! $errors->first('last_name', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
             <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
-                {!! Form::label('title', trans('title'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('title', trans('cms::cms.title'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::text('title', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
@@ -1136,7 +1157,13 @@
 
                 </div>
             </div>
-
+        <div class="form-group {{ $errors->has('pdf') ? 'has-error' : ''}}">
+            {!! Form::label('pdf', trans('cms::cms.pdf'), ['class' => 'col-sm-3 control-label']) !!}
+            <div class="col-sm-6">
+                {!! Form::text('pdf', null, ['class' => 'form-control']) !!}
+                {!! $errors->first('pdf', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
 
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-3">
