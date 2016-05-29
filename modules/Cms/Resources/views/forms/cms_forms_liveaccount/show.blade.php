@@ -11,16 +11,20 @@
            'url' => ['/cms/cms_forms_liveaccount', $cms_forms_liveaccount->id],
            'class' => 'form-horizontal'
        ])!!}
-            @if($cms_forms_liveaccount->sole_joint_account_joint)
+
+
             <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                 <li class="">
-                    <a href="">{{ trans('cms::cms.sole') }}</a>
+                    <a href="#" onclick="$('.joint-group-div').hide();$('.sole-group-div').show();">{{ trans('cms::cms.sole') }}</a>
                 </li>
+                @if($cms_forms_liveaccount->sole_joint_account =='joint account')
                 <li>
-                    <a href="">{{ trans('cms::cms.joint') }}</a>
+                    <a href="#" onclick="$('.joint-group-div').show();$('.sole-group-div').hide();">{{ trans('cms::cms.joint') }}</a>
                 </li>
+                @endif
             </ul>
-@endif
+
+            <div class="sole-group-div">
             <div class="form-group {{ $errors->has('first_name') ? 'has-error' : ''}}">
                 {!! Form::label('first_name', trans('cms::cms.first_name').' :', ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
@@ -501,8 +505,12 @@
                     {!! $errors->first('understand_market_years_securities', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
-                    @if($cms_forms_liveaccount->sole_joint_account_joint)
-                        <div calss="joint-group-div">
+
+
+            </div>
+
+            <div class="joint-group-div" style="display:none;">
+
 
                 <div class="text-center">
                     <label class="control-label">'JOINT'</label>
@@ -959,7 +967,10 @@
                 </div>
             </div>
                         </div>
-            @endif
+
+
+
+            <div class="sole-group-div">
             <div class="form-group {{ $errors->has('agreem_check_1') ? 'has-error' : ''}}">
                 {!! Form::label('agreem_check_1', trans('cms::cms.agreem_check_1').' :', ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
@@ -1130,6 +1141,7 @@
                     <label class="control-label">{{$cms_forms_liveaccount->pdf }}</label>
                     {!! $errors->first('pdf', '<p class="help-block">:message</p>') !!}
                 </div>
+            </div>
             </div>
         </div>
         {!! Form::close() !!}
