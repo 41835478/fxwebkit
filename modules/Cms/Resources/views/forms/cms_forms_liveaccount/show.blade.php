@@ -1102,21 +1102,23 @@
             <div class="form-group {{ $errors->has('document_id') ? 'has-error' : ''}}">
                 {!! Form::label('document_id', trans('cms::cms.document_id :'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    <label class="control-label">{{$cms_forms_liveaccount->joint_first_date }}</label>
+                    <label class="control-label"><a href="/{{$cms_forms_liveaccount->document_id }}" >{{trans('cms::cms.document_id :')}}</a></label>
                     {!! $errors->first('document_id', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
+            <!--
             <div class="form-group {{ $errors->has('document_id2') ? 'has-error' : ''}}">
                 {!! Form::label('document_id2', trans('document_id2 :'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    <label class="control-label">{{$cms_forms_liveaccount->joint_first_date }}</label>
+                    <label class="control-label">{{$cms_forms_liveaccount->document_id2 }}</label>
                     {!! $errors->first('document_id2', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
+            -->
             <div class="form-group {{ $errors->has('document_por') ? 'has-error' : ''}}">
                 {!! Form::label('document_por', trans('cms::cms.document_por :'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    <label class="control-label">{{$cms_forms_liveaccount->joint_first_date }}</label>
+                    <label class="control-label"><a href="/{{$cms_forms_liveaccount->document_por }}">{{trans('cms::cms.document_por :')}}</a></label>
                     {!! $errors->first('document_por', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
