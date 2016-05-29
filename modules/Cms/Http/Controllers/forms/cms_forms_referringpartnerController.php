@@ -138,7 +138,7 @@ class cms_forms_referringpartnerController extends Controller
             
             cms_forms_referringpartner::create($request->all());
 
-            Session::flash('flash_message', 'cms_forms_referringpartner added!');
+            Session::flash('flash_success', 'Your request has been sent successfully!');
 return Redirect::back();
         //    return redirect('cms/cms_forms_referringpartner');
         }

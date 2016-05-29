@@ -104,6 +104,33 @@
 
     <h5 class="golden">Registration form:</h5>
 
+@if ($errors->any())
+    <ul  >
+        @foreach ($errors->getMessages() as $field=>$error)
+            @foreach ($error as $oneError)
+                <li  class="error">{{ucfirst (str_replace('_',' ',$field)) }} : {{$oneError}}</li>
+                <li style="list-style: none;"><br></li>
+            @endforeach
+        @endforeach
+    </ul>
+@endif
+
+
+
+
+@if (Session::get('flash_success'))
+    <div class="alert alert-success">
+        @if(is_array(json_decode(Session::get('flash_success'),true)))
+            {!! implode('', Session::get('flash_success')->all(':message<br/>')) !!}
+        @else
+            {!! Session::get('flash_success') !!}
+        @endif
+    </div>
+
+@else
+
+
+
     {!! Form::open(['route' => 'cms_forms_referringpartner.form', 'class' => 'form-horizontal']) !!}
 
                 <div class="form-group {{ $errors->has('fullname') ? 'has-error' : ''}}">
@@ -159,10 +186,3 @@
     </div>
     {!! Form::close() !!}
 
-    @if ($errors->any())
-        <ul class="alert alert-danger">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif

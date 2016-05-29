@@ -24,6 +24,34 @@
 
 
 <div id="career-form-cont">
+
+    @if ($errors->any())
+        <ul  >
+            @foreach ($errors->getMessages() as $field=>$error)
+                @foreach ($error as $oneError)
+                    <li  class="error">{{ucfirst (str_replace('_',' ',$field)) }} : {{$oneError}}</li>
+                    <li style="list-style: none;"><br></li>
+                @endforeach
+            @endforeach
+        </ul>
+    @endif
+
+
+
+
+    @if (Session::get('flash_success'))
+        <div class="alert alert-success">
+            @if(is_array(json_decode(Session::get('flash_success'),true)))
+                {!! implode('', Session::get('flash_success')->all(':message<br/>')) !!}
+            @else
+                {!! Session::get('flash_success') !!}
+            @endif
+        </div>
+
+    @else
+
+
+
     {!! Form::open(['route' => 'cms_forms_careercenter.form', 'class' => 'form-horizontal']) !!}
 
                 <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
