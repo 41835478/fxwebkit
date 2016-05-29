@@ -10,7 +10,7 @@
             <thead>
                 <tr>
 
-                    <th>S.No</th><th>{{ trans('primary_email') }}</th><th>{{ trans('title') }}</th><th>{{ trans('gender') }}</th><th>Actions</th>
+                    <th>S.No</th><th>{{ trans('cms::cms.primary_email') }}</th><th>{{  trans('cms::cms.first_name') }}</th><th>{{ trans('cms::cms.last_name') }}</th><th>{{ trans('cms::cms.sole_joint_account') }}</th><th>Actions</th>
                </tr>
             </thead>
             <tbody>
@@ -18,9 +18,9 @@
             @foreach($cms_forms_liveaccount as $item)
                 {{-- */$x++;/* --}}
                 <tr>
-                    <td>{{ $x }}</td>
+                    <td>{{  $item->id }}</td>
 
-                    <td><a href="{{ url('cms\cms_forms_liveaccount', $item->id) }}">{{ $item->primary_email }}</a></td><td>{{ $item->title }}</td><td>{{ $item->gender }}</td>
+                    <td><a href="{{ url('cms/cms_forms_liveaccount', $item->id) }}">{{ $item->primary_email }}</a></td><td>{{ $item->first_name }}</td><td>{{ $item->last_name }}</td><td>{{$item->sole_joint_account}}</td>
                    <td>
                         <a href="{{ url('/cms/cms_forms_liveaccount/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs">Update</a>
                         {!! Form::open([
