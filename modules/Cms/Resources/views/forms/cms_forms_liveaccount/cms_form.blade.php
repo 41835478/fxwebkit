@@ -171,7 +171,7 @@
     <div class="col-xm-12 col-sm-4 ">
         <div class="input_all_div">
             <label>{{trans('cms::cms.middle_name')}}</label>
-            {!! Form::text('second_name', null, ['class' => '','placeholder'=>trans('cms::cms.middle_name')]) !!}
+            {!! Form::text('middle_name', null, ['class' => '','placeholder'=>trans('cms::cms.middle_name')]) !!}
         </div>
 
         <div class="input_all_div">

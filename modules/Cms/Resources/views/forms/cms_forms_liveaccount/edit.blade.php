@@ -1,47 +1,40 @@
 @extends('admin.layouts.main')
 
 @section('content')
-<div class="container">
+    <div class="container">
 
-    <div id="content-wrapper">
-    <h1>Edit live account</h1>
-    <hr/>
+        <div id="content-wrapper">
+            <h1>Edit live account</h1>
+            <hr/>
 
-    {!! Form::model($cms_forms_liveaccount, [
-        'method' => 'PATCH',
-        'url' => ['/cms/cms_forms_liveaccount', $cms_forms_liveaccount->id],
-        'class' => 'form-horizontal'
-    ]) !!}
+            {!! Form::model($cms_forms_liveaccount, [
+                'method' => 'PATCH',
+                'url' => ['/cms/cms_forms_liveaccount', $cms_forms_liveaccount->id],
+                'class' => 'form-horizontal'
+            ]) !!}
 
 
-                <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
-                {!! Form::label('user_id', trans('cms::cms.user_id'), ['class' => 'col-sm-3 control-label']) !!}
+            <div class="form-group {{ $errors->has('first_name') ? 'has-error' : ''}}">
+                {!! Form::label('first_name', trans('cms::cms.first_name'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    {!! Form::text('user_id', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
+                    {!! Form::text('first_name', null, ['class' => 'form-control']) !!}
+                    {!! $errors->first('first_name', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
-        <div class="form-group {{ $errors->has('first_name') ? 'has-error' : ''}}">
-            {!! Form::label('first_name', trans('cms::cms.first_name'), ['class' => 'col-sm-3 control-label']) !!}
-            <div class="col-sm-6">
-                {!! Form::text('first_name', null, ['class' => 'form-control']) !!}
-                {!! $errors->first('first_name', '<p class="help-block">:message</p>') !!}
+            <div class="form-group {{ $errors->has('middle_name') ? 'has-error' : ''}}">
+                {!! Form::label('middle_name', trans('cms::cms.middle_name'), ['class' => 'col-sm-3 control-label']) !!}
+                <div class="col-sm-6">
+                    {!! Form::text('middle_name', null, ['class' => 'form-control']) !!}
+                    {!! $errors->first('middle_name', '<p class="help-block">:message</p>') !!}
+                </div>
             </div>
-        </div>
-        <div class="form-group {{ $errors->has('middle_name') ? 'has-error' : ''}}">
-            {!! Form::label('middle_name', trans('cms::cms.middle_name'), ['class' => 'col-sm-3 control-label']) !!}
-            <div class="col-sm-6">
-                {!! Form::text('middle_name', null, ['class' => 'form-control']) !!}
-                {!! $errors->first('middle_name', '<p class="help-block">:message</p>') !!}
+            <div class="form-group {{ $errors->has('last_name') ? 'has-error' : ''}}">
+                {!! Form::label('last_name', trans('cms::cms.last_name'), ['class' => 'col-sm-3 control-label']) !!}
+                <div class="col-sm-6">
+                    {!! Form::text('last_name', null, ['class' => 'form-control']) !!}
+                    {!! $errors->first('last_name', '<p class="help-block">:message</p>') !!}
+                </div>
             </div>
-        </div>
-        <div class="form-group {{ $errors->has('last_name') ? 'has-error' : ''}}">
-            {!! Form::label('last_name', trans('cms::cms.last_name'), ['class' => 'col-sm-3 control-label']) !!}
-            <div class="col-sm-6">
-                {!! Form::text('last_name', null, ['class' => 'form-control']) !!}
-                {!! $errors->first('last_name', '<p class="help-block">:message</p>') !!}
-            </div>
-        </div>
             <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
                 {!! Form::label('title', trans('cms::cms.title'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
@@ -70,20 +63,7 @@
                     {!! $errors->first('fax', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
-            <div class="form-group {{ $errors->has('tel') ? 'has-error' : ''}}">
-                {!! Form::label('tel', trans('cms::cms.tel'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('tel', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('tel', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
-            <div class="form-group {{ $errors->has('office') ? 'has-error' : ''}}">
-                {!! Form::label('office', trans('cms::cms.office'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('office', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('office', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
+
             <div class="form-group {{ $errors->has('nationality') ? 'has-error' : ''}}">
                 {!! Form::label('nationality', trans('cms::cms.nationality'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
@@ -91,13 +71,7 @@
                     {!! $errors->first('nationality', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
-            <div class="form-group {{ $errors->has('id_number') ? 'has-error' : ''}}">
-                {!! Form::label('id_number', trans('cms::cms.id_number'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('id_number', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('id_number', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
+
             <div class="form-group {{ $errors->has('postal_code') ? 'has-error' : ''}}">
                 {!! Form::label('postal_code', trans('cms::cms.postal_code'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
@@ -519,6 +493,12 @@
                     {!! $errors->first('understand_market_years_securities', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
+
+            <div class="text-center">
+                <label class="control-label">'JOINT'</label>
+            </div>
+            <br>
+
             <div class="form-group {{ $errors->has('first_name_joint') ? 'has-error' : ''}}">
                 {!! Form::label('first_name_joint', trans('cms::cms.first_name_joint'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
@@ -1157,28 +1137,28 @@
 
                 </div>
             </div>
-        <div class="form-group {{ $errors->has('pdf') ? 'has-error' : ''}}">
-            {!! Form::label('pdf', trans('cms::cms.pdf'), ['class' => 'col-sm-3 control-label']) !!}
-            <div class="col-sm-6">
-                {!! Form::text('pdf', null, ['class' => 'form-control']) !!}
-                {!! $errors->first('pdf', '<p class="help-block">:message</p>') !!}
+            <div class="form-group {{ $errors->has('pdf') ? 'has-error' : ''}}">
+                {!! Form::label('pdf', trans('cms::cms.pdf'), ['class' => 'col-sm-3 control-label']) !!}
+                <div class="col-sm-6">
+                    {!! Form::text('pdf', null, ['class' => 'form-control']) !!}
+                    {!! $errors->first('pdf', '<p class="help-block">:message</p>') !!}
+                </div>
             </div>
-        </div>
 
-    <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-3">
-            {!! Form::submit('Update', ['class' => 'btn btn-primary form-control']) !!}
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-3">
+                    {!! Form::submit('Update', ['class' => 'btn btn-primary form-control']) !!}
+                </div>
+            </div>
+            {!! Form::close() !!}
+
+            @if ($errors->any())
+                <ul class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
     </div>
-    {!! Form::close() !!}
-
-    @if ($errors->any())
-        <ul class="alert alert-danger">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
-</div>
-</div>
 @endsection

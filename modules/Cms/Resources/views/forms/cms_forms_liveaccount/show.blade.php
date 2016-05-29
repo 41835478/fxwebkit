@@ -6,42 +6,12 @@
         <div id="content-wrapper">
             <h1>live account</h1>
 
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover">
-                    <thead>
-                    <tr>
-
-                        <th>ID.</th>
-                        <th>{{ trans('cms::cms.user_id') }}</th>
-                        <th>{{ trans('cms::cms.title') }}</th>
-                        <th>{{ trans('cms::cms.gender') }}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-
-                        <td>{{ $cms_forms_liveaccount->id }}</td>
-                        <td> {{ $cms_forms_liveaccount->user_id }} </td>
-                        <td> {{ $cms_forms_liveaccount->title }} </td>
-                        <td> {{ $cms_forms_liveaccount->gender }} </td>
-
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
             {!! Form::model($cms_forms_liveaccount, [
            'method' => 'PATCH',
            'url' => ['/cms/cms_forms_liveaccount', $cms_forms_liveaccount->id],
            'class' => 'form-horizontal'
        ])!!}
-            <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
-                {!! Form::label('user_id', trans('cms::cms.user_id').' :', ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    <label class="control-label">{{$cms_forms_liveaccount-> user_id }}</label>
-                    {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
+
             <div class="form-group {{ $errors->has('first_name') ? 'has-error' : ''}}">
                 {!! Form::label('first_name', trans('cms::cms.first_name').' :', ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
@@ -92,20 +62,8 @@
                     {!! $errors->first('fax', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
-            <div class="form-group {{ $errors->has('tel') ? 'has-error' : ''}}">
-                {!! Form::label('tel',trans('cms::cms.tel :').'', ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    <label class="control-label">{{$cms_forms_liveaccount->tel }}</label>
-                    {!! $errors->first('tel', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
-            <div class="form-group {{ $errors->has('office') ? 'has-error' : ''}}">
-                {!! Form::label('office', trans('cms::cms.office :'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    <label class="control-label">{{$cms_forms_liveaccount->office }}</label>
-                    {!! $errors->first('office', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
+
+
             <div class="form-group {{ $errors->has('nationality') ? 'has-error' : ''}}">
                 {!! Form::label('nationality', trans('cms::cms.nationality').' :', ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
@@ -113,13 +71,7 @@
                     {!! $errors->first('nationality', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
-            <div class="form-group {{ $errors->has('id_number') ? 'has-error' : ''}}">
-                {!! Form::label('id_number', trans('cms::cms.id_number :'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    <label class="control-label">{{$cms_forms_liveaccount->id_number }}</label>
-                    {!! $errors->first('id_number', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
+
             <div class="form-group {{ $errors->has('postal_code') ? 'has-error' : ''}}">
                 {!! Form::label('postal_code', trans('cms::cms.postal_code').' :', ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
@@ -540,6 +492,11 @@
                     {!! $errors->first('understand_market_years_securities', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
+
+                <div class="text-center">
+                    <label class="control-label">'JOINT'</label>
+                </div>
+
             <div class="form-group {{ $errors->has('first_name_joint') ? 'has-error' : ''}}">
                 {!! Form::label('first_name_joint', trans('cms::cms.first_name_joint').' :', ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
@@ -1103,42 +1060,42 @@
             <div class="form-group {{ $errors->has('joint_first_date') ? 'has-error' : ''}}">
                 {!! Form::label('joint_first_date', trans('cms::cms.joint_first_date :'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    <label class="control-label">{{$cms_forms_liveaccount->joint_first_date }}</label>
+                    <label class="control-label">{{$cms_forms_liveaccount->date_of_birth }}</label>
                     {!! $errors->first('joint_first_date', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('joint_first_fullname') ? 'has-error' : ''}}">
                 {!! Form::label('joint_first_fullname', trans('cms::cms.joint_first_fullname :'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    <label class="control-label">{{$cms_forms_liveaccount->joint_first_date }}</label>
+                    <label class="control-label">{{$cms_forms_liveaccount->first_name.' '.$cms_forms_liveaccount->last_name }}</label>
                     {!! $errors->first('joint_first_fullname', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('joint_first_title') ? 'has-error' : ''}}">
                 {!! Form::label('joint_first_title', trans('cms::cms.joint_first_title :'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    <label class="control-label">{{$cms_forms_liveaccount->joint_first_date }}</label>
+                    <label class="control-label">{{$cms_forms_liveaccount->title }}</label>
                     {!! $errors->first('joint_first_title', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('joint_second_date') ? 'has-error' : ''}}">
                 {!! Form::label('joint_second_date', trans('cms::cms.joint_second_date :'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    <label class="control-label">{{$cms_forms_liveaccount->joint_first_date }}</label>
+                    <label class="control-label">{{$cms_forms_liveaccount->date_of_birth_joint }}</label>
                     {!! $errors->first('joint_second_date', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('joint_second_fullname') ? 'has-error' : ''}}">
                 {!! Form::label('joint_second_fullname', trans('cms::cms.joint_second_fullname :'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    <label class="control-label">{{$cms_forms_liveaccount->joint_first_date }}</label>
+                    <label class="control-label">{{$cms_forms_liveaccount->first_name_joint.' '.$cms_forms_liveaccount->last_name_joint }}</label>
                     {!! $errors->first('joint_second_fullname', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('joint_second_title') ? 'has-error' : ''}}">
                 {!! Form::label('joint_second_title', trans('cms::cms.joint_second_title :'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    <label class="control-label">{{$cms_forms_liveaccount->joint_first_date }}</label>
+                    <label class="control-label">{{$cms_forms_liveaccount->title_joint }}</label>
                     {!! $errors->first('joint_second_title', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
