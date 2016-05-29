@@ -1042,377 +1042,377 @@
 
     </div>
 
-    <div class="col-sm-4 understandRadio">
+            <div class="col-sm-4 understandRadio">
 
-        <div class="input_all_div">
-            <label class="required">{{ trans('cms::cms.Understand market forex').' *'  }}</label><br>
-            {!! Form::radio('understand_market_forex',1, false, ['class' => '','id'=>'understand_market_forex_0','required'=>'required']) !!}
-            <label for="understand_market_forex_0">{{ trans('cms::cms.yes') }}</label>
+                <div class="input_all_div">
+                    <label class="required">{{ trans('cms::cms.Understand market forex').' *'  }}</label><br>
+                    {!! Form::radio('understand_market_forex',1, false, ['class' => '','id'=>'understand_market_forex_0','required'=>'required']) !!}
+                    <label for="understand_market_forex_0">{{ trans('cms::cms.yes') }}</label>
 
-            {!! Form::radio('understand_market_forex',0, false, ['class' => '','id'=>'understand_market_forex_1','required'=>'required']) !!}
-            <label for="understand_market_forex_1">{{ trans('cms::cms.no') }}</label>
-            <span>{!! $errors->first('understand_market_forex', '<ul><li class="error">:message</li></ul>') !!}</span>
-        </div>
-
-
-        <div class="input_all_div">
-            <label>{!! Form::label('understand_market_years_forex',trans('cms::cms.understand_market_years_forex') , ['class' => 'control-label']) !!}</label>
-            {!! Form::text('understand_market_years_forex', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_forex')]) !!}
-            <span>{!! $errors->first('understand_market_years_forex', '<ul><li class="error">:message</li></ul>') !!}</span>
-        </div>
+                    {!! Form::radio('understand_market_forex',0, false, ['class' => '','id'=>'understand_market_forex_1','required'=>'required']) !!}
+                    <label for="understand_market_forex_1">{{ trans('cms::cms.no') }}</label>
+                    <span>{!! $errors->first('understand_market_forex', '<ul><li class="error">:message</li></ul>') !!}</span>
+                </div>
 
 
-        <div class="input_all_div">
-            <label class="required">{{ trans('cms::cms.Understand market securities').' *'  }}</label><br>
-            {!! Form::radio('understand_market_securities',1, false, ['class' => '','id'=>'understand_market_securities_0','required'=>'required']) !!}
-            <label for="understand_market_securities_0">{{ trans('cms::cms.yes') }}</label>
+                <div class="input_all_div">
+                    <label>{!! Form::label('understand_market_years_forex',trans('cms::cms.understand_market_years_forex') , ['class' => 'control-label']) !!}</label>
+                    {!! Form::text('understand_market_years_forex', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_forex')]) !!}
+                    <span>{!! $errors->first('understand_market_years_forex', '<ul><li class="error">:message</li></ul>') !!}</span>
+                </div>
 
-            {!! Form::radio('understand_market_securities',0, false, ['class' => '','id'=>'understand_market_securities_1','required'=>'required']) !!}
-            <label for="understand_market_securities_1">{{ trans('cms::cms.no') }}</label>
-            <span>{!! $errors->first('understand_market_securities', '<ul><li class="error">:message</li></ul>') !!}</span>
-        </div>
 
-        <div class="input_all_div">
-            <label>{!! Form::label('understand_market_years_securities',trans('cms::cms.understand_market_years_securities'), ['class' => 'control-label']) !!}</label>
-            {!! Form::text('understand_market_years_securities', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_securities')]) !!}
-            <span>{!! $errors->first('understand_market_years_securities', '<ul><li class="error">:message</li></ul>') !!}</span>
-        </div>
-    </div>
+                <div class="input_all_div">
+                    <label class="required">{{ trans('cms::cms.Understand market securities').' *'  }}</label><br>
+                    {!! Form::radio('understand_market_securities',1, false, ['class' => '','id'=>'understand_market_securities_0','required'=>'required']) !!}
+                    <label for="understand_market_securities_0">{{ trans('cms::cms.yes') }}</label>
 
-    <div class="joint_div understandRadio" id="i_joint">
+                    {!! Form::radio('understand_market_securities',0, false, ['class' => '','id'=>'understand_market_securities_1','required'=>'required']) !!}
+                    <label for="understand_market_securities_1">{{ trans('cms::cms.no') }}</label>
+                    <span>{!! $errors->first('understand_market_securities', '<ul><li class="error">:message</li></ul>') !!}</span>
+                </div>
 
-        <div class="clearfix"></div>
-        <h4>I. {{trans('cms::cms.UNDERSTANDING OF THE MARKETS (for Joint Account)')}}</h4>
-
-        <div class="col-sm-4">
-            <div class="input_all_div">
-                <label class="required">{{ trans('cms::cms.Understand market cfd') }}</label><br>
-                {!! Form::radio('understand_market_cfd_joint',1, false, ['class' => '','id'=>'understand_market_cfd_joint_0']) !!}
-                <label for="understand_market_cfd_joint_0">{{ trans('cms::cms.yes') }}</label>
-
-                {!! Form::radio('understand_market_cfd_joint',0, false, ['class' => '','id'=>'understand_market_cfd_joint_1']) !!}
-                <label for="understand_market_cfd_joint_1">{{ trans('cms::cms.no') }}</label>
-                <span>{!! $errors->first('understand_market_joint_cfd', '<ul><li class="error">:message</li></ul>') !!}</span>
+                <div class="input_all_div">
+                    <label>{!! Form::label('understand_market_years_securities',trans('cms::cms.understand_market_years_securities'), ['class' => 'control-label']) !!}</label>
+                    {!! Form::text('understand_market_years_securities', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_securities')]) !!}
+                    <span>{!! $errors->first('understand_market_years_securities', '<ul><li class="error">:message</li></ul>') !!}</span>
+                </div>
             </div>
 
-            <div class="input_all_div">
-                <label>{!! Form::label('understand_market_years_cfd_joint',trans('cms::cms.understand_market_years_cfd_joint')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::text('understand_market_years_cfd_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_cfd_joint')]) !!}
-                <span>{!! $errors->first('understand_market_years_cfd_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
-            </div>
+            <div class="joint_div understandRadio" id="i_joint">
 
-            <div class="input_all_div">
-                <label class="required">{{ trans('cms::cms.Understand market futures')}}</label><br>
-                {!! Form::radio('understand_market_futures_joint',1, false, ['class' => '','id'=>'understand_market_futures_joint_0']) !!}
-                <label for="understand_market_futures_joint_0">{{ trans('cms::cms.yes') }}</label>
+                <div class="clearfix"></div>
+                <h4>I. {{trans('cms::cms.UNDERSTANDING OF THE MARKETS (for Joint Account)')}}</h4>
 
-                {!! Form::radio('understand_market_futures_joint',0, false, ['class' => '','id'=>'understand_market_futures_joint_1']) !!}
-                <label for="understand_market_futures_joint_1">{{ trans('cms::cms.no') }}</label>
-                <span>{!! $errors->first('understand_market_futures_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
-            </div>
+                <div class="col-sm-4">
+                    <div class="input_all_div">
+                        <label class="required">{{ trans('cms::cms.Understand market cfd') }}</label><br>
+                        {!! Form::radio('understand_market_cfd_joint',1, false, ['class' => '','id'=>'understand_market_cfd_joint_0']) !!}
+                        <label for="understand_market_cfd_joint_0">{{ trans('cms::cms.yes') }}</label>
 
-            <div class="input_all_div">
-                <label>{!! Form::label('understand_market_years_futures_joint',trans('cms::cms.understand_market_years_futures_joint')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::text('understand_market_years_futures_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_futures_joint')]) !!}
-                <span>{!! $errors->first('understand_market_years_futures_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
-            </div>
-        </div>
+                        {!! Form::radio('understand_market_cfd_joint',0, false, ['class' => '','id'=>'understand_market_cfd_joint_1']) !!}
+                        <label for="understand_market_cfd_joint_1">{{ trans('cms::cms.no') }}</label>
+                        <span>{!! $errors->first('understand_market_joint_cfd', '<ul><li class="error">:message</li></ul>') !!}</span>
+                    </div>
 
-        <div class="col-sm-4">
+                    <div class="input_all_div">
+                        <label>{!! Form::label('understand_market_years_cfd_joint',trans('cms::cms.understand_market_years_cfd_joint')  , ['class' => 'control-label']) !!}</label>
+                        {!! Form::text('understand_market_years_cfd_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_cfd_joint')]) !!}
+                        <span>{!! $errors->first('understand_market_years_cfd_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
+                    </div>
 
-            <div class="input_all_div ">
-                <label class="required">{{ trans('cms::cms.Understand market commodities') }}</label><br>
-                {!! Form::radio('understand_market_commodities_joint',1, false, ['class' => '','id'=>'understand_market_commodities_joint_0']) !!}
-                <label for="understand_market_commodities_joint_0">{{ trans('cms::cms.yes') }}</label>
+                    <div class="input_all_div">
+                        <label class="required">{{ trans('cms::cms.Understand market futures')}}</label><br>
+                        {!! Form::radio('understand_market_futures_joint',1, false, ['class' => '','id'=>'understand_market_futures_joint_0']) !!}
+                        <label for="understand_market_futures_joint_0">{{ trans('cms::cms.yes') }}</label>
 
-                {!! Form::radio('understand_market_commodities_joint',0, false, ['class' => '','id'=>'understand_market_commodities_joint_1']) !!}
-                <label for="understand_market_commodities_joint_1">{{ trans('cms::cms.no') }}</label>
-                <span>{!! $errors->first('understand_market_commodities_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
-            </div>
+                        {!! Form::radio('understand_market_futures_joint',0, false, ['class' => '','id'=>'understand_market_futures_joint_1']) !!}
+                        <label for="understand_market_futures_joint_1">{{ trans('cms::cms.no') }}</label>
+                        <span>{!! $errors->first('understand_market_futures_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
+                    </div>
 
-            <div class="input_all_div">
-                <label>{!! Form::label('understand_market_years_commodities_joint',trans('cms::cms.understand_market_years_commodities_joint')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::text('understand_market_years_commodities_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_commodities_joint')]) !!}
-                <span>{!! $errors->first('understand_market_years_commodities_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
-            </div>
+                    <div class="input_all_div">
+                        <label>{!! Form::label('understand_market_years_futures_joint',trans('cms::cms.understand_market_years_futures_joint')  , ['class' => 'control-label']) !!}</label>
+                        {!! Form::text('understand_market_years_futures_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_futures_joint')]) !!}
+                        <span>{!! $errors->first('understand_market_years_futures_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
+                    </div>
+                </div>
 
-            <div class="input_all_div">
-                <label class="required">{{ trans('cms::cms.Understand market options') }}</label><br>
-                {!! Form::radio('understand_market_options_joint',1, false, ['class' => '','id'=>'understand_market_options_joint_0']) !!}
-                <label for="understand_market_options_joint_0">{{ trans('cms::cms.yes') }}</label>
+                <div class="col-sm-4">
 
-                {!! Form::radio('understand_market_options_joint',0, false, ['class' => '','id'=>'understand_market_options_joint_1']) !!}
-                <label for="understand_market_options_joint_1">{{ trans('cms::cms.no') }}</label>
-                <span>{!! $errors->first('understand_market_options_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
-            </div>
+                    <div class="input_all_div ">
+                        <label class="required">{{ trans('cms::cms.Understand market commodities') }}</label><br>
+                        {!! Form::radio('understand_market_commodities_joint',1, false, ['class' => '','id'=>'understand_market_commodities_joint_0']) !!}
+                        <label for="understand_market_commodities_joint_0">{{ trans('cms::cms.yes') }}</label>
 
-            <div class="input_all_div">
-                <label>{!! Form::label('understand_market_years_options_joint',trans('cms::cms.understand_market_years_options_joint')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::text('understand_market_years_options_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_options_joint')]) !!}
-                <span>{!! $errors->first('understand_market_years_options_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
-            </div>
+                        {!! Form::radio('understand_market_commodities_joint',0, false, ['class' => '','id'=>'understand_market_commodities_joint_1']) !!}
+                        <label for="understand_market_commodities_joint_1">{{ trans('cms::cms.no') }}</label>
+                        <span>{!! $errors->first('understand_market_commodities_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
+                    </div>
 
-        </div>
+                    <div class="input_all_div">
+                        <label>{!! Form::label('understand_market_years_commodities_joint',trans('cms::cms.understand_market_years_commodities_joint')  , ['class' => 'control-label']) !!}</label>
+                        {!! Form::text('understand_market_years_commodities_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_commodities_joint')]) !!}
+                        <span>{!! $errors->first('understand_market_years_commodities_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
+                    </div>
 
-        <div class="col-sm-4">
+                    <div class="input_all_div">
+                        <label class="required">{{ trans('cms::cms.Understand market options') }}</label><br>
+                        {!! Form::radio('understand_market_options_joint',1, false, ['class' => '','id'=>'understand_market_options_joint_0']) !!}
+                        <label for="understand_market_options_joint_0">{{ trans('cms::cms.yes') }}</label>
 
-            <div class="input_all_div">
-                <label class="required">{{ trans('cms::cms.Understand market forex') }}</label><br>
-                {!! Form::radio('understand_market_forex_joint',1, false, ['class' => '','id'=>'understand_market_forex_joint_0']) !!}
-                <label for="understand_market_forex_joint_0">{{ trans('cms::cms.yes') }}</label>
+                        {!! Form::radio('understand_market_options_joint',0, false, ['class' => '','id'=>'understand_market_options_joint_1']) !!}
+                        <label for="understand_market_options_joint_1">{{ trans('cms::cms.no') }}</label>
+                        <span>{!! $errors->first('understand_market_options_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
+                    </div>
 
-                {!! Form::radio('understand_market_forex_joint',0, false, ['class' => '','id'=>'understand_market_forex_joint_1']) !!}
-                <label for="understand_market_forex_joint_1">{{ trans('cms::cms.no') }}</label>
-                <span>{!! $errors->first('understand_market_forex_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
-            </div>
+                    <div class="input_all_div">
+                        <label>{!! Form::label('understand_market_years_options_joint',trans('cms::cms.understand_market_years_options_joint')  , ['class' => 'control-label']) !!}</label>
+                        {!! Form::text('understand_market_years_options_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_options_joint')]) !!}
+                        <span>{!! $errors->first('understand_market_years_options_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
+                    </div>
 
-            <div class="input_all_div">
-                <label>{!! Form::label('understand_market_years_forex_joint',trans('cms::cms.understand_market_years_forex_joint')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::text('understand_market_years_forex_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_forex_joint')]) !!}
-                <span>{!! $errors->first('understand_market_years_forex_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
-            </div>
+                </div>
 
+                        <div class="col-sm-4">
 
-            <div class="input_all_div">
-                <label class="required">{{ trans('cms::cms.Understand market securities')}}</label><br>
-                {!! Form::radio('understand_market_securities_joint',1, false, ['class' => '','id'=>'understand_market_securities_joint_0']) !!}
-                <label for="understand_market_securities_joint_0">{{ trans('cms::cms.yes') }}</label>
+                            <div class="input_all_div">
+                                <label class="required">{{ trans('cms::cms.Understand market forex') }}</label><br>
+                                {!! Form::radio('understand_market_forex_joint',1, false, ['class' => '','id'=>'understand_market_forex_joint_0']) !!}
+                                <label for="understand_market_forex_joint_0">{{ trans('cms::cms.yes') }}</label>
 
-                {!! Form::radio('understand_market_securities_joint',0, false, ['class' => '','id'=>'understand_market_securities_joint_1']) !!}
-                <label for="understand_market_securities_joint_1">{{ trans('cms::cms.no') }}</label>
-                <span>{!! $errors->first('understand_market_securities_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
-            </div>
+                                {!! Form::radio('understand_market_forex_joint',0, false, ['class' => '','id'=>'understand_market_forex_joint_1']) !!}
+                                <label for="understand_market_forex_joint_1">{{ trans('cms::cms.no') }}</label>
+                                <span>{!! $errors->first('understand_market_forex_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
+                            </div>
 
-            <div class="input_all_div">
-                <label>{!! Form::label('understand_market_years_securities_joint',trans('cms::cms.understand_market_years_securities_joint')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::text('understand_market_years_securities_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_securities_joint')]) !!}
-                <span>{!! $errors->first('understand_market_years_securities_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="clearfix"></div>
-    <h3>6. {{trans('cms::cms.Pearsonal Files')}}</h3>
-
-    <div class="left_div">
-        <div class="input_all_div">
-            <label>{!! Form::label('id_type',trans('cms::cms.id_type').' *'   , ['class' => 'control-label']) !!}</label>
-            {!! Form::select('id_type',$arrays['id_type'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform','required'=>'required']) !!}
-            <span>{!! $errors->first('id_type', '<ul><li class="error">:message</li></ul>') !!}</span>
-        </div>
-
-        <div class="input_all_div">
-            <label>{!! Form::label('proof_of_residence',trans('cms::cms.proof_of_residence').' *'  , ['class' => 'control-label']) !!}</label>
-            {!! Form::select('proof_of_residence',$arrays['proof_of_residence'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform','required'=>'required']) !!}
-            <span>{!! $errors->first('proof_of_residence', '<ul><li class="error">:message</li></ul>') !!}</span>
-        </div>
-
-    </div>
-
-    <div class="right_div">
-
-        <div class="input_all_div file">
-            {!! Form::label('document_id', trans('document_id')) !!}
-            <div class="country_list">
-                {!! Form::text('document_id', null, ['class' => 'form-control']) !!}
-            </div>
-            {!! $errors->first('document_id', '<ul><li class="error">:message</li></ul>') !!}
-        </div>
-
-        <div class="input_all_div file">
-            {!! Form::label('document_por', trans('document_por')) !!}
-            <div class="country_list">
-                {!! Form::text('document_por', null, ['class' => 'form-control']) !!}
-            </div>
-            {!! $errors->first('document_por', '<ul><li class="error">:message</li></ul>') !!}
-        </div>
+                            <div class="input_all_div">
+                                <label>{!! Form::label('understand_market_years_forex_joint',trans('cms::cms.understand_market_years_forex_joint')  , ['class' => 'control-label']) !!}</label>
+                                {!! Form::text('understand_market_years_forex_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_forex_joint')]) !!}
+                                <span>{!! $errors->first('understand_market_years_forex_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
+                            </div>
 
 
-    </div>
+                            <div class="input_all_div">
+                                <label class="required">{{ trans('cms::cms.Understand market securities')}}</label><br>
+                                {!! Form::radio('understand_market_securities_joint',1, false, ['class' => '','id'=>'understand_market_securities_joint_0']) !!}
+                                <label for="understand_market_securities_joint_0">{{ trans('cms::cms.yes') }}</label>
+
+                                {!! Form::radio('understand_market_securities_joint',0, false, ['class' => '','id'=>'understand_market_securities_joint_1']) !!}
+                                <label for="understand_market_securities_joint_1">{{ trans('cms::cms.no') }}</label>
+                                <span>{!! $errors->first('understand_market_securities_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
+                            </div>
+
+                            <div class="input_all_div">
+                                <label>{!! Form::label('understand_market_years_securities_joint',trans('cms::cms.understand_market_years_securities_joint')  , ['class' => 'control-label']) !!}</label>
+                                {!! Form::text('understand_market_years_securities_joint', null, ['class' => '','placeholder'=>trans('cms::cms.understand_market_years_securities_joint')]) !!}
+                                <span>{!! $errors->first('understand_market_years_securities_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <h3>6. {{trans('cms::cms.Pearsonal Files')}}</h3>
+
+                    <div class="left_div">
+                        <div class="input_all_div">
+                            <label>{!! Form::label('id_type',trans('cms::cms.id_type').' *'   , ['class' => 'control-label']) !!}</label>
+                            {!! Form::select('id_type',$arrays['id_type'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform','required'=>'required']) !!}
+                            <span>{!! $errors->first('id_type', '<ul><li class="error">:message</li></ul>') !!}</span>
+                        </div>
+
+                        <div class="input_all_div">
+                            <label>{!! Form::label('proof_of_residence',trans('cms::cms.proof_of_residence').' *'  , ['class' => 'control-label']) !!}</label>
+                            {!! Form::select('proof_of_residence',$arrays['proof_of_residence'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform','required'=>'required']) !!}
+                            <span>{!! $errors->first('proof_of_residence', '<ul><li class="error">:message</li></ul>') !!}</span>
+                        </div>
+
+                    </div>
+
+                    <div class="right_div">
+
+                        <div class="input_all_div file">
+                            {!! Form::label('document_id', trans('cms::cms.document_id')) !!}
+                            <div class="country_list">
+                                {!! Form::text('document_id', null, ['class' => 'form-control']) !!}
+                            </div>
+                            {!! $errors->first('document_id', '<ul><li class="error">:message</li></ul>') !!}
+                        </div>
+
+                        <div class="input_all_div file">
+                            {!! Form::label('document_por', trans('cms::cms.document_por')) !!}
+                            <div class="country_list">
+                                {!! Form::text('document_por', null, ['class' => 'form-control']) !!}
+                            </div>
+                            {!! $errors->first('document_por', '<ul><li class="error">:message</li></ul>') !!}
+                        </div>
 
 
-    <div class="clearfix"></div>
-    <h4>A. {{trans('cms::cms.Understand risks')}}</h4>
-    {{trans('cms::cms.Margin_trading')}} <a href="path('showPage',{'id':1225,'parentid':2,'slug':'risk-disclosure'})">
-        {{trans('cms::cms.Risk Disclosure')}}</a>  {{trans('cms::cms.and')}}
-    <a href="path('showPage',{'id':1198,'parentid':2,'slug':'privacy-policy'})">{{trans('cms::cms.Privacy Policy')}}</a>
-    {{trans('cms::cms.Statement')}}.
-    <div class="full_width_div">
-        <div class="input_all_div">
-            <label class="required">{{ trans('cms::cms.understand_risks').' *' }}</label><br>
-            {!! Form::radio('understand_risks',0, false, ['class' => '','id'=>'understand_risks_0','required'=>'required']) !!}
-            <label for="understand_risks_0">{{ trans('cms::cms.yes') }}</label>
-
-            {!! Form::radio('understand_risks',1, false, ['class' => '','id'=>'understand_risks_1','required'=>'required']) !!}
-            <label for="understand_risks_1">{{ trans('cms::cms.no') }}</label>
-            <span>{!! $errors->first('understand_risks', '<ul><li class="error">:message</li></ul>') !!}</span>
-        </div>
+                    </div>
 
 
-    </div>
+                    <div class="clearfix"></div>
+                    <h4>A. {{trans('cms::cms.Understand risks')}}</h4>
+                    {{trans('cms::cms.Margin_trading')}} <a href="path('showPage',{'id':1225,'parentid':2,'slug':'risk-disclosure'})">
+                        {{trans('cms::cms.Risk Disclosure')}}</a>  {{trans('cms::cms.and')}}
+                    <a href="path('showPage',{'id':1198,'parentid':2,'slug':'privacy-policy'})">{{trans('cms::cms.Privacy Policy')}}</a>
+                    {{trans('cms::cms.Statement')}}.
+                    <div class="full_width_div">
+                        <div class="input_all_div">
+                            <label class="required">{{ trans('cms::cms.understand_risks').' *' }}</label><br>
+                            {!! Form::radio('understand_risks',0, false, ['class' => '','id'=>'understand_risks_0','required'=>'required']) !!}
+                            <label for="understand_risks_0">{{ trans('cms::cms.yes') }}</label>
 
-    <div class="joint_div" id="resk_joint">
-        <div class="clearfix"></div>
-        <h4>A. {{trans('cms::cms.Understand risks (for Joint Account)')}}</h4>
-        {{trans('cms::cms.Margin_trading')}} <a href="path('showPage',{'id':1225,'parentid':2,'slug':'risk-disclosure'})">
-            {{trans('cms::cms.Risk Disclosure')}}</a>  {{trans('cms::cms.and')}}
-        <a href="path('showPage',{'id':1198,'parentid':2,'slug':'privacy-policy'})">{{trans('cms::cms.Privacy Policy')}}</a>
-        {{trans('cms::cms.Statement')}}.
-        <div class="full_width_div">
-            <div class="input_all_div">
-                <label class="required">{{ trans('cms::cms.understand_risks') }}</label><br>
-                {!! Form::radio('understand_risks_joint',0, false, ['class' => '','id'=>'understand_risks_joint_0']) !!}
-                <label for="understand_risks_joint_0">{{ trans('cms::cms.yes') }}</label>
-
-                {!! Form::radio('understand_risks_joint',1, false, ['class' => '','id'=>'understand_risks_joint_1']) !!}
-                <label for="understand_risks_joint_1">{{ trans('cms::cms.no') }}</label>
-                <span>{!! $errors->first('understand_risks_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="full_width_div">
-
-        <div class="clearfix"></div>
-        <h3>7.  {{trans('cms::cms.SIGNATURE AND CONSENT')}}</h3>
-        <h4>I/  {{trans('cms::cms.WE, THE UNDERSIGNED, HEREBY CERTIFY THAT')}}:</h4>
-
-        <div class="nav-input-div">
-            <div class="checkbox">
-                <label>
-                    {!! Form::checkbox('agreem_check_1', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
-                    <span class="lbl">{{ trans('cms::cms.agreem_check_1').' *' }}</span>
-                </label>
-            </div>
-        </div>
-
-        <div class="nav-input-div">
-            <div class="checkbox">
-                <label>
-                    {!! Form::checkbox('agreem_check_2', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
-                    <span class="lbl">{{ trans('cms::cms.agreem_check_2').' *' }}</span>
-                </label>
-            </div>
-        </div>
-
-        <div class="nav-input-div">
-            <div class="checkbox">
-                <label>
-                    {!! Form::checkbox('agreem_check_3', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
-                    <span class="lbl">{{ trans('cms::cms.agreem_check_3').' *' }}</span>
-                </label>
-            </div>
-        </div>
-
-        <div class="nav-input-div">
-            <div class="checkbox">
-                <label>
-                    {!! Form::checkbox('agreem_check_4', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
-                    <span class="lbl">{{ trans('cms::cms.agreem_check_4') }}</span>
-                </label>
-            </div>
-        </div>
-
-        <div class="nav-input-div">
-            <div class="checkbox">
-                <label>
-                    {!! Form::checkbox('agreem_check_5', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
-                    <span class="lbl">{{ trans('cms::cms.agreem_check_5').' *' }}</span>
-                </label>
-            </div>
-        </div>
-
-        <div class="nav-input-div">
-            <div class="checkbox">
-                <label>
-                    {!! Form::checkbox('agreem_check_6', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
-                    <span class="lbl">{{ trans('cms::cms.agreem_check_6').' *' }}</span>
-                </label>
-            </div>
-        </div>
+                            {!! Form::radio('understand_risks',1, false, ['class' => '','id'=>'understand_risks_1','required'=>'required']) !!}
+                            <label for="understand_risks_1">{{ trans('cms::cms.no') }}</label>
+                            <span>{!! $errors->first('understand_risks', '<ul><li class="error">:message</li></ul>') !!}</span>
+                        </div>
 
 
-        <div class="nav-input-div">
-            <div class="checkbox">
-                <label>
-                    {!! Form::checkbox('agreem_check_7', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
-                    <span class="lbl">{{ trans('cms::cms.agreem_check_7').' *' }}</span>
-                </label>
-            </div>
-        </div>
+                    </div>
 
-        <div class="nav-input-div">
-            <div class="checkbox">
-                <label>
-                    {!! Form::checkbox('agreem_check_8', 1,false ,['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
-                    <span class="lbl">{{ trans('cms::cms.agreem_check_8').' *' }}</span>
-                </label>
-            </div>
-        </div>
+                    <div class="joint_div" id="resk_joint">
+                        <div class="clearfix"></div>
+                        <h4>A. {{trans('cms::cms.Understand risks (for Joint Account)')}}</h4>
+                        {{trans('cms::cms.Margin_trading')}} <a href="path('showPage',{'id':1225,'parentid':2,'slug':'risk-disclosure'})">
+                            {{trans('cms::cms.Risk Disclosure')}}</a>  {{trans('cms::cms.and')}}
+                        <a href="path('showPage',{'id':1198,'parentid':2,'slug':'privacy-policy'})">{{trans('cms::cms.Privacy Policy')}}</a>
+                        {{trans('cms::cms.Statement')}}.
+                        <div class="full_width_div">
+                            <div class="input_all_div">
+                                <label class="required">{{ trans('cms::cms.understand_risks') }}</label><br>
+                                {!! Form::radio('understand_risks_joint',0, false, ['class' => '','id'=>'understand_risks_joint_0']) !!}
+                                <label for="understand_risks_joint_0">{{ trans('cms::cms.yes') }}</label>
+
+                                {!! Form::radio('understand_risks_joint',1, false, ['class' => '','id'=>'understand_risks_joint_1']) !!}
+                                <label for="understand_risks_joint_1">{{ trans('cms::cms.no') }}</label>
+                                <span>{!! $errors->first('understand_risks_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="full_width_div">
+
+                        <div class="clearfix"></div>
+                        <h3>7.  {{trans('cms::cms.SIGNATURE AND CONSENT')}}</h3>
+                        <h4>I/  {{trans('cms::cms.WE, THE UNDERSIGNED, HEREBY CERTIFY THAT')}}:</h4>
+
+                        <div class="nav-input-div">
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('agreem_check_1', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
+                                    <span class="lbl">{{ trans('cms::cms.agreem_check_1').' *' }}</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="nav-input-div">
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('agreem_check_2', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
+                                    <span class="lbl">{{ trans('cms::cms.agreem_check_2').' *' }}</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="nav-input-div">
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('agreem_check_3', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
+                                    <span class="lbl">{{ trans('cms::cms.agreem_check_3').' *' }}</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="nav-input-div">
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('agreem_check_4', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
+                                    <span class="lbl">{{ trans('cms::cms.agreem_check_4') }}</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="nav-input-div">
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('agreem_check_5', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
+                                    <span class="lbl">{{ trans('cms::cms.agreem_check_5').' *' }}</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="nav-input-div">
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('agreem_check_6', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
+                                    <span class="lbl">{{ trans('cms::cms.agreem_check_6').' *' }}</span>
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <div class="nav-input-div">
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('agreem_check_7', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
+                                    <span class="lbl">{{ trans('cms::cms.agreem_check_7').' *' }}</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="nav-input-div">
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('agreem_check_8', 1,false ,['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
+                                    <span class="lbl">{{ trans('cms::cms.agreem_check_8').' *' }}</span>
+                                </label>
+                            </div>
+                        </div>
 
 
 
-        <h4>{{trans('cms::cms.Personal information submitted by me/us to House of Borse may')}}:</h4>
+                        <h4>{{trans('cms::cms.Personal information submitted by me/us to House of Borse may')}}:</h4>
 
-        <div class="nav-input-div">
-            <div class="checkbox">
-                <label>
-                    {!! Form::checkbox('agreem_check_9', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
-                    <span class="lbl">{{ trans('cms::cms.agreem_check_9').' *' }}</span>
-                </label>
-            </div>
-        </div>
+                        <div class="nav-input-div">
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('agreem_check_9', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
+                                    <span class="lbl">{{ trans('cms::cms.agreem_check_9').' *' }}</span>
+                                </label>
+                            </div>
+                        </div>
 
-        <div class="nav-input-div">
-            <div class="checkbox">
-                <label>
-                    {!! Form::checkbox('agreem_check_10', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
-                    <span class="lbl">{{ trans('cms::cms.agreem_check_10').' *' }}</span>
-                </label>
-            </div>
-        </div>
+                        <div class="nav-input-div">
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('agreem_check_10', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
+                                    <span class="lbl">{{ trans('cms::cms.agreem_check_10').' *' }}</span>
+                                </label>
+                            </div>
+                        </div>
 
-        <div class="nav-input-div">
-            <div class="checkbox">
-                <label>
-                    {!! Form::checkbox('agreem_check_11', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
-                    <span class="lbl">{{ trans('cms::cms.agreem_check_11').' *' }}</span>
-                </label>
-            </div>
-        </div>
+                        <div class="nav-input-div">
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('agreem_check_11', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
+                                    <span class="lbl">{{ trans('cms::cms.agreem_check_11').' *' }}</span>
+                                </label>
+                            </div>
+                        </div>
 
-        <div class="nav-input-div">
-            <div class="checkbox">
-                <label>
-                    {!! Form::checkbox('agreem_check_12', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
-                    <span class="lbl">{{ trans('cms::cms.agreem_check_12').' *' }}</span>
-                </label>
-            </div>
-        </div>
-
-
-    </div>
+                        <div class="nav-input-div">
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('agreem_check_12', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
+                                    <span class="lbl">{{ trans('cms::cms.agreem_check_12').' *' }}</span>
+                                </label>
+                            </div>
+                        </div>
 
 
-    <div class="clearfix">
-    </div>
-    <div class="col-xs-6">
-    </div>
+                    </div>
 
-    <div id="submit_bottom_buttons_div">
-        <button type="reset" class="reset b-btn f-btn b-btn-default b-btn-md f-primary-b"><i class="fa fa-refresh"></i>
-            Reset
-        </button>
 
-        <button type="submit" class="next b-btn f-btn b-btn-default b-btn-md f-primary-b"
-                onclick="/*$(this).parents('form:first').submit();*/">Submit <i
-                    class="fa fa-arrow-right"></i></button>
-    </div>
-    <div class="clearfix"></div>
+                    <div class="clearfix">
+                    </div>
+                    <div class="col-xs-6">
+                    </div>
 
-</div>
+                    <div id="submit_bottom_buttons_div">
+                        <button type="reset" class="reset b-btn f-btn b-btn-default b-btn-md f-primary-b"><i class="fa fa-refresh"></i>
+                            Reset
+                        </button>
+
+                        <button type="submit" class="next b-btn f-btn b-btn-default b-btn-md f-primary-b"
+                                onclick="/*$(this).parents('form:first').submit();*/">Submit <i
+                                    class="fa fa-arrow-right"></i></button>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
 
 
 </form>

@@ -12,9 +12,9 @@
                     <tr>
 
                         <th>ID.</th>
-                        <th>{{ trans('user_id') }}</th>
-                        <th>{{ trans('title') }}</th>
-                        <th>{{ trans('gender') }}</th>
+                        <th>{{ trans('cms::cms.user_id') }}</th>
+                        <th>{{ trans('cms::cms.title') }}</th>
+                        <th>{{ trans('cms::cms.gender') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -36,7 +36,7 @@
            'class' => 'form-horizontal'
        ])!!}
             <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
-                {!! Form::label('user_id', trans('cms::cms.user_id'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('user_id', trans('cms::cms.user_id').' :', ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     <label class="control-label">{{$cms_forms_liveaccount-> user_id }}</label>
                     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
@@ -1150,7 +1150,7 @@
                 </div>
             </div>
             <div class="form-group {{ $errors->has('document_id2') ? 'has-error' : ''}}">
-                {!! Form::label('document_id2', trans('cms::cms.document_id2 :'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('document_id2', trans('document_id2 :'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     <label class="control-label">{{$cms_forms_liveaccount->joint_first_date }}</label>
                     {!! $errors->first('document_id2', '<p class="help-block">:message</p>') !!}
