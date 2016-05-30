@@ -164,7 +164,7 @@ class cms_forms_paymentController extends Controller
                 $OPERATION="RES";//f
 
 
-                $PaymentAmount =$request->get('AMOUNT') * 10;//
+                $PaymentAmount =$request->get('AMOUNT') * 100;//
                 $OrderID = $request->get('ORDERID').'-'.rand(100000,999999);//get login + hash random six char
                 $CARDNO=$request->get('CARDNO');
                 // $ED=$request->get('ED');//expiry mmyy
@@ -253,7 +253,7 @@ class cms_forms_paymentController extends Controller
                 $response = curl_exec($ch);
 
             $xml=['STATUS'=>0,'NCERRORPLUS'=>'Internal Error , please try again'];
-           
+
 try{
               $xml = new \SimpleXMLElement($response);
 
