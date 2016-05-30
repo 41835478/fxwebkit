@@ -41,8 +41,35 @@
                 <p></p>
                 <div id="contactus-form-cont">
 
+                    @if ($errors->any())
+                        <ul  >
+                            @foreach ($errors->getMessages() as $field=>$error)
+                                @foreach ($error as $oneError)
+                                    <li  class="error">{{ucfirst (str_replace('_',' ',$field)) }} : {{$oneError}}</li>
+                                    <li style="list-style: none;"><br></li>
+                                @endforeach
+                            @endforeach
+                        </ul>
+                    @endif
 
-    {!! Form::open(['route' => 'cms_forms_contactus.form', 'class' => 'form-horizontal']) !!}
+
+
+
+                    @if (Session::get('flash_success'))
+                        <div class="alert alert-success">
+                            @if(is_array(json_decode(Session::get('flash_success'),true)))
+                                {!! implode('', Session::get('flash_success')->all(':message<br/>')) !!}
+                            @else
+                                {!! Session::get('flash_success') !!}
+                            @endif
+                        </div>
+
+                    @endif
+
+
+
+
+                    {!! Form::open(['route' => 'cms_forms_contactus.form', 'class' => 'form-horizontal']) !!}
 
                 <div class="form-group {{ $errors->has('firstName') ? 'has-error' : ''}}">
                 {!! Form::label('firstName', trans('firstName'), ['class' => 'col-sm-12']) !!}

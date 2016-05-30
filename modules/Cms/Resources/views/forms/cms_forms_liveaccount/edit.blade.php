@@ -1108,13 +1108,14 @@
                     {!! $errors->first('document_id', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
+            <!--
             <div class="form-group {{ $errors->has('document_id2') ? 'has-error' : ''}}">
                 {!! Form::label('document_id2', trans('cms::cms.document_id2'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::text('document_id2', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('document_id2', '<p class="help-block">:message</p>') !!}
                 </div>
-            </div>
+            </div>-->
             <div class="form-group {{ $errors->has('document_por') ? 'has-error' : ''}}">
                 {!! Form::label('document_por', trans('cms::cms.document_por'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">

@@ -9,12 +9,15 @@
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
-                    <th>ID.</th> <th>{{ trans('title') }}</th><th>{{ trans('firstName') }}</th><th>{{ trans('lastName') }}</th>
+                    <th>ID.</th> <th>{{ trans('title') }}</th><th>{{ trans('firstName') }}</th><th>{{ trans('lastName') }}</th><th>C.V.</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>{{ $cms_forms_careercenter->id }}</td> <td> {{ $cms_forms_careercenter->title }} </td><td> {{ $cms_forms_careercenter->firstName }} </td><td> {{ $cms_forms_careercenter->lastName }} </td>
+                    <td>
+                       <a href="/{{ Config::get('cms.asset_folder').'/'.$cms_forms_careercenter->cv }}">C.V.</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

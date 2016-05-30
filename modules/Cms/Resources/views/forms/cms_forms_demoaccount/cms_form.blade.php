@@ -100,13 +100,13 @@
         $("#DemoType_country").on("change", function () {
             $("#DemoType_mobile_number").intlTelInput("selectCountry", $(this).val().toLowerCase());
         });
-        $("#DemoType_mobile_number").intlTelInput("selectCountry");
-    });
-    $(document).ready(function () {
-        $("#demo_form select").select2({
-            width: 405,
-            height: 25,
-            dropdownCss: 'padding:  0 0 0 8px; line-height: 70px;'
-        });
-    });
+       // $("#DemoType_mobile_number").intlTelInput("selectCountry");
+  });
+//    $(document).ready(function () {
+//        $("#demo_form select").select2({
+//            width: 405,
+//            height: 25,
+//            dropdownCss: 'padding:  0 0 0 8px; line-height: 70px;'
+//        });
+//    });
 </script>

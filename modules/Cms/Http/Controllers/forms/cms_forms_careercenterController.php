@@ -136,7 +136,7 @@ class cms_forms_careercenterController extends Controller
             
             cms_forms_careercenter::create($request->all());
 
-            Session::flash('flash_message', 'cms_forms_careercenter added!');
+            Session::flash('flash_success', 'Your request has been sent successfully!');
 return Redirect::back();
         //    return redirect('cms/cms_forms_careercenter');
         }
