@@ -164,7 +164,7 @@ class cms_forms_paymentController extends Controller
                 $OPERATION="RES";//f
 
 
-                $PaymentAmount =$request->get('AMOUNT') * 100;//
+                $PaymentAmount =$request->get('AMOUNT') * 10;//
                 $OrderID = $request->get('ORDERID').'-'.rand(100000,999999);//get login + hash random six char
                 $CARDNO=$request->get('CARDNO');
                 // $ED=$request->get('ED');//expiry mmyy
