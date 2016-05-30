@@ -245,7 +245,7 @@ counters" href="http://statcounter.com/"
     @endforeach
 @endif
 
-@if(true)
+@if(false)
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/breakpoints.js"></script>
 <!-- bootstrap -->
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/scrollspy.js"></script>
@@ -300,27 +300,26 @@ counters" href="http://statcounter.com/"
 <!-- end Progress -->
 
 <!-- Google services -->
-<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/google-chart.js"></script>
+<!--<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>-->
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/google-chart.js"></script>-->
 <!-- end Google services -->
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/j.placeholder.js"></script>
 
 <!-- Fancybox -->
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/fancybox/jquery.fancybox.pack.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/fancybox/jquery.mousewheel.pack.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/fancybox/jquery.fancybox.custom.js"></script>
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/fancybox/jquery.mousewheel.pack.js"></script>-->
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/fancybox/jquery.fancybox.custom.js"></script>-->
 <!-- End Fancybox -->
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/user.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/timeline.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/fontawesome-markers.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/markerwithlabel.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/cookie.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/loader.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/scrollIt/scrollIt.min.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/navigation-slide.js"></script>
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/timeline.js"></script>-->
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/fontawesome-markers.js"></script>-->
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/markerwithlabel.js"></script>-->
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/cookie.js"></script>-->
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/loader.js"></script>-->
+{{--<script src="{{ asset($asset_folder.'houseofborse') }}/js/scrollIt/scrollIt.min.js"></script>--}}
+{{--<script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/navigation-slide.js"></script>--}}
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/home_page_slider.js"></script>
 @else
-
     <script src="{{ asset($asset_folder.'houseofborse') }}/js/allJsFiles.js"></script>
 @endif
 </body>
