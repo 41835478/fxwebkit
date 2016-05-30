@@ -6,7 +6,7 @@
         </row>
 
         <row>
-            <column class="col-xs-8 " name="house_main_menu"></column>
+            <column class="col-xs-8 col-xs-offset-4 " name="house_main_menu"></column>
         </row>
         <row>
             <column class="col-xs-12" name="house_header"></column>
@@ -32,42 +32,7 @@
         <row>
             <column class="col-xs-12" name="house_position_1"></column>
         </row>
-        <row>
-            <column class="col-xs-12" name="house_position_2"></column>
-        </row>
-        <row>
-            <column class="col-xs-12" name="house_position_3"></column>
-        </row>
-        <row>
-            <column class="col-xs-12" name="house_position_4"></column>
-        </row>
-        <row>
-            <column class="col-xs-12" name="house_position_5"></column>
-        </row>
-        <row>
-            <column class="col-xs-12" name="house_position_6"></column>
-        </row>
-        <row>
-            <column class="col-xs-12" name="house_position_7"></column>
-        </row>
-        <row>
-            <column class="col-xs-12" name="house_position_8"></column>
-        </row>
-        <row>
-            <column class="col-xs-12" name="house_position_9"></column>
-        </row>
-        <row>
-            <column class="col-xs-12" name="house_position_10"></column>
-        </row>
-        <row>
-            <column class="col-xs-12" name="house_position_11"></column>
-        </row>
-        <row>
-            <column class="col-xs-12" name="house_position_12"></column>
-        </row>
-        <row>
-            <column class="col-xs-12" name="house_position_13"></column>
-        </row>
+
         <row>
             <column class="col-xs-12" name="house_footer_upper"></column>
         </row>
