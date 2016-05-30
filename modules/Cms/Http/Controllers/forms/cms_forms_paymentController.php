@@ -255,7 +255,9 @@ class cms_forms_paymentController extends Controller
 
             $xml=['STATUS'=>0,'NCERRORPLUS'=>'Internal Error , please try again'];
 try{
-               @$xml = new \SimpleXMLElement($response);dd();
+               @$xml = new \SimpleXMLElement($response);
+
+   
 }catch(\Exception $e){}
                 if($xml['STATUS']==0){
                     $status=1;
