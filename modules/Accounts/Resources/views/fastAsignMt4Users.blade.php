@@ -162,10 +162,11 @@
                                     <td>
 
                                         @if(isset($oResult->users_id ) || (isset($oResult->account) && $oResult->account->users_id>0))
-                                            {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+
+                                            {!! Form::button('<a><i class="fa fa-unlink "></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('accounts::accounts.un_assign') ,'type'=>'submit' ]) !!}
                                         @else
 
-                                            {!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+                                            {!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('accounts::accounts.assign'),'type'=>'submit' ]) !!}
                                         @endif
                                     </td>
                                 </tr>
@@ -239,6 +240,8 @@
     <script>
 
         init.push(function () {
+
+            $('.tooltip_number').tooltip();
 
 
             $('#all-groups-chx').change(function () {

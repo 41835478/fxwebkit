@@ -82,8 +82,6 @@ class ReportsController extends Controller
 
 
         if ($oRequest->has('search')) {
-
-
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
             $aFilterParams['exactLogin'] = $oRequest->exactLogin;

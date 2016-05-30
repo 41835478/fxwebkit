@@ -94,11 +94,11 @@
                                     <td>
 
                                         <a href="{{ route('admin.request.addAccountEdit').'?logId='.$oResult->id }}"
-                                           class="fa fa-edit"></a>
+                                           class="fa fa-edit tooltip_number" data-original-title="{{trans('request::request.edit')}}"></a>
                                         @if($oResult->status != 1)
 
                                             <a href="{{ route('admin.request.forwordAddAccount').'?logId='.$oResult->id }}"
-                                               class="fa fa-mail-forward"></a>
+                                               class="fa fa-mail-forward tooltip_number" data-original-title="{{trans('request::request.forword')}}"></a>
                                         @endif
                                     </td>
                                 </tr>
@@ -138,6 +138,7 @@
     <script>
         init.push(function () {
 
+            $('.tooltip_number').tooltip();
 
             $('#all-groups-chx').change(function () {
 

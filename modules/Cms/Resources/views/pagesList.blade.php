@@ -49,8 +49,8 @@
                                     <td>{{ $key }}</td>
                                     <td>{{ $page }}</td>
                                     <td>
-                                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'remove_page_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete page with all it\'s relatives")) return false;','class'=>'icon_button','type'=>'submit','value'=>$key ]) !!}
-                                        {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'page_id' ,'class'=>'icon_button ','type'=>'submit','value'=>$key ]) !!}
+                                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'remove_page_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete page with all it\'s relatives")) return false;','class'=>'icon_button tooltip_number' ,'data-original-title'=>trans('cms::cms.delete'),'type'=>'submit','value'=>$key ]) !!}
+                                        {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'page_id' ,'class'=>'icon_button tooltip_number','data-original-title'=>trans('cms::cms.edit'),'type'=>'submit','value'=>$key ]) !!}
                                     </td>
                                 <tr>
                             @endforeach
@@ -67,4 +67,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'cms_pagesList.css') }}">
     <script src="{{ asset($asset_folder.'jquery-2.1.1.min.js') }}"></script>
+
+    <script >
+
+        init.push(function () {
+            $('.tooltip_number').tooltip();
+        });
+    </script>
 @stop

@@ -41,8 +41,8 @@
                         <td>{{ $pages[$form->page_id] }}</td>
                         </td>
                         <td>
-                            {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_form_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete forms with its links")) return false;','class'=>'icon_button','type'=>'submit','value'=>$form->id ]) !!}
-                            {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_form_page' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$form->id ]) !!}
+                            {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_form_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete forms with its links")) return false;','class'=>'icon_button tooltip_number','data-original-title'=>trans('cms::cms.delete'),'type'=>'submit','value'=>$form->id ]) !!}
+                            {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_form_page' ,'class'=>'icon_button blue_icon tooltip_number','data-original-title'=>trans('cms::cms.edit'),'type'=>'submit','value'=>$form->id ]) !!}
                         </td>
                     <tr>
                 @endforeach
@@ -69,6 +69,9 @@
         <script>
 
             init.push(function () {
+
+                $('.tooltip_number').tooltip();
+
                 // Single select
                 $("select[name='pages_select']").select2({
                     allowClear: true,

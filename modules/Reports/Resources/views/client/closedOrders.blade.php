@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </li>
-                <li><div  class=" nav-input-div  ">{!! Form::select('symbol[]', $aSymbols, $aFilterParams['symbol'], ['multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-symbols-slc']) !!}</div></li>
+                <li><div  class=" nav-input-div  ">{!! Form::select('symbol[]', $aSymbols,  ((!is_array($aFilterParams['symbol']))? explode(',',$aFilterParams['symbol']):$aFilterParams['symbol']), ['multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-symbols-slc']) !!}</div></li>
                 <li><div  class=" nav-input-div  ">{!! Form::select('type', $aTradeTypes, $aFilterParams['type'], ['class'=>'form-control  input-sm']) !!}</div></li>
 
 

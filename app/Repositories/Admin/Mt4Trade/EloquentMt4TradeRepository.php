@@ -223,7 +223,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
     {
         $oFxHelper = new Fx();
 
-
+//dd($aFilters);
         /* ===============================check admin or user================ */
         $oResult = '';
         if ($user = current_user()->getUser()) {
@@ -288,6 +288,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
         /* =============== Symbols Filter  =============== */
         if (!isset($aFilters['all_symbols']) || !$aFilters['all_symbols']) {
+            $aFilters['symbol']=(!is_array($aFilters['symbol']))? explode(',',$aFilters['symbol']):$aFilters['symbol'];
             $oResult = $oResult->whereIn('SYMBOL', $aFilters['symbol']);
         }
 
@@ -514,6 +515,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
         /* =============== Symbols Filter  =============== */
         if (!isset($aFilters['all_symbols']) || !$aFilters['all_symbols']) {
+            $aFilters['symbol']=(!is_array($aFilters['symbol']))? explode(',',$aFilters['symbol']):$aFilters['symbol'];
             $oResult = $oResult->whereIn('SYMBOL', $aFilters['symbol']);
         }
 

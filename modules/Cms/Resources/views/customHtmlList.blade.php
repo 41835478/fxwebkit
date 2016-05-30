@@ -38,8 +38,8 @@
                     <td>{{ $customHtml }}</td>
 
                     <td>
-                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_customHtml_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete custom html with its links")) return false;','class'=>'icon_button red_icon','type'=>'submit','value'=>$key ]) !!}
-                        {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_customHtml_page' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$key ]) !!}
+                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_customHtml_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete custom html with its links")) return false;','class'=>'icon_button red_icon tooltip_number','data-original-title'=>trans('cms::cms.delete'),'type'=>'submit','value'=>$key ]) !!}
+                        {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_customHtml_page' ,'class'=>'icon_button blue_icon tooltip_number','data-original-title'=>trans('cms::cms.edit'),'type'=>'submit','value'=>$key ]) !!}
                     </td>
                 <tr>
             @endforeach
@@ -52,4 +52,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'cms_custmHtmlList.css') }}">
     <script src="{{ asset($asset_folder.'jquery-2.1.1.min.js') }}"></script>
+
+    <script >
+
+        init.push(function () {
+            $('.tooltip_number').tooltip();
+        });
+    </script>
 @stop

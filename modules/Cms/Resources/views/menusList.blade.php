@@ -59,8 +59,8 @@
                         <td>{{ $menu->title }}</td>
 
                         <td>
-                            {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_menu_submit' ,'class'=>'icon_button red_icon','onclick'=>'if(!confirm("Are you sure you want to delete menu with all links in it")) return false;','type'=>'submit','value'=>$menu->id ]) !!}
-                            {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'selected_id' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$menu->id ]) !!}
+                            {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_menu_submit' ,'class'=>'icon_button red_icon tooltip_number','data-original-title'=>trans('cms::cms.delete'),'onclick'=>'if(!confirm("Are you sure you want to delete menu with all links in it")) return false;','type'=>'submit','value'=>$menu->id ]) !!}
+                            {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'selected_id' ,'class'=>'icon_button blue_icon tooltip_number','data-original-title'=>trans('cms::cms.edit'),'type'=>'submit','value'=>$menu->id ]) !!}
                         </td>
                     <tr>
                 @endforeach
@@ -102,4 +102,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset($asset_folder.'cms_pagesList.css') }}">
     <script src="{{ asset($asset_folder.'jquery-2.1.1.min.js') }}"></script>
+    <script >
+
+        init.push(function () {
+            $('.tooltip_number').tooltip();
+        });
+    </script>
 @stop

@@ -60,7 +60,7 @@
 
 
                     <td>
-                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_Language_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete language")) return false;','class'=>'icon_button red_icon','type'=>'submit','value'=>$language->id ]) !!}
+                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_Language_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete language")) return false;','class'=>'icon_button red_icon tooltip_number','data-original-title'=>trans('cms::cms.delete'),'type'=>'submit','value'=>$language->id ]) !!}
                         {{-- Form::button('<i class="fa fa-cog "></i>',['name'=>'selected_id' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$language->id ]) --}}
                     </td>
                 <tr>
@@ -102,6 +102,8 @@
         }
 
         init.push(function () {
+
+            $('.tooltip_number').tooltip();
             // Single select
             $("#new_language_dir_select").select2({
                 allowClear: true,

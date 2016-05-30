@@ -41,8 +41,8 @@
                         <td>{{ $pages[$article->page_id] }}</td>
                         </td>
                         <td>
-                            {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_article_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete articles with its links")) return false;','class'=>'icon_button','type'=>'submit','value'=>$article->id ]) !!}
-                            {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_article_page' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$article->id ]) !!}
+                            {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_article_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete articles with its links")) return false;','class'=>'icon_button tooltip_number','data-original-title'=>trans('cms::cms.delete'),'type'=>'submit','value'=>$article->id ]) !!}
+                            {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_article_page' ,'class'=>'icon_button blue_icon tooltip_number','data-original-title'=>trans('cms::cms.edit'),'type'=>'submit','value'=>$article->id ]) !!}
                         </td>
                     <tr>
                 @endforeach
@@ -50,7 +50,7 @@
                 <tfoot>
                 <tr>
                     <td colspan="5">
-                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_groub_article_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete articles with its links")) return false;','class'=>'icon_button','type'=>'submit' ]) !!}
+                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_groub_article_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete articles with its links")) return false;','class'=>'icon_button tooltip_number','data-original-title'=>trans('cms::cms.delete'),'type'=>'submit' ]) !!}
 
                         <div style="width:250px;display: inline-block; ">
                             {!! Form::select('pages_select',$pages,0) !!}
@@ -70,6 +70,8 @@
         <script>
 
             init.push(function () {
+
+                $('.tooltip_number').tooltip();
                 // Single select
                 $("select[name='pages_select']").select2({
                     allowClear: true,

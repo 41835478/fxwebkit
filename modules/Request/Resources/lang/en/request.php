@@ -48,5 +48,7 @@ return [
     'demo'=>'Demo',
     'live'=>'Live',
     'password_type'=>'Password Type',
+    'forword'=>'Forword',
+    'edit'=>'Edit',
 
 ];
