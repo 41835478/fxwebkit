@@ -250,25 +250,25 @@ counters" href="http://statcounter.com/"
 <!-- bootstrap -->
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/scrollspy.js"></script>
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/bootstrap-progressbar/bootstrap-progressbar.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/bootstrap.min.js"></script>
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/bootstrap.min.js"></script>-->
 <!-- end bootstrap -->
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/masonry.pkgd.min.js"></script>
-<script src='{{ asset($asset_folder.'houseofborse') }}/js/imagesloaded.pkgd.min.js'></script>
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/masonry.pkgd.min.js"></script>-->
+<!--<script src='{{ asset($asset_folder.'houseofborse') }}/js/imagesloaded.pkgd.min.js'></script>-->
 <!-- bxslider -->
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/bxslider/jquery.bxslider.min.js"></script>
 <!-- end bxslider -->
 <!-- flexslider -->
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/flexslider/jquery.flexslider.js"></script>
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/flexslider/jquery.flexslider.js"></script>-->
 <!-- end flexslider -->
 <!-- smooth-scroll -->
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/smooth-scroll/SmoothScroll.js"></script>
 <!-- end smooth-scroll -->
 <!-- carousel -->
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/jquery.carouFredSel-6.2.1-packed.js"></script>
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/jquery.carouFredSel-6.2.1-packed.js"></script>-->
 <!-- end carousel -->
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/rs-plugin/videojs/video.js"></script>
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>-->
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>-->
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/rs-plugin/videojs/video.js"></script>--?
 
 <!-- jquery ui -->
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/jqueryui/jquery-ui.js"></script>
@@ -278,7 +278,7 @@ counters" href="http://statcounter.com/"
 <!-- Modules -->
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/sliders.js"></script>
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/ui.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/retina.js"></script>
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/retina.js"></script>-->
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/animate-numbers.js"></script>
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/parallax-effect.js"></script>
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/settings.js"></script>
