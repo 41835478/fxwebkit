@@ -279,24 +279,24 @@ counters" href="http://statcounter.com/"
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/sliders.js"></script>
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/ui.js"></script>
 <!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/retina.js"></script>-->
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/animate-numbers.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/parallax-effect.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/settings.js"></script>
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/animate-numbers.js"></script>-->
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/parallax-effect.js"></script>-->
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/settings.js"></script>-->
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/maps-google.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/color-themes.js"></script>
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/color-themes.js"></script>-->
 <!-- End Modules -->
 
 <!-- Audio player -->
 <script type="text/javascript" src="{{ asset($asset_folder.'houseofborse') }}/js/audioplayer/js/jquery.jplayer.min.js"></script>
 <script type="text/javascript" src="{{ asset($asset_folder.'houseofborse') }}/js/audioplayer/js/jplayer.playlist.min.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/audioplayer.js"></script>
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/audioplayer.js"></script>-->
 <!-- end Audio player -->
 
 <!-- radial Progress -->
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/radial-progress/jquery.easing.1.3.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/radial-progress/radialProgress.js"></script>
-<script src="{{ asset($asset_folder.'houseofborse') }}/js/progressbars.js"></script>
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/radial-progress/jquery.easing.1.3.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>-->
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/radial-progress/radialProgress.js"></script>-->
+<!--<script src="{{ asset($asset_folder.'houseofborse') }}/js/progressbars.js"></script>-->
 <!-- end Progress -->
 
 <!-- Google services -->
