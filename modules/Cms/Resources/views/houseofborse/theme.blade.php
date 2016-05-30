@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
-
+ @if(false)
     <link rel="icon" type="image/png" href="{{ asset($asset_folder.'houseofborse') }}/images/logo-HD.png"/>
 
 
@@ -60,7 +60,10 @@
     <!--
     <link href="{{ asset($asset_folder.'houseofborse') }}/old/css/style.min.css" rel="stylesheet" type="text/css" />
 -->
+@else
+    <link type="text/css" rel='stylesheet' href="{{ asset($asset_folder.'houseofborse') }}/css/allCssFiles.css">
 
+    @endif
     <meta charset="UTF-8">
 
     <title>
@@ -242,6 +245,7 @@ counters" href="http://statcounter.com/"
     @endforeach
 @endif
 
+@if(true)
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/breakpoints.js"></script>
 <!-- bootstrap -->
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/scrollspy.js"></script>
@@ -315,7 +319,10 @@ counters" href="http://statcounter.com/"
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/scrollIt/scrollIt.min.js"></script>
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/navigation-slide.js"></script>
 <script src="{{ asset($asset_folder.'houseofborse') }}/js/home_page_slider.js"></script>
+@else
 
+    <script src="{{ asset($asset_folder.'houseofborse') }}/js/allJsFiles.js"></script>
+@endif
 </body>
 
 
