@@ -144,16 +144,26 @@ class cms_forms_demoaccountController extends Controller
             $demoAccount=cms_forms_demoaccount::create($request->all());
           $request->merge(['id'=>$demoAccount->id]);
             $demoInfo=$this->createMt4Demo($request) ;
-            $email=new Email();
+
 
             $request->merge($demoInfo);
-            @$email->userDemoAccount($request->all(),$request->email);
-            @$email->adminDemoAccount($request->all(),config('fxweb.adminEmail'));
+
 
             if(isset($demoInfo['Error Message'])){
 
                 return Redirect::back()->withErrors('Error , please try again ');
             }else{
+
+
+                $email=new Email();
+                @$email->userDemoAccount($request->all(),$request->email);
+                @$email->adminDemoAccount($request->all(),config('fxweb.adminEmail'));
+
+                if($request->jsonRespond){
+                    return view('cms::forms.cms_forms_demoaccount.jsonRespond',['demoInfo'=>json_encode($demoInfo)]);
+                }
+
+
                 Session::flash('flash_success', 'Demo Account Has been created successfully <p><b> LOGIN :</b>'.$demoInfo['login'].'</p><p><b>PASSWORD :</b>'.$demoInfo['password'].'</p>');
             }
                 return Redirect::back()->withErrors('Error , please try again ');
@@ -173,8 +183,9 @@ class cms_forms_demoaccountController extends Controller
       //  $logger = $this->get('logger');
 
         try {
+           // dd($mt4_create_arr);
             $api_response = $this->openAccSocket($host, $port, $mt4_create_arr);
-
+//dd($api_response);
             if (strpos($api_response, 'LOGIN=') !== false) {
                 $login_number = str_replace('LOGIN=', '', $api_response);
                 $login_number = trim(str_replace('OK', '', $login_number));
