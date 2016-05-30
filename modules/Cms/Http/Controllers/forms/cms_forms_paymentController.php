@@ -242,7 +242,6 @@ class cms_forms_paymentController extends Controller
                 $ch = curl_init();
            curl_setopt($ch, CURLOPT_URL, 'https://payments.epdq.co.uk/ncol/prod/orderdirect.asp');
             //curl_setopt($ch, CURLOPT_URL, 'f');
-            curl_setopt($ch,CURLOPT_URL,'https://payments.epdg.co.uk/ncol/prod/orderdirect.asp');
 
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
                 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
@@ -254,10 +253,11 @@ class cms_forms_paymentController extends Controller
                 $response = curl_exec($ch);
 
             $xml=['STATUS'=>0,'NCERRORPLUS'=>'Internal Error , please try again'];
+           
 try{
-               @$xml = new \SimpleXMLElement($response);
+              $xml = new \SimpleXMLElement($response);
 
-   
+
 }catch(\Exception $e){}
                 if($xml['STATUS']==0){
                     $status=1;
