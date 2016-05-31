@@ -8121,7 +8121,7 @@ body {
 }
 
 .slide-icons {
-    background: url(../bundles/webitforexcore/images/slidesicon.png) no-repeat;
+    background: url(../images/slidesicon.png) no-repeat;
 }
 
 .call {
@@ -8332,7 +8332,7 @@ html[dir=rtl] .select2-container .select2-choice>.select2-chosen {
     font-size: 1px;
     text-decoration: none;
     border: 0;
-    background: url(../bundles/webitforexcore/images/select2.png) right top no-repeat;
+    background: url(../images/select2.png) right top no-repeat;
     cursor: pointer;
     outline: 0;
 }
@@ -11367,7 +11367,7 @@ html[dir=rtl] .select2-container-multi .select2-search-choice-close {
     vertical-align: middle;
     width: 90px;
     height: 91px;
-    background: transparent url(/bundles/webitforexcore/images/right-sprite-menu.png) no-repeat;
+    background: transparent url(../images/right-sprite-menu.png) no-repeat;
     position: relative;
     font-size: .95em;
     line-height: 12px;
@@ -11460,7 +11460,7 @@ html[dir=rtl] .select2-container-multi .select2-search-choice-close {
 #main-warp #page-warp #sidebar #newsletter .hr {
     height: 10px;
     width: 100%;
-    background: transparent url(../bundles/webitforexcore/images/seprate-color.png) repeat-x 0 0;
+    background: transparent url(../images/seprate-color.png) repeat-x 0 0;
 }
 
 #main-warp #page-warp #sidebar #newsletter .hr:before,#main-warp #page-warp #sidebar #newsletter .hr:after {
@@ -11947,7 +11947,7 @@ html[dir=rtl] .select2-container-multi .select2-search-choice-close {
 
 #main-warp #page-warp #page-contents #platforms ul li a i {
     height: 64px;
-    background: url(/bundles/webitforexcore/images/platformsprite.png) no-repeat;
+    background: url(../images/platformsprite.png) no-repeat;
     margin-bottom: 5px;
 }
 
@@ -12173,7 +12173,7 @@ html[dir=rtl] .select2-container-multi .select2-search-choice-close {
 }
 
 #main-warp #page-warp #page-contents #research ul li a.economic span {
-    background: transparent url(/bundles/webitforexcore/images/economical.png) no-repeat 10px 5px;
+    background: transparent url(../images/economical.png) no-repeat 10px 5px;
     padding: 8px 0 8px 37px;
 }
 
@@ -12189,7 +12189,7 @@ html[dir=rtl] .select2-container-multi .select2-search-choice-close {
 }
 
 #main-warp #page-warp #page-contents #research ul li a.target span {
-    background: transparent url(/bundles/webitforexcore/images/signals.png) no-repeat 20px 5px;
+    background: transparent url(../images/signals.png) no-repeat 20px 5px;
     padding: 8px 0 8px 36px;
 }
 
@@ -14526,7 +14526,7 @@ html[dir=rtl] .select2-container-multi .select2-search-choice-close {
 .aboutus #bmodel .header {
     position: relative;
     height: 264px;
-    background: transparent url(../bundles/webitforexcore/images/bmodel.jpg) no-repeat 0 0;
+    background: transparent url(../images/bmodel.jpg) no-repeat 0 0;
 }
 
 .aboutus #bmodel .header .context {
@@ -15040,7 +15040,7 @@ textarea#webit_forexcorebundle_partnership_message {
     height: 100%;
     background-color: #fff;
     opacity: 0.7;
-    background-image: url('/bundles/webitforexcore/images/loading.gif');
+    background-image: url('../images/loading.gif');
     background-repeat: no-repeat;
     background-position: 50% 50%;
     top: 0px;
@@ -15404,7 +15404,7 @@ textarea#webit_forexcorebundle_partnership_message {
 
 #main-warp #page-warp #page-contents #platforms ul li a.mdepth i {
     width: 60px;
-    background: url(/bundles/webitforexcore/images/market_depth.png) no-repeat;
+    background: url(../images/market_depth.png) no-repeat;
     background-position: -61px 0;
 }
 
@@ -15548,7 +15548,7 @@ textarea#webit_forexcorebundle_partnership_message {
 
 #de-banner {
     height: 208px;
-    background: transparent url("../bundles/webitforexcore/images/deposit_funds.jpg") no-repeat 0 0;
+    background: transparent url("../images/deposit_funds.jpg") no-repeat 0 0;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -16012,7 +16012,7 @@ textarea#webit_forexcorebundle_partnership_message {
 #main-warp #main-slider {
     width: 100%;
     height: 392px;
-    background: transparent url(/bundles/webitforexcore/images/slider-bg.png) no-repeat center center;
+    background: transparent url(../images/slider-bg.png) no-repeat center center;
     background-size: 100% 100% !important;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -16178,7 +16178,7 @@ textarea#webit_forexcorebundle_partnership_message {
     font-weight: 700;
     font-size: 1.7em;
     margin: 0!important;
-    background: transparent url(../bundles/webitforexcore/images/demo-caret.png) no-repeat 173px -8px;
+    background: transparent url(../images/demo-caret.png) no-repeat 173px -8px;
     padding: 15px 27px 13px 0;
 }
 
@@ -16904,7 +16904,7 @@ text-align:left;
 .banner_section{
     width: 100%;
     height: 185px;
-    background: transparent url(/bundles/webitforexcore/images/trading-products-background.png) no-repeat center center;
+    background: transparent url(../images/trading-products-background.png) no-repeat center center;
     background-size: 100% 100% !important;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -20821,7 +20821,7 @@ tbody#client_agreement .even {
 
 .bx-wrapper .bx-loading {
     min-height: 50px;
-    background: url(images/bx_loader.gif) center center no-repeat #fff;
+    /*background: url(../images/bx_loader.gif) center center no-repeat #fff;*/
     height: 100%;
     width: 100%;
     position: absolute;
@@ -40834,7 +40834,7 @@ textarea.b-product-card-textarea {
 }
 /*__________________________slider*/
 @font-face {
-    font-family: Raleway_Light ;src:url(/bundles/webitforexcore/fonts/Raleway/Raleway-Light.ttf); font-weight:300;
+    font-family: Raleway_Light ;src:url(../fonts/Raleway/Raleway-Light.ttf); font-weight:300;
 }
 #main-warp #main-slider #slider-container {
     height: 500px;
@@ -40914,7 +40914,7 @@ textarea.b-product-card-textarea {
 #main-warp #main-slider {
     width: 100%;
     height:500px;
-    background: transparent url(./../../images/slider-bg.png) no-repeat center center;
+    background: transparent url(./../images/slider-bg.png) no-repeat center center;
     background-size: 100% 100% !important;
     -webkit-background-size: cover;
     -moz-background-size: cover;
