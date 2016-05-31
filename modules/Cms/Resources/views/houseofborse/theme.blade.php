@@ -5,6 +5,9 @@
     <script src="{{ asset($asset_folder.'houseofborse') }}/js/jquery/jquery-1.11.1.min.js"></script>
     <script src="{{ asset($asset_folder.'houseofborse') }}/old/js/scripts.min.js"></script>
 
+
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
  @if(false)
@@ -72,7 +75,7 @@
     <meta name="description" content="The first financial brokerage established for professional traders, wealth managers, investment fund managers and financial institutions" />
     <meta name="keywords" content="Borse, Financial, Forex, Credit cards, Banking, Technical analysis, stocks, CFDs, Options" />
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js" defer async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js" defer async></script>
 
     <script>
 
