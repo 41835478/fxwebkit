@@ -237,4 +237,11 @@ Route::get('cms_forms_payment/form', [
 ]);
 Route::post('cms_forms_payment/form', [
     'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_paymentController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_testbuttonstyle', 'modules\Cms\Http\Controllers\forms\cms_forms_testbuttonstyleController');});
+Route::get('cms_forms_testbuttonstyle/form', [
+    'as' => 'cms_forms_testbuttonstyle.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_testbuttonstyleController@cms_create'
+]);
+Route::post('cms_forms_testbuttonstyle/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_testbuttonstyleController@cms_store'
 ]);

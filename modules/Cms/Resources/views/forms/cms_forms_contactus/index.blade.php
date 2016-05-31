@@ -4,7 +4,7 @@
 <div class="container">
 
     <div id="content-wrapper">
-    <h1>contact us <a href="{{ url('cms/cms_forms_contactus/create') }}" class="btn btn-primary pull-right btn-sm">Add New contact us</a></h1>
+    <h1>contact us <a href="{{ url('cms/cms_forms_contactus/create') }}" class="btn btn-primary pull-right btn-flat">Add New contact us</a></h1>
     <div class="table">
         <table class="table table-bordered table-striped table-hover">
             <thead>
@@ -20,13 +20,13 @@
                     <td>{{ $x }}</td>
                     <td><a href="{{ url('cms\cms_forms_contactus', $item->id) }}">{{ $item->firstName }}</a></td><td>{{ $item->lastName }}</td><td>{{ $item->yourEmail }}</td>
                     <td>
-                        <a href="{{ url('/cms/cms_forms_contactus/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs">Update</a>
+                        <a href="{{ url('/cms/cms_forms_contactus/' . $item->id . '/edit') }}" class="icon_button blue_icon fa fa-cog tooltip_number" data-original-title={{trans('cms::cms.edit')}}></a>
                         {!! Form::open([
                             'method'=>'DELETE',
                             'url' => ['/cms/cms_forms_contactus', $item->id],
                             'style' => 'display:inline'
                         ]) !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
+                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_form_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete forms with its links")) return false;','class'=>'icon_button tooltip_number','data-original-title'=>trans('cms::cms.delete'),'type'=>'submit' ]) !!}
                         {!! Form::close() !!}
                     </td>
                 </tr>
@@ -37,4 +37,10 @@
     </div>
 </div>
 </div>
+<script >
+
+    init.push(function () {
+        $('.tooltip_number').tooltip();
+    });
+</script>
 @endsection

@@ -4,23 +4,16 @@
 <div class="container">
 
     <div id="content-wrapper">
-    <h1>Edit Search</h1>
+    <h1>Edit %%crudAlias%%</h1>
     <hr/>
 
-    {!! Form::model($cms_forms_search, [
+    {!! Form::model($%%crudNameSingular%%, [
         'method' => 'PATCH',
-        'url' => ['/cms/cms_forms_search', $cms_forms_search->id],
+        'url' => ['/cms/%%routeGroup%%%%crudName%%', $%%crudNameSingular%%->%%primaryKey%%],
         'class' => 'form-horizontal'
     ]) !!}
 
-                <div class="form-group {{ $errors->has('search') ? 'has-error' : ''}}">
-                {!! Form::label('search', trans('Search'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('search', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('search', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
-
+    %%formFieldsHtml%%
 
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-3">

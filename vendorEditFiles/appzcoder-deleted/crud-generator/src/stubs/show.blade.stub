@@ -4,17 +4,17 @@
 <div class="container">
 
     <div id="content-wrapper">
-    <h1>Search</h1>
+    <h1>%%crudAlias%%</h1>
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
-                    <th>ID.</th> <th>{{ trans('Search') }}</th>
+                    <th>ID.</th> %%formHeadingHtml%%
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>{{ $cms_forms_search->id }}</td> <td> {{ $cms_forms_search->search }} </td>
+                    <td>{{ $%%crudNameSingular%%->%%primaryKey%% }}</td> %%formBodyHtml%%
                 </tr>
             </tbody>
         </table>
