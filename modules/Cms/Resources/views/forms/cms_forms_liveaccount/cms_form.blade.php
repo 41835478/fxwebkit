@@ -104,7 +104,7 @@
     <div class="left_div">
         <div class="input_all_div  intl-tel-input">
             <label>{!! Form::label('referring_partner',  trans('cms::cms.referring_partner')  , ['class' => 'control-label']) !!}</label>
-            {!! Form::text('referring_partner', Input::get('referring_partner'), ['class' => '','placeholder'=>trans('referring_partner')]) !!}
+            {!! Form::text('referring_partner',(Input::get('ib') != null)? Input::get('ib'):'5034', ['disabled'=>'true','class' => '','placeholder'=>trans('referring_partner')]) !!}
             <span>{!! $errors->first('referring_partner', '<ul><li class="error">:message</li></ul>') !!}</span>
         </div>
     </div>
