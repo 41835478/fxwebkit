@@ -348,5 +348,7 @@
     'joint_second_title :'=>'Title :',
     'delete'=>'Delete',
     'edit'=>'Edit',
+    'sole'=>'Sole personal account',
+    'joint'=>'Joint account',
 
 ]; ?>

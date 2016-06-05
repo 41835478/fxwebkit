@@ -1104,7 +1104,7 @@
             <div class="form-group {{ $errors->has('document_id') ? 'has-error' : ''}}">
                 {!! Form::label('document_id', trans('cms::cms.document_id :'), ['class' => 'col-sm-8 control-label']) !!}
                 <div class="col-sm-4">
-                    <label class="control-label"><a href="/{{Config::get('cms.asset_folder').'/'.$cms_forms_liveaccount->document_id }}" >{{trans('cms::cms.document_id :')}}</a></label>
+                    <label class="control-label"><a href="/{{Config::get('cms.asset_folder').'/'.$cms_forms_liveaccount->document_id }}" >{{trans('cms::cms.document_id')}}</a></label>
                     {!! $errors->first('document_id', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
@@ -1120,7 +1120,7 @@
             <div class="form-group {{ $errors->has('document_por') ? 'has-error' : ''}}">
                 {!! Form::label('document_por', trans('cms::cms.document_por :'), ['class' => 'col-sm-8 control-label']) !!}
                 <div class="col-sm-4">
-                    <label class="control-label"><a href="/{{Config::get('cms.asset_folder').'/'.$cms_forms_liveaccount->document_por }}">{{trans('cms::cms.document_por :')}}</a></label>
+                    <label class="control-label"><a href="/{{Config::get('cms.asset_folder').'/'.$cms_forms_liveaccount->document_por }}">{{trans('cms::cms.document_por')}}</a></label>
                     {!! $errors->first('document_por', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>

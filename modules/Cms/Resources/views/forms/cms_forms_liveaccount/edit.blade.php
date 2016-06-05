@@ -13,6 +13,17 @@
                 'class' => 'form-horizontal'
             ]) !!}
 
+            <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+                <li class="">
+                    <a href="#" onclick="$('.joint-group-div').hide();$('.sole-group-div').show();">{{ trans('cms::cms.sole') }}</a>
+                </li>
+                @if($cms_forms_liveaccount->sole_joint_account =='joint account')
+                    <li>
+                        <a href="#" onclick="$('.joint-group-div').show();$('.sole-group-div').hide();">{{ trans('cms::cms.joint') }}</a>
+                    </li>
+                @endif
+            </ul>
+
 
             <div class="form-group {{ $errors->has('first_name') ? 'has-error' : ''}}">
                 {!! Form::label('first_name', trans('cms::cms.first_name'), ['class' => 'col-sm-3 control-label']) !!}
@@ -494,6 +505,8 @@
                 </div>
             </div>
 
+            <div class="joint-group-div" style="display:none;">
+
             <div class="text-center">
                 <label class="control-label">'JOINT'</label>
             </div>
@@ -520,13 +533,7 @@
                     {!! $errors->first('last_name_joint', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
-            <div class="form-group {{ $errors->has('account_type_joint') ? 'has-error' : ''}}">
-                {!! Form::label('account_type_joint', trans('cms::cms.account_type_joint'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('account_type_joint', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('account_type_joint', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
+
             <div class="form-group {{ $errors->has('title_joint') ? 'has-error' : ''}}">
                 {!! Form::label('title_joint', trans('cms::cms.title_joint'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
@@ -569,41 +576,8 @@
                     {!! $errors->first('postal_code_joint', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
-            <div class="form-group {{ $errors->has('base_currency_limit_joint') ? 'has-error' : ''}}">
-                {!! Form::label('base_currency_limit_joint', trans('cms::cms.base_currency_limit_joint'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('base_currency_limit_joint', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('base_currency_limit_joint', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
-            <div class="form-group {{ $errors->has('default_platform_joint') ? 'has-error' : ''}}">
-                {!! Form::label('default_platform_joint', trans('cms::cms.default_platform_joint'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('default_platform_joint', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('default_platform_joint', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
-            <div class="form-group {{ $errors->has('referring_partner_joint') ? 'has-error' : ''}}">
-                {!! Form::label('referring_partner_joint', trans('cms::cms.referring_partner_joint'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('referring_partner_joint', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('referring_partner_joint', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
-            <div class="form-group {{ $errors->has('fund_manager_joint') ? 'has-error' : ''}}">
-                {!! Form::label('fund_manager_joint', trans('cms::cms.fund_manager_joint'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('fund_manager_joint', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('fund_manager_joint', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
-            <div class="form-group {{ $errors->has('sole_joint_account_joint') ? 'has-error' : ''}}">
-                {!! Form::label('sole_joint_account_joint', trans('cms::cms.sole_joint_account_joint'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('sole_joint_account_joint', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('sole_joint_account_joint', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
+
+
             <div class="form-group {{ $errors->has('marital_status_joint') ? 'has-error' : ''}}">
                 {!! Form::label('marital_status_joint', trans('cms::cms.marital_status_joint'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
@@ -975,6 +949,30 @@
                     {!! $errors->first('understand_market_years_securities_joint', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
+
+                <div class="form-group {{ $errors->has('joint_second_date') ? 'has-error' : ''}}">
+                    {!! Form::label('joint_second_date', trans('cms::cms.joint_second_date'), ['class' => 'col-sm-3 control-label']) !!}
+                    <div class="col-sm-6">
+                        {!! Form::text('joint_second_date', null, ['class' => 'form-control']) !!}
+                        {!! $errors->first('joint_second_date', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+                <div class="form-group {{ $errors->has('joint_second_fullname') ? 'has-error' : ''}}">
+                    {!! Form::label('joint_second_fullname', trans('cms::cms.joint_second_fullname'), ['class' => 'col-sm-3 control-label']) !!}
+                    <div class="col-sm-6">
+                        {!! Form::text('joint_second_fullname', null, ['class' => 'form-control']) !!}
+                        {!! $errors->first('joint_second_fullname', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+                <div class="form-group {{ $errors->has('joint_second_title') ? 'has-error' : ''}}">
+                    {!! Form::label('joint_second_title', trans('cms::cms.joint_second_title'), ['class' => 'col-sm-3 control-label']) !!}
+                    <div class="col-sm-6">
+                        {!! Form::text('joint_second_title', null, ['class' => 'form-control']) !!}
+                        {!! $errors->first('joint_second_title', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+
+            </div>
             <div class="form-group {{ $errors->has('agreem_check_1') ? 'has-error' : ''}}">
                 {!! Form::label('agreem_check_1', trans('cms::cms.agreem_check_1'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
@@ -1080,27 +1078,7 @@
                     {!! $errors->first('joint_first_title', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
-            <div class="form-group {{ $errors->has('joint_second_date') ? 'has-error' : ''}}">
-                {!! Form::label('joint_second_date', trans('cms::cms.joint_second_date'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('joint_second_date', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('joint_second_date', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
-            <div class="form-group {{ $errors->has('joint_second_fullname') ? 'has-error' : ''}}">
-                {!! Form::label('joint_second_fullname', trans('cms::cms.joint_second_fullname'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('joint_second_fullname', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('joint_second_fullname', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
-            <div class="form-group {{ $errors->has('joint_second_title') ? 'has-error' : ''}}">
-                {!! Form::label('joint_second_title', trans('cms::cms.joint_second_title'), ['class' => 'col-sm-3 control-label']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('joint_second_title', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('joint_second_title', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
+
             <div class="form-group {{ $errors->has('document_id') ? 'has-error' : ''}}">
                 {!! Form::label('document_id', trans('cms::cms.document_id'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
