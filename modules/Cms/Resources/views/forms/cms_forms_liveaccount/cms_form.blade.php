@@ -152,11 +152,13 @@
             {!! Form::radio('title','Dr', false, ['class' => '','id'=>'title_3']) !!}
             <label for="title_3">{{ trans('cms::cms.Dr') }}</label>
         </div>
+        {!! $errors->first('title', '<ul><li class="error">:message</li></ul>') !!}
     </div>
 
     <div class="col-xm-12 col-sm-4">
         <label>{{ trans('cms::cms.first_name').' *' }}</label>
         {!! Form::text('first_name', null, ['class' => '','placeholder'=>trans('cms::cms.first_name_joint'),'required'=>'required']) !!}
+        {!! $errors->first('first_name', '<ul><li class="error">:message</li></ul>') !!}
         <div class="input_all_div" id="date_of_birth_div">
 
             {!! Form::label('date_of_birth', trans('cms::cms.date_of_birth')).' *'  !!}
@@ -185,6 +187,7 @@
         <div class="input_all_div">
             <label>{{trans('cms::cms.last_name').' *'}}</label>
             {!! Form::text('last_name', null, ['class' => '','placeholder'=>trans('cms::cms.last_name_joint'),'required'=>'required']) !!}
+            {!! $errors->first('last_name', '<ul><li class="error">:message</li></ul>') !!}
         </div>
         <div class="input_all_div">
             <label class="required">{{ trans('cms::cms.gender').' *' }}</label>
@@ -234,6 +237,7 @@
         <div class="col-xm-12 col-sm-4">
             <label>{{ trans('cms::cms.first_name_joint').' *' }}</label>
             {!! Form::text('first_name_joint', null, ['class' => '','placeholder'=>trans('cms::cms.first_name_joint')]) !!}
+            {!! $errors->first('first_name_joint', '<ul><li class="error">:message</li></ul>') !!}
             <div class="input_all_div" id="date_of_birth_joint_div">
                 {!! Form::label('date_of_birth_joint', trans('cms::cms.date_of_birth_joint').' *' ) !!}
                 <div class="clearfix">
@@ -250,6 +254,7 @@
             <div class="input_all_div">
                 <label>{{trans('cms::cms.second_name_joint').' *' }}</label>
                 {!! Form::text('second_name_joint', null, ['class' => '','placeholder'=>trans('cms::cms.second_name_joint')]) !!}
+                {!! $errors->first('second_name_joint', '<ul><li class="error">:message</li></ul>') !!}
             </div>
 
             <div class="input_all_div">
@@ -263,6 +268,7 @@
             <div class="input_all_div">
                 <label>{{trans('cms::cms.last_name_joint').'* '}}</label>
                 {!! Form::text('last_name_joint', null, ['class' => '','placeholder'=>trans('cms::cms.last_name_joint')]) !!}
+                {!! $errors->first('last_name_joint', '<ul><li class="error">:message</li></ul>') !!}
             </div>
             <div class="input_all_div">
                 <label class="required">{{ trans('cms::cms.gender_joint')}}</label>
@@ -1092,7 +1098,7 @@
 
                         {!! Form::radio('understand_market_cfd_joint',0, false, ['class' => '','id'=>'understand_market_cfd_joint_1']) !!}
                         <label for="understand_market_cfd_joint_1">{{ trans('cms::cms.no') }}</label>
-                        <span>{!! $errors->first('understand_market_joint_cfd', '<ul><li class="error">:message</li></ul>') !!}</span>
+                        <span>{!! $errors->first('understand_market_cfd_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
                     </div>
 
                     <div class="input_all_div">
@@ -1284,6 +1290,7 @@
                                 <label>
                                     {!! Form::checkbox('agreem_check_1', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
                                     <span class="lbl">{{ trans('cms::cms.agreem_check_1').' *' }}</span>
+                                    <span>{!! $errors->first('agreem_check_1', '<ul><li class="error">:message</li></ul>') !!}</span>
                                 </label>
                             </div>
                         </div>
@@ -1293,6 +1300,8 @@
                                 <label>
                                     {!! Form::checkbox('agreem_check_2', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
                                     <span class="lbl">{{ trans('cms::cms.agreem_check_2').' *' }}</span>
+                                    <span>{!! $errors->first('agreem_check_2', '<ul><li class="error">:message</li></ul>') !!}</span>
+
                                 </label>
                             </div>
                         </div>
@@ -1302,6 +1311,7 @@
                                 <label>
                                     {!! Form::checkbox('agreem_check_3', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
                                     <span class="lbl">{{ trans('cms::cms.agreem_check_3').' *' }}</span>
+                                    <span>{!! $errors->first('agreem_check_3', '<ul><li class="error">:message</li></ul>') !!}</span>
                                 </label>
                             </div>
                         </div>
@@ -1311,6 +1321,7 @@
                                 <label>
                                     {!! Form::checkbox('agreem_check_4', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
                                     <span class="lbl">{{ trans('cms::cms.agreem_check_4') }}</span>
+                                    <span>{!! $errors->first('agreem_check_4', '<ul><li class="error">:message</li></ul>') !!}</span>
                                 </label>
                             </div>
                         </div>
@@ -1320,6 +1331,7 @@
                                 <label>
                                     {!! Form::checkbox('agreem_check_5', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
                                     <span class="lbl">{{ trans('cms::cms.agreem_check_5').' *' }}</span>
+                                    <span>{!! $errors->first('agreem_check_5', '<ul><li class="error">:message</li></ul>') !!}</span>
                                 </label>
                             </div>
                         </div>
@@ -1329,6 +1341,7 @@
                                 <label>
                                     {!! Form::checkbox('agreem_check_6', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
                                     <span class="lbl">{{ trans('cms::cms.agreem_check_6').' *' }}</span>
+                                    <span>{!! $errors->first('agreem_check_6', '<ul><li class="error">:message</li></ul>') !!}</span>
                                 </label>
                             </div>
                         </div>
@@ -1339,6 +1352,7 @@
                                 <label>
                                     {!! Form::checkbox('agreem_check_7', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
                                     <span class="lbl">{{ trans('cms::cms.agreem_check_7').' *' }}</span>
+                                    <span>{!! $errors->first('agreem_check_7', '<ul><li class="error">:message</li></ul>') !!}</span>
                                 </label>
                             </div>
                         </div>
@@ -1348,6 +1362,7 @@
                                 <label>
                                     {!! Form::checkbox('agreem_check_8', 1,false ,['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
                                     <span class="lbl">{{ trans('cms::cms.agreem_check_8').' *' }}</span>
+                                    <span>{!! $errors->first('agreem_check_8', '<ul><li class="error">:message</li></ul>') !!}</span>
                                 </label>
                             </div>
                         </div>
@@ -1361,6 +1376,7 @@
                                 <label>
                                     {!! Form::checkbox('agreem_check_9', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
                                     <span class="lbl">{{ trans('cms::cms.agreem_check_9').' *' }}</span>
+                                    <span>{!! $errors->first('agreem_check_9', '<ul><li class="error">:message</li></ul>') !!}</span>
                                 </label>
                             </div>
                         </div>
@@ -1370,6 +1386,7 @@
                                 <label>
                                     {!! Form::checkbox('agreem_check_10', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
                                     <span class="lbl">{{ trans('cms::cms.agreem_check_10').' *' }}</span>
+                                    <span>{!! $errors->first('agreem_check_10', '<ul><li class="error">:message</li></ul>') !!}</span>
                                 </label>
                             </div>
                         </div>
@@ -1379,6 +1396,7 @@
                                 <label>
                                     {!! Form::checkbox('agreem_check_11', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
                                     <span class="lbl">{{ trans('cms::cms.agreem_check_11').' *' }}</span>
+                                    <span>{!! $errors->first('agreem_check_11', '<ul><li class="error">:message</li></ul>') !!}</span>
                                 </label>
                             </div>
                         </div>
@@ -1388,6 +1406,7 @@
                                 <label>
                                     {!! Form::checkbox('agreem_check_12', 1,false, ['class'=>'px','id'=>'exactLogin','required'=>'required']) !!}
                                     <span class="lbl">{{ trans('cms::cms.agreem_check_12').' *' }}</span>
+                                    <span>{!! $errors->first('agreem_check_12', '<ul><li class="error">:message</li></ul>') !!}</span>
                                 </label>
                             </div>
                         </div>

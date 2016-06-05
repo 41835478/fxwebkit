@@ -5,11 +5,12 @@ namespace modules\Cms\Http\Controllers\forms;
 use Fxweb\Http\Requests;
 use Fxweb\Http\Controllers\Controller;
 
+
 use  Modules\Cms\Entities\forms\cms_forms_liveaccount;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
-
+use Modules\Cms\Http\Requests\LiveAccountRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 use modules\Cms\Http\Controllers\forms\Email;
@@ -179,7 +180,7 @@ class cms_forms_liveaccountController extends Controller
      *
      * @return void
      */
-    public function cms_store(Request $request)
+    public function cms_store(LiveAccountRequest $request)
     {
         $errors=$this->validateFrequencyFields($request);
         if(!empty($errors)){
