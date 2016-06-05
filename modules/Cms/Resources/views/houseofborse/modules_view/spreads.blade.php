@@ -58,7 +58,7 @@
 
         return '<span class="preNumber">' + newPreNumber + '</span><span class="endNumber">' + newNumberEnd + '</span>';
     }
-    console.log(splitDependOnDigitsDifferent(17, 1.07357));
+  //  console.log(splitDependOnDigitsDifferent(17, 1.07357));
     var data = {"Symbols": [
         {"ask": "1.07357", "bid": "1.07307", "symbol": "EURUSD", "dir": 0, "digits": 5},
         {"ask": "1.07357", "bid": "1.07307", "symbol": "gg", "dir": 0, "digits": 5},
@@ -248,22 +248,4 @@
         }
     }
 
-    $(document).ready(function(){
-        drawMostTradedInsChart('{{path('most_traded_instruments_chart_data')}}');
-    });
-    /*
-     function get_spread_bar(){
-     $.ajax({
-     url: '{{path('spreads_bar')}}',
-     dataType: "html",
-     success: function (data) {
-     $('#spreads-bar-container').html(data);
-     },
-     complete:function(){
-     setTimeout('get_spread_bar()',5000);
-     }
-     });
-     }
-     setTimeout('get_spread_bar()',5000);
-     */
 </script>
