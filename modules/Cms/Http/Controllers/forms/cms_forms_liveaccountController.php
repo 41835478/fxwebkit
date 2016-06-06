@@ -182,6 +182,7 @@ class cms_forms_liveaccountController extends Controller
      */
     public function cms_store(LiveAccountRequest $request)
     {
+
         $errors=$this->validateFrequencyFields($request);
         if(!empty($errors)){
             return Redirect::back()->withErrors($errors);
