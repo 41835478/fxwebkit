@@ -43933,3 +43933,9 @@ https://github.com/videojs/video.js/blob/master/src/css/video-js.less */
 
 
 
+.introWindowColumn{text-align:center; border:1px solid #E5E5E5; border-radius:10px; padding-bottom:10px;}
+.introWindowColumn img {width:100%; border-radius:10px 10px 0px 0px; height:150px;}
+.introWindowColumn h2{text-align:center;}
+.introWindowColumn p{ color:#E5E5E5}
+.introWindowColumn a{padding-left:30px;padding-right:30px;}
+
