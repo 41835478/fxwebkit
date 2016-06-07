@@ -39946,7 +39946,7 @@ textarea.b-product-card-textarea {
 @media screen and (max-width: 639px) {
     .f-arrow-title-box {
         line-height: 16px; } }
-#hear_from_you_section{margin:50px 0px;}
+#hear_from_you_section{ /*margin:50px 0px;*/}
 .b-welcome-box {
     margin-bottom: 25px; }
 .b-welcome-box .is-global-title {
