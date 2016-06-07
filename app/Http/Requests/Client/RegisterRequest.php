@@ -37,7 +37,7 @@ class RegisterRequest extends Request {
                         'gender'	=> 'required',
                         'birthday'	=> 'required',
                         'agreement'     => 'required',
-		//	'g-recaptcha-response' => 'required|recaptcha',
+			'g-recaptcha-response' => 'required|recaptcha',
 		];
 	}
 
