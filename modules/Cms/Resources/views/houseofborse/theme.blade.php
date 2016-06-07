@@ -326,7 +326,7 @@ counters" href="http://statcounter.com/"
     <script src="{{ asset($asset_folder.'houseofborse') }}/js/allJsFiles.js"></script>
     <script type="text/javascript" language="javascript"
             src="https://maps.google.com/maps/api/js?sensor=false&key=AIzaSyCfVS1-Dv9bQNOIXsQhTSvj7jaDX7Oocvs"></script>
-    {{--<script src="{{ asset($asset_folder.'houseofborse') }}/js/modules/maps-google.js"></script>--}}
+
 @endif
 </body>
 
