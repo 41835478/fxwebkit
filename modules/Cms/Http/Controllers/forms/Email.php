@@ -59,15 +59,25 @@ class Email extends Controller
             'content'=>$emailBody
         ];
 
+        if(isset($aTemplateVariables['pdfPath'])){
+            $info['pdfPath']=$aTemplateVariables['pdfPath'];
+        }
         Mail::raw($info['subject'], function ($message) use ($info)
         {
             $message->from(config('fxweb.senderEmail'), config('fxweb.displayName'));
 
-            $message->getHeaders()->addTextHeader('Content-type', 'text/html');
+           // $message->getHeaders()->addTextHeader('Content-type', 'text/html');
             $message->to($info['to']);
             $message->subject($info['subject']);
             if(array_key_exists('bcc' ,$info)){
                 $message->bcc($info['bcc']);
+            }
+
+            if(isset($info['pdfPath'])){
+
+                $message->attach($info['pdfPath'], array(
+                    'as' => 'live-account-form.pdf',
+                    'mime' => 'application/pdf'));
             }
             $message ->setBody($info['content'], 'text/html');
         });
