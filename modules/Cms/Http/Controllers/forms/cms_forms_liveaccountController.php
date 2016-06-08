@@ -211,6 +211,9 @@ class cms_forms_liveaccountController extends Controller
        $pdf= $protocol.'://'.$request->server->get('SERVER_NAME').':'.$_SERVER['SERVER_PORT'].'/pdf/'.explode('.',basename($htmlPath))[0].'.pdf';
         $request->merge(['pdf'=>$pdf]);
 
+        $pdfPath=public_path().'/pdf/'.explode('.',basename($htmlPath))[0].'.pdf';
+        $request->merge(['pdfPath'=>$pdfPath]);
+
         exec('"'.Config('fxweb.htmlToPdfPath').'" "'.$htmlPath.'" "'.$pdfPath.'"');
         unlink($htmlPath);
         cms_forms_liveaccount::create($request->all());
