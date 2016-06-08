@@ -1,6 +1,11 @@
 @extends('admin.layouts.main')
 @section('title', trans('reports::reports.settings'))
 @section('content')
+
+    @if (Session::get('refresh'))
+        <script>window.location.reload();</script>
+    @endif
+
     <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('reports::reports.settings') }}</h1>

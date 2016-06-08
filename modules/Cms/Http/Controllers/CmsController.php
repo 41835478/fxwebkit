@@ -556,8 +556,9 @@ $page_modules=DB::select( $query_string);
 
 
         $editConfig = new EditConfig();
-
         $editConfig->editConfigFile('Config/cmsConfig.php', $aSetting);
+
+        \Session::flash('refresh', 'true');
 
         return Redirect::route('cms.cmsSettings');
 

@@ -659,6 +659,8 @@ class IbportalController extends Controller
         $editConfig = new EditConfig();
         $editConfig->editConfigFile('Config/ibportalConfig.php', $ibportalSetting);
 
+        \Session::flash('refresh', 'true');
+
         return view('ibportal::admin.ibportalSetting')->with('ibportalSetting', $ibportalSetting);
 
     }

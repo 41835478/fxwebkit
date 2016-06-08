@@ -219,6 +219,8 @@ class Mt4ConfigrationsController extends Controller
 
         $editConfig->editConfigFile('Config/mt4configrationsConfig.php', $mt4ConfigurationsSetting);
 
+        \Session::flash('refresh', 'true');
+
         return view('mt4configrations::mt4ConfigurationsSetting')->with('mt4ConfigurationsSetting', $mt4ConfigurationsSetting);
 
     }
