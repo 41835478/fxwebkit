@@ -1,6 +1,12 @@
 @extends('admin.layouts.main')
 @section('title', trans('general.settings'))
 @section('content')
+
+    @if (Session::get('refresh'))
+        <script>window.location.reload();</script>
+    @endif
+
+
     <div id="content-wrapper">
         <div class="page-header">
             <h1>{{ trans('general.settings') }}</h1>

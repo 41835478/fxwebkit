@@ -554,6 +554,7 @@ return $this->getMassMailer($oRequest);
 
 
 
+        \Session::flash('refresh', 'true');
 
         return Redirect::route('admin.settings');
 

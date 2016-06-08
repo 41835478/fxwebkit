@@ -24,7 +24,7 @@ return [
     'EnableLinkTradeForUser' => true,
     'mt4CheckHost' => '192.168.15.10',
     'mt4CheckPort' => '443',
-    'liveServerName' => 'liveAAA',
+    'liveServerName' => 'live',
     'mt4CheckDemoHost' => '192.168.15.10',
     'mt4CheckDemoPort' => '443',
     'demoServerName' => 'demo',
