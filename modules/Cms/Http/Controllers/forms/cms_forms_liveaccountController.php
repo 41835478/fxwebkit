@@ -195,7 +195,7 @@ class cms_forms_liveaccountController extends Controller
         $request->merge(array('date_of_birth_joint' => $date_of_birth_joint));
 
 
-        $htmlPath=public_path().'/tempHtml/live_account_'.rand(0,5555555555).rand(0,5555555555).'.html';
+        $htmlPath=public_path().'/tempHtml/live_account_'.rand(0,99999).rand(0,99999).'.html';
         //$htmlPath=preg_replace('/tmp$/','html',$htmlPath);
 
         $html=View::make('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
@@ -216,7 +216,7 @@ class cms_forms_liveaccountController extends Controller
         $request->merge(['pdfPath'=>$pdfPath]);
 
         exec('"'.Config('fxweb.htmlToPdfPath').'" "'.$htmlPath.'" "'.$pdfPath.'"');
-        unlink($htmlPath);
+      //  unlink($htmlPath);
         cms_forms_liveaccount::create($request->all());
 
 
