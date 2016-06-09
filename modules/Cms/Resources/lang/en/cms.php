@@ -350,5 +350,16 @@
     'edit'=>'Edit',
     'sole'=>'Sole personal account',
     'joint'=>'Joint account',
+    'message'=>'Message',
+    'countryOfTargetBroker'=>'Country Of Target Broker',
+    'mobile'=>'Mobile',
+    'fullname'=>'Full Name',
+    'subject'=>'Subject',
+    'department'=>'Department',
+    'priority'=>'Priority',
+    'mobileNumber'=>'Mobile Number',
+    'yourEmail'=>'Your E-mail',
+    'lastName'=>'Last Name',
+    'firstName'=>'First Name',
 
 ]; ?>
