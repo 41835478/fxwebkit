@@ -1444,10 +1444,13 @@
 <script type="text/javascript">
 
     function add_joint_validation() {
+
+        $('.joint_div input,.joint_div select').removeAttr('disabled');
         $('.joint_div input').attr('required', 'true');
         $('.select2-input,.select2-search input,.select2-focusser,.select2-offscreen,input[name="secondary_phone_joint"],input[name="secondary_email_joint"],#d_joint input,#i_joint input[type="text"],#4_a_joint input,input[name="other_source_funds_deposited_joint"]').removeAttr('required');
     }
     function remove_joint_validation() {
+        $('.joint_div input,.joint_div select').attr('disabled','true');
         $('.joint_div input').removeAttr('required');
     }
 
