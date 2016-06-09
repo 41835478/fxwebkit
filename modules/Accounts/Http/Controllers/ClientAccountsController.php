@@ -217,6 +217,7 @@ class ClientAccountsController extends Controller
 
     public function getMt4ChangePassword(Request $oRequest)
     {
+
         $Password = Config('accounts.apiReqiredConfirmMt4Password');
         $loginPasswordType = Config('accounts.loginPasswordType');
 
@@ -277,6 +278,8 @@ class ClientAccountsController extends Controller
 
     public function getMt4InternalTransfer(Request $oRequest)
     {
+
+
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
 
         $internalTransfer = [
@@ -343,15 +346,20 @@ class ClientAccountsController extends Controller
                 $oApiController->server_id = 1;
             }
 
+
             $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['oldPassword'], $oRequest['amount']);
         } else {
             $result = 'The Admin does not allowed to transfer to unsigned Mt4 users';
         }
+
+        $oCurrentInternalTransfer = modelMt4User::where(['login' => $oRequest->login, 'server_id' => $oRequest->server_id])->first();
         /* TODO with success */
+
         return view('accounts::client.internalTransfer')
             ->withErrors($result)
             ->with('Pssword', $Pssword)
             ->with('internalTransfer', $internalTransfer)
+            ->with('oCurrentInternalTransfer', $oCurrentInternalTransfer)
             ->with('login', $oRequest->login)
             ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
@@ -625,12 +633,14 @@ class ClientAccountsController extends Controller
         }
 
         $result = $oApiController->withDrawal($oRequest['login'], $oRequest['amount'], $oRequest['oldPassword']);
+        $oCurrentWithDrawal = modelMt4User::where(['login' => $oRequest->login, 'server_id' => $oRequest->server_id])->first();
 
         /* TODO with success */
         return view('accounts::client.withDrawal')
             ->withErrors($result)
             ->with('Pssword', $Pssword)
             ->with('internalTransfer', $internalTransfer)
+            ->with('oCurrentWithDrawal', $oCurrentWithDrawal)
             ->with('oResults', $oResults)
             ->with('server_id', $oRequest->server_id)
             ->with('login', $oRequest->login)

@@ -582,6 +582,8 @@ class ReportsController extends Controller
 
         $editConfig->editConfigFile('Config/reportsConfig.php', $reportsSetting);
 
+        \Session::flash('refresh', 'true');
+
         return view('reports::reportsSetting')->with('reportsSetting', $reportsSetting);
 
     }

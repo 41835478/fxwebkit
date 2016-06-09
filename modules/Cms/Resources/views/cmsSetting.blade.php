@@ -1,6 +1,11 @@
 @extends('admin.layouts.main')
 @section('title', trans('cms::cms.settings'))
 @section('content')
+
+    @if (Session::get('refresh'))
+        <script>window.location.reload();</script>
+    @endif
+
     <div id="content-wrapper">
         <div class="page-header">
             <h1>{{ trans('cms::cms.settings') }}</h1>

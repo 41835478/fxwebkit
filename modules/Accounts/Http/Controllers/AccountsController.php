@@ -1015,6 +1015,8 @@ class AccountsController extends Controller
         $editConfig = new EditConfig();
         $editConfig->editConfigFile('Config/accountsConfig.php', $accountsSetting);
 
+        \Session::flash('refresh', 'true');
+
         return  Redirect::route('accounts.accountsSettings')->with('accountsSetting', $accountsSetting);
 
     }

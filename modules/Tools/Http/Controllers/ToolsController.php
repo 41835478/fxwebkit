@@ -545,6 +545,8 @@ class ToolsController extends Controller
         $editConfig = new EditConfig();
         $editConfig->editConfigFile('Config/toolsConfig.php', $toolsSetting);
 
+        \Session::flash('refresh', 'true');
+
         return view('tools::toolsSetting')->with('toolsSetting', $toolsSetting);
 
     }
