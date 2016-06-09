@@ -11,7 +11,7 @@
         @endif
     </div>
 
-@else if ($errors->any())
+@elseif ($errors->any())
     <ul class="alert alert-danger">
         @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
