@@ -1142,7 +1142,7 @@
             <div class="form-group {{ $errors->has('pdf') ? 'has-error' : ''}}">
                 {!! Form::label('pdf', trans('cms::cms.pdf :'), ['class' => 'col-sm-8 control-label']) !!}
                 <div class="col-sm-4">
-                    <label class="control-label">{{$cms_forms_liveaccount->pdf }}</label>
+                    <label class="control-label"><a href="{{$cms_forms_liveaccount->pdf }}">Live Accout Contract</a></label>
                     {!! $errors->first('pdf', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
