@@ -20,6 +20,7 @@
         {!! HTML::style('assets/'.config('fxweb.layoutAssetsFolder').'/css/pages.min.css') !!}
         {!! HTML::style('assets/'.config('fxweb.layoutAssetsFolder').'/css/rtl.min.css') !!}
         {!! HTML::style('assets/'.config('fxweb.layoutAssetsFolder').'/css/themes.min.css') !!}
+	{!! HTML::style('assets/'.config('fxweb.layoutAssetsFolder').'/css/helper.css') !!}
         <!--[if lt IE 9]>
         {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/ie.min.js') !!}
         <![endif]-->

@@ -14,15 +14,15 @@ $fa-font-path: "#{$fonts-path}/font-awesome";
 // --------------------------------------------------
 // Override Bootstrap's variables
 //
-
+$themeMainColor: #ADA381;
 
 //** Global text color on `<body>`.
 $text-color: #555;
 
 //** Global textual link color.
-$link-color:       #4083a9;
+$link-color:       $themeMainColor;
 //** Link hover color set via `darken()` function.
-$link-hover-color: #205f82;
+$link-hover-color: $themeMainColor;
 
 $font-family-sans-serif:  "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-family-base: $font-family-sans-serif;

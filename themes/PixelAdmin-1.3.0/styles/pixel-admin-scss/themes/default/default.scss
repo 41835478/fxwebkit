@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 .theme-default {
-  $primary-color: #1d89cf;
+  $primary-color: $themeMainColor;
 
   // Panel border color
   $theme-border-color: #e2e2e2;

@@ -175,7 +175,7 @@
 }
 
 .btn, .btn-default { @include pixel-button($color: #f4f4f4, $gradient: 5%, $hover: 2%, $border: 4%, $font-color: $text-color); }
-.btn-info { @include pixel-button($info-color); }
+.btn-info { @include pixel-button($themeMainColor); }
 .btn-success { @include pixel-button($success-color); }
 .btn-warning { @include pixel-button($warning-color, $border: 5%); }
 .btn-danger { @include pixel-button($danger-color); }
