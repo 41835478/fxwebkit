@@ -33,4 +33,5 @@ return [
     'settings'=>'Settings',
     'apiAdminPassword'=>'API Admin Password',
     'save'=>'Save',
+    'go'=>'Go',
 ];

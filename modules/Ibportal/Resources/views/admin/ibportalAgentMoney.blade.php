@@ -117,7 +117,7 @@
 
                         {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
                         {!! Form::text('page',$oResults[0]->currentPage(), ['type'=>'number', 'placeholder'=>trans('ibportal::ibportal.page'),'class'=>'form-control input-sm']) !!}
-                        {!! Form::submit(trans('ibportal::ibportal.go'), ['class'=>'btn', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('ibportal::ibportal.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
 
                         {!! Form::hidden('agentId', $aFilterParams['agentId']) !!}
                         {!! Form::hidden('sort', $aFilterParams['sort']) !!}
