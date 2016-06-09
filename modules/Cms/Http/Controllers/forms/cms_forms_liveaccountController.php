@@ -194,8 +194,9 @@ class cms_forms_liveaccountController extends Controller
         $request->merge(array('date_of_birth' => $date_of_birth));
         $request->merge(array('date_of_birth_joint' => $date_of_birth_joint));
 
-        $htmlPath=tempnam(public_path().'/tempHtml/', 'fxwebkit');
-        $htmlPath=preg_replace('/tmp$/','html',$htmlPath);
+
+        $htmlPath=public_path().'/tempHtml/live_account_'.rand(0,5555555555).rand(0,5555555555).'.html';
+        //$htmlPath=preg_replace('/tmp$/','html',$htmlPath);
 
         $html=View::make('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
         file_put_contents($htmlPath,$html);
