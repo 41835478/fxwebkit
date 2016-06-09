@@ -1358,11 +1358,11 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <div class="col-box margin-bottom-20">
 <div class="col-50">
 <ul>
-    <li>@if($var->source_funds_deposited_joint==0) &check; @else&#9744;@endif Employment</li>
-    <li>@if($var->source_funds_deposited_joint==1) &check; @else&#9744;@endif Inheritance</li>
-    <li>@if($var->source_funds_deposited_joint==2) &check; @else&#9744;@endif Investment</li>
-    <li>@if($var->source_funds_deposited_joint==3) &check; @else&#9744;@endif Previous Employment</li>
-    <li>@if($var->source_funds_deposited_joint==4) &check; @else&#9744;@endif Real Estate</li>
+    <li>@if($var->source_funds_deposited_joint==0&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Employment</li>
+    <li>@if($var->source_funds_deposited_joint==1&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Inheritance</li>
+    <li>@if($var->source_funds_deposited_joint==2&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Investment</li>
+    <li>@if($var->source_funds_deposited_joint==3&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Previous Employment</li>
+    <li>@if($var->source_funds_deposited_joint==4&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Real Estate</li>
 
 </ul>
 </div><!--.col-50-->
@@ -1394,8 +1394,8 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <p>Forex and contract for Difference are leveraged products. they may not be suitable for you as they carry a high degree of risk to your capital and you can lose more than your initial investment. You must ensure that you understand all of the risks as furthermore elaborated on in Appendix A (High risk investment notice).<br><br>
 <strong>Do you understand the nature and risks of trading leveraged products</strong></p>
 <ul class="no-margin list-inline">
-<li class="padding-right-10">@if($var->understand_risks_joint==0) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_risks_joint==1) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_risks_joint==0&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_risks_joint==1&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif No</li>
 </ul>
 
 <h5 class="margin-top-20">B. Financial markets experience</h5>
@@ -1602,8 +1602,8 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <div class="col-33">
 <p><strong>Contracts for difference (CFDs)</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_cfd_joint==1) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_cfd_joint==0) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_cfd_joint==1&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_cfd_joint==0&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_cfd_joint}}</div>
@@ -1612,8 +1612,8 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <div class="col-33">
 <p><strong>Forex (Spot or Forward)</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_joint_forex==1) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_joint_forex==0) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_joint_forex==1&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_joint_forex==0&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_forex_joint}}</div>
@@ -1622,8 +1622,8 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <div class="col-33">
 <p><strong>Securities</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_securities_joint==1) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_securities_joint==0) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_securities_joint==1&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_securities_joint==0&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_securities_joint}}</div>
@@ -1634,8 +1634,8 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <div class="col-33">
 <p><strong>Futures</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_futures_joint==1) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_futures_joint==0) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_futures_joint==1&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_futures_joint==0&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_futures_joint}}</div>
@@ -1644,8 +1644,8 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <div class="col-33">
 <p><strong>Commodities</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_commodities_joint==1) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_commodities_joint==0) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_commodities_joint==1&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_commodities_joint==0&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_commodities_joint}}</div>
@@ -1654,8 +1654,8 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <div class="col-33">
 <p><strong>Options</strong></p>
 <ul class="list-inline no-margin">
-<li class="padding-right-10">@if($var->understand_market_options_joint==1) &check; @else&#9744;@endif Yes</li>
-<li class="padding-right-10">@if($var->understand_market_options_joint==0) &check; @else&#9744;@endif No</li>
+<li class="padding-right-10">@if($var->understand_market_options_joint==1&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Yes</li>
+<li class="padding-right-10">@if($var->understand_market_options_joint==0&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif No</li>
 </ul>
 <p>If “Yes”, please specify number of years</p>
 <div class="rectangle padding-10">{{$var->understand_market_years_options_joint}}</div>
