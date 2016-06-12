@@ -130,7 +130,7 @@
 
 
 
-                                {!! Form::submit(trans('reports::reports.go'), ['class'=>'btn', 'name' => 'search']) !!}
+                                {!! Form::submit(trans('reports::reports.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
 
 
 

@@ -118,7 +118,7 @@
                     @if($oResults[0]->total()>25)
                     <div class="DT-lf-right change_page_all_div" >
                         {!! Form::text('page',$oResults[0]->currentPage(), ['type'=>'number', 'placeholder'=>trans('reports::reports.page'),'class'=>'form-control input-sm']) !!}
-                        {!! Form::submit(trans('reports::reports.go'), ['class'=>'btn', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('reports::reports.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div>
                     @endif
 

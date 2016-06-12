@@ -134,14 +134,14 @@
     {!! Form::open(['route' => 'cms_forms_referringpartner.form', 'class' => 'form-horizontal']) !!}
 
                 <div class="form-group {{ $errors->has('fullname') ? 'has-error' : ''}}">
-                {!! Form::label('fullname', trans('fullname'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('fullname', trans('cms::cms.fullname'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    {!! Form::text('fullname', null, ['class' => 'form-control','placeholder'=>trans('fullname')]) !!}
+                    {!! Form::text('fullname', null, ['class' => 'form-control','placeholder'=>trans('cms::cms.fullname')]) !!}
                     {!! $errors->first('fullname', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('mobile') ? 'has-error' : ''}}">
-                {!! Form::label('mobile', trans('mobile'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('mobile', trans('cms::cms.mobile'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6 ">
 
                         <input type="tel" name="mobile" class="form-control " style="width: 190%;">
@@ -150,30 +150,30 @@
                 </div>
             </div>
             <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
-                {!! Form::label('email', trans('email'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('email', trans('cms::cms.email'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    {!! Form::text('email', null, ['class' => 'form-control','placeholder'=>trans('email')]) !!}
+                    {!! Form::text('email', null, ['class' => 'form-control','placeholder'=>trans('cms::cms.email')]) !!}
                     {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('countryOfResidence') ? 'has-error' : ''}}">
-                {!! Form::label('countryOfResidence', trans('countryOfResidence'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('countryOfResidence', trans('cms::cms.countryOfResidence'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('countryOfResidence',$country, null, ['class' => '','style'=>'width:100%;','placeholder'=>trans('countryOfResidence')]) !!}
+                    {!! Form::select('countryOfResidence',$country, null, ['class' => '','style'=>'width:100%;','placeholder'=>trans('cms::cms.countryOfResidence')]) !!}
                     {!! $errors->first('countryOfResidence', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
-            <div class="form-group {{ $errors->has('countryOfTargetBroker') ? 'has-error' : ''}}">
+            <div class="form-group {{ $errors->has('cms::cms.countryOfTargetBroker') ? 'has-error' : ''}}">
                 {!! Form::label('countryOfTargetBroker', trans('countryOfTargetBroker'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('countryOfTargetBroker',$country, null, ['class' => '','style'=>'width:100%;','placeholder'=>trans('countryOfTargetBroker')]) !!}
+                    {!! Form::select('countryOfTargetBroker',$country, null, ['class' => '','style'=>'width:100%;','placeholder'=>trans('cms::cms.countryOfTargetBroker')]) !!}
                     {!! $errors->first('countryOfTargetBroker', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('message') ? 'has-error' : ''}}">
-                {!! Form::label('message', trans('message'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('message', trans('cms::cms.message'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    {!! Form::textarea('message', null, ['class' => 'form-control','placeholder'=>trans('message')]) !!}
+                    {!! Form::textarea('message', null, ['class' => 'form-control','placeholder'=>trans('cms::cms.message')]) !!}
                     {!! $errors->first('message', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
