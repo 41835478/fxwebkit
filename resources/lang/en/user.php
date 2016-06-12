@@ -89,4 +89,14 @@
 'sign_up_now'=>'Sign Up Now',
 'not_a_member'=>'Not a member?',
 'click_here'=>'Click Here',
+
+    'mt4SignupText'=>'Enter Mt4 Account Info',
+    'mt4EmailAlreadySignup'=>'  MT4 Account Email is already signed up ,please sign in with this email.',
+    'internalError'=>' Internal Error, please try again later!',
+    'mt4UserNotExest'=>'Mt4 Account is not Exest or password not correct !',
+    'checkEmailToActive'=>'Please check your email and activate your account',
+    'mt4EmailError'=>'Mt4 account email is not valid email, please call admin to fix your email',
+    'mt4AccountLogin'=>'MT4 Account Login',
+    'server'=>'server',
+    'sign_up_with_mt4'=>'Sign Up with MT4 Account',
 ]; ?>

@@ -44,7 +44,7 @@ class ApiController extends Controller
 
         $user = current_user()->getUser();
 
-        $this->admin = ($user->InRole('admin')) ? true : false;
+        $this->admin = ($user && $user->InRole('admin')) ? true : false;
 
         $this->directOrderToMt4Server = (Config('accounts.directOrderToMt4Server') || $this->admin);
     }
@@ -492,6 +492,27 @@ class ApiController extends Controller
     public function AssignAgents($login, $password)
     {
 
+
+        $message = 'WMQWEBAPI MASTER=' . $this->apiMasterPassword . '|MODE=7|LOGIN=' . $login . '|CPASS=' . $password;
+        $result = $this->sendApiMessage($message);
+
+        if ($result->result === 0) {
+
+
+            return true;
+        } else {
+
+            return $this->getApiResponseMessage($result);
+        }
+
+
+    }
+
+
+    public function checkLoginPassword($login, $password,$server_id=0)
+    {
+
+        $this->changeServer($server_id);
 
         $message = 'WMQWEBAPI MASTER=' . $this->apiMasterPassword . '|MODE=7|LOGIN=' . $login . '|CPASS=' . $password;
         $result = $this->sendApiMessage($message);

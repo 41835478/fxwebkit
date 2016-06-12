@@ -7,6 +7,7 @@ use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 
 //use Cartalyst\Sentinel\Users;
 //use Guzzle\Http\Message\Request;
+use Fxweb\Models\User;
 use Modules\Accounts\Entities\Users;
 use Fxweb\Http\Controllers\Controller;
 use Fxweb\Http\Requests\Client\LoginRequest;
@@ -32,6 +33,8 @@ use Modules\Ibportal\Entities\IbportalAgentUser as AgentUser;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 
 use Cartalyst\Sentinel\Laravel\Facades\Reminder;
+
+use Modules\Accounts\Http\Controllers\ApiController;
 
 class AuthController extends Controller
 {
@@ -91,6 +94,130 @@ class AuthController extends Controller
         }
     }
 
+
+
+
+    public function getMt4Signup()
+    {
+
+
+        return view('client.user.mt4Signup')
+            ->with('random', rand(1, 3))
+            ->with('serverList',[0=>config('fxweb.liveServerName'),1=>config('fxweb.demoServerName')]);
+    }
+
+    public function postMt4Signup(Request $oRequest)
+    {
+        $login=$oRequest->login;
+        $password=$oRequest->password;
+        $server_id=$oRequest->server_id;
+
+       $api=new ApiController();
+
+        $authLogin=$api->checkLoginPassword($login, $password,$server_id);
+        $mt4User=\Fxweb\Models\Mt4User::where(['LOGIN'=>$login,'server_id'=>$server_id])->first();
+
+
+        if($authLogin ==true && $mt4User){
+
+            $mt4User=\Fxweb\Models\Mt4User::where(['LOGIN'=>$login,'server_id'=>$server_id])->first();
+
+
+
+            $emailExist=User::where('email',$mt4User->EMAIL)->first();
+
+            if($emailExist ){
+
+                return redirect()
+                    ->route('client.auth.mt4Signup')
+                    ->withErrors([trans('user.mt4EmailAlreadySignup')]);
+            }
+            if( !substr_count($mt4User->EMAIL,'@')){
+
+                return redirect()
+                    ->route('client.auth.mt4Signup')
+                    ->withErrors([trans('user.mt4EmailError')]);
+            }
+
+            $mt4UserDemtauls= [
+                'first_name' => $mt4User->NAME,
+                'last_name' => '',
+                'email' => $mt4User->EMAIL,
+                'password' => $password,
+
+                'nickname' => $mt4User->nickname,
+                'address' => $mt4User->ADDRESS,
+                'birthday' => '',
+                'phone' => $mt4User->PHONE,
+                'country' => $mt4User->COUNTRY,
+                'city' => $mt4User->CITY,
+                'zip_code' => $mt4User->ZIPCODE,
+                'gender' => 0
+            ];
+
+
+
+
+            $oRequest->merge($mt4UserDemtauls);
+
+            $result=$this->regesterWithoutValidat($oRequest,true);
+            if($result==true){
+
+                return Redirect::intended('/client');
+            }else{
+                return redirect()
+                    ->route('client.auth.mt4Signup')
+                    ->withErrors([trans('user.internalError')]);
+            }
+        } else {
+                return redirect()
+                    ->route('client.auth.mt4Signup')
+                    ->withErrors([trans('user.mt4UserNotExest')]);
+            }
+
+//        try {
+//            $oUser = Sentinel::authenticate([
+//                'email' => $oRequest->email,
+//                'password' => $oRequest->password,
+//            ]);
+//        } catch (ThrottlingException $e) {
+//            return redirect()
+//                ->route('client.auth.login')
+//                ->withErrors([trans('user.LoginSuspended')]);
+//        } catch (NotActivatedException $e) {
+//            return redirect()
+//                ->route('client.auth.login')
+//                ->withErrors([trans('user.LoginNotActive')]);
+//        } catch (Exception $e) {
+//            Log::error('Login', ['context' => __FILE__ . ' : ' . __LINE__ . ' : ' . $e->getMessage()]);
+//            return redirect()
+//                ->route('client.auth.login')
+//                ->withErrors([trans('user.InvalidLogin')]);
+//        }
+//
+//        if ($oUser) {
+//            return Redirect::intended('/client');
+//        } else {
+//            return redirect()
+//                ->route('client.auth.mt4Signup')
+//                ->withErrors([trans('user.InvalidLogin')]);
+//        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function getLogout()
     {
         Sentinel::logout(null, true);
@@ -117,8 +244,22 @@ class AuthController extends Controller
 
     public function postRegister(RegisterRequest $oRequest)
     {
-        $oClientRole = Sentinel::findRoleBySlug(Config::get('fxweb.client_default_role'));
         $bAutoActivate = Config::get('fxweb.auto_activate_client');
+        $result=$this->regesterWithoutValidat($oRequest,$bAutoActivate);
+        if ($result ==true ) {
+
+
+            return redirect()->route('clinet.editProfile');
+        } else if($result =='needActivate') {
+
+            return redirect()->route('client.auth.login')->withErrors([trans('user.checkEmailToActive')]);
+        }
+    }
+
+
+    public function regesterWithoutValidat($oRequest,$bAutoActivate=true){
+        $oClientRole = Sentinel::findRoleBySlug(Config::get('fxweb.client_default_role'));
+
 
         $aCredentials = [
             'first_name' => $oRequest->first_name,
@@ -155,15 +296,18 @@ class AuthController extends Controller
             $details->save();
             $oEmail = new Email;
             @$oEmail->signUpWelcome($aCredentials + $aCredentialsFullDetails);
-           @$oEmail->newUserSignUp(['adminEmail'=>config('fxweb.adminEmail')]+$aCredentials + $aCredentialsFullDetails);
+            @$oEmail->newUserSignUp(['adminEmail'=>config('fxweb.adminEmail')]+$aCredentials + $aCredentialsFullDetails);
 
 
             if(config('accounts.denyLiveAccount')){
-               $oUser->permissions = [
-                   'user.denyLiveAccount' => true
-               ];
+                $oUser->permissions = [
+                    'user.denyLiveAccount' => true
+                ];
                 $oUser->save();}
-            return redirect()->route('clinet.editProfile');
+
+
+            $assignMt4UsresByEmail=$this->oMt4User->getMt4UsersByEmail($oUser);
+            return true;
         } else {
 
             $oUser = Sentinel::register($aCredentials);
@@ -192,19 +336,21 @@ class AuthController extends Controller
             $oEmail->activeAccount(['email'=>$oRequest->email,
                 'code'=>$oActivation->code,
                 'userId'=>$oUser->id,
-            'website'=>$oRequest->root()
+                'website'=>$oRequest->root()
             ]);
             @$oEmail->newUserSignUp(['adminEmail'=>config('fxweb.adminEmail')]+$aCredentials + $aCredentialsFullDetails);
 
             if(config('accounts.denyLiveAccount')){
-            $oUser->permissions = [
-                'user.denyLiveAccount' => true
-            ];
+                $oUser->permissions = [
+                    'user.denyLiveAccount' => true
+                ];
                 $oUser->save();}
 
-            return redirect()->route('client.auth.login')->withErrors('Please check your email and activate your account');
+            return 'needActivate';
         }
     }
+
+
 
     private function assignNewUserToAgent($ibid, $newUserId, $planId)
     {

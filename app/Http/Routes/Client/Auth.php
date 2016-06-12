@@ -27,6 +27,16 @@ Route::post('login', [
     'uses' => 'AuthController@postLogin'
 ]);
 
+Route::get('mt4-signup', [
+    'before'=>'changeLanguage',
+    'as' => 'client.auth.mt4Signup',
+    'uses' => 'AuthController@getMt4Signup'
+]);
+Route::post('mt4-signup', [
+    'before'=>'changeLanguage',
+    'uses' => 'AuthController@postMt4Signup'
+]);
+
 Route::get('logout', [
     'as' => 'client.auth.logout',
     'uses' => 'AuthController@getLogout'

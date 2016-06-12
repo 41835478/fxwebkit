@@ -28,23 +28,27 @@
 
             {!! Form::open(['id'=>'signin-form_id']) !!}
             <div class="signin-text">
-                <span>{{ Lang::get('user.SignInText') }}</span>
+                <span>{{ Lang::get('user.mt4SignupText') }}</span>
             </div>
             @include('client.partials.messages')
             <div class="form-group w-icon">
-                {!! Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.email')]) !!}
+                {!! Form::text('login', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.mt4AccountLogin')]) !!}
                 <span class="fa fa-user signin-form-icon"></span>
             </div>
             <div class="form-group w-icon">
                 {!! Form::password('password', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.password')]) !!}
                 <span class="fa fa-lock signin-form-icon"></span>
             </div>
+            <div class="form-group w-icon">
+                {!! Form::select('server_id',$serverList,'',['class'=>'form-control input-lg','placeholder'=>Lang::get('server')]) !!}
+
+            </div>
+
+
             <div class="form-actions">
 
-                {!! Form::submit(Lang::get('user.SignIn'), ['class'=>'signin-btn bg-primary']) !!}
-                <a href="{{ route('client.auth.recover') }}"
-                   class="forgot-password">{{ Lang::get('user.ForgotYourPassword') }}</a>
-
+                {!! Form::submit(Lang::get('user.SignUp'), ['class'=>'signin-btn bg-primary']) !!}
+               
 
             </div>
             {!! Form::close() !!}
@@ -77,9 +81,6 @@ $width=($socialNumber>0)? 94/$socialNumber:0;
                     <div class="clearfix"></div>
                     {{ Lang::get('user.not_a_member') }}
                     <a href="{{ route('client.auth.register') }}">{{ Lang::get('user.sign_up_now') }}</a>
-or
-
-                    <a href="{{ route('client.auth.mt4Signup') }}">{{ Lang::get('user.sign_up_with_mt4') }}</a>
 
                     <div class="clearfix"></div>
                 </div>
