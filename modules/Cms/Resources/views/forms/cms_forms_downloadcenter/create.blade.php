@@ -11,7 +11,7 @@
 
         <div class="form-group ">
             {!! Form::label('name', trans('name'), ['class' => 'col-sm-3 control-label']) !!}
-            <div class="col-sm-6 file">
+            <div class="col-sm-6 ">
                 <div >
                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
                 </div>
@@ -19,6 +19,7 @@
             </div>
         </div>
 
+            <div>
         <div class="form-group {{ $errors->has('file') ? 'has-error' : ''}}">
             {!! Form::label('file', trans('file'), ['class' => 'col-sm-3 control-label']) !!}
             <div class="col-sm-6 file">
@@ -28,7 +29,7 @@
                 {!! $errors->first('file', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
-
+    </div>
 
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-3">
