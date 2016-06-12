@@ -5,7 +5,7 @@
     @foreach($menu_array as $menu)
 
     <li class=" b-top-nav__1level f-top-nav__1level  f-primary-b  @if($menu['id'] == $selected_id )  active @endif ">
-        <a href='{{ asset($menu['name']) }}' >
+        <a href='{{ asset($menu['name']) }}' onclick="return false;" >
 
             <i class="fa fa-folder-open b-menu-1level-ico"></i>{{ str_replace('-',' ',$menu['name']) }}<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span>
 

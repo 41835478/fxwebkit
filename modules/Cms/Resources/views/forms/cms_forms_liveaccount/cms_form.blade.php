@@ -604,7 +604,7 @@
     </div>
     <div class="right_div">
         <div class="input_all_div">
-            <label>{!! Form::label('other_source_funds_deposited',trans('cms::cms.other_source_funds_deposited').' *'  , ['class' => 'control-label']) !!}</label>
+            <label>{!! Form::label('other_source_funds_deposited',trans('cms::cms.other_source_funds_deposited') , ['class' => 'control-label']) !!}</label>
             {!! Form::text('other_source_funds_deposited', null, ['class' => '','placeholder'=>trans('cms::cms.other_source_funds_deposited')]) !!}
             <span>{!! $errors->first('other_source_funds_deposited', '<ul><li class="error">:message</li></ul>') !!}</span>
         </div>
@@ -1447,6 +1447,7 @@
 
         $('.joint_div input,.joint_div select').removeAttr('disabled');
         $('.joint_div input').attr('required', 'true');
+        $('input[name="other_source_funds_deposited"],input[name="other_source_funds_deposited_joint"]').removeAttr('required');
         $('.select2-input,.select2-search input,.select2-focusser,.select2-offscreen,input[name="secondary_phone_joint"],input[name="secondary_email_joint"],#d_joint input,#i_joint input[type="text"],#4_a_joint input,input[name="other_source_funds_deposited_joint"]').removeAttr('required');
     }
     function remove_joint_validation() {

@@ -163,8 +163,8 @@
                     {!! $errors->first('countryOfResidence', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
-            <div class="form-group {{ $errors->has('cms::cms.countryOfTargetBroker') ? 'has-error' : ''}}">
-                {!! Form::label('countryOfTargetBroker', trans('countryOfTargetBroker'), ['class' => 'col-sm-3 control-label']) !!}
+            <div class="form-group {{ $errors->has('countryOfTargetBroker') ? 'has-error' : ''}}">
+                {!! Form::label('countryOfTargetBroker', trans('cms::cms.countryOfTargetBroker'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::select('countryOfTargetBroker',$country, null, ['class' => '','style'=>'width:100%;','placeholder'=>trans('cms::cms.countryOfTargetBroker')]) !!}
                     {!! $errors->first('countryOfTargetBroker', '<p class="help-block">:message</p>') !!}

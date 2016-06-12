@@ -361,5 +361,6 @@
     'yourEmail'=>'Your E-mail',
     'lastName'=>'Last Name',
     'firstName'=>'First Name',
+    'countryOfResidence'=>'Country Of Residence',
 
 ]; ?>

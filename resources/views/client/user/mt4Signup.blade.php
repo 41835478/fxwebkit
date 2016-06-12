@@ -48,7 +48,7 @@
             <div class="form-actions">
 
                 {!! Form::submit(Lang::get('user.SignUp'), ['class'=>'signin-btn bg-primary']) !!}
-               
+
 
             </div>
             {!! Form::close() !!}
