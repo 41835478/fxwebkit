@@ -362,5 +362,8 @@
     'lastName'=>'Last Name',
     'firstName'=>'First Name',
     'countryOfResidence'=>'Country Of Residence',
+    'from'=>'From',
+    'to'=>'To',
+    'amount'=>'Amount',
 
 ]; ?>

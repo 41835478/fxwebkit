@@ -9,7 +9,7 @@
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
-                    <th>S.No</th><th>{{ trans('from') }}</th><th>{{ trans('to') }}</th><th>{{ trans('amount') }}</th><th>Actions</th>
+                    <th>S.No</th><th>{{ trans('cms::cms.from') }}</th><th>{{ trans('cms::cms.to') }}</th><th>{{ trans('cms::cms.amount') }}</th><th>Actions</th>
                 </tr>
             </thead>
             <tbody>

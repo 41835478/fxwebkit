@@ -5,21 +5,21 @@
     {!! Form::open(['route' => 'cms_forms_currencyconvertor.form', 'class' => 'form-horizontal']) !!}
 
                 <div class="form-group  {{ $errors->has('from') ? 'has-error' : ''}}">
-                {!! Form::label('from', trans('from'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('from', trans('cms::cms.from'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-9">
                     {!! Form::select('from',$countries, null, ['class' => '','style'=>'width:100%;']) !!}
                     {!! $errors->first('from', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('to') ? 'has-error' : ''}}">
-                {!! Form::label('to', trans('to'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('to', trans('cms::cms.to'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-9">
                     {!! Form::select('to',$countries, null, ['class' => '','style'=>'width:100%;']) !!}
                     {!! $errors->first('to', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('amount') ? 'has-error' : ''}}">
-                {!! Form::label('amount', trans('amount'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('amount', trans('cms::cms.amount'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-9">
                     {!! Form::text('amount', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('amount', '<p class="help-block">:message</p>') !!}
