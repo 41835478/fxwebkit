@@ -76,8 +76,10 @@ class ApiController extends Controller
 
         if ($fp) {
             fwrite($fp, $message . $admin . "\nQUIT\n");
-            while (!feof($fp)) {
+            $i=0;
+            while (!feof($fp) && $i<100) {
                 $result .= fgets($fp, 1024);
+                $i++;
             }
             fclose($fp);
         }

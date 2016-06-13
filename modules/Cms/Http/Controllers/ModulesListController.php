@@ -333,17 +333,17 @@ class ModulesListController extends Controller
     public function left_menu(){
 
        $parentId= \Illuminate\Support\Facades\Session::get('parentId');
-
+if(!$parentId >0 ){$parentId=24;}
         $links = \Modules\Cms\Entities\cms_menus_items::where('parent_item_id',$parentId)->orWhere('id' , $parentId)->orderBy('id')->get();
 
         $menuHtml='<div style="clear:both;"><div class="b-categories-filter">';
         $i=0;
         foreach($links as $link){
             if($i==0){$i++;
-                $menuHtml .= '<h4 class="f-primary-b b-h4-special f-h4-special--gray f-h4-special">'.$link->name .'</h4><ul>';
+                $menuHtml .= '<h4 class="f-primary-b b-h4-special f-h4-special--gray f-h4-special">'.$link->name  .'</h4><ul>';
            continue;
             }
-            $menuHtml .= '<li><a class="f-categories-filter_name" href="/'.str_replace(' ','-',$link->name).'"><i class="fa fa-plus"></i> '.$link->name.'</a></li>';
+            $menuHtml .= '<li><a class="f-categories-filter_name" style="text-transform: capitalize;" href="/'.strtolower(str_replace(' ','-',$link->name)).'"><i class="fa fa-plus"></i> '.$link->name.'</a></li>';
         }
 
         return $menuHtml.'</ul></div></div>';
