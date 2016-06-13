@@ -343,7 +343,7 @@ class ModulesListController extends Controller
                 $menuHtml .= '<h4 class="f-primary-b b-h4-special f-h4-special--gray f-h4-special">'.$link->name .'</h4><ul>';
            continue;
             }
-            $menuHtml .= '<li><a class="f-categories-filter_name" href="/'.str_replace(' ','-',$link->name).'"><i class="fa fa-plus"></i> '.$link->name.'</a></li>';
+            $menuHtml .= '<li><a class="f-categories-filter_name" style="text-transform: capitalize;" href="/'.strtolower(str_replace(' ','-',$link->name)).'"><i class="fa fa-plus"></i> '.$link->name.'</a></li>';
         }
 
         return $menuHtml.'</ul></div></div>';
