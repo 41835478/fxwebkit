@@ -23,13 +23,7 @@
 
                     {!! Form::button(trans('cms::cms.add_link'),["id"=>'show_add_menu_item_button','onclick'=>'window.location.href="/cms/menus/edit-menu-item/0/'.$selected_id.'";','class'=>'btn btn-primary btn-flat' ]) !!}
 
-                    @if($errors->any())
-                        <div class="alert alert-danger alert-dark">
-                            @foreach($errors->all() as $key=>$error)
-                                <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>
-                            @endforeach
-                        </div>
-                    @endif
+                    {!!   View('admin/partials/messages')->with('errors',$errors) !!}
                 </div>
             </div>
             @if($selected_language==1)
