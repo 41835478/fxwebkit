@@ -289,13 +289,13 @@ class cms_forms_demoaccountController extends Controller
         $ret = '';
         if ($socket) {
             if (fputs($socket, $socket_parameters) != false) {
-                $i=0;
-                while (!feof($socket) && $i<100) {
+
+                while (!feof($socket) ) {
                     $line = fgets($socket, 128);
                     if ($line == "end\r\n")
                         break;
                     $ret.= $line;
-                    $i++;
+
                 }
             }else {
                 throw new \Exception('cannot write data to the open socket');

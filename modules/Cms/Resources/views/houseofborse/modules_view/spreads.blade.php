@@ -4,7 +4,7 @@
             <h2><span>Live Spread</span></h2>
             <ul >
                 @foreach ($spreads as $spread_key=>$spread_val )
-                    <li id="@if ($spread_key == 'XAUUSD') GOLD @elseif(spread_key == 'XAGUSD' )  SILVER @else  {{$spread_key}} @endif ">
+                    <li @if ($spread_key == 'XAUUSD') id="GOLD" @elseif(spread_key == 'XAGUSD' ) id="SILVER" @else id="{{$spread_key}}" @endif>
                         <strong>
                             <i class="arrow fa "></i>
                             @if ($spread_key == 'XAUUSD')
@@ -76,11 +76,12 @@
         bid = parseFloat(bid);
 
         var bin = ((ask - bid) * Math.pow(10, digits-1)).toFixed(1);
-        var row = $('#spread-bar #' + symbol)
+        var row = $('#spread-bar #'+symbol);
 
 
 
-
+        console.log(symbol);
+        console.log(row.length);
         if (row.length) {
             var oldAsk = parseFloat(row.find('.ask').text());
             var oldBid = parseFloat(row.find('.bid').text());
