@@ -230,9 +230,9 @@ CREATE TABLE IF NOT EXISTS `mt4_users` (
 
 --|||
 
-create view mt4_closed as select * from mt4_closed_actual UNION SELECT * from mt4_closed_balance UNION select * from mt4_closed_pending;
+create view mt4_closed as select * from mt4_closed_actual UNION ALL SELECT * from mt4_closed_balance UNION ALL select * from mt4_closed_pending;
 --|||
-create view mt4_closed_actual_balance as select * from mt4_closed_actual UNION SELECT * from mt4_closed_balance;
+create view mt4_closed_actual_balance as select * from mt4_closed_actual UNION ALL SELECT * from mt4_closed_balance;
 --|||
-create view mt4_open as select * from mt4_open_actual UNION SELECT * from mt4_open_pending;
+create view mt4_open as select * from mt4_open_actual UNION ALL SELECT * from mt4_open_pending;
 --|||

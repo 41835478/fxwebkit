@@ -80,8 +80,8 @@
 
 
 
-        console.log(symbol);
-        console.log(row.length);
+//        console.log(symbol);
+//        console.log(row.length);
         if (row.length) {
             var oldAsk = parseFloat(row.find('.ask').text());
             var oldBid = parseFloat(row.find('.bid').text());
@@ -149,7 +149,7 @@
         {
             document.getElementById("inputText").value = "";
             websocket.send(msg);
-            console.log("string sent :", '"' + msg + '"');
+          //  console.log("string sent :", '"' + msg + '"');
         }
     }
 
@@ -162,7 +162,7 @@
         if (websocket != null)
         {
             for (var i = 0; i < spreads.length; i++) {
-                console.log("send");
+         //       console.log("send");
                 websocket.send(spreads[i]);
             }
 
