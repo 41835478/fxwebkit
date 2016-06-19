@@ -20,13 +20,7 @@
                             {!! Form::text('new_page_name_input' ,'',['placeholder'=>trans('cms::cms.new_page_name'),'class'=>'form-control input-sm']) !!}
                             {!! Form::submit(trans('cms::cms.create_new_page'),["name"=>'new_page_submit','class'=>'btn btn-primary btn-flat' ]) !!}
 
-                            @if($errors->any())
-                                <div class="alert alert-danger alert-dark">
-                                    @foreach($errors->all() as $key=>$error)
-                                        <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>
-                                    @endforeach
-                                </div>
-                            @endif
+                            {!!   View('admin/partials/messages')->with('errors',$errors) !!}
                             {!! Form::close() !!}
                         </div>
                     </div>

@@ -62,14 +62,7 @@
         <div class="panel-footer text-right">
              </div>
 
-        @if($errors->any())
-            <div class="alert alert-danger alert-dark">
-                @foreach($errors->all() as $key=>$error)
-                    <strong>{{ $key+1 }}.</strong>  {{ $error }}<br>
-                @endforeach
-
-            </div>
-        @endif
+        {!!   View('admin/partials/messages')->with('errors',$errors) !!}
 </div>
         {!! Form::close() !!}
 

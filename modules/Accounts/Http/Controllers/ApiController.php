@@ -432,7 +432,6 @@ class ApiController extends Controller
             return (array_key_exists($result->result, $this->returnMessages)) ? $this->returnMessages[$result->result] : $this->returnMessages['error'];
         }
         $this->returnMessages['error'];
-
     }
 
 
@@ -460,8 +459,8 @@ class ApiController extends Controller
 
             $requestLog->insertAssignAccountRequest($login, $this->server_id, $password, '', '', 2);
 
-            /* TODO[moaid]  please translate messages in this page every where */
-            return 'Error, Please try again later.';
+            return   $this->getApiResponseMessage($result);
+
         }
 
     }
@@ -479,7 +478,7 @@ class ApiController extends Controller
 
         if ($result->result === 0) {
             $requestLog->updateAssignAccountRequest($logId, $login, $password, '', '', 1);
-
+            \Session::flash('flash_success','The User has been assigned successfully');
             /* TODO please trans() */
             return 'This user has been assigned successfully';
         } else {
