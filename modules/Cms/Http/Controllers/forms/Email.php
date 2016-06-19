@@ -114,4 +114,9 @@ class Email extends Controller
     {
         $this->sendEmail('paymentsuccess', $variables, config('fxweb.adminEmail'), 'Success payment');
     }
+
+function contactus ($variables,$toEmail)
+{
+$this->sendEmail('contactus', $variables, $toEmail, 'Contact us');
+}
 }

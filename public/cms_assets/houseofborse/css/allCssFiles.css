@@ -43939,3 +43939,24 @@ https://github.com/videojs/video.js/blob/master/src/css/video-js.less */
 .introWindowColumn p{ color:#E5E5E5}
 .introWindowColumn a{padding-left:30px;padding-right:30px;}
 
+
+
+
+.btn-grey {
+    color: #fff;
+    background-color: #999;
+    text-decoration: none!important;
+    border: 0!important;
+    outline: 0!important;
+    -webkit-transition: all .3s ease-in-out;}
+.btn-grey:hover{color:#fff;}
+
+
+
+@media screen and (max-width: 767px){
+    .b-top-options-panel {
+        display: block !important;
+        overflow:auto;
+    }
+    .b-top-options-panel a{width:20px !important; display:inline-block; height:18px;overflow:hidden;}
+}

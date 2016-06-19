@@ -1422,9 +1422,7 @@
                     </div>
 
                     <div id="submit_bottom_buttons_div">
-                        <button type="reset" class="reset b-btn f-btn b-btn-default b-btn-md f-primary-b"><i class="fa fa-refresh"></i>
-                            Reset
-                        </button>
+                        <button type="reset" class="reset form-control btn btn-grey "><i class="fa fa-refresh"></i> Reset</button>
 
                         <button type="submit" class="next b-btn f-btn b-btn-default b-btn-md f-primary-b"
                                 onclick="/*$(this).parents('form:first').submit();*/">Submit <i

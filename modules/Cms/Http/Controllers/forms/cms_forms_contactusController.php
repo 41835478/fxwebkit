@@ -12,6 +12,7 @@ use Session;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
+use modules\Cms\Http\Controllers\forms\Email;
 class cms_forms_contactusController extends Controller
 {
     /**
@@ -138,6 +139,10 @@ class cms_forms_contactusController extends Controller
         {
             
             cms_forms_contactus::create($request->all());
+
+
+            $email=new Email();
+            @$email->contactus($request->all(),config('fxweb.adminEmail'));
 
             Session::flash('flash_success', 'Your request has been sent successfully!');
 return Redirect::back();
