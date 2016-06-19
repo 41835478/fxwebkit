@@ -1,14 +1,4 @@
-@if ($errors->any())
-
-        <div class="alert alert-danger alert-dark">
-            <button data-dismiss="alert" class="close" type="button">×</button>
-            @foreach ($errors->all() as $error)
-            {!! $error !!}<br>
-            @endforeach
-
-        </div>
-
-@elseif (Session::get('flash_success'))
+@if (Session::get('flash_success'))
     <div class="alert alert-success">
         @if(is_array(json_decode(Session::get('flash_success'),true)))
             {!! implode('', Session::get('flash_success')->all(':message<br/>')) !!}
@@ -16,6 +6,14 @@
             {!! Session::get('flash_success') !!}
         @endif
     </div>
+@elseif ($errors->any())
+    @foreach ($errors->all() as $error)
+        <div class="alert alert-danger alert-dark">
+            <button data-dismiss="alert" class="close" type="button">×</button>
+            {!! $error !!}
+        </div>
+    @endforeach
+
 @elseif (Session::get('flash_warning'))
     <div class="alert alert-warning">
         @if(is_array(json_decode(Session::get('flash_warning'),true)))

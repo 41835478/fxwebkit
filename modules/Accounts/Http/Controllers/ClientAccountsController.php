@@ -484,7 +484,7 @@ class ClientAccountsController extends Controller
             'zip_code' => $oResult['zip_code'],
             'array_leverage' => $oRequest['array_leverage'],
         ];
-
+        
 
         $oApiController = new ApiController();
 
@@ -496,7 +496,14 @@ class ClientAccountsController extends Controller
 
         if ($result * 1 > 0) {
             $result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result], 1);
-            $result = ($result == true) ? 'the user assigned successfully' : 'error,the Mt4 user does not assigned to this account';
+
+if($result == true){
+           \Session::flash('flash_success','the user assigned successfully');
+
+       }else{
+           $result =  'error,the Mt4 user does not assigned to this account';
+       }
+
         }
         return Redirect::route('client.accounts.mt4DemoAccount')->withErrors($result);
 
