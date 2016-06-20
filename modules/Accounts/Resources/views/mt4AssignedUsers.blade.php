@@ -61,7 +61,7 @@
                                 <td>{{ $oResult->email }}</td>
                                 <td>
                                     <a href="{{ route('accounts.unssignUserFromMt4User').'?user_id='.$oResult->id.'&login='.$login.'&server_id='.$server_id }}"
-                                       class="fa fa-unlink tooltip_number" data-original-title="{{trans('accounts::accounts.editAccount')}}"></a>
+                                       class="fa fa-unlink tooltip_number" data-original-title="{{trans('accounts::accounts.un_assign')}}"></a>
 
                                 </td>
                             </tr>
@@ -78,5 +78,13 @@
 
             {!! Form::close() !!}
         </div>
+        <script>
+
+            init.push(function () {
+
+                $('.tooltip_number').tooltip();
+
+            });
+        </script>
         @stop
 

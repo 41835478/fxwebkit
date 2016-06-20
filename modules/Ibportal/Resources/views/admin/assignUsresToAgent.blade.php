@@ -123,10 +123,10 @@
                                         <td>@if(isset($oResult->agentPlan)) {{  $oResult->agentPlan->plan->name }} @endif</td>
                                         <td>
                                             @if(isset($oResult->user_id ) || (isset($oResult->agentPlan) && $oResult->agentPlan->first()->user_id) )
-                                                {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->id  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+                                                {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->id  ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('ibportal::ibportal.un_assign'),'type'=>'submit' ]) !!}
                                             @else
 
-                                                {!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->id ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+                                                {!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->id ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('ibportal::ibportal.assign'),'type'=>'submit' ]) !!}
                                             @endif
                                         </td>
                                     </tr>

@@ -603,6 +603,7 @@ class EloquentUserRepository implements UserContract
                 $asign = mt4_users_users::where(['users_id' => $account_id, 'mt4_users_id' => $user_id, 'server_id' => $server_id])->first();
                 if ($asign) {
                     $asign->delete();
+                    \Session::flash('flash_success','The User has been Unassigned Successfully ');
                 }
             }
         }
