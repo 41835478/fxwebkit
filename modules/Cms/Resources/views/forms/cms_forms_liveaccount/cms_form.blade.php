@@ -179,7 +179,7 @@
 
         <div class="input_all_div">
             <label>{{trans('cms::cms.nationality')}}</label>
-            {!! Form::select('nationality',$arrays['country'], 'MT4', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+            {!! Form::select('nationality',$arrays['nationals'], 'MT4', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
         </div>
 
 
@@ -260,7 +260,7 @@
 
             <div class="input_all_div">
                 <label>{{trans('cms::cms.nationality_joint')}}</label>
-                {!! Form::select('nationality_joint',$arrays['country'], 'MT4', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('nationality_joint',$arrays['nationals'], 'MT4', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
             </div>
 
 
@@ -1422,7 +1422,9 @@
                     </div>
 
                     <div id="submit_bottom_buttons_div">
-                        <button type="reset" class="reset form-control btn btn-grey "><i class="fa fa-refresh"></i> Reset</button>
+                        <button type="reset" class="reset b-btn f-btn b-btn-default b-btn-md f-primary-b"><i class="fa fa-refresh"></i>
+                            Reset
+                        </button>
 
                         <button type="submit" class="next b-btn f-btn b-btn-default b-btn-md f-primary-b"
                                 onclick="/*$(this).parents('form:first').submit();*/">Submit <i
