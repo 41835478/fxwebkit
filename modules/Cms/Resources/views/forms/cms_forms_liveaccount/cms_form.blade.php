@@ -180,6 +180,7 @@
         <div class="input_all_div">
             <label>{{trans('cms::cms.nationality')}}</label>
             {!! Form::select('nationality',$arrays['nationals'], 'MT4', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+            {!! $errors->first('nationality', '<ul><li class="error">:message</li></ul>') !!}
         </div>
 
 
