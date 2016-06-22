@@ -178,7 +178,7 @@ class AuthController extends Controller
 
             $details = new UsersDetails($aCredentialsFullDetails);
             $details->save();
-            /* TODO[moaid] test sign up with auto activate and not auto activate from .env CLIENT_AUTO_ACTIVATE and check activate email*/
+
             $oEmail = new Email;
             @$oEmail->activeAccount(['email'=>$oRequest->email,
                 'code'=>$oActivation->code,

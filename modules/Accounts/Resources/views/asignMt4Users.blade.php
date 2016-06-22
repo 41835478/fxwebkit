@@ -84,13 +84,6 @@
 
                     <div class="table-info">
 
-
-
-
-
-
-
-
                         <div class="table-header">
 
 

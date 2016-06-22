@@ -1037,6 +1037,7 @@ class AccountsController extends Controller
     public function getUnssignUserFromMt4User(Request $oRequest){
 
         $this->oUsers->unsignMt4UsersToAccount($oRequest->user_id, [$oRequest->login.','. $oRequest->server_id],3);
-                return $this->getMt4AssignedUsers($oRequest);
+
+            return $this->getMt4AssignedUsers($oRequest);
     }
 }

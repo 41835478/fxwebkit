@@ -497,8 +497,8 @@ class ClientAccountsController extends Controller
         if ($result * 1 > 0) {
             $result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result], 1);
 
-if($result == true){
-           \Session::flash('flash_success','the user assigned successfully');
+        if($result == true){
+           \Session::flash('flash_success','The User Assigned Successfully');
 
        }else{
            $result =  'error,the Mt4 user does not assigned to this account';
@@ -588,8 +588,14 @@ if($result == true){
         $result = $oApiController->mt4UserFullDetails(current_user()->getUser()->id, $mt4_user_details);
 
         if ($result * 1 > 0) {
-            $result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result], 0);
-            $result = ($result == true) ? 'the user assigned successfully' : 'error,the Mt4 user does not assigned to this account';
+            $result = $this->oUsers->asignMt4UsersToAccount(current_user()->getUser()->id, [$result], 1);
+
+            if ($result == true) {
+                \Session::flash('flash_success', 'The User Assigned Successfully');
+
+            } else {
+                $result = 'error,the Mt4 user does not assigned to this account';
+            }
         }
         return Redirect::route('client.accounts.mt4LiveAccount')->withErrors($result);
 
