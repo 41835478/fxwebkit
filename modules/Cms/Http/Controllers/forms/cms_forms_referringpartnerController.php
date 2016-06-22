@@ -12,6 +12,7 @@ use Session;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
+use modules\Cms\Http\Controllers\forms\Email;
 class cms_forms_referringpartnerController extends Controller
 {
     /**
@@ -135,11 +136,15 @@ class cms_forms_referringpartnerController extends Controller
          */
         public function cms_store(Request $request)
         {
-            
+
             cms_forms_referringpartner::create($request->all());
 
+            $email=new Email();
+            @$email->contactus($request->all(),$request->email);
+
+
             Session::flash('flash_success', 'Your request has been sent successfully!');
-return Redirect::back();
+                                    return Redirect::back();
         //    return redirect('cms/cms_forms_referringpartner');
         }
 

@@ -10,7 +10,7 @@
     {!! Form::open(['url' => '/cms/cms_forms_downloadcenter', 'class' => 'form-horizontal']) !!}
 
         <div class="form-group ">
-            {!! Form::label('name', trans('name'), ['class' => 'col-sm-3 control-label']) !!}
+            {!! Form::label('name', trans('Name'), ['class' => 'col-sm-3 control-label']) !!}
             <div class="col-sm-6 ">
                 <div >
                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
@@ -21,7 +21,7 @@
 
             <div>
         <div class="form-group {{ $errors->has('file') ? 'has-error' : ''}}">
-            {!! Form::label('file', trans('file'), ['class' => 'col-sm-3 control-label']) !!}
+            {!! Form::label('file', trans('File'), ['class' => 'col-sm-3 control-label']) !!}
             <div class="col-sm-6 file">
                 <div >
                     {!! Form::text('file', null, ['class' => 'form-control']) !!}

@@ -5,14 +5,14 @@
     {!! Form::open(['route' => 'cms_forms_emailtemplates.form', 'class' => 'form-horizontal']) !!}
 
                 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-                {!! Form::label('name', trans('name'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('name', trans('Name'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::text('name', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('template') ? 'has-error' : ''}}">
-                {!! Form::label('template', trans('template'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('template', trans('Template'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::textarea('template', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('template', '<p class="help-block">:message</p>') !!}

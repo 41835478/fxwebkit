@@ -119,4 +119,8 @@ function contactus ($variables,$toEmail)
 {
 $this->sendEmail('contactus', $variables, $toEmail, 'Contact us');
 }
+    function referringpartner ($variables,$toEmail)
+    {
+        $this->sendEmail('referringpartner', $variables, $toEmail, 'Referring Partner,White Label,Money Managers');
+    }
 }
