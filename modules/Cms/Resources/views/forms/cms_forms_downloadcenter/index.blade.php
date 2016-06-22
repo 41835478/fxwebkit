@@ -9,7 +9,7 @@
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
-                    <th>S.No</th><th>{{ trans('name') }}</th><th>{{ trans('file') }}</th><th>Actions</th>
+                    <th>S.No</th><th>{{ trans('Name') }}</th><th>{{ trans('File') }}</th><th>Actions</th>
                 </tr>
             </thead>
             <tbody>
