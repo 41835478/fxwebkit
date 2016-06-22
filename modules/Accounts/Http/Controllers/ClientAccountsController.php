@@ -484,7 +484,7 @@ class ClientAccountsController extends Controller
             'zip_code' => $oResult['zip_code'],
             'array_leverage' => $oRequest['array_leverage'],
         ];
-        
+
 
         $oApiController = new ApiController();
 
