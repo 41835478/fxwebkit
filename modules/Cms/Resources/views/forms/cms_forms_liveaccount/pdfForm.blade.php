@@ -767,10 +767,10 @@
 <h5>F. Futures trading experience</h5>
 <p><strong>Number of years you have been trading in futures</strong></p>
 <ul class="padding-left-10 margin-bottom-10">
-<li>@if($var->number_of_years_futures=='Less than 1 year') &check; @else&#9744;@endif Less than 1 year</li>
-<li>@if($var->number_of_years_futures=='1 to 3 years') &check; @else&#9744;@endif 1 to 3 years</li>
-<li>@if($var->number_of_years_futures=='3 to 5 years') &check; @else&#9744;@endif 3 to 5 years</li>
-<li>@if($var->number_of_years_futures=='More than 5 years') &check; @else&#9744;@endif More than 5 years</li>
+<li>@if($var->number_of_years_futures=='Less than 1 year') &check; @else &#9744;@endif Less than 1 year</li>
+<li>@if($var->number_of_years_futures=='1 to 3 years') &check; @else &#9744;@endif 1 to 3 years</li>
+<li>@if($var->number_of_years_futures=='3 to 5 years') &check; @else &#9744;@endif 3 to 5 years</li>
+<li>@if($var->number_of_years_futures=='More than 5 years') &check; @else &#9744;@endif More than 5 years</li>
 </ul>
 </ul>
 <p><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
