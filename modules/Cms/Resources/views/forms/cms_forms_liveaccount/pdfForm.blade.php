@@ -655,7 +655,7 @@
 <h5>B. Financial markets experience</h5>
 <p>Please indicate below the financial market(s) you have traded in within the past 3 years.</p>
 <ul class="no-margin padding-left-10">
-<li>@if($var->number_of_years_cfd!=0) &check; @else&#9744;@endif Contracts for Difference (CFDs) - if yes, please complete section C</li>
+<li>@if($var->number_of_years_cfd!='None') &check; @else&#9744;@endif Contracts for Difference (CFDs) - if yes, please complete section C</li>
 <li>@if($var->number_of_years_commodities!=0) &check; @else&#9744;@endif Commodities - if yes, please complete section D</li>
 <li>@if($var->number_of_years_forex!=0) &check; @else&#9744;@endif Forex - if yes, please complete section E</li>
 <li>@if($var->number_of_years_futures!=0) &check; @else&#9744;@endif Futures - if yes, please complete section F</li>
