@@ -773,9 +773,9 @@
 <li>@if($var->number_of_years_futures=='More than 5 years') &check; @else &#9744;@endif More than 5 years</li>
 </ul>
 </ul>
-<p><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
+<p><strong>Number of transactions of significant size carried out per quarter in the past 12 months </strong></p>
 <ul class="padding-left-10 margin-bottom-10">
-<li>@if($var->number_of_transactions_futures=='Less than 10 transactions' and  $var->number_of_years_futures!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_futures=='less than 10 transactions' and  $var->number_of_years_futures!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
 <li>@if($var->number_of_transactions_futures=='10 to 20 transactions'  and  $var->number_of_years_futures!='None') &check; @else &#9744; @endif 10 to 20 transactions</li>
 <li>@if($var->number_of_transactions_futures=='More than 20 transactions'  and  $var->number_of_years_futures!='None') &check; @else &#9744; @endif More than 20 transactions</li>
 </ul>
@@ -1360,19 +1360,19 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <div class="col-box margin-bottom-20">
 <div class="col-50">
 <ul>
-    <li>@if($var->source_funds_deposited_joint==0&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Employment</li>
-    <li>@if($var->source_funds_deposited_joint==1&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Inheritance</li>
-    <li>@if($var->source_funds_deposited_joint==2&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Investment</li>
-    <li>@if($var->source_funds_deposited_joint==3&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Previous Employment</li>
-    <li>@if($var->source_funds_deposited_joint==4&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Real Estate</li>
+    <li>@if($var->source_funds_deposited_joint=='Employment'&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Employment</li>
+    <li>@if($var->source_funds_deposited_joint=='Inheritance'&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Inheritance</li>
+    <li>@if($var->source_funds_deposited_joint=='Investment'&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Investment</li>
+    <li>@if($var->source_funds_deposited_joint=='Previous Employment'&&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Previous Employment</li>
+    <li>@if($var->source_funds_deposited_joint=='Real Estate' &&$var->sole_joint_account=='Joint account') &check; @else&#9744;@endif Real Estate</li>
 
 </ul>
 </div><!--.col-50-->
 <div class="col-50">
 <ul>
-        <li>@if($var->source_funds_deposited_joint==5) &check; @else&#9744;@endif Sale of investments</li>
-    <li>@if($var->source_funds_deposited_joint==6) &check; @else&#9744;@endif Savings</li>
-    <li>@if($var->source_funds_deposited_joint==7) &check; @else&#9744;@endif Other (specify below)</li>
+        <li>@if($var->source_funds_deposited_joint=='Sale of investments') &check; @else&#9744;@endif Sale of investments</li>
+    <li>@if($var->source_funds_deposited_joint=='Savings') &check; @else&#9744;@endif Savings</li>
+    <li>@if($var->source_funds_deposited_joint=='Other') &check; @else&#9744;@endif Other (specify below)</li>
     <div class="rectangle padding-10">{{  $var->other_source_funds_deposited_joint }}</div>
 </ul>
 </div><!--.col-50-->
@@ -1403,35 +1403,35 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <h5 class="margin-top-20">B. Financial markets experience</h5>
 <p>Please indicate below the financial market(s) you have traded in within the past 3 years.</p>
 <ul class="no-margin">
-<li>@if($var->number_of_years_cfd_joint!=0) &check; @else&#9744;@endif Contracts for Difference (CFDs) - if yes, please complete section C</li>
-<li>@if($var->number_of_years_commodities_joint!=0) &check; @else&#9744;@endif Commodities - if yes, please complete section D</li>
-<li>@if($var->number_of_years_forex_joint!=0) &check; @else&#9744;@endif Forex - if yes, please complete section E</li>
-<li>@if($var->number_of_years_futures_joint!=0) &check; @else&#9744;@endif Futures - if yes, please complete section F</li>
-<li>@if($var->number_of_years_options_joint!=0) &check; @else&#9744;@endif Options - if yes, please complete section G</li>
-<li>@if($var->number_of_years_securities_joint!=0) &check; @else&#9744;@endif Securities - if yes, please complete section H</li>
+<li>@if($var->number_of_years_cfd_joint!='None') &check; @else&#9744;@endif Contracts for Difference (CFDs) - if yes, please complete section C</li>
+<li>@if($var->number_of_years_commodities_joint!='None') &check; @else&#9744;@endif Commodities - if yes, please complete section D</li>
+<li>@if($var->number_of_years_forex_joint!='None') &check; @else&#9744;@endif Forex - if yes, please complete section E</li>
+<li>@if($var->number_of_years_futures_joint!='None') &check; @else&#9744;@endif Futures - if yes, please complete section F</li>
+<li>@if($var->number_of_years_options_joint!='None') &check; @else&#9744;@endif Options - if yes, please complete section G</li>
+<li>@if($var->number_of_years_securities_joint!='None') &check; @else&#9744;@endif Securities - if yes, please complete section H</li>
 </ul>
      <div style="@if($var->number_of_years_cfd_joint==0)   @endif">
 
 <h5 class="margin-top-20">C. contract for Differences (CFDs) trading experience</h5>
 <p><strong>Number of years you have been trading in CFDs</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_years_cfd_joint==1) &check; @else&#9744;@endif Less than 1 year</li>
-<li>@if($var->number_of_years_cfd_joint==2) &check; @else&#9744;@endif 1 to 3 years</li>
-<li>@if($var->number_of_years_cfd_joint==3) &check; @else&#9744;@endif 3 to 5 years</li>
-<li>@if($var->number_of_years_cfd_joint==4) &check; @else&#9744;@endif More than 5 years</li>
+<li>@if($var->number_of_years_cfd_joint=='Less than 1 year') &check; @else&#9744;@endif Less than 1 year</li>
+<li>@if($var->number_of_years_cfd_joint=='1 to 3 years') &check; @else&#9744;@endif 1 to 3 years</li>
+<li>@if($var->number_of_years_cfd_joint=='3 to 5 years') &check; @else&#9744;@endif 3 to 5 years</li>
+<li>@if($var->number_of_years_cfd_joint=='More than 5 years') &check; @else&#9744;@endif More than 5 years</li>
 </ul>
 <p class="margin-top-10"><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_transactions_cfd_joint==0 and  $var->number_of_years_cfd_joint!=0) &check; @else&#9744;@endif Less than 10 transactions</li>
-<li>@if($var->number_of_transactions_cfd_joint==1  and  $var->number_of_years_cfd_joint!=0) &check; @else&#9744;@endif 10 to 20 transactions</li>
-<li>@if($var->number_of_transactions_cfd_joint==2  and  $var->number_of_years_cfd_joint!=0) &check; @else&#9744;@endif More than 20 transactions</li>
+<li>@if($var->number_of_transactions_cfd_joint=='Less than 10 transactions' and  $var->number_of_years_cfd_joint!='None') &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_cfd_joint=='10 to 20 transactions'  and  $var->number_of_years_cfd_joint!='None') &check; @else&#9744;@endif 10 to 20 transactions</li>
+<li>@if($var->number_of_transactions_cfd_joint=='More than 20 transactions'  and  $var->number_of_years_cfd_joint!='None') &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
 <p class="margin-top-10"><strong>Average trading volume per month</strong></p>
 <ul class="no-margin">
-<li>@if($var->average_trading_cfd_joint==0 and  $var->number_of_years_cfd_joint!=0 ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
-<li>@if($var->average_trading_cfd_joint==1  and  $var->number_of_years_cfd_joint!=0) &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
-<li>@if($var->average_trading_cfd_joint==2  and  $var->number_of_years_cfd_joint!=0) &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
-<li>@if($var->average_trading_cfd_joint==3  and  $var->number_of_years_cfd_joint!=0) &check; @else&#9744;@endif More than 300,000 GBP</li>
+<li>@if($var->average_trading_cfd_joint=='Less than 30,000 GBP' and  $var->number_of_years_cfd_joint!='None' ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
+<li>@if($var->average_trading_cfd_joint=='30,000 to 60,000 GBP'  and  $var->number_of_years_cfd_joint!='None') &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
+<li>@if($var->average_trading_cfd_joint=='60,000 to 300,000 GBP'  and  $var->number_of_years_cfd_joint!='None') &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
+<li>@if($var->average_trading_cfd_joint=='More than 300,000 GBP'  and  $var->number_of_years_cfd_joint!='None') &check; @else&#9744;@endif More than 300,000 GBP</li>
 </ul>
      </div>
 <div class="footer"><p style="float:left;margin-right:2px">Page 18 of 21</p>
@@ -1451,25 +1451,25 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <h4>D. commodities trading experience</h4>
 <p><strong>Number of years you have been trading in commodities</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_years_commodities_joint==1) &check; @else&#9744;@endif Less than 1 year</li>
-<li>@if($var->number_of_years_commodities_joint==2) &check; @else&#9744;@endif 1 to 3 years</li>
-<li>@if($var->number_of_years_commodities_joint==3) &check; @else&#9744;@endif 3 to 5 years</li>
-<li>@if($var->number_of_years_commodities_joint==4) &check; @else&#9744;@endif More than 5 years</li>
+<li>@if($var->number_of_years_commodities_joint=='Less than 1 year') &check; @else&#9744;@endif Less than 1 year</li>
+<li>@if($var->number_of_years_commodities_joint=='1 to 3 years') &check; @else&#9744;@endif 1 to 3 years</li>
+<li>@if($var->number_of_years_commodities_joint=='3 to 5 years') &check; @else&#9744;@endif 3 to 5 years</li>
+<li>@if($var->number_of_years_commodities_joint=='More than 5 years') &check; @else&#9744;@endif More than 5 years</li>
 </ul>
 
 <p class="margin-top-10"><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_transactions_commodities_joint==0 and  $var->number_of_years_commodities_joint!=0) &check; @else&#9744;@endif Less than 10 transactions</li>
-<li>@if($var->number_of_transactions_commodities_joint==1  and  $var->number_of_years_commodities_joint!=0) &check; @else&#9744;@endif 10 to 20 transactions</li>
-<li>@if($var->number_of_transactions_commodities_joint==2 and  $var->number_of_years_commodities_joint!=0 ) &check; @else&#9744;@endif More than 20 transactions</li>
+<li>@if($var->number_of_transactions_commodities_joint=='Less than 10 transactions' and  $var->number_of_years_commodities_joint!='None') &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_commodities_joint=='10 to 20 transactions'  and  $var->number_of_years_commodities_joint!='None') &check; @else&#9744;@endif 10 to 20 transactions</li>
+<li>@if($var->number_of_transactions_commodities_joint=='More than 20 transactions' and  $var->number_of_years_commodities_joint!='None' ) &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
 
 <p class="margin-top-10"><strong>Average trading volume per month</strong></p>
 <ul class="no-margin">
-<li>@if($var->average_trading_commodities_joint==0 and  $var->number_of_years_commodities_joint!=0 ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
-<li>@if($var->average_trading_commodities_joint==1 and  $var->number_of_years_commodities_joint!=0 ) &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
-<li>@if($var->average_trading_commodities_joint==2 and  $var->number_of_years_commodities_joint!=0 ) &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
-<li>@if($var->average_trading_commodities_joint==3  and  $var->number_of_years_commodities_joint!=0) &check; @else&#9744;@endif More than 300,000 GBP</li>
+<li>@if($var->average_trading_commodities_joint=='Less than 30,000 GBP' and  $var->number_of_years_commodities_joint!='None' ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
+<li>@if($var->average_trading_commodities_joint=='30,000 to 60,000 GBP' and  $var->number_of_years_commodities_joint!='None' ) &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
+<li>@if($var->average_trading_commodities_joint=='60,000 to 300,000 GBP' and  $var->number_of_years_commodities_joint!='None' ) &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
+<li>@if($var->average_trading_commodities_joint=='More than 300,000 GBP'  and  $var->number_of_years_commodities_joint!='None') &check; @else&#9744;@endif More than 300,000 GBP</li>
 </ul>
 </div>
 <div style="@if($var->number_of_years_forex_joint==0)   @endif">
@@ -1477,24 +1477,24 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <h5 class="margin-top-20">E. Forex (spot or Forward) trading experience</h5>
 <p><strong>Number of years you have been trading in forex</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_years_forex_joint==1) &check; @else&#9744;@endif Less than 1 year</li>
-<li>@if($var->number_of_years_forex_joint==2) &check; @else&#9744;@endif 1 to 3 years</li>
-<li>@if($var->number_of_years_forex_joint==3) &check; @else&#9744;@endif 3 to 5 years</li>
-<li>@if($var->number_of_years_forex_joint==4) &check; @else&#9744;@endif More than 5 years</li>
+<li>@if($var->number_of_years_forex_joint=='Less than 1 year') &check; @else&#9744;@endif Less than 1 year</li>
+<li>@if($var->number_of_years_forex_joint=='1 to 3 years') &check; @else&#9744;@endif 1 to 3 years</li>
+<li>@if($var->number_of_years_forex_joint=='3 to 5 years') &check; @else&#9744;@endif 3 to 5 years</li>
+<li>@if($var->number_of_years_forex_joint=='More than 5 years') &check; @else&#9744;@endif More than 5 years</li>
 </ul>
 <p class="margin-top-10"><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_transactions_forex_joint==0 and  $var->number_of_years_forex_joint!=0 ) &check; @else&#9744;@endif Less than 10 transactions</li>
-<li>@if($var->number_of_transactions_forex_joint==1 and  $var->number_of_years_forex_joint!=0 ) &check; @else&#9744;@endif 10 to 20 transactions</li>
-<li>@if($var->number_of_transactions_forex_joint==2 and  $var->number_of_years_forex_joint!=0 ) &check; @else&#9744;@endif More than 20 transactions</li>
+<li>@if($var->number_of_transactions_forex_joint=='Less than 10 transactions' and  $var->number_of_years_forex_joint!='None' ) &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_forex_joint=='10 to 20 transactions' and  $var->number_of_years_forex_joint!='None' ) &check; @else&#9744;@endif 10 to 20 transactions</li>
+<li>@if($var->number_of_transactions_forex_joint=='More than 20 transactions' and  $var->number_of_years_forex_joint!='None' ) &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
 
 <p class="margin-top-10"><strong>Average trading volume per month</strong></p>
 <ul class="no-margin">
-<li>@if($var->average_trading_forex_joint==0 and  $var->number_of_years_forex_joint!=0 ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
-<li>@if($var->average_trading_forex_joint==1  and  $var->number_of_years_forex_joint!=0) &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
-<li>@if($var->average_trading_forex_joint==2  and  $var->number_of_years_forex_joint!=0) &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
-<li>@if($var->average_trading_forex_joint==3  and  $var->number_of_years_forex_joint!=0) &check; @else&#9744;@endif More than 300,000 GBP</li>
+<li>@if($var->average_trading_forex_joint=='Less than 30,000 GBP' and  $var->number_of_years_forex_joint!='None' ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
+<li>@if($var->average_trading_forex_joint=='30,000 to 60,000 GBP'  and  $var->number_of_years_forex_joint!='None') &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
+<li>@if($var->average_trading_forex_joint=='60,000 to 300,000 GBP'  and  $var->number_of_years_forex_joint!='None') &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
+<li>@if($var->average_trading_forex_joint=='More than 300,000 GBP'  and  $var->number_of_years_forex_joint!='None') &check; @else&#9744;@endif More than 300,000 GBP</li>
 </ul>
 </div>
 <div class="footer"><p style="float:left;margin-right:2px">Page 19 of 21</p>
@@ -1514,25 +1514,25 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <h5>F. Futures trading experience</h5>
 <p><strong>Number of years you have been trading in futures</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_years_futures_joint==1) &check; @else&#9744;@endif Less than 1 year</li>
-<li>@if($var->number_of_years_futures_joint==2) &check; @else&#9744;@endif 1 to 3 years</li>
-<li>@if($var->number_of_years_futures_joint==3) &check; @else&#9744;@endif 3 to 5 years</li>
-<li>@if($var->number_of_years_futures_joint==4) &check; @else&#9744;@endif More than 5 years</li>
+<li>@if($var->number_of_years_futures_joint=='Less than 1 year') &check; @else&#9744;@endif Less than 1 year</li>
+<li>@if($var->number_of_years_futures_joint=='1 to 3 years') &check; @else&#9744;@endif 1 to 3 years</li>
+<li>@if($var->number_of_years_futures_joint=='3 to 5 years') &check; @else&#9744;@endif 3 to 5 years</li>
+<li>@if($var->number_of_years_futures_joint=='More than 5 years') &check; @else&#9744;@endif More than 5 years</li>
 </ul>
 
 <p class="margin-top-10"><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_transactions_futures_joint==0 and  $var->number_of_years_futures_joint!=0 ) &check; @else&#9744;@endif Less than 10 transactions</li>
-<li>@if($var->number_of_transactions_futures_joint==1  and  $var->number_of_years_futures_joint!=0) &check; @else&#9744;@endif 10 to 20 transactions</li>
-<li>@if($var->number_of_transactions_futures_joint==2  and  $var->number_of_years_futures_joint!=0) &check; @else&#9744;@endif More than 20 transactions</li>
+<li>@if($var->number_of_transactions_futures_joint=='Less than 10 transactions' and  $var->number_of_years_futures_joint!='None' ) &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_futures_joint=='10 to 20 transactions'  and  $var->number_of_years_futures_joint!='None') &check; @else&#9744;@endif 10 to 20 transactions</li>
+<li>@if($var->number_of_transactions_futures_joint=='More than 20 transaction'  and  $var->number_of_years_futures_joint!='None') &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
 
 <p class="margin-top-10"><strong>Average trading volume per month</strong></p>
 <ul class="no-margin">
-<li>@if($var->average_trading_futures_joint==0  and  $var->number_of_years_futures_joint!=0) &check; @else&#9744;@endif Less than 30,000 GBP</li>
-<li>@if($var->average_trading_futures_joint==1  and  $var->number_of_years_futures_joint!=0) &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
-<li>@if($var->average_trading_futures_joint==2  and  $var->number_of_years_futures_joint!=0) &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
-<li>@if($var->average_trading_futures_joint==3 and  $var->number_of_years_futures_joint!=0 ) &check; @else&#9744;@endif More than 300,000 GBP</li>
+<li>@if($var->average_trading_futures_joint=='Less than 30,000 GBP'  and  $var->number_of_years_futures_joint!='None') &check; @else&#9744;@endif Less than 30,000 GBP</li>
+<li>@if($var->average_trading_futures_joint=='30,000 to 60,000 GBP'  and  $var->number_of_years_futures_joint!='None') &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
+<li>@if($var->average_trading_futures_joint=='60,000 to 300,000 GBP'  and  $var->number_of_years_futures_joint!='None') &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
+<li>@if($var->average_trading_futures_joint=='More than 300,000 GBP' and  $var->number_of_years_futures_joint!='None' ) &check; @else&#9744;@endif More than 300,000 GBP</li>
 </ul>
 </div>
 <div style="@if($var->number_of_years_options_joint==0)   @endif">
@@ -1540,24 +1540,24 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <h5 class="margin-top-20">G. options trading experience</h5>
 <p class="margin-top-10"><strong>Number of years you have been trading in options</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_years_options_joint==1) &check; @else&#9744;@endif Less than 1 year</li>
-<li>@if($var->number_of_years_options_joint==2) &check; @else&#9744;@endif 1 to 3 years</li>
-<li>@if($var->number_of_years_options_joint==3) &check; @else&#9744;@endif 3 to 5 years</li>
-<li>@if($var->number_of_years_options_joint==4) &check; @else&#9744;@endif More than 5 years</li>
+<li>@if($var->number_of_years_options_joint=='Less than 1 year') &check; @else&#9744;@endif Less than 1 year</li>
+<li>@if($var->number_of_years_options_joint=='1 to 3 years') &check; @else&#9744;@endif 1 to 3 years</li>
+<li>@if($var->number_of_years_options_joint=='3 to 5 years') &check; @else&#9744;@endif 3 to 5 years</li>
+<li>@if($var->number_of_years_options_joint=='More than 5 years') &check; @else&#9744;@endif More than 5 years</li>
 </ul>
 <p class="margin-top-10"><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_transactions_options_joint==0 and  $var->number_of_years_options_joint!=0 ) &check; @else&#9744;@endif Less than 10 transactions</li>
-<li>@if($var->number_of_transactions_options_joint==1 and  $var->number_of_years_options_joint!=0  ) &check; @else&#9744;@endif 10 to 20 transactions</li>
-<li>@if($var->number_of_transactions_options_joint==2 and  $var->number_of_years_options_joint!=0  ) &check; @else&#9744;@endif More than 20 transactions</li>
+<li>@if($var->number_of_transactions_options_joint=='Less than 10 transactions' and  $var->number_of_years_options_joint!='None' ) &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_options_joint=='10 to 20 transactions' and  $var->number_of_years_options_joint!='None'  ) &check; @else&#9744;@endif 10 to 20 transactions</li>
+<li>@if($var->number_of_transactions_options_joint=='More than 20 transactions' and  $var->number_of_years_options_joint!='None'  ) &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
 
 <p class="margin-top-10"><strong>Average trading volume per month</strong></p>
 <ul class="no-margin">
-<li>@if($var->average_trading_options_joint==0  and  $var->number_of_years_options_joint!=0 ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
-<li>@if($var->average_trading_options_joint==1 and  $var->number_of_years_options_joint!=0  ) &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
-<li>@if($var->average_trading_options_joint==2  and  $var->number_of_years_options_joint!=0 ) &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
-<li>@if($var->average_trading_options_joint==3 and  $var->number_of_years_options_joint!=0  ) &check; @else&#9744;@endif More than 300,000 GBP</li>
+<li>@if($var->average_trading_options_joint=='Less than 30,000 GBP'  and  $var->number_of_years_options_joint!='None' ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
+<li>@if($var->average_trading_options_joint=='30,000 to 60,000 GBP' and  $var->number_of_years_options_joint!='None'  ) &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
+<li>@if($var->average_trading_options_joint=='60,000 to 300,000 GBP'  and  $var->number_of_years_options_joint!='None' ) &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
+<li>@if($var->average_trading_options_joint=='More than 300,000 GBP' and  $var->number_of_years_options_joint!='None'  ) &check; @else&#9744;@endif More than 300,000 GBP</li>
 </ul>
 </div>
 <div class="footer"><p style="float:left;margin-right:2px">Page 20 of 21</p>
@@ -1577,25 +1577,25 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 <h5>H. securities trading experience</h5>
 <p><strong>Number of years you have been trading in securities</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_years_securities_joint==1) &check; @else&#9744;@endif Less than 1 year</li>
-<li>@if($var->number_of_years_securities_joint==2) &check; @else&#9744;@endif 1 to 3 years</li>
-<li>@if($var->number_of_years_securities_joint==3) &check; @else&#9744;@endif 3 to 5 years</li>
-<li>@if($var->number_of_years_securities_joint==4) &check; @else&#9744;@endif More than 5 years</li>
+<li>@if($var->number_of_years_securities_joint=='Less than 1 year') &check; @else&#9744;@endif Less than 1 year</li>
+<li>@if($var->number_of_years_securities_joint=='1 to 3 years') &check; @else&#9744;@endif 1 to 3 years</li>
+<li>@if($var->number_of_years_securities_joint=='3 to 5 years') &check; @else&#9744;@endif 3 to 5 years</li>
+<li>@if($var->number_of_years_securities_joint=='More than 5 years') &check; @else&#9744;@endif More than 5 years</li>
 </ul>
 
 <p class="margin-top-10"><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_transactions_securities_joint==0 and  $var->number_of_years_securities_joint!=0 ) &check; @else&#9744;@endif Less than 10 transactions</li>
-<li>@if($var->number_of_transactions_securities_joint==1 and  $var->number_of_years_securities_joint!=0 ) &check; @else&#9744;@endif 10 to 20 transactions</li>
-<li>@if($var->number_of_transactions_securities_joint==2  and  $var->number_of_years_securities_joint!=0) &check; @else&#9744;@endif More than 20 transactions</li>
+<li>@if($var->number_of_transactions_securities_joint=='Less than 10 transactions' and  $var->number_of_years_securities_joint!='None' ) &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_securities_joint=='10 to 20 transactions' and  $var->number_of_years_securities_joint!='None' ) &check; @else&#9744;@endif 10 to 20 transactions</li>
+<li>@if($var->number_of_transactions_securities_joint=='More than 20 transactions'  and  $var->number_of_years_securities_joint!='None') &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
 
 <p class="margin-top-10"><strong>Average trading volume per month</strong></p>
 <ul class="no-margin">
-<li>@if($var->average_trading_securities_joint==0  and  $var->number_of_years_securities_joint!=0) &check; @else&#9744;@endif Less than 30,000 GBP</li>
-<li>@if($var->average_trading_securities_joint==1  and  $var->number_of_years_securities_joint!=0) &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
-<li>@if($var->average_trading_securities_joint==2  and  $var->number_of_years_securities_joint!=0) &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
-<li>@if($var->average_trading_securities_joint==3  and  $var->number_of_years_securities_joint!=0) &check; @else&#9744;@endif More than 300,000 GBP</li>
+<li>@if($var->average_trading_securities_joint=='Less than 30,000 GBP'  and  $var->number_of_years_securities_joint!='None') &check; @else&#9744;@endif Less than 30,000 GBP</li>
+<li>@if($var->average_trading_securities_joint=='30,000 to 60,000 GBP'  and  $var->number_of_years_securities_joint!='None') &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
+<li>@if($var->average_trading_securities_joint=='60,000 to 300,000 GBP'  and  $var->number_of_years_securities_joint!='None') &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
+<li>@if($var->average_trading_securities_joint=='More than 300,000 GBP'  and  $var->number_of_years_securities_joint!='None') &check; @else&#9744;@endif More than 300,000 GBP</li>
 </ul>
 </div>
 <h5 class="margin-top-20">I. understanding of the markets</h5>
