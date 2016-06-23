@@ -681,23 +681,23 @@
 <p><strong>Number of years you have been trading in CFDs</strong></p>
 
 <ul class="padding-left-10 margin-bottom-20" style="">
-<li>@if($var->number_of_years_cfd==1) &check; @else&#9744;@endif Less than 1 year</li>
-<li>@if($var->number_of_years_cfd==2) &check; @else&#9744;@endif 1 to 3 years</li>
-<li>@if($var->number_of_years_cfd==3) &check; @else&#9744;@endif 3 to 5 years</li>
-<li>@if($var->number_of_years_cfd==4) &check; @else&#9744;@endif More than 5 years</li>
+<li>@if($var->number_of_years_cfd=='Less than 1 year') &check; @else&#9744;@endif Less than 1 year</li>
+<li>@if($var->number_of_years_cfd=='1 to 3 years') &check; @else&#9744;@endif 1 to 3 years</li>
+<li>@if($var->number_of_years_cfd=='3 to 5 years') &check; @else&#9744;@endif 3 to 5 years</li>
+<li>@if($var->number_of_years_cfd=='More than 5 years') &check; @else&#9744;@endif More than 5 years</li>
 </ul>
 <p><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="padding-left-10 margin-bottom-20">
-<li>@if($var->number_of_transactions_cfd==0 and $var->number_of_years_cfd!='None') &check; @else&#9744;@endif Less than 10 transactions</li>
-<li>@if($var->number_of_transactions_cfd==1 and $var->number_of_years_cfd!='None' ) &check; @else&#9744;@endif 10 to 20 transactions</li>
-<li>@if($var->number_of_transactions_cfd==2  and $var->number_of_years_cfd!='None') &check; @else&#9744;@endif More than 20 transactions</li>
+<li>@if($var->number_of_transactions_cfd=='Less than 10 transactions' and $var->number_of_years_cfd!='None') &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_cfd=='10 to 20 transactions' and $var->number_of_years_cfd!='None' ) &check; @else&#9744;@endif 10 to 20 transactions</li>
+<li>@if($var->number_of_transactions_cfd=='More than 20 transactions'  and $var->number_of_years_cfd!='None') &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
 <p><strong>Average trading volume per month</strong></p>
 <ul class="padding-left-10 margin-bottom-30">
-<li>@if($var->average_trading_cfd==0 and $var->number_of_years_cfd !='None' ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
-<li>@if($var->average_trading_cfd==1  and $var->number_of_years_cfd !='None') &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
-<li>@if($var->average_trading_cfd==2  and $var->number_of_years_cfd !='None') &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
-<li>@if($var->average_trading_cfd==3 and $var->number_of_years_cfd !='None') &check; @else&#9744;@endif More than 300,000 GBP</li>
+<li>@if($var->average_trading_cfd=='Less than 30,000 GBP' and $var->number_of_years_cfd !='None' ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
+<li>@if($var->average_trading_cfd=='30,000 to 60,000 GBP'  and $var->number_of_years_cfd !='None') &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
+<li>@if($var->average_trading_cfd=='60,000 to 300,000 GBP'  and $var->number_of_years_cfd !='None') &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
+<li>@if($var->average_trading_cfd=='More than 300,000 GBP' and $var->number_of_years_cfd !='None') &check; @else&#9744;@endif More than 300,000 GBP</li>
 </ul>
 </div>
 
@@ -705,25 +705,25 @@
 <h5>D. commodities trading experience</h5>
 <p><strong>Number of years you have been trading in commodities</strong></p>
 <ul class="padding-left-10 margin-bottom-30">
-<li>@if($var->number_of_years_commodities==1) &check; @else&#9744;@endif Less than 1 year</li>
-<li>@if($var->number_of_years_commodities==2) &check; @else&#9744;@endif 1 to 3 years</li>
-<li>@if($var->number_of_years_commodities==3) &check; @else&#9744;@endif 3 to 5 years</li>
-<li>@if($var->number_of_years_commodities==4) &check; @else&#9744;@endif More than 5 years</li>
+<li>@if($var->number_of_years_commodities=='Less than 1 year') &check; @else&#9744;@endif Less than 1 year</li>
+<li>@if($var->number_of_years_commodities=='1 to 3 years') &check; @else&#9744;@endif 1 to 3 years</li>
+<li>@if($var->number_of_years_commodities=='3 to 5 years') &check; @else&#9744;@endif 3 to 5 years</li>
+<li>@if($var->number_of_years_commodities=='More than 5 years') &check; @else&#9744;@endif More than 5 years</li>
 </ul>
 </ul>
 <p><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="padding-left-10 margin-bottom-30">
-<li>@if($var->number_of_transactions_commodities==0  and $var->number_of_years_commodities!='None') &check; @else&#9744;@endif Less than 10 transactions</li>
-<li>@if($var->number_of_transactions_commodities==1  and $var->number_of_years_commodities!='None'  ) &check; @else&#9744;@endif 10 to 20 transactions</li>
-<li>@if($var->number_of_transactions_commodities==2   and $var->number_of_years_commodities!='None' ) &check; @else&#9744;@endif More than 20 transactions</li>
+<li>@if($var->number_of_transactions_commodities=='Less than 10 transactions'  and $var->number_of_years_commodities!='None') &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_commodities=='10 to 20 transactions'  and $var->number_of_years_commodities!='None'  ) &check; @else&#9744;@endif 10 to 20 transactions</li>
+<li>@if($var->number_of_transactions_commodities=='More than 20 transactions'   and $var->number_of_years_commodities!='None' ) &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
 
 <p><strong>Average trading volume per month</strong></p>
 <ul class="padding-left-10 margin-bottom-30">
-<li>@if($var->average_trading_commodities==0  and $var->number_of_years_commodities!='None'  ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
-<li>@if($var->average_trading_commodities==1  and $var->number_of_years_commodities!='None'  ) &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
-<li>@if($var->average_trading_commodities==2   and $var->number_of_years_commodities!='None' ) &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
-<li>@if($var->average_trading_commodities==3   and $var->number_of_years_commodities!='None' ) &check; @else&#9744;@endif More than 300,000 GBP</li>
+<li>@if($var->average_trading_commodities=='Less than 30,000 GBP'  and $var->number_of_years_commodities!='None'  ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
+<li>@if($var->average_trading_commodities=='30,000 to 60,000 GBP'  and $var->number_of_years_commodities!='None'  ) &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
+<li>@if($var->average_trading_commodities=='60,000 to 300,000 GBP'   and $var->number_of_years_commodities!='None' ) &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
+<li>@if($var->average_trading_commodities=='More than 300,000 GBP'   and $var->number_of_years_commodities!='None' ) &check; @else&#9744;@endif More than 300,000 GBP</li>
 </ul>
 
     </div>
@@ -743,23 +743,23 @@
 <h5>E. Forex (spot or Forward) trading experience</h5>
 <p><strong>Number of years you have been trading in forex</strong></p>
 <ul class="padding-left-10 margin-bottom-10">
-<li>@if($var->number_of_years_forex==1) &check; @else&#9744;@endif Less than 1 year</li>
-<li>@if($var->number_of_years_forex==2) &check; @else&#9744;@endif 1 to 3 years</li>
-<li>@if($var->number_of_years_forex==3) &check; @else&#9744;@endif 3 to 5 years</li>
-<li>@if($var->number_of_years_forex==4) &check; @else&#9744;@endif More than 5 years</li>
+<li>@if($var->number_of_years_forex=='Less than 1 year') &check; @else&#9744;@endif Less than 1 year</li>
+<li>@if($var->number_of_years_forex=='1 to 3 years') &check; @else&#9744;@endif 1 to 3 years</li>
+<li>@if($var->number_of_years_forex=='3 to 5 years') &check; @else&#9744;@endif 3 to 5 years</li>
+<li>@if($var->number_of_years_forex=='More than 5 years') &check; @else&#9744;@endif More than 5 years</li>
 </ul>
 <p><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="padding-left-10 margin-bottom-10">
-<li>@if($var->number_of_transactions_forex==0 and  $var->number_of_years_forex!='None' ) &check; @else&#9744;@endif Less than 10 transactions</li>
-<li>@if($var->number_of_transactions_forex==1 and  $var->number_of_years_forex!='None' ) &check; @else&#9744;@endif 10 to 20 transactions</li>
-<li>@if($var->number_of_transactions_forex==2  and  $var->number_of_years_forex!='None') &check; @else&#9744;@endif More than 20 transactions</li>
+<li>@if($var->number_of_transactions_forex=='Less than 10 transactions' and  $var->number_of_years_forex!='None' ) &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_forex=='10 to 20 transactions' and  $var->number_of_years_forex!='None' ) &check; @else&#9744;@endif 10 to 20 transactions</li>
+<li>@if($var->number_of_transactions_forex=='More than 20 transactions'  and  $var->number_of_years_forex!='None') &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
 <p><strong>Average trading volume per month</strong></p>
 <ul class="padding-left-10 margin-bottom-30">
-<li>@if($var->average_trading_forex==0  and  $var->number_of_years_forex!='None') &check; @else&#9744;@endif Less than 30,000 GBP</li>
-<li>@if($var->average_trading_forex==1  and  $var->number_of_years_forex!='None') &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
-<li>@if($var->average_trading_forex==2  and  $var->number_of_years_forex!='None') &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
-<li>@if($var->average_trading_forex==3 and   $var->number_of_years_forex!='None' ) &check; @else&#9744;@endif More than 300,000 GBP</li>
+<li>@if($var->average_trading_forex=='Less than 30,000 GBP'  and  $var->number_of_years_forex!='None') &check; @else&#9744;@endif Less than 30,000 GBP</li>
+<li>@if($var->average_trading_forex=='30,000 to 60,000 GBP'  and  $var->number_of_years_forex!='None') &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
+<li>@if($var->average_trading_forex=='60,000 to 300,000 GBP'  and  $var->number_of_years_forex!='None') &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
+<li>@if($var->average_trading_forex=='More than 300,000 GBP' and   $var->number_of_years_forex!='None' ) &check; @else&#9744;@endif More than 300,000 GBP</li>
 </ul>
 </div>
 
@@ -767,24 +767,24 @@
 <h5>F. Futures trading experience</h5>
 <p><strong>Number of years you have been trading in futures</strong></p>
 <ul class="padding-left-10 margin-bottom-10">
-<li>@if($var->number_of_years_futures==1) &check; @else&#9744;@endif Less than 1 year</li>
-<li>@if($var->number_of_years_futures==2) &check; @else&#9744;@endif 1 to 3 years</li>
-<li>@if($var->number_of_years_futures==3) &check; @else&#9744;@endif 3 to 5 years</li>
-<li>@if($var->number_of_years_futures==4) &check; @else&#9744;@endif More than 5 years</li>
+<li>@if($var->number_of_years_futures=='Less than 1 year') &check; @else&#9744;@endif Less than 1 year</li>
+<li>@if($var->number_of_years_futures=='1 to 3 years') &check; @else&#9744;@endif 1 to 3 years</li>
+<li>@if($var->number_of_years_futures=='3 to 5 years') &check; @else&#9744;@endif 3 to 5 years</li>
+<li>@if($var->number_of_years_futures=='More than 5 years') &check; @else&#9744;@endif More than 5 years</li>
 </ul>
 </ul>
 <p><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="padding-left-10 margin-bottom-10">
-<li>@if($var->number_of_transactions_futures==0 and  $var->number_of_years_futures!='None') &check; @else&#9744;@endif Less than 10 transactions</li>
-<li>@if($var->number_of_transactions_futures==1  and  $var->number_of_years_futures!='None') &check; @else&#9744;@endif 10 to 20 transactions</li>
-<li>@if($var->number_of_transactions_futures==2  and  $var->number_of_years_futures!='None') &check; @else&#9744;@endif More than 20 transactions</li>
+<li>@if($var->number_of_transactions_futures=='Less than 10 transactions' and  $var->number_of_years_futures!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_futures=='10 to 20 transactions'  and  $var->number_of_years_futures!='None') &check; @else &#9744; @endif 10 to 20 transactions</li>
+<li>@if($var->number_of_transactions_futures=='More than 20 transactions'  and  $var->number_of_years_futures!='None') &check; @else &#9744; @endif More than 20 transactions</li>
 </ul>
 <p><strong>Average trading volume per month</strong></p>
 <ul class="padding-left-10 margin-bottom-10">
-<li>@if($var->average_trading_futures==0  and  $var->number_of_years_futures!='None') &check; @else&#9744;@endif Less than 30,000 GBP</li>
-<li>@if($var->average_trading_futures==1  and  $var->number_of_years_futures!='None') &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
-<li>@if($var->average_trading_futures==2  and  $var->number_of_years_futures!='None') &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
-<li>@if($var->average_trading_futures==3  and  $var->number_of_years_futures!='None') &check; @else&#9744;@endif More than 300,000 GBP</li>
+<li>@if($var->average_trading_futures=='Less than 30,000 GBP'  and  $var->number_of_years_futures!='None') &check; @else&#9744;@endif Less than 30,000 GBP</li>
+<li>@if($var->average_trading_futures=='30,000 to 60,000 GBP'  and  $var->number_of_years_futures!='None') &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
+<li>@if($var->average_trading_futures=='60,000 to 300,000 GBP'  and  $var->number_of_years_futures!='None') &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
+<li>@if($var->average_trading_futures=='More than 300,000 GBP'  and  $var->number_of_years_futures!='None') &check; @else&#9744;@endif More than 300,000 GBP</li>
 </ul>
 </div>
 <div class="footer"><p style="float:left;margin-right:2px">Page 6 of 21</p>
@@ -805,23 +805,23 @@
 <h5>G. Options trading experience</h5>
 <p><strong>Number of years you have been trading in Options</strong></p>
 <ul class="padding-left-10 margin-bottom-10">
-<li>@if($var->number_of_years_options==1) &check; @else&#9744;@endif Less than 1 year</li>
-<li>@if($var->number_of_years_options==2) &check; @else&#9744;@endif 1 to 3 years</li>
-<li>@if($var->number_of_years_options==3) &check; @else&#9744;@endif 3 to 5 years</li>
-<li>@if($var->number_of_years_options==4) &check; @else&#9744;@endif More than 5 years</li>
+<li>@if($var->number_of_years_options=='Less than 1 year') &check; @else&#9744;@endif Less than 1 year</li>
+<li>@if($var->number_of_years_options=='1 to 3 years') &check; @else&#9744;@endif 1 to 3 years</li>
+<li>@if($var->number_of_years_options=='3 to 5 years') &check; @else&#9744;@endif 3 to 5 years</li>
+<li>@if($var->number_of_years_options=='More than 5 years') &check; @else&#9744;@endif More than 5 years</li>
 </ul>
 <p><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="padding-left-10 margin-bottom-10">
-<li>@if($var->number_of_transactions_options==0 and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif Less than 10 transactions</li>
-<li>@if($var->number_of_transactions_options==1 and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif 10 to 20 transactions</li>
-<li>@if($var->number_of_transactions_options==2 and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif More than 20 transactions</li>
+<li>@if($var->number_of_transactions_options=='Less than 10 transactions' and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_options=='10 to 20 transactions' and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif 10 to 20 transactions</li>
+<li>@if($var->number_of_transactions_options=='More than 20 transactions' and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
 <p><strong>Average trading volume per month</strong></p>
 <ul class="padding-left-10 margin-bottom-30">
-<li>@if($var->average_trading_options==0 and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
-<li>@if($var->average_trading_options==1 and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
-<li>@if($var->average_trading_options==2 and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
-<li>@if($var->average_trading_options==3 and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif More than 300,000 GBP</li>
+<li>@if($var->average_trading_options=='Less than 30,000 GBP' and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
+<li>@if($var->average_trading_options=='30,000 to 60,000 GBP' and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
+<li>@if($var->average_trading_options=='60,000 to 300,000 GBP' and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
+<li>@if($var->average_trading_options=='More than 300,000 GBP' and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif More than 300,000 GBP</li>
 </ul>
 </div>
 
@@ -829,24 +829,24 @@
 <h5>H. Securities trading experience</h5>
 <p><strong>Number of years you have been trading in Securities</strong></p>
 <ul class="padding-left-10 margin-bottom-10">
-<li>@if($var->number_of_years_securities==1) &check; @else&#9744;@endif Less than 1 year</li>
-<li>@if($var->number_of_years_securities==2) &check; @else&#9744;@endif 1 to 3 years</li>
-<li>@if($var->number_of_years_securities==3) &check; @else&#9744;@endif 3 to 5 years</li>
-<li>@if($var->number_of_years_securities==4) &check; @else&#9744;@endif More than 5 years</li>
+<li>@if($var->number_of_years_securities=='Less than 1 year') &check; @else&#9744;@endif Less than 1 year</li>
+<li>@if($var->number_of_years_securities=='1 to 3 years') &check; @else&#9744;@endif 1 to 3 years</li>
+<li>@if($var->number_of_years_securities=='3 to 5 years') &check; @else&#9744;@endif 3 to 5 years</li>
+<li>@if($var->number_of_years_securities=='More than 5 years') &check; @else&#9744;@endif More than 5 years</li>
 </ul>
 </ul>
 <p><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="padding-left-10 margin-bottom-10">
-<li>@if($var->number_of_transactions_securities==0 and  $var->number_of_years_securities!='None') &check; @else&#9744;@endif Less than 10 transactions</li>
-<li>@if($var->number_of_transactions_securities==1 and  $var->number_of_years_securities!='None'  ) &check; @else&#9744;@endif 10 to 20 transactions</li>
-<li>@if($var->number_of_transactions_securities==2 and  $var->number_of_years_securities!='None'  ) &check; @else&#9744;@endif More than 20 transactions</li>
+<li>@if($var->number_of_transactions_securities=='Less than 10 transactions' and  $var->number_of_years_securities!='None') &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_securities=='10 to 20 transactions' and  $var->number_of_years_securities!='None'  ) &check; @else&#9744;@endif 10 to 20 transactions</li>
+<li>@if($var->number_of_transactions_securities=='More than 20 transactions' and  $var->number_of_years_securities!='None'  ) &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
 <p><strong>Average trading volume per month</strong></p>
 <ul class="padding-left-10 margin-bottom-10">
-<li>@if($var->average_trading_securities==0 and  $var->number_of_years_securities!='None'  ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
-<li>@if($var->average_trading_securities==1 and  $var->number_of_years_securities!='None'  ) &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
-<li>@if($var->average_trading_securities==2 and  $var->number_of_years_securities!='None'  ) &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
-<li>@if($var->average_trading_securities==3 and  $var->number_of_years_securities!='None'  ) &check; @else&#9744;@endif More than 300,000 GBP</li>
+<li>@if($var->average_trading_securities=='Less than 30,000 GBP' and  $var->number_of_years_securities!='None'  ) &check; @else&#9744;@endif Less than 30,000 GBP</li>
+<li>@if($var->average_trading_securities=='30,000 to 60,000 GBP' and  $var->number_of_years_securities!='None'  ) &check; @else&#9744;@endif 30,000 to 60,000 GBP</li>
+<li>@if($var->average_trading_securities=='60,000 to 300,000 GBP' and  $var->number_of_years_securities!='None'  ) &check; @else&#9744;@endif 60,000 to 300,000 GBP</li>
+<li>@if($var->average_trading_securities=='More than 300,000 GBP' and  $var->number_of_years_securities!='None'  ) &check; @else&#9744;@endif More than 300,000 GBP</li>
 </ul>
 </div>
 <div class="footer"><p style="float:left;margin-right:2px">Page 7 of 21</p>
