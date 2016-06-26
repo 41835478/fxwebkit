@@ -102,7 +102,7 @@ public function getSymbolsSpreads(){
         foreach ($spreads as $val) {
             // Spread =  (ASK-BID) * (Multiplier[DIGITS])/10
             if(preg_match('/^#|^_/',$val->SYMBOL))continue;
-            $symbol_spread_array[$val->SYMBOL] = array(round(( $val->ASK - $val->BID) * ($multiplier[$val->DIGITS])/10,5),$val->ASK,$val->BID);
+            $symbol_spread_array[$val->SYMBOL] =  round(($val->ASK - $val->BID) * ($multiplier[$val->DIGITS])/10,5);
         }
         return View::make('cms::houseofborse.modules_view.allSpreads',['spreads'=>$symbol_spread_array])->render();
     }
