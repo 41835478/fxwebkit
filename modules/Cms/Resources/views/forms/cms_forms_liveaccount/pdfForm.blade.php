@@ -688,7 +688,7 @@
 </ul>
 <p><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="padding-left-10 margin-bottom-20">
-<li>@if($var->number_of_transactions_cfd=='Less than 10 transactions' and $var->number_of_years_cfd!='None') &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_cfd=='less than 10 transactions' and  $var->number_of_transactions_cfd!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
 <li>@if($var->number_of_transactions_cfd=='10 to 20 transactions' and $var->number_of_years_cfd!='None' ) &check; @else&#9744;@endif 10 to 20 transactions</li>
 <li>@if($var->number_of_transactions_cfd=='More than 20 transactions'  and $var->number_of_years_cfd!='None') &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
@@ -713,7 +713,7 @@
 </ul>
 <p><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="padding-left-10 margin-bottom-30">
-<li>@if($var->number_of_transactions_commodities=='Less than 10 transactions'  and $var->number_of_years_commodities!='None') &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_commodities=='less than 10 transactions' and  $var->number_of_transactions_commodities!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
 <li>@if($var->number_of_transactions_commodities=='10 to 20 transactions'  and $var->number_of_years_commodities!='None'  ) &check; @else&#9744;@endif 10 to 20 transactions</li>
 <li>@if($var->number_of_transactions_commodities=='More than 20 transactions'   and $var->number_of_years_commodities!='None' ) &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
@@ -750,7 +750,7 @@
 </ul>
 <p><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="padding-left-10 margin-bottom-10">
-<li>@if($var->number_of_transactions_forex=='Less than 10 transactions' and  $var->number_of_years_forex!='None' ) &check; @else&#9744;@endif Less than 10 transactions</li>
+ <li>@if($var->number_of_transactions_forex=='less than 10 transactions' and  $var->number_of_transactions_forex!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
 <li>@if($var->number_of_transactions_forex=='10 to 20 transactions' and  $var->number_of_years_forex!='None' ) &check; @else&#9744;@endif 10 to 20 transactions</li>
 <li>@if($var->number_of_transactions_forex=='More than 20 transactions'  and  $var->number_of_years_forex!='None') &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
@@ -812,7 +812,7 @@
 </ul>
 <p><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="padding-left-10 margin-bottom-10">
-<li>@if($var->number_of_transactions_options=='Less than 10 transactions' and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_options=='less than 10 transactions' and  $var->number_of_transactions_options!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
 <li>@if($var->number_of_transactions_options=='10 to 20 transactions' and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif 10 to 20 transactions</li>
 <li>@if($var->number_of_transactions_options=='More than 20 transactions' and  $var->number_of_years_options!='None' ) &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
@@ -837,7 +837,7 @@
 </ul>
 <p><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="padding-left-10 margin-bottom-10">
-<li>@if($var->number_of_transactions_securities=='Less than 10 transactions' and  $var->number_of_years_securities!='None') &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_securities=='less than 10 transactions' and  $var->number_of_transactions_securities!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
 <li>@if($var->number_of_transactions_securities=='10 to 20 transactions' and  $var->number_of_years_securities!='None'  ) &check; @else&#9744;@endif 10 to 20 transactions</li>
 <li>@if($var->number_of_transactions_securities=='More than 20 transactions' and  $var->number_of_years_securities!='None'  ) &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
@@ -1422,7 +1422,7 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 </ul>
 <p class="margin-top-10"><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_transactions_cfd_joint=='Less than 10 transactions' and  $var->number_of_years_cfd_joint!='None') &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_cfd_joint=='less than 10 transactions' and  $var->number_of_transactions_cfd_joint!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
 <li>@if($var->number_of_transactions_cfd_joint=='10 to 20 transactions'  and  $var->number_of_years_cfd_joint!='None') &check; @else&#9744;@endif 10 to 20 transactions</li>
 <li>@if($var->number_of_transactions_cfd_joint=='More than 20 transactions'  and  $var->number_of_years_cfd_joint!='None') &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
@@ -1459,7 +1459,7 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 
 <p class="margin-top-10"><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_transactions_commodities_joint=='Less than 10 transactions' and  $var->number_of_years_commodities_joint!='None') &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_commodities_joint=='less than 10 transactions' and  $var->number_of_transactions_commodities_joint!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
 <li>@if($var->number_of_transactions_commodities_joint=='10 to 20 transactions'  and  $var->number_of_years_commodities_joint!='None') &check; @else&#9744;@endif 10 to 20 transactions</li>
 <li>@if($var->number_of_transactions_commodities_joint=='More than 20 transactions' and  $var->number_of_years_commodities_joint!='None' ) &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
@@ -1484,7 +1484,7 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 </ul>
 <p class="margin-top-10"><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_transactions_forex_joint=='Less than 10 transactions' and  $var->number_of_years_forex_joint!='None' ) &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_forex_joint=='less than 10 transactions' and  $var->number_of_transactions_forex_joint!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
 <li>@if($var->number_of_transactions_forex_joint=='10 to 20 transactions' and  $var->number_of_years_forex_joint!='None' ) &check; @else&#9744;@endif 10 to 20 transactions</li>
 <li>@if($var->number_of_transactions_forex_joint=='More than 20 transactions' and  $var->number_of_years_forex_joint!='None' ) &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
@@ -1522,7 +1522,7 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 
 <p class="margin-top-10"><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_transactions_futures_joint=='Less than 10 transactions' and  $var->number_of_years_futures_joint!='None' ) &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_futures_joint=='less than 10 transactions' and  $var->number_of_transactions_futures_joint!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
 <li>@if($var->number_of_transactions_futures_joint=='10 to 20 transactions'  and  $var->number_of_years_futures_joint!='None') &check; @else&#9744;@endif 10 to 20 transactions</li>
 <li>@if($var->number_of_transactions_futures_joint=='More than 20 transaction'  and  $var->number_of_years_futures_joint!='None') &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
@@ -1547,7 +1547,7 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 </ul>
 <p class="margin-top-10"><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_transactions_options_joint=='Less than 10 transactions' and  $var->number_of_years_options_joint!='None' ) &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_options_joint=='less than 10 transactions' and  $var->number_of_transactions_options_joint!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
 <li>@if($var->number_of_transactions_options_joint=='10 to 20 transactions' and  $var->number_of_years_options_joint!='None'  ) &check; @else&#9744;@endif 10 to 20 transactions</li>
 <li>@if($var->number_of_transactions_options_joint=='More than 20 transactions' and  $var->number_of_years_options_joint!='None'  ) &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>
@@ -1585,7 +1585,7 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 
 <p class="margin-top-10"><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_transactions_securities_joint=='Less than 10 transactions' and  $var->number_of_years_securities_joint!='None' ) &check; @else&#9744;@endif Less than 10 transactions</li>
+<li>@if($var->number_of_transactions_securities_joint=='less than 10 transactions' and  $var->number_of_transactions_securities_joint!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
 <li>@if($var->number_of_transactions_securities_joint=='10 to 20 transactions' and  $var->number_of_years_securities_joint!='None' ) &check; @else&#9744;@endif 10 to 20 transactions</li>
 <li>@if($var->number_of_transactions_securities_joint=='More than 20 transactions'  and  $var->number_of_years_securities_joint!='None') &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>

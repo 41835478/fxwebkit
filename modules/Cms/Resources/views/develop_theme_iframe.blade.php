@@ -30,7 +30,8 @@
                 @foreach($modules_list as $key=>$module)
                     <option value="{{ $key }}" data-type="{{ $module['type'] or 0 }}">{{ $module['name'] }}</option>
                     @endforeach
-                    </select>
+                </select>
+
 
                     <select name="module_variable" id="module_variable">
 
@@ -56,7 +57,6 @@
 
         <div class="form-group from_row_div">
             {!! Form::label('order','module order',['class'=>'col-sm-4 control-label']) . Form::text('order','',['placeholder'=>'module order','class'=>'form-control input-sm']) !!}
-            </dvi>
 
             <div class="from_row_div">
                 {!! Form::label('float','float',['class'=>'col-sm-4 control-label']) .Form::select('float',$float_array,['class'=>'form-control input-sm']) !!}

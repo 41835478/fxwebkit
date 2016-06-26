@@ -35,6 +35,7 @@ class LiveAccountRequest extends FormRequest
             'city' => 'required',
             'postal_code' => 'required',
             'country' => 'required',
+            'nationality'=>'required',
             'main_phone' => 'required',
             'primary_email' => 'required',
             'source_funds_deposited' => 'required',
@@ -65,6 +66,7 @@ class LiveAccountRequest extends FormRequest
             'id_type' => 'required',
             'proof_of_residence' => 'required',
             'understand_risks' => 'required',
+
         ];
 
         if($this->sole_joint_account =='joint account')
