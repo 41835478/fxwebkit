@@ -129,10 +129,9 @@ class cms_forms_searchController extends Controller
                 $query->where('type',1);
             })
             ->where('page_id','>',0)
-            ->orwhere('body','like','%'.$search.'%')
+            ->where('body','like','%'.$search.'%')
             ->orwhere('title','like','%'.$search.'%')
             ->get();
-
          return View::make('cms::forms.cms_forms_search.cms_form',['search'=>$search,'results'=>$results])->render();
 
         }
