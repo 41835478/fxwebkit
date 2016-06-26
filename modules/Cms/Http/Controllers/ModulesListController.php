@@ -137,6 +137,10 @@ class ModulesListController extends Controller
             ['name' => trans('cms::cms.leftMenu'),
                 'class_name' => "Modules\Cms\Http\Controllers\ModulesListController",
                 'class_method' => 'left_menu'
+            ],
+            ['name' => trans('fxweb.allSpreadsPage'),
+                'class_name' => "Modules\Cms\Http\Controllers\HouseofborseController",
+                'class_method' => 'allSpreads'
             ]
         ];
 

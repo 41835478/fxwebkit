@@ -19,7 +19,7 @@
                              <span class="bid"><span class="preNumber">{{$spread_val[2]}}</span><span class="endNumber green"></span></span></div>
                     </li>
                 @endforeach
-                <li class="last"><a href="path('spreads_page')" >View all spreads</a></li>
+                <li class="last"><a href="/all-spreads" >View all spreads</a></li>
             </ul>
 	</div>
 </section><!--#spread-bar-->

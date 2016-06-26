@@ -38,7 +38,7 @@
 	<div class="header">
 		<a href="index.html" class="logo">
 			<div class="demo-logo"></div>&nbsp;
-			<strong>Pixel</strong>Admin
+			<strong>dddPixel</strong>Admin
 		</a> <!-- / .logo -->
 	</div> <!-- / .header -->
 
