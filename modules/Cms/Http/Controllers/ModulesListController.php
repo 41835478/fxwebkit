@@ -130,10 +130,6 @@ class ModulesListController extends Controller
                 'class_name' => "Modules\Cms\Http\Controllers\HouseofborseController",
                 'class_method' => 'getSellBuyChart'
             ],
-            ['name' => trans('fxweb.allSpreadsPage'),
-                'class_name' => "Modules\Cms\Http\Controllers\HouseofborseController",
-                'class_method' => 'allSpreads'
-            ],
             ['name' => trans('fxweb.siteMap'),
                 'class_name' => "Modules\Cms\Http\Controllers\ModulesListController",
                 'class_method' => 'siteMap'
@@ -141,6 +137,10 @@ class ModulesListController extends Controller
             ['name' => trans('fxweb.leftMenu'),
                 'class_name' => "Modules\Cms\Http\Controllers\ModulesListController",
                 'class_method' => 'left_menu'
+            ],
+            ['name' => trans('fxweb.allSpreadsPage'),
+                'class_name' => "Modules\Cms\Http\Controllers\HouseofborseController",
+                'class_method' => 'allSpreads'
             ]
         ];
 
