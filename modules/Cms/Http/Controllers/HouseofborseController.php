@@ -89,4 +89,21 @@ public function getSymbolsSpreads(){
         return json_encode($aResults, JSON_NUMERIC_CHECK);
 
     }
+
+
+
+    public function allSpreads(){
+
+        $spreads = DB::table('mt4_prices')->distinct('SYMBOL')->get();
+
+
+        $multiplier = array(1,10,100,1000,10000,100000);
+        $symbol_spread_array = array();
+        foreach ($spreads as $val) {
+            // Spread =  (ASK-BID) * (Multiplier[DIGITS])/10
+            if(preg_match('/^#|^_/',$val->SYMBOL))continue;
+            $symbol_spread_array[$val->SYMBOL] = array(round(( $val->ASK - $val->BID) * ($multiplier[$val->DIGITS])/10,5),$val->ASK,$val->BID);
+        }
+        return View::make('cms::houseofborse.modules_view.allSpreads',['spreads'=>$symbol_spread_array])->render();
+    }
 }

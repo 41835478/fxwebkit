@@ -130,6 +130,10 @@ class ModulesListController extends Controller
                 'class_name' => "Modules\Cms\Http\Controllers\HouseofborseController",
                 'class_method' => 'getSellBuyChart'
             ],
+            ['name' => trans('fxweb.allSpreadsPage'),
+                'class_name' => "Modules\Cms\Http\Controllers\HouseofborseController",
+                'class_method' => 'allSpreads'
+            ],
             ['name' => trans('fxweb.siteMap'),
                 'class_name' => "Modules\Cms\Http\Controllers\ModulesListController",
                 'class_method' => 'siteMap'

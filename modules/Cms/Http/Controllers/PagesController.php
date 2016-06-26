@@ -314,7 +314,8 @@ class PagesController extends Controller
         if (empty($menu_item)) {
             $menu_item = cms_menus_items::where(['name' => $orgini_menu_item])->first();
             if (empty($menu_item)) {
-                return view('errors/404');
+                //    return view('errors/404');
+                return Redirect::to('/404');
             }
         }
 

@@ -25,7 +25,7 @@
 
 
 <!-- 1. $BODY ======================================================================================
-
+	
 	Body
 
 	Classes:
@@ -50,7 +50,7 @@
 		<br>
 		SOMETHING WENT WRONG, OR THAT PAGE DOESN'T EXIST... YET
 	</div> <!-- / .error-text -->
-
+ 
 
 <!-- Get jQuery from Google CDN -->
 <!--[if !IE]> -->
