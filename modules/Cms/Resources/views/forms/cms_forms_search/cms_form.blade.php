@@ -1,20 +1,22 @@
 
-    <h2>Search for ( {{$search}} ) results :</h2>
-    <hr/>
+<h2>Search for ( {{$search}} ) results :</h2>
+<hr/>
 
+@if($results)
     @foreach($results as $result)
 
-<section id="list-news">
+        <section id="list-news">
 
-    <article class="news-box">
-            <h3><a href="/{{ strtolower(str_replace(' ','-',$result->menuItem->name)) }}">{{$result->title}}</a></h3>
+            <article class="news-box">
+                <h3><a href="/{{ strtolower(str_replace(' ','-',$result->menuItem->name)) }}">{{$result->title}}</a></h3>
 
-        <p>{{substr( strip_tags($result->body),0,500)}}...</p>
-        <a class="read-more search-page-right" href="/{{ strtolower(str_replace(' ','-',$result->menuItem->name)) }}">Read More</a>
-    </article><!--.news-box-->
-</section>
+                <p>{{substr( strip_tags($result->body),0,500)}}...</p>
+                <a class="read-more search-page-right" href="/{{ strtolower(str_replace(' ','-',$result->menuItem->name)) }}">Read More</a>
+            </article><!--.news-box-->
+        </section>
 
     @endforeach
+@endif
 
     @if ($errors->any())
         <ul class="alert alert-danger">

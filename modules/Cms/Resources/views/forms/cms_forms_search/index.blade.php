@@ -13,6 +13,7 @@
                 </tr>
             </thead>
             <tbody>
+
             {{-- */$x=0;/* --}}
             @foreach($cms_forms_search as $item)
                 {{-- */$x++;/* --}}
