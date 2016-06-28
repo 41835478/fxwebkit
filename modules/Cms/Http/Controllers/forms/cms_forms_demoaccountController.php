@@ -150,7 +150,10 @@ class cms_forms_demoaccountController extends Controller
 
 
             if(isset($demoInfo['Error Message'])){
-
+                if($request->jsonRespond){
+                    echo json_encode($demoInfo);
+                    dd();
+                }
                 return Redirect::back()->withErrors('Error , please try again ');
             }else{
 
