@@ -52,7 +52,7 @@ class Email extends Controller
 
 
         $info = [
-            'to' => $toEmail,
+            'to' => $mail->admin_email,
             'subject' => $subject,
             'from' => $this->fromEmail,
             'fromName' => $this->fromName,

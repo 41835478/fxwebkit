@@ -16,6 +16,17 @@
                     {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
+
+
+        <div class="form-group {{ $errors->has('admin_email') ? 'has-error' : ''}}">
+            {!! Form::label('name', trans('admin email'), ['class' => 'col-sm-12  ']) !!}
+            <div class="col-sm-12">
+                {!! Form::text('admin_email', null, ['class' => 'form-control']) !!}
+                {!! $errors->first('admin_email', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+
+
             <div class="form-group {{ $errors->has('template') ? 'has-error' : ''}}">
                 {!! Form::label('template', trans('Template'), ['class' => 'col-sm-12 ']) !!}
                 <div class="col-sm-12">

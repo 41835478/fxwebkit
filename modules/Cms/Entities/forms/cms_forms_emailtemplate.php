@@ -25,5 +25,5 @@ class cms_forms_emailtemplate extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'alias', 'template'];
+    protected $fillable = ['name', 'alias','admin_email', 'template'];
 }

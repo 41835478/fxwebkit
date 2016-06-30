@@ -18,7 +18,7 @@
                 {{-- */$x++;/* --}}
                 <tr>
                     <td>{{ $x }}</td>
-                    <td>{{ $item->name }}</td><td>{{ $item->alias }}</td><td>{{ substr($item->template,0,100) }}</td>
+                    <td>{{ $item->name }}</td><td>{{ $item->alias }}</td><td>{{ $item->admin_email }}</td><td>{{ substr($item->template,0,100) }}</td>
                     <td>
                         <a href="{{ url('cms\cms_forms_emailtemplates', $item->id) }}" class="icon_button blue_icon fa fa-file-text tooltip_number" data-original-title={{trans('cms::cms.details')}}></a>
 
