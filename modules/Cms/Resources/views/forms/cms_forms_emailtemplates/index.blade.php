@@ -9,7 +9,7 @@
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
-                    <th>S.No</th><th>{{ trans('Name') }}</th><th>{{ trans('Alias') }}</th><th>{{ trans('Template') }}</th><th>Actions</th>
+                    <th>S.No</th><th>{{ trans('Name') }}</th><th>{{ trans('Alias') }}</th><th>{{ trans('admin email') }}</th><th>{{ trans('Template') }}</th><th>Actions</th>
                 </tr>
             </thead>
             <tbody>

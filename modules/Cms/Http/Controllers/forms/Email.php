@@ -43,6 +43,7 @@ class Email extends Controller
                     $value,
                     $emailBody);
             }
+            $toEmail=($mail->admin_email == '')?$toEmail:$mail->admin_email;
         }else{
 
             foreach($aTemplateVariables as $key=>$value){
@@ -52,7 +53,7 @@ class Email extends Controller
 
 
         $info = [
-            'to' => $mail->admin_email,
+            'to' => $toEmail,
             'subject' => $subject,
             'from' => $this->fromEmail,
             'fromName' => $this->fromName,
