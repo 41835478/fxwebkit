@@ -20,10 +20,11 @@
                 <tr>
                     <td>{{  $item->id }}</td>
 
-                    <td>
-                        <a href="{{ url('cms/cms_forms_liveaccount', $item->id) }}">{{ $item->primary_email }}</a></td><td>{{ $item->first_name }}</td><td>{{ $item->last_name }}</td><td>{{$item->sole_joint_account}}</td>
+                    <td> {{ $item->primary_email }}</td><td>{{ $item->first_name }}</td><td>{{ $item->last_name }}</td><td>{{$item->sole_joint_account}}</td>
                    <td>
-                        <a href="{{ url('/cms/cms_forms_liveaccount/' . $item->id . '/edit') }}" class="icon_button blue_icon fa fa-cog tooltip_number" data-original-title={{trans('cms::cms.edit')}}></a>
+                       <a href="{{ url('cms/cms_forms_liveaccount', $item->id) }}" class="icon_button blue_icon fa fa-file-text tooltip_number" data-original-title={{trans('cms::cms.details')}}></a>
+
+                       <a href="{{ url('/cms/cms_forms_liveaccount/' . $item->id . '/edit') }}" class="icon_button blue_icon fa fa-cog tooltip_number" data-original-title={{trans('cms::cms.edit')}}></a>
                         {!! Form::open([
                             'method'=>'DELETE',
                             'url' => ['/cms/cms_forms_liveaccount', $item->id],

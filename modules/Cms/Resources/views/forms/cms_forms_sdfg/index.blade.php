@@ -18,8 +18,10 @@
                 {{-- */$x++;/* --}}
                 <tr>
                     <td>{{ $x }}</td>
-                    <td><a href="{{ url('cms\cms_forms_sdfg', $item->id) }}">{{ $item->dsfg }}</a></td>
+                    <td>{{ $item->dsfg }}</td>
                     <td>
+                        <a href="{{ url('cms\cms_forms_sdfg', $item->id) }}" class="icon_button blue_icon fa fa-file-text tooltip_number" data-original-title={{trans('cms::cms.details')}}></a>
+
                         <a href="{{ url('/cms/cms_forms_sdfg/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs">Update</a>
                         {!! Form::open([
                             'method'=>'DELETE',

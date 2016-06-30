@@ -18,8 +18,10 @@
                 {{-- */$x++;/* --}}
                 <tr>
                     <td>{{ $x }}</td>
-                    <td><a href="{{ url('cms\cms_forms_referringpartner', $item->id) }}">{{ $item->fullname }}</a></td><td>{{ $item->mobile }}</td><td>{{ $item->email }}</td>
+                    <td>{{ $item->fullname }}</td><td>{{ $item->mobile }}</td><td>{{ $item->email }}</td>
                     <td>
+                        <a href="{{ url('cms\cms_forms_referringpartner', $item->id) }}" class="icon_button blue_icon fa fa-file-text tooltip_number" data-original-title={{trans('cms::cms.details')}}></a>
+
                         <a href="{{ url('/cms/cms_forms_referringpartner/' . $item->id . '/edit') }}" class="icon_button blue_icon fa fa-cog tooltip_number" data-original-title={{trans('cms::cms.edit')}}></a>
                         {!! Form::open([
                             'method'=>'DELETE',

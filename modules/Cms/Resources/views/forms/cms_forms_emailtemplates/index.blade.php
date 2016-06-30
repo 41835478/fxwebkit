@@ -18,8 +18,10 @@
                 {{-- */$x++;/* --}}
                 <tr>
                     <td>{{ $x }}</td>
-                    <td><a href="{{ url('cms\cms_forms_emailtemplates', $item->id) }}">{{ $item->name }}</a></td><td>{{ $item->alias }}</td><td>{{ substr($item->template,0,100) }}</td>
+                    <td>{{ $item->name }}</td><td>{{ $item->alias }}</td><td>{{ substr($item->template,0,100) }}</td>
                     <td>
+                        <a href="{{ url('cms\cms_forms_emailtemplates', $item->id) }}" class="icon_button blue_icon fa fa-file-text tooltip_number" data-original-title={{trans('cms::cms.details')}}></a>
+
                         <a href="{{ url('/cms/cms_forms_emailtemplates/' . $item->id . '/edit') }}" class="icon_button blue_icon fa fa-cog tooltip_number" data-original-title={{trans('cms::cms.edit')}}></a>
                         {!! Form::open([
                             'method'=>'DELETE',

@@ -23,7 +23,7 @@
             {!! Form::open(['url'=>asset('cms/forms/forms')]) !!}
             <table border="0" class="table table-bordered table-striped cms_table">
                 <thead>
-                <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('cms::cms.select_all')) !!}</th>
+                <th style="width:100px;">{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('cms::cms.select_all')) !!}</th>
                 <th>{{ trans('cms::cms.id') }}</th>
                 <th>{{ trans('cms::cms.name') }}</th>
                 <th>{{ trans('cms::cms.page') }} </th>
@@ -41,8 +41,12 @@
                         <td>{{ $pages[$form->page_id] }}</td>
                         </td>
                         <td>
-                            {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_form_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete forms with its links")) return false;','class'=>'icon_button tooltip_number','data-original-title'=>trans('cms::cms.delete'),'type'=>'submit','value'=>$form->id ]) !!}
+                            <button class="icon_button tooltip_number">
+                                <a  href="/cms/{{ strtolower($form->name) }}" class="icon_button blue_icon fa fa-file-text tooltip_number" data-original-title={{trans('cms::cms.details')}}></a>
+                            </button>
                             {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_form_page' ,'class'=>'icon_button blue_icon tooltip_number','data-original-title'=>trans('cms::cms.edit'),'type'=>'submit','value'=>$form->id ]) !!}
+                            {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_form_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete forms with its links")) return false;','class'=>'icon_button tooltip_number','data-original-title'=>trans('cms::cms.delete'),'type'=>'submit','value'=>$form->id ]) !!}
+
                         </td>
                     <tr>
                 @endforeach
