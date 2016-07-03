@@ -201,7 +201,7 @@ $ip=getIpFromServer();
 
 
 
-			return false;
+		return ['GB','United Kingdom'];
 
 	}
 
