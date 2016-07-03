@@ -159,14 +159,14 @@
             <div class="form-group {{ $errors->has('countryOfResidence') ? 'has-error' : ''}}">
                 {!! Form::label('countryOfResidence', trans('cms::cms.countryOfResidence'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('countryOfResidence',$country, null, ['class' => '','style'=>'width:100%;','placeholder'=>trans('cms::cms.countryOfResidence')]) !!}
+                    {!! Form::select('countryOfResidence',$country, $geoipCountry, ['class' => '','style'=>'width:100%;','placeholder'=>trans('cms::cms.countryOfResidence')]) !!}
                     {!! $errors->first('countryOfResidence', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('countryOfTargetBroker') ? 'has-error' : ''}}">
                 {!! Form::label('countryOfTargetBroker', trans('cms::cms.countryOfTargetBroker'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('countryOfTargetBroker',$country, null, ['class' => '','style'=>'width:100%;','placeholder'=>trans('cms::cms.countryOfTargetBroker')]) !!}
+                    {!! Form::select('countryOfTargetBroker',$country, $geoipCountry, ['class' => '','style'=>'width:100%;','placeholder'=>trans('cms::cms.countryOfTargetBroker')]) !!}
                     {!! $errors->first('countryOfTargetBroker', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
