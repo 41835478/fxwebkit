@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('content')
-<div class="container">
+
 
     <div id="content-wrapper">
     <h1>Search <a href="{{ url('cms/cms_forms_search/create') }}" class="btn btn-primary pull-right btn-flat">Add New search</a></h1>
@@ -39,7 +39,7 @@
         <div class="pagination"> {!! $cms_forms_search->render() !!} </div>
     </div>
 </div>
-</div>
+
 <script >
 
     init.push(function () {

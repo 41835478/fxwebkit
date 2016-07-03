@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('content')
-<div class="container">
+
 
     <div id="content-wrapper">
     <h1>currency convertor <a href="{{ url('cms/cms_forms_currencyconvertor/create') }}" class="btn btn-primary pull-right btn-flat">Add New currency convertor</a></h1>
@@ -38,7 +38,7 @@
         <div class="pagination"> {!! $cms_forms_currencyconvertor->render() !!} </div>
     </div>
 </div>
-</div>
+
 <script >
 
     init.push(function () {

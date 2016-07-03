@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('content')
-<div class="container">
+
 
     <div id="content-wrapper">
     <h1>live account <a href="{{ url('cms/cms_forms_liveaccount/create') }}" class="btn btn-primary pull-right btn-flat">Add New live account</a></h1>
@@ -40,7 +40,7 @@
         <div class="pagination"> {!! $cms_forms_liveaccount->render() !!} </div>
     </div>
 </div>
-</div>
+
 <script >
 
     init.push(function () {

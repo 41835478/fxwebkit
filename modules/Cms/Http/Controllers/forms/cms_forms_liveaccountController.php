@@ -24,6 +24,7 @@ class cms_forms_liveaccountController extends Controller
     public function index()
     {
 
+
         $cms_forms_liveaccount = cms_forms_liveaccount::paginate(15);
 
         return view('cms::forms.cms_forms_liveaccount.index', compact('cms_forms_liveaccount'));

@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('content')
-<div class="container">
+
 
     <div id="content-wrapper">
     <h1>Download Center <a href="{{ url('cms/cms_forms_downloadcenter/create') }}" class="btn btn-primary pull-right btn-flat">Add New Download Center</a></h1>
@@ -39,7 +39,7 @@
         <div class="pagination"> {!! $cms_forms_downloadcenter->render() !!} </div>
     </div>
 </div>
-</div>
+
 <script >
 
     init.push(function () {
