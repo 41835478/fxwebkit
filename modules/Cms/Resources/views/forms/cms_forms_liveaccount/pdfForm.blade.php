@@ -1522,7 +1522,7 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 
 <p class="margin-top-10"><strong>Number of transactions of significant size carried out per quarter in the past 12 months</strong></p>
 <ul class="no-margin">
-<li>@if($var->number_of_transactions_futures_joint=='less than 10 transactions' and  $var->number_of_transactions_futures_joint!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
+<li>@if($var->number_of_years_futures_joint=='less than 10 transactions' and  $var->number_of_years_futures_joint!='None') &check; @else &#9744; @endif Less than 10 transactions</li>
 <li>@if($var->number_of_transactions_futures_joint=='10 to 20 transactions'  and  $var->number_of_years_futures_joint!='None') &check; @else&#9744;@endif 10 to 20 transactions</li>
 <li>@if($var->number_of_transactions_futures_joint=='More than 20 transaction'  and  $var->number_of_years_futures_joint!='None') &check; @else&#9744;@endif More than 20 transactions</li>
 </ul>

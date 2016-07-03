@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('content')
-<div class="container">
+
 
     <div id="content-wrapper">
     <h1>Career Center <a href="{{ url('cms/cms_forms_careercenter/create') }}" class="btn btn-primary pull-right btn-flat">Add New Career Center</a></h1>
@@ -37,7 +37,7 @@
         <div class="pagination"> {!! $cms_forms_careercenter->render() !!} </div>
     </div>
 </div>
-</div>
+
 <script >
 
     init.push(function () {

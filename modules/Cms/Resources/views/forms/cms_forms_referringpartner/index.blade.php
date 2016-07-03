@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('content')
-<div class="container">
+
 
     <div id="content-wrapper">
     <h1>Referring Partner <a href="{{ url('cms/cms_forms_referringpartner/create') }}" class="btn btn-primary pull-right btn-flat">Add New Referring Partner</a></h1>
@@ -38,7 +38,7 @@
         <div class="pagination"> {!! $cms_forms_referringpartner->render() !!} </div>
     </div>
 </div>
-</div>
+
 <script >
 
     init.push(function () {
