@@ -32,24 +32,10 @@
 
 {!! Form::open(['route' => 'cms_forms_demoaccount.form','id'=>'demo_form', 'class' => 'form-horizontal']) !!}
 <div id="form-list">
-    <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
-        {!! Form::label('email', trans('cms::cms.email'), ['class' => 'col-sm-12 ']) !!}
-        <div class="col-sm-6">
 
-            <input name="email" type="email" class="form-control" required="required" placeholder="{{ trans('cms::cms.email')}}">
 
-            {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
-        </div>
-    </div>
-    <div class="form-group  ">
-        {!! Form::label('email', trans('cms::cms.confirmEmail'), ['class' => 'col-sm-12 ']) !!}
-        <div class="col-sm-6">
 
-            {!! Form::text('confirmEmail', null, ['class' => 'form-control','placeholder'=>trans('cms::cms.confirmEmail'),'required'=>'required']) !!}
 
-            {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
-        </div>
-    </div>
 <div class="form-group {{ $errors->has('Firstname') ? 'has-error' : ''}}">
     {!! Form::label('Firstname', trans('cms::cms.first_name_joint'), ['class' => 'col-sm-12 ']) !!}
     <div class="col-sm-6">
@@ -64,22 +50,51 @@
         {!! $errors->first('Lastname', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
-<div class="form-group {{ $errors->has('Mobilenumber') ? 'has-error' : ''}}">
+
+
+
+
+    <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
+        {!! Form::label('email', trans('cms::cms.email'), ['class' => 'col-sm-12 ']) !!}
+        <div class="col-sm-6">
+
+            <input name="email" type="email" class="form-control" required="required" placeholder="{{ trans('cms::cms.email')}}">
+
+            {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
+        </div>
+    </div>
+
+
+    <div class="form-group  " style="display:none;">
+        {!! Form::label('email', trans('cms::cms.confirmEmail'), ['class' => 'col-sm-12 ']) !!}
+        <div class="col-sm-6">
+
+            {!! Form::text('confirmEmail', null, ['class' => 'form-control','placeholder'=>trans('cms::cms.confirmEmail')]) !!}
+
+            {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
+        </div>
+    </div>
+
+
+
+    <div class="form-group {{ $errors->has('Country') ? 'has-error' : ''}}">
+        {!! Form::label('Country', trans('cms::cms.country'), ['class' => 'col-sm-12']) !!}
+        <div class="col-sm-6">
+            {!! Form::select('Country',$arrays['country'], null, ['class' => '','id'=>'DemoType_country','style'=>'width:100%;']) !!}
+            {!! $errors->first('Country', '<p class="help-block">:message</p>') !!}
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group {{ $errors->has('Mobilenumber') ? 'has-error' : ''}}">
     {!! Form::label('Mobilenumber', trans('cms::cms.Mobilenumber'), ['class' => 'col-sm-12 ']) !!}
     <div class="col-sm-6">
         <input type="tel" name="Mobilenumber" class="form-control"required="required" id="DemoType_mobile_number">
         {!! $errors->first('Mobilenumber', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
-<div class="form-group {{ $errors->has('Country') ? 'has-error' : ''}}">
-    {!! Form::label('Country', trans('cms::cms.country'), ['class' => 'col-sm-12']) !!}
-    <div class="col-sm-6">
-        {!! Form::select('Country',$arrays['country'], null, ['class' => '','id'=>'DemoType_country','style'=>'width:100%;']) !!}
-        {!! $errors->first('Country', '<p class="help-block">:message</p>') !!}
-    </div>
-</div>
-
-
 <div class="form-group">
     <div class=" col-sm-6">
         {!! Form::submit('Create', ['class' => '  btn  btn-golden','style'=>'width:100%; color:#fff !important;']) !!}
