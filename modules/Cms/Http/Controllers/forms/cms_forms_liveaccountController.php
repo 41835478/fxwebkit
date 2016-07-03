@@ -179,7 +179,7 @@ class cms_forms_liveaccountController extends Controller
        // $liveAccount=cms_forms_payment::find(\Session::get('liveAccount_id'));
 
 
-        return View::make('cms::forms.cms_forms_liveaccount.cms_form')->with('arrays',$arrays)->render();
+        return View::make('cms::forms.cms_forms_liveaccount.cms_form')->with('arrays',$arrays)->with('geoipCountry',getGeoipCountry()[1])->render();
 
     }
 
