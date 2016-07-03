@@ -166,7 +166,7 @@
             <div class="form-group {{ $errors->has('countryOfTargetBroker') ? 'has-error' : ''}}">
                 {!! Form::label('countryOfTargetBroker', trans('cms::cms.countryOfTargetBroker'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('countryOfTargetBroker',$country, $geoipCountry, ['class' => '','style'=>'width:100%;','placeholder'=>trans('cms::cms.countryOfTargetBroker')]) !!}
+                    {!! Form::select('countryOfTargetBroker',$country, $geoipCountry[0], ['class' => '','style'=>'width:100%;','placeholder'=>trans('cms::cms.countryOfTargetBroker')]) !!}
                     {!! $errors->first('countryOfTargetBroker', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
@@ -184,5 +184,14 @@
             {!! Form::submit('Register', ['class' => '  btn  btn-golden','style'=>'width:100%; color:#fff !important;']) !!}
         </div>
     </div>
+
     {!! Form::close() !!}
 
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("input[name='mobile']").intlTelInput("selectCountry", "{{strtolower($geoipCountry[0])}}");
+
+    });
+</script>

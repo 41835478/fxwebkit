@@ -333,7 +333,7 @@
 
         <div class="input_all_div">
             <label>{!! Form::label('country',trans('cms::cms.country').' *'  , ['class' => 'control-label']) !!}</label>
-            {!! Form::select('country',$arrays['country'], $geoipCountry, ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+            {!! Form::select('country',$arrays['country'], $geoipCountry[1], ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
             <span>{!! $errors->first('country', '<ul><li class="error">:message</li></ul>') !!}</span>
         </div>
     </div>
@@ -374,7 +374,7 @@
 
             <div class="input_all_div">
                 <label>{!! Form::label('country_joint',trans('cms::cms.country_joint')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('country_joint',$arrays['country'], $geoipCountry, ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('country_joint',$arrays['country'], $geoipCountry[1], ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('country_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
             </div>
         </div>
@@ -517,7 +517,7 @@
 
         <div class="input_all_div">
             <label>{!! Form::label('postal_country',trans('cms::cms.postal_country')  , ['class' => 'control-label']) !!}</label>
-            {!! Form::select('postal_country',$arrays['country'], $geoipCountry, ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+            {!! Form::select('postal_country',$arrays['country'], $geoipCountry[1], ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
             <span>{!! $errors->first('postal_country', '<ul><li class="error">:message</li></ul>') !!}</span>
         </div>
 
@@ -555,7 +555,7 @@
 
             <div class="input_all_div">
                 <label>{!! Form::label('postal_country_joint',trans('cms::cms.postal_country_joint')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('postal_country_joint',$arrays['country'], $geoipCountry, ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('postal_country_joint',$arrays['country'], $geoipCountry[1], ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('postal_country_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
             </div>
 
@@ -1464,6 +1464,10 @@
         $('select[name="country_joint"]').change(function () {
             $("input[name='main_phone_joint'],input[name='secondary_phone_joint'],input[name='fax_joint']").intlTelInput("selectCountry", $(this).val().toLowerCase());
         });
+
+        $("input[name='main_phone'],input[name='secondary_phone'],input[name='fax']").intlTelInput("selectCountry", "{{strtolower($geoipCountry[0])}}");
+
+        $("input[name='main_phone_joint'],input[name='secondary_phone_joint'],input[name='fax_joint']").intlTelInput("selectCountry", "{{strtolower($geoipCountry[0])}}");
 
 
 

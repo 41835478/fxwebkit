@@ -80,7 +80,7 @@
     <div class="form-group {{ $errors->has('Country') ? 'has-error' : ''}}">
         {!! Form::label('Country', trans('cms::cms.country'), ['class' => 'col-sm-12']) !!}
         <div class="col-sm-6">
-            {!! Form::select('Country',$arrays['country'], $geoipCountry, ['class' => '','id'=>'DemoType_country','style'=>'width:100%;']) !!}
+            {!! Form::select('Country',$arrays['country'], $geoipCountry[0], ['class' => '','id'=>'DemoType_country','style'=>'width:100%;']) !!}
             {!! $errors->first('Country', '<p class="help-block">:message</p>') !!}
         </div>
     </div>
@@ -112,7 +112,9 @@
             $("#DemoType_mobile_number").intlTelInput("selectCountry", $(this).val().toLowerCase());
         });
        // $("#DemoType_mobile_number").intlTelInput("selectCountry");
-  });
+        $("input[name='Mobilenumber']").intlTelInput("selectCountry", "{{strtolower($geoipCountry[0])}}");
+
+    });
 //    $(document).ready(function () {
 //        $("#demo_form select").select2({
 //            width: 405,
