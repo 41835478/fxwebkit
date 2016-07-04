@@ -294,10 +294,15 @@ try{
                         'OWNER_NAME'  => $request->OWNER_NAME,
                     );
 
-                    $email=new Email();
-                    @$email->paymentSuccess($email_params);
+//                    $email=new Email();
+//                    @$email->paymentSuccess($email_params);
 
-            }
+                    $email=new Email();
+
+                    @$email->sendFormEmail('cms_forms_payment',$email_params);
+
+
+                }
 
 
 

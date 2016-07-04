@@ -1423,7 +1423,8 @@
                     </div>
 
                     <div id="submit_bottom_buttons_div">
-                        <button type="reset" class="reset b-btn f-btn b-btn-default b-btn-md f-primary-b"><i class="fa fa-refresh"></i>
+                        <button type="reset" class="reset " style="height: 36px;
+    padding-top: 3px;"><i class="fa fa-refresh"></i>
                             Reset
                         </button>
 
