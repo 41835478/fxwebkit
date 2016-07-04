@@ -140,8 +140,12 @@ class cms_forms_referringpartnerController extends Controller
             cms_forms_referringpartner::create($request->all());
 
             $email=new Email();
-            @$email->contactus($request->all(),$request->email);
+//            @$email->contactus($request->all(),$request->email);
 
+
+            $email=new Email();
+
+            @$email->sendFormEmail('cms_forms_referringpartner',$request->all());
 
             Session::flash('flash_success', 'Your request has been sent successfully!');
                                     return Redirect::back();

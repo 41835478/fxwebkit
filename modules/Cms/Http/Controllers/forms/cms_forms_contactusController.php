@@ -142,7 +142,9 @@ class cms_forms_contactusController extends Controller
 
 
             $email=new Email();
-            @$email->contactus($request->all(),config('fxweb.adminEmail'));
+         //   @$email->contactus($request->all(),config('fxweb.adminEmail'));
+
+            @$email->sendFormEmail('cms_forms_contactus',$request->all());
 
             Session::flash('flash_success', 'Your request has been sent successfully!');
 return Redirect::back();

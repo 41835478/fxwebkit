@@ -136,6 +136,9 @@ class DummyClass extends Controller
             {{validationRules}}
             {{modelName}}::create($request->all());
 
+            $email=new Email();
+
+            @$email->sendFormEmail('{{modelName}}',$request->all());
             Session::flash('flash_message', '{{modelName}} added!');
 return Redirect::back();
         //    return redirect('cms/{{routeGroup}}{{crudName}}');

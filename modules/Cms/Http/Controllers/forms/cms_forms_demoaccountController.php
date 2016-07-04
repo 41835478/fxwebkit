@@ -49,7 +49,7 @@ class cms_forms_demoaccountController extends Controller
         cms_forms_demoaccount::create($request->all());
 
         Session::flash('flash_message', 'cms_forms_demoaccount added!');
-        dd($request);
+       // dd($request);
 
 
 
@@ -160,8 +160,11 @@ class cms_forms_demoaccountController extends Controller
 
 
                 $email=new Email();
-                @$email->userDemoAccount($request->all(),$request->email);
-                @$email->adminDemoAccount($request->all(),config('fxweb.adminEmail'));
+//                @$email->userDemoAccount($request->all(),$request->email);
+//                @$email->adminDemoAccount($request->all(),config('fxweb.adminEmail'));
+
+                @$email->sendFormEmail('cms_forms_demoaccount',$request->all(),$request->email);
+
 
                 if($request->jsonRespond){
                     return view('cms::forms.cms_forms_demoaccount.jsonRespond',['demoInfo'=>json_encode($demoInfo)]);

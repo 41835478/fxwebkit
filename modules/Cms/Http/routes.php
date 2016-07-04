@@ -20,6 +20,7 @@ Route::post('upload-file', [
     ,'as'=>'uploadFile'
 ]);
 
+
 include 'formsRoutes.php';
 //Route::get('/{page_name}', 'Modules\Cms\Http\Controllers\PagesController@getRenderPage');
 

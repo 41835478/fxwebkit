@@ -23,7 +23,12 @@
 
 
         <div class="form-group {{ $errors->has('admin_email') ? 'has-error' : ''}}">
+            @if($templateType =='admin')
             {!! Form::label('name', trans('admin email'), ['class' => 'col-sm-12  ']) !!}
+            @else
+
+                {!! Form::label('name', trans('Email field name'), ['class' => 'col-sm-12  ']) !!}
+                @endif
             <div class="col-sm-12">
                 {!! Form::text('admin_email', null, ['class' => 'form-control']) !!}
                 {!! $errors->first('admin_email', '<p class="help-block">:message</p>') !!}
@@ -41,6 +46,8 @@
 
     <div class="form-group">
         <div class="col-sm-offset-9 col-sm-3">
+
+
             {!! Form::submit('Update', ['class' => 'btn btn-primary form-control']) !!}
         </div>
     </div>

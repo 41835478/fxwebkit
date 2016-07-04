@@ -5,6 +5,7 @@ namespace modules\Cms\Http\Controllers\forms;
 use Fxweb\Http\Requests;
 use Fxweb\Http\Controllers\Controller;
 
+use Modules\Cms\Entities\cms_forms;
 use  Modules\Cms\Entities\forms\cms_forms_emailtemplate;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -74,11 +75,11 @@ class cms_forms_emailtemplatesController extends Controller
      *
      * @return void
      */
-    public function edit($id)
+    public function edit($id,Request $request)
     {
         $cms_forms_emailtemplate = cms_forms_emailtemplate::findOrFail($id);
-
-        return view('cms::forms.cms_forms_emailtemplates.edit', compact('cms_forms_emailtemplate'));
+        $templateType=( $request->has('templateType'))? $request->templateType:'admin';
+        return view('cms::forms.cms_forms_emailtemplates.edit', compact('cms_forms_emailtemplate'))->with('templateType',$templateType);
     }
 
     /**
@@ -91,13 +92,39 @@ class cms_forms_emailtemplatesController extends Controller
     public function update($id, Request $request)
     {
         unset($request->alias);
-        
+
         $cms_forms_emailtemplate = cms_forms_emailtemplate::findOrFail($id);
         $cms_forms_emailtemplate->update($request->all());
 
         Session::flash('flash_message', 'cms_forms_emailtemplate updated!');
 
-        return redirect('cms/cms_forms_emailtemplates');
+        return Redirect::route('cms.formsList');
+    }
+
+    public function directUpdateForm(Request $request)
+    {
+        $form=cms_forms::find($request->formId);
+        if(!$form){
+            return Redirect::back()->withErrors('This form is no longer available,please select another one!');
+        }
+        $templateName=$request->templateType.'_'.preg_replace('/\s/','',$form->name);
+        $template=cms_forms_emailtemplate::where('alias',$templateName)->first();
+
+
+        if($template){
+            return redirect('/cms/cms_forms_emailtemplates/'.$template->id.'/edit?templateType='.$request->templateType);
+        }else{
+
+            $newTemplate=cms_forms_emailtemplate::create([
+
+                'name'=>$request->templateType .' '.$form->name,
+            'alias'=>$templateName
+            ]);
+
+
+            return redirect('/cms/cms_forms_emailtemplates/'.$newTemplate->id.'/edit?templateType='.$request->templateType);
+        }
+
     }
 
     /**

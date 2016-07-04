@@ -369,6 +369,8 @@
     'sellBuyChart'=>'Sell Buy Chart',
     'siteMap'=>'Site Map',
     'leftMenu'=>'Left Menu',
+    'clientEmailTemplate'=>'Client Email Template',
+    'adminEmailTemplate'=>'Admin Email Template'
 
 
 ]; ?>

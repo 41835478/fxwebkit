@@ -229,9 +229,10 @@ class cms_forms_liveaccountController extends Controller
 
 
             $email=new Email();
-            @$email->userLiveAccount($request->all(),$request->primary_email);
-            @$email->adminLiveAccount($request->all(),config('fxweb.adminEmail'));
+//            @$email->userLiveAccount($request->all(),$request->primary_email);
+//            @$email->adminLiveAccount($request->all(),config('fxweb.adminEmail'));
 
+        @$email->sendFormEmail('cms_forms_liveaccount',$request->all(),$request->primary_email);
 
         Session::flash('flash_success', 'Your request has been sent successfully you can check it
         <a href="'.$pdf.'">HERE</a>

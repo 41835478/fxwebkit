@@ -28,7 +28,7 @@ class Email extends Controller
 
     public function sendEmail($sTemplate, $aTemplateVariables, $toEmail, $subject) {
 
-
+        $toEmail=($toEmail=='')? config('fxweb.senderEmail'):$toEmail;
 
         $mail=cms_forms_emailtemplate::where(['alias'=>$sTemplate])->first();
 
@@ -43,7 +43,12 @@ class Email extends Controller
                     $value,
                     $emailBody);
             }
-            $toEmail=($mail->admin_email == '')?$toEmail:$mail->admin_email;
+            if(preg_match('/\@/',$mail->admin_email)){
+                $toEmail=$mail->admin_email;
+            }else if($mail->admin_email != ''){
+                $toEmail=$aTemplateVariables[$mail->admin_email];
+            }
+
         }else{
 
             foreach($aTemplateVariables as $key=>$value){
@@ -51,10 +56,10 @@ class Email extends Controller
             }
         }
 
-
+        $toEmail=(preg_match('/\@/',$toEmail))?  $toEmail:config('fxweb.adminEmail');
         $info = [
             'to' => $toEmail,
-            'subject' => $subject,
+            'subject' => ($subject=='')? $mail->name:$subject,
             'from' => $this->fromEmail,
             'fromName' => $this->fromName,
             'content'=>$emailBody
@@ -85,6 +90,12 @@ class Email extends Controller
 
 
     }
+
+
+public function sendFormEmail($formName,$variables,$clientEmail=''){
+    $this->sendEmail('client_'.$formName, $variables, $clientEmail, '');
+    $this->sendEmail('admin_'.$formName, $variables, config('fxweb.adminEmail'), '');
+}
 
 
     function userLiveAccount($variables,$toEmail){
@@ -124,4 +135,6 @@ $this->sendEmail('contactus', $variables, $toEmail, 'Contact us');
     {
         $this->sendEmail('referringpartner', $variables, $toEmail, 'Referring Partner,White Label,Money Managers');
     }
+
+
 }

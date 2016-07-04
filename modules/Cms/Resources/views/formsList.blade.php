@@ -44,7 +44,17 @@
                             <button class="icon_button tooltip_number">
                                 <a  href="/cms/{{ strtolower($form->name) }}" class="icon_button blue_icon fa fa-file-text tooltip_number" data-original-title={{trans('cms::cms.details')}}></a>
                             </button>
+
+                            <button class="icon_button tooltip_number">
+                                <a  href="{{ route('emailtemplates.createFormTemplate') }}?formId={{$form->id}}&templateType=client" class="icon_button blue_icon fa fa-users tooltip_number" data-original-title="{{trans('cms::cms.clientEmailTemplate')}}"></a>
+                            </button>
+
+                            <button class="icon_button tooltip_number">
+                                <a  href="{{ route('emailtemplates.createFormTemplate') }}?formId={{$form->id}}&templateType=admin" class="icon_button blue_icon fa fa-user tooltip_number" data-original-title="{{trans('cms::cms.adminEmailTemplate')}}"></a>
+                            </button>
+
                             {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_form_page' ,'class'=>'icon_button blue_icon tooltip_number','data-original-title'=>trans('cms::cms.edit'),'type'=>'submit','value'=>$form->id ]) !!}
+
                             {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_form_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete forms with its links")) return false;','class'=>'icon_button tooltip_number','data-original-title'=>trans('cms::cms.delete'),'type'=>'submit','value'=>$form->id ]) !!}
 
                         </td>
