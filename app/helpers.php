@@ -239,3 +239,22 @@ $ip=getIpFromServer();
 
 
 }
+
+
+if (!function_exists('hasMtUser')) {
+	function hasMtUser($login,$server_id){
+
+		$exist= Modules\Accounts\Entities\mt4_users_users::where([
+                'users_id'=>current_user()->getUser()->id,
+                'mt4_users_id'=>$login,
+                'server_id'=>$server_id
+            ])->first();
+           if($exist){
+
+			  return true;
+
+		   }
+		return false;
+
+	}
+}

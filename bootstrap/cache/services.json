@@ -1,5 +1,6 @@
 {
     "providers": [
+        "Illuminate\\Broadcasting\\BroadcastServiceProvider",
         "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "Illuminate\\Auth\\AuthServiceProvider",
         "Illuminate\\Bus\\BusServiceProvider",
@@ -29,6 +30,7 @@
         "Fxweb\\Providers\\EventServiceProvider",
         "Fxweb\\Providers\\RouteServiceProvider",
         "Fxweb\\Providers\\FxWebKitServiceProvider",
+        "Fxweb\\Providers\\AuthServiceProvider",
         "Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider",
         "Maatwebsite\\Excel\\ExcelServiceProvider",
         "Pingpong\\Modules\\ModulesServiceProvider",
@@ -54,6 +56,7 @@
         "Fxweb\\Providers\\EventServiceProvider",
         "Fxweb\\Providers\\RouteServiceProvider",
         "Fxweb\\Providers\\FxWebKitServiceProvider",
+        "Fxweb\\Providers\\AuthServiceProvider",
         "Cartalyst\\Sentinel\\Laravel\\SentinelServiceProvider",
         "Maatwebsite\\Excel\\ExcelServiceProvider",
         "Pingpong\\Modules\\ModulesServiceProvider",
@@ -61,6 +64,9 @@
         "Appzcoder\\CrudGenerator\\CrudGeneratorServiceProvider"
     ],
     "deferred": {
+        "Illuminate\\Broadcasting\\BroadcastManager": "Illuminate\\Broadcasting\\BroadcastServiceProvider",
+        "Illuminate\\Contracts\\Broadcasting\\Factory": "Illuminate\\Broadcasting\\BroadcastServiceProvider",
+        "Illuminate\\Contracts\\Broadcasting\\Broadcaster": "Illuminate\\Broadcasting\\BroadcastServiceProvider",
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.clear-compiled": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
         "command.command.make": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",
@@ -150,6 +156,7 @@
         "sentinel.addons.social": "Cartalyst\\Sentinel\\Addons\\Social\\Laravel\\SocialServiceProvider"
     },
     "when": {
+        "Illuminate\\Broadcasting\\BroadcastServiceProvider": [],
         "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider": [],
         "Illuminate\\Bus\\BusServiceProvider": [],
         "Illuminate\\Cache\\CacheServiceProvider": [],
