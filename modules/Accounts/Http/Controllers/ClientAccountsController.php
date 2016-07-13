@@ -78,6 +78,9 @@ class ClientAccountsController extends Controller
 
     public function getMt4UserDetails(Request $oRequest)
     {
+        if(!hasMtUser($oRequest->login,$oRequest->server_id)){
+            return Redirect::route('clients.accounts.Mt4UsersList');
+        }
 
         $oGroups = $this->oMt4User->getAllGroups();
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
@@ -132,6 +135,9 @@ class ClientAccountsController extends Controller
     public function getMt4Leverage(Request $oRequest)
     {
 
+        if(!hasMtUser($oRequest->login,$oRequest->server_id)){
+            return Redirect::route('clients.accounts.Mt4UsersList');
+        }
         $Result = Config('fxweb.leverage');
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
 
@@ -169,6 +175,9 @@ class ClientAccountsController extends Controller
     public function postMt4Leverage(Request $oRequest)
     {
 
+        if(!hasMtUser($oRequest->login,$oRequest->server_id)){
+            return Redirect::route('clients.accounts.Mt4UsersList');
+        }
         $Result = Config('fxweb.leverage');
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
 
@@ -217,6 +226,9 @@ class ClientAccountsController extends Controller
 
     public function getMt4ChangePassword(Request $oRequest)
     {
+        if(!hasMtUser($oRequest->login,$oRequest->server_id)){
+            return Redirect::route('clients.accounts.Mt4UsersList');
+        }
 
         $Password = Config('accounts.apiReqiredConfirmMt4Password');
         $loginPasswordType = Config('accounts.loginPasswordType');
@@ -243,6 +255,9 @@ class ClientAccountsController extends Controller
 
     public function postMt4ChangePassword(Request $oRequest)
     {
+        if(!hasMtUser($oRequest->login,$oRequest->server_id)){
+            return Redirect::route('clients.accounts.Mt4UsersList');
+        }
         $Password = Config('accounts.apiReqiredConfirmMt4Password');
         $loginPasswordType = Config('accounts.loginPasswordType');
 
@@ -279,6 +294,9 @@ class ClientAccountsController extends Controller
     public function getMt4InternalTransfer(Request $oRequest)
     {
 
+        if(!hasMtUser($oRequest->login,$oRequest->server_id)){
+            return Redirect::route('clients.accounts.Mt4UsersList');
+        }
 
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
 
@@ -306,6 +324,9 @@ class ClientAccountsController extends Controller
     {
 
 
+        if(!hasMtUser($oRequest->login,$oRequest->server_id)){
+            return Redirect::route('clients.accounts.Mt4UsersList');
+        }
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
         $allowTransferToUnsignedMT4 = Config('accounts.allowTransferToUnsignedMT4');
 
@@ -604,6 +625,10 @@ class ClientAccountsController extends Controller
 
     public function getWithDrawal(Request $oRequest)
     {
+
+        if(!hasMtUser($oRequest->login,$oRequest->server_id)){
+            return Redirect::route('clients.accounts.Mt4UsersList');
+        }
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);
 
@@ -632,6 +657,9 @@ class ClientAccountsController extends Controller
     public function postWithDrawal(Request $oRequest)
     {
 
+        if(!hasMtUser($oRequest->login,$oRequest->server_id)){
+            return Redirect::route('clients.accounts.Mt4UsersList');
+        }
 
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);

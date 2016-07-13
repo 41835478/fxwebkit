@@ -26,21 +26,37 @@
 
             <div class="sole-group-div">
             <div class="form-group {{ $errors->has('first_name') ? 'has-error' : ''}}">
-                {!! Form::label('first_name', trans('cms::cms.first_name').' :', ['class' => 'col-sm-8 control-label']) !!}
+
+                <div class="col-sm-8 control-label">
+                {!! Form::checkbox('need_approve[first_name]','1',false,['class'=>'approve_checkbox']) !!}
+                {!! Form::label('first_name', trans('cms::cms.first_name').' :', ['class' => '']) !!}
+                </div>
+
                 <div class="col-sm-4">
                     <label class="control-label">{{$cms_forms_liveaccount->first_name }}</label>
                     {!! $errors->first('first_name', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('middle_name') ? 'has-error' : ''}}">
-                {!! Form::label('middle_name', trans('cms::cms.middle_name').' :', ['class' => 'col-sm-8 control-label']) !!}
+
+                <div class="col-sm-8 control-label">
+                {!! Form::checkbox('need_approve[middle_name]','1',false,['class'=>'approve_checkbox']) !!}
+                {!! Form::label('middle_name', trans('cms::cms.middle_name').' :', ['class' => '']) !!}
+</div>
+
                 <div class="col-sm-4">
                     <label class="control-label">{{$cms_forms_liveaccount->middle_name }}</label>
                     {!! $errors->first('middle_name', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('last_name') ? 'has-error' : ''}}">
-                {!! Form::label('last_name', trans('cms::cms.last_name').' :', ['class' => 'col-sm-8 control-label']) !!}
+
+                <div class="col-sm-8 control-label ">
+                {!! Form::checkbox('need_approve[last_name]','1',false,['class'=>'approve_checkbox']) !!}
+                {!! Form::label('last_name', trans('cms::cms.last_name').' :', ['class' => '']) !!}
+                    </div>
+
+
                 <div class="col-sm-4">
                     <label class="control-label">{{$cms_forms_liveaccount->last_name }}</label>
 
@@ -48,7 +64,13 @@
                 </div>
             </div>
             <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
-                {!! Form::label('title', trans('cms::cms.title').' :', ['class' => 'col-sm-8 control-label']) !!}
+
+
+                <div class="col-sm-8 control-label ">
+                    {!! Form::checkbox('need_approve[title]','1',false,['class'=>'approve_checkbox']) !!}
+                {!! Form::label('title', trans('cms::cms.title').' :', ['class' => '']) !!}
+                    </div>
+
                 <div class="col-sm-4">
                     <label class="control-label">{{$cms_forms_liveaccount->title }}</label>
                     {!! $errors->first('title', '<p class="help-block">:message</p>') !!}

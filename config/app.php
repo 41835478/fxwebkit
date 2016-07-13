@@ -115,6 +115,7 @@ return [
 		/*
 		 * Laravel Framework Service Providers...
 		 */
+		'Illuminate\Broadcasting\BroadcastServiceProvider',
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
 		'Illuminate\Bus\BusServiceProvider',
@@ -148,6 +149,7 @@ return [
 		'Fxweb\Providers\EventServiceProvider',
 		'Fxweb\Providers\RouteServiceProvider',
 		'Fxweb\Providers\FxWebKitServiceProvider',
+		'Fxweb\Providers\AuthServiceProvider',
 
 		/*
 		 * Third Party Service Providers...
@@ -225,6 +227,8 @@ return [
 
 
 		'Recaptcha' => 'Greggilbert\Recaptcha\Facades\Recaptcha',
+
+		'Gate' => Illuminate\Support\Facades\Gate::class,
 	],
 
 ];

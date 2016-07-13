@@ -15,6 +15,7 @@ use Fxweb\Repositories\Admin\Mt4Trade\Mt4TradeContract as Mt4Trade;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use \Illuminate\Support\Facades\Session;
+use Gate;
 
 class DashboardController extends Controller
 {
@@ -30,6 +31,8 @@ class DashboardController extends Controller
         $this->oMt4Trade = $oMt4Trade;
         $this->oUsers = $oUsers;
         $this->oMt4User = $oMt4User;
+
+
     }
 
     public function index(ClosedTradesRequest $oRequest)
@@ -82,7 +85,7 @@ class DashboardController extends Controller
             $sell_buy_horizontal_line_numbers,
             $growth) = [[], [], [], [], [], [], [], [], []];
 
-        if ($login != 0) {
+        if ($login != 0 &&  hasMtUser($login,$server_id)) {
             list($horizontal_line_numbers,
                 $growth_array,
                 $averages_array,
@@ -93,6 +96,8 @@ class DashboardController extends Controller
                 $sell_buy_horizontal_line_numbers,
                 $growth) = $this->oMt4Trade->getClientGrowthChart($login, $server_id);
 
+        }else{
+            $login = 0;
         }
         if ($oUser->hasAnyAccess(['user.denyLiveAccount'])) {
             Session::flash('flash_info', trans('user.fillFullDetailsToAllowLive'));
@@ -142,7 +147,7 @@ class DashboardController extends Controller
 
 
 
-        if ($login != 0) {
+        if ($login != 0 &&  hasMtUser($login,$server_id)) {
 
             list($horizontal_line_numbers,
                 $balance_array,
@@ -152,6 +157,8 @@ class DashboardController extends Controller
                 $buy_array,
                 $sell_buy_horizontal_line_numbers,
                 $balance) = $this->oMt4Trade->getClinetBalanceChart($login, $server_id);
+        }else{
+            $login = 0;
         }
 
 
