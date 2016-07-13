@@ -666,4 +666,17 @@ class ClientAccountsController extends Controller
             ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
     }
 
+
+    public function getUnssignUserFromMt4User(Request $oRequest){
+
+        $this->oUsers->unsignMt4UsersToAccount(current_user()->getUser()->id, [$oRequest->login.','. $oRequest->server_id],3);
+
+       // return $this->getMt4UsersList($oRequest);
+        return Redirect::route('clients.accounts.Mt4UsersList');
+
+//        $this->oUsers->unsignMt4UsersToAccount(current_user()->getUser()->id, [$oRequest->login.','. $oRequest->server_id],3);
+
+    //    return $this->getMt4UsersList($oRequest);
+    }
+
 }

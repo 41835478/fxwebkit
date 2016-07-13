@@ -9,8 +9,13 @@
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
-
-                    <th>S.No</th><th>{{ trans('cms::cms.primary_email') }}</th><th>{{  trans('cms::cms.first_name') }}</th><th>{{ trans('cms::cms.last_name') }}</th><th>{{ trans('cms::cms.sole_joint_account') }}</th><th>Actions</th>
+                    <th style="width:100px;">{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('cms::cms.select_all')) !!}</th>
+                    {{--<th>S.No</th>--}}
+                    <th>{{ trans('cms::cms.primary_email') }}</th>
+                    <th>{{  trans('cms::cms.first_name') }}</th>
+                    <th>{{ trans('cms::cms.last_name') }}</th>
+                    <th>{{ trans('cms::cms.sole_joint_account') }}</th>
+                    <th>Actions</th>
                </tr>
             </thead>
             <tbody>
@@ -18,9 +23,11 @@
             @foreach($cms_forms_liveaccount as $item)
                 {{-- */$x++;/* --}}
                 <tr>
-                    <td>{{  $item->id }}</td>
-
-                    <td> {{ $item->primary_email }}</td><td>{{ $item->first_name }}</td><td>{{ $item->last_name }}</td><td>{{$item->sole_joint_account}}</td>
+                    <td>{!! Form::checkbox('forms_checkbox[]',$item->id,false,['class'=>'forms_checkbox']) !!}</td>
+                    <td> {{ $item->primary_email }}</td>
+                    <td>{{ $item->first_name }}</td>
+                    <td>{{ $item->last_name }}</td>
+                    <td>{{$item->sole_joint_account}}</td>
                    <td>
                        <a href="{{ url('cms/cms_forms_liveaccount', $item->id) }}" class="icon_button blue_icon fa fa-file-text tooltip_number" data-original-title={{trans('cms::cms.details')}}></a>
 
@@ -41,10 +48,24 @@
     </div>
 </div>
 
-<script >
+    <script>
 
-    init.push(function () {
-        $('.tooltip_number').tooltip();
-    });
-</script>
+        init.push(function () {
+
+            $('.tooltip_number').tooltip();
+
+            $('input[name="check_all"]').click(function () {
+                if ($(this).prop("checked")) {
+                    $("input[name='forms_checkbox[]']").prop("checked", true);
+                } else {
+
+                    $("input[name='forms_checkbox[]']").prop("checked", false);
+                }
+            });
+        });
+
+
+
+    </script>
 @endsection
+

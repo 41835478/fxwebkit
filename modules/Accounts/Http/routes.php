@@ -44,5 +44,6 @@ Route::group(['middleware' => ['authenticate.client'], 'prefix' => 'client', 'na
         'getMt4DemoAccount' => 'client.accounts.mt4DemoAccount',
         'getMt4LiveAccount' => 'client.accounts.mt4LiveAccount',
         'getWithDrawal'=>'client.accounts.withDrawal',
+        'getUnssignUserFromMt4User'=>'client.aaccounts.unssignUserFromMt4User',
     ]);
 });

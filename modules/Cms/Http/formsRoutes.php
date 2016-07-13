@@ -256,4 +256,11 @@ Route::get('cms_forms_testbuttonstyle/form', [
 ]);
 Route::post('cms_forms_testbuttonstyle/form', [
     'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_testbuttonstyleController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_qwe', 'modules\Cms\Http\Controllers\forms\cms_forms_qweController');});
+Route::get('cms_forms_qwe/form', [
+    'as' => 'cms_forms_qwe.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_qweController@cms_create'
+]);
+Route::post('cms_forms_qwe/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_qweController@cms_store'
 ]);

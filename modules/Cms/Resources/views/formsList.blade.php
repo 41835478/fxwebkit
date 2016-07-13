@@ -39,7 +39,6 @@
                         <td>{{ $form->id }}</td>
                         <td><a href="/cms/{{ strtolower($form->name) }}">{{ $form->alias }}</a></td>
                         <td>{{ $pages[$form->page_id] }}</td>
-                        </td>
                         <td>
                             <button class="icon_button tooltip_number">
                                 <a  href="/cms/{{ strtolower($form->name) }}" class="icon_button blue_icon fa fa-file-text tooltip_number" data-original-title={{trans('cms::cms.details')}}></a>

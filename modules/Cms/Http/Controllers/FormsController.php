@@ -149,11 +149,7 @@ class FormsController extends Controller
         if (null !== Input::get('delete_form_submit')) {
             $form_id = Input::get('delete_form_submit');
             $this->deleteForm($form_id);
-//            $menu_item = cms_menus_items::where(['type' => '1', 'page_id' => $form_id]);
-//            $menu_item->delete();
-//            $forms = cms_forms::find($form_id);
-//
-//            $forms->delete();
+
 
             return Redirect::route('cms.formsList');
         }

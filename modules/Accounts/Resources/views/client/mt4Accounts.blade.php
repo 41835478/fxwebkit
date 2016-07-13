@@ -47,6 +47,11 @@
                                             <a href="{{ route('clients.accounts.mt4UserDetails').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}&from_date=&to_date=&search=Search&sort=asc&order=login"
                                                class="fa fa-file-text tooltip_number"
                                                data-original-title="{{trans('accounts::accounts.mt4UserDetails')}}"></a>
+
+                                            <a href="{{ route('client.aaccounts.unssignUserFromMt4User').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}"
+                                               onclick='if(!confirm("{{trans('accounts::accounts.are_you_sure')}}")) return false;'
+                                               class="fa fa-unlink tooltip_number"
+                                               data-original-title="{{trans('accounts::accounts.un_assign')}}" ></a>
                                         </td>
                                     </tr>
                                 @endforeach
