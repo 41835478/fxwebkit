@@ -12,6 +12,15 @@ class CreateCmsFormsLiveaccountsTable extends Migration
      */
     public function up()
     {
+
+        Schema::create('cms_forms_live_approve', function(Blueprint $table) {
+            $table->increments('id');
+            $table->integer('cms_forms_liveaccounts_id');
+            $table->string('field_name',60);
+            $table->integer('status');
+            $table->timestamps();
+        });
+
         Schema::create('cms_forms_liveaccounts', function(Blueprint $table) {
             $table->increments('id');
             $table->string('user_id',50);
