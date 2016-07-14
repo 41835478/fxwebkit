@@ -4,13 +4,13 @@
     <div class="container">
 
         <div id="content-wrapper">
-            <h1>live account</h1>
+            <h1>live account( <a href="/live-account?ref={{$cms_forms_liveaccount->ref}}">ref={{$cms_forms_liveaccount->ref}}</a>) </h1>
 
-            {!! Form::model($cms_forms_liveaccount, [
-           'method' => 'PATCH',
-           'url' => ['/cms/cms_forms_liveaccount', $cms_forms_liveaccount->id],
-           'class' => 'form-horizontal'
-       ])!!}
+            {{--{!! Form::model($cms_forms_liveaccount, [--}}
+           {{--'method' => 'PATCH',--}}
+           {{--'url' => ['/cms/cms_forms_liveaccount', $cms_forms_liveaccount->id],--}}
+           {{--'class' => 'form-horizontal'--}}
+       {{--])!!}--}}
 
 
             <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
@@ -23,12 +23,13 @@
                 </li>
                 @endif
             </ul>
-
+{!! Form::open(['route'=>'admin.liveFormApprove']) !!}
+            {!! Form::hidden('id',$cms_forms_liveaccount->id) !!}
             <div class="sole-group-div">
             <div class="form-group {{ $errors->has('first_name') ? 'has-error' : ''}}">
 
                 <div class="col-sm-8 control-label">
-                {!! Form::checkbox('need_approve[first_name]','1',false,['class'=>'approve_checkbox']) !!}
+                {!! Form::checkbox('need_approve[first_name]','1',isset($need_approve['first_name']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('first_name', trans('cms::cms.first_name').' :', ['class' => '']) !!}
                 </div>
 
@@ -1169,7 +1170,14 @@
                 </div>
             </div>
             </div>
+
+
+
+            {!! Form::textarea('comment',$cms_forms_liveaccount->comment,['style'=>'width:100%;']) !!}
+
+            {!! Form::select('status', $arrays['form_status'],$cms_forms_liveaccount->status,[]) !!}
+            {!! Form::submit('save',["class"=>""]) !!}
+            {!! Form::close() !!}
         </div>
-        {!! Form::close() !!}
     </div>
 @endsection

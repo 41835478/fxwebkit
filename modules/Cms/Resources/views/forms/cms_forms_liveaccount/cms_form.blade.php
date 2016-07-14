@@ -36,7 +36,17 @@
 
 
 
-    {!! Form::open(['id'=>'mainForm','route' => 'cms_forms_liveaccount.form','onSubmit'=>'if(!$("#mainForm").checkValidity()) return false;', 'class' => 'form-horizontal']) !!}
+{{--    {!! Form::open(['id'=>'mainForm','route' => 'cms_forms_liveaccount.form','onSubmit'=>'if(!$("#mainForm").checkValidity()) return false;', 'class' => 'form-horizontal']) !!}--}}
+
+
+        {!! Form::model($cms_forms_liveaccount, [
+        'id'=>'mainForm',
+            'method' => 'POST',
+            'route' => 'cms_forms_liveaccount.form',
+            'class' => 'form-horizontal',
+            'onSubmit'=>'if(!$("#mainForm").checkValidity()) return false;'
+        ]) !!}
+    {!! Form::hidden('ref',(is_object($cms_forms_liveaccount))?$cms_forms_liveaccount->ref:0) !!}
     <div class="fieldset_div">
 
     <div class="clearfix"></div>
@@ -88,7 +98,7 @@
             <p> {{ trans('cms::cms.default_platform') }}</p>
             <label></label>
 
-            {!! Form::select('default_platform',$arrays['default_platform'], 'MT4', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+            {!! Form::select('default_platform',$arrays['default_platform'], null, ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
             <span>{!! $errors->first('default_platform', '<ul><li class="error">:message</li></ul>') !!}</span>
 
             </div>
@@ -179,7 +189,7 @@
 
         <div class="input_all_div">
             <label>{{trans('cms::cms.nationality')}}</label>
-            {!! Form::select('nationality',$arrays['nationals'], 'MT4', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+            {!! Form::select('nationality',$arrays['nationals'], null, ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
             {!! $errors->first('nationality', '<ul><li class="error">:message</li></ul>') !!}
         </div>
 
@@ -201,7 +211,7 @@
         <div class="input_all_div">
             {!! Form::label('marital_status', trans('cms::cms.marital_status')).' *' !!}
             <div class="clearfix">
-                {!! Form::select('marital_status',$arrays['marital_status'], 'Single', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform','required'=>'required']) !!}
+                {!! Form::select('marital_status',$arrays['marital_status'], null, ['class' => '','id'=>'forex_corebundle_portalusers_default_platform','required'=>'required']) !!}
             </div>
             {!! $errors->first('marital_status', '<ul><li class="error">:message</li></ul>') !!}
         </div>
@@ -647,14 +657,14 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_years_cfd',trans('cms::cms.number_of_years_cfd').' *'  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('number_of_years_cfd',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform','required'=>'required']) !!}
+                {!! Form::select('number_of_years_cfd',$arrays['number_of_years'], null, ['class' => '','id'=>'forex_corebundle_portalusers_default_platform','required'=>'required']) !!}
                 <span>{!! $errors->first('number_of_years_cfd', '<ul><li class="error">:message</li></ul>') !!}</span>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_transactions_cfd',trans('cms::cms.number_of_transactions_cfd')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('number_of_transactions_cfd',$arrays['number_of_transactions'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('number_of_transactions_cfd',$arrays['number_of_transactions'], null, ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('number_of_transactions_cfd', '<ul><li class="error">:message</li></ul>') !!}</span>
             </div>
         </div>
@@ -662,7 +672,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('average_trading_cfd',trans('cms::cms.average_trading_cfd')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('average_trading_cfd',$arrays['average_trading'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('average_trading_cfd',$arrays['average_trading'],  null, ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('average_trading_cfd', '<ul><li class="error">:message</li></ul>') !!}</span>
             </div>
         </div>
@@ -681,14 +691,14 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_transactions_commodities',trans('cms::cms.number_of_transactions_commodities')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('number_of_transactions_commodities',$arrays['number_of_transactions'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('number_of_transactions_commodities',$arrays['number_of_transactions'],  null, ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('number_of_transactions_commodities', '<ul><li class="error">:message</li></ul>') !!}</span>
             </div>
         </div>
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('average_trading_commodities',trans('cms::cms.average_trading_commodities')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('average_trading_commodities',$arrays['average_trading'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('average_trading_commodities',$arrays['average_trading'],  null, ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('average_trading_commodities', '<ul><li class="error">:message</li></ul>') !!}</span>
             </div>
         </div>
@@ -699,7 +709,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_years_forex',trans('cms::cms.number_of_years_forex').' *'  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('number_of_years_forex',$arrays['number_of_years'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform','required'=>'required']) !!}
+                {!! Form::select('number_of_years_forex',$arrays['number_of_years'],  null, ['class' => '','id'=>'forex_corebundle_portalusers_default_platform','required'=>'required']) !!}
                 <span>{!! $errors->first('number_of_years_forex', '<ul><li class="error">:message</li></ul>') !!}</span>
             </div>
 
@@ -707,7 +717,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('number_of_transactions_forex',trans('cms::cms.number_of_transactions_forex')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('number_of_transactions_forex',$arrays['number_of_transactions'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('number_of_transactions_forex',$arrays['number_of_transactions'], null, ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('number_of_transactions_forex', '<ul><li class="error">:message</li></ul>') !!}</span>
             </div>
 
@@ -715,7 +725,7 @@
         <div class="col-sm-4">
             <div class="input_all_div">
                 <label>{!! Form::label('average_trading_forex',trans('cms::cms.average_trading_forex')  , ['class' => 'control-label']) !!}</label>
-                {!! Form::select('average_trading_forex',$arrays['average_trading'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
+                {!! Form::select('average_trading_forex',$arrays['average_trading'],  null, ['class' => '','id'=>'forex_corebundle_portalusers_default_platform']) !!}
                 <span>{!! $errors->first('average_trading_forex', '<ul><li class="error">:message</li></ul>') !!}</span>
             </div>
 
@@ -1437,7 +1447,8 @@
                 </div>
 
 
-</form>
+
+        {!! Form::close() !!}
 </div><!--.box-row-->
 </section><!--.content-box-->
 
@@ -1634,8 +1645,18 @@
 
     });
 
+
+
+
+    @if(isset($cms_forms_liveaccount->id))
+    $('#mainForm select,#mainForm input').attr('disabled','disabled');
+    var need_approve={!! json_decode($need_approve) !!};
+
+    for(var i=0;i<need_approve.length;i++){
+        $('*[name="'+need_approve[i]+'"]').removeAttr('disabled');
+    }
+    @endif
 </script>
 </div>
-{!! Form::close() !!}
-@endif
-</div>
+{{--@endif--}}
+{{--</div>--}}

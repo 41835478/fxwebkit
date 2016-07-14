@@ -10,7 +10,7 @@
             <thead>
                 <tr>
 
-                    <th>S.No</th><th>{{ trans('cms::cms.primary_email') }}</th><th>{{  trans('cms::cms.first_name') }}</th><th>{{ trans('cms::cms.last_name') }}</th><th>{{ trans('cms::cms.sole_joint_account') }}</th><th>Actions</th>
+                    <th>S.No</th><th>{{ trans('cms::cms.primary_email') }}</th><th>{{  trans('cms::cms.first_name') }}</th><th>{{ trans('cms::cms.last_name') }}</th><th>{{ trans('cms::cms.sole_joint_account') }}</th><th>{{ trans('cms::cms.status') }}</th><th>Actions</th>
                </tr>
             </thead>
             <tbody>
@@ -20,7 +20,7 @@
                 <tr>
                     <td>{{  $item->id }}</td>
 
-                    <td> {{ $item->primary_email }}</td><td>{{ $item->first_name }}</td><td>{{ $item->last_name }}</td><td>{{$item->sole_joint_account}}</td>
+                    <td> {{ $item->primary_email }}</td><td>{{ $item->first_name }}</td><td>{{ $item->last_name }}</td><td>{{$item->sole_joint_account}}</td><td>{{$form_status[$item->status]}}</td>
                    <td>
                        <a href="{{ url('cms/cms_forms_liveaccount', $item->id) }}" class="icon_button blue_icon fa fa-file-text tooltip_number" data-original-title={{trans('cms::cms.details')}}></a>
 

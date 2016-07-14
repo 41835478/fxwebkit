@@ -136,5 +136,20 @@ $this->sendEmail('contactus', $variables, $toEmail, 'Contact us');
         $this->sendEmail('referringpartner', $variables, $toEmail, 'Referring Partner,White Label,Money Managers');
     }
 
+    function sendEditLiveEmail($oFormValues,$toEmail){
+
+        $this->sendEmail('admin_editLiveAccount', $oFormValues, config('fxweb.adminEmail'), 'Client Edit live account');
+        $this->sendEmail('client_editLiveAccount', $oFormValues,$toEmail, 'Thank you for update your info');
+    }
+
+    function sendChangeLiveStatus($oValues,$toEmail){
+        if($oValues->status ==0){
+            $this->sendEmail('client_liveFormNeedEdit', $oValues,$toEmail, 'Please update your live account form');
+        }else if($oValues->status ==1){
+
+            $this->sendEmail('client_liveFormApproved', $oValues,$toEmail, 'Your live account has been approved');
+        }
+
+    }
 
 }
