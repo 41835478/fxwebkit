@@ -1457,8 +1457,9 @@
 <script type="text/javascript">
 
     function add_joint_validation() {
-
-        $('.joint_div input,.joint_div select').removeAttr('disabled');
+        @if(!isset($cms_forms_liveaccount->id))
+              $('.joint_div input,.joint_div select').removeAttr('disabled');
+        @endif
         $('.joint_div input').attr('required', 'true');
         $('input[name="other_source_funds_deposited"],input[name="other_source_funds_deposited_joint"]').removeAttr('required');
         $('.select2-input,.select2-search input,.select2-focusser,.select2-offscreen,input[name="secondary_phone_joint"],input[name="secondary_email_joint"],#d_joint input,#i_joint input[type="text"],#4_a_joint input,input[name="other_source_funds_deposited_joint"]').removeAttr('required');
@@ -1649,14 +1650,30 @@
 
 
     @if(isset($cms_forms_liveaccount->id))
-    $('#mainForm select,#mainForm input').attr('disabled','disabled');
-    var need_approve={!! json_decode($need_approve) !!};
 
-    for(var i=0;i<need_approve.length;i++){
-        $('*[name="'+need_approve[i]+'"]').removeAttr('disabled');
-    }
+
+
+    $('#mainForm select,#mainForm input').attr('disabled','disabled');
+    $('input[name="_token"],input[name="ref"]').removeAttr('disabled');
+
+    @if(count($need_approve))
+
+
+
+
+    @foreach($need_approve as $field)
+
+@if(preg_match('/_joint$/',$field))
+  $('.joint_div').show();
+    @endif
+
+
+        $('[name="{{$field}}"]').removeAttr('disabled');
+    @endforeach
+    @endif
+
     @endif
 </script>
 </div>
-{{--@endif--}}
-{{--</div>--}}
+@endif
+</div>

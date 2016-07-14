@@ -193,7 +193,7 @@ $form_status=['Not Approved','Approved','updated'];
         $ref=\Input::get('ref');
 
         $cms_forms_liveaccount=cms_forms_liveaccount::where('ref',$ref)->first();
-        
+
         $aNeedApprove=[];
         if($cms_forms_liveaccount){
             $oNeedApprove=  cms_forms_live_approve::where('cms_forms_liveaccounts_id',$cms_forms_liveaccount->id)->get();
@@ -260,26 +260,26 @@ $form_status=['Not Approved','Approved','updated'];
     public function cms_store(LiveAccountRequest $request)
     {
 
-        $errors=$this->validateFrequencyFields($request);
-        if(!empty($errors)){
-            return Redirect::back()->withErrors($errors);
+        if(!isset($request->ref) && strlen($request)>0){
+            $errors=$this->validateFrequencyFields($request);
+            if(!empty($errors)){
+                return Redirect::back()->withErrors($errors);
+            }
         }
 
+        if(isset($request->date_of_birth_d)){
         $date_of_birth=$request->date_of_birth_d.'/'.$request->date_of_birth_m.'/'.$request->date_of_birth_y;
         $date_of_birth_joint=$request->date_of_birth_joint_d.'/'.$request->date_of_birth_joint_m.'/'.$request->date_of_birth_joint_y;
 
         $request->merge(array('date_of_birth' => $date_of_birth));
         $request->merge(array('date_of_birth_joint' => $date_of_birth_joint));
-
-        $request->merge(array('ip' => getIpFromServer()));
+    }
 
         $htmlPath=public_path().'/tempHtml/live_account_'.rand(0,99999).rand(0,99999).'.html';
-        //$htmlPath=preg_replace('/tmp$/','html',$htmlPath);
-
         $html=View::make('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
         file_put_contents($htmlPath,$html);
-
         $pdfPath=public_path().'/pdf/'.explode('.',basename($htmlPath))[0].'.pdf';
+
 
         $protocol='http';
         if (!empty($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1')) {
@@ -287,12 +287,10 @@ $form_status=['Not Approved','Approved','updated'];
         } else {
             $protocol = 'http';
         }
-       $pdf= $protocol.'://'.$request->server->get('SERVER_NAME').':'.$_SERVER['SERVER_PORT'].'/pdf/'.explode('.',basename($htmlPath))[0].'.pdf';
+        $pdf= $protocol.'://'.$request->server->get('SERVER_NAME').':'.$_SERVER['SERVER_PORT'].'/pdf/'.explode('.',basename($htmlPath))[0].'.pdf';
         $request->merge(['pdf'=>$pdf]);
-
         $pdfPath=public_path().'/pdf/'.explode('.',basename($htmlPath))[0].'.pdf';
         $request->merge(['pdfPath'=>$pdfPath]);
-
         exec('"'.Config('fxweb.htmlToPdfPath').'" "'.$htmlPath.'" "'.$pdfPath.'"');
       //  unlink($htmlPath);
 
@@ -309,6 +307,7 @@ $form_status=['Not Approved','Approved','updated'];
         }else{
             $request->merge(array('ref' =>rand(0,999999) ));
 
+            $request->merge(array('ip' => getIpFromServer()));
         cms_forms_liveaccount::create($request->all());
 
             @$email->sendFormEmail('cms_forms_liveaccount',$request->all(),$request->primary_email);
