@@ -187,6 +187,11 @@ class CreateCmsFormsLiveaccountsTable extends Migration
             $table->string('id_type',50);
             $table->string('proof_of_residence',50);
             $table->string('pdf',255);
+
+            $table->string('ref',50);
+            $table->string('ip',20);
+            $table->text('comment');
+            $table->integer('status');
             $table->timestamps();
         });
     }

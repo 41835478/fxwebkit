@@ -7,6 +7,7 @@ use Fxweb\Http\Controllers\Controller;
 
 
 use  Modules\Cms\Entities\forms\cms_forms_liveaccount;
+use  Modules\Cms\Entities\forms\cms_forms_live_approve;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
@@ -24,10 +25,11 @@ class cms_forms_liveaccountController extends Controller
     public function index()
     {
 
-
+$form_status=['Not Approved','Approved','updated'];
         $cms_forms_liveaccount = cms_forms_liveaccount::paginate(15);
 
-        return view('cms::forms.cms_forms_liveaccount.index', compact('cms_forms_liveaccount'));
+        return view('cms::forms.cms_forms_liveaccount.index', compact('cms_forms_liveaccount'))
+            ->with('form_status',$form_status);
     }
 
     /**
@@ -67,15 +69,62 @@ class cms_forms_liveaccountController extends Controller
         $arrays=[];
         $cms_forms_liveaccount = cms_forms_liveaccount::findOrFail($id);
 
+        $arrays['form_status']=['Not Approved','Approved','Updated'];
         $arrays['number_of_years']= [0=>'Select One','None'=>'None','Less than 1 year'=>'Less than 1 year','1 to 3 years'=>'1 to 3 years','3 to 5 years'=>'3 to 5 years','More than 5 years'=>'More than 5 years'];
         $arrays['number_of_transactions']= [0=>'Select One','less than 10 transactions'=>'less than 10 transactions','10 to 20 transactions'=>'10 to 20 transactions','More than 20 transactions'=>'More than 20 transactions'];
         $arrays['average_trading']= [0=>'Select One','Less than 30,000 GBP'=>'Less than 30,000 GBP','30,000 to 60,000 GBP'=>'30,000 to 60,000 GBP','60,000 to 300,000 GBP'=>'60,000 to 300,000 GBP','More than 300,000 GBP'=>'More than 300,000 GBP'];
         $arrays['proof_of_residence']= [0=>'Select One','Residence ID'=>'Residence ID','Utility Bill'=>'Utility Bill','Bank Statement'=>'Bank Statement'];
         $arrays['id_type']= [0=>'Select One','Driving Licence'=>'Driving Licence','Passport'=>'Passport','Residence ID'=>'Residence ID'];
 
-        return view('cms::forms.cms_forms_liveaccount.show', compact('cms_forms_liveaccount'),['arrays'=>$arrays])->render();
+      $oNeedApprove=  cms_forms_live_approve::where('cms_forms_liveaccounts_id',$id)->get();
+        $aNeedApprove=[];
+        if(count($oNeedApprove)){
+        foreach($oNeedApprove as $fields){
+            $aNeedApprove[$fields->field_name]=0;
+        }
+        }
+        return view('cms::forms.cms_forms_liveaccount.show', compact('cms_forms_liveaccount'),['arrays'=>$arrays,'need_approve'=>$aNeedApprove])->render();
     }
 
+
+    public function postShow(Request $request){
+
+        $form_id=$request->id;
+
+
+        cms_forms_live_approve::where('cms_forms_liveaccounts_id',$form_id)->delete();
+
+        if(count($request->need_approve)){
+            $need_approve_fields=[];
+        foreach($request->need_approve as $fieldName=>$value){
+            $need_approve_fields[]=[
+                'cms_forms_liveaccounts_id'=>$form_id,
+                'field_name'=>$fieldName,
+                'status'=>0
+            ];
+        }
+        cms_forms_live_approve::insert($need_approve_fields);
+    }
+
+
+        $cms_forms_liveaccount = cms_forms_liveaccount::findOrFail($form_id);
+        $cms_forms_liveaccount->status=$request->status;
+
+        $cms_forms_liveaccount->comment=$request->comment;
+        $cms_forms_liveaccount->save();
+
+
+
+        $email=new Email();
+        $request->merge([
+            'ref'=>$cms_forms_liveaccount->ref,
+            'refLink'=>'http://'.$request->server->get('SERVER_NAME').':'.$_SERVER['SERVER_PORT'].'/live-account?ref='.$cms_forms_liveaccount->ref
+        ]);
+            @$email->sendChangeLiveStatus($request->all(),$cms_forms_liveaccount->primary_email);
+
+
+        return redirect('cms/cms_forms_liveaccount');
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -140,6 +189,22 @@ class cms_forms_liveaccountController extends Controller
      */
     public function cms_create()
     {
+
+        $ref=\Input::get('ref');
+
+        $cms_forms_liveaccount=cms_forms_liveaccount::where('ref',$ref)->first();
+        
+        $aNeedApprove=[];
+        if($cms_forms_liveaccount){
+            $oNeedApprove=  cms_forms_live_approve::where('cms_forms_liveaccounts_id',$cms_forms_liveaccount->id)->get();
+
+            if(count($oNeedApprove)){
+                foreach($oNeedApprove as $fields){
+                    $aNeedApprove[]=$fields->field_name;
+                }
+            }
+        }
+
         $arrays=[];
         $arrays['default_platform']= ['MT4'=>'MT4','Multi-products'=>'Multi-products','Both'=>'Both'];
         $arrays['account_type']= ['Self-trading'=>'Self-trading','Managed investor'=>'Managed investor (managed account under a fund
@@ -179,7 +244,11 @@ class cms_forms_liveaccountController extends Controller
        // $liveAccount=cms_forms_payment::find(\Session::get('liveAccount_id'));
 
 
-        return View::make('cms::forms.cms_forms_liveaccount.cms_form')->with('arrays',$arrays)->with('geoipCountry',getGeoipCountry())->render();
+        return View::make('cms::forms.cms_forms_liveaccount.cms_form')
+            ->with(['arrays'=>$arrays,'cms_forms_liveaccount'=>$cms_forms_liveaccount])
+            ->with('geoipCountry',getGeoipCountry())
+            ->with('need_approve',$aNeedApprove)
+            ->render();
 
     }
 
@@ -202,6 +271,7 @@ class cms_forms_liveaccountController extends Controller
         $request->merge(array('date_of_birth' => $date_of_birth));
         $request->merge(array('date_of_birth_joint' => $date_of_birth_joint));
 
+        $request->merge(array('ip' => getIpFromServer()));
 
         $htmlPath=public_path().'/tempHtml/live_account_'.rand(0,99999).rand(0,99999).'.html';
         //$htmlPath=preg_replace('/tmp$/','html',$htmlPath);
@@ -225,14 +295,28 @@ class cms_forms_liveaccountController extends Controller
 
         exec('"'.Config('fxweb.htmlToPdfPath').'" "'.$htmlPath.'" "'.$pdfPath.'"');
       //  unlink($htmlPath);
+
+
+
+        $email=new Email();
+        if(isset($request->ref) && strlen($request)>0){
+
+
+            $cms_forms_liveaccount=cms_forms_liveaccount::where('ref',$request->ref)->first();
+            $request->merge(['status'=>2]);
+            $cms_forms_liveaccount->update($request->all());
+            @$email->sendEditLiveEmail($request->all(),$request->primary_email);
+        }else{
+            $request->merge(array('ref' =>rand(0,999999) ));
+
         cms_forms_liveaccount::create($request->all());
 
+            @$email->sendFormEmail('cms_forms_liveaccount',$request->all(),$request->primary_email);
+        }
 
-            $email=new Email();
 //            @$email->userLiveAccount($request->all(),$request->primary_email);
 //            @$email->adminLiveAccount($request->all(),config('fxweb.adminEmail'));
 
-        @$email->sendFormEmail('cms_forms_liveaccount',$request->all(),$request->primary_email);
 
         Session::flash('flash_success', 'Your request has been sent successfully you can check it
         <a href="'.$pdf.'">HERE</a>
