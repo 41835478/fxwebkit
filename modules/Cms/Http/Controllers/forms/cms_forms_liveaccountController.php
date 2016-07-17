@@ -307,6 +307,7 @@ $form_status=['Not Approved','Approved','updated'];
             $cms_forms_liveaccount->update($request->all());
             @$email->sendEditLiveEmail($request->all(),$request->primary_email);
         }else{
+            unset($request->ref);
             $request->merge(array('ref' =>rand(0,999999) ));
 
             $request->merge(array('ip' => getIpFromServer()));
