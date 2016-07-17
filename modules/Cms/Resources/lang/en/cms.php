@@ -370,7 +370,8 @@
     'siteMap'=>'Site Map',
     'leftMenu'=>'Left Menu',
     'clientEmailTemplate'=>'Client Email Template',
-    'adminEmailTemplate'=>'Admin Email Template'
+    'adminEmailTemplate'=>'Admin Email Template',
+    'livePageCheckAgree'=>'I agree that all info in this page are correct'
 
 
 ]; ?>
