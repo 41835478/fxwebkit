@@ -1015,126 +1015,180 @@
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('understand_risks_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('understand_risks_joint', trans('cms::cms.understand_risks_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[understand_risks_joint]','1',isset($need_approve['understand_risks_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('understand_risks_joint', trans('cms::cms.understand_risks_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->other_source_funds_deposited_joint) ? 'Yes':'No' }}</label>
                         {!! $errors->first('understand_risks_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('experience_cfd_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('experience_cfd_joint', trans('cms::cms.experience_cfd_joint :'), ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[experience_cfd_joint]','1',isset($need_approve['experience_cfd_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('experience_cfd_joint', trans('cms::cms.experience_cfd_joint :'), ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->experience_cfd_joint) ? 'Yes':'No' }}</label>
                         {!! $errors->first('experience_cfd_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('experience_commodities_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('experience_commodities_joint', trans('cms::cms.experience_commodities_joint :'), ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[experience_commodities_joint]','1',isset($need_approve['experience_commodities_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('experience_commodities_joint', trans('cms::cms.experience_commodities_joint :'), ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->experience_commodities_joint) ? 'Yes':'No' }}</label>
                         {!! $errors->first('experience_commodities_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('experience_forex_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('experience_forex_joint', trans('cms::cms.experience_forex_joint :'), ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[experience_forex_joint]','1',isset($need_approve['experience_forex_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('experience_forex_joint', trans('cms::cms.experience_forex_joint :'), ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->experience_forex_joint) ? 'Yes':'No' }}</label>
                         {!! $errors->first('experience_forex_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('experience_futures_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('experience_futures_joint', trans('cms::cms.experience_futures_joint :'), ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[experience_futures_joint]','1',isset($need_approve['experience_futures_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('experience_futures_joint', trans('cms::cms.experience_futures_joint :'), ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->experience_futures_joint) ? 'Yes':'No' }}</label>
                         {!! $errors->first('experience_futures_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('experience_options_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('experience_options_joint', trans('cms::cms.experience_options_joint :'), ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[experience_options_joint]','1',isset($need_approve['experience_options_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('experience_options_joint', trans('cms::cms.experience_options_joint :'), ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->experience_options_joint) ? 'Yes':'No' }}</label>
                         {!! $errors->first('experience_options_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('experience_securities_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('experience_securities_joint', trans('cms::cms.experience_securities_joint :'), ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[experience_securities_joint]','1',isset($need_approve['experience_securities_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('experience_securities_joint', trans('cms::cms.experience_securities_joint :'), ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->experience_securities_joint) ? 'Yes':'No' }}</label>
                         {!! $errors->first('experience_securities_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('number_of_years_cfd_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('number_of_years_cfd_joint', trans('cms::cms.number_of_years_cfd_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[number_of_years_cfd_joint]','1',isset($need_approve['number_of_years_cfd_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('number_of_years_cfd_joint', trans('cms::cms.number_of_years_cfd_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->number_of_years_cfd_joint) ? $cms_forms_liveaccount->number_of_years_cfd_joint:'Select One' }}</label>
                         {!! $errors->first('number_of_years_cfd_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('number_of_years_commodities_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('number_of_years_commodities_joint', trans('cms::cms.number_of_years_commodities_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[number_of_years_commodities_joint]','1',isset($need_approve['number_of_years_commodities_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('number_of_years_commodities_joint', trans('cms::cms.number_of_years_commodities_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->number_of_years_commodities_joint) ? $cms_forms_liveaccount->number_of_years_commodities_joint:'Select One' }}</label>
                         {!! $errors->first('number_of_years_commodities_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('number_of_years_forex_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('number_of_years_forex_joint', trans('cms::cms.number_of_years_forex_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[number_of_years_forex_joint]','1',isset($need_approve['number_of_years_forex_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('number_of_years_forex_joint', trans('cms::cms.number_of_years_forex_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->number_of_years_forex_joint) ? $cms_forms_liveaccount->number_of_years_forex_joint:'Select One' }}</label>
                         {!! $errors->first('number_of_years_forex_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('number_of_years_futures_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('number_of_years_futures_joint', trans('cms::cms.number_of_years_futures_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[number_of_years_futures_joint]','1',isset($need_approve['number_of_years_futures_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('number_of_years_futures_joint', trans('cms::cms.number_of_years_futures_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->number_of_years_futures_joint) ? $cms_forms_liveaccount->number_of_years_futures_joint:'Select One' }}</label>
                         {!! $errors->first('number_of_years_futures_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('number_of_years_options_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('number_of_years_options_joint', trans('cms::cms.number_of_years_options_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[number_of_years_options_joint]','1',isset($need_approve['number_of_years_options_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('number_of_years_options_joint', trans('cms::cms.number_of_years_options_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->number_of_years_options_joint) ? $cms_forms_liveaccount->number_of_years_options_joint:'Select One' }}</label>
                         {!! $errors->first('number_of_years_options_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('number_of_years_securities_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('number_of_years_securities_joint', trans('cms::cms.number_of_years_securities_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[number_of_years_securities_joint]','1',isset($need_approve['number_of_years_securities_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('number_of_years_securities_joint', trans('cms::cms.number_of_years_securities_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->number_of_years_securities_joint) ? $cms_forms_liveaccount->number_of_years_securities_joint:'Select One' }}</label>
                         {!! $errors->first('number_of_years_securities_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('number_of_transactions_cfd_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('number_of_transactions_cfd_joint', trans('cms::cms.number_of_transactions_cfd_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[number_of_transactions_cfd_joint]','1',isset($need_approve['number_of_transactions_cfd_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('number_of_transactions_cfd_joint', trans('cms::cms.number_of_transactions_cfd_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->number_of_transactions_cfd_joint) ? $cms_forms_liveaccount->number_of_transactions_cfd_joint:'Select One' }}</label>
                         {!! $errors->first('number_of_transactions_cfd_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('number_of_transactions_commodities_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('number_of_transactions_commodities_joint', trans('cms::cms.number_of_transactions_commodities_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[number_of_transactions_commodities_joint]','1',isset($need_approve['number_of_transactions_commodities_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('number_of_transactions_commodities_joint', trans('cms::cms.number_of_transactions_commodities_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->number_of_transactions_commodities_joint) ? $cms_forms_liveaccount->number_of_transactions_commodities_joint:'Select One' }}</label>
                         {!! $errors->first('number_of_transactions_commodities_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('number_of_transactions_forex_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('number_of_transactions_forex_joint', trans('cms::cms.number_of_transactions_forex_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[number_of_transactions_forex_joint]','1',isset($need_approve['number_of_transactions_forex_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('number_of_transactions_forex_joint', trans('cms::cms.number_of_transactions_forex_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->number_of_transactions_forex_joint) ? $cms_forms_liveaccount->number_of_transactions_forex_joint:'Select One' }}</label>
                         {!! $errors->first('number_of_transactions_forex_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('number_of_transactions_futures_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('number_of_transactions_futures_joint', trans('cms::cms.number_of_transactions_futures_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[number_of_transactions_futures_joint]','1',isset($need_approve['number_of_transactions_futures_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('number_of_transactions_futures_joint', trans('cms::cms.number_of_transactions_futures_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->number_of_transactions_futures_joint) ? $cms_forms_liveaccount->number_of_transactions_futures_joint:'Select One' }}</label>
                         {!! $errors->first('number_of_transactions_futures_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('number_of_transactions_options_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('number_of_transactions_options_joint', trans('cms::cms.number_of_transactions_options_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[number_of_transactions_options_joint]','1',isset($need_approve['number_of_transactions_options_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('number_of_transactions_options_joint', trans('cms::cms.number_of_transactions_options_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->number_of_transactions_options_joint) ? $cms_forms_liveaccount->number_of_transactions_options_joint:'Select One' }}</label>
                         {!! $errors->first('number_of_transactions_options_joint', '<p class="help-block">:message</p>') !!}
@@ -1148,126 +1202,180 @@
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('average_trading_cfd_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('average_trading_cfd_joint', trans('cms::cms.average_trading_cfd_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[average_trading_cfd_joint]','1',isset($need_approve['average_trading_cfd_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('average_trading_cfd_joint', trans('cms::cms.average_trading_cfd_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->average_trading_cfd_joint) ? $cms_forms_liveaccount->average_trading_cfd_joint:'Select One' }}</label>
                         {!! $errors->first('average_trading_cfd_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('average_trading_commodities_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('average_trading_commodities_joint', trans('cms::cms.average_trading_commodities_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[average_trading_commodities_joint]','1',isset($need_approve['average_trading_commodities_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('average_trading_commodities_joint', trans('cms::cms.average_trading_commodities_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->average_trading_commodities_joint) ? $cms_forms_liveaccount->average_trading_commodities_joint:'Select One' }}</label>
                         {!! $errors->first('average_trading_commodities_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('average_trading_forex_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('average_trading_forex_joint', trans('cms::cms.average_trading_forex_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[average_trading_forex_joint]','1',isset($need_approve['average_trading_forex_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('average_trading_forex_joint', trans('cms::cms.average_trading_forex_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->average_trading_forex_joint) ? $cms_forms_liveaccount->average_trading_forex_joint:'Select One' }}</label>
                         {!! $errors->first('average_trading_forex_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('average_trading_futures_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('average_trading_futures_joint', trans('cms::cms.average_trading_futures_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[average_trading_futures_joint]','1',isset($need_approve['average_trading_futures_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('average_trading_futures_joint', trans('cms::cms.average_trading_futures_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->average_trading_futures_joint) ? $cms_forms_liveaccount->average_trading_futures_joint:'Select One' }}</label>
                         {!! $errors->first('average_trading_futures_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('average_trading_options_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('average_trading_options_joint', trans('cms::cms.average_trading_options_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[average_trading_options_joint]','1',isset($need_approve['average_trading_options_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('average_trading_options_joint', trans('cms::cms.average_trading_options_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->average_trading_options_joint) ? $cms_forms_liveaccount->average_trading_options_joint:'Select One' }}</label>
                         {!! $errors->first('average_trading_options_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('average_trading_securities_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('average_trading_securities_joint', trans('cms::cms.average_trading_securities_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[average_trading_securities_joint]','1',isset($need_approve['average_trading_securities_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('average_trading_securities_joint', trans('cms::cms.average_trading_securities_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->average_trading_securities_joint) ? $cms_forms_liveaccount->average_trading_securities_joint:'Select One' }}</label>
                         {!! $errors->first('average_trading_securities_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('understand_market_cfd_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('understand_market_cfd_joint', trans('cms::cms.understand_market_cfd_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[understand_market_cfd_joint]','1',isset($need_approve['understand_market_cfd_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('understand_market_cfd_joint', trans('cms::cms.understand_market_cfd_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->understand_market_cfd_joint) ? 'Yes':'No' }}</label>
                         {!! $errors->first('understand_market_cfd_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('understand_market_commodities_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('understand_market_commodities_joint', trans('cms::cms.understand_market_commodities_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[understand_market_commodities_joint]','1',isset($need_approve['understand_market_commodities_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('understand_market_commodities_joint', trans('cms::cms.understand_market_commodities_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->understand_market_commodities_joint) ? 'Yes':'No' }}</label>
                         {!! $errors->first('understand_market_commodities_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('understand_market_forex_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('understand_market_forex_joint', trans('cms::cms.understand_market_forex_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[understand_market_forex_joint]','1',isset($need_approve['understand_market_forex_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('understand_market_forex_joint', trans('cms::cms.understand_market_forex_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->understand_market_forex_joint) ? 'Yes':'No' }}</label>
                         {!! $errors->first('understand_market_forex_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('understand_market_futures_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('understand_market_futures_joint', trans('cms::cms.understand_market_futures_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[understand_market_futures_joint]','1',isset($need_approve['understand_market_futures_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('understand_market_futures_joint', trans('cms::cms.understand_market_futures_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->understand_market_futures_joint) ? 'Yes':'No' }}</label>
                         {!! $errors->first('understand_market_futures_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('understand_market_options_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('understand_market_options_joint', trans('cms::cms.understand_market_options_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[understand_market_options_joint]','1',isset($need_approve['understand_market_options_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('understand_market_options_joint', trans('cms::cms.understand_market_options_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->understand_market_options_joint) ? 'Yes':'No' }}</label>
                         {!! $errors->first('understand_market_options_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('understand_market_securities_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('understand_market_securities_joint', trans('cms::cms.understand_market_securities_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[understand_market_securities_joint]','1',isset($need_approve['understand_market_securities_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('understand_market_securities_joint', trans('cms::cms.understand_market_securities_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->understand_market_securities_joint) ? 'Yes':'No' }}</label>
                         {!! $errors->first('understand_market_securities_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('understand_market_years_cfd_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('understand_market_years_cfd_joint', trans('cms::cms.understand_market_years_cfd_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[understand_market_years_cfd_joint]','1',isset($need_approve['understand_market_years_cfd_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('understand_market_years_cfd_joint', trans('cms::cms.understand_market_years_cfd_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{$cms_forms_liveaccount->understand_market_years_cfd_joint }}</label>
                         {!! $errors->first('understand_market_years_cfd_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('understand_market_years_commodities_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('understand_market_years_commodities_joint', trans('cms::cms.understand_market_years_commodities_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[understand_market_years_commodities_joint]','1',isset($need_approve['understand_market_years_commodities_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('understand_market_years_commodities_joint', trans('cms::cms.understand_market_years_commodities_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{$cms_forms_liveaccount->understand_market_years_commodities_joint }}</label>
                         {!! $errors->first('understand_market_years_commodities_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('understand_market_years_forex_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('understand_market_years_forex_joint', trans('cms::cms.understand_market_years_forex_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[understand_market_years_forex_joint]','1',isset($need_approve['understand_market_years_forex_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('understand_market_years_forex_joint', trans('cms::cms.understand_market_years_forex_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{$cms_forms_liveaccount->understand_market_years_forex_joint }}</label>
                         {!! $errors->first('understand_market_years_forex_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('understand_market_years_futures_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('understand_market_years_futures_joint', trans('cms::cms.understand_market_years_futures_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[understand_market_years_futures_joint]','1',isset($need_approve['understand_market_years_futures_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('understand_market_years_futures_joint', trans('cms::cms.understand_market_years_futures_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{$cms_forms_liveaccount->understand_market_years_futures_joint }}</label>
                         {!! $errors->first('understand_market_years_futures_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('understand_market_years_options_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('understand_market_years_options_joint', trans('cms::cms.understand_market_years_options_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[understand_market_years_options_joint]','1',isset($need_approve['understand_market_years_options_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('understand_market_years_options_joint', trans('cms::cms.understand_market_years_options_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{$cms_forms_liveaccount->understand_market_years_options_joint }}</label>
                         {!! $errors->first('understand_market_years_options_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('understand_market_years_securities_joint') ? 'has-error' : ''}}">
-                    {!! Form::label('understand_market_years_securities_joint', trans('cms::cms.understand_market_years_securities_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[understand_market_years_securities_joint]','1',isset($need_approve['understand_market_years_securities_joint']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('understand_market_years_securities_joint', trans('cms::cms.understand_market_years_securities_joint').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{$cms_forms_liveaccount->understand_market_years_securities_joint }}</label>
                         {!! $errors->first('understand_market_years_securities_joint', '<p class="help-block">:message</p>') !!}
@@ -1276,21 +1384,30 @@
 
 
                 <div class="form-group {{ $errors->has('joint_second_date') ? 'has-error' : ''}}">
-                    {!! Form::label('joint_second_date', trans('cms::cms.joint_second_date :'), ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[joint_second_date]','1',isset($need_approve['joint_second_date']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('joint_second_date', trans('cms::cms.joint_second_date :'), ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{$cms_forms_liveaccount->date_of_birth_joint }}</label>
                         {!! $errors->first('joint_second_date', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('joint_second_fullname') ? 'has-error' : ''}}">
-                    {!! Form::label('joint_second_fullname', trans('cms::cms.joint_second_fullname :'), ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[joint_second_fullname]','1',isset($need_approve['joint_second_fullname']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('joint_second_fullname', trans('cms::cms.joint_second_fullname :'), ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{$cms_forms_liveaccount->first_name_joint.' '.$cms_forms_liveaccount->last_name_joint }}</label>
                         {!! $errors->first('joint_second_fullname', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('joint_second_title') ? 'has-error' : ''}}">
-                    {!! Form::label('joint_second_title', trans('cms::cms.joint_second_title :'), ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[joint_second_title]','1',isset($need_approve['joint_second_title']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('joint_second_title', trans('cms::cms.joint_second_title :'), ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{$cms_forms_liveaccount->title_joint }}</label>
                         {!! $errors->first('joint_second_title', '<p class="help-block">:message</p>') !!}
@@ -1303,165 +1420,224 @@
 
             <div class="sole-group-div">
                 <div class="form-group {{ $errors->has('agreem_check_1') ? 'has-error' : ''}}">
-                    {!! Form::label('agreem_check_1', trans('cms::cms.agreem_check_1').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[agreem_check_1]','1',isset($need_approve['agreem_check_1']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('agreem_check_1', trans('cms::cms.agreem_check_1').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->agreem_check_1)? 'Yes':'No' }}</label>
                         {!! $errors->first('agreem_check_1', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('agreem_check_2') ? 'has-error' : ''}}">
-                    {!! Form::label('agreem_check_2', trans('cms::cms.agreem_check_2').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[agreem_check_2]','1',isset($need_approve['agreem_check_2']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('agreem_check_2', trans('cms::cms.agreem_check_2').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->agreem_check_2)? 'Yes':'No' }}</label>
                         {!! $errors->first('agreem_check_2', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('agreem_check_3') ? 'has-error' : ''}}">
-                    {!! Form::label('agreem_check_3', trans('cms::cms.agreem_check_3').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[agreem_check_3]','1',isset($need_approve['agreem_check_3']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('agreem_check_3', trans('cms::cms.agreem_check_3').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->agreem_check_3)? 'Yes':'No' }}</label>
                         {!! $errors->first('agreem_check_3', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('agreem_check_4') ? 'has-error' : ''}}">
-                    {!! Form::label('agreem_check_4', trans('cms::cms.agreem_check_4').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[agreem_check_4]','1',isset($need_approve['agreem_check_4']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('agreem_check_4', trans('cms::cms.agreem_check_4').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->agreem_check_4)? 'Yes':'No' }}</label>
                         {!! $errors->first('agreem_check_4', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('agreem_check_5') ? 'has-error' : ''}}">
-                    {!! Form::label('agreem_check_5', trans('cms::cms.agreem_check_5').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[agreem_check_5]','1',isset($need_approve['agreem_check_5']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('agreem_check_5', trans('cms::cms.agreem_check_5').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->agreem_check_5)? 'Yes':'No' }}</label>
                         {!! $errors->first('agreem_check_5', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('agreem_check_6') ? 'has-error' : ''}}">
-                    {!! Form::label('agreem_check_6', trans('cms::cms.agreem_check_6').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[agreem_check_6]','1',isset($need_approve['agreem_check_6']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('agreem_check_6', trans('cms::cms.agreem_check_6').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->agreem_check_6)? 'Yes':'No' }}</label>
                         {!! $errors->first('agreem_check_6', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('agreem_check_7') ? 'has-error' : ''}}">
-                    {!! Form::label('agreem_check_7', trans('cms::cms.agreem_check_7').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[agreem_check_7]','1',isset($need_approve['agreem_check_7']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('agreem_check_7', trans('cms::cms.agreem_check_7').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->agreem_check_7)? 'Yes':'No' }}</label>
                         {!! $errors->first('agreem_check_7', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('agreem_check_8') ? 'has-error' : ''}}">
-                    {!! Form::label('agreem_check_8', trans('cms::cms.agreem_check_8').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[agreem_check_8]','1',isset($need_approve['agreem_check_8']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('agreem_check_8', trans('cms::cms.agreem_check_8').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->agreem_check_8)? 'Yes':'No' }}</label>
                         {!! $errors->first('agreem_check_8', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('agreem_check_9') ? 'has-error' : ''}}">
-                    {!! Form::label('agreem_check_9', trans('cms::cms.agreem_check_9').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[agreem_check_9]','1',isset($need_approve['agreem_check_9']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('agreem_check_9', trans('cms::cms.agreem_check_9').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->agreem_check_9)? 'Yes':'No' }}</label>
                         {!! $errors->first('agreem_check_9', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('agreem_check_10') ? 'has-error' : ''}}">
-                    {!! Form::label('agreem_check_10', trans('cms::cms.agreem_check_10').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[agreem_check_10]','1',isset($need_approve['agreem_check_10']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('agreem_check_10', trans('cms::cms.agreem_check_10').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->agreem_check_10)? 'Yes':'No' }}</label>
                         {!! $errors->first('agreem_check_10', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('agreem_check_11') ? 'has-error' : ''}}">
-                    {!! Form::label('agreem_check_11', trans('cms::cms.agreem_check_11').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[agreem_check_11]','1',isset($need_approve['agreem_check_11']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('agreem_check_11', trans('cms::cms.agreem_check_11').' :', ['class' => '']) !!}
+                    </div>
                     <div class="col-sm-4">
                         <label class="control-label">{{($cms_forms_liveaccount->agreem_check_11)? 'Yes':'No' }}</label>
                         {!! $errors->first('agreem_check_11', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
                 <div class="form-group {{ $errors->has('agreem_check_12') ? 'has-error' : ''}}">
-                    {!! Form::label('agreem_check_12', trans('cms::cms.agreem_check_12').' :', ['class' => 'col-sm-8 control-label']) !!}
-                    <div class="col-sm-4">
-                        <label class="control-label">{{($cms_forms_liveaccount->agreem_check_12)? 'Yes':'No' }}</label>
-                        {!! $errors->first('agreem_check_12', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-                <div class="form-group {{ $errors->has('joint_first_date') ? 'has-error' : ''}}">
-                    {!! Form::label('joint_first_date', trans('cms::cms.joint_first_date :'), ['class' => 'col-sm-8 control-label']) !!}
-                    <div class="col-sm-4">
-                        <label class="control-label">{{$cms_forms_liveaccount->date_of_birth }}</label>
-                        {!! $errors->first('joint_first_date', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-                <div class="form-group {{ $errors->has('joint_first_fullname') ? 'has-error' : ''}}">
-                    {!! Form::label('joint_first_fullname', trans('cms::cms.joint_first_fullname :'), ['class' => 'col-sm-8 control-label']) !!}
-                    <div class="col-sm-4">
-                        <label class="control-label">{{$cms_forms_liveaccount->first_name.' '.$cms_forms_liveaccount->last_name }}</label>
-                        {!! $errors->first('joint_first_fullname', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-                <div class="form-group {{ $errors->has('joint_first_title') ? 'has-error' : ''}}">
-                    {!! Form::label('joint_first_title', trans('cms::cms.joint_first_title :'), ['class' => 'col-sm-8 control-label']) !!}
-                    <div class="col-sm-4">
-                        <label class="control-label">{{$cms_forms_liveaccount->title }}</label>
-                        {!! $errors->first('joint_first_title', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-
-                <div class="form-group {{ $errors->has('document_id') ? 'has-error' : ''}}">
-                    {!! Form::label('document_id', trans('cms::cms.document_id :'), ['class' => 'col-sm-8 control-label']) !!}
-                    <div class="col-sm-4">
-                        <label class="control-label"><a href="/{{Config::get('cms.asset_folder').'/'.$cms_forms_liveaccount->document_id }}" >{{trans('cms::cms.document_id')}}</a></label>
-                        {!! $errors->first('document_id', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
-                <!--
-            <div class="form-group {{ $errors->has('document_id2') ? 'has-error' : ''}}">
-                {!! Form::label('document_id2', trans('document_id2 :'), ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[agreem_check_12]','1',isset($need_approve['agreem_check_12']),['class'=>'approve_checkbox']) !!}
+                        {!! Form::label('agreem_check_12', trans('cms::cms.agreem_check_12').' :', ['class' => '']) !!}
                         <div class="col-sm-4">
-                            <label class="control-label">{{$cms_forms_liveaccount->document_id2 }}</label>
-                    {!! $errors->first('document_id2', '<p class="help-block">:message</p>') !!}
+                            <label class="control-label">{{($cms_forms_liveaccount->agreem_check_12)? 'Yes':'No' }}</label>
+                            {!! $errors->first('agreem_check_12', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
-                    -->
-                <div class="form-group {{ $errors->has('document_por') ? 'has-error' : ''}}">
-                    {!! Form::label('document_por', trans('cms::cms.document_por :'), ['class' => 'col-sm-8 control-label']) !!}
-                    <div class="col-sm-4">
-                        <label class="control-label"><a href="/{{Config::get('cms.asset_folder').'/'.$cms_forms_liveaccount->document_por }}">{{trans('cms::cms.document_por')}}</a></label>
-                        {!! $errors->first('document_por', '<p class="help-block">:message</p>') !!}
+                    <div class="form-group {{ $errors->has('joint_first_date') ? 'has-error' : ''}}">
+                        <div class="col-sm-8 control-label ">
+                            {!! Form::checkbox('need_approve[joint_first_date]','1',isset($need_approve['joint_first_date']),['class'=>'approve_checkbox']) !!}
+                            {!! Form::label('joint_first_date', trans('cms::cms.joint_first_date :'), ['class' => '']) !!}
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-label">{{$cms_forms_liveaccount->date_of_birth }}</label>
+                            {!! $errors->first('joint_first_date', '<p class="help-block">:message</p>') !!}
+                        </div>
                     </div>
-                </div>
-                <div class="form-group {{ $errors->has('id_type') ? 'has-error' : ''}}">
-                    {!! Form::label('id_type', trans('cms::cms.id_type :'), ['class' => 'col-sm-8 control-label']) !!}
-                    <div class="col-sm-4">
-                        <label class="control-label">{{($cms_forms_liveaccount->id_type)? $cms_forms_liveaccount->id_type:'Select One' }}</label>
-                        {!! $errors->first('id_type', '<p class="help-block">:message</p>') !!}
+                    <div class="form-group {{ $errors->has('joint_first_fullname') ? 'has-error' : ''}}">
+                        <div class="col-sm-8 control-label ">
+                            {!! Form::checkbox('need_approve[joint_first_fullname]','1',isset($need_approve['joint_first_fullname']),['class'=>'approve_checkbox']) !!}
+                            {!! Form::label('joint_first_fullname', trans('cms::cms.joint_first_fullname :'), ['class' => '']) !!}
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-label">{{$cms_forms_liveaccount->first_name.' '.$cms_forms_liveaccount->last_name }}</label>
+                            {!! $errors->first('joint_first_fullname', '<p class="help-block">:message</p>') !!}
+                        </div>
                     </div>
-                </div>
-                <div class="form-group {{ $errors->has('proof_of_residence :') ? 'has-error' : ''}}">
-                    {!! Form::label('proof_of_residence', trans('cms::cms.proof_of_residence :'), ['class' => 'col-sm-8 control-label']) !!}
-                    <div class="col-sm-4">
-                        <label class="control-label">{{($cms_forms_liveaccount->proof_of_residence)? $cms_forms_liveaccount->proof_of_residence:'Select One' }}</label>
-                        {!! $errors->first('proof_of_residence', '<p class="help-block">:message</p>') !!}
+                    <div class="form-group {{ $errors->has('joint_first_title') ? 'has-error' : ''}}">
+                        <div class="col-sm-8 control-label ">
+                            {!! Form::checkbox('need_approve[joint_first_title]','1',isset($need_approve['joint_first_title']),['class'=>'approve_checkbox']) !!}
+                            {!! Form::label('joint_first_title', trans('cms::cms.joint_first_title :'), ['class' => '']) !!}
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-label">{{$cms_forms_liveaccount->title }}</label>
+                            {!! $errors->first('joint_first_title', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
 
+                    <div class="form-group {{ $errors->has('document_id') ? 'has-error' : ''}}">
+                        <div class="col-sm-8 control-label ">
+                            {!! Form::checkbox('need_approve[document_id]','1',isset($need_approve['document_id']),['class'=>'approve_checkbox']) !!}
+                            {!! Form::label('document_id', trans('cms::cms.document_id :'), ['class' => '']) !!}
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-label"><a href="/{{Config::get('cms.asset_folder').'/'.$cms_forms_liveaccount->document_id }}" >{{trans('cms::cms.document_id')}}</a></label>
+                            {!! $errors->first('document_id', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                    <!--
+            <div class="form-group {{ $errors->has('document_id2') ? 'has-error' : ''}}">
+                {!! Form::label('document_id2', trans('document_id2 :'), ['class' => 'col-sm-8 control-label']) !!}
+                            <div class="col-sm-4">
+                                <label class="control-label">{{$cms_forms_liveaccount->document_id2 }}</label>
+                    {!! $errors->first('document_id2', '<p class="help-block">:message</p>') !!}
+                            </div>
+                        </div>
+                        -->
+                    <div class="form-group {{ $errors->has('document_por') ? 'has-error' : ''}}">
+                        <div class="col-sm-8 control-label ">
+                            {!! Form::checkbox('need_approve[document_por]','1',isset($need_approve['document_por']),['class'=>'approve_checkbox']) !!}
+                            {!! Form::label('document_por', trans('cms::cms.document_por :'), ['class' => '']) !!}
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-label"><a href="/{{Config::get('cms.asset_folder').'/'.$cms_forms_liveaccount->document_por }}">{{trans('cms::cms.document_por')}}</a></label>
+                            {!! $errors->first('document_por', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                    <div class="form-group {{ $errors->has('id_type') ? 'has-error' : ''}}">
+                        <div class="col-sm-8 control-label ">
+                            {!! Form::checkbox('need_approve[id_type]','1',isset($need_approve['id_type']),['class'=>'approve_checkbox']) !!}
+                            {!! Form::label('id_type', trans('cms::cms.id_type :'), ['class' => '']) !!}
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-label">{{($cms_forms_liveaccount->id_type)? $cms_forms_liveaccount->id_type:'Select One' }}</label>
+                            {!! $errors->first('id_type', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+                    <div class="form-group {{ $errors->has('proof_of_residence :') ? 'has-error' : ''}}">
+                        <div class="col-sm-8 control-label ">
+                            {!! Form::checkbox('need_approve[proof_of_residence]','1',isset($need_approve['proof_of_residence']),['class'=>'approve_checkbox']) !!}
+                            {!! Form::label('proof_of_residence', trans('cms::cms.proof_of_residence :'), ['class' => '']) !!}
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-label">{{($cms_forms_liveaccount->proof_of_residence)? $cms_forms_liveaccount->proof_of_residence:'Select One' }}</label>
+                            {!! $errors->first('proof_of_residence', '<p class="help-block">:message</p>') !!}
+
+                        </div>
+                    </div>
+                    <div class="form-group {{ $errors->has('pdf') ? 'has-error' : ''}}">
+                        <div class="col-sm-8 control-label ">
+                            {!! Form::checkbox('need_approve[pdf]','1',isset($need_approve['pdf']),['class'=>'approve_checkbox']) !!}
+                            {!! Form::label('pdf', trans('cms::cms.pdf :'), ['class' => '']) !!}
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-label"><a href="{{$cms_forms_liveaccount->pdf }}">Live Accout Contract</a></label>
+                            {!! $errors->first('pdf', '<p class="help-block">:message</p>') !!}
+                        </div>
                     </div>
                 </div>
-                <div class="form-group {{ $errors->has('pdf') ? 'has-error' : ''}}">
-                    {!! Form::label('pdf', trans('cms::cms.pdf :'), ['class' => 'col-sm-8 control-label']) !!}
-                    <div class="col-sm-4">
-                        <label class="control-label"><a href="{{$cms_forms_liveaccount->pdf }}">Live Accout Contract</a></label>
-                        {!! $errors->first('pdf', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
+
+
+
+                {!! Form::textarea('comment',$cms_forms_liveaccount->comment,['style'=>'width:100%;']) !!}
+
+                {!! Form::select('status', $arrays['form_status'],$cms_forms_liveaccount->status,[]) !!}
+                {!! Form::submit('save',["class"=>""]) !!}
+                {!! Form::close() !!}
             </div>
-
-
-
-            {!! Form::textarea('comment',$cms_forms_liveaccount->comment,['style'=>'width:100%;']) !!}
-
-            {!! Form::select('status', $arrays['form_status'],$cms_forms_liveaccount->status,[]) !!}
-            {!! Form::submit('save',["class"=>""]) !!}
-            {!! Form::close() !!}
         </div>
-    </div>
 @endsection
