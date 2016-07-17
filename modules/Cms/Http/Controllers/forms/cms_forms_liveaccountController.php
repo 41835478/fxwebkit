@@ -15,6 +15,7 @@ use Modules\Cms\Http\Requests\LiveAccountRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 use modules\Cms\Http\Controllers\forms\Email;
+use Modules\Cms\Entities\forms\cms_forms_livesm;
 class cms_forms_liveaccountController extends Controller
 {
     /**
@@ -311,9 +312,12 @@ $form_status=['Not Approved','Approved','updated'];
             $request->merge(array('ref' =>rand(0,999999) ));
 
             $request->merge(array('ip' => getIpFromServer()));
-        cms_forms_liveaccount::create($request->all());
+        $new_live_form=cms_forms_liveaccount::create($request->all());
+
+$smsResult=$this->sendLiveAccountSecret($new_live_form->id);
 
             @$email->sendFormEmail('cms_forms_liveaccount',$request->all(),$request->primary_email);
+            return Redirect::to('/account-sms?id='.$new_live_form->id);
         }
 
 //            @$email->userLiveAccount($request->all(),$request->primary_email);
@@ -328,6 +332,17 @@ $form_status=['Not Approved','Approved','updated'];
         return view('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
 
         //    return redirect('cms/cms_forms_liveaccount');
+    }
+
+    public function sendLiveAccountSecret($live_id){
+
+        cms_forms_livesm::create(
+            [
+                'live_account_id'=>$live_id,
+                'secret'=>rand(1000,9999)
+            ]
+        );
+return true;
     }
 
     public function addErrorMessage(&$errors,$key,$value){

@@ -291,4 +291,25 @@ Route::get('cms_forms_qwe/form', [
 ]);
 Route::post('cms_forms_qwe/form', [
     'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_qweController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_liveaccountsms', 'modules\Cms\Http\Controllers\forms\cms_forms_liveaccountsmsController');});
+Route::get('cms_forms_liveaccountsms/form', [
+    'as' => 'cms_forms_liveaccountsms.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_liveaccountsmsController@cms_create'
+]);
+Route::post('cms_forms_liveaccountsms/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_liveaccountsmsController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_smsliveaccount', 'modules\Cms\Http\Controllers\forms\cms_forms_smsliveaccountController');});
+Route::get('cms_forms_smsliveaccount/form', [
+    'as' => 'cms_forms_smsliveaccount.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_smsliveaccountController@cms_create'
+]);
+Route::post('cms_forms_smsliveaccount/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_smsliveaccountController@cms_store'
+]);Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => ''], function() {
+Route::resource('cms_forms_livesms', 'modules\Cms\Http\Controllers\forms\cms_forms_livesmsController');});
+Route::get('cms_forms_livesms/form', [
+    'as' => 'cms_forms_livesms.form', 'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_livesmsController@cms_create'
+]);
+Route::post('cms_forms_livesms/form', [
+    'uses' => 'modules\Cms\Http\Controllers\forms\cms_forms_livesmsController@cms_store'
 ]);
