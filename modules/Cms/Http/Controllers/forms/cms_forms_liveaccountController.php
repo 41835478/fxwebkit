@@ -299,7 +299,7 @@ $form_status=['Not Approved','Approved','updated'];
 
 
         $email=new Email();
-        if(isset($request->ref) && strlen($request)>0){
+        if(isset($request->ref) && $request->ref !=0 && strlen($request->ref) >1){
 
 
             $cms_forms_liveaccount=cms_forms_liveaccount::where('ref',$request->ref)->first();
