@@ -4,7 +4,7 @@
     <div class="container">
 
         <div id="content-wrapper">
-            <h1>live account( <a href="/live-account?ref={{$cms_forms_liveaccount->ref}}">ref={{$cms_forms_liveaccount->ref}}</a>) </h1>
+            <h1>live account( <a href="/live-account?ref={{$cms_forms_liveaccount->ref}}">{{  $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/live-account?'}}ref={{$cms_forms_liveaccount->ref}}</a>) </h1>
 
             {{--{!! Form::model($cms_forms_liveaccount, [--}}
            {{--'method' => 'PATCH',--}}

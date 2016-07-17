@@ -1667,6 +1667,15 @@
   $('.joint_div').show();
     @endif
 
+@if($field=='date_of_birth')
+  $('[name="date_of_birth_y"],[name="date_of_birth_m"],[name="date_of_birth_d"]').removeAttr('disabled');
+@endif
+
+
+@if($field=='date_of_birth_joint')
+
+  $('[name="date_of_birth_joint_y"],[name="date_of_birth_joint_m"],[name="date_of_birth_joint_d"]').removeAttr('disabled');
+@endif
 
         $('[name="{{$field}}"]').removeAttr('disabled');
     @endforeach
