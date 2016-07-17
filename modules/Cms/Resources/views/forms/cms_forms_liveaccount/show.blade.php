@@ -41,7 +41,7 @@
             <div class="form-group {{ $errors->has('middle_name') ? 'has-error' : ''}}">
 
                 <div class="col-sm-8 control-label">
-                {!! Form::checkbox('need_approve[middle_name]','1',false,['class'=>'approve_checkbox']) !!}
+                {!! Form::checkbox('need_approve[middle_name]','1',isset($need_approve['middle_name']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('middle_name', trans('cms::cms.middle_name').' :', ['class' => '']) !!}
 </div>
 
@@ -53,7 +53,7 @@
             <div class="form-group {{ $errors->has('last_name') ? 'has-error' : ''}}">
 
                 <div class="col-sm-8 control-label ">
-                {!! Form::checkbox('need_approve[last_name]','1',false,['class'=>'approve_checkbox']) !!}
+                {!! Form::checkbox('need_approve[last_name]','1',isset($need_approve['last_name']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('last_name', trans('cms::cms.last_name').' :', ['class' => '']) !!}
                     </div>
 
@@ -68,7 +68,7 @@
 
 
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[title]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[title]','1',isset($need_approve['title']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('title', trans('cms::cms.title').' :', ['class' => '']) !!}
                     </div>
 
@@ -80,7 +80,7 @@
             <div class="form-group {{ $errors->has('gender') ? 'has-error' : ''}}">
 
                 <div class="col-sm-8 control-label">
-                    {!! Form::checkbox('need_approve[gender]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[gender]','1',isset($need_approve['gender']),['class'=>'approve_checkbox']) !!}
 
                 {!! Form::label('gender', trans('cms::cms.gender').' :' ,['class' => '']) !!}
                 </div>
@@ -92,7 +92,7 @@
             <div class="form-group {{ $errors->has('date_of_birth') ? 'has-error' : ''}}">
 
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[date_of_birth]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[date_of_birth]','1',isset($need_approve['date_of_birth']),['class'=>'approve_checkbox']) !!}
 
                 {!! Form::label('date_of_birth', trans('cms::cms.date_of_birth').' :', ['class' => '']) !!}
                 </div>
@@ -103,7 +103,7 @@
             </div>
             <div class="form-group {{ $errors->has('fax') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[fax]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[fax]','1',isset($need_approve['fax']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('fax', trans('cms::cms.fax').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -115,7 +115,7 @@
 
             <div class="form-group {{ $errors->has('nationality') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[nationality]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[nationality]','1',isset($need_approve['nationality']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('nationality', trans('cms::cms.nationality').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -126,7 +126,7 @@
 
             <div class="form-group {{ $errors->has('postal_code') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[postal_code]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[postal_code]','1',isset($need_approve['postal_code']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('postal_code', trans('cms::cms.postal_code').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -136,7 +136,7 @@
             </div>
             <div class="form-group {{ $errors->has('account_type') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[account_type]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[account_type]','1',isset($need_approve['account_type']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('account_type', trans('cms::cms.account_type').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -146,7 +146,7 @@
             </div>
             <div class="form-group {{ $errors->has('base_currency_limit') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[base_currency_limit]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[base_currency_limit]','1',isset($need_approve['base_currency_limit']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('base_currency_limit', trans('cms::cms.base_currency_limit').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -156,7 +156,7 @@
             </div>
             <div class="form-group {{ $errors->has('default_platform') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[default_platform]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[default_platform]','1',isset($need_approve['default_platform']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('default_platform', trans('cms::cms.default_platform').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -166,7 +166,7 @@
             </div>
             <div class="form-group {{ $errors->has('referring_partner') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[referring_partner]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[referring_partner]','1',isset($need_approve['referring_partner']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('referring_partner', trans('cms::cms.referring_partner').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -176,7 +176,7 @@
             </div>
             <div class="form-group {{ $errors->has('fund_manager') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[fund_manager]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[fund_manager]','1',isset($need_approve['fund_manager']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('fund_manager', trans('cms::cms.fund_manager').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -186,8 +186,8 @@
             </div>
             <div class="form-group {{ $errors->has('sole_joint_account') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[sole_joint_account]','1',false,['class'=>'approve_checkbox']) !!}
-                {!! Form::label('sole_joint_account', trans('cms::cms.sole_joint_account').' :', ['class' => 'col-sm-8 control-label']) !!}
+                    {!! Form::checkbox('need_approve[sole_joint_account]','1',isset($need_approve['sole_joint_account']),['class'=>'approve_checkbox']) !!}
+                {!! Form::label('sole_joint_account', trans('cms::cms.sole_joint_account').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
                     <label class="control-label">{{$cms_forms_liveaccount->sole_joint_account }}</label>
@@ -196,7 +196,7 @@
             </div>
             <div class="form-group {{ $errors->has('marital_status') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[marital_status]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[marital_status]','1',isset($need_approve['marital_status']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('marital_status', trans('cms::cms.marital_status').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -206,7 +206,7 @@
             </div>
             <div class="form-group {{ $errors->has('resident_status') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[resident_status]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[resident_status]','1',isset($need_approve['resident_status']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('resident_status', trans('cms::cms.resident_status').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -216,7 +216,7 @@
             </div>
             <div class="form-group {{ $errors->has('street_and_number') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[street_and_number]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[street_and_number]','1',isset($need_approve['street_and_number']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('street_and_number', trans('cms::cms.street_and_number').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -226,7 +226,7 @@
             </div>
             <div class="form-group {{ $errors->has('city') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[city]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[city]','1',isset($need_approve['city']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('city', trans('cms::cms.city').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -236,7 +236,7 @@
             </div>
             <div class="form-group {{ $errors->has('main_phone') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[main_phone]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[main_phone]','1',isset($need_approve['main_phone']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('main_phone', trans('cms::cms.main_phone').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -246,7 +246,7 @@
             </div>
             <div class="form-group {{ $errors->has('secondary_phone') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[secondary_phone]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[secondary_phone]','1',isset($need_approve['secondary_phone']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('secondary_phone', trans('cms::cms.secondary_phone').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -256,7 +256,7 @@
             </div>
             <div class="form-group {{ $errors->has('primary_email') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[primary_email]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[primary_email]','1',isset($need_approve['primary_email']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('primary_email', trans('cms::cms.primary_email').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -266,7 +266,7 @@
             </div>
             <div class="form-group {{ $errors->has('secondary_email') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[secondary_email]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[secondary_email]','1',isset($need_approve['secondary_email']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('secondary_email', trans('cms::cms.secondary_email').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -276,7 +276,7 @@
             </div>
             <div class="form-group {{ $errors->has('postal_street_and_number') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[postal_street_and_number]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[postal_street_and_number]','1',isset($need_approve['postal_street_and_number']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('postal_street_and_number', trans('cms::cms.postal_street_and_number').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -286,7 +286,7 @@
             </div>
             <div class="form-group {{ $errors->has('postal_post_code') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[postal_post_code]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[postal_post_code]','1',isset($need_approve['postal_post_code']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('postal_post_code', trans('cms::cms.postal_post_code').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -296,7 +296,7 @@
             </div>
             <div class="form-group {{ $errors->has('postal_city') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[postal_city]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[postal_city]','1',isset($need_approve['postal_city']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('postal_city', trans('cms::cms.postal_city').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -306,7 +306,7 @@
             </div>
             <div class="form-group {{ $errors->has('postal_country') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[postal_country]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[postal_country]','1',isset($need_approve['postal_country']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('postal_country', trans('cms::cms.postal_country').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -316,7 +316,7 @@
             </div>
             <div class="form-group {{ $errors->has('country') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[country]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[country]','1',isset($need_approve['country']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('country', trans('cms::cms.country').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -326,7 +326,7 @@
             </div>
             <div class="form-group {{ $errors->has('financial_instrument_portfolio') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[financial_instrument_portfolio]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[financial_instrument_portfolio]','1',isset($need_approve['financial_instrument_portfolio']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('financial_instrument_portfolio', trans('cms::cms.financial_instrument_portfolio').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -336,7 +336,7 @@
             </div>
             <div class="form-group {{ $errors->has('source_funds_deposited') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[source_funds_deposited]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[source_funds_deposited]','1',isset($need_approve['source_funds_deposited']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('source_funds_deposited', trans('cms::cms.source_funds_deposited').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -346,7 +346,7 @@
             </div>
             <div class="form-group {{ $errors->has('other_source_funds_deposited') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[other_source_funds_deposited]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[other_source_funds_deposited]','1',isset($need_approve['other_source_funds_deposited']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('other_source_funds_deposited', trans('cms::cms.other_source_funds_deposited').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -356,7 +356,7 @@
             </div>
             <div class="form-group {{ $errors->has('understand_risks') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[understand_risks]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[understand_risks]','1',isset($need_approve['understand_risks']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('understand_risks', trans('cms::cms.understand_risks').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -366,7 +366,7 @@
             </div>
             <div class="form-group {{ $errors->has('experience_cfd') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[experience_cfd]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[experience_cfd]','1',isset($need_approve['experience_cfd']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('experience_cfd', trans('cms::cms.experience_cfd :'), ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -376,7 +376,7 @@
             </div>
             <div class="form-group {{ $errors->has('experience_commodities') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[experience_commodities]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[experience_commodities]','1',isset($need_approve['experience_commodities']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('experience_commodities', trans('cms::cms.experience_commodities :'), ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -386,7 +386,7 @@
             </div>
             <div class="form-group {{ $errors->has('experience_forex') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[experience_forex]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[experience_forex]','1',isset($need_approve['experience_forex']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('experience_forex', trans('cms::cms.experience_forex :'), ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -396,7 +396,7 @@
             </div>
             <div class="form-group {{ $errors->has('experience_futures') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[experience_futures]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[experience_futures]','1',isset($need_approve['experience_futures']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('experience_futures', trans('cms::cms.experience_futures :'), ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -406,7 +406,7 @@
             </div>
             <div class="form-group {{ $errors->has('experience_options') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[experience_options]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[experience_options]','1',isset($need_approve['experience_options']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('experience_options', trans('cms::cms.experience_options :'), ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -416,7 +416,7 @@
             </div>
             <div class="form-group {{ $errors->has('experience_securities') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
-                    {!! Form::checkbox('need_approve[experience_securities]','1',false,['class'=>'approve_checkbox']) !!}
+                    {!! Form::checkbox('need_approve[experience_securities]','1',isset($need_approve['experience_securities']),['class'=>'approve_checkbox']) !!}
                 {!! Form::label('experience_securities', trans('cms::cms.experience_securities :'), ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
@@ -886,7 +886,7 @@
             <div class="form-group {{ $errors->has('city_joint') ? 'has-error' : ''}}">
                 <div class="col-sm-8 control-label ">
                     {!! Form::checkbox('need_approve[city_joint]','1',isset($need_approve['city_joint']),['class'=>'approve_checkbox']) !!}
-                {!! Form::label('city_joint', trans('cms::cms.city_joint').' :', ['class' => 'col-sm-8 control-label']) !!}
+                {!! Form::label('city_joint', trans('cms::cms.city_joint').' :', ['class' => '']) !!}
                     </div>
                 <div class="col-sm-4">
                     <label class="control-label">{{$cms_forms_liveaccount->city_joint }}</label>

@@ -83,6 +83,7 @@ $form_status=['Not Approved','Approved','updated'];
             $aNeedApprove[$fields->field_name]=0;
         }
         }
+      //  dd($aNeedApprove);
         return view('cms::forms.cms_forms_liveaccount.show', compact('cms_forms_liveaccount'),['arrays'=>$arrays,'need_approve'=>$aNeedApprove])->render();
     }
 
@@ -204,6 +205,7 @@ $form_status=['Not Approved','Approved','updated'];
                 }
             }
         }
+
 
         $arrays=[];
         $arrays['default_platform']= ['MT4'=>'MT4','Multi-products'=>'Multi-products','Both'=>'Both'];
