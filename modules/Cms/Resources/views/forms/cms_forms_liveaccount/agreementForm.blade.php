@@ -326,7 +326,7 @@
     </style>
 </head>
 <body>
-{!! Form::open() !!}
+{!! Form::open(['method'=>'get','url'=>'/account-sms']) !!}
 
 <div class="page">
     <h2>Personal Account opening Form</h2>
@@ -1974,7 +1974,7 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 
 
 <div class="pageAgreement">
-
+{!! Form::hidden('agreement_id',$id) !!}
 {!! Form::submit('submit',['class'=>'submitButton'])  !!}
 </div>
 {!! Form::close() !!}

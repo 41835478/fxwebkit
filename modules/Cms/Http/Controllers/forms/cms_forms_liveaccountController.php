@@ -317,7 +317,7 @@ $form_status=['Not Approved','Approved','updated'];
 
 $smsResult=$this->sendLiveAccountSecret($new_live_form->id);
 
-            $agreementhtml=View::make('cms::forms.cms_forms_liveaccount.agreementForm',['var'=>$request])->render();
+            $agreementhtml=View::make('cms::forms.cms_forms_liveaccount.agreementForm',['var'=>$request,'id'=>$new_live_form->id])->render();
             file_put_contents(base_path('modules/Cms/Resources/views/forms/cms_forms_liveaccount/live_forms').'/form_'.$new_live_form->id.'.blade.php',$agreementhtml);
 
 
