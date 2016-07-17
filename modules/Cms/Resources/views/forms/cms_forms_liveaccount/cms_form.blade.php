@@ -401,10 +401,10 @@
     <div class="clearfix"></div>
     <div class="left_div">
         <div class="input_all_div">
-            <label>{!! Form::label('main_phone',  trans('cms::cms.main_phone').' *'  , ['class' => 'control-label']) !!}</label>
+            <label>{!! Form::label('main_phone', trans('cms::cms.main_phone').' *'  , ['class' => 'control-label']) !!}</label>
 
             <div class="intl-tel-input">
-                <input type="tel" name="main_phone" class="form-control" required="required">
+                <input type="tel" name="main_phone" class="form-control" required="required"value="{{(isset($_REQUEST['main_phone']))?$_REQUEST['main_phone']:((isset($cms_forms_liveaccount->main_phone))? $cms_forms_liveaccount->main_phone:'')}}">
             </div>
             <span>{!! $errors->first('main_phone', '<ul><li class="error">:message</li></ul>') !!}</span>
         </div>
@@ -412,7 +412,7 @@
         <div class="input_all_div">
             <label>{!! Form::label('primary_email',  trans('cms::cms.primary_email').' *'  , ['class' => 'control-label']) !!}</label>
 
-            <input type="email" name="primary_email" placeholder="{{trans('cms::cms.primary_email')}}" required="required" class="form-control">
+            <input type="tel" name="main_phone" class="form-control" required="required"value="{{(isset($_REQUEST['primary_email']))?$_REQUEST['primary_email']:((isset($cms_forms_liveaccount->primary_email))? $cms_forms_liveaccount->primary_email:'')}}">
             <span>{!! $errors->first('primary_email', '<ul><li class="error">:message</li></ul>') !!}</span>
         </div>
 
@@ -420,7 +420,7 @@
             <label>{!! Form::label('fax',  trans('cms::cms.fax')  , ['class' => 'control-label']) !!}</label>
 
             <div class="intl-tel-input">
-                <input type="tel" name="fax" class="form-control" required="required">
+                <input type="tel" name="main_phone" class="form-control" required="required"value="{{(isset($_REQUEST['fax']))?$_REQUEST['fax']:((isset($cms_forms_liveaccount->fax))? $cms_forms_liveaccount->fax:'')}}">
             </div>
             <span>{!! $errors->first('fax', '<ul><li class="error">:message</li></ul>') !!}</span>
         </div>
@@ -431,7 +431,7 @@
             <label>{!! Form::label('secondary_phone',trans('cms::cms.secondary_phone')  , ['class' => 'control-label']) !!}</label>
 
             <div class="intl-tel-input">
-                <input type="tel" name="secondary_phone" class="form-control">
+                <input type="tel" name="main_phone" class="form-control" required="required"value="{{(isset($_REQUEST['secondary_phone']))?$_REQUEST['secondary_phone']:((isset($cms_forms_liveaccount->secondary_phone))? $cms_forms_liveaccount->secondary_phone:'')}}">
             </div>
             <span>{!! $errors->first('secondary_phone', '<ul><li class="error">:message</li></ul>') !!}</span>
         </div>
@@ -455,7 +455,7 @@
                 <label>{!! Form::label('main_phone_joint',  trans('cms::cms.main_phone_joint')  , ['class' => 'control-label']) !!}</label>
 
                 <div class="intl-tel-input">
-                    <input type="tel" name="main_phone_joint" class="form-control" required="required">
+                    <input type="tel" name="main_phone" class="form-control" required="required"value="{{(isset($_REQUEST['main_phone_joint']))?$_REQUEST['main_phone_joint']:((isset($cms_forms_liveaccount->main_phone_joint))? $cms_forms_liveaccount->main_phone_joint:'')}}">
                 </div>
                 <span>{!! $errors->first('main_phone_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
             </div>
@@ -469,7 +469,7 @@
             <div class="input_all_div">
                 <label>{!! Form::label('fax_joint',  trans('cms::cms.fax_joint') , ['class' => 'control-label']) !!}</label>
                 <div class="intl-tel-input">
-                    <input type="tel" name="fax_joint" class="form-control" required="required">
+                    <input type="tel" name="main_phone" class="form-control" required="required"value="{{(isset($_REQUEST['fax_joint']))?$_REQUEST['fax_joint']:((isset($cms_forms_liveaccount->fax_joint))? $cms_forms_liveaccount->fax_joint:'')}}">
                 </div>
                 <span>{!! $errors->first('fax_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
             </div>
@@ -481,7 +481,7 @@
                 <label>{!! Form::label('secondary_phone_joint',trans('cms::cms.secondary_phone_joint')  , ['class' => 'control-label']) !!}</label>
 
                 <div class="intl-tel-input">
-                    <input type="tel" name="secondary_phone_joint" class="form-control">
+                    <input type="tel" name="main_phone" class="form-control" required="required"value="{{(isset($_REQUEST['secondary_phone_joint']))?$_REQUEST['secondary_phone_joint']:((isset($cms_forms_liveaccount->secondary_phone_joint))? $cms_forms_liveaccount->secondary_phone_joint:'')}}">
                 </div>
                 <span>{!! $errors->first('secondary_phone_joint', '<ul><li class="error">:message</li></ul>') !!}</span>
             </div>
@@ -502,7 +502,8 @@
     <div class="left_div">
 
         <div class="input_all_div">
-            <label>{!! Form::label('postal_street_and_number',  trans('cms::cms.postal_street_and_number')  , ['class' => 'control-label']) !!}</label>
+            <label>
+                {!! Form::label('postal_street_and_number',  trans('cms::cms.postal_street_and_number')  , ['class' => 'control-label']) !!}</label>
             {!! Form::text('postal_street_and_number', null, ['class' => '','placeholder'=>trans('cms::cms.postal_street_and_number')]) !!}
             <span>{!! $errors->first('postal_street_and_number', '<ul><li class="error">:message</li></ul>') !!}</span>
         </div>
