@@ -236,11 +236,11 @@ $form_status=['Not Approved','Approved','updated'];
 
 
 
-        $arrays['years']=[];
+        $arrays['years']=[''];
         for($i=1940;$i<2016;$i++){ $arrays['years'][$i]=$i;}
-        $arrays['months']=[];
+        $arrays['months']=[''];
         for($i=1;$i<13;$i++){ $arrays['months'][$i]=$i;}
-        $arrays['days']=[];
+        $arrays['days']=[''];
         for($i=1;$i<32;$i++){ $arrays['days'][$i]=$i;}
 
 
@@ -262,8 +262,7 @@ $form_status=['Not Approved','Approved','updated'];
      */
     public function cms_store(LiveAccountRequest $request)
     {
-
-        if(!isset($request->ref) && strlen($request)>0){
+        if($request->ref == 0 || !isset($request->ref) || !strlen($request->ref)>1){
             $errors=$this->validateFrequencyFields($request);
             if(!empty($errors)){
                 return Redirect::back()->withErrors($errors);
@@ -315,9 +314,9 @@ $form_status=['Not Approved','Approved','updated'];
             $request->merge(array('ip' => getIpFromServer()));
         $new_live_form=cms_forms_liveaccount::create($request->all());
 
-$smsResult=$this->sendLiveAccountSecret($new_live_form->id);
+$smsResult=$this->sendLiveAccountSecret($new_live_form->id,$new_live_form->main_phone);
 
-            $agreementhtml=View::make('cms::forms.cms_forms_liveaccount.agreementForm',['var'=>$request])->render();
+            $agreementhtml=View::make('cms::forms.cms_forms_liveaccount.agreementForm',['var'=>$request,'id'=>$new_live_form->id])->render();
             file_put_contents(base_path('modules/Cms/Resources/views/forms/cms_forms_liveaccount/live_forms').'/form_'.$new_live_form->id.'.blade.php',$agreementhtml);
 
 
@@ -339,15 +338,61 @@ $smsResult=$this->sendLiveAccountSecret($new_live_form->id);
         //    return redirect('cms/cms_forms_liveaccount');
     }
 
-    public function sendLiveAccountSecret($live_id){
+    public function sendLiveAccountSecret($live_id,$phone){
 
+        $secret=rand(1000,9999);
         cms_forms_livesm::create(
             [
                 'live_account_id'=>$live_id,
-                'secret'=>rand(1000,9999)
+                'secret'=>$secret
             ]
         );
-return true;
+
+
+        $protocol='http';
+        if (!empty($_SERVER['HTTPS']) && (strtolower($_SERVER['HTTPS']) == 'on' || $_SERVER['HTTPS'] == '1')) {
+            $protocol = 'https';
+        } else {
+            $protocol = 'http';
+        }
+$host=$protocol.'://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/account-sms?id='.$live_id;
+
+
+$message=$host.'   secret code : '.$secret;
+       return $this->sendApiSms($message,$phone);
+    }
+
+
+    private function sendApiSms($message,$phone)
+    {
+
+        $data=[
+            'user'=>'gcrazym',
+            'password'=>'mqplanet2',
+            'api_id'=>'3051673',
+            'text'=>$message,
+            'to'=>str_replace('+','00',$phone)
+        ];
+
+        $link='http://api.clickatell.com/http/sendmsg?'.http_build_query($data);
+//$link=urlencode($link);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $link);
+        //curl_setopt($ch, CURLOPT_URL, 'f');
+
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+
+      //  curl_setopt($ch, CURLOPT_POSTFIELDS,$data);
+        curl_setopt($ch, CURLOPT_POST, 0);
+        $response = curl_exec($ch);
+
+        return (preg_match('/^\I\D/',trim($response)))? true:false;
+
     }
 
     public function addErrorMessage(&$errors,$key,$value){
@@ -360,6 +405,9 @@ return true;
 
         if ($sole_joint == 'joint account') {
 
+            if (empty($request->date_of_birth_joint_y) || empty($request->date_of_birth_joint_m) || empty($request->date_of_birth_joint_d) ) {
+                $this->addErrorMessage($errors,'date_of_birth_joint', 'Required Field');
+            }
 
             $sourceFunds_joint = $request->source_funds_deposited_joint;
             $otherSourceFunds_joint = $request->other_source_funds_deposited_joint;
@@ -699,6 +747,11 @@ return true;
         if ($understand_market_securities == '1' && empty($understand_market_years_securities)) {
             $this->addErrorMessage($errors,'understand_market_years_securities', 'Required Field');
         }
+
+        if (empty($request->date_of_birth_y) || empty($request->date_of_birth_m) || empty($request->date_of_birth_d) ) {
+            $this->addErrorMessage($errors,'date_of_birth', 'Required Field');
+        }
+
 
         return $errors;
 

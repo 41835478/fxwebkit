@@ -372,9 +372,13 @@
     'clientEmailTemplate'=>'Client Email Template',
     'adminEmailTemplate'=>'Admin Email Template',
 
+
     'status'=>'Status',
 
-    'livePageCheckAgree'=>'I agree that all info in this page are correct'
+    'livePageCheckAgree'=>'I agree that all info in this page are correct',
+
+    'livePageCheckAgree'=>'I agree that all info in this page are correct',
+    'document_other'=>'Other Document',
 
 
 

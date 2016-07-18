@@ -1579,34 +1579,57 @@
                             {!! $errors->first('document_id', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
-                    <!--
-            <div class="form-group {{ $errors->has('document_id2') ? 'has-error' : ''}}">
-                {!! Form::label('document_id2', trans('document_id2 :'), ['class' => 'col-sm-8 control-label']) !!}
-                            <div class="col-sm-4">
-                                <label class="control-label">{{$cms_forms_liveaccount->document_id2 }}</label>
-                    {!! $errors->first('document_id2', '<p class="help-block">:message</p>') !!}
-                            </div>
-                        </div>
-                        -->
-                    <div class="form-group {{ $errors->has('document_por') ? 'has-error' : ''}}">
-                        <div class="col-sm-8 control-label ">
-                            {!! Form::checkbox('need_approve[document_por]','1',isset($need_approve['document_por']),['class'=>'approve_checkbox']) !!}
-                            {!! Form::label('document_por', trans('cms::cms.document_por :'), ['class' => '']) !!}
-                        </div>
-                        <div class="col-sm-4">
-                            <label class="control-label"><a href="/{{Config::get('cms.asset_folder').'/'.$cms_forms_liveaccount->document_por }}">{{trans('cms::cms.document_por')}}</a></label>
-                            {!! $errors->first('document_por', '<p class="help-block">:message</p>') !!}
-                        </div>
+{{--<<<<<<< HEAD--}}
+                    {{--<!----}}
+            {{--<div class="form-group {{ $errors->has('document_id2') ? 'has-error' : ''}}">--}}
+                {{--{!! Form::label('document_id2', trans('document_id2 :'), ['class' => 'col-sm-8 control-label']) !!}--}}
+                            {{--<div class="col-sm-4">--}}
+                                {{--<label class="control-label">{{$cms_forms_liveaccount->document_id2 }}</label>--}}
+                    {{--{!! $errors->first('document_id2', '<p class="help-block">:message</p>') !!}--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{---->--}}
+                    {{--<div class="form-group {{ $errors->has('document_por') ? 'has-error' : ''}}">--}}
+                        {{--<div class="col-sm-8 control-label ">--}}
+                            {{--{!! Form::checkbox('need_approve[document_por]','1',isset($need_approve['document_por']),['class'=>'approve_checkbox']) !!}--}}
+                            {{--{!! Form::label('document_por', trans('cms::cms.document_por :'), ['class' => '']) !!}--}}
+                        {{--</div>--}}
+                        {{--<div class="col-sm-4">--}}
+                            {{--<label class="control-label"><a href="/{{Config::get('cms.asset_folder').'/'.$cms_forms_liveaccount->document_por }}">{{trans('cms::cms.document_por')}}</a></label>--}}
+                            {{--{!! $errors->first('document_por', '<p class="help-block">:message</p>') !!}--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="form-group {{ $errors->has('id_type') ? 'has-error' : ''}}">--}}
+                        {{--<div class="col-sm-8 control-label ">--}}
+                            {{--{!! Form::checkbox('need_approve[id_type]','1',isset($need_approve['id_type']),['class'=>'approve_checkbox']) !!}--}}
+                            {{--{!! Form::label('id_type', trans('cms::cms.id_type :'), ['class' => '']) !!}--}}
+                        {{--</div>--}}
+                        {{--<div class="col-sm-4">--}}
+                            {{--<label class="control-label">{{($cms_forms_liveaccount->id_type)? $cms_forms_liveaccount->id_type:'Select One' }}</label>--}}
+                            {{--{!! $errors->first('id_type', '<p class="help-block">:message</p>') !!}--}}
+                        {{--</div>--}}
+{{--=======--}}
+                {{--</div>--}}
+
+                <div class="form-group {{ $errors->has('document_por') ? 'has-error' : ''}}">
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[document_por]','1',isset($need_approve['document_por']),['class'=>'approve_checkbox']) !!}
+                    {!! Form::label('document_por', trans('cms::cms.document_por :'), ['class' => '']) !!}
+                        </div
+                    <div class="col-sm-4">
+                        <label class="control-label"><a href="/{{Config::get('cms.asset_folder').'/'.$cms_forms_liveaccount->document_por }}">{{trans('cms::cms.document_por')}}</a></label>
+                        {!! $errors->first('document_por', '<p class="help-block">:message</p>') !!}
                     </div>
-                    <div class="form-group {{ $errors->has('id_type') ? 'has-error' : ''}}">
-                        <div class="col-sm-8 control-label ">
-                            {!! Form::checkbox('need_approve[id_type]','1',isset($need_approve['id_type']),['class'=>'approve_checkbox']) !!}
-                            {!! Form::label('id_type', trans('cms::cms.id_type :'), ['class' => '']) !!}
+                </div>
+                <div class="form-group {{ $errors->has('id_type') ? 'has-error' : ''}}">
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[id_type]','1',isset($need_approve['id_type']),['class'=>'approve_checkbox']) !!}
+                    {!! Form::label('id_type', trans('cms::cms.id_type :'), ['class' => '']) !!}
                         </div>
-                        <div class="col-sm-4">
-                            <label class="control-label">{{($cms_forms_liveaccount->id_type)? $cms_forms_liveaccount->id_type:'Select One' }}</label>
-                            {!! $errors->first('id_type', '<p class="help-block">:message</p>') !!}
-                        </div>
+                    <div class="col-sm-4">
+                        <label class="control-label">{{($cms_forms_liveaccount->id_type)? $cms_forms_liveaccount->id_type:'Select One' }}</label>
+                        {!! $errors->first('id_type', '<p class="help-block">:message</p>') !!}
+
                     </div>
                     <div class="form-group {{ $errors->has('proof_of_residence :') ? 'has-error' : ''}}">
                         <div class="col-sm-8 control-label ">
@@ -1619,15 +1642,40 @@
 
                         </div>
                     </div>
-                    <div class="form-group {{ $errors->has('pdf') ? 'has-error' : ''}}">
-                        <div class="col-sm-8 control-label ">
-                            {!! Form::checkbox('need_approve[pdf]','1',isset($need_approve['pdf']),['class'=>'approve_checkbox']) !!}
-                            {!! Form::label('pdf', trans('cms::cms.pdf :'), ['class' => '']) !!}
+{{--<<<<<<< HEAD--}}
+                    {{--<div class="form-group {{ $errors->has('pdf') ? 'has-error' : ''}}">--}}
+                        {{--<div class="col-sm-8 control-label ">--}}
+                            {{--{!! Form::checkbox('need_approve[pdf]','1',isset($need_approve['pdf']),['class'=>'approve_checkbox']) !!}--}}
+                            {{--{!! Form::label('pdf', trans('cms::cms.pdf :'), ['class' => '']) !!}--}}
+                        {{--</div>--}}
+                        {{--<div class="col-sm-4">--}}
+                            {{--<label class="control-label"><a href="{{$cms_forms_liveaccount->pdf }}">Live Accout Contract</a></label>--}}
+                            {{--{!! $errors->first('pdf', '<p class="help-block">:message</p>') !!}--}}
+                        {{--</div>--}}
+{{--=======--}}
+                {{--</div>--}}
+
+
+                <div class="form-group {{ $errors->has('document_id2') ? 'has-error' : ''}}">
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[document_id2]','1',isset($need_approve['document_id2']),['class'=>'approve_checkbox']) !!}
+                    {!! Form::label('document_id2',trans('cms::cms.document_other').' :', ['class' => '']) !!}
                         </div>
-                        <div class="col-sm-4">
-                            <label class="control-label"><a href="{{$cms_forms_liveaccount->pdf }}">Live Accout Contract</a></label>
-                            {!! $errors->first('pdf', '<p class="help-block">:message</p>') !!}
+                    <div class="col-sm-4">
+                        <label class="control-label"><a href="/{{Config::get('cms.asset_folder').'/'.$cms_forms_liveaccount->document_id2 }}">{{trans('cms::cms.document_other')}}</a></label>
+                        {!! $errors->first('document_id2', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+
+                <div class="form-group {{ $errors->has('pdf') ? 'has-error' : ''}}">
+                    <div class="col-sm-8 control-label ">
+                        {!! Form::checkbox('need_approve[pdf]','1',isset($need_approve['pdf']),['class'=>'approve_checkbox']) !!}
+                    {!! Form::label('pdf', trans('cms::cms.pdf :'), ['class' => '']) !!}
                         </div>
+                    <div class="col-sm-4">
+                        <label class="control-label"><a href="{{$cms_forms_liveaccount->pdf }}">Live Accout Contract</a></label>
+                        {!! $errors->first('pdf', '<p class="help-block">:message</p>') !!}
+
                     </div>
                 </div>
 

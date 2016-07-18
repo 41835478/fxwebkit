@@ -2,6 +2,7 @@
 
 namespace modules\Cms\Http\Controllers\forms;
 
+use  Modules\Cms\Entities\forms\cms_forms_liveaccount;
 use Fxweb\Http\Requests;
 use Fxweb\Http\Controllers\Controller;
 
@@ -124,9 +125,16 @@ class cms_forms_livesmsController extends Controller
         {
             $live_account_id=\Input::get('id');
 
+          $agreement_id=  \Input::get('agreement_id');
+            if($agreement_id >0 ){
+                //TODO check status number if the agreement complete
+                cms_forms_liveaccount::where('id',$agreement_id)->update(['status'=>4]);
+                Session::flash('flash_message', 'Thank you for your time, we will contact you soon');
+            }
 
          return View::make('cms::forms.cms_forms_livesms.cms_form')
          ->with('live_account_id',$live_account_id)
+             ->with('agreement_id',$agreement_id)
              ->render();
 
         }
@@ -159,5 +167,6 @@ class cms_forms_livesmsController extends Controller
 
         //    return redirect('cms/cms_forms_livesms');
         }
+
 
 }

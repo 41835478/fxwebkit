@@ -1,8 +1,16 @@
 
-    <h2>Please write the secret code which you received by sms :</h2>
-    <hr/>
 
+
+
+@if($agreement_id >0)
+
+
+    <h2>Thank you :</h2>
     {!!   View('admin/partials/messages')->with('errors',$errors) !!}
+    @else
+    <h2>Please write the secret code which you received by sms :</h2>
+    {!!   View('admin/partials/messages')->with('errors',$errors) !!}
+    <hr/>
     {!! Form::open(['route' => 'cms_forms_livesms.form', 'class' => 'form-horizontal']) !!}
 
                 <div style="display: none" class="form-group {{ $errors->has('live_account_id') ? 'has-error' : ''}}">
@@ -30,3 +38,4 @@
     </div>
     {!! Form::close() !!}
 
+@endif
