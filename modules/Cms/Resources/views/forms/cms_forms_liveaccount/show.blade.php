@@ -1,11 +1,106 @@
 @extends('admin.layouts.main')
 
 @section('content')
-    <div class="container">
+    <div class="">
 
         <div id="content-wrapper">
-            <h1>live account( <a href="/live-account?ref={{$cms_forms_liveaccount->ref}}">{{  $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/live-account?'}}ref={{$cms_forms_liveaccount->ref}}</a>) </h1>
+<style type="text/css">
 
+    .fieldsGroup{border:1px solid #cec4a1;}
+    .fieldsGroup header{
+        background-color: #cec4a1;
+        color:#ffffff;
+        padding:5px;
+    }
+
+</style>
+            <div class="fieldsGroup">
+<header>
+
+    General Information
+</header>
+
+                <div class="form-group">
+
+                    <div class="col-sm-8 control-label">
+                        live account
+                    </div>
+
+                    <div class="col-sm-4">
+                        <a href="/live-account?ref={{$cms_forms_liveaccount->ref}}">{{  $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/live-account?'}}ref={{$cms_forms_liveaccount->ref}}</a>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+
+                    <div class="col-sm-8 control-label">
+                        {!! Form::label('first_name', trans('cms::cms.created_at').' :', ['class' => '']) !!}
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="control-label">{{$cms_forms_liveaccount->created_at }}</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <div class="col-sm-8 control-label">
+                        {!! Form::label('first_name', trans('cms::cms.ip').' :', ['class' => '']) !!}
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label class="control-label">{{$cms_forms_liveaccount->ip }}</label>
+                    </div>
+                </div>
+
+            </div>
+
+            @if(count($sms_info))
+                <div class="fieldsGroup">
+                    <header>
+
+                        Agreement Info
+                    </header>
+
+                    <div class="form-group">
+
+                        <div class="col-sm-8 control-label">
+                            Insert secret form
+                        </div>
+
+                        <div class="col-sm-4">
+                            <a href="/account-sms?id={{$cms_forms_liveaccount->id}}">{{  $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/account-sms?'}}id={{$cms_forms_liveaccount->id}}</a>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="col-sm-8 control-label">
+                          secret code :
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label class="control-label">{{$sms_info->secret }}</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-sm-8 control-label">
+                           connection Info
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label class="control-label">{{$sms_info->connection_info }}</label>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                @endif
             {{--{!! Form::model($cms_forms_liveaccount, [--}}
             {{--'method' => 'PATCH',--}}
             {{--'url' => ['/cms/cms_forms_liveaccount', $cms_forms_liveaccount->id],--}}
@@ -1685,6 +1780,7 @@
 
                 {!! Form::select('status', $arrays['form_status'],$cms_forms_liveaccount->status,[]) !!}
                 {!! Form::submit('save',["class"=>""]) !!}
+                    {!! Form::submit('save & send sms',["name"=>"sendSms"]) !!}
                 {!! Form::close() !!}
             </div>
         </div>

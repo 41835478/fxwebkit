@@ -19,6 +19,7 @@ class CreateCmsFormsLivesmsTable extends Migration
             $table->string('phone');
             $table->string('message');
             $table->integer('status');
+            $table->text('connection_info');
             $table->timestamps();
         });
     }

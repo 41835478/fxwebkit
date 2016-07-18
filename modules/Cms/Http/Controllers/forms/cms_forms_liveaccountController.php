@@ -143,8 +143,10 @@ class cms_forms_liveaccountController extends Controller
                 $aNeedApprove[$fields->field_name]=0;
             }
         }
+
+        $sms_info=cms_forms_livesm::where('live_account_id',$id)->first();
       //  dd($aNeedApprove);
-        return view('cms::forms.cms_forms_liveaccount.show', compact('cms_forms_liveaccount'),['arrays'=>$arrays,'need_approve'=>$aNeedApprove])->render();
+        return view('cms::forms.cms_forms_liveaccount.show', compact('cms_forms_liveaccount'),['arrays'=>$arrays,'need_approve'=>$aNeedApprove,'sms_info'=>$sms_info])->render();
     }
 
 
@@ -183,6 +185,11 @@ class cms_forms_liveaccountController extends Controller
         ]);
             @$email->sendChangeLiveStatus($request->all(),$cms_forms_liveaccount->primary_email);
 
+
+        if(isset($request->sendSms)){
+
+            $smsResult=$this->sendLiveAccountSecret($cms_forms_liveaccount->id,$cms_forms_liveaccount->main_phone);
+        }
 
         return redirect('cms/cms_forms_liveaccount');
     }
@@ -370,29 +377,26 @@ class cms_forms_liveaccountController extends Controller
             unset($request->ref);
             $request->merge(array('ref' =>rand(0,999999) ));
 
-            $request->merge(array('ip' => getIpFromServer()));
+            $request->merge(array('ip' =>$_SERVER['REMOTE_ADDR']));
         $new_live_form=cms_forms_liveaccount::create($request->all());
 
-$smsResult=$this->sendLiveAccountSecret($new_live_form->id,$new_live_form->main_phone);
-
+/*
             $agreementhtml=View::make('cms::forms.cms_forms_liveaccount.agreementForm',['var'=>$request,'id'=>$new_live_form->id])->render();
             file_put_contents(base_path('modules/Cms/Resources/views/forms/cms_forms_liveaccount/live_forms').'/form_'.$new_live_form->id.'.blade.php',$agreementhtml);
+*/
 
-
-            @$email->sendFormEmail('cms_forms_liveaccount',$request->all(),$request->primary_email);
-            return Redirect::to('/account-sms?id='.$new_live_form->id);
+      //      @$email->sendFormEmail('cms_forms_liveaccount',$request->all(),$request->primary_email);
+      //      return Redirect::to('/account-sms?id='.$new_live_form->id);
         }
 
 //            @$email->userLiveAccount($request->all(),$request->primary_email);
 //            @$email->adminLiveAccount($request->all(),config('fxweb.adminEmail'));
 
 
-        Session::flash('flash_success', 'Your request has been sent successfully you can check it
-        <a href="'.$pdf.'">HERE</a>
-        ');
+        Session::flash('flash_success', 'Thank you we will contact you soon');
         return Redirect::back();
 
-        return view('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
+       // return view('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
 
         //    return redirect('cms/cms_forms_liveaccount');
     }
