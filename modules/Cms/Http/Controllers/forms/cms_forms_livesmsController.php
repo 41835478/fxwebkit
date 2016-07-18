@@ -149,6 +149,7 @@ class cms_forms_livesmsController extends Controller
 //                $email=new Email();
 //                @$email->sendFormEmail('cms_forms_livesm',$request->all());
 
+                return view('cms::forms.cms_forms_liveaccount.live_forms.form_'.$live_account_id);
                 // TODO translate messages
                 Session::flash('flash_message', 'Thank you for verifying your live form account ');
                 return Redirect::back();

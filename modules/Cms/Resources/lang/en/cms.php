@@ -371,7 +371,11 @@
     'leftMenu'=>'Left Menu',
     'clientEmailTemplate'=>'Client Email Template',
     'adminEmailTemplate'=>'Admin Email Template',
+
     'status'=>'Status',
+
+    'livePageCheckAgree'=>'I agree that all info in this page are correct'
+
 
 
 ]; ?>

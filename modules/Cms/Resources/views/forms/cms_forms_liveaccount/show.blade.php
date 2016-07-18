@@ -830,27 +830,27 @@
                         {!! $errors->first('postal_code_joint', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
-                <div class="form-group {{ $errors->has('base_currency_limit_joint') ? 'has-error' : ''}}">
-                    <div class="col-sm-8 control-label ">
-                        {!! Form::checkbox('need_approve[base_currency_limit_joint]','1',isset($need_approve['base_currency_limit_joint']),['class'=>'approve_checkbox']) !!}
-                        {!! Form::label('base_currency_limit_joint', trans('cms::cms.base_currency_limit_joint').' :', ['class' => '']) !!}
-                    </div>
-                    <div class="col-sm-4">
-                        <label class="control-label">{{$cms_forms_liveaccount->base_currency_limit_joint }}</label>
-                        {!! $errors->first('base_currency_limit_joint', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
+                {{--<div class="form-group {{ $errors->has('base_currency_limit_Account type') ? 'has-error' : ''}}">--}}
+                    {{--<div class="col-sm-8 control-label ">--}}
+                        {{--{!! Form::checkbox('need_approve[base_currency_limit_joint]','1',isset($need_approve['base_currency_limit_joint']),['class'=>'approve_checkbox']) !!}--}}
+                        {{--{!! Form::label('base_currency_limit_joint', trans('cms::cms.base_currency_limit_joint').' :', ['class' => '']) !!}--}}
+                    {{--</div>--}}
+                    {{--<div class="col-sm-4">--}}
+                        {{--<label class="control-label">{{$cms_forms_liveaccount->base_currency_limit_joint }}</label>--}}
+                        {{--{!! $errors->first('base_currency_limit_joint', '<p class="help-block">:message</p>') !!}--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
-                <div class="form-group {{ $errors->has('sole_joint_account_joint') ? 'has-error' : ''}}">
-                    <div class="col-sm-8 control-label ">
-                        {!! Form::checkbox('need_approve[sole_joint_account_joint]','1',isset($need_approve['sole_joint_account_joint']),['class'=>'approve_checkbox']) !!}
-                        {!! Form::label('sole_joint_account_joint', trans('cms::cms.sole_joint_account_joint').' :', ['class' => '']) !!}
-                    </div>
-                    <div class="col-sm-4">
-                        <label class="control-label">{{$cms_forms_liveaccount->sole_joint_account_joint }}</label>
-                        {!! $errors->first('sole_joint_account_joint', '<p class="help-block">:message</p>') !!}
-                    </div>
-                </div>
+                {{--<div class="form-group {{ $errors->has('sole_joint_account_joint') ? 'has-error' : ''}}">--}}
+                    {{--<div class="col-sm-8 control-label ">--}}
+                        {{--{!! Form::checkbox('need_approve[sole_joint_account_joint]','1',isset($need_approve['sole_joint_account_joint']),['class'=>'approve_checkbox']) !!}--}}
+                        {{--{!! Form::label('sole_joint_account_joint', trans('cms::cms.sole_joint_account_joint').' :', ['class' => '']) !!}--}}
+                    {{--</div>--}}
+                    {{--<div class="col-sm-4">--}}
+                        {{--<label class="control-label">{{$cms_forms_liveaccount->sole_joint_account_joint }}</label>--}}
+                        {{--{!! $errors->first('sole_joint_account_joint', '<p class="help-block">:message</p>') !!}--}}
+                    {{--</div>--}}
+                {{--</div>--}}
                 <div class="form-group {{ $errors->has('marital_status_joint') ? 'has-error' : ''}}">
                     <div class="col-sm-8 control-label ">
                         {!! Form::checkbox('need_approve[marital_status_joint]','1',isset($need_approve['marital_status_joint']),['class'=>'approve_checkbox']) !!}

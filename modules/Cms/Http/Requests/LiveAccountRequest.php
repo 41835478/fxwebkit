@@ -99,10 +99,8 @@ class LiveAccountRequest extends FormRequest
 
         }
 
-    //    dd($returnedArray);
 
-
-        return (isset($this->ref) && strlen($this->ref) )? []:$returnedArray;
+        return (isset($this->ref) && strlen($this->ref) > 1 )? []:$returnedArray;
     }
 
 }
