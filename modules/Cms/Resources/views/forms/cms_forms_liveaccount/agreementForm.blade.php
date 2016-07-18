@@ -319,7 +319,7 @@
             display: inline-block;
             font-weight: 600;
 
-            width: 100%;
+            width: 400px;
 
             font: 12px normal Arial,Helvetica,sans-serif;
         }
@@ -417,12 +417,18 @@
 </div>
 <!--.page 1-->
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_1','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_1" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="1" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
+
+
 
 
 <div class="page">
@@ -583,12 +589,16 @@
 </div>
 </div><!--.page 2-->
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_2','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_2" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="2" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 
@@ -672,11 +682,14 @@
 </div><!--.page 3-->
 
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_3','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_3" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="3" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
 
 
@@ -726,12 +739,16 @@
 </div>
 </div><!--.page 4-->
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_4','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_4" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="4" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 <div class="page">
@@ -797,12 +814,16 @@
 </div>
 </div><!--.page 5-->
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_5','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_5" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="5" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 <div class="page">
@@ -866,12 +887,16 @@
 </div><!--.page 6-->
 
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_6','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_6" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="6" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 <div class="page">
@@ -936,12 +961,16 @@
 </div><!--.page 7-->
 
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_7','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_7" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="7" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 <div class="page">
@@ -1026,12 +1055,16 @@
 </div>
 </div><!--.page 8-->
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_8','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_8" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="8" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 <div class="page">
@@ -1111,12 +1144,16 @@
 </div>
 </div><!--.page 9-->
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_9','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_9" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="9" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 <div class="page">
@@ -1151,12 +1188,16 @@ CFD transactions will be carried out for you whenever possible on or under the r
 </div><!--.page 10-->
 
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_10','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_10" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="10" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 <div class="page">
@@ -1197,12 +1238,16 @@ There are many different types of options with different characteristics subject
 
 
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_11','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_11" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="11" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 
@@ -1238,12 +1283,16 @@ You understand that by choosing to conduct trading via our trading platform, you
 
 
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_12','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_12" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="12" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 
@@ -1281,12 +1330,16 @@ We do not take any responsibility for third party fund managers, and you agree t
 
 
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_13','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_13" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="13" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 <div class="page">
@@ -1311,12 +1364,16 @@ You should only engage in the above investments if you are prepared to accept a 
 
 
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_14','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_14" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="14" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 
@@ -1350,12 +1407,16 @@ You should only engage in the above investments if you are prepared to accept a 
 
 
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_15','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_15" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="15" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 
@@ -1461,12 +1522,16 @@ Attn.: Client Onboarding
 
 
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_16','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_16" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="16" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 
@@ -1584,12 +1649,16 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 
 
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_17','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_17" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="17" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 
@@ -1653,12 +1722,16 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 
 
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_18','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_18" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="18" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 
@@ -1729,12 +1802,16 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 
 
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_19','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_19" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="19" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 
@@ -1805,12 +1882,16 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 
 
 
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_20','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_20" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    <input class="submitButton nextButton" type="button" data-page="20" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
+
 
 
 <div class="page">
@@ -1965,19 +2046,57 @@ Size of financial instrument portfolio<br>(incl. cash deposits and financial ins
 
 
 
+
+
+
+
 <div class="pageAgreement">
     <label class="">
-        {!! Form::checkbox('pageAgreement_21','1',null,['required'=>'required']) !!}
+        <input required="required" name="pageAgreement_21" type="checkbox"   value="1">
         {{ trans('cms::cms.livePageCheckAgree') }}
     </label>
+    {!! Form::hidden('agreement_id',$id) !!}
+    <input class="submitButton nextButton" type="submit" data-page="21" value=" {{ trans('cms::cms.livePageCheckAgree') }}">
 </div>
 
-
-<div class="pageAgreement">
-{!! Form::hidden('agreement_id',$id) !!}
-{!! Form::submit('submit',['class'=>'submitButton'])  !!}
-</div>
 {!! Form::close() !!}
+
+
+
+{!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/jquery.2.0.3.min.js') !!}
+<script>
+
+
+    $('.nextButton').click(function(){
+
+        var page=$(this).data('page');
+
+        var checkValue=$(this).parent().find('input[type="checkbox"]').prop('checked');
+
+        if(checkValue !=true) {  return false;}
+        $('.page,.pageAgreement').hide(200);
+        $('.page').eq(page).show(200);
+        $('.page').eq(page).next().show(200);
+    });
+
+
+    $('.pageAgreement input[type="checkbox"]').change(function(){
+        var checkValue=$(this).prop('checked');
+        if(checkValue){
+            $(this).parent().find('.nextButton').attr('disabled','disabled');
+        }else{
+            $(this).parent().find('.nextButton').removeAttr('disabled');
+
+        }
+    });
+
+    $(document).ready(function(){
+        $('.page,.pageAgreement').hide();
+        $('.page').eq(0).show();
+        $('.pageAgreement').eq(0).show();
+        $('.pageAgreement button').attr('disabled','disabled');
+    });
+</script>
 </body>
 
 
