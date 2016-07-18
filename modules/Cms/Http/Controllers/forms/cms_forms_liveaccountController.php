@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 use modules\Cms\Http\Controllers\forms\Email;
 use Modules\Cms\Entities\forms\cms_forms_livesm;
+
 class cms_forms_liveaccountController extends Controller
 {
     /**
@@ -23,14 +24,72 @@ class cms_forms_liveaccountController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function index(Request $oRequest)
     {
 
-$form_status=['Not Approved','Approved','updated'];
-        $cms_forms_liveaccount = cms_forms_liveaccount::paginate(15);
+        $form_status=['Not Approved','Approved','updated','','','','',''];
+
+        $cms_forms_liveaccount= new cms_forms_liveaccount();
+
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+
+        $carbon = new Carbon();
+        $dt = $carbon->now();
+
+        $aFilterParams=[
+            'primary_email' => '',
+            'first_name' => '',
+            'main_phone' => '',
+            'created_at' => '',
+            'sort' => $sSort,
+            'order' => $sOrder,
+        ];
+
+
+        if ($oRequest->has('search')) {
+
+            $aFilterParams=[
+                'primary_email' => $oRequest['primary_email'],
+                'first_name' =>$oRequest['first_name'],
+                'main_phone' =>$oRequest['main_phone'],
+                'created_at' => $oRequest['created_at'],
+            ];
+
+            if (isset($aFilterParams['primary_email']) && !empty($aFilterParams['primary_email'])) {
+                $cms_forms_liveaccount = $cms_forms_liveaccount->where('primary_email', $aFilterParams['primary_email']);
+
+            }
+
+            if (isset($aFilterParams['first_name']) && !empty($aFilterParams['first_name'])) {
+                $cms_forms_liveaccount = $cms_forms_liveaccount->where('first_name', $aFilterParams['first_name']);
+
+            }
+
+            if (isset($aFilterParams['main_phone']) && !empty($aFilterParams['main_phone'])) {
+                $cms_forms_liveaccount = $cms_forms_liveaccount->where('main_phone', $aFilterParams['main_phone']);
+
+            }
+
+            if (isset($aFilterParams['created_at']) && !empty($aFilterParams['created_at'])) {
+                $cms_forms_liveaccount = $cms_forms_liveaccount->where('created_at','like', $aFilterParams['created_at'].'%');
+
+            }
+
+        }
+
+        if(isset($oRequest['order']) && !empty($oRequest['order'])){
+            $cms_forms_liveaccount = $cms_forms_liveaccount->orderBy($oRequest['order'], $oRequest['sort']);
+        }
+
+
+        $cms_forms_liveaccount = $cms_forms_liveaccount->paginate(15);
+
+
 
         return view('cms::forms.cms_forms_liveaccount.index', compact('cms_forms_liveaccount'))
-            ->with('form_status',$form_status);
+            ->with('form_status',$form_status)
+            ->with('aFilterParams',$aFilterParams);
     }
 
     /**
@@ -70,7 +129,7 @@ $form_status=['Not Approved','Approved','updated'];
         $arrays=[];
         $cms_forms_liveaccount = cms_forms_liveaccount::findOrFail($id);
 
-        $arrays['form_status']=['Not Approved','Approved','Updated'];
+        $arrays['form_status']=['Not Approved','Approved','Updated','','','','',''];
         $arrays['number_of_years']= [0=>'Select One','None'=>'None','Less than 1 year'=>'Less than 1 year','1 to 3 years'=>'1 to 3 years','3 to 5 years'=>'3 to 5 years','More than 5 years'=>'More than 5 years'];
         $arrays['number_of_transactions']= [0=>'Select One','less than 10 transactions'=>'less than 10 transactions','10 to 20 transactions'=>'10 to 20 transactions','More than 20 transactions'=>'More than 20 transactions'];
         $arrays['average_trading']= [0=>'Select One','Less than 30,000 GBP'=>'Less than 30,000 GBP','30,000 to 60,000 GBP'=>'30,000 to 60,000 GBP','60,000 to 300,000 GBP'=>'60,000 to 300,000 GBP','More than 300,000 GBP'=>'More than 300,000 GBP'];

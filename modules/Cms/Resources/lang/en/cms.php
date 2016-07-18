@@ -379,6 +379,10 @@
 
     'livePageCheckAgree'=>'I agree that all info in this page are correct',
     'document_other'=>'Other Document',
+    'showing'=>'Showing',
+    'live_account'=>'Live Account',
+    'go'=>'Go',
+    'add_new_live_account'=>'Add New live account',
 
 
 
