@@ -84,8 +84,10 @@ $form_status=['Not Approved','Approved','updated'];
                 $aNeedApprove[$fields->field_name]=0;
             }
         }
+
+        $sms_info=cms_forms_livesm::where('live_account_id',$id)->first();
       //  dd($aNeedApprove);
-        return view('cms::forms.cms_forms_liveaccount.show', compact('cms_forms_liveaccount'),['arrays'=>$arrays,'need_approve'=>$aNeedApprove])->render();
+        return view('cms::forms.cms_forms_liveaccount.show', compact('cms_forms_liveaccount'),['arrays'=>$arrays,'need_approve'=>$aNeedApprove,'sms_info'=>$sms_info])->render();
     }
 
 

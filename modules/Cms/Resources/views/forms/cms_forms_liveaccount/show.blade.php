@@ -56,6 +56,51 @@
 
             </div>
 
+            @if(count($sms_info))
+                <div class="fieldsGroup">
+                    <header>
+
+                        Agreement Info
+                    </header>
+
+                    <div class="form-group">
+
+                        <div class="col-sm-8 control-label">
+                            Insert secret form
+                        </div>
+
+                        <div class="col-sm-4">
+                            <a href="/account-sms?id={{$cms_forms_liveaccount->id}}">{{  $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/account-sms?'}}id={{$cms_forms_liveaccount->id}}</a>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <div class="col-sm-8 control-label">
+                          secret code :
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label class="control-label">{{$sms_info->secret }}</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-sm-8 control-label">
+                           connection Info
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label class="control-label">{{$sms_info->connection_info }}</label>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                @endif
             {{--{!! Form::model($cms_forms_liveaccount, [--}}
             {{--'method' => 'PATCH',--}}
             {{--'url' => ['/cms/cms_forms_liveaccount', $cms_forms_liveaccount->id],--}}
