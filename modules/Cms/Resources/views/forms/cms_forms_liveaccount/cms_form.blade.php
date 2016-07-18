@@ -174,9 +174,9 @@
 
             {!! Form::label('date_of_birth', trans('cms::cms.date_of_birth')).' *'  !!}
             <div class="clearfix">
-                {!! Form::select('date_of_birth_y',$arrays['years'],1985,['style'=>'width:32%;']) !!}
-                {!! Form::select('date_of_birth_m',$arrays['months'],1,['style'=>'width:32%;']) !!}
-                {!! Form::select('date_of_birth_d',$arrays['days'],1,['style'=>'width:32%;']) !!}
+                {!! Form::select('date_of_birth_y',$arrays['years'],null,['style'=>'width:32%;']) !!}
+                {!! Form::select('date_of_birth_m',$arrays['months'],null,['style'=>'width:32%;']) !!}
+                {!! Form::select('date_of_birth_d',$arrays['days'],null,['style'=>'width:32%;']) !!}
             </div>
             {!! $errors->first('date_of_birth', '<ul><li class="error">:message</li></ul>') !!}
         </div>
@@ -254,9 +254,9 @@
                 {!! Form::label('date_of_birth_joint', trans('cms::cms.date_of_birth_joint').' *' ) !!}
                 <div class="clearfix">
 
-                    {!! Form::select('date_of_birth_joint_y',$arrays['years'],1985,['style'=>'width:32%;']) !!}
-                    {!! Form::select('date_of_birth_joint_m',$arrays['months'],1,['style'=>'width:32%;']) !!}
-                    {!! Form::select('date_of_birth_joint_d',$arrays['days'],1,['style'=>'width:32%;']) !!}
+                    {!! Form::select('date_of_birth_joint_y',$arrays['years'],null,['style'=>'width:32%;']) !!}
+                    {!! Form::select('date_of_birth_joint_m',$arrays['months'],null,['style'=>'width:32%;']) !!}
+                    {!! Form::select('date_of_birth_joint_d',$arrays['days'],null,['style'=>'width:32%;']) !!}
 
                 </div>
                 {!! $errors->first('date_of_birth_joint', '<ul><li class="error">:message</li></ul>') !!}
@@ -1226,6 +1226,9 @@
                             {!! Form::select('proof_of_residence',$arrays['proof_of_residence'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform','required'=>'required']) !!}
                             <span>{!! $errors->first('proof_of_residence', '<ul><li class="error">:message</li></ul>') !!}</span>
                         </div>
+                        <div class="input_all_div">
+
+                              </div>
 
                     </div>
 
@@ -1245,6 +1248,14 @@
                                 {!! Form::text('document_por', null, ['class' => 'form-control']) !!}
                             </div>
                             {!! $errors->first('document_por', '<ul><li class="error">:message</li></ul>') !!}
+                        </div>
+
+                        <div class="input_all_div file">
+                            {!! Form::label('document_id2', trans('cms::cms.document_other')) !!}
+                            <div class="country_list">
+                                {!! Form::text('document_id2', null, ['class' => 'form-control']) !!}
+                            </div>
+                            {!! $errors->first('document_id2', '<ul><li class="error">:message</li></ul>') !!}
                         </div>
 
 

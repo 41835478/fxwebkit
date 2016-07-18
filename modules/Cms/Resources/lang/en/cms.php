@@ -371,7 +371,8 @@
     'leftMenu'=>'Left Menu',
     'clientEmailTemplate'=>'Client Email Template',
     'adminEmailTemplate'=>'Admin Email Template',
-    'livePageCheckAgree'=>'I agree that all info in this page are correct'
+    'livePageCheckAgree'=>'I agree that all info in this page are correct',
+    'document_other'=>'Other Document'
 
 
 ]; ?>

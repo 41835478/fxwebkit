@@ -1415,15 +1415,7 @@
                         {!! $errors->first('document_id', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
-                <!--
-            <div class="form-group {{ $errors->has('document_id2') ? 'has-error' : ''}}">
-                {!! Form::label('document_id2', trans('document_id2 :'), ['class' => 'col-sm-8 control-label']) !!}
-                        <div class="col-sm-4">
-                            <label class="control-label">{{$cms_forms_liveaccount->document_id2 }}</label>
-                    {!! $errors->first('document_id2', '<p class="help-block">:message</p>') !!}
-                        </div>
-                    </div>
-                    -->
+
                 <div class="form-group {{ $errors->has('document_por') ? 'has-error' : ''}}">
                     {!! Form::label('document_por', trans('cms::cms.document_por :'), ['class' => 'col-sm-8 control-label']) !!}
                     <div class="col-sm-4">
@@ -1446,6 +1438,16 @@
 
                     </div>
                 </div>
+
+
+                <div class="form-group {{ $errors->has('document_id2') ? 'has-error' : ''}}">
+                    {!! Form::label('document_id2', trans('document_id2 :'), ['class' => 'col-sm-8 control-label']) !!}
+                    <div class="col-sm-4">
+                        <label class="control-label"><a href="/{{Config::get('cms.asset_folder').'/'.$cms_forms_liveaccount->document_id2 }}">{{trans('cms::cms.document_other')}}</a></label>
+                        {!! $errors->first('document_id2', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+
                 <div class="form-group {{ $errors->has('pdf') ? 'has-error' : ''}}">
                     {!! Form::label('pdf', trans('cms::cms.pdf :'), ['class' => 'col-sm-8 control-label']) !!}
                     <div class="col-sm-4">

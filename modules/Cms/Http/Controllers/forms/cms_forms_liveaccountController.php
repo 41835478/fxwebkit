@@ -236,11 +236,11 @@ $form_status=['Not Approved','Approved','updated'];
 
 
 
-        $arrays['years']=[];
+        $arrays['years']=[''];
         for($i=1940;$i<2016;$i++){ $arrays['years'][$i]=$i;}
-        $arrays['months']=[];
+        $arrays['months']=[''];
         for($i=1;$i<13;$i++){ $arrays['months'][$i]=$i;}
-        $arrays['days']=[];
+        $arrays['days']=[''];
         for($i=1;$i<32;$i++){ $arrays['days'][$i]=$i;}
 
 
@@ -262,8 +262,7 @@ $form_status=['Not Approved','Approved','updated'];
      */
     public function cms_store(LiveAccountRequest $request)
     {
-
-        if(!isset($request->ref) && strlen($request)>0){
+        if($request->ref == 0 || !isset($request->ref) || !strlen($request->ref)>1){
             $errors=$this->validateFrequencyFields($request);
             if(!empty($errors)){
                 return Redirect::back()->withErrors($errors);
@@ -360,6 +359,9 @@ return true;
 
         if ($sole_joint == 'joint account') {
 
+            if (empty($request->date_of_birth_joint_y) || empty($request->date_of_birth_joint_m) || empty($request->date_of_birth_joint_d) ) {
+                $this->addErrorMessage($errors,'date_of_birth_joint', 'Required Field');
+            }
 
             $sourceFunds_joint = $request->source_funds_deposited_joint;
             $otherSourceFunds_joint = $request->other_source_funds_deposited_joint;
@@ -699,6 +701,11 @@ return true;
         if ($understand_market_securities == '1' && empty($understand_market_years_securities)) {
             $this->addErrorMessage($errors,'understand_market_years_securities', 'Required Field');
         }
+
+        if (empty($request->date_of_birth_y) || empty($request->date_of_birth_m) || empty($request->date_of_birth_d) ) {
+            $this->addErrorMessage($errors,'date_of_birth', 'Required Field');
+        }
+
 
         return $errors;
 
