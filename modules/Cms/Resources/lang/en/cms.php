@@ -379,7 +379,8 @@
 
     'livePageCheckAgree'=>'I agree that all info in this page are correct',
     'document_other'=>'Other Document',
-
+'created_at'=>'Register Date',
+    'ip'=>'IP'
 
 
 ]; ?>
