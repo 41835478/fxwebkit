@@ -25,5 +25,5 @@ class cms_forms_livesm extends Model
      *
      * @var array
      */
-    protected $fillable = ['live_account_id', 'secret', 'phone', 'message','status'];
+    protected $fillable = ['live_account_id', 'secret', 'phone', 'message','status','connection_info'];
 }

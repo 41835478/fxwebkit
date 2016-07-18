@@ -129,6 +129,10 @@ class cms_forms_livesmsController extends Controller
             if($agreement_id >0 ){
                 //TODO check status number if the agreement complete
                 cms_forms_liveaccount::where('id',$agreement_id)->update(['status'=>4]);
+
+                $connection_info='IP : '.$_SERVER['REMOTE_ADDR'].' and '
+                .'browser : '.$_SERVER['HTTP_USER_AGENT'];
+              cms_forms_livesm::where('live_account_id',$agreement_id)->update(['connection_info'=>$connection_info]);
                 Session::flash('flash_message', 'Thank you for your time, we will contact you soon');
             }
 
@@ -157,7 +161,13 @@ class cms_forms_livesmsController extends Controller
 //                $email=new Email();
 //                @$email->sendFormEmail('cms_forms_livesm',$request->all());
 
-                return view('cms::forms.cms_forms_liveaccount.live_forms.form_'.$live_account_id);
+
+                return view('cms::forms.cms_forms_liveaccount.agreementForm')->with(
+                    ['var'=>cms_forms_liveaccount::find($live_account_id),
+                    'id'=>$live_account_id
+                    ]
+                );
+                //return view('cms::forms.cms_forms_liveaccount.live_forms.form_'.$live_account_id);
                 // TODO translate messages
                 Session::flash('flash_message', 'Thank you for verifying your live form account ');
                 return Redirect::back();

@@ -319,12 +319,12 @@ $form_status=['Not Approved','Approved','updated'];
             $request->merge(array('ip' =>$_SERVER['REMOTE_ADDR']));
         $new_live_form=cms_forms_liveaccount::create($request->all());
 
-
+/*
             $agreementhtml=View::make('cms::forms.cms_forms_liveaccount.agreementForm',['var'=>$request,'id'=>$new_live_form->id])->render();
             file_put_contents(base_path('modules/Cms/Resources/views/forms/cms_forms_liveaccount/live_forms').'/form_'.$new_live_form->id.'.blade.php',$agreementhtml);
+*/
 
-
-            @$email->sendFormEmail('cms_forms_liveaccount',$request->all(),$request->primary_email);
+      //      @$email->sendFormEmail('cms_forms_liveaccount',$request->all(),$request->primary_email);
       //      return Redirect::to('/account-sms?id='.$new_live_form->id);
         }
 
@@ -335,7 +335,7 @@ $form_status=['Not Approved','Approved','updated'];
         Session::flash('flash_success', 'Thank you we will contact you soon');
         return Redirect::back();
 
-        return view('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
+       // return view('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
 
         //    return redirect('cms/cms_forms_liveaccount');
     }
