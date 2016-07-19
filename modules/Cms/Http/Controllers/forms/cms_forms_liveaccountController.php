@@ -360,7 +360,7 @@ class cms_forms_liveaccountController extends Controller
         $request->merge(['pdf'=>$pdf]);
         $pdfPath=public_path().'/pdf/'.explode('.',basename($htmlPath))[0].'.pdf';
         $request->merge(['pdfPath'=>$pdfPath]);
-        exec('"'.Config('fxweb.htmlToPdfPath').'" "'.$htmlPath.'" "'.$pdfPath.'"');
+      //  exec('"'.Config('fxweb.htmlToPdfPath').'" "'.$htmlPath.'" "'.$pdfPath.'"');
       //  unlink($htmlPath);
 
 
@@ -372,7 +372,7 @@ class cms_forms_liveaccountController extends Controller
             $cms_forms_liveaccount=cms_forms_liveaccount::where('ref',$request->ref)->first();
             $request->merge(['status'=>2]);
             $cms_forms_liveaccount->update($request->all());
-            @$email->sendEditLiveEmail($request->all(),$request->primary_email);
+           // @$email->sendEditLiveEmail($request->all(),$request->primary_email);
         }else{
             unset($request->ref);
             $request->merge(array('ref' =>rand(0,999999) ));
