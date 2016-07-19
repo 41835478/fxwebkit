@@ -1217,13 +1217,13 @@
 
                     <div class="left_div">
                         <div class="input_all_div">
-                            <label>{!! Form::label('id_type',trans('cms::cms.id_type').' *'   , ['class' => 'control-label']) !!}</label>
+                            <label>{!! Form::label('id_type',trans('cms::cms.id_type')  , ['class' => 'control-label']) !!}</label>
                             {!! Form::select('id_type',$arrays['id_type'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform','required'=>'required']) !!}
                             <span>{!! $errors->first('id_type', '<ul><li class="error">:message</li></ul>') !!}</span>
                         </div>
 
                         <div class="input_all_div">
-                            <label>{!! Form::label('proof_of_residence',trans('cms::cms.proof_of_residence').' *'  , ['class' => 'control-label']) !!}</label>
+                            <label>{!! Form::label('proof_of_residence',trans('cms::cms.proof_of_residence')  , ['class' => 'control-label']) !!}</label>
                             {!! Form::select('proof_of_residence',$arrays['proof_of_residence'], 'Select One', ['class' => '','id'=>'forex_corebundle_portalusers_default_platform','required'=>'required']) !!}
                             <span>{!! $errors->first('proof_of_residence', '<ul><li class="error">:message</li></ul>') !!}</span>
                         </div>
