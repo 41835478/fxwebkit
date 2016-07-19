@@ -27,7 +27,8 @@ class cms_forms_liveaccountController extends Controller
     public function index(Request $oRequest)
     {
 
-        $form_status=['Not Approved','Approved','updated','','','','',''];
+
+        $form_status=['New Request','Qualified','Re-Request','Filled incorrectly','Junk','Waiting Confirmation','Completed'];
 
         $cms_forms_liveaccount= new cms_forms_liveaccount();
 
@@ -129,7 +130,7 @@ class cms_forms_liveaccountController extends Controller
         $arrays=[];
         $cms_forms_liveaccount = cms_forms_liveaccount::findOrFail($id);
 
-        $arrays['form_status']=['Not Approved','Approved','Updated','','','','',''];
+        $arrays['form_status']=['New Request','Qualified','Re-Request','Filled incorrectly','Junk','Waiting Confirmation','Completed'];
         $arrays['number_of_years']= [0=>'Select One','None'=>'None','Less than 1 year'=>'Less than 1 year','1 to 3 years'=>'1 to 3 years','3 to 5 years'=>'3 to 5 years','More than 5 years'=>'More than 5 years'];
         $arrays['number_of_transactions']= [0=>'Select One','less than 10 transactions'=>'less than 10 transactions','10 to 20 transactions'=>'10 to 20 transactions','More than 20 transactions'=>'More than 20 transactions'];
         $arrays['average_trading']= [0=>'Select One','Less than 30,000 GBP'=>'Less than 30,000 GBP','30,000 to 60,000 GBP'=>'30,000 to 60,000 GBP','60,000 to 300,000 GBP'=>'60,000 to 300,000 GBP','More than 300,000 GBP'=>'More than 300,000 GBP'];
@@ -440,19 +441,12 @@ $message=$host.'   secret code : '.$secret;
         ];
 
         $link='http://api.clickatell.com/http/sendmsg?'.http_build_query($data);
-//$link=urlencode($link);
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $link);
-        //curl_setopt($ch, CURLOPT_URL, 'f');
-
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
 
-      //  curl_setopt($ch, CURLOPT_POSTFIELDS,$data);
         curl_setopt($ch, CURLOPT_POST, 0);
         $response = curl_exec($ch);
 

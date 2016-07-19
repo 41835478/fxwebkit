@@ -128,7 +128,7 @@ class cms_forms_livesmsController extends Controller
           $agreement_id=  \Input::get('agreement_id');
             if($agreement_id >0 ){
                 //TODO check status number if the agreement complete
-                cms_forms_liveaccount::where('id',$agreement_id)->update(['status'=>4]);
+                cms_forms_liveaccount::where('id',$agreement_id)->update(['status'=>6]);
 
                 $connection_info='IP : '.$_SERVER['REMOTE_ADDR'].' and '
                 .'browser : '.$_SERVER['HTTP_USER_AGENT'];
