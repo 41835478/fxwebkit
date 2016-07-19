@@ -346,7 +346,7 @@ class cms_forms_liveaccountController extends Controller
         $htmlName='live_account_'.rand(0,99999).rand(0,99999).'.html';
         $htmlPath=public_path().'/tempHtml/'.$htmlName;
         $html=View::make('cms::forms.cms_forms_liveaccount.pdfForm',['var'=>$request])->render();
-     //   file_put_contents($htmlPath,$html);
+        file_put_contents($htmlPath,$html);
         $pdfPath=public_path().'/pdf/'.explode('.',basename($htmlPath))[0].'.pdf';
 
 
@@ -360,7 +360,9 @@ class cms_forms_liveaccountController extends Controller
         $request->merge(['pdf'=>$pdf]);
         $pdfPath=public_path().'/pdf/'.explode('.',basename($htmlPath))[0].'.pdf';
         $request->merge(['pdfPath'=>$pdfPath]);
-      //  exec('"'.Config('fxweb.htmlToPdfPath').'" "'.$htmlPath.'" "'.$pdfPath.'"');
+
+       exec('"'.Config('fxweb.htmlToPdfPath').'" "'.$htmlPath.'" "'.$pdfPath.'"');
+
       //  unlink($htmlPath);
 
 
