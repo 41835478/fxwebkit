@@ -1554,8 +1554,50 @@ function hideShowExperience(select){
 
         $('select[name="number_of_years_cfd"],select[name="number_of_years_commodities"],select[name="number_of_years_forex"],select[name="number_of_years_futures"],select[name="number_of_years_options"],select[name="number_of_years_securities"],select[name="number_of_years_cfd_joint"],select[name="number_of_years_commodities_joint"],select[name="number_of_years_forex_joint"],select[name="number_of_years_futures_joint"],select[name="number_of_years_options_joint"],select[name="number_of_years_securities_joint"]').each(function () {
 hideShowExperience($(this));
-            $(this).change(function(){hideShowExperience($(this));});
+            $(this).change(function(){
+                hideShowExperience($(this));
+                changeUderstandMarket($(this));});
+
+
         });
+
+        function changeUderstandMarket(select){
+var name=select.attr('name');
+            name=name.replace('number_of_years_','');
+
+            if (select.val() == 'None' || select.val() == '') {
+               $('input[name="understand_market_years_'+name+'"]').val('');
+
+                $('#understand_market_'+name+'_1').prop('checked',true);
+            }else{
+                $('input[name="understand_market_years_'+name+'"]').val(select.val());
+                $('#understand_market_'+name+'_0').prop('checked',true);
+
+
+            }
+
+        }
+
+
+
+
+        $('.understandInput').hide();
+
+
+//        $('.understandInput input').change(function(){
+//            if($(this).val() !=''){
+//                $(this).parent().prev().find('input[value="1"]').prop('checked',true);
+//            }else{
+//
+//                $(this).parent().prev().find('input[value="0"]').prop('checked',true);
+//            }
+//        });
+
+
+
+
+
+
 //        if ($(this).val() ==  'None') {
 //            $(this).parent().next().find('select').removeAttr('disabled');
 //            $(this).parent().next().next().find('select').removeAttr('disabled');
@@ -1642,17 +1684,6 @@ hideShowExperience($(this));
 //        }
 //    });
 
-   $('.understandInput').prev().hide();
-
-
-    $('.understandInput input').change(function(){
-        if($(this).val() !=''){
-            $(this).parent().prev().find('input[value="1"]').prop('checked',true);
-        }else{
-
-            $(this).parent().prev().find('input[value="0"]').prop('checked',true);
-        }
-    });
 </script>
 
 
