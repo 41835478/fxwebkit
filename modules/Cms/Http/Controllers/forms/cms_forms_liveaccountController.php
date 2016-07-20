@@ -79,9 +79,10 @@ class cms_forms_liveaccountController extends Controller
 
         }
 
-        if(isset($oRequest['order']) && !empty($oRequest['order'])){
-            $cms_forms_liveaccount = $cms_forms_liveaccount->orderBy($oRequest['order'], $oRequest['sort']);
-        }
+
+            $cms_forms_liveaccount = $cms_forms_liveaccount->orderBy( $sOrder,$sSort);
+
+
 
 
         $cms_forms_liveaccount = $cms_forms_liveaccount->paginate(15);
