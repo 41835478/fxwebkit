@@ -1500,7 +1500,7 @@
               $('.joint_div input,.joint_div select').removeAttr('disabled');
         @endif
         $('.joint_div input').attr('required', 'true');
-        $('input[name="other_source_funds_deposited"],input[name="other_source_funds_deposited_joint"]').removeAttr('required');
+        $('input[name="other_source_funds_deposited"],input[name="other_source_funds_deposited_joint"],.understandRadio input').removeAttr('required');
         $('.select2-input,.select2-search input,.select2-focusser,.select2-offscreen,input[name="secondary_phone_joint"],input[name="secondary_email_joint"],#d_joint input,#i_joint input[type="text"],#4_a_joint input,input[name="other_source_funds_deposited_joint"]').removeAttr('required');
     }
     function remove_joint_validation() {
