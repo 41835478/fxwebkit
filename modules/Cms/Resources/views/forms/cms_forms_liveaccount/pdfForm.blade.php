@@ -552,7 +552,7 @@
 <div class="page">
 <h5>B. residential address</h5>
 <p>Street and Number</p>
-<div class="rectangle padding-10">{{ $var->street_and_number}}</div>
+<div class="rectangle padding-10">{{ $var->street_and_number}},{{ $var->building_number}}</div>
 <p>Post Code</p>
 <div class="rectangle padding-10">{{$var->postal_code}}</div>
 <div class="col-box margin-bottom-30">
@@ -1309,7 +1309,7 @@ Attn.: Client Onboarding
 <h5>B. residential address</h5>
 <br>
 <p><strong>Street and Number</strong></p>
-<div class="rectangle padding-10">{{ $var->street_and_number_joint}}</div>
+<div class="rectangle padding-10">{{ $var->street_and_number_joint}},{{ $var->building_number_joint}}</div>
 <p><strong>Post Code</strong></p>
 <div class="rectangle padding-10">{{$var->postal_code_joint}}</div>
 <p><strong>City</strong></p>

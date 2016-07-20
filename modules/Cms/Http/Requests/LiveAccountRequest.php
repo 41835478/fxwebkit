@@ -25,6 +25,8 @@ class LiveAccountRequest extends FormRequest
         $returnedArray= [
             'account_type' => 'required',
             'base_currency_limit' => 'required',
+            'default_platform'=>'required',
+            'date_of_birth_y'=>'required',
             'title' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
@@ -32,6 +34,7 @@ class LiveAccountRequest extends FormRequest
             'marital_status' => 'required',
             'resident_status' => 'required',
             'street_and_number' => 'required',
+            'building_number' => 'required',
             'city' => 'required',
             'postal_code' => 'required',
             'country' => 'required',
@@ -63,8 +66,7 @@ class LiveAccountRequest extends FormRequest
             'understand_market_futures' => 'required',
             'understand_market_options' => 'required',
             'understand_market_securities' => 'required',
-            'id_type' => 'required',
-            'proof_of_residence' => 'required',
+
             'understand_risks' => 'required',
 
         ];
@@ -75,9 +77,14 @@ class LiveAccountRequest extends FormRequest
                 'first_name_joint'=> 'required',
             'second_name_joint'=> 'required',
             'last_name_joint'=> 'required',
+
+                'date_of_birth_joint_y'=>'required',
+                'gender_joint' => 'required',
+
             'title_joint'=> 'required',
             'postal_code_joint'=> 'required',
             'street_and_number_joint'=> 'required',
+                'building_number_joint' => 'required',
             'city_joint'=> 'required',
             'main_phone_joint'=> 'required',
             'primary_email_joint'=> 'required',

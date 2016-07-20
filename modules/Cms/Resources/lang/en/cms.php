@@ -112,6 +112,8 @@
     'marital_status'=>'Marital status',
     'resident_status'=>'Resident status',
     'street_and_number'=>'Street and Number',
+    'street_number'=>'Street  Number',
+    'building_number'=>'Building Number',
     'city'=>'City',
     'main_phone'=>'Main Phone',
     'secondary_phone'=>'Secondary Phone',

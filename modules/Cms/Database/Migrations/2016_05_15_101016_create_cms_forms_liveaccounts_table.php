@@ -45,6 +45,7 @@ class CreateCmsFormsLiveaccountsTable extends Migration
             $table->string('marital_status',50);
             $table->string('resident_status',50);
             $table->string('street_and_number',50);
+            $table->string('building_number',50);
             $table->string('city',50);
             $table->string('main_phone',50);
             $table->string('secondary_phone',50);
@@ -113,6 +114,7 @@ class CreateCmsFormsLiveaccountsTable extends Migration
             $table->string('marital_status_joint',50);
             $table->string('resident_status_joint',50);
             $table->string('street_and_number_joint',50);
+            $table->string('building_number_joint',50);
             $table->string('city_joint',50);
             $table->string('main_phone_joint',50);
             $table->string('secondary_phone_joint',50);

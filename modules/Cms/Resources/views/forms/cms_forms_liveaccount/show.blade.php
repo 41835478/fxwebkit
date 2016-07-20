@@ -368,6 +368,19 @@
                     </div>
 
 
+
+                    <div class="form-group {{ $errors->has('building_number') ? 'has-error' : ''}}">
+                        <div class="col-sm-8 control-label ">
+                            {!! Form::checkbox('need_approve[building_number]','1',isset($need_approve['building_number']),['class'=>'approve_checkbox']) !!}
+                            {!! Form::label('building_number', trans('cms::cms.building_number').' :', ['class' => '']) !!}
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-label">{{$cms_forms_liveaccount->building_number }}</label>
+                            {!! $errors->first('building_number', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+
+
                     <div class="form-group {{ $errors->has('postal_code') ? 'has-error' : ''}}">
                         <div class="col-sm-8 control-label ">
                             {!! Form::checkbox('need_approve[postal_code]','1',isset($need_approve['postal_code']),['class'=>'approve_checkbox']) !!}
@@ -1333,6 +1346,22 @@
                             {!! $errors->first('street_and_number_joint', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
+
+
+                    <div class="form-group {{ $errors->has('building_number_joint') ? 'has-error' : ''}}">
+
+                        <div class="col-sm-8 control-label ">
+                            {!! Form::checkbox('need_approve[building_number_joint]','1',isset($need_approve['building_number_joint']),['class'=>'approve_checkbox']) !!}
+                            {!! Form::label('building_number_joint', trans('cms::cms.building_number').' :', ['class' => '']) !!}
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="control-label">{{$cms_forms_liveaccount->building_number_joint }}</label>
+                            {!! $errors->first('building_number_joint', '<p class="help-block">:message</p>') !!}
+                        </div>
+                    </div>
+
+
+
                     <div class="form-group {{ $errors->has('postal_code_joint') ? 'has-error' : ''}}">
                         <div class="col-sm-8 control-label ">
                             {!! Form::checkbox('need_approve[postal_code_joint]','1',isset($need_approve['postal_code_joint']),['class'=>'approve_checkbox']) !!}
