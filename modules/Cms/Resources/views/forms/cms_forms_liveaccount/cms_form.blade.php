@@ -1522,24 +1522,39 @@
         $("input[name='main_phone_joint'],input[name='secondary_phone_joint'],input[name='fax_joint']").intlTelInput("selectCountry", "{{strtolower($geoipCountry[0])}}");
 
 
+function hideShowExperience(select){
 
 
-        $('select[name="number_of_years_cfd"],select[name="number_of_years_commodities"],select[name="number_of_years_forex"],select[name="number_of_years_futures"],select[name="number_of_years_options"],select[name="number_of_years_securities"]').change(function () {
 
+    if (select.val() == 'None') {
+        select.parent().parent().next().find('select').attr('disabled', 'disabled');
+        select.parent().parent().next().next().find('select').attr('disabled', 'disabled');
+        select.parent().parent().next().find('select').removeAttr('required');
+        select.parent().parent().next().next().find('select').removeAttr('required');
+    } else {
 
-            if ($(this).val() == 'None') {
-                $(this).parent().parent().next().find('select').attr('disabled', 'disabled');
-                $(this).parent().parent().next().next().find('select').attr('disabled', 'disabled');
-                $(this).parent().parent().next().find('select').removeAttr('required');
-                $(this).parent().parent().next().next().find('select').removeAttr('required');
-            } else {
-
-                $(this).parent().parent().next().find('select').removeAttr('disabled');
-                $(this).parent().parent().next().next().find('select').removeAttr('disabled');
+        select.parent().parent().next().find('select').removeAttr('disabled');
+        select.parent().parent().next().next().find('select').removeAttr('disabled');
 
 //                $(this).parent().parent().next().find('select').attr('required', 'required');
 //                $(this).parent().parent().next().next().find('select').attr('required', 'required');
-            }
+    }
+
+    if (select.val() == 'None' || select.val() == '') {
+        select.parent().parent().css('width','100%');
+        select.parent().parent().next().hide();
+        select.parent().parent().next().next().hide();
+    }else{
+
+        select.parent().parent().css('width','33.33333%');
+        select.parent().parent().next().show();
+        select.parent().parent().next().next().show();
+    }
+}
+
+        $('select[name="number_of_years_cfd"],select[name="number_of_years_commodities"],select[name="number_of_years_forex"],select[name="number_of_years_futures"],select[name="number_of_years_options"],select[name="number_of_years_securities"],select[name="number_of_years_cfd_joint"],select[name="number_of_years_commodities_joint"],select[name="number_of_years_forex_joint"],select[name="number_of_years_futures_joint"],select[name="number_of_years_options_joint"],select[name="number_of_years_securities_joint"]').each(function () {
+hideShowExperience($(this));
+            $(this).change(function(){hideShowExperience($(this));});
         });
 //        if ($(this).val() ==  'None') {
 //            $(this).parent().next().find('select').removeAttr('disabled');
@@ -1551,23 +1566,23 @@
 //        }
 
 
-        $('select[name="number_of_years_cfd_joint"],select[name="number_of_years_commodities_joint"],select[name="number_of_years_forex_joint"],select[name="number_of_years_futures_joint"],select[name="number_of_years_options_joint"],select[name="number_of_years_securities_joint"]').change(function () {
-
-
-            if ($(this).val() == 'None') {
-                $(this).parent().parent().next().find('select').attr('disabled', 'disabled');
-                $(this).parent().parent().next().next().find('select').attr('disabled', 'disabled');
-                $(this).parent().parent().next().find('select').removeAttr('required');
-                $(this).parent().parent().next().next().find('select').removeAttr('required');
-            } else {
-
-                $(this).parent().parent().next().find('select').removeAttr('disabled');
-                $(this).parent().parent().next().next().find('select').removeAttr('disabled');
-
-//                $(this).parent().parent().next().find('select').attr('required', 'required');
-//                $(this).parent().parent().next().next().find('select').attr('required', 'required');
-            }
-        });
+//        $('select[name="number_of_years_cfd_joint"],select[name="number_of_years_commodities_joint"],select[name="number_of_years_forex_joint"],select[name="number_of_years_futures_joint"],select[name="number_of_years_options_joint"],select[name="number_of_years_securities_joint"]').e(function () {
+//
+//      //      hideShowExperience($(this));
+////            if ($(this).val() == 'None') {
+////                $(this).parent().parent().next().find('select').attr('disabled', 'disabled');
+////                $(this).parent().parent().next().next().find('select').attr('disabled', 'disabled');
+////                $(this).parent().parent().next().find('select').removeAttr('required');
+////                $(this).parent().parent().next().next().find('select').removeAttr('required');
+////            } else {
+////
+////                $(this).parent().parent().next().find('select').removeAttr('disabled');
+////                $(this).parent().parent().next().next().find('select').removeAttr('disabled');
+////
+//////                $(this).parent().parent().next().find('select').attr('required', 'required');
+//////                $(this).parent().parent().next().next().find('select').attr('required', 'required');
+////            }
+//        });
 
 
 //        if ($(this).val() ==  'None') {
