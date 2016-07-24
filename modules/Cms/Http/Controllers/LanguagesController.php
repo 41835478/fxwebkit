@@ -65,6 +65,11 @@ class LanguagesController extends Controller
         Session::put('locale', Input::get('languses_select'));
         return Redirect::back();
     }
+    public function getSetLanguage()
+    {
+        Session::put('locale', Input::get('languses_select'));
+        return Redirect::back();
+    }
 
     public function postGetLanguage()
     {

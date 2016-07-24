@@ -79,12 +79,12 @@ class Email extends Controller
                 $message->bcc($info['bcc']);
             }
 
-            if(isset($info['pdfPath'])){
-
-                $message->attach($info['pdfPath'], array(
-                    'as' => 'live-account-form.pdf',
-                    'mime' => 'application/pdf'));
-            }
+//            if(isset($info['pdfPath'])){
+//
+//                $message->attach($info['pdfPath'], array(
+//                    'as' => 'live-account-form.pdf',
+//                    'mime' => 'application/pdf'));
+//            }
             $message ->setBody($info['content'], 'text/html');
         });
 

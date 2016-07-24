@@ -376,7 +376,7 @@ class cms_forms_liveaccountController extends Controller
             $cms_forms_liveaccount=cms_forms_liveaccount::where('ref',$request->ref)->first();
             $request->merge(['status'=>2]);
             $cms_forms_liveaccount->update($request->all());
-           // @$email->sendEditLiveEmail($request->all(),$request->primary_email);
+          // @$email->sendEditLiveEmail($request->all(),$request->primary_email);
         }else{
             unset($request->ref);
             $request->merge(array('ref' =>rand(0,999999) ));
@@ -389,7 +389,7 @@ class cms_forms_liveaccountController extends Controller
             file_put_contents(base_path('modules/Cms/Resources/views/forms/cms_forms_liveaccount/live_forms').'/form_'.$new_live_form->id.'.blade.php',$agreementhtml);
 */
 
-      //      @$email->sendFormEmail('cms_forms_liveaccount',$request->all(),$request->primary_email);
+      @$email->sendFormEmail('cms_forms_liveaccount',$request->all(),$request->primary_email);
       //      return Redirect::to('/account-sms?id='.$new_live_form->id);
         }
 
