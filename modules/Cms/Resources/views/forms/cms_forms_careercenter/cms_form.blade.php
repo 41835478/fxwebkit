@@ -1,26 +1,20 @@
-
+<div id="careerCenterPageContainer">
 <div class="page-title">
-    <h2>Career Center</h2>
+    <h2>{{trans('cms::house.careerCenter')}}</h2>
 </div>
 <blockquote>
-    <p>We believe that the performance of our company and its success depends on the quality and commitment of its employees . The company has&nbsp;ambition, is full of enthusiasm and is aware of the stimulus efforts of all employees and their commitment during our work towards achieving&nbsp;our goals.</p>
+    <p>{{trans('cms::house.weBelieve')}}</p>
 </blockquote>
 
-<p><strong>In short, we are aware that our employees are the most important assets of the company,&nbsp;and for this we are investing heavily in them .</strong></p>
+<p><strong>{{trans('cms::house.careerWord_1')}}</strong></p>
 
 <p>&nbsp;</p>
 
-<p>As a company, we are ambitious, enthusiastic and committed to achieving of our aims. House of Borse employees are our most important asset and as a result we invest heavily in relevant training and self-development programs.</p>
+<p>{{trans('cms::house.careerWord_2')}}</p>
 
-<p>The House of Borse team includes elite staff from all over the world. Our ability to form working groups with employees from different cultures and continents attracts many applicants. We believe in individual accountability, effective management structures and appreciate the power of collective to solve problems.</p>
+<p>{{trans('cms::house.careerWord_3')}}</p>
 
-<p>We are constantly expanding and want to recruit the most talented individuals who enjoy working within a creative environment, designed to ensure every employee makes a difference. We encourage all employees to achieve their goals in and out of the workplace.</p>
-
-<p>We are an equal opportunities employer and welcome diversity.</p>
-
-<p>If you think you would thrive in such a dynamic workplace, then we are very interested to hear from you.</p>
-
-<p><strong>Please send your CV to Human Resources Management at the following address </strong></p>
+<p><strong>{{trans('cms::house.sendYourCv')}} </strong></p>
 
 
 <div id="career-form-cont">
@@ -55,49 +49,49 @@
     {!! Form::open(['route' => 'cms_forms_careercenter.form', 'class' => 'form-horizontal']) !!}
 
                 <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
-                {!! Form::label('title', trans('Title'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('title', trans('cms::house.title'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::text('title', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('firstName') ? 'has-error' : ''}}">
-                {!! Form::label('firstName', trans('First Name'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('firstName', trans('cms::house.firstName'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::text('firstName', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('firstName', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('lastName') ? 'has-error' : ''}}">
-                {!! Form::label('lastName', trans('Last Name'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('lastName', trans('cms::house.lastName'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::text('lastName', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('lastName', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('jobApplyingFor') ? 'has-error' : ''}}">
-                {!! Form::label('jobApplyingFor', trans('Job Applying For'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('jobApplyingFor', trans('cms::house.jobApplyingFor'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::text('jobApplyingFor', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('jobApplyingFor', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('Email') ? 'has-error' : ''}}">
-                {!! Form::label('Email', trans('Email'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('Email', trans('cms::house.Email'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::text('Email', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('Email', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('CurrentBasicSalary') ? 'has-error' : ''}}">
-                {!! Form::label('CurrentBasicSalary', trans('Current Basic Salary'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('CurrentBasicSalary', trans('cms::house.currentBasicSalary'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::text('CurrentBasicSalary', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('CurrentBasicSalary', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('CoverLetter') ? 'has-error' : ''}}">
-                {!! Form::label('CoverLetter', trans('Cover Letter'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('CoverLetter', trans('cms::house.coverLetter'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::text('CoverLetter', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('CoverLetter', '<p class="help-block">:message</p>') !!}
@@ -107,12 +101,12 @@
 
                 <div class=" col-sm-offset-3 col-sm-6">
                     {!! Form::checkbox('eligible','eligible', false, ['class' => '']) !!}
-                    <label for="eligible">I'm eligible to work in United Kingdom.</label>
+                    <label for="eligible">{{trans('cms::house.eligible')}}</label>
                     {!! $errors->first('eligible', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group file {{ $errors->has('cv') ? 'has-error' : ''}}">
-                {!! Form::label('cv', trans('CV'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('cv', trans('cms::house.cv'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
 
 
@@ -125,8 +119,9 @@
 
 
     <div class="form-group">
+        <label class="col-sm-3 control-label"></label>
         <div class="col-sm-offset-3 col-sm-6">
-            {!! Form::submit('SEND', ['class' => '  btn  btn-golden','style'=>'width:100%; color:#fff !important;']) !!}
+            {!! Form::submit(trans('cms::house.send'), ['class' => '  btn  btn-golden','style'=>'width:100%; color:#fff !important;']) !!}
         </div>
     </div>
 
@@ -140,7 +135,7 @@
             @endforeach
         </ul>
     @endif
-
+</div>
 <script>
 
     function upload_file(file_input,resultInputName){
@@ -198,3 +193,14 @@ $(this).parent().prepend(uploadHtml);
 });
 
 </script>
+
+@if(\Session::get('locale')=='ar')
+    <style type="text/css">
+
+
+        #careerCenterPageContainer{direction:rtl;}
+        #careerCenterPageContainer label.col-sm-3{float:right; text-align: left;}
+        #careerCenterPageContainer div.col-sm-6{float:right;}
+        #careerCenterPageContainer .file .country_list{direction:ltr;}
+    </style>
+@endif

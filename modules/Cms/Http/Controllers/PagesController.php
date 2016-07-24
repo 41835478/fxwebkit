@@ -348,8 +348,10 @@ elseif($page_type == 2)  {
 
     $article_html='';
 
+    if(isset($results->name)){
      eval('$html= new \Modules\Cms\Http\Controllers\forms\\'.$results->name.'Controller(); $article_html=$html->cms_create();' );
 
+    }
 
         if ($results) {
             $page_id = $results->page_id;

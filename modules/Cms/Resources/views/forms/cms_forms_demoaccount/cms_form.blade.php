@@ -1,6 +1,6 @@
-
-<h2>Open Demo Account</h2>
-<h4 class="golden">Enjoy the House of Borse of demo account within 30 days of the following features :</h4>
+<div id="demoAccountPageContainer">
+<h2>{{trans('cms::house.openDemo')}}</h2>
+<h4 class="golden">{{trans('cms::house.enjoyDemo')}}</h4>
 
 @if (Session::get('flash_success'))
     <div class="alert alert-success">
@@ -20,15 +20,16 @@
 @endif
 
 <ul>
-    <li>The trading prices of live and follow the charts of all markets.</li>
-    <li>Leverage up to 1:100.</li>
-    <li>Trading on the differences start from a very low 0.00 and traded like a real account.</li>
-    <li>You can try out your strategy in several markets,&nbsp;market currencies,&nbsp;commodities and some indicators of any of our platforms and anywhere.</li>
-    <li>Gained experience and training on the trading without the financial risk.</li>
-    <li>Try ECN trading system without clearing house.</li>
-    <li>Support throughout the day 24 \ 5.</li>
+    <li>{{trans('cms::house.demoFeatures_1')}}</li>
+    <li>{{trans('cms::house.demoFeatures_2')}}</li>
+    <li>{{trans('cms::house.demoFeatures_3')}}</li>
+    <li>{{trans('cms::house.demoFeatures_4')}}</li>
+    <li>{{trans('cms::house.demoFeatures_5')}}</li>
+    <li>{{trans('cms::house.demoFeatures_6')}}</li>
+    <li>{{trans('cms::house.demoFeatures_7')}}</li>
+
 </ul>
-<h4>Open demo account</h4>
+<h4>{{trans('cms::house.openDemo')}}</h4>
 
 {!! Form::open(['route' => 'cms_forms_demoaccount.form','id'=>'demo_form', 'class' => 'form-horizontal']) !!}
 <div id="form-list">
@@ -97,7 +98,7 @@
 </div>
 <div class="form-group">
     <div class=" col-sm-6">
-        {!! Form::submit('Create', ['class' => '  btn  btn-golden','style'=>'width:100%; color:#fff !important;']) !!}
+        {!! Form::submit(trans('cms::cms.create'), ['class' => '  btn  btn-golden','style'=>'width:100%; color:#fff !important;']) !!}
     </div>
 </div>
 
@@ -105,7 +106,7 @@
 
 </div>
 {!! Form::close() !!}
-
+</div>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#DemoType_country").on("change", function () {
@@ -123,3 +124,13 @@
 //        });
 //    });
 </script>
+
+@if(\Session::get('locale')=='ar')
+    <style type="text/css">
+
+#demoAccountPageContainer ,input:not([type="tel"]){direction:rtl;}
+
+#demoAccountPageContainer  .form-group>div {margin-left:50%;direction:ltr;}
+
+    </style>
+@endif

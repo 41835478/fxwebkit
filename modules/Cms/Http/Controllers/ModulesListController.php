@@ -300,36 +300,68 @@ class ModulesListController extends Controller
 
 
 
-        $links = \Modules\Cms\Entities\cms_menus_items::where(['menu_id' => 3])->get();
+$language= \Modules\Cms\Entities\cms_languages::where('code',\Session::get('locale'))->first();
+        $language_id=(count($language))? $language->id:1;
+//        $links = \Modules\Cms\Entities\cms_menus_items::where(['menu_id' => 3])->get();
 
+        // $links=cms_menus_items_languages::where(['cms_languages_id'=>$language,'cms_menus_items_id'=>$id])->get();
+        $links = \Modules\Cms\Entities\cms_menus_items::with(['cms_menus_items_languages' => function ($query) use($language_id)  {
+           $query->where('cms_languages_id', '=', $language_id);
+        }])->where('menu_id', 3)->get();
         $links = $links->toArray();
+
+        foreach($links as &$link){
+            $link['name']=str_replace(' ','-',$link['name']);
+        }
+
+
+
+
+
+//        $links = \Modules\Cms\Entities\cms_menus_items::where(['menu_id' => 3])->get();
+//
+//        $links = $links->toArray();
+        $menuHelper= new \Modules\Cms\Http\Controllers\MenusController();
+       $links= $menuHelper->order_menu($links);
+       // dd($links);
         return '<div class="container">'.$this->site_map_html(0, $links).'</div>';
     }
 
 
     private function site_map_html($root, $links)
     {
-
-
         $menu_html = '';
-        if (!is_null($links) && count($links) > 0) {
-            $menu_html .= ($root == 0) ? '' : '<ul >';
-            foreach ($links as $key => $link) {
-                $child = $link['id'];
-                $parent = $link['parent_item_id'];
-                if ($parent == $root) {
-                    unset($links[$key]);
-                    if ($link['hide'])
-                        continue;
-                    $sub_menu = $this->site_map_html($child, $links);
+        foreach($links as $link){
 
-                    $menu_html .=($parent==0)? '<h3>' . $link['name'] . '</h3>'.$sub_menu:'<li ><a href="/'.$link['name'].'"  ><i class="fa fa-angle-double-right"></i>' . $link['name'] . '</a>'.$sub_menu.'</li>';
-
-                }
+            $menu_html .='<h3>' . $link['translate'] . '</h3>';
+            $menu_html .=  '<ul >';
+            foreach($link['children'] as $child){
+                $menu_html .='<li ><a href="/'.$child['name'].'"  ><i class="fa fa-angle-double-right"></i>' . $child['translate'] . '</a></li>';
             }
-            $menu_html .= ($root == 0) ? '' : '</ul >';
+
+            $menu_html .=  '</ul>';
         }
-        return $menu_html;
+
+return $menu_html;
+//        $menu_html = '';
+//        if (!is_null($links) && count($links) > 0) {
+//            $menu_html .= ($root == 0) ? '' : '<ul >';
+//            foreach ($links as $key => $link) {
+//                $child = $link['id'];
+//                $parent = $link['parent_item_id'];
+//                if ($parent == $root) {
+//                    unset($links[$key]);
+//                    if ($link['hide'])
+//                        continue;
+//                    $sub_menu = $this->site_map_html($child, $links);
+//
+//                    $menu_html .=($parent==0)? '<h3>' . $link['translate'] . '</h3>'.$sub_menu:'<li ><a href="/'.$link['name'].'"  ><i class="fa fa-angle-double-right"></i>' . $link['translate'] . '</a>'.$sub_menu.'</li>';
+//
+//                }
+//            }
+//            $menu_html .= ($root == 0) ? '' : '</ul >';
+//        }
+//        return $menu_html;
     }
 
 

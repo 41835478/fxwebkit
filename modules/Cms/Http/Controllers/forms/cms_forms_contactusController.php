@@ -123,6 +123,8 @@ class cms_forms_contactusController extends Controller
          */
         public function cms_create()
         {
+
+            app()->setLocale(\Session::get('locale'));
             $arrays['priority']=['Low'=>'Low','Middle'=>'Middle','High'=>'High'  ];
             $arrays['department']=['Customer Support'=>'Customer Support','Accounting Department'=>'Accounting Department','Marketing Department'=>'Marketing Department','General Enquiries'=>'General Enquiries','Institutional'=>'Institutional','UMAM'=>'UMAM','New Account'=>'New Account' ];
 

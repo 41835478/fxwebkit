@@ -313,8 +313,8 @@ class cms_forms_liveaccountController extends Controller
 
 
        // $liveAccount=cms_forms_payment::find(\Session::get('liveAccount_id'));
-
-
+        app()->setLocale(\Session::get('locale'));
+        
         return View::make('cms::forms.cms_forms_liveaccount.cms_form')
             ->with(['arrays'=>$arrays,'cms_forms_liveaccount'=>$cms_forms_liveaccount])
             ->with('geoipCountry',getGeoipCountry())

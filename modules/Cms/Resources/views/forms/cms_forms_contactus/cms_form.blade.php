@@ -1,4 +1,4 @@
-
+<div id="contactusPageContainer">
 
 <section class="b-google-map map-theme b-bord-box" data-location-set="contact-us">
     <div class="b-google-map__map-view b-google-map__map-height">
@@ -9,8 +9,8 @@
          data-selected-marker="0"
          data-width="250">
         <div class="b-google-map__info-window f-center b-google-map__info-office f-google-map__info-office">
-            <h4 class="f-primary-b">House of Borse Ltd.</h4>
-            <small>Heading Office</small>
+            <h4 class="f-primary-b">{{trans('cms::house.houseLtd')}}</h4>
+            <small>{{trans('cms::house.headOffice')}}</small>
         </div>
     </div>
 </section>
@@ -19,9 +19,9 @@
 <section class="container b-welcome-box" id="hear_from_you_section">
     <div class="row">
         <div class="col-md-offset-2 col-md-8">
-            <h1 class="is-global-title f-center">We’d love to hear from you!</h1>
-            <p class="f-center">
-                If you have questions or want more information, do not hesitate to get in touch with us through one of the contact areas below. We will endeavor to respond to all inquiries within 24 hours .
+            <h1 class="is-global-title f-center">{{trans('cms::house.hearFromYou')}}</h1>
+            <p class="f-center">{{trans('cms::house.hearFromYouDetails')}}
+
             </p>
         </div>
     </div>
@@ -160,7 +160,7 @@
 
                 <div class="col-xs-12 b-contact-form-box">
                     <h3 class="f-primary-b b-title-description f-title-description">
-                        Contact Details
+                        {{trans('cms::house.cotactDetails')}}
                         <div class="b-title-description__comment f-title-description__comment f-primary-l"></div>
                     </h3>
                     <div class="row b-google-map__info-window-address">
@@ -174,9 +174,9 @@
                                 </div>
                                 <div>
                                     <div class="b-google-map__info-window-address-title f-google-map__info-window-address-title">
-                                        House of Borse Ltd.
+                                       {{trans('cms::house.houseLtd')}}
                                     </div>
-                                    <div class="desc">MayFair, 23 Hanover Square. London</div>
+                                    <div class="desc">{{trans('cms::house.houseAddress')}}</div>
                                 </div>
                             </li>
                             <li class="col-xs-12"><a href="https://www.houseofborse.com">
@@ -185,7 +185,7 @@
                                     </div>
                                     <div>
                                         <div class="b-google-map__info-window-address-title f-google-map__info-window-address-title">
-                                            Website
+                                            {{trans('cms::house.website')}}
                                         </div>
                                         <div class="desc" style="color:#000 !important">https://www.houseofborse.com</div>
                                     </div>
@@ -198,7 +198,7 @@
                                     </div>
                                     <div>
                                         <div class="b-google-map__info-window-address-title f-google-map__info-window-address-title">
-                                            telephone
+                                            {{trans('cms::house.telephone')}}
                                         </div>
                                         <div class="desc"style="color:#000 !important">+44 (0) 203-714-8715</div>
                                     </div>
@@ -210,7 +210,7 @@
                                     </div>
                                     <div >
                                         <div class="b-google-map__info-window-address-title f-google-map__info-window-address-title">
-                                            email
+                                            {{trans('cms::house.email')}}
                                         </div>
                                         <div class="desc" style="color:#000 !important">info@houseofborse.com</div>
                                     </div></a>
@@ -222,7 +222,7 @@
                                     </div>
                                     <div>
                                         <div class="b-google-map__info-window-address-title f-google-map__info-window-address-title">
-                                            FCA Register Number
+                                            {{trans('cms::house.fcaNumber')}}
                                         </div>
                                         <div class="desc" style="color:#000 !important">631382</div>
                                     </div>
@@ -239,24 +239,24 @@
 
 
                 <div class="contact-box">
-                    <h5>Customer Support</h5>
+                    <h5>{{trans('cms::house.customerSupport')}}</h5>
                     <p><a href="mailto:support@houseofborse.com"><i class="fa fa-envelope"></i> support@houseofborse.com</a></p>
-                    <p><i class="fa fa-calendar"></i> 5D/Week | <i class="fa fa-clock-o"></i> 24H./Day</p>
+                    <p><i class="fa fa-calendar"></i> 5D/Week{{trans('cms::house.')}} | <i class="fa fa-clock-o"></i> 24H./{{trans('cms::house.')}}Day</p>
                 </div><!--.contact-box-->
                 <div class="contact-box">
-                    <h5>Backoffice Department</h5>
+                    <h5>{{trans('cms::house.backoffice')}}</h5>
                     <p><a href="mailto:backoffice@houseofborse.com"><i class="fa fa-envelope"></i> backoffice@houseofborse.com</a></p>
-                    <p><i class="fa fa-calendar"></i> 5D/Week | <i class="fa fa-clock-o"></i> 24H./Day</p>
+                    <p><i class="fa fa-calendar"></i> 5D/{{trans('cms::house.week')}} | <i class="fa fa-clock-o"></i> 24H./{{trans('cms::house.day')}}</p>
                 </div><!--.contact-box-->
                 <div class="contact-box">
-                    <h5>Marketing Department</h5>
+                    <h5>{{trans('cms::house.marketing')}}</h5>
                     <p><a href="mailto:marketing@houseofborse.com"><i class="fa fa-envelope"></i> marketing@houseofborse.com</a></p>
-                    <p><i class="fa fa-calendar"></i> 5D/Week | <i class="fa fa-clock-o"></i> 24H./Day</p>
+                    <p><i class="fa fa-calendar"></i> 5D/{{trans('cms::house.week')}}| <i class="fa fa-clock-o"></i> 24H./{{trans('cms::house.day')}}</p>
                 </div><!--.contact-box-->
                 <div class="contact-box">
-                    <h5>General Enquiries</h5>
+                    <h5>{{trans('cms::house.generalEnquiries')}}</h5>
                     <p><a href="mailto:info@houseofborse.com"><i class="fa fa-envelope"></i> info@houseofborse.com</a></p>
-                    <p><i class="fa fa-calendar"></i> 5D/Week | <i class="fa fa-clock-o"></i> 24H./Day</p>
+                    <p><i class="fa fa-calendar"></i> 5D/{{trans('cms::house.week')}}| <i class="fa fa-clock-o"></i> 24H./{{trans('cms::house.day')}}</p>
                 </div><!--.contact-box-->
             </div>
 
@@ -268,4 +268,16 @@
     </div><!--.box-row-->
     </div>
 </section><!--.content-box-->
+</div>
 
+@if(\Session::get('locale')=='ar')
+    <style type="text/css">
+
+
+        #contactusPageContainer{direction:rtl;}
+        #contactusPageContainer .contact-form{float:right;}
+        #contactusPageContainer .contact-details{float:left;}
+        #contactusPageContainer .contact-details .pull-left{float:right !important;}
+        #contact_us_form_logo{float:right !important;}
+    </style>
+@endif

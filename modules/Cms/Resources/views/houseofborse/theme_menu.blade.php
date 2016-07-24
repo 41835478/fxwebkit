@@ -7,7 +7,7 @@
     <li class=" b-top-nav__1level f-top-nav__1level  f-primary-b  @if($menu['id'] == $selected_id )  active @endif ">
         <a href='{{ asset($menu['name']) }}' onclick="return false;" >
 
-            <i class="fa fa-folder-open b-menu-1level-ico"></i>{{ str_replace('-',' ',$menu['name']) }}<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span>
+            <i class="fa fa-folder-open b-menu-1level-ico"></i>{{ str_replace('-',' ',$menu['translate']) }}<span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span>
 
         </a>
 
@@ -19,7 +19,7 @@
                 @foreach($menu['children'] as $sub_menu)
                         <li class=" b-top-nav__2level f-top-nav__2level f-primary  @if($sub_menu['id'] == $selected_id )   active @endif">
                             <a href='{{ asset(strtolower($sub_menu['name'])) }}' >
-                                {{  str_replace('-',' ',$sub_menu['name']) }}
+                                {{  str_replace('-',' ',$sub_menu['translate']) }}
                             </a>
                         </li>
                           @endforeach

@@ -1,5 +1,5 @@
-
-<h3 class="golden">Currency Convertor</h3>
+<div id="currencyConverterPageContainer">
+<h3 class="golden">{{trans('cms::house.currencyConverter')}}</h3>
 
 <div class="col-xs-9">
     {!! Form::open(['route' => 'cms_forms_currencyconvertor.form', 'class' => 'form-horizontal']) !!}
@@ -27,7 +27,8 @@
             </div>
 
     <div class="form-group  ">
-        <div class="col-sm-offset-3 col-sm-9">
+        <label class="col-sm-3 control-label"> </label>
+        <div class="col-sm-9">
             {!! Form::submit('Calculate', ['class' => '  btn  btn-golden','style'=>'width:100%; color:#fff !important;']) !!}
         </div>
     </div>
@@ -58,4 +59,16 @@
             </div>
         </div>
     </div>
+@endif
+</div>
+@if(\Session::get('locale')=='ar')
+    <style type="text/css">
+
+
+        #currencyConverterPageContainer{direction:rtl;}
+
+
+        #currencyConverterPageContainer  .form-group label{float:right !important; text-align: left;}
+        #currencyConverterPageContainer  .form-group>div{direction:ltr;}
+    </style>
 @endif

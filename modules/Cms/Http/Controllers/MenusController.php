@@ -295,8 +295,7 @@ class MenusController extends Controller
 
     function order_menu($links, $root = 0)
     {
-
-        $return = array();
+        $returnArray = array();
         foreach ($links as $key => $link) {
             if($link['hide']==1) continue;
             $child = $link['id'];
@@ -306,14 +305,15 @@ class MenusController extends Controller
 
                 unset($links[$key]);
 
-                $return[] = array(
+                $returnArray[] = array(
                     'id' => $child,
-                    'name' => ($translate == '') ? $link['name'] : $translate,
+                    'name' =>  $link['name'] ,
+                    'translate'=> ($translate == '') ? $link['name'] : $translate,
                     'children' => $this->order_menu($links, $child)
                 );
             }
         }
-        return $return;
+        return $returnArray;
     }
 
     public function render_menu($menu_id, $language = 1,$selected_id=1)
@@ -327,6 +327,7 @@ class MenusController extends Controller
             $query->where('cms_languages_id', '=', $language);
         }])->where('menu_id', $menu_id)->get();
         $links = $links->toArray();
+
         foreach($links as &$link){
             $link['name']=str_replace(' ','-',$link['name']);
         }

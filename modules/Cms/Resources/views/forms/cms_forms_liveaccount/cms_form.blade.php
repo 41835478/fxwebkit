@@ -1783,3 +1783,12 @@ var name=select.attr('name');
 </div>
 @endif
 </div>
+@if(\Session::get('locale')=='ar')
+    <style type="text/css">
+
+
+        #mainForm{direction:rtl;}
+        .input_all_div>div,input[type='tel']{direction:ltr;}
+        .checkbox label span{padding-right:20px;}
+    </style>
+    @endif

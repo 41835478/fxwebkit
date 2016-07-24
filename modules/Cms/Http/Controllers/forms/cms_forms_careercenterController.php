@@ -122,6 +122,8 @@ class cms_forms_careercenterController extends Controller
          */
         public function cms_create()
         {
+
+            app()->setLocale(\Session::get('locale'));
          return View::make('cms::forms.cms_forms_careercenter.cms_form')->render();
 
         }
