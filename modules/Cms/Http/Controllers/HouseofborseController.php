@@ -33,6 +33,7 @@ class HouseofborseController extends Controller
 public function getSymbolsSpreads(){
 
 
+    app()->setLocale(\Session::get('locale'));
 
 
 
@@ -54,6 +55,7 @@ public function getSymbolsSpreads(){
 
     public function getSellBuyChart(){
 
+        app()->setLocale(\Session::get('locale'));
         $oResults=Mt4ClosedActual::select(DB::raw('SYMBOL ,CMD, sum(VOLUME) as total'))->whereIn('SYMBOL',$this->symbols)->groupBy(['SYMBOL','CMD'])->get();
 
         $aResults=[];
@@ -81,6 +83,7 @@ public function getSymbolsSpreads(){
     public function getMostTradedInstruments() {
 
 
+        app()->setLocale(\Session::get('locale'));
         $oResults=Mt4ClosedActual::select(DB::raw('SYMBOL , sum(VOLUME) as total'))->whereIn('SYMBOL',$this->symbols)->groupBy('SYMBOL')->get();
         $aResults=[];
         foreach($oResults as $result){
@@ -94,6 +97,7 @@ public function getSymbolsSpreads(){
 
     public function allSpreads(){
 
+        app()->setLocale(\Session::get('locale'));
         $spreads = DB::table('mt4_prices')->distinct('SYMBOL')->get();
 
 

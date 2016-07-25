@@ -128,5 +128,10 @@
         <li>	مرونة التعاملات التجارية </li>
     </ul>
 
-    ',
+    '
+    ,'liveSpread'=>'Live Spread',
+    'viewAllSpreads'=>'مشاهدة كل spreads',
+    'symbol'=>'SYMBOL',
+    'buy'=>'شراء',
+    'sell'=>'بيع',
 ]; ?>

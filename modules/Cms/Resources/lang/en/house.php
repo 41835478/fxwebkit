@@ -165,7 +165,32 @@ If you think you would thrive in such a dynamic workplace, then we are very inte
     </ul>
 
     ',
-    'registrationForm'=>'Registration form:',
+    'registrationForm'=>'Registration form:'
+
+
+
+    ,'liveSpread'=>'Live Spread',
+    'viewAllSpreads'=>'View all spreads',
+    'symbol'=>'SYMBOL',
+    'buy'=>'BUY',
+    'sell'=>'SELL',
     ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+
 ]; ?>
 

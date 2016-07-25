@@ -4,10 +4,10 @@
             <table class="table borderless">
                 <thead>
                     <tr>
-                        <th width="15%">Symbol</th>
+                        <th width="15%">{{trans('cms::house.symbol')}}</th>
                         <th width="100">&nbsp;</th>
-                        <th width="37%">BUY</th>
-                        <th width="37%">SELL</th>
+                        <th width="37%">{{trans('cms::house.buy')}}</th>
+                        <th width="37%">{{trans('cms::house.sell')}}</th>
                         <th width="100">&nbsp;</th>
                     </tr>
                 </thead>

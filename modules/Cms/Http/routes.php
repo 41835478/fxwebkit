@@ -3,7 +3,7 @@
 
 use Pingpong\Widget\WidgetFacade;
 
-Route::post('set-language', [
+Route::get('set-language', [
     'uses' => 'modules\Cms\Http\Controllers\LanguagesController@getSetLanguage'
         ,'as'=>'cms.setLanguage'
 ]);
