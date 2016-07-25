@@ -368,18 +368,28 @@ return $menu_html;
 
     public function left_menu(){
 
+        $language= \Modules\Cms\Entities\cms_languages::where('code',\Session::get('locale'))->first();
+        $language_id=(count($language))? $language->id:1;
+
        $parentId= \Illuminate\Support\Facades\Session::get('parentId');
 if(!$parentId >0 ){$parentId=24;}
-        $links = \Modules\Cms\Entities\cms_menus_items::where('parent_item_id',$parentId)->orWhere('id' , $parentId)->orderBy('id')->get();
+        $links = \Modules\Cms\Entities\cms_menus_items::with(['cms_menus_items_languages' => function ($query) use($language_id)  {
+            $query->where('cms_languages_id', '=', $language_id);
+        }])->where('parent_item_id',$parentId)->orWhere('id' , $parentId)->orderBy('id')->get();
 
-        $menuHtml='<div style="clear:both;"><div class="b-categories-filter">';
+        $menuHtml='<div style="clear:both;direction:'.$language->dir.'; "><div class="b-categories-filter">';
         $i=0;
+
         foreach($links as $link){
+            $translate=(isset($link->cms_menus_items_languages) &&
+           isset($link->cms_menus_items_languages[0]) &&
+                $link->cms_menus_items_languages[0]->translate != '')? $link->cms_menus_items_languages[0]->translate:$link->name;
+
             if($i==0){$i++;
-                $menuHtml .= '<h4 class="f-primary-b b-h4-special f-h4-special--gray f-h4-special">'.$link->name  .'</h4><ul>';
+                $menuHtml .= '<h4 class="f-primary-b b-h4-special f-h4-special--gray f-h4-special">'.$translate  .'</h4><ul>';
            continue;
             }
-            $menuHtml .= '<li><a class="f-categories-filter_name" style="text-transform: capitalize;" href="/'.strtolower(str_replace(' ','-',$link->name)).'"><i class="fa fa-plus"></i> '.$link->name.'</a></li>';
+            $menuHtml .= '<li><a class="f-categories-filter_name" style="text-transform: capitalize;" href="/'.strtolower(str_replace(' ','-',$link->name)).'"><i class="fa fa-plus"></i> '.$translate.'</a></li>';
         }
 
         return $menuHtml.'</ul></div></div>';

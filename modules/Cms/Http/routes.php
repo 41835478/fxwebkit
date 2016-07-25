@@ -2,6 +2,12 @@
 <?php
 
 use Pingpong\Widget\WidgetFacade;
+
+Route::post('set-language', [
+    'uses' => 'modules\Cms\Http\Controllers\LanguagesController@getSetLanguage'
+        ,'as'=>'cms.setLanguage'
+]);
+
 Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'cms', 'namespace' => 'Modules\Cms\Http\Controllers'], function() {
     
         Route::controller('pages','PagesController',['getPagesList'=>'cms.pagesList']);
