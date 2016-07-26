@@ -126,8 +126,10 @@ counters" href="http://statcounter.com/"
 <header>
     <section class="clearfix @if( isset($_COOKIE['accept_cookie_policy']))  hide @endif " id="cookie-bar">
         <p><i class="fa fa-lightbulb-o"></i>
-            We use cookies to enhance the performance and functionality of our site, which ultimately improves your browsing experience. By continuing to browse this site you are agreeing to our use of cookies.
-            <a href="/privacy-policy"> LEARN MORE </a><span id="closebox"><i class="fa fa-times" onClick="$(this).parent().parent().parent().hide();document.cookie='accept_cookie_policy=true'"></i></span></p>
+            {{trans('cms::house.cookieWarning')}}
+
+            <a href="/privacy-policy">
+                {{trans('cms::house.learnMore')}}  </a><span id="closebox"><i class="fa fa-times" onClick="$(this).parent().parent().parent().hide();document.cookie='accept_cookie_policy=true'"></i></span></p>
     </section>
 
 
@@ -328,6 +330,13 @@ counters" href="http://statcounter.com/"
             src="https://maps.google.com/maps/api/js?sensor=false&key=AIzaSyCfVS1-Dv9bQNOIXsQhTSvj7jaDX7Oocvs"></script>
 
 @endif
+
+@if(\Session::get('locale')=='ar')
+
+    <style type="text/css">
+        .b-top-nav__1level_wrap a{text-align: right;}
+    </style>
+    @endif
 </body>
 
 

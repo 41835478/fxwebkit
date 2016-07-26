@@ -379,7 +379,7 @@ class cms_forms_liveaccountController extends Controller
           // @$email->sendEditLiveEmail($request->all(),$request->primary_email);
         }else{
             unset($request->ref);
-            $request->merge(array('ref' =>rand(0,999999) ));
+            $request->merge(array('ref' =>rand(0,999999) .'_'.rand(0,999999) ));
 
             $request->merge(array('ip' =>$_SERVER['REMOTE_ADDR']));
         $new_live_form=cms_forms_liveaccount::create($request->all());

@@ -4,14 +4,14 @@ namespace Modules\Cms\Entities\forms;
 
 use Illuminate\Database\Eloquent\Model;
 
-class cms_forms_downloadcenter extends Model
+class cms_forms_downloadcenter_translate extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'cms_forms_downloadcenters';
+    protected $table = 'cms_forms_downloadcenters_translate';
 
     /**
     * The database primary key value.
@@ -25,10 +25,6 @@ class cms_forms_downloadcenter extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','file'];
+    protected $fillable = ['translate','cms_forms_downloadcenters_id','language'];
 
-    public function cms_forms_downloadcenter_translate(){
-
-        return $this->hasOne('\Modules\Cms\Entities\forms\cms_forms_downloadcenter_translate','cms_forms_downloadcenters_id');
-    }
 }

@@ -6,12 +6,16 @@ use Fxweb\Http\Requests;
 use Fxweb\Http\Controllers\Controller;
 
 use  Modules\Cms\Entities\forms\cms_forms_downloadcenter;
+use Modules\Cms\Entities\forms\cms_forms_downloadcenter_translate as Translate;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
 
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
+
+use Modules\Cms\Entities\cms_languages;
+
 class cms_forms_downloadcenterController extends Controller
 {
     /**
@@ -19,11 +23,48 @@ class cms_forms_downloadcenterController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cms_forms_downloadcenter = cms_forms_downloadcenter::paginate(15);
 
-        return view('cms::forms.cms_forms_downloadcenter.index', compact('cms_forms_downloadcenter'));
+        $page=(isset($request->page))? $request->page:1;
+        $selected_id=(isset($request->selected_id))? $request->selected_id :0;
+        $selected_id=(isset($request->selected_language))? $request->selected_language :$selected_id;
+
+        $languages = cms_languages::lists('name', 'id');
+
+
+
+
+        if(isset($request->saveTranslate)){
+            $aTranslate=[];
+            foreach($request->translate as $id=>$translate){
+                $aTranslate[]=[
+                    'translate'=>$translate,
+                    'cms_forms_downloadcenters_id'=>$id,
+                    'language'=>$selected_id
+                ];
+                Translate::where(['cms_forms_downloadcenters_id'=>$id,
+                    'language'=>$selected_id])->delete();
+                Translate::insert($aTranslate);
+            }
+
+        }
+
+        $cms_forms_downloadcenter = cms_forms_downloadcenter::with(
+            [
+                'cms_forms_downloadcenter_translate'=>function($query)use ($selected_id){
+                    $query->where('language',$selected_id);
+                }
+            ])
+            ->paginate(15);
+
+
+        return view('cms::forms.cms_forms_downloadcenter.index', compact('cms_forms_downloadcenter'))
+            ->with([
+                'page'=>$page,
+                'languages'=>$languages,
+                'selected_id'=>$selected_id
+            ]);
     }
 
     /**
@@ -122,8 +163,17 @@ class cms_forms_downloadcenterController extends Controller
          */
         public function cms_create()
         {
+            $language= \Modules\Cms\Entities\cms_languages::where('code',\Session::get('locale'))->first();
+            $language_id=(count($language))? $language->id:1;
 
-            $cms_forms_downloadcenter = cms_forms_downloadcenter::paginate(15);
+            $cms_forms_downloadcenter = cms_forms_downloadcenter::with(
+                [
+                    'cms_forms_downloadcenter_translate'=>function($query)use ($language_id){
+                        $query->where('language',$language_id);
+                    }
+                ])
+                ->paginate(15);
+            //$cms_forms_downloadcenter = cms_forms_downloadcenter::paginate(15);
 
             return View::make('cms::forms.cms_forms_downloadcenter.cms_form', compact('cms_forms_downloadcenter'))->render();
 

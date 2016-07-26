@@ -173,12 +173,14 @@ If you think you would thrive in such a dynamic workplace, then we are very inte
     'viewAllSpreads'=>'View all spreads',
     'symbol'=>'SYMBOL',
     'buy'=>'BUY',
-    'sell'=>'SELL',
-    ''=>'',
-    ''=>'',
-    ''=>'',
-    ''=>'',
-    ''=>'',
+    'sell'=>'SELL'
+    ,'cookieWarning'=>'We use cookies to enhance the performance and functionality of our site, which ultimately improves your browsing experience. By continuing to browse this site you are agreeing to our use of cookies',
+    'learnMore'=>'LEARN MORE'
+
+
+    ,'downloadCenter'=>'Download Center',
+    'clickDownloadIcon'=>'Please Click on Download icon to save the file.',
+    'download'=>'Download',
     ''=>'',
     ''=>'',
     ''=>'',
