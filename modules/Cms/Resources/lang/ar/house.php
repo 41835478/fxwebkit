@@ -133,5 +133,7 @@
     'viewAllSpreads'=>'مشاهدة كل spreads',
     'symbol'=>'SYMBOL',
     'buy'=>'شراء',
-    'sell'=>'بيع',
+    'sell'=>'بيع'
+
+    ,'home'=>'الرئيسية'
 ]; ?>

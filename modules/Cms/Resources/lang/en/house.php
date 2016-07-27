@@ -180,8 +180,8 @@ If you think you would thrive in such a dynamic workplace, then we are very inte
 
     ,'downloadCenter'=>'Download Center',
     'clickDownloadIcon'=>'Please Click on Download icon to save the file.',
-    'download'=>'Download',
-    ''=>'',
+    'download'=>'Download'
+    ,'home'=>'Home',
     ''=>'',
     ''=>'',
     ''=>'',

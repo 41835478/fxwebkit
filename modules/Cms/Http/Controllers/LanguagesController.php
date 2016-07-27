@@ -76,6 +76,9 @@ class LanguagesController extends Controller
        // $language=(Session::get('locale') !=null)? Session::get('locale'):'en';
         $language = cms_languages::where('code',Session::get('locale'))->first();
 
+        Session::set('language_id',$language->id);
+        Session::set('dir',$language->dir);
+
         return ($language) ? $language : cms_languages::first();
     }
 

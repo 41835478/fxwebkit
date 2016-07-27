@@ -309,6 +309,7 @@ class PagesController extends Controller
 
 
         $menu_item = cms_menus_items::where(['name' => $menu_item])->first();
+        \Illuminate\Support\Facades\Session::set('menu_item_id',$menu_item->id);
 
 
         if (empty($menu_item)) {
