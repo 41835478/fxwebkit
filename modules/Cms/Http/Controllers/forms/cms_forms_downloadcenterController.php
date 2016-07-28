@@ -163,6 +163,8 @@ class cms_forms_downloadcenterController extends Controller
          */
         public function cms_create()
         {
+            app()->setLocale(\Session::get('locale'));
+
             $language= \Modules\Cms\Entities\cms_languages::where('code',\Session::get('locale'))->first();
             $language_id=(count($language))? $language->id:1;
 
