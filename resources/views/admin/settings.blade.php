@@ -126,6 +126,51 @@
                     </div>
                     <!-- / .panel -->
 
+
+
+
+
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse"
+                               data-parent="#accordion-example"
+                               href="#collapseDemoAccount">
+                                {{ trans('general.demoAccountServer') }}
+                            </a>
+                        </div>
+                        <!-- / .panel-heading -->
+                        <div id="collapseDemoAccount" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">{{ trans('general.demoAccountHost') }}</label>
+                                            {!! Form::text('demoAccountHost',config('fxweb.demoAccountHost'),['class'=>'form-control']) !!}
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group no-margin-hr">
+                                            <label class="control-label">{{ trans('general.demoAccountPort') }}</label>
+                                            {!! Form::text('demoAccountPort',config('fxweb.demoAccountPort'),['class'=>'form-control']) !!}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                            <!-- / .panel-body -->
+                        </div>
+                        <!-- / .collapse -->
+                    </div>
+                    <!-- / .panel -->
+
+
+
+
                     <div class="panel">
                         <div class="panel-heading">
                             <a class="accordion-toggle collapsed" data-toggle="collapse"

@@ -184,8 +184,9 @@ class cms_forms_demoaccountController extends Controller
     protected function createMt4Demo($request) {
 
 
-        $host ='85.25.207.30';
-        $port = '443';
+        $host =config('fxweb.demoAccountHost');
+        $port = config('fxweb.demoAccountPort');
+
 
         $mt4_create_arr = $this->getMt4APIParams($request);
 

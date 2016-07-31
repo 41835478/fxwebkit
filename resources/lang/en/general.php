@@ -209,4 +209,7 @@
     'EnableFacebookRegister'=>'Enable Facebook Register',
     'EnableLinkedinRegister'=>'Enable Linkedin Register',
     'layoutAssetsFolder'=>'Layout Assets Folder',
+    'demoAccountHost'=>'Demo Account Host',
+    'demoAccountPort'=>'Demo Account Port',
+    'demoAccountServer'=>'Demo Account Server'
 ]; ?>

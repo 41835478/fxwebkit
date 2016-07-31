@@ -534,6 +534,8 @@ return $this->getMassMailer($oRequest);
 
             'layoutAssetsFolder'=>$oRequest->layoutAssetsFolder,
             'LinkTradeForUser'=>$oRequest->LinkTradeForUser,
+            'demoAccountHost'=>$oRequest->demoAccountHost,
+            'demoAccountPort'=>$oRequest->demoAccountPort,
             'EnableLinkTradeForUser'=>$enableLinkTradeForUser,
 
         ];

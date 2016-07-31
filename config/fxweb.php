@@ -113,7 +113,10 @@ return [
     ], 'client_menu' => [
 
     ],
-    'htmlToPdfPath'=>'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+    'htmlToPdfPath'=>'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe',
+
+    'demoAccountHost'=>'85.25.207.30',
+    'demoAccountPort'=>'443'
 ];
 
 
