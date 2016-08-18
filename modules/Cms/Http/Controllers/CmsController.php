@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 //use App\Http\Controllers\DB;
 use Illuminate\Support\Facades\DB;
-use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
+use Fxweb\Http\Controllers\Admin\EditConfigController as EditConfig;
 use Illuminate\Http\Request;
 
 class CmsController extends Controller
@@ -556,7 +556,7 @@ $page_modules=DB::select( $query_string);
 
 
         $editConfig = new EditConfig();
-        $editConfig->editConfigFile('Config/cmsConfig.php', $aSetting);
+        $editConfig->editConfigFile('config/cmsConfig.php', $aSetting);
 
         \Session::flash('refresh', 'true');
 
