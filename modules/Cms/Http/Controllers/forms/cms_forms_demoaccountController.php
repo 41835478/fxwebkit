@@ -194,9 +194,12 @@ class cms_forms_demoaccountController extends Controller
 
         try {
            // dd($mt4_create_arr);
+            //var_dump($mt4_create_arr);
             $api_response = $this->openAccSocket($host, $port, $mt4_create_arr);
 
 //dd($api_response);
+
+           // dd($api_response);
             if (strpos($api_response, 'LOGIN=') !== false) {
                 $login_number = str_replace('LOGIN=', '', $api_response);
                 $login_number = trim(str_replace('OK', '', $login_number));

@@ -480,8 +480,10 @@ return $this->getMassMailer($oRequest);
     }
 
     /**
+     *
      * @param Request $oRequest
      * @return $this
+     *
      */
     public function postSettings(Request $oRequest)
     {
