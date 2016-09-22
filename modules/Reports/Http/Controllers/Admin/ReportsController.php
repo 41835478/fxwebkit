@@ -41,7 +41,7 @@ class ReportsController extends Controller
         $oGroups = $this->oMt4Group->getAllGroups();
         $oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
 
-        $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
+        $aTradeTypes =  $this->oMt4Trade->getTradesTypes();
         $serverTypes = $this->oMt4Trade->getServerTypes();
 
         $sSort = $oRequest->sort;

@@ -435,7 +435,7 @@ class ClientIbportalController extends Controller
 
         $oSymbols = $this->oMt4Trade->getAgentSymbols();
 
-        $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getTradesTypes();
+        $aTradeTypes =  $this->oMt4Trade->getTradesTypes();
         $serverTypes = $this->oMt4Trade->getServerTypes();
         $sSort = $oRequest->sort;
         $sOrder = $oRequest->order;

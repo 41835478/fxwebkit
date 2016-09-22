@@ -24,6 +24,8 @@
 	<!--[if lt IE 9]>
 	{!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/ie.min.js') !!}
 	<![endif]-->
+
+
 </head>
 <body class="{{ theme_attr() }} mmc" >
 	<script>var init = [];</script>

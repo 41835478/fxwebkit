@@ -10,4 +10,9 @@ protected $table='ibportal_agent_user';
 
         return $this->hasOne('Modules\Ibportal\Entities\IbportalPlan','id','plan_id');
     }
+
+    public function mt4_users_users(){
+
+        return $this->hasMany("Modules\Accounts\Entities\mt4_users_users","users_id","user_id");
+    }
 }
