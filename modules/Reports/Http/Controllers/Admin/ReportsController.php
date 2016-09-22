@@ -14,7 +14,7 @@ use Modules\Reports\Http\Requests\Admin\AccountStatementRequest;
 use Modules\Reports\Http\Requests\Admin\CommissionRequest;
 use Modules\Reports\Http\Requests\Admin\AccountantRequest;
 use Illuminate\Http\Request;
-use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
+use Fxweb\Http\Controllers\Admin\EditConfigController as EditConfig;
 
 class ReportsController extends Controller
 {
@@ -580,7 +580,7 @@ class ReportsController extends Controller
 
         $editConfig = new EditConfig();
 
-        $editConfig->editConfigFile('Config/reportsConfig.php', $reportsSetting);
+        $editConfig->editConfigFile('config/reportsConfig.php', $reportsSetting);
 
         \Session::flash('refresh', 'true');
 

@@ -24,7 +24,7 @@ class LanguageController extends Controller
             'modules/Reports/Resources'=>'Reports',
             'modules/Request/Resources'=>'Request',
             'modules/Tools/Resources'=>'Tools'];
-        $module=($request->has('module'))? $request->module:'/Resources';
+        $module=($request->has('module'))? $request->module:'/resources';
         $resourceFolder=base_path($module);
 
 
