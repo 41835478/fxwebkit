@@ -23,7 +23,7 @@ use Carbon\Carbon;
 use Cartalyst\Sentinel\Addons\Social\Laravel\Facades\Social;
 use Cartalyst\Sentinel\Addons\Social\Models\LinkInterface;
 use Fxweb\Models\UsersDetails;
-use Fxweb\Http\Controllers\admin\Email;
+use Fxweb\Http\Controllers\Admin\Email;
 use Illuminate\Http\Request;
 
 use Fxweb\Repositories\Admin\User\UserContract;
