@@ -381,6 +381,7 @@ if(!$parentId >0 ){$parentId=24;}
         $i=0;
 
         foreach($links as $link){
+            if($link->hide){continue;}
             $translate=(isset($link->cms_menus_items_languages) &&
            isset($link->cms_menus_items_languages[0]) &&
                 $link->cms_menus_items_languages[0]->translate != '')? $link->cms_menus_items_languages[0]->translate:$link->name;

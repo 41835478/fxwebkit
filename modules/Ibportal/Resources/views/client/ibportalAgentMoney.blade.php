@@ -94,33 +94,78 @@
 
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.order#'), 'TICKET', $oResults[0]) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.login'), 'LOGIN', $oResults[0]) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.comment'), 'COMMENT', $oResults[0]) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Commission'), 'PROFIT', $oResults[0]) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.close_time'), 'CLOSE_TIME', $oResults[0]) !!}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @if (count($oResults[0]))
-                                {{-- */$i=0;/* --}}
-                                {{-- */$class='';/* --}}
-                                @foreach($oResults[0] as $oResult)
-                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                                    <tr class='{{ $class }}'>
-                                        <td>{{ $oResult->TICKET }}</td>
-                                        <td>{{ $oResult->LOGIN }}</td>
-                                        <td>{{ $oResult->COMMENT }}</td>
-                                        <td>{{ $oResult->PROFIT }}</td>
-                                        <td>{{ $oResult->CLOSE_TIME }}</td>
-                                    </tr>
-                                @endforeach
-                            @endif
-                            </tbody>
-                        </table>
+
+
+
+
+                        <div class="primary_table_div info" >
+                            <div class="table">
+
+
+                                <div class="thead">
+                                    <div class="tr">
+
+
+
+
+
+                                    <div class="th">{!! th_sort(trans('ibportal::ibportal.order#'), 'TICKET', $oResults[0]) !!}</div>
+                                    <div class="th">{!! th_sort(trans('ibportal::ibportal.login'), 'LOGIN', $oResults[0]) !!}</div>
+                                    <div class="th">{!! th_sort(trans('ibportal::ibportal.comment'), 'COMMENT', $oResults[0]) !!}</div>
+                                    <div class="th">{!! th_sort(trans('ibportal::ibportal.Commission'), 'PROFIT', $oResults[0]) !!}</div>
+                                    <div class="th">{!! th_sort(trans('ibportal::ibportal.close_time'), 'CLOSE_TIME', $oResults[0]) !!}</div>
+
+
+
+                                    </div>
+                                </div>
+                                <div class="tbody">
+
+                                    @if (count($oResults[0]))
+                                        {{-- */$i=0;/* --}}
+                                        {{-- */$class='';/* --}}
+                                        @foreach($oResults[0] as $oResult)
+                                            {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                            <div class="tr {{ $class }}">
+
+
+
+
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.order#') !!} : </label><p>{{ $oResult->TICKET }}</p></div>
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.login') !!} : </label><p>{{ $oResult->LOGIN }}</p></div>
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.comment') !!} : </label><p>{{ $oResult->COMMENT }}</p></div>
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.Commission') !!} : </label><p>{{ $oResult->PROFIT }}</p></div>
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.close_time') !!} : </label><p>{{ $oResult->CLOSE_TIME }}   </p></div>
+
+
+
+                                            </div>
+                                        @endforeach
+                                    @endif
+
+
+
+
+                                </div>
+
+
+
+
+
+
+
+                            </div>
+
+                            <div class="tableFooter">
+
+                            </div>
+                        </div>
+
+
+
+
+
+
                         <div class="table-footer text-right">
                             @if (count($oResults[0]))
                                 {!! str_replace('/?', '?', $oResults[0]->appends(Input::except('page'))->render()) !!}
@@ -132,7 +177,7 @@
                                     </div>
                                 @endif
 
-                                <div class="col-sm-3  padding-xs-vr">
+                                <div class="col-xs-12 col-lg-3">
                                     <span class="text-xs">{{trans('ibportal::ibportal.showing')}} {{ $oResults[0]->firstItem() }} {{trans('ibportal::ibportal.to')}} {{ $oResults[0]->lastItem() }} {{trans('ibportal::ibportal.of')}} {{ $oResults[0]->total() }} {{trans('ibportal::ibportal.entries')}}</span>
                                 </div>
 

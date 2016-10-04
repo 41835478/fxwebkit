@@ -65,7 +65,7 @@
 
                     @if (count($oResults))
 
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" style="display:table;">
                             <thead>
                             <tr>
                                 <th>{!! Form::label('check_all',trans('ibportal::ibportal.Login')) !!}</th>
