@@ -309,7 +309,6 @@ class PagesController extends Controller
 
 
         $menu_item = cms_menus_items::where(['name' => $menu_item])->first();
-        \Illuminate\Support\Facades\Session::set('menu_item_id',$menu_item->id);
 
 
         if (empty($menu_item)) {
@@ -319,6 +318,8 @@ class PagesController extends Controller
                 return Redirect::to('/404');
             }
         }
+
+        \Illuminate\Support\Facades\Session::set('menu_item_id',$menu_item->id);
 
         \Illuminate\Support\Facades\Session::set('parentId',$menu_item->parent_item_id);
         $page_type = $menu_item->type;
