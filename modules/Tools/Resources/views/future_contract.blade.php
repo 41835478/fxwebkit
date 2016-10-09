@@ -66,9 +66,60 @@
                                value="{{ trans('tools::tools.addContract') }}"> </a>
                 </div>
                 </div>
+
+
+                {{--<div class="primary_table_div info" >--}}
+                    {{--<div class="table">--}}
+
+                        {{--<div class="thead">--}}
+                            {{--<div class="tr">--}}
+
+                                {{--<div class="th">{!! th_sort(trans('tools::tools.name'), 'name', $oResults) !!}</div>--}}
+                                {{--<div class="th">{!! th_sort(trans('tools::tools.symbol'), 'symbol', $oResults) !!}</div>--}}
+                                {{--<div class="th">{!! th_sort(trans('tools::tools.exchange'), 'exchange', $oResults) !!}</div>--}}
+                                {{--<div class="th">{!! th_sort(trans('tools::tools.month'), 'month', $oResults) !!}</div>--}}
+                                {{--<div class="th">{!! th_sort(trans('tools::tools.year'), 'year', $oResults) !!}</div>--}}
+                                {{--<div class="th">{!! th_sort(trans('tools::tools.start_date'), 'start_date', $oResults) !!}</div>--}}
+                                {{--<div class="th">{!! th_sort(trans('tools::tools.expiry_date'), 'expiry_date', $oResults) !!}</div>--}}
+
+                            {{--</div>--}}
+                        {{--</div>--}}
+
+
+                        {{--<div class="tbody">--}}
+
+                            {{--@if (count($oResults))--}}
+                                {{-- */$i=0;/* --}}
+                                {{-- */$class='';/* --}}
+                                {{--@foreach($oResults as $oResult)--}}
+                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                    {{--<div class="tr {{ $class }}">--}}
+
+                                        {{--<div class="td"><label>{!! trans('tools::tools.name') !!} : </label><p>{{ $oResult->name }}</p></div>--}}
+                                        {{--<div class="td"><label>{!! trans('tools::tools.symbol') !!} : </label><p>{{ $oResult->symbol }}</p></div>--}}
+                                        {{--<div class="td"><label>{!! trans('tools::tools.exchange') !!} : </label><p>{{ $oResult->exchange }}</p></div>--}}
+                                        {{--<div class="td"><label>{!! trans('tools::tools.month') !!} : </label><p>{{date('F', mktime(0, 0, 0, $oResult->month, 10))}}</p></div>--}}
+                                        {{--<div class="td"><label>{!! trans('tools::tools.year') !!} : </label><p>{{ $oResult->year}}</p></div>--}}
+                                        {{--<div class="td"><label>{!! trans('tools::tools.start_date') !!} : </label><p>{{ $oResult->start_date }}</p></div>--}}
+                                        {{--<div class="td"><label>{!! trans('tools::tools.expiry_date') !!} : </label><p>{{ $oResult->expiry_date }}</p></div>--}}
+                                    {{--</div>--}}
+                                {{--@endforeach--}}
+                            {{--@endif--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="tableFooter">--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+
+                
+
+
+
+
+
                 <table class="table table-bordered table-striped">
                     <thead>
-                        <tr>                     
+                        <tr>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.name'), 'name', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.symbol'), 'symbol', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('tools::tools.exchange'), 'exchange', $oResults) !!}</th>
@@ -80,11 +131,11 @@
                     </thead>
                     <tbody>
                         @if (count($oResults))
-                        {{-- */$i=0;/* --}}
-                        {{-- */$class='';/* --}}
+                         */$i=0;/*
+                         */$class='';/*
                         @foreach($oResults as $oResult)
-                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                        <tr class='{{ $class }}'>     
+                         */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/*
+                        <tr class='{{ $class }}'>
                             <td>{{ $oResult->name }}</td>
                             <td>{{ $oResult->symbol }}</td>
                             <td>{{ $oResult->exchange }}</td>
@@ -93,7 +144,7 @@
                             <td>{{ $oResult->start_date }}</td>
                             <td>{{ $oResult->expiry_date }}</td>
 
-                            
+
                         </tr>
                         @endforeach
                         @endif
@@ -104,7 +155,7 @@
 
                 <div class="table-footer">
 
-                    
+
                     @if (count($oResults))
                   {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->render()) !!}
                     @if($oResults->total()>25)
