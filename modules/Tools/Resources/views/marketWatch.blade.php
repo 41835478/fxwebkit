@@ -2,78 +2,78 @@
 @section('title', trans('tools::tools.marketWatch'))
 @section('content')
     <div id="content-wrapper">
-        <div class="page-header">
-            <h1>{{ trans('tools::tools.marketWatch') }}</h1>
-        </div>
+    <div class="page-header">
+        <h1>{{ trans('tools::tools.marketWatch') }}</h1>
+    </div>
 
-        <section class="clock_all_section">
-            <div class="panel">
-                <div class="panel-heading">
-                    <span class="panel-title">{{ trans('tools::tools.time') }}</span>
+    <section class="clock_all_section">
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title">{{ trans('tools::tools.time') }}</span>
+            </div>
+            <section class="clock_body_section">
+
+
+                <div class="forex_hours_all_row">
+                    <div class="left_label_div"></div>
+
+                    <?php
+                    //                        $city_array=[
+                    //                            ['name'=>'Sydney FX','hour_start'=>22,'length'=>9],
+                    //                            ['name'=>'Tokyo FX','hour_start'=>24,'length'=>9],
+                    //                            ['name'=>'London FX ','hour_start'=>8,'length'=>9],
+                    //                            ['name'=>'New Yourk Fx','hour_start'=>13,'length'=>9],
+                    //                        ];
+                    //
+                    //                    echo '<div class="forex_hours_container" style="height:'. count($city_array)* 25 .'px">';
+                    //
+                    //                         for($i=0;$i<count($city_array);$i++){
+                    //                        echo '<div class="on_city_period_div" style="left:'.(4.166 * $city_array[$i]['hour_start']).'%;top:'.(25 * $i).'px; width:'.(4.166 * $city_array[$i]['length']).'%;">'.$city_array[$i]['name'].'</div>';
+                    //
+
+                    ?>
+                    <div class="forex_hours_container" style="display:none">
+                        <?php for ($i = 1; $i < 25; $i++) { ?>
+                        <div class="forex_hour_one_div"></div>
+                        <?php } ?>
+                    </div>
                 </div>
-                <section class="clock_body_section">
 
 
-                    <div class="forex_hours_all_row">
-                        <div class="left_label_div"></div>
+                <div class="clock_hours_row">
+                    <div class="left_label_div">
 
                         <?php
-                        //                        $city_array=[
-                        //                            ['name'=>'Sydney FX','hour_start'=>22,'length'=>9],
-                        //                            ['name'=>'Tokyo FX','hour_start'=>24,'length'=>9],
-                        //                            ['name'=>'London FX ','hour_start'=>8,'length'=>9],
-                        //                            ['name'=>'New Yourk Fx','hour_start'=>13,'length'=>9],
-                        //                        ];
-                        //
-                        //                    echo '<div class="forex_hours_container" style="height:'. count($city_array)* 25 .'px">';
-                        //
-                        //                         for($i=0;$i<count($city_array);$i++){
-                        //                        echo '<div class="on_city_period_div" style="left:'.(4.166 * $city_array[$i]['hour_start']).'%;top:'.(25 * $i).'px; width:'.(4.166 * $city_array[$i]['length']).'%;">'.$city_array[$i]['name'].'</div>';
-                        //
-
+                        $city_array = [
+                                ['Sydney FX', 22, 2, 9],
+                                ['Tokyo FX', 24, 4, 9],
+                                ['London FX ', 8, -1, 9, 4],
+                                ['New York Fx', 2, 13, 9]
+                        ];
                         ?>
-                        <div class="forex_hours_container" style="display:none">
-                            <?php for ($i = 1; $i < 25; $i++) { ?>
-                            <div class="forex_hour_one_div"></div>
-                            <?php } ?>
-                        </div>
+
+
                     </div>
 
 
-                    <div class="clock_hours_row">
-                        <div class="left_label_div">
-
-                            <?php
-                            $city_array = [
-                                    ['Sydney FX', 22, 2, 9],
-                                    ['Tokyo FX', 24, 4, 9],
-                                    ['London FX ', 8, -1, 9, 4],
-                                    ['New York Fx', 2, 13, 9]
-                            ];
-                            ?>
+                    <div class="hours_bar_container_all_div">
 
 
+                        <div id="hours_bar_container_place">
+                            <div class="over_hour_box_div"></div>
                         </div>
 
-
-                        <div class="hours_bar_container_all_div">
-
-
-                            <div id="hours_bar_container_place">
-                                <div class="over_hour_box_div"></div>
-                            </div>
-
-                        </div>
                     </div>
+                </div>
 
-                </section>
+            </section>
 
-            </div>
+        </div>
 
 
-        </section>
+    </section>
 
-    </div>
+</div>
 @stop
 @section("script")
     @parent
