@@ -11,8 +11,8 @@ use Modules\Tools\Http\Requests\AddContractRequest;
 use Modules\Tools\Repositories\FutureContract as Future;
 use Modules\Tools\Repositories\HolidayContract as Holiday;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
-use Fxweb\Http\Controllers\admin\Email;
-use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
+use Fxweb\Http\Controllers\Admin\Email;
+use Fxweb\Http\Controllers\Admin\EditConfigController as EditConfig;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\View;
 use Fxweb\Models\SettingsMassMail;
@@ -543,7 +543,7 @@ class ToolsController extends Controller
         ];
 
         $editConfig = new EditConfig();
-        $editConfig->editConfigFile('Config/toolsConfig.php', $toolsSetting);
+        $editConfig->editConfigFile('config/toolsConfig.php', $toolsSetting);
 
         \Session::flash('refresh', 'true');
 

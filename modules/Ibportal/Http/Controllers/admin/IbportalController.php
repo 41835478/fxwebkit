@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Config;
 
 use Pingpong\Modules\Routing\Controller;
 use Illuminate\Http\Request;
-use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
+use Fxweb\Http\Controllers\Admin\EditConfigController as EditConfig;
 use Modules\Ibportal\Entities\IbportalUserIbid as UserIbid;
 use Modules\Ibportal\Entities\IbportalAgentUser as AgentUser;
 
@@ -657,7 +657,7 @@ class IbportalController extends Controller
         ];
 
         $editConfig = new EditConfig();
-        $editConfig->editConfigFile('Config/ibportalConfig.php', $ibportalSetting);
+        $editConfig->editConfigFile('config/ibportalConfig.php', $ibportalSetting);
 
         \Session::flash('refresh', 'true');
 

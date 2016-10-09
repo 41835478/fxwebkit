@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Carbon\Carbon;
 use Modules\Accounts\Http\Controllers\ApiController;
-use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
+use Fxweb\Http\Controllers\Admin\EditConfigController as EditConfig;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 
 class AccountsController extends Controller
@@ -1013,7 +1013,7 @@ class AccountsController extends Controller
 
 
         $editConfig = new EditConfig();
-        $editConfig->editConfigFile('Config/accountsConfig.php', $accountsSetting);
+        $editConfig->editConfigFile('config/accountsConfig.php', $accountsSetting);
 
         \Session::flash('refresh', 'true');
 

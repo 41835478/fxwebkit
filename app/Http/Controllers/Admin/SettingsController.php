@@ -17,8 +17,8 @@ use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Carbon\Carbon;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use File;
-use Fxweb\Http\Controllers\admin\Email;
-use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
+use Fxweb\Http\Controllers\Admin\Email;
+use Fxweb\Http\Controllers\Admin\EditConfigController as EditConfig;
 
 use Fxweb\Models\SettingsMassMail;
 use Fxweb\Models\SettingsMassTemplates;
@@ -480,8 +480,10 @@ return $this->getMassMailer($oRequest);
     }
 
     /**
+     *
      * @param Request $oRequest
      * @return $this
+     *
      */
     public function postSettings(Request $oRequest)
     {

@@ -94,29 +94,78 @@
 
                     </div>
                 </div>
-                <table class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th class="no-warp">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oResults[0]) !!}</th>
-                        <th class="no-warp">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oResults[0]) !!}</th>
-                        <th class="no-warp">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oResults[0]) !!}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if (count($oResults[0]))
-                        {{-- */$i=0;/* --}}
-                        {{-- */$class='';/* --}}
-                        @foreach($oResults[0] as $oResult)
-                            {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                            <tr class='{{ $class }}'>
-                                <td>{{ $oResult->SYMBOL }}</td>
-                                <td>{{ round($oResult->COMMISSION, 2) }}</td>
-                                <td>{{ $oResult->VOLUME }}</td>
-                            </tr>
-                        @endforeach
-                    @endif
-                    </tbody>
-                </table>
+
+
+                <div class="primary_table_div info" >
+                    <div class="table">
+
+
+                        <div class="thead">
+                            <div class="tr">
+
+
+
+
+
+                                <div class="th">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oResults[0]) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oResults[0]) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oResults[0]) !!}</div>
+
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="tbody">
+
+
+
+
+                            @if (count($oResults[0]))
+                                {{-- */$i=0;/* --}}
+                                {{-- */$class='';/* --}}
+                                @foreach($oResults[0] as $oResult)
+                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                    <div class="tr {{ $class }}">
+
+
+
+
+
+
+
+
+                                        <div class="td"><label>{!! trans('reports::reports.symbol') !!} : </label><p>{{ $oResult->SYMBOL }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.Commission') !!} : </label><p>{{ round($oResult->COMMISSION, 2) }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.lots') !!} : </label><p>{{ $oResult->VOLUME }}</p></div>
+
+
+                                    </div>
+                                @endforeach
+                            @endif
+
+
+
+
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                    <div class="tableFooter">
+
+                    </div>
+                </div>
+
+
+
+
                 <div class="table-footer text-right">
                     @if (count($oResults[0]))
                         {!! str_replace('/?', '?', $oResults[0]->appends(Input::except('page'))->render()) !!}
@@ -129,7 +178,7 @@
                             </div>
                         @endif
 
-                        <div class="col-sm-3  padding-xs-vr">
+                        <div class="col-xs-12 col-lg-3">
 
                             <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oResults[0]->firstItem() }} {{trans('reports::reports.to')}} {{ $oResults[0]->lastItem() }} {{trans('reports::reports.of')}} {{ $oResults[0]->total() }} {{trans('reports::reports.entries')}}</span>
                         </div>

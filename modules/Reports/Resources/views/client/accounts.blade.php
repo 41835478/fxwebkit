@@ -58,41 +58,92 @@
 
                         </div>
                     </div>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Name'), 'NAME', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Equity'), 'EQUITY', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Balance'), 'BALANCE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Margin'), 'MARGIN', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.MarginFree'), 'MARGIN_FREE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Leverage'), 'LEVERAGE', $oResults) !!}</th>
-                            <th class="no-warp"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @if (count($oResults))
-                            {{-- */$i=0;/* --}}
-                            {{-- */$class='';/* --}}
-                            @foreach($oResults as $oResult)
-                                {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                                <tr class='{{ $class }}'>
-                                    <td>{{ $oResult->LOGIN }}</td>
-                                    <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
-                                    <td>{{ $oResult->NAME }}</td>
-                                    <td>{{ $oResult->EQUITY }}</td>
-                                    <td>{{ $oResult->BALANCE }}</td>
-                                    <td>{{ $oResult->MARGIN }}</td>
-                                    <td>{{ $oResult->MARGIN_FREE }}</td>
-                                    <td>{{ $oResult->LEVERAGE }}</td>
-                                    <td><a href="{{ route('clients.reports.accountStatement').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text tooltip_number" data-original-title="{{trans('reports::reports.accountStatement')}}"></a></td>
-                                </tr>
-                            @endforeach
-                        @endif
-                        </tbody>
-                    </table>
+
+
+
+                    <div class="primary_table_div info" >
+                        <div class="table">
+
+
+                            <div class="thead">
+                                <div class="tr">
+
+
+
+
+                                    <div class="th">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('reports::reports.Name'), 'NAME', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('reports::reports.Equity'), 'EQUITY', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('reports::reports.Balance'), 'BALANCE', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('reports::reports.Margin'), 'MARGIN', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('reports::reports.MarginFree'), 'MARGIN_FREE', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('reports::reports.Leverage'), 'LEVERAGE', $oResults) !!}</div>
+                                    <dive class="th"></dive>
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="tbody">
+
+
+
+
+                                @if (count($oResults))
+                                    {{-- */$i=0;/* --}}
+                                    {{-- */$class='';/* --}}
+                                    @foreach($oResults as $oResult)
+                                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                        <div class="tr {{ $class }}">
+
+
+
+
+
+
+
+
+                                            <div class="td"><label>{!! trans('reports::reports.Login') !!} : </label><p>{{ $oResult->LOGIN }}</p></div>
+                                            <div class="td"><label>{!! trans('reports::reports.liveDemo') !!} : </label><p>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                            <div class="td"><label>{!! trans('reports::reports.Name') !!} : </label><p>{{ $oResult->NAME }}</p></div>
+                                            <div class="td"><label>{!! trans('reports::reports.Equity') !!} : </label><p>{{ $oResult->EQUITY }}</p></div>
+                                            <div class="td"><label>{!! trans('reports::reports.Balance') !!} : </label><p>{{ $oResult->BALANCE }}</p></div>
+                                            <div class="td"><label>{!! trans('reports::reports.Margin') !!} : </label><p>{{ $oResult->MARGIN }}</p></div>
+                                            <div class="td"><label>{!! trans('reports::reports.MarginFree') !!} : </label><p>{{ $oResult->MARGIN_FREE }}</p></div>
+                                            <div class="td"><label>{!! trans('reports::reports.Leverage') !!} : </label><p>1:{{ $oResult->LEVERAGE }}</p></div>
+                                            <div class="td"><a href="{{ route('clients.reports.accountStatement').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text tooltip_number" data-original-title="{{trans('reports::reports.accountStatement')}}"></a></div>
+
+
+
+
+
+                                        </div>
+                                    @endforeach
+                                @endif
+
+
+
+
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+                        <div class="tableFooter">
+
+                        </div>
+                    </div>
+
+
+
+
                     <div class="table-footer">
                         @if (count($oResults))
                             {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}

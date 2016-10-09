@@ -2,9 +2,7 @@
 @section('title', trans('mt4configrations::mt4configrations.settings'))
 @section('content')
 
-    @if (Session::get('refresh'))
-        <script>window.location.reload();</script>
-    @endif
+
 
     <div id="content-wrapper">
         <div class="page-header">

@@ -42,7 +42,323 @@
 
             <!-- ___________________________footer_summery_____________-->
             @if (count($oResults))
-                <table class="table table-bordered user-info-table">
+                <div class="panel-body " id="mt4StatementListAllDiv">
+
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.registration_date') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->REGDATE }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.meta_quotes_id') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->MQID }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.name') }} </label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->NAME }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.phone_password :') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->MQID }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.state :') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->STATE }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.country') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->COUNTRY }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.address :') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->ADDRESS }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.zip_code') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->ZIPCODE }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.phone') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->PHONE }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.email') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->EMAIL }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.id_number :') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->ID }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.status :') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->STATUS }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.leverage :') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->LAVARGE }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.tax') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->TAXES }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.deposit_withdrawal') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $aSummery['deposit'] }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.credit_facility') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $aSummery['credit_facility'] }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.closed_trade') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $aSummery['closed_trade'] }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.floating') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $aSummery['floating'] }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.margin :') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->MARGIN }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.balance :') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->BALANCE }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.equity :') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ $oResults->EQUITY }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+
+                        <div class="col-xs-4 col-sm-2 text-right">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{ trans('accounts::accounts.free_margin') }}</label>
+                            </div>
+                        </div>
+                        <!-- ol-sm-6 -->
+                        <div class="col-xs-8 col-sm-4 text-left">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label">{{  $oResults->MARGIN_FREE }}</label>
+                            </div>
+                        </div>
+                        <!--ol-sm-6 -->
+                    </div>
+
+                </div>
+
+                <table class="table table-bordered user-info-table " id="mt4StatementTable">
                     <tr>
                         <th colspan="3">{{ trans('accounts::accounts.registration_date') }} </th>
                         <td>{{ $oResults->REGDATE }}</td>
@@ -110,7 +426,6 @@
                         <td>{{ $oResults->MARGIN_FREE }}</td>
                     </tr>
                 </table>
-
             @endif
         </div>
     </div>

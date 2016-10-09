@@ -31,7 +31,7 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-                <table class="table table-bordered" id="symbolsListTable">
+                <table class="table table-bordered" id="symbolsListTable" style="display:table;">
                     <thead>
                     <tr>
                         <th>{{ trans('ibportal::ibportal.symbols') }} </th>

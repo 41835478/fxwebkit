@@ -98,7 +98,12 @@ public function getSymbolsSpreads(){
     public function allSpreads(){
 
         app()->setLocale(\Session::get('locale'));
-        $spreads = DB::table('mt4_prices')->distinct('SYMBOL')->get();
+
+        $spreads = DB::table('mt4_prices')->join('configrations_symbols', function ($join) {
+            $join->on('mt4_prices.SYMBOL', '=', 'configrations_symbols.symbol')
+                ->where('configrations_symbols.type','=',1);
+        })->distinct('mt4_prices.SYMBOL')->get();
+
 
 
         $multiplier = array(1,10,100,1000,10000,100000);

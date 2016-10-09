@@ -1,6 +1,6 @@
 <?php namespace Modules\Accounts\Http\Controllers;
 
-use Fxweb\Http\Controllers\admin\Email;
+use Fxweb\Http\Controllers\Admin\Email;
 use Pingpong\Modules\Routing\Controller;
 use Modules\Request\Http\Controllers\RequestController as RequestLog;
 use Fxweb\Models\Mt4User;

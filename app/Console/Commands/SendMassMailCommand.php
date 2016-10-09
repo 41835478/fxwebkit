@@ -3,7 +3,7 @@
 namespace Fxweb\Console\Commands;
 
 use Illuminate\Console\Command;
-use  Fxweb\Http\Controllers\admin\Email;
+use  Fxweb\Http\Controllers\Admin\Email;
 
 class SendMassMailCommand extends Command
 {

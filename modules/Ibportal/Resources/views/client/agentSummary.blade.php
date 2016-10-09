@@ -10,7 +10,7 @@
 
 
 
-    <div class="col-xs-4">
+    <div class="col-xs-12 col-lg-4">
 
 
 
@@ -36,7 +36,7 @@
 
 
 
-        <div class="col-xs-4">
+        <div class="col-xs-12 col-lg-4">
         <div class="stat-panel">
             <div class="stat-row">
                 <!-- Info background, without padding, horizontally centered text, super large text -->
@@ -55,7 +55,7 @@
     </div>
 
 
-    <div class="col-xs-4">
+    <div class="col-xs-12 col-lg-4">
         <div class="stat-panel">
             <div class="stat-row">
                 <!-- Info background, without padding, horizontally centered text, super large text -->

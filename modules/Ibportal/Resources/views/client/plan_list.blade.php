@@ -18,37 +18,79 @@
 
                     </div>
                 </div>
-                <table class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.name'), 'name', $oResults) !!}</th>
-                        <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.public'), 'Public', $oResults) !!}</th>
-                        <th class="no-warp">{{ trans('ibportal::ibportal.link') }}</th>
-                        <th class="no-warp"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if (count($oResults))
-                        {{-- */$i=0;/* --}}
-                        {{-- */$class='';/* --}}
-                        @foreach($oResults as $oResult)
-                            {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                            <tr class='{{ $class }}'>
-                                <td>{{ $oResult->name }}</td>
-                                <td>@if($oResult->public) {{trans('ibportal::ibportal.public') }}@endif </td>
-                                <td>
-                                    <a href="{{ route('client.auth.register').'?ibid='.$ibid.'&planId='.$oResult->id }}">{{ route('client.auth.register').'?ibid='.$ibid.'&planId='.$oResult->id }}</a>
-                                </td>
-                                <td>
-                                    <a href="{{ route('client.ibportal.detailsPlan').'?edit_id='.$oResult->id }}"
-                                       class="fa fa-file-text tooltip_number" data-original-title="{{trans('ibportal::ibportal.detailsPlan')}}"></a>
 
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
-                    </tbody>
-                </table>
+
+
+
+
+                <div class="primary_table_div info" >
+                    <div class="table">
+
+
+                        <div class="thead">
+                            <div class="tr">
+
+
+
+
+                            <div class="th">{!! th_sort(trans('ibportal::ibportal.name'), 'name', $oResults) !!}</div>
+                            <div class="th">{!! th_sort(trans('ibportal::ibportal.public'), 'Public', $oResults) !!}</div>
+                            <div class="th">{{ trans('ibportal::ibportal.link') }}</div>
+                            <div class="th"></div>
+
+                            </div>
+                        </div>
+                        <div class="tbody">
+
+                            @if (count($oResults))
+                                {{-- */$i=0;/* --}}
+                                {{-- */$class='';/* --}}
+                                @foreach($oResults as $oResult)
+                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                    <div class="tr {{ $class }}">
+
+
+
+                                    <div class="td"><label>{!! trans('ibportal::ibportal.name') !!} : </label><p>{{ $oResult->name }}</p></div>
+                                    <div class="td"><label>{!! trans('ibportal::ibportal.public') !!} : </label><p>@if($oResult->public) {{trans('ibportal::ibportal.public') }}@endif </p></div>
+                                    <div class="td"><label>{!! trans('ibportal::ibportal.link') !!} : </label><p>
+                                            <a href="{{ route('client.auth.register').'?ibid='.$ibid.'&planId='.$oResult->id }}">{{ route('client.auth.register').'?ibid='.$ibid.'&planId='.$oResult->id }}</a>
+                                        </p></div>
+                                    <div class="td"><p>
+                                            <a href="{{ route('client.ibportal.detailsPlan').'?edit_id='.$oResult->id }}"
+                                               class="fa fa-file-text tooltip_number" data-original-title="{{trans('ibportal::ibportal.detailsPlan')}}"></a>
+                                        </p></div>
+
+
+                                    </div>
+                                @endforeach
+                            @endif
+
+
+
+
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                    <div class="tableFooter">
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
                 <div class="table-footer">
 
 
@@ -66,7 +108,7 @@
                             </div>
                         @endif
 
-                        <div class="col-sm-3">
+                        <div class="col-xs-12 col-lg-3">
                             <span class="text-xs">{{trans('ibportal::ibportal.showing')}} {{ $oResults->firstItem() }} {{trans('ibportal::ibportal.to')}} {{ $oResults->lastItem() }} {{trans('ibportal::ibportal.of')}} {{ $oResults->total() }} {{trans('ibportal::ibportal.entries')}}</span>
                         </div>
                     @endif

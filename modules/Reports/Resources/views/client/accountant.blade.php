@@ -84,35 +84,76 @@
 
                     </div>
                 </div>
-                <table class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th class="no-warp">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults[0]) !!}</th>
-                        <th class="no-warp">{!! th_sort(trans('reports::reports.login'), 'LOGIN', $oResults[0]) !!}</th>
-                        <th class="no-warp">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults[0]) !!}</th>
-                        <th class="no-warp">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults[0]) !!}</th>
-                        <th class="no-warp">{!! th_sort(trans('reports::reports.total'), 'PROFIT', $oResults[0]) !!}</th>
-                        <th class="no-warp">{!! th_sort(trans('reports::reports.close_time'), 'CLOSE_TIME', $oResults[0]) !!}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if (count($oResults[0]))
-                        {{-- */$i=0;/* --}}
-                        {{-- */$class='';/* --}}
-                        @foreach($oResults[0] as $oResult)
-                            {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                            <tr class='{{ $class }}'>
-                                <td>{{ $oResult->TICKET }}</td>
-                                <td>{{ $oResult->LOGIN }}</td>
-                                <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
-                                <td>{{ $oResult->TYPE }}</td>
-                                <td>{{ $oResult->PROFIT }}</td>
-                                <td>{{ $oResult->CLOSE_TIME }}</td>
-                            </tr>
-                        @endforeach
-                    @endif
-                    </tbody>
-                </table>
+
+
+                <div class="primary_table_div info" >
+                    <div class="table">
+
+
+                        <div class="thead">
+                            <div class="tr">
+
+
+
+
+
+                                <div class="th">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults[0]) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.login'), 'LOGIN', $oResults[0]) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults[0]) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults[0]) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.total'), 'PROFIT', $oResults[0]) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.close_time'), 'CLOSE_TIME', $oResults[0]) !!}</div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="tbody">
+
+
+
+
+                            @if (count($oResults[0]))
+                                {{-- */$i=0;/* --}}
+                                {{-- */$class='';/* --}}
+                                @foreach($oResults[0] as $oResult)
+                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                    <div class="tr {{ $class }}">
+
+
+                                        <div class="td"><label>{!! trans('reports::reports.order#') !!} : </label><p>{{ $oResult->TICKET }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.login') !!} : </label><p>{{ $oResult->LOGIN }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.liveDemo') !!} : </label><p>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.type') !!} : </label><p>{{ $oResult->TYPE }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.total') !!} : </label><p>{{ $oResult->PROFIT }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.close_time') !!} : </label><p>{{ $oResult->CLOSE_TIME }}</p></div>
+
+                                    </div>
+                                @endforeach
+                            @endif
+
+
+
+
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                    <div class="tableFooter">
+
+                    </div>
+                </div>
+
+
+
+
+
                 <div class="table-footer text-right">
                     @if (count($oResults[0]))
                         {!! str_replace('/?', '?', $oResults[0]->appends(Input::except('page'))->render()) !!}
@@ -124,7 +165,7 @@
                             </div>
                         @endif
 
-                        <div class="col-sm-3  padding-xs-vr">
+                        <div class="col-xs-12 col-lg-3">
                             <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oResults[0]->firstItem() }} {{trans('reports::reports.to')}} {{ $oResults[0]->lastItem() }} {{trans('reports::reports.of')}} {{ $oResults[0]->total() }} {{trans('reports::reports.entries')}}</span>
                         </div>
 

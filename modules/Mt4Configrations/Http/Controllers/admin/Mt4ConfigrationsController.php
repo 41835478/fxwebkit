@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 use Modules\Mt4Configrations\Repositories\Mt4ConfigrationsContract as Mt4Configrations;
-use Fxweb\Http\Controllers\admin\EditConfigController as EditConfig;
+use Fxweb\Http\Controllers\Admin\EditConfigController as EditConfig;
 
 class Mt4ConfigrationsController extends Controller
 {
@@ -217,7 +217,7 @@ class Mt4ConfigrationsController extends Controller
 
         $editConfig = new EditConfig();
 
-        $editConfig->editConfigFile('Config/mt4configrationsConfig.php', $mt4ConfigurationsSetting);
+        $editConfig->editConfigFile('config/mt4configrationsConfig.php', $mt4ConfigurationsSetting);
 
         \Session::flash('refresh', 'true');
 

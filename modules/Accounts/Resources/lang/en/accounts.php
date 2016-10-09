@@ -96,6 +96,8 @@
     'login2' => 'Login 2',
     'summry' => 'Summary',
     'leverage :' => 'Leverage :',
+    'equity'=>'Equity',
+    'balance'=>'Balance',
     'changePassword' => 'Change Password',
     'internalTransfer' => 'Internal Transfer',
     'submit' => 'Submit',
