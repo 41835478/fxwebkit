@@ -29,44 +29,108 @@
             @if($selected_language==1)
                 {!! Form::open() !!}
                 {!! Form::hidden('selected_id',$selected_id) !!}
-                <table border="0" class="table table-bordered">
-                    <thead>
-                    <th>{{ trans('cms::cms.id') }}</th>
-                    <th>{{ trans('cms::cms.name') }}</th>
-                    <th>{{ trans('cms::cms.parent') }}</th>
-                    <th>{{ trans('cms::cms.disable') }} </th>
-                    <th>{{ trans('cms::cms.hide') }}</th>
-                    <th>{{ trans('cms::cms.link_to') }}</th>
-                    <th></th>
-                    </thead>
-                    <tbody>
-                    @foreach($menu_items as $item)
-                        @if($item->type == 1 && $item->article['title']=='')
-                        @else
-                            <tr>
-                                <td>{{ $item->id }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td> {{ $item->cms_menus_items['name'] }}</td>
-                                <td><i class="{{ $disable_icons[$item->disable] }}"></i></td>
-                                <td><i class="{{ $hide_icons[$item->hide] }}"></i></td>
-                                <td>
-                                    @if($item->type == 0)
-                                        page  ({{ $item->page['title'] }})
-                                    @elseif($item->type == 1)
-                                        article ({{ $item->article['title'] }})
-                                    @elseif($item->type == 2)
-                                        form ({{ $item->form['name'] }})
-                                    @endif
-                                </td>
-                                <td>
-                                    {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'remove_menu_item_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete  link")) return false;','class'=>'icon_button red_icon','type'=>'submit','value'=>$item->id ]) !!}
-                                    {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_menu_item_id' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$item->id ]) !!}
-                                </td>
-                            <tr>
-                        @endif
-                    @endforeach
-                    </tbody>
-                </table>
+
+
+
+                <div class="primary_table_div info" >
+                    <div class="table">
+
+
+                        <div class="thead">
+                            <div class="tr">
+
+                                <div class="th">{{ trans('cms::cms.id') }}</div>
+                                <div class="th">{{ trans('cms::cms.name') }}</div>
+                                <div class="th">{{ trans('cms::cms.parent') }}</div>
+                                <div class="th">{{ trans('cms::cms.disable') }}</div>
+                                <div class="th">{{ trans('cms::cms.hide') }}</div>
+                                <div class="th">{{ trans('cms::cms.link_to') }}</div>
+                                <div class="th"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="tbody">
+
+                            @foreach($menu_items as $item)
+                                @if($item->type == 1 && $item->article['title']=='')
+                                @else
+                            {{--@if (count($oResults))--}}
+                                {{-- */$i=0;/* --}}
+                                {{-- */$class='';/* --}}
+                                {{--@foreach($oResults as $oResult)--}}
+                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                    {{--<div class="tr {{ $class }}">--}}
+                                        <div class="td"><label>{!! trans('cms::cms.id') !!} : </label><p>{{ $item->id }}</p></div>
+                                        <div class="td"><label>{!! trans('cms::cms.name') !!} : </label><p>{{ $item->name }}</p></div>
+                                        <div class="td"><label>{!! trans('cms::cms.parent') !!} : </label><p>{{ $item->cms_menus_items['name'] }}</p></div>
+                                        <div class="td"><label>{!! trans('cms::cms.disable') !!} : </label><p><i class="{{ $disable_icons[$item->disable] }}"></i></p></div>
+                                    <div class="td"><label>{!! trans('cms::cms.hide') !!} : </label><p><i class="{{ $hide_icons[$item->hide] }}"></i></p></div>
+                                        <div class="td">
+                                            @if($item->type == 0)
+                                                page  ({{ $item->page['title'] }})
+                                            @elseif($item->type == 1)
+                                                article ({{ $item->article['title'] }})
+                                            @elseif($item->type == 2)
+                                                form ({{ $item->form['name'] }})
+                                            @endif
+                                        </div>
+                                    <div class="td">
+                                        {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'remove_menu_item_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete  link")) return false;','class'=>'icon_button red_icon','type'=>'submit','value'=>$item->id ]) !!}
+                                        {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_menu_item_id' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$item->id ]) !!}
+                                    </div>
+                                @endif
+                            @endforeach
+                                    </div>
+
+                        </div>
+                    </div>
+
+                    <div class="tableFooter">
+
+                    </div>
+                </div>
+
+
+
+                {{--<table border="0" class="table table-bordered">--}}
+                    {{--<thead>--}}
+                    {{--<th>{{ trans('cms::cms.id') }}</th>--}}
+                    {{--<th>{{ trans('cms::cms.name') }}</th>--}}
+                    {{--<th>{{ trans('cms::cms.parent') }}</th>--}}
+                    {{--<th>{{ trans('cms::cms.disable') }} </th>--}}
+                    {{--<th>{{ trans('cms::cms.hide') }}</th>--}}
+                    {{--<th>{{ trans('cms::cms.link_to') }}</th>--}}
+                    {{--<th></th>--}}
+                    {{--</thead>--}}
+                    {{--<tbody>--}}
+                    {{--@foreach($menu_items as $item)--}}
+                        {{--@if($item->type == 1 && $item->article['title']=='')--}}
+                        {{--@else--}}
+                            {{--<tr>--}}
+                                {{--<td>{{ $item->id }}</td>--}}
+                                {{--<td>{{ $item->name }}</td>--}}
+                                {{--<td> {{ $item->cms_menus_items['name'] }}</td>--}}
+                                {{--<td><i class="{{ $disable_icons[$item->disable] }}"></i></td>--}}
+                                {{--<td><i class="{{ $hide_icons[$item->hide] }}"></i></td>--}}
+                                {{--<td>--}}
+                                    {{--@if($item->type == 0)--}}
+                                        {{--page  ({{ $item->page['title'] }})--}}
+                                    {{--@elseif($item->type == 1)--}}
+                                        {{--article ({{ $item->article['title'] }})--}}
+                                    {{--@elseif($item->type == 2)--}}
+                                        {{--form ({{ $item->form['name'] }})--}}
+                                    {{--@endif--}}
+                                {{--</td>--}}
+                                {{--<td>--}}
+                                    {{--{!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'remove_menu_item_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete  link")) return false;','class'=>'icon_button red_icon','type'=>'submit','value'=>$item->id ]) !!}--}}
+                                    {{--{!! Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_menu_item_id' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$item->id ]) !!}--}}
+                                {{--</td>--}}
+                            {{--<tr>--}}
+                        {{--@endif--}}
+                    {{--@endforeach--}}
+                    {{--</tbody>--}}
+                {{--</table>--}}
                 {!! Form::close() !!}
             @else
 

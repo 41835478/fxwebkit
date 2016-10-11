@@ -64,70 +64,99 @@
                         </div>
                     </div>
 
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.id'), 'id', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.first_name'), 'first_name', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults) !!}</th>
 
-                            <th class="no-warp"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @if (count($oResults))
-                            {{-- */$i=0;/* --}}
-                            {{-- */$class='';/* --}}
-                            @foreach($oResults as $oResult)
-                                {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                                <tr class='{{ $class }}'>
-                                    <td>{{ $oResult->id }}</td>
-                                    <td>{{ $oResult->first_name }}</td>
-                                    <td>{{ $oResult->last_name }}</td>
-                                    <td>{{ $oResult->email }}</td>
-                                    <td>
 
-                                        @if(!$oResult->isAgent)
-                                            <a href="{{ route('admin.ibportal.addAgents').'?agentId='.$oResult->id }}"
-                                               class="fa fa-plus tooltip_number"
-                                               data-original-title="{{trans('ibportal::ibportal.makeUserAgent')}}"></a>
-                                       @else
+                    <div class="primary_table_div info" >
+                        <div class="table">
 
-                                            <a href="{{ route('admin.ibportal.agentUsres').'?agentId='.$oResult->id }}"
-                                               class="fa fa-users tooltip_number"
-                                               data-original-title="{{trans('ibportal::ibportal.agentUsres')}}"></a>
-                                            <a href="{{ route('admin.ibportal.agentPlans').'?agentId='.$oResult->id }}"
-                                               class="fa fa-briefcase tooltip_number"
-                                               data-original-title="{{trans('ibportal::ibportal.agentPlans')}}"></a>
-                                            <!--
+
+                            <div class="thead">
+                                <div class="tr">
+
+
+                                <div class="th">{!! th_sort(trans('ibportal::ibportal.id'), 'id', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('ibportal::ibportal.first_name'), 'first_name', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults) !!}</div>
+                                <div class="th"></div>
+                                </div>
+                            </div>
+
+
+                            <div class="tbody">
+
+                                @if (count($oResults))
+                                    {{-- */$i=0;/* --}}
+                                    {{-- */$class='';/* --}}
+                                    @foreach($oResults as $oResult)
+                                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                        <div class="tr {{ $class }}">
+
+
+                                        <div class="td"><label>{!! trans('ibportal::ibportal.id') !!} : </label><p>{{ $oResult->id }}</p></div>
+                                        <div class="td"><label>{!! trans('ibportal::ibportal.first_name') !!} : </label><p>{{ $oResult->first_name }}</p></div>
+                                        <div class="td"><label>{!! trans('ibportal::ibportal.last_name') !!} : </label><p>{{ $oResult->last_name }}</p></div>
+                                        <div class="td"><label>{!! trans('ibportal::ibportal.Email') !!} : </label><p>{{ $oResult->email }}</p></div>
+                                        <div class="td">
+                                                @if(!$oResult->isAgent)
+                                                    <a href="{{ route('admin.ibportal.addAgents').'?agentId='.$oResult->id }}"
+                                                       class="fa fa-plus tooltip_number"
+                                                       data-original-title="{{trans('ibportal::ibportal.makeUserAgent')}}"></a>
+                                                @else
+
+                                                    <a href="{{ route('admin.ibportal.agentUsres').'?agentId='.$oResult->id }}"
+                                                       class="fa fa-users tooltip_number"
+                                                       data-original-title="{{trans('ibportal::ibportal.agentUsres')}}"></a>
+                                                    <a href="{{ route('admin.ibportal.agentPlans').'?agentId='.$oResult->id }}"
+                                                       class="fa fa-briefcase tooltip_number"
+                                                       data-original-title="{{trans('ibportal::ibportal.agentPlans')}}"></a>
+                                                    <!--
                                         <a href="{{ route('admin.ibportal.agentCommission').'?agentId='.$oResult->id }}"
                                            class="fa fa-money tooltip_number"
                                            data-original-title="{{trans('ibportal::ibportal.agentCommission')}}"></a>
                                            -->
 
-                                        <a href="{{ route('admin.ibportal.assignAgents').'?agentId='.$oResult->id }}"
-                                           class="fa  fa-link  tooltip_number"
-                                           data-original-title="{{trans('ibportal::ibportal.assignAgents')}}"></a>
+                                                    <a href="{{ route('admin.ibportal.assignAgents').'?agentId='.$oResult->id }}"
+                                                       class="fa  fa-link  tooltip_number"
+                                                       data-original-title="{{trans('ibportal::ibportal.assignAgents')}}"></a>
 
-                                        <a href="{{ route('admin.ibportal.agentMoney').'?agentId='.$oResult->id }}"
-                                           class="fa fa-money tooltip_number"
-                                           data-original-title="{{trans('ibportal::ibportal.agentMoney')}}"></a>
+                                                    <a href="{{ route('admin.ibportal.agentMoney').'?agentId='.$oResult->id }}"
+                                                       class="fa fa-money tooltip_number"
+                                                       data-original-title="{{trans('ibportal::ibportal.agentMoney')}}"></a>
 
-                                        <a href="{{ route('admin.ibportal.summary').'?agentId='.$oResult->id }}"
-                                           class="fa fa-bar-chart-o tooltip_number"
-                                           data-original-title="{{trans('ibportal::ibportal.summary')}}"></a>
+                                                    <a href="{{ route('admin.ibportal.summary').'?agentId='.$oResult->id }}"
+                                                       class="fa fa-bar-chart-o tooltip_number"
+                                                       data-original-title="{{trans('ibportal::ibportal.summary')}}"></a>
 
-                                        <a href="{{ route('admin.ibportal.assignUsresAgent').'?agent_id='.$oResult->id }}"
-                                           class="fa  fa-link  tooltip_number"
-                                           data-original-title="{{trans('ibportal::ibportal.assignUsersToAgent')}}"></a>
-                                        @endif
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @endif
-                        </tbody>
-                    </table>
+                                                    <a href="{{ route('admin.ibportal.assignUsresAgent').'?agent_id='.$oResult->id }}"
+                                                       class="fa  fa-link  tooltip_number"
+                                                       data-original-title="{{trans('ibportal::ibportal.assignUsersToAgent')}}"></a>
+                                                @endif
+                                                </div>
+
+                                        </div>
+                                    @endforeach
+                                @endif
+
+
+
+
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+                        <div class="tableFooter">
+
+                        </div>
+                    </div>
+
+
 
                     <div class="table-footer">
                         @if (count($oResults))
@@ -147,7 +176,7 @@
                                 </div>
                             @endif
 
-                            <div class="col-sm-3">
+                            <div class="col-xs-12 col-lg-3">
                                 <span class="text-xs">{{trans('ibportal::ibportal.showing')}} {{ $oResults->firstItem() }} {{trans('ibportal::ibportal.to')}} {{ $oResults->lastItem() }} {{trans('ibportal::ibportal.of')}} {{ $oResults->total() }} {{trans('ibportal::ibportal.entries')}}</span>
                             </div>
                         @endif

@@ -63,38 +63,68 @@
                             <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button" value="{{ trans('user.addUser') }}"> </a>
                     </div>
                 </div>
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th class="no-warp">{!! th_sort(trans('user.id'), 'id', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('user.first_name'), 'first_name', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('user.last_name'), 'last_name', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('user.email'), 'email', $oResults) !!}</th>
 
-                            <th class="no-warp"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (count($oResults))
-                        {{-- */$i=0;/* --}}
-                        {{-- */$class='';/* --}}
-                        @foreach($oResults as $oResult)
-                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                        <tr class='{{ $class }}'>
-                            <td>{{ $oResult->id }}</td>
-                            <td>{{ $oResult->first_name }}</td>
-                            <td>{{ $oResult->last_name }}</td>
-                            <td>{{ $oResult->email }}</td>
-                            <td>
-                                <a href="{{ route('general.editUser').'?edit_id='.$oResult->id }}" class="fa fa-edit tooltip_number" data-original-title="{{trans('user.editUser')}}"></a>
-                                <a href="{{ route('general.userDetails').'?edit_id='.$oResult->id }}" class="fa fa-file-text tooltip_number"  data-original-title="{{trans('user.userDetails')}}"></a>
-                                <a href="{{ route('admin.deleteUser').'?delete_id='.$oResult->id }}" class="fa fa-trash-o tooltip_number"  data-original-title="{{trans('user.deleteUser')}}"></a>
-                            </td>
-                        </tr>
-                        @endforeach
-                        @endif
-                    </tbody>
-                </table>
+
+
+
+                <div class="primary_table_div info" >
+                    <div class="table">
+
+
+                        <div class="thead">
+                            <div class="tr">
+
+
+
+                            <div class="th">{!! th_sort(trans('user.id'), 'id', $oResults) !!}</div>
+                            <div class="th">{!! th_sort(trans('user.first_name'), 'first_name', $oResults) !!}</div>
+                            <div class="th">{!! th_sort(trans('user.last_name'), 'last_name', $oResults) !!}</div>
+                            <div class="th">{!! th_sort(trans('user.email'), 'email', $oResults) !!}</div>
+                                <div class="th"></div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="tbody">
+
+                            @if (count($oResults))
+                                {{-- */$i=0;/* --}}
+                                {{-- */$class='';/* --}}
+                                @foreach($oResults as $oResult)
+                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                    <div class="tr {{ $class }}">
+
+
+                                    <div class="td"><label>{!! trans('user.id') !!} : </label><p>{{ $oResult->id }}</p></div>
+                                    <div class="td"><label>{!! trans('user.first_name') !!} : </label><p>{{ $oResult->first_name }}</p></div>
+                                    <div class="td"><label>{!! trans('user.last_name') !!} : </label><p>{{ $oResult->last_name }}</p></div>
+                                    <div class="td"><label>{!! trans('user.email') !!} : </label><p>{{ $oResult->email }}</p></div>
+                                    <div class="td">
+                                            <a href="{{ route('general.editUser').'?edit_id='.$oResult->id }}" class="fa fa-edit tooltip_number" data-original-title="{{trans('user.editUser')}}"></a>
+                                            <a href="{{ route('general.userDetails').'?edit_id='.$oResult->id }}" class="fa fa-file-text tooltip_number"  data-original-title="{{trans('user.userDetails')}}"></a>
+                                            <a href="{{ route('admin.deleteUser').'?delete_id='.$oResult->id }}" class="fa fa-trash-o tooltip_number"  data-original-title="{{trans('user.deleteUser')}}"></a>
+                                          </div>
+
+
+
+                                    </div>
+                                @endforeach
+                            @endif
+
+                        </div>
+
+                    </div>
+
+                    <div class="tableFooter">
+
+                    </div>
+                </div>
+
+
+
+
+
                 <div class="table-footer">
                     @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
@@ -115,7 +145,7 @@
                     </div>
                    @endif
                     
-                    <div class="col-sm-3 ">
+                    <div class=" col-xs-12 col-lg-3 ">
                         <span class="text-xs">{{trans('user.showing')}} {{ $oResults->firstItem() }} {{trans('user.to')}} {{ $oResults->lastItem() }} {{trans('user.of')}} {{ $oResults->total() }} {{trans('user.entries')}}</span>
                     </div>
                     @endif

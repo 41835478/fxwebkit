@@ -50,7 +50,7 @@
 
                         </div>
                     </div>
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped" style="display: table !important;">
                         <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.name'), 'name', $oResults) !!}</th>

@@ -165,8 +165,10 @@ class EloquentHolidayContractRepository implements HolidayContract
 
 
         foreach ($oResults as $result) {
+
             $aSymbolsHours[$result->symbols->symbol][] =
                 [
+
                     $this->convertHourToPercent($result->start_hour),
                     $this->convertHourToPercent($result->end_hour),
                     $result->start_hour,
@@ -175,7 +177,7 @@ class EloquentHolidayContractRepository implements HolidayContract
                 ];
 
         }
-
+    dd(10);
         return [$aSymbolsHours, $aDates, $date];
     }
 

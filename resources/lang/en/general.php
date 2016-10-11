@@ -211,5 +211,6 @@
     'layoutAssetsFolder'=>'Layout Assets Folder',
     'demoAccountHost'=>'Demo Account Host',
     'demoAccountPort'=>'Demo Account Port',
-    'demoAccountServer'=>'Demo Account Server'
+    'demoAccountServer'=>'Demo Account Server',
+    'last_login'=>'Last Login',
 ]; ?>

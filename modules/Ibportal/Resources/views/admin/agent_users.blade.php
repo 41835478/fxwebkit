@@ -61,37 +61,73 @@
                             {{ trans('ibportal::ibportal.agent_users') }}
                         </div>
                     </div>
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.id'), 'id', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.first_name'), 'first_name', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults) !!}</th>
-                                <th class="no-warp">{!! trans('ibportal::ibportal.plan') !!}</th>
 
 
 
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @if (count($oResults))
-                                {{-- */$i=0;/* --}}
-                                {{-- */$class='';/* --}}
-                                @foreach($oResults as $oResult)
-                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                                    <tr class='{{ $class }}'>
-                                        <td>{{ $oResult->id }}</td>
-                                        <td>{{ $oResult->first_name }}</td>
-                                        <td>{{ $oResult->last_name }}</td>
-                                        <td>{{ $oResult->email }}</td>
-                                        <td>{{ $oResult->agentPlan->plan->name }}</td>
 
-                                    </tr>
-                                @endforeach
-                            @endif
-                            </tbody>
-                        </table>
+
+
+                    <div class="primary_table_div info" >
+                        <div class="table">
+
+
+                            <div class="thead">
+                                <div class="tr">
+
+
+
+
+                                <div class="th">{!! th_sort(trans('ibportal::ibportal.id'), 'id', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('ibportal::ibportal.first_name'), 'first_name', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults) !!}</div>
+                                <div class="th">{!! trans('ibportal::ibportal.plan') !!} </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="tbody">
+
+                                @if (count($oResults))
+                                    {{-- */$i=0;/* --}}
+                                    {{-- */$class='';/* --}}
+                                    @foreach($oResults as $oResult)
+                                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                        <div class="tr {{ $class }}">
+
+                                        <div class="td"><label>{!! trans('ibportal::ibportal.id') !!} : </label><p>{{ $oResult->id }}</p></div>
+                                        <div class="td"><label>{!! trans('ibportal::ibportal.first_name') !!} : </label><p>{{ $oResult->first_name }}</p></div>
+                                        <div class="td"><label>{!! trans('ibportal::ibportal.last_name') !!} : </label><p>{{ $oResult->last_name }}</p></div>
+                                        <div class="td"><label>{!! trans('ibportal::ibportal.Email') !!} : </label><p>{{ $oResult->email }}</p></div>
+                                        <div class="td"><label>{!! trans('ibportal::ibportal.plan') !!} : </label><p>{{ $oResult->agentPlan->plan->name }} </p></div>
+
+                                        </div>
+                                    @endforeach
+                                @endif
+
+
+
+
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+                        <div class="tableFooter">
+
+                        </div>
+                    </div>
+
+
+
+
+
                     <div class="table-footer">
                         @if (count($oResults))
                             {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
@@ -110,7 +146,7 @@
                                 </div>
                             @endif
 
-                            <div class="col-sm-3">
+                            <div class="col-xs-12 col-lg-3">
                                 <span class="text-xs">{{trans('ibportal::ibportal.showing')}} {{ $oResults->firstItem() }} {{trans('ibportal::ibportal.to')}} {{ $oResults->lastItem() }} {{trans('ibportal::ibportal.of')}} {{ $oResults->total() }} {{trans('ibportal::ibportal.entries')}}</span>
                             </div>
                         @endif

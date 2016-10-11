@@ -54,58 +54,70 @@
 
                         </div>
                     </div>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th class="no-warp">{!! th_sort(trans('request::request.first_name'), 'first_name', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.email'), 'email', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.leverage'), 'leverage', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.array_deposit'), 'array_deposit', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.array_group'), 'array_group', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.phone'), 'phone', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.country'), 'country', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.reason'), 'reason', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.status'), 'status', $oResults) !!}</th>
-                            <th class="no-warp"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @if (count($oResults))
-                            {{-- */$i=0;/* --}}
-                            {{-- */$class='';/* --}}
-                            @foreach($oResults as $oResult)
-                                {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                                <tr class='{{ $class }}'>
-                                    <td>{{ $oResult->first_name.' '.$oResult->last_name }}</td>
-                                    <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
-                                    <td>{{ $oResult->email }}</td>
-                                    <td>{{ $oResult->leverage }}</td>
-                                    <td>{{ $oResult->array_deposit }}</td>
-                                    <td>{{ $oResult->array_group }}</td>
-                                    <td>{{ $oResult->phone }}</td>
-                                    <td>{{ $oResult->country }}</td>
-                                    <td>{{ $oResult->comment }}</td>
-                                    <td>{{ $oResult->reason }}</td>
-                                    <td>{{ $aRequestStatus[$oResult->status] }}
 
-                                    </td>
-                                    <td>
+                    <div class="primary_table_div info" >
+                        <div class="table">
 
-                                        <a href="{{ route('admin.request.addAccountEdit').'?logId='.$oResult->id }}"
-                                           class="fa fa-edit tooltip_number" data-original-title="{{trans('request::request.edit')}}"></a>
-                                        @if($oResult->status != 1)
+                            <div class="thead">
+                                <div class="tr">
 
-                                            <a href="{{ route('admin.request.forwordAddAccount').'?logId='.$oResult->id }}"
-                                               class="fa fa-mail-forward tooltip_number" data-original-title="{{trans('request::request.forword')}}"></a>
-                                        @endif
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @endif
-                        </tbody>
-                    </table>
+
+
+                                    <div class="th">{!! th_sort(trans('request::request.first_name'), 'first_name', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.email'), 'email', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.leverage'), 'leverage', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.array_deposit'), 'array_deposit', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.array_group'), 'array_group', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.phone'), 'phone', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.country'), 'country', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.reason'), 'reason', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.status'), 'status', $oResults) !!}</div>
+                                    <div class="th"></div>
+                            </div>
+                            </div>
+
+
+                            <div class="tbody">
+
+                                @if (count($oResults))
+                                    {{-- */$i=0;/* --}}
+                                    {{-- */$class='';/* --}}
+                                    @foreach($oResults as $oResult)
+                                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                        <div class="tr {{ $class }}">
+
+                                            <div class="td"><label>{!! trans('request::request.first_name') !!} : </label><p>{{ $oResult->first_name.' '.$oResult->last_name }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.liveDemo') !!} : </label><p>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.email') !!} : </label><p>{{ $oResult->email }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.leverage') !!} : </label><p>1:{{ $oResult->leverage }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.array_deposit') !!} : </label><p>{{ $oResult->array_deposit }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.array_group') !!} : </label><p>{{ $oResult->array_group }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.phone') !!} : </label><p>{{ $oResult->phone }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.country') !!} : </label><p>{{ $oResult->country }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.comment') !!} : </label><p>{{ $oResult->comment }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.reason') !!} : </label><p>{{ $oResult->reason }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.status') !!} : </label><p>{{ $aRequestStatus[$oResult->status] }}</p></div>
+                                            <div class="td">
+
+                                                <a href="{{ route('admin.request.addAccountEdit').'?logId='.$oResult->id }}"
+                                                   class="fa fa-edit tooltip_number" data-original-title="{{trans('request::request.edit')}}"></a>
+                                                @if($oResult->status != 1)
+
+                                                    <a href="{{ route('admin.request.forwordAddAccount').'?logId='.$oResult->id }}"
+                                                       class="fa fa-mail-forward tooltip_number" data-original-title="{{trans('request::request.forword')}}"></a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>
+                        <div class="tableFooter">
+                        </div>
+                    </div>
+
                     <div class="table-footer">
 
 

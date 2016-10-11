@@ -50,43 +50,82 @@
 
                         </div>
                     </div>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.symbols'), 'symbol', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.type'), 'type', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.exemode'), 'exemode', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.filter'), 'filter', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.spread'), 'spread', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.stops_level'), 'stops_level', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.swap_long'), 'long_only', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.swap_short'), 'instant_max_volume', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.digits'), 'digits', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.trade'), 'trade', $oResults) !!}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @if (count($oResults))
-                            {{-- */$i=0;/* --}}
-                            {{-- */$class='';/* --}}
-                            @foreach($oResults as $oResult)
-                                {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                                <tr class='{{ $class }}'>
-                                    <td>{{ $oResult->symbol }}</td>
-                                    <td>{{ $oResult->type }}</td>
-                                    <td>{{ $oResult->exemode }}</td>
-                                    <td>{{ $oResult->filter }}</td>
-                                    <td>{{ $oResult->spread }}</td>
-                                    <td>{{ $oResult->stops_level }}</td>
-                                    <td>{{ $oResult->swap_long }}</td>
-                                    <td>{{ $oResult->swap_short}}</td>
-                                    <td>{{ $oResult->digits }}</td>
-                                    <td>{{ $oResult->trade }}</td>
-                                </tr>
-                            @endforeach
-                        @endif
-                        </tbody>
-                    </table>
+
+
+
+                    <div class="primary_table_div info" >
+                        <div class="table">
+
+
+                            <div class="thead">
+                                <div class="tr">
+
+
+                                    <div class="th">{!! th_sort(trans('mt4configrations::mt4configrations.symbols'), 'symbol', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('mt4configrations::mt4configrations.type'), 'type', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('mt4configrations::mt4configrations.exemode'), 'exemode', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('mt4configrations::mt4configrations.filter'), 'filter', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('mt4configrations::mt4configrations.spread'), 'spread', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('mt4configrations::mt4configrations.stops_level'), 'stops_level', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('mt4configrations::mt4configrations.swap_long'), 'long_only', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('mt4configrations::mt4configrations.swap_short'), 'instant_max_volume', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('mt4configrations::mt4configrations.digits'), 'digits', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('mt4configrations::mt4configrations.trade'), 'trade', $oResults) !!} </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="tbody">
+
+                                @if (count($oResults))
+                                    {{-- */$i=0;/* --}}
+                                    {{-- */$class='';/* --}}
+                                    @foreach($oResults as $oResult)
+                                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                        <div class="tr {{ $class }}">
+
+
+                                            <div class="td">{!! Form::checkbox('users_checkbox[]',$oResult->id,false,['class'=>'users_checkbox']) !!}  {{ $oResult->id }}</div>
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.first_name') !!} : </label><p>{{ $oResult->first_name }}</p></div>
+
+
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.first_name') !!} : </label><p>{{ $oResult->symbol }}</p></div>
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.first_name') !!} : </label><p>{{ $oResult->type }}</p></div>
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.first_name') !!} : </label><p>{{ $oResult->exemode }}</p></div>
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.first_name') !!} : </label><p>{{ $oResult->filter }}</p></div>
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.first_name') !!} : </label><p>{{ $oResult->spread }}</p></div>
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.first_name') !!} : </label><p>{{ $oResult->stops_level }}</p></div>
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.first_name') !!} : </label><p>{{ $oResult->swap_long }}</p></div>
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.first_name') !!} : </label><p>{{ $oResult->swap_short}}</p></div>
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.first_name') !!} : </label><p>{{ $oResult->digits }}</p></div>
+                                            <div class="td"><label>{!! trans('ibportal::ibportal.first_name') !!} : </label><p>{{ $oResult->trade }}  </p></div>
+
+
+                                        </div>
+                                    @endforeach
+                                @endif
+
+
+
+
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+                        <div class="tableFooter">
+
+                        </div>
+                    </div>
+
+
+
                     <div class="table-footer">
 
 

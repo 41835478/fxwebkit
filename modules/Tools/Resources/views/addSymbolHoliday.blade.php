@@ -12,7 +12,7 @@
 
         <div class="table-light">
 
-            <table id="symbolsListTable" class="table table-bordered table-striped">
+            <table id="symbolsListTable" class="table table-bordered table-striped" style="display: table  ">
                 <thead>
                 <tr>
 

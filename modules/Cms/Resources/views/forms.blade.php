@@ -24,35 +24,81 @@
 
     {!! Form::text('alias',(isset($edit_form->alias))?  $edit_form->alias:'',['id'=>'alias','placeholder'=>trans('cms::cms.name'),'class'=>'form-control ']) !!}
 
-    <table id="fieldsTable" class="table table-bordered table-striped cms_table">
-   
-      <thead>
-      <tr>
-          <td>{{ trans('cms::cms.field_name') }}</td>
-          <td>{{ trans('cms::cms.field_type') }}</td>
-          <td></td>
-      </tr>
-   </thead>
-  <tbody>
+    <div class="primary_table_div info" >
+        <div class="table">
 
-  @if(count($fields))
-      @foreach($fields as $name=>$type)
-  <tr>
-      <td>{{$name}}<input type="hidden" name="fields[{{$name}}]" value="{{$type}}"></td>
-      <td>{{$type}}</td>
-      <td><i class="fa fa-trash-o" onclick="$(this).parent().parent().remove();"></i></td>
-  </tr>
-  @endforeach
-@endif
-  </tbody>
-      <tfoot>
-      <tr>
-          <td>{!! Form::text('fieldNameInput','',['id'=>'fieldNameInput']) !!}</td>
-          <td>{!! Form::select('fieldTypeInput',$fieldTypes,'text',['id'=>'fieldTypeInput']) !!}</td>
-          <td>{!! Form::button(trans('cms::cms.add'),['id'=>'addFieldButton','class'=>'btn btn-primary']) !!}</td>
-      </tr>
-      </tfoot>
-  </table>
+            <div class="thead">
+                <div class="tr">
+                    <div class="th">{{ trans('cms::cms.field_name') }}</div>
+                    <div class="th">{{ trans('cms::cms.field_type') }}</div>
+                    <div class="th"></div>
+                </div>
+            </div>
+
+
+            <div class="tbody">
+
+                @if(count($fields))
+                {{-- */$i=0;/* --}}
+                {{-- */$class='';/* --}}
+                    @foreach($fields as $name=>$type)
+                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                    <div class="tr {{ $class }}">
+                        <div class="td"><label>{!! trans('cms::cms.field_name') !!} : </label><p>{{$name}}<input type="hidden" name="fields[{{$name}}]" value="{{$type}}"></p></div>
+                        <div class="td"><label>{!! trans('cms::cms.field_type') !!} : </label><p>{!! Form::select('fieldTypeInput',$fieldTypes,'text',['id'=>'fieldTypeInput']) !!}</p></div>
+                        <div class="td">
+                            {!! Form::button(trans('cms::cms.add'),['id'=>'addFieldButton','class'=>'btn btn-primary']) !!}
+
+                        </div>
+                    </div>
+                @endforeach
+                @endif
+            </div>
+        </div>
+
+        <div class="tableFooter">
+        </div>
+        {!! Form::hidden('form_id' ,$selected_id) !!}
+
+
+
+
+        {!!   View('admin/partials/messages')->with('errors',$errors) !!}
+    </div>
+
+
+
+
+
+    {{--<table id="fieldsTable" class="table table-bordered table-striped cms_table" style="">--}}
+   {{----}}
+      {{--<thead>--}}
+      {{--<tr>--}}
+          {{--<td>{{ trans('cms::cms.field_name') }}</td>--}}
+          {{--<td>{{ trans('cms::cms.field_type') }}</td>--}}
+          {{--<td></td>--}}
+      {{--</tr>--}}
+   {{--</thead>--}}
+  {{--<tbody>--}}
+
+  {{--@if(count($fields))--}}
+      {{--@foreach($fields as $name=>$type)--}}
+  {{--<tr>--}}
+      {{--<td>{{$name}}<input type="hidden" name="fields[{{$name}}]" value="{{$type}}"></td>--}}
+      {{--<td>{{$type}}</td>--}}
+      {{--<td><i class="fa fa-trash-o" onclick="$(this).parent().parent().remove();"></i></td>--}}
+  {{--</tr>--}}
+  {{--@endforeach--}}
+{{--@endif--}}
+  {{--</tbody>--}}
+      {{--<tfoot>--}}
+      {{--<tr>--}}
+          {{--<td>{!! Form::text('fieldNameInput','',['id'=>'fieldNameInput']) !!}</td>--}}
+          {{--<td>{!! Form::select('fieldTypeInput',$fieldTypes,'text',['id'=>'fieldTypeInput']) !!}</td>--}}
+          {{--<td>{!! Form::button(trans('cms::cms.add'),['id'=>'addFieldButton','class'=>'btn btn-primary']) !!}</td>--}}
+      {{--</tr>--}}
+      {{--</tfoot>--}}
+  {{--</table>--}}
 
     {!! Form::hidden('form_id' ,$selected_id) !!}
 

@@ -1040,4 +1040,22 @@ dd($oRequest);
 
             return $this->getMt4AssignedUsers($oRequest);
     }
+
+    public function getAssignAccountManager(Request $oRequest)
+    {
+
+        if(!(isset($oRequest->account_id) &&   $oRequest->account_id>0)){return Redirect::route('accounts.accountsList');}
+
+        $account_id = $oRequest->account_id;
+        $currentAccounManager=\Modules\Accounts\Entities\Users::find($account_id)->account_manager;
+
+        $userInfo = [
+            'account_id'=>$account_id,
+            'login' => $currentAccounManager
+        ];
+
+
+        return view('accounts::assignAccountManager')->with('userInfo', $userInfo);
+    }
+
 }

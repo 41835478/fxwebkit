@@ -71,51 +71,119 @@
 
                     </div>
                 </div>
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.open_time'), 'open_time', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.open_Price'), 'OPEN_PRICE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.SL'), 'SL', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.TP'), 'TP', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.swaps'), 'SWAPS', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.price'), 'CLOSE_PRICE', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('reports::reports.profit'), 'PROFIT', $oResults) !!}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                         @if (count($oResults))
-                        {{-- */$i=0;/* --}}
-                        {{-- */$class='';/* --}}
-                        @foreach($oResults as $oResult)
-                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                        <tr class='{{ $class }}'> 
-                            <td>{{ $oResult->TICKET }}</td>
-                            <td>{{ $oResult->LOGIN }}</td>
-                            <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
-                            <td>{{ $oResult->SYMBOL }}</td>
-                            <td>{{ $oResult->TYPE }}</td>
-                            <td>{{ $oResult->VOLUME }}</td>
-                            <td>{{ $oResult->OPEN_TIME }}</td>
-                            <td>{{ $oResult->OPEN_PRICE }}</td>
-                            <td>{{ $oResult->SL }}</td>
-                            <td>{{ $oResult->TP }}</td>
-                            <td>{{ $oResult->COMMISSION }}</td>
-                            <td>{{ $oResult->SWAPS }}</td>
-                            <td>{{ $oResult->CLOSE_PRICE }}</td>
-                            <td>{{ $oResult->PROFIT }}</td>
-                        </tr>
-                        @endforeach
-                        @endif
-                    </tbody>
-                </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="primary_table_div info" >
+                    <div class="table">
+
+
+                        <div class="thead">
+                            <div class="tr">
+
+
+
+                                <div class="th">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.open_time'), 'open_time', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.open_Price'), 'OPEN_PRICE', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.SL'), 'SL', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.TP'), 'TP', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.swaps'), 'SWAPS', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.price'), 'CLOSE_PRICE', $oResults) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.profit'), 'PROFIT', $oResults) !!}</div>
+
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="tbody">
+
+
+
+
+                            @if (count($oResults))
+                                {{-- */$i=0;/* --}}
+                                {{-- */$class='';/* --}}
+                                @foreach($oResults as $oResult)
+                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                    <div class="tr {{ $class }}">
+
+
+
+
+                                        <div class="td"><label>{!! trans('reports::reports.order#') !!} : </label><p>{{ $oResult->TICKET }}</p></div>
+                                            <div class="td"><label>{!! trans('reports::reports.Login') !!} : </label><p>{{ $oResult->LOGIN }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.liveDemo') !!} : </label><p>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.symbol') !!} : </label><p>{{ $oResult->SYMBOL }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.type') !!} : </label><p>{{ $oResult->TYPE }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.lots') !!} : </label><p>{{ $oResult->VOLUME }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.open_time') !!} : </label><p>{{ $oResult->OPEN_TIME }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.open_Price') !!} : </label><p>{{ $oResult->OPEN_PRICE }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.SL') !!} : </label><p>{{ $oResult->SL }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.TP') !!} : </label><p>{{ $oResult->TP }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.Commission') !!} : </label><p>{{ $oResult->COMMISSION }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.swaps') !!} : </label><p>{{ $oResult->SWAPS }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.price') !!} : </label><p>{{ $oResult->CLOSE_PRICE }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.profit') !!} : </label><p>{{ $oResult->PROFIT }}</p></div>
+
+
+
+
+                                    </div>
+                                @endforeach
+                            @endif
+
+
+
+
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+                    <div class="tableFooter">
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="table-footer ">
                     @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->render()) !!}

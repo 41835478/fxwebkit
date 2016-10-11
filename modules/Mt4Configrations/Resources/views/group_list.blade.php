@@ -51,7 +51,7 @@
 
                         </div>
                     </div>
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped"  style="display: table">
                         <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('mt4configrations::mt4configrations.name'), 'group', $oResults) !!}</th>

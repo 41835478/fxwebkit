@@ -54,50 +54,63 @@
 
                         </div>
                     </div>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th class="no-warp">{!! th_sort(trans('request::request.login'), 'login', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.newPassord'), 'newPassword', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.password_type'), 'password_type', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.reason'), 'reason', $oResults) !!}</th>
-                            <th class="no-warp">{!! th_sort(trans('request::request.status'), 'status', $oResults) !!}</th>
-                            <th class="no-warp"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @if (count($oResults))
-                            {{-- */$i=0;/* --}}
-                            {{-- */$class='';/* --}}
-                            @foreach($oResults as $oResult)
-                                {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                                <tr class='{{ $class }}'>
-                                    <td>{{ $oResult->login }}</td>
-                                    <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
-                                    <td>{{ $oResult->newPassword }}</td>
-                                    <td>{{ $loginPasswordType[$oResult->password_type] }}</td>
-                                    <td>{{ $oResult->comment }}</td>
-                                    <td>{{ $oResult->reason }}</td>
-                                    <td>{{ $aRequestStatus[$oResult->status] }}
 
-                                    </td>
-                                    <td>
 
-                                        <a href="{{  route('admin.request.changePasswordEdit').'?logId='.$oResult->id }}"
-                                           class="fa fa-edit tooltip_number" data-original-title="{{trans('request::request.edit')}}"></a>
-                                        @if($oResult->status != 1)
+                    <div class="primary_table_div info" >
+                        <div class="table">
 
-                                            <a href="{{ route('admin.request.forwordChangePassword').'?logId='.$oResult->id }}"
-                                               class="fa fa-mail-forward tooltip_number" data-original-title="{{trans('request::request.forword')}}"></a>
-                                        @endif
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @endif
-                        </tbody>
-                    </table>
+                            <div class="thead">
+                                <div class="tr">
+
+
+                                    <div class="th">{!! th_sort(trans('request::request.login'), 'login', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.newPassword'), 'newPassword', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.password_type'), 'password_type', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.reason'), 'reason', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.status'), 'status', $oResults) !!}</div>
+                                    <div class="th"></div>
+                                </div>
+                            </div>
+
+
+                            <div class="tbody">
+
+                                @if (count($oResults))
+                                    {{-- */$i=0;/* --}}
+                                    {{-- */$class='';/* --}}
+                                    @foreach($oResults as $oResult)
+                                        {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                        <div class="tr {{ $class }}">
+
+
+                                            <div class="td"><label>{!! trans('request::request.login') !!} : </label><p>{{ $oResult->login }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.liveDemo') !!} : </label><p>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.newPassword') !!} : </label><p>{{ $oResult->newPassword }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.password_type') !!} : </label><p>{{ $loginPasswordType[$oResult->password_type] }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.comment') !!} : </label><p>{{ $oResult->comment }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.reason') !!} : </label><p>{{ $oResult->reason }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.status') !!} : </label><p>{{ $aRequestStatus[$oResult->status] }}</p></div>
+                                            <div class="td">
+
+                                                <a href="{{ route('admin.request.changePasswordEdit').'?logId='.$oResult->id }}"
+                                                   class="fa fa-edit tooltip_number" data-original-title="{{trans('request::request.edit')}}"></a>
+                                                @if($oResult->status != 1)
+
+                                                    <a href="{{ route('admin.request.forwordChangePassword').'?logId='.$oResult->id }}"
+                                                       class="fa fa-mail-forward tooltip_number" data-original-title="{{trans('request::request.forword')}}"></a>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>
+                        <div class="tableFooter">
+                        </div>
+                    </div>
+
                     <div class="table-footer">
 
 

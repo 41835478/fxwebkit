@@ -70,7 +70,7 @@
 
                     <div class="table-light">
 
-                        <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+                        <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs noIcons">
                             <li class="active">
 
                                 <a href="{{ route('admin.assginToMassAccountsList').'?group_id='.$aFilterParams['group_id'] }}">{{ trans('general.assginToUsers') }}</a>
@@ -91,56 +91,127 @@
 
                         @if (count($oResults))
                             {!! Form::open() !!}
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th class="no-warp">{!!  Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.th_sort(trans('accounts::accounts.id'), 'id', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('general.first_name'), 'first_name', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('general.last_name'), 'last_name', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('general.Email'), 'email', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('general.lastLogin'), 'last_login', $oResults) !!}</th>
-                                <th class="no-warp"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
+
+                            <div class="primary_table_div info" >
+                                <div class="table">
+
+
+                                    <div class="thead">
+                                        <div class="tr">
+
+
+
+                                            <div class="th">{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.Form::label('check_all',trans('general.Login')) !!}</div>
+                                            <div class="th">{!! th_sort(trans('general.liveDemo'), 'server_id', $oResults) !!}</div>
+                                            <div class="th">{!! th_sort(trans('general.name '), 'NAME', $oResults) !!}</div>
+                                            <div class="th">{!! th_sort(trans('general.group'), 'GROUP', $oResults) !!}</div>
+                                            <div class="th">{!! th_sort(trans('general.last_login'), 'last_login', $oResults) !!}</div>
+                                            <div class="th"></div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="tbody">
+
+                                        @if (count($oResults))
+                                            {{--*/$i=0;/* --}}
+                                            {{--*/$class='';/* --}}
+                                            @foreach($oResults as $oResult)
+                                                {{--*/$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                                <div class="tr {{ $class }}">
+
+
+                                                    <div class="td"><label>{!! trans('general.Login') !!} : </label><p>{!! Form::checkbox('users_checkbox[]',$oResult->uid,false,['class'=>'users_checkbox']) !!} {{ $oResult->LOGIN }}</p></div>
+                                                    <div class="td"><label>{!! trans('general.liveDemo') !!} : </label><p>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                                    <div class="td"><label>{!! trans('general.name') !!}  </label><p>{{ $oResult->NAME }}</p></div>
+                                                    <div class="td"><label>{!! trans('general.group') !!} : </label><p>{{ $oResult->GROUP }}</p></div>
+                                                    <div class="td"><label>{!! trans('general.last_login') !!} : </label><p>{{ $oResult->last_login }}</p></div>
+                                                    <div class="td">
+                                                        @if(isset($oResult->user_id ) || (isset($oResult->massGroup) && $oResult->massGroup->first()->user_id) )
+                                                            {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->uid  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+                                                        @else
+
+                                                            {!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->uid ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+                                                        @endif
+                                                    </div>
+
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="tableFooter">
+                                </div>
+
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5">
+
+                                        {!! Form::hidden('group_id', $aFilterParams['group_id']) !!}
+                                        {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+                                        {!! Form::hidden('order', $aFilterParams['order']) !!}
+
+                                        {!! Form::button( trans('general.assign') ,['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
+                                        {!! Form::button(trans('general.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}
+                                    </td>
+                                </tr>
+                                </tfoot>
+
+                            </div>
+
+
+
+                        {{--<table class="table table-bordered table-striped">--}}
+                            {{--<thead>--}}
+                            {{--<tr>--}}
+                                {{--<th class="no-warp">{!!  Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.th_sort(trans('accounts::accounts.id'), 'id', $oResults) !!}</th>--}}
+                                {{--<th class="no-warp">{!! th_sort(trans('general.first_name'), 'first_name', $oResults) !!}</th>--}}
+                                {{--<th class="no-warp">{!! th_sort(trans('general.last_name'), 'last_name', $oResults) !!}</th>--}}
+                                {{--<th class="no-warp">{!! th_sort(trans('general.Email'), 'email', $oResults) !!}</th>--}}
+                                {{--<th class="no-warp">{!! th_sort(trans('general.lastLogin'), 'last_login', $oResults) !!}</th>--}}
+                                {{--<th class="no-warp"></th>--}}
+                            {{--</tr>--}}
+                            {{--</thead>--}}
+                            {{--<tbody>--}}
 
                                 {{-- */$i=0;/* --}}
                                 {{-- */$class='';/* --}}
-                                @foreach($oResults as $oResult)
+                                {{--@foreach($oResults as $oResult)--}}
                                     {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                                    <tr class='{{ $class }}'>
-                                        <td>{!! Form::checkbox('users_checkbox[]',$oResult->id,false,['class'=>'users_checkbox']) !!}  {{ $oResult->id }}</td>
-                                        <td>{{ $oResult->first_name }}</td>
-                                        <td>{{ $oResult->last_name }}</td>
-                                        <td>{{ $oResult->email }}</td>
-                                        <td>{{ $oResult->last_login }}</td>
-                                        <td>
-                                            @if(isset($oResult->user_id ) || (isset($oResult->massGroup) && $oResult->massGroup->first()->user_id) )
-                                                {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->id  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
-                                            @else
+                                    {{--<tr class='{{ $class }}'>--}}
+                                        {{--<td>{!! Form::checkbox('users_checkbox[]',$oResult->id,false,['class'=>'users_checkbox']) !!}  {{ $oResult->id }}</td>--}}
+                                        {{--<td>{{ $oResult->first_name }}</td>--}}
+                                        {{--<td>{{ $oResult->last_name }}</td>--}}
+                                        {{--<td>{{ $oResult->email }}</td>--}}
+                                        {{--<td>{{ $oResult->last_login }}</td>--}}
+                                        {{--<td>--}}
+                                            {{--@if(isset($oResult->user_id ) || (isset($oResult->massGroup) && $oResult->massGroup->first()->user_id) )--}}
+                                                {{--{!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->id  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}--}}
+                                            {{--@else--}}
 
-                                                {!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->id ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                                {{--{!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->id ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}--}}
+                                            {{--@endif--}}
+                                        {{--</td>--}}
+                                    {{--</tr>--}}
+                                {{--@endforeach--}}
 
-                            </tbody>
+                            {{--</tbody>--}}
 
-                            <tfoot>
-                            <tr>
-                                <td colspan="5">
+                            {{--<tfoot>--}}
+                            {{--<tr>--}}
+                                {{--<td colspan="5">--}}
 
-                                    {!! Form::hidden('group_id', $aFilterParams['group_id']) !!}
-                                    {!! Form::hidden('sort', $aFilterParams['sort']) !!}
-                                    {!! Form::hidden('order', $aFilterParams['order']) !!}
+                                    {{--{!! Form::hidden('group_id', $aFilterParams['group_id']) !!}--}}
+                                    {{--{!! Form::hidden('sort', $aFilterParams['sort']) !!}--}}
+                                    {{--{!! Form::hidden('order', $aFilterParams['order']) !!}--}}
 
-                                    {!! Form::button( trans('general.assign') ,['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
-                                    {!! Form::button(trans('general.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}
-                                </td>
-                            </tr>
-                            </tfoot>
-                        </table>
+                                    {{--{!! Form::button( trans('general.assign') ,['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}--}}
+                                    {{--{!! Form::button(trans('general.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}--}}
+                                {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--</tfoot>--}}
+                        {{--</table>--}}
 
 
                             {!! Form::close() !!}

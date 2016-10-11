@@ -2,7 +2,9 @@
 @section('title', trans('accounts::accounts.settings'))
 @section('content')
 
-
+    @if (Session::get('refresh'))
+        <script>window.location.reload();</script>
+    @endif
 
     <div id="content-wrapper">
     <div class="page-header">
@@ -137,7 +139,7 @@
                         <div class="row">
 
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-6" style="display: none;">
                                 <div class="checkbox">
                                     <label>
                                         {!! Form::checkbox('directOrderToMt4Server', 1, $accountsSetting['directOrderToMt4Server'], ['class'=>'px','id'=>'is_client']) !!}
@@ -176,6 +178,145 @@
                 <!-- / .collapse -->
             </div>
             <!-- / .panel -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
+                       href="#collapseOperations1">
+                        {{ trans('accounts::accounts.operationsForwardSettings') }}
+                    </a>
+                </div>
+                <!-- / .panel-heading -->
+                <div id="collapseOperations1" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+
+                        <div class="row">
+
+
+                            <div class="col-sm-6">
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('directLeverageOrderToMt4Server', 1, $accountsSetting['directLeverageOrderToMt4Server'], ['class'=>'px','id'=>'directLeverageOrderToMt4Server']) !!}
+                                        <span class="lbl">{{ trans('accounts::accounts.directLeverageOrderToMt4Server') }}</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('directChangePasswordOrderToMt4Server', 1, $accountsSetting['directChangePasswordOrderToMt4Server'], ['class'=>'px','id'=>'directChangePasswordOrderToMt4Server']) !!}
+                                        <span class="lbl">{{ trans('accounts::accounts.directChangePasswordOrderToMt4Server') }}</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- col-sm-6 -->
+                        </div>
+                        <hr>
+                        <div class="row">
+
+
+                            <div class="col-sm-6">
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('directTransferOrderToMt4Server', 1, $accountsSetting['directTransferOrderToMt4Server'], ['class'=>'px','id'=>'directTransferOrderToMt4Server']) !!}
+                                        <span class="lbl">{{ trans('accounts::accounts.directTransferOrderToMt4Server') }}</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('directLiveAccountOrderToMt4Server', 1, $accountsSetting['directLiveAccountOrderToMt4Server'], ['class'=>'px','id'=>'directLiveAccountOrderToMt4Server']) !!}
+                                        <span class="lbl">{{ trans('accounts::accounts.directLiveAccountOrderToMt4Server') }}</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- col-sm-6 -->
+                        </div>
+                        <hr>
+                        <div class="row">
+
+
+                            <div class="col-sm-6">
+                                <div class="checkbox">
+                                    <label>
+                                        {!! Form::checkbox('directWithDrawalOrderToMt4Server', 1, $accountsSetting['directWithDrawalOrderToMt4Server'], ['class'=>'px','id'=>'directWithDrawalOrderToMt4Server']) !!}
+                                        <span class="lbl">{{ trans('accounts::accounts.directWithDrawalOrderToMt4Server') }}</span>
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <!-- col-sm-6 -->
+                        </div>
+                        <hr>
+
+
+                        <!-- row -->
+                    </div>
+                    <!-- / .panel-body -->
+                </div>
+                <!-- / .collapse -->
+            </div>
+            <!-- / .panel -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <div class="panel">
                 <div class="panel-heading">

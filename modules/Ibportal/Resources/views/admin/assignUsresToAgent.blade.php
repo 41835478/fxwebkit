@@ -95,55 +95,83 @@
 
                     @if (count($oResults))
 
-                            <table class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th class="no-warp">{!!  Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.th_sort(trans('ibportal::ibportal.id'), 'id', $oResults) !!}</th>
-                                    <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.first_name'), 'first_name', $oResults) !!}</th>
-                                    <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults) !!}</th>
-                                    <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults) !!}</th>
-                                    <th class="no-warp">{!! th_sort(trans('ibportal::ibportal.lastLogin'), 'last_login', $oResults) !!}</th>
-                                    <th class="no-warp">{!! trans('ibportal::ibportal.plan') !!}</th>
-                                    <th class="no-warp"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
 
-                                {{-- */$i=0;/* --}}
-                                {{-- */$class='';/* --}}
-                                @foreach($oResults as $oResult)
-                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                                    <tr class='{{ $class }}'>
-                                        <td>{!! Form::checkbox('users_checkbox[]',$oResult->id,false,['class'=>'users_checkbox']) !!}  {{ $oResult->id }}</td>
-                                        <td>{{ $oResult->first_name }}</td>
-                                        <td>{{ $oResult->last_name }}</td>
-                                        <td>{{ $oResult->email }}</td>
-                                        <td>{{ $oResult->last_login }}</td>
 
-                                        <td>@if(isset($oResult->agentPlan)) {{  $oResult->agentPlan->plan->name }} @endif</td>
-                                        <td>
-                                            @if(isset($oResult->user_id ) || (isset($oResult->agentPlan) && $oResult->agentPlan->first()->user_id) )
-                                                {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->id  ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('ibportal::ibportal.un_assign'),'type'=>'submit' ]) !!}
-                                            @else
 
-                                                {!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->id ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('ibportal::ibportal.assign'),'type'=>'submit' ]) !!}
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
 
-                                </tbody>
 
-                                <tfoot>
-                                <tr>
-                                    <td colspan="7">
 
-                                        {!! Form::button( trans('ibportal::ibportal.assign') ,['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
-                                        {!! Form::button(trans('ibportal::ibportal.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}
-                                    </td>
-                                </tr>
-                                </tfoot>
-                            </table>
+
+                            <div class="primary_table_div info" >
+                                <div class="table">
+
+
+                                    <div class="thead">
+                                        <div class="tr">
+
+                                        <div class="th">{!!  Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.th_sort(trans('ibportal::ibportal.id'), 'id', $oResults) !!}</div>
+                                        <div class="th">{!! th_sort(trans('ibportal::ibportal.first_name'), 'first_name', $oResults) !!}</div>
+                                        <div class="th">{!! th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults) !!}</div>
+                                        <div class="th">{!! th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults) !!}</div>
+                                        <div class="th">{!! th_sort(trans('ibportal::ibportal.lastLogin'), 'last_login', $oResults) !!}</div>
+                                        <div class="th">{!! trans('ibportal::ibportal.plan') !!}</div>
+                                        <div class="th"></div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="tbody">
+
+                                        @if (count($oResults))
+                                            {{-- */$i=0;/* --}}
+                                            {{-- */$class='';/* --}}
+                                            @foreach($oResults as $oResult)
+                                                {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                                <div class="tr {{ $class }}">
+
+
+                                                <div class="td">{!! Form::checkbox('users_checkbox[]',$oResult->id,false,['class'=>'users_checkbox']) !!}  {{ $oResult->id }}</div>
+                                                <div class="td"><label>{!! trans('ibportal::ibportal.first_name') !!} : </label><p>{{ $oResult->first_name }}</p></div>
+                                                <div class="td"><label>{!! trans('ibportal::ibportal.last_name') !!} : </label><p>{{ $oResult->last_name }}</p></div>
+                                                <div class="td"><label>{!! trans('ibportal::ibportal.Email') !!} : </label><p>{{ $oResult->email }}</p></div>
+                                                <div class="td"><label>{!! trans('ibportal::ibportal.lastLogin') !!} : </label><p>{{ $oResult->last_login }}</p></div>
+                                                <div class="td"><label>{!! trans('ibportal::ibportal.plan') !!} : </label><p>@if(isset($oResult->agentPlan)) {{  $oResult->agentPlan->plan->name }} @endif</p></div>
+                                                <div class="td">
+                                                        @if(isset($oResult->user_id ) || (isset($oResult->agentPlan) && $oResult->agentPlan->first()->user_id) )
+                                                            {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->id  ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('ibportal::ibportal.un_assign'),'type'=>'submit' ]) !!}
+                                                        @else
+
+                                                            {!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->id ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('ibportal::ibportal.assign'),'type'=>'submit' ]) !!}
+                                                        @endif
+                                                </div>
+
+
+                                                </div>
+                                            @endforeach
+                                        @endif
+
+
+
+
+                                    </div>
+
+
+
+
+
+
+
+                                </div>
+
+                                <div class="tableFooter">
+                                    {!! Form::button( trans('ibportal::ibportal.assign') ,['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
+                                    {!! Form::button(trans('ibportal::ibportal.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}
+
+                                </div>
+                            </div>
+
+
 
 
 

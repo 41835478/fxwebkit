@@ -69,82 +69,124 @@
                                            value="{{ trans('accounts::accounts.addAccount') }}"> </a>
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <th class="no-warp">{!! th_sort(trans('accounts::accounts.id'), 'id', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('accounts::accounts.first_name'), 'first_name', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('accounts::accounts.last_name'), 'last_name', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('accounts::accounts.Email'), 'email', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('accounts::accounts.lastLogin'), 'last_login', $oResults) !!}</th>
-                                <th class="no-warp"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @if (count($oResults))
-                                {{-- */$i=0;/* --}}
-                                {{-- */$class='';/* --}}
-                                @foreach($oResults as $oResult)
-                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                                    <tr class='{{ $class }}'>
-                                        <td>{{ $oResult->id }}</td>
-                                        <td>{{ $oResult->first_name }}</td>
-                                        <td>{{ $oResult->last_name }}</td>
-                                        <td>{{ $oResult->email }}</td>
-                                        <td>{{ $oResult->last_login }}</td>
 
-                                        <td>
-                                            <a href="{{ route('accounts.editAccount').'?edit_id='.$oResult->id }}"
-                                               class="fa fa-edit tooltip_number"
-                                               data-original-title="{{trans('accounts::accounts.editAccount')}}"></a>
-                                            <a href="{{ route('accounts.deleteAccount').'?delete_id='.$oResult->id }}"
-                                               class="fa fa-trash-o tooltip_number"
-                                               data-original-title="{{trans('accounts::accounts.deleteAccount')}}"></a>
-                                            <a href="{{ route('accounts.detailsAccount').'?edit_id='.$oResult->id }}"
-                                               class="fa fa-file-text tooltip_number"
-                                               data-original-title="{{trans('accounts::accounts.detailsAccount')}}"></a>
-                                            <a href="{{ route('accounts.asignMt4Users').'?account_id='.$oResult->id }}"
-                                               class="fa fa-link tooltip_number"
-                                               data-original-title="{{trans('accounts::accounts.asignMt4Users')}}"></a>
+                        <div class="primary_table_div info" >
+                            <div class="table">
 
-                                            @if(!$oResult->hasAnyAccess('user.block'))
 
-                                                <a href="{{ route('accounts.unBlockAccount').'?account_id='.$oResult->id }}"
-                                                   class="fa fa-unlock tooltip_number"
-                                                   data-original-title="{{trans('accounts::accounts.blockAccount')}}"></a>
+                                <div class="thead">
+                                    <div class="tr">
 
-                                            @else
 
-                                                <a href="{{ route('accounts.blockAccount').'?account_id='.$oResult->id }}"
-                                                   class="fa fa-lock tooltip_number"
-                                                   data-original-title="{{trans('accounts::accounts.unBlockAccount')}}"> </a>
-                                            @endif
+                                    <div class="th">{!! th_sort(trans('accounts::accounts.id'), 'id', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('accounts::accounts.first_name'), 'first_name', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('accounts::accounts.last_name'), 'last_name', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('accounts::accounts.Email'), 'email', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('accounts::accounts.lastLogin'), 'last_login', $oResults) !!}</div>
+                                    <div class="th"> </div>
 
-                                            @if(!$oResult->hasAnyAccess('user.denyLiveAccount'))
+                                    </div>
+                                </div>
 
-                                                <a href="{{ route('accounts.unAllowedLiveAccount').'?account_id='.$oResult->id }}"
-                                                   class="fa fa-circle-o tooltip_number"
-                                                   data-original-title="{{trans('accounts::accounts.unAllowedLiveAccount')}}"></a>
 
-                                            @else
+                                <div class="tbody">
 
-                                                <a href="{{ route('accounts.allowLiveAccoun').'?account_id='.$oResult->id }}"
-                                                   class="fa fa-check-circle-o tooltip_number"
-                                                   data-original-title="{{trans('accounts::accounts.allowLiveAccoun')}}"></a>
-                                            @endif
+                                    @if (count($oResults))
+                                        {{-- */$i=0;/* --}}
+                                        {{-- */$class='';/* --}}
+                                        @foreach($oResults as $oResult)
+                                            {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                            <div class="tr {{ $class }}">
 
-                                            @if((count($oResult->activations) && $oResult->activations[0]->completed ==0) || !count($oResult->activations))
-                                                <a href="{{ route('accounts.activateUser').'?account_id='.$oResult->id }}"
-                                                   class="fa fa-check tooltip_number"
-                                                   data-original-title="{{trans('accounts::accounts.activateUser')}}"></a>
-                                            @endif
 
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @endif
-                            </tbody>
-                        </table>
+
+                                            <div class="td"><label>{!! trans('accounts::accounts.id') !!} : </label><p>{{ $oResult->id }}</p></div>
+                                            <div class="td"><label>{!! trans('accounts::accounts.first_name') !!} : </label><p>{{ $oResult->first_name }}</p></div>
+                                            <div class="td"><label>{!! trans('accounts::accounts.last_name') !!} : </label><p>{{ $oResult->last_name }}</p></div>
+                                            <div class="td"><label>{!! trans('accounts::accounts.Email') !!} : </label><p>{{ $oResult->email }}</p></div>
+                                            <div class="td"><label>{!! trans('accounts::accounts.lastLogin') !!} : </label><p>{{ $oResult->last_login }}</p></div>
+                                            <div class="td">
+                                                    <a href="{{ route('accounts.editAccount').'?edit_id='.$oResult->id }}"
+                                                       class="fa fa-edit tooltip_number"
+                                                       data-original-title="{{trans('accounts::accounts.editAccount')}}"></a>
+                                                    <a href="{{ route('accounts.deleteAccount').'?delete_id='.$oResult->id }}"
+                                                       class="fa fa-trash-o tooltip_number"
+                                                       data-original-title="{{trans('accounts::accounts.deleteAccount')}}"></a>
+                                                    <a href="{{ route('accounts.detailsAccount').'?edit_id='.$oResult->id }}"
+                                                       class="fa fa-file-text tooltip_number"
+                                                       data-original-title="{{trans('accounts::accounts.detailsAccount')}}"></a>
+                                                    <a href="{{ route('accounts.asignMt4Users').'?account_id='.$oResult->id }}"
+                                                       class="fa fa-link tooltip_number"
+                                                       data-original-title="{{trans('accounts::accounts.asignMt4Users')}}"></a>
+
+                                                    @if(!$oResult->hasAnyAccess('user.block'))
+
+                                                        <a href="{{ route('accounts.unBlockAccount').'?account_id='.$oResult->id }}"
+                                                           class="fa fa-unlock tooltip_number"
+                                                           data-original-title="{{trans('accounts::accounts.blockAccount')}}"></a>
+
+                                                    @else
+
+                                                        <a href="{{ route('accounts.blockAccount').'?account_id='.$oResult->id }}"
+                                                           class="fa fa-lock tooltip_number"
+                                                           data-original-title="{{trans('accounts::accounts.unBlockAccount')}}"> </a>
+                                                    @endif
+
+                                                    @if(!$oResult->hasAnyAccess('user.denyLiveAccount'))
+
+                                                        <a href="{{ route('accounts.unAllowedLiveAccount').'?account_id='.$oResult->id }}"
+                                                           class="fa fa-circle-o tooltip_number"
+                                                           data-original-title="{{trans('accounts::accounts.unAllowedLiveAccount')}}"></a>
+
+                                                    @else
+
+                                                        <a href="{{ route('accounts.allowLiveAccoun').'?account_id='.$oResult->id }}"
+                                                           class="fa fa-check-circle-o tooltip_number"
+                                                           data-original-title="{{trans('accounts::accounts.allowLiveAccoun')}}"></a>
+                                                    @endif
+
+                                                    @if((count($oResult->activations) && $oResult->activations[0]->completed ==0) || !count($oResult->activations))
+                                                        <a href="{{ route('accounts.activateUser').'?account_id='.$oResult->id }}"
+                                                           class="fa fa-check tooltip_number"
+                                                           data-original-title="{{trans('accounts::accounts.activateUser')}}"></a>
+                                                    @endif
+
+                                                    <a href="{{ route('accounts.assignAccountManager').'?account_id='.$oResult->id }}"
+                                                       class="fa fa-user   tooltip_number"
+                                                       data-original-title="{{trans('accounts::accounts.assignAccountManager')}}"></a>
+
+                                                </div>
+
+                                            </div>
+                                        @endforeach
+                                    @endif
+
+
+
+
+                                </div>
+
+
+
+
+
+
+
+                            </div>
+
+                            <div class="tableFooter">
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
                         <div class="table-footer">
                             @if (count($oResults))
                                 {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
@@ -163,7 +205,7 @@
                                     </div>
                                 @endif
 
-                                <div class="col-sm-3">
+                                <div class="col-xs-12 col-lg-3 ">
                                     <span class="text-xs">{{trans('accounts::accounts.showing')}} {{ $oResults->firstItem() }} {{trans('accounts::accounts.to')}} {{ $oResults->lastItem() }} {{trans('accounts::accounts.of')}} {{ $oResults->total() }} {{trans('accounts::accounts.entries')}}</span>
                                 </div>
                             @endif

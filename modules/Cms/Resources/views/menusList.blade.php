@@ -35,7 +35,7 @@
         </div>
         @if($selected_language==1)
             {!! Form::open(['url'=>asset('cms/menus/menus')]) !!}
-            <table border="0" class="table table-bordered table-striped cms_table">
+            <table border="0" class="table table-bordered table-striped cms_table" style="display: table">
                 <thead>
                 <th>{{ trans('cms::cms.id') }}</th>
                 <th>{{ trans('cms::cms.title') }}</th>
@@ -65,7 +65,7 @@
         @else
 
             {!! Form::open(['url'=>asset('cms/menus/save-translate')]) !!}
-            <table border="0" class="table table-bordered">
+            <table border="0" class="table table-bordered" style="display: table">
                 <thead>
                 <th>{{ trans('cms::cms.id') }}</th>
                 <th>{{ trans('cms::cms.title') }}</th>

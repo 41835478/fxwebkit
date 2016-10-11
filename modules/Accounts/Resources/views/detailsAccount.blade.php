@@ -8,7 +8,7 @@
         </div>
 
 
-        <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+        <ul ul id="uidemo-tabs-default-demo" class=" noIcons  nav nav-tabs">
             <li class="active">
                 <a href="{{ route('accounts.detailsAccount').'?edit_id='.$user_details['id'] }}">{{ trans('accounts::accounts.details') }}</a>
             </li>
@@ -19,48 +19,49 @@
         </ul>
 
 
-        <div class="panel">
+        <div class="panel twoColumnsDataListDiv">
             <div class="panel-heading">
                 <span class="panel-title">{{ trans('accounts::accounts.details') }}</span>
             </div>
 
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-sm-2 text-right">
+                    <div class="col-xs-4 col-sm-2 text-right">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{ trans('accounts::accounts.name') }}  </label>
                         </div>
                     </div>
                     <!-- ol-sm-6 -->
-                    <div class="col-sm-4 text-left">
+                    <div class="col-xs-8 col-sm-4 text-left">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{$user_details['first_name'].$user_details['last_name'] }}</label>
                         </div>
                     </div>
                     <!--ol-sm-6 -->
 
-                    <div class="col-sm-2 text-right">
+                    <div class="col-xs-4 col-sm-2 text-right">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{ trans('accounts::accounts.nickname') }}  </label>
                         </div>
                     </div>
                     <!-- col-sm-6 -->
-                    <div class="col-sm-4 text-left">
+                    <div class="col-xs-8 col-sm-4 text-left">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{$user_details['nickname'] }}</label>
                         </div>
                     </div>
                 </div>
                 <!-- row -->
+                <div style="clear:both"></div>
 
                 <div class="row">
-                    <div class="col-sm-2 text-right">
+                    <div class="col-xs-4 col-sm-2 text-right">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{ trans('accounts::accounts.email') }}  </label>
                         </div>
                     </div>
                     <!-- ol-sm-6 -->
-                    <div class="col-sm-4 text-left">
+                    <div class="col-xs-8 col-sm-4 text-left">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{$user_details['email'] }}</label>
                         </div>
@@ -68,13 +69,13 @@
                     <!--ol-sm-6 -->
 
 
-                    <div class="col-sm-2 text-right">
+                    <div class="col-xs-4 col-sm-2 text-right">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{ trans('accounts::accounts.gender') }} : </label>
                         </div>
                     </div>
                     <!-- ol-sm-6 -->
-                    <div class="col-sm-4 text-left">
+                    <div class="col-xs-8 col-sm-4 text-left">
                         <div class="form-group no-margin-hr">
                             @if($user_details['gender']==0)
                                 <label class="control-label">{{ trans('accounts::accounts.male') }}</label>
@@ -87,26 +88,26 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-2 text-right">
+                    <div class="col-xs-4 col-sm-2 text-right">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{ trans('accounts::accounts.address :') }}  </label>
                         </div>
                     </div>
                     <!-- ol-sm-6 -->
-                    <div class="col-sm-4 text-left">
+                    <div class="col-xs-8 col-sm-4 text-left">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{$user_details['address'] }}</label>
                         </div>
                     </div>
                     <!--ol-sm-6 -->
 
-                    <div class="col-sm-2 text-right">
+                    <div class="col-xs-4 col-sm-2 text-right">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{ trans('accounts::accounts.birthday') }}  </label>
                         </div>
                     </div>
                     <!-- col-sm-6 -->
-                    <div class="col-sm-4 text-left">
+                    <div class="col-xs-8 col-sm-4 text-left">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{$user_details['birthday'] }}</label>
                         </div>
@@ -115,26 +116,26 @@
                 <!-- row -->
 
                 <div class="row">
-                    <div class="col-sm-2 text-right">
+                    <div class="col-xs-4 col-sm-2 text-right">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{ trans('accounts::accounts.phone') }}  </label>
                         </div>
                     </div>
                     <!-- ol-sm-6 -->
-                    <div class="col-sm-4 text-left">
+                    <div class="col-xs-8 col-sm-4 text-left">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{$user_details['phone'] }}</label>
                         </div>
                     </div>
                     <!--ol-sm-6 -->
 
-                    <div class="col-sm-2 text-right">
+                    <div class="col-xs-4 col-sm-2 text-right">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{ trans('accounts::accounts.country') }}  </label>
                         </div>
                     </div>
                     <!-- col-sm-6 -->
-                    <div class="col-sm-4 text-left">
+                    <div class="col-xs-8 col-sm-4 text-left">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{$user_details['country'] }}</label>
                         </div>
@@ -143,57 +144,30 @@
                 <!-- row -->
 
                 <div class="row">
-                    <div class="col-sm-2 text-right">
+                    <div class="col-xs-4 col-sm-2 text-right">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{ trans('accounts::accounts.city') }}  </label>
                         </div>
                     </div>
                     <!-- ol-sm-6 -->
-                    <div class="col-sm-4 text-left">
+                    <div class="col-xs-8 col-sm-4 text-left">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{$user_details['city'] }}</label>
                         </div>
                     </div>
                     <!--ol-sm-6 -->
 
-                    <div class="col-sm-2 text-right">
+                    <div class="col-xs-4 col-sm-2 text-right">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{ trans('accounts::accounts.zip_code') }} </label>
                         </div>
                     </div>
                     <!-- col-sm-6 -->
-                    <div class="col-sm-4 text-left">
+                    <div class="col-xs-8 col-sm-4 text-left">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{$user_details['zip_code'] }}</label>
                         </div>
                     </div>
-
-
-                    <div class="col-sm-2 text-right">
-                        <div class="form-group no-margin-hr">
-                            <label class="control-label">{{ trans('accounts::accounts.lastLogin') }}: </label>
-                        </div>
-                    </div>
-                    <!-- col-sm-6 -->
-                    <div class="col-sm-4 text-left">
-                        <div class="form-group no-margin-hr">
-                            <label class="control-label">{{$user_details['last_login'] }}</label>
-                        </div>
-                    </div>
-
-
-                    <div class="col-sm-2 text-right">
-                        <div class="form-group no-margin-hr">
-                            <label class="control-label">{{ trans('accounts::accounts.registrationDate') }}: </label>
-                        </div>
-                    </div>
-                    <!-- col-sm-6 -->
-                    <div class="col-sm-4 text-left">
-                        <div class="form-group no-margin-hr">
-                            <label class="control-label">{{$user_details['created_at'] }}</label>
-                        </div>
-                    </div>
-
 
                 </div>
                 <!-- row -->

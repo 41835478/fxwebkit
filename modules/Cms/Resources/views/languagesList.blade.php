@@ -29,7 +29,7 @@
             </div>
         </div>
         {!! Form::open(['url'=>asset('cms/languages/languages')]) !!}
-        <table border="0" class="table table-bordered table-striped cms_table">
+        <table border="0" class="table table-bordered table-striped cms_table" style="display: table">
             <thead>
             <th>{{ trans('cms::cms.id') }}</th>
             <th>{{ trans('cms::cms.name') }}</th>

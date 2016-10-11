@@ -82,7 +82,7 @@
                 <div class="table-light">
 
 
-                    <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+                    <ul ul id="uidemo-tabs-default-demo" class="noIcons nav nav-tabs">
                         <li>
                             <a href="{{ route('accounts.detailsAccount').'?edit_id='.$aFilterParams['account_id'] }}">{{ trans('accounts::accounts.details') }}</a>
                         </li>
@@ -140,52 +140,110 @@
 
                     @if (count($oResults))
                         {!! Form::open() !!}
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('accounts::accounts.Login')) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('accounts::accounts.liveDemo'), 'server_id', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
-                                <th class="no-warp">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</th>
-                                <th class="no-warp">{!! trans('accounts::accounts.action') !!}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
 
-                            @foreach($oResults as $oResult)
-                                <tr>
+                        <div class="primary_table_div info" >
+                            <div class="table">
 
-                                    <td>{!! Form::checkbox('users_checkbox[]',$oResult->LOGIN.','.$oResult->server_id,false,['class'=>'users_checkbox']) !!}{{ $oResult->LOGIN }}</td>
-                                    <td>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
-                                    <td>{{ $oResult->NAME }}</td>
-                                    <td>{{ $oResult->GROUP }}</td>
-                                    <td>
 
-                                        @if(isset($oResult->users_id ) || (isset($oResult->account) && $oResult->account->users_id>0))
+                                <div class="thead">
+                                    <div class="tr">
 
-                                            {!! Form::button('<a><i class="fa fa-unlink "></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('accounts::accounts.un_assign') ,'type'=>'submit' ]) !!}
-                                        @else
+                                        <div class="th">{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('accounts::accounts.Login')) !!}</div>
+                                        <div class="th">{!! th_sort(trans('accounts::accounts.liveDemo'), 'server_id', $oResults) !!}</div>
+                                        <div class="th">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}}</div>
+                                        <div class="th">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</div>
+                                        <div class="th">{!! trans('accounts::accounts.action') !!}</div>
 
-                                            {!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('accounts::accounts.assign'),'type'=>'submit' ]) !!}
-                                        @endif
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <td colspan="5">
+                                    </div>
+                                </div>
 
-                                    {!! Form::hidden('account_id', $aFilterParams['account_id']) !!}
-                                    {!! Form::hidden('sort', $aFilterParams['sort']) !!}
-                                    {!! Form::hidden('order', $aFilterParams['order']) !!}
 
-                                    {!! Form::button( trans('accounts::accounts.assign') ,['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}
-                                    {!! Form::button(trans('accounts::accounts.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}
-                                </td>
-                            </tr>
-                            </tfoot>
-                        </table>
+                                <div class="tbody">
+
+                                    @if (count($oResults))
+                                        {{-- */$i=0;/* --}}
+                                        {{-- */$class='';/* --}}
+                                        @foreach($oResults as $oResult)
+                                            {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                            <div class="tr {{ $class }}">
+
+
+
+
+                                                <div class="td"><label>{!! trans('accounts::accounts.Login') !!} : </label><p>{!! Form::checkbox('users_checkbox[]',$oResult->LOGIN.','.$oResult->server_id,false,['class'=>'users_checkbox']) !!}{{ $oResult->LOGIN }}</p></div>
+                                                <div class="td"><label>{!! trans('accounts::accounts.liveDemo') !!} : </label><p>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                                <div class="td"><label>{!! trans('accounts::accounts.Name') !!} : </label><p>{{ $oResult->NAME }}</p></div>
+                                                <div class="td"><label>{!! trans('accounts::accounts.Group') !!} : </label><p>{{ $oResult->GROUP }}</p></div>
+                                                <div class="td"><label>{!! trans('accounts::accounts.last_date') !!} : </label><p>{{ $oResult->LASTDATE }}</p></div>
+                                                <div class="td"><label>{!! trans('accounts::accounts.leverage') !!} : </label><p>1:{{ $oResult->LEVERAGE }}</p></div>
+                                                <div class="td">
+                                                    @if(isset($oResult->users_id ) || (isset($oResult->account) && $oResult->account->users_id>0))
+
+                                                        {!! Form::button('<a><i class="fa fa-unlink "></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('accounts::accounts.un_assign') ,'type'=>'submit' ]) !!}
+                                                    @else
+
+                                                        {!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('accounts::accounts.assign'),'type'=>'submit' ]) !!}
+                                                    @endif
+                                                </div>
+
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="tableFooter">
+                            </div>
+                        </div>
+
+
+
+
+                        {{--<table class="table table-bordered" style="display: table">--}}
+                        {{--<thead>--}}
+                        {{--<tr>--}}
+                        {{--<th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('accounts::accounts.Login')) !!}</th>--}}
+                        {{--<th class="no-warp">{!! th_sort(trans('accounts::accounts.liveDemo'), 'server_id', $oResults) !!}</th>--}}
+                        {{--<th class="no-warp">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>--}}
+                        {{--<th class="no-warp">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</th>--}}
+                        {{--<th class="no-warp">{!! trans('accounts::accounts.action') !!}</th>--}}
+                        {{--</tr>--}}
+                        {{--</thead>--}}
+                        {{--<tbody>--}}
+
+                        {{--@foreach($oResults as $oResult)--}}
+                        {{--<tr>--}}
+
+                        {{--<td>{!! Form::checkbox('users_checkbox[]',$oResult->LOGIN.','.$oResult->server_id,false,['class'=>'users_checkbox']) !!}{{ $oResult->LOGIN }}</td>--}}
+                        {{--<td>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>--}}
+                        {{--<td>{{ $oResult->NAME }}</td>--}}
+                        {{--<td>{{ $oResult->GROUP }}</td>--}}
+                        {{--<td>--}}
+
+                        {{--@if(isset($oResult->users_id ) || (isset($oResult->account) && $oResult->account->users_id>0))--}}
+
+                        {{--{!! Form::button('<a><i class="fa fa-unlink "></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('accounts::accounts.un_assign') ,'type'=>'submit' ]) !!}--}}
+                        {{--@else--}}
+
+                        {{--{!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('accounts::accounts.assign'),'type'=>'submit' ]) !!}--}}
+                        {{--@endif--}}
+                        {{--</td>--}}
+                        {{--</tr>--}}
+                        {{--@endforeach--}}
+                        {{--</tbody>--}}
+                        {{--<tfoot>--}}
+                        {{--<tr>--}}
+                        {{--<td colspan="5">--}}
+
+                        {{--{!! Form::hidden('account_id', $aFilterParams['account_id']) !!}--}}
+                        {{--{!! Form::hidden('sort', $aFilterParams['sort']) !!}--}}
+                        {{--{!! Form::hidden('order', $aFilterParams['order']) !!}--}}
+
+                        {{--{!! Form::button( trans('accounts::accounts.assign') ,['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}--}}
+                        {{--{!! Form::button(trans('accounts::accounts.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}--}}
+                        {{--</td>--}}
+                        {{--</tr>--}}
+                        {{--</tfoot>--}}
+                        {{--</table>--}}
                     @endif
                     {!! Form::close() !!}
                     <div class="table-footer">
