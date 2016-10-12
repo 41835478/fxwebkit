@@ -1070,10 +1070,23 @@ padding-top:150px;
     height: 30px;
 }
 
+#uidemo-tabs-default-demo:not(.noIcons) li{
+    overflow:hidden;
+}
+#uidemo-tabs-default-demo:not(.noIcons) li i {margin:0px 5px;}
+
 @media screen and (max-width: 1000px) {
-    #uidemo-tabs-default-demo li {
+    #uidemo-tabs-default-demo.noIcons li {
         width: 100%;
     }
+    #uidemo-tabs-default-demo:not(.noIcons) li {
+        width:40px; height:20px;
+    }
+    #uidemo-tabs-default-demo:not(.noIcons) li a{
+        padding:0px !important;
+    }
+
+    #uidemo-tabs-default-demo:not(.noIcons) li i {margin:0px 10px;}
 
 
     .DT-lf-right.change_page_all_div{
