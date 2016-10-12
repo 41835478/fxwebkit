@@ -50,40 +50,47 @@
                         </div>
 
 
+
+
+
+
                         <div class="tbody">
 
-                            @foreach($menu_items as $item)
-                                @if($item->type == 1 && $item->article['title']=='')
-                                @else
                             {{--@if (count($oResults))--}}
                                 {{-- */$i=0;/* --}}
                                 {{-- */$class='';/* --}}
-                                {{--@foreach($oResults as $oResult)--}}
+                                @foreach($menu_items as $item)
                                     {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
-                                    {{--<div class="tr {{ $class }}">--}}
+
+                                    @if($item->type == 1 && $item->article['title']=='')
+                                    @else
+                                    <div class="tr {{ $class }}">
+
                                         <div class="td"><label>{!! trans('cms::cms.id') !!} : </label><p>{{ $item->id }}</p></div>
                                         <div class="td"><label>{!! trans('cms::cms.name') !!} : </label><p>{{ $item->name }}</p></div>
                                         <div class="td"><label>{!! trans('cms::cms.parent') !!} : </label><p>{{ $item->cms_menus_items['name'] }}</p></div>
                                         <div class="td"><label>{!! trans('cms::cms.disable') !!} : </label><p><i class="{{ $disable_icons[$item->disable] }}"></i></p></div>
-                                    <div class="td"><label>{!! trans('cms::cms.hide') !!} : </label><p><i class="{{ $hide_icons[$item->hide] }}"></i></p></div>
-                                        <div class="td">
+                                        <div class="td"><label>{!! trans('cms::cms.hide') !!} : </label><p><i class="{{ $hide_icons[$item->hide] }}"></i></p></div>
+                                        <div class="td"><label>{!! trans('cms::cms.link_to') !!} : </label>
                                             @if($item->type == 0)
-                                                page  ({{ $item->page['title'] }})
+                                            page  ({{ $item->page['title'] }})
                                             @elseif($item->type == 1)
-                                                article ({{ $item->article['title'] }})
+                                            article ({{ $item->article['title'] }})
                                             @elseif($item->type == 2)
-                                                form ({{ $item->form['name'] }})
+                                            form ({{ $item->form['name'] }})
                                             @endif
-                                        </div>
-                                    <div class="td">
+                                            </div>
+
+                                        <div class="td">
                                         {!! Form::button('<i class="fa fa-trash-o"></i>',['name'=>'remove_menu_item_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete  link")) return false;','class'=>'icon_button red_icon','type'=>'submit','value'=>$item->id ]) !!}
                                         {!! Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_menu_item_id' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$item->id ]) !!}
-                                    </div>
-                                @endif
-                            @endforeach
-                                    </div>
+                                        </div>
 
-                        </div>
+                                        </div>
+                                    @endif
+                                    @endforeach
+
+                            </div>
                     </div>
 
                     <div class="tableFooter">
