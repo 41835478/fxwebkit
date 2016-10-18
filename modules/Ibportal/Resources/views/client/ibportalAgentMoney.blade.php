@@ -67,16 +67,16 @@
 
                 <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                     <li  class="active">
-                        <a href="{{ route('clients.ibportal.agentMoney')}}">{{ trans('ibportal::ibportal.agentMoney') }}</a>
+                        <a href="{{ route('clients.ibportal.agentMoney')}}"><i class="fa fa-money"></i>{{ trans('ibportal::ibportal.agentMoney') }}</a>
                     </li>
 
                     <li >
-                        <a href="{{ route('clients.ibportal.agentInternalTransfer').'?login='.$aFilterParams['login']}}">{{ trans('ibportal::ibportal.agentInternalTransfer') }}</a>
+                        <a href="{{ route('clients.ibportal.agentInternalTransfer').'?login='.$aFilterParams['login']}}"><i class="fa fa-retweet"></i>{{ trans('ibportal::ibportal.agentInternalTransfer') }}</a>
                     </li>
 
 
                     <li>
-                        <a href="{{ route('client.ibportal.agentwithDrawal').'?login='.$aFilterParams['login']}}">{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
+                        <a href="{{ route('client.ibportal.agentwithDrawal').'?login='.$aFilterParams['login']}}"><i class="fa fa-external-link"></i>{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
                     </li>
 
                 </ul>

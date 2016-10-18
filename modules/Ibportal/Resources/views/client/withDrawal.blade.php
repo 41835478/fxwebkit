@@ -17,15 +17,15 @@
         <div class="panel-body">
             <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                 <li>
-                    <a href="{{ route('clients.ibportal.agentMoney').'?login='.$login}}">{{ trans('ibportal::ibportal.agentMoney') }}</a>
+                    <a href="{{ route('clients.ibportal.agentMoney').'?login='.$login}}"><i class="fa fa-money"></i>{{ trans('ibportal::ibportal.agentMoney') }}</a>
                 </li>
 
                 <li >
-                    <a href="{{ route('clients.ibportal.agentInternalTransfer').'?login='.$login}}">{{ trans('ibportal::ibportal.agentInternalTransfer') }}</a>
+                    <a href="{{ route('clients.ibportal.agentInternalTransfer').'?login='.$login}}"><i class="fa fa-retweet"></i>{{ trans('ibportal::ibportal.agentInternalTransfer') }}</a>
                 </li>
 
                 <li class="active">
-                    <a href="{{ route('client.ibportal.agentwithDrawal').'?login='.$login}}">{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
+                    <a href="{{ route('client.ibportal.agentwithDrawal').'?login='.$login}}"><i class="fa fa-external-link"></i>{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
                 </li>
 
             </ul>
