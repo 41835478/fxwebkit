@@ -10,7 +10,7 @@ return [
     'directOrderToMt4Server' => true,
     'directLeverageOrderToMt4Server'=>true,
     'directChangePasswordOrderToMt4Server'=>false,
-    'directTransferOrderToMt4Server'=>false,
+    'directTransferOrderToMt4Server'=>true,
     'directLiveAccountOrderToMt4Server'=>false,
     'directWithDrawalOrderToMt4Server'=>false,
     'operation' => [
@@ -22,7 +22,7 @@ return [
 
     'apiReqiredConfirmMt4Password' => true,
     'apiMasterPassword' => 'PASSWORD',
-    'allowTransferToUnsignedMT4' => false,
+    'allowTransferToUnsignedMT4' => true,
 
     'changeLeverageWarning' => 'Please, be careful with this operation !',
     'denyLiveAccount' => false,
