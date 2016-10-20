@@ -962,12 +962,19 @@ class AccountsController extends Controller
             'denyLiveAccount' => config('accountsConfig.denyLiveAccount'),
             'apiReqiredConfirmMt4Password' => config('accountsConfig.apiReqiredConfirmMt4Password'),
             'allowTransferToUnsignedMT4' => config('accountsConfig.allowTransferToUnsignedMT4'),
-            'directOrderToMt4Server' => config('accountsConfig.directOrderToMt4Server'),
             'showWithDrawal' => config('accountsConfig.showWithDrawal'),
             'is_client' => config('accountsConfig.is_client'),
+            'directOrderToMt4Server' => config('accountsConfig.directOrderToMt4Server'),
+
+            //Leverage     ChangePassword   Transfer    LiveAccount  WithDrawal
+            'directLeverageOrderToMt4Server' => config('accountsConfig.directLeverageOrderToMt4Server'),
+            'directChangePasswordOrderToMt4Server' => config('accountsConfig.directChangePasswordOrderToMt4Server'),
+            'directTransferOrderToMt4Server' => config('accountsConfig.directTransferOrderToMt4Server'),
+            'directLiveAccountOrderToMt4Server' => config('accountsConfig.directLiveAccountOrderToMt4Server'),
+            'directWithDrawalOrderToMt4Server' => config('accountsConfig.directWithDrawalOrderToMt4Server'),
 
         ];
-        
+
         return view('accounts::accountsSetting')->with('accountsSetting', $accountsSetting);
 
     }
@@ -990,6 +997,15 @@ class AccountsController extends Controller
         $apiReqiredConfirmMt4Password = ($oRequest->apiReqiredConfirmMt4Password) ? true : false;
         $allowTransferToUnsignedMT4 = ($oRequest->allowTransferToUnsignedMT4) ? true : false;
         $directOrderToMt4Server = ($oRequest->directOrderToMt4Server) ? true : false;
+
+        //Leverage     ChangePassword   Transfer    LiveAccount  WithDrawal
+
+        $directLeverageOrderToMt4Server = ($oRequest->directLeverageOrderToMt4Server) ? true : false;
+        $directChangePasswordOrderToMt4Server = ($oRequest->directChangePasswordOrderToMt4Server) ? true : false;
+        $directTransferOrderToMt4Server = ($oRequest->directTransferOrderToMt4Server) ? true : false;
+        $directLiveAccountOrderToMt4Server = ($oRequest->directLiveAccountOrderToMt4Server) ? true : false;
+        $directWithDrawalOrderToMt4Server = ($oRequest->directWithDrawalOrderToMt4Server) ? true : false;
+
         $showWithDrawal = ($oRequest->showWithDrawal) ? true : false;
         $is_client = ($oRequest->is_client) ? 1 : 0;
 
@@ -1004,6 +1020,14 @@ class AccountsController extends Controller
             'apiReqiredConfirmMt4Password'=>$apiReqiredConfirmMt4Password,
             'allowTransferToUnsignedMT4'=>$allowTransferToUnsignedMT4,
             'directOrderToMt4Server'=>$directOrderToMt4Server,
+
+
+            'directLeverageOrderToMt4Server'=>$directLeverageOrderToMt4Server,
+            'directChangePasswordOrderToMt4Server'=>$directChangePasswordOrderToMt4Server,
+            'directTransferOrderToMt4Server'=>$directTransferOrderToMt4Server,
+            'directLiveAccountOrderToMt4Server'=>$directLiveAccountOrderToMt4Server,
+            'directWithDrawalOrderToMt4Server'=>$directWithDrawalOrderToMt4Server,
+
             'showWithDrawal'=>$showWithDrawal,
             'changeLeverageWarning'=>$oRequest->changeLeverageWarning,
             'apiMasterPassword'=>$oRequest->apiMasterPassword,
@@ -1040,22 +1064,4 @@ dd($oRequest);
 
             return $this->getMt4AssignedUsers($oRequest);
     }
-
-    public function getAssignAccountManager(Request $oRequest)
-    {
-
-        if(!(isset($oRequest->account_id) &&   $oRequest->account_id>0)){return Redirect::route('accounts.accountsList');}
-
-        $account_id = $oRequest->account_id;
-        $currentAccounManager=\Modules\Accounts\Entities\Users::find($account_id)->account_manager;
-
-        $userInfo = [
-            'account_id'=>$account_id,
-            'login' => $currentAccounManager
-        ];
-
-
-        return view('accounts::assignAccountManager')->with('userInfo', $userInfo);
-    }
-
 }
