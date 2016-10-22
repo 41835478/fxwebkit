@@ -824,11 +824,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
-                $oResult = Mt4Closed::with('users')->whereHas('users', function ($query) use ($account_id) {
+                $oResult = Mt4ClosedActual::with('users')->whereHas('users', function ($query) use ($account_id) {
                     $query->where('users_id', $account_id);
                 });
             } else {
-                $oResult = new Mt4Closed();
+                $oResult = new Mt4ClosedActual();
             }
         }
 
@@ -906,11 +906,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
-                $oResult = Mt4Closed::with('users')->whereHas('users', function ($query) use ($account_id) {
+                $oResult = Mt4ClosedActual::with('users')->whereHas('users', function ($query) use ($account_id) {
                     $query->where('users_id', $account_id);
                 })->where('COMMISSION_AGENT', '!=', 0);
             } else {
-                $oResult = Mt4Closed::where('COMMISSION_AGENT', '!=', 0);
+                $oResult = Mt4ClosedActual::where('COMMISSION_AGENT', '!=', 0);
             }
         }
 

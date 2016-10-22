@@ -150,8 +150,10 @@
 
                                         <div class="th">{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('accounts::accounts.Login')) !!}</div>
                                         <div class="th">{!! th_sort(trans('accounts::accounts.liveDemo'), 'server_id', $oResults) !!}</div>
-                                        <div class="th">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}}</div>
+                                        <div class="th">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</div>
                                         <div class="th">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</div>
+                                        <div class="th">{!! th_sort(trans('accounts::accounts.reg_date'), 'REGDATE', $oResults) !!}</div>
+                                        <div class="th">{!! th_sort(trans('accounts::accounts.leverage'), 'LEVERAGE', $oResults) !!}</div>
                                         <div class="th">{!! trans('accounts::accounts.action') !!}</div>
 
                                     </div>
