@@ -864,7 +864,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         $totalResult = clone $oResult;
         $totalLotsResult = clone $oResult;
         $totalCommission = $totalResult->where('COMMISSION', '!=', 0)->sum('COMMISSION');
-        $totalLots = $totalLotsResult->where('COMMISSION', '!=', 0)->sum('VOLUME');
+        $totalLots = $totalLotsResult->where('COMMISSION', '!=', 0)->sum('VOLUME') /100;
 
 
         /* =============== $oResult = $oResult; ===================== */
@@ -946,7 +946,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         $totalResult = clone $oResult;
         $totalLotsResult = clone $oResult;
         $totalCommission = $totalResult->where('COMMISSION', '!=', 0)->sum('COMMISSION');
-        $totalLots = $totalLotsResult->where('COMMISSION', '!=', 0)->sum('VOLUME');
+        $totalLots = $totalLotsResult->where('COMMISSION', '!=', 0)->sum('VOLUME') /100;
 
         $oResult->groupBy('SYMBOL');
 
