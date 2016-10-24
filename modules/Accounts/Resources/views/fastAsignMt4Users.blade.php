@@ -37,7 +37,7 @@
                     <li>
                         <div class=" nav-input-div  ">
                             {!! Form::radio('signed',0,$aFilterParams['signed'],['id'=>'signed_0','checked'=>'true']) !!}
-                            <label for="signed_0">{{ trans('accounts::accounts.all') }}</label>
+                            <label for="signed_0">{{ trans('accounts::accounts.unAssigned') }}</label>
                             {!! Form::radio('signed',1,($aFilterParams['signed']==1),['id'=>'signed_1']) !!}<label
                                     for="signed_1">{{ trans('accounts::accounts.assigned') }}</label>
 
@@ -150,8 +150,12 @@
 
                                         <div class="th">{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('accounts::accounts.Login')) !!}</div>
                                         <div class="th">{!! th_sort(trans('accounts::accounts.liveDemo'), 'server_id', $oResults) !!}</div>
-                                        <div class="th">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}}</div>
+                                        <div class="th">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</div>
                                         <div class="th">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</div>
+
+                                        <div class="th">{!! th_sort(trans('accounts::accounts.last_date'), 'LASTDATE', $oResults) !!}</div>
+
+                                        <div class="th">{!! th_sort(trans('accounts::accounts.leverage'), 'LEVERAGE', $oResults) !!}</div>
                                         <div class="th">{!! trans('accounts::accounts.action') !!}</div>
 
                                     </div>
@@ -177,7 +181,7 @@
                                                 <div class="td"><label>{!! trans('accounts::accounts.last_date') !!} : </label><p>{{ $oResult->LASTDATE }}</p></div>
                                                 <div class="td"><label>{!! trans('accounts::accounts.leverage') !!} : </label><p>1:{{ $oResult->LEVERAGE }}</p></div>
                                                 <div class="td">
-                                                    @if(isset($oResult->users_id ) || (isset($oResult->account) && $oResult->account->users_id>0))
+                                                    @if(isset($oResult->users_id ))
 
                                                         {!! Form::button('<a><i class="fa fa-unlink "></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('accounts::accounts.un_assign') ,'type'=>'submit' ]) !!}
                                                     @else
@@ -191,61 +195,29 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="tableFooter">
+                            <div class="tableFooter" style="border:1px solid #eee">
+                                {!! Form::button(trans('accounts::accounts.assign'),['name'=>'asign_mt4_users_submit','value'=>'1'  ,'class'=>'btn btn-info btn-sm',' data-original-title'=>trans('accounts::accounts.assign'),'type'=>'submit' ]) !!}
+                                {!! Form::button(trans('accounts::accounts.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1'  ,'class'=>'btn btn-info btn-sm',' data-original-title'=>trans('accounts::accounts.un_assign'),'type'=>'submit' ]) !!}
+
+
                             </div>
                         </div>
 
 
 
 
-                        {{--<table class="table table-bordered" style="display: table">--}}
-                        {{--<thead>--}}
-                        {{--<tr>--}}
-                        {{--<th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('accounts::accounts.Login')) !!}</th>--}}
-                        {{--<th class="no-warp">{!! th_sort(trans('accounts::accounts.liveDemo'), 'server_id', $oResults) !!}</th>--}}
-                        {{--<th class="no-warp">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>--}}
-                        {{--<th class="no-warp">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</th>--}}
-                        {{--<th class="no-warp">{!! trans('accounts::accounts.action') !!}</th>--}}
-                        {{--</tr>--}}
-                        {{--</thead>--}}
-                        {{--<tbody>--}}
+                        {!! Form::hidden('account_id', $aFilterParams['account_id']) !!}
+                        {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+                        {!! Form::hidden('order', $aFilterParams['order']) !!}
+                        {!! Form::hidden('group', (is_array($aFilterParams['group']))?join(',',$aFilterParams['group']):$aFilterParams['group']) !!}
+                        {!! Form::hidden('signed',$aFilterParams['signed']) !!}
+                        {!! Form::hidden('all_groups', $aFilterParams['all_groups']) !!}
+                        {!! Form::hidden('exactLogin', $aFilterParams['exactLogin']) !!}
+                        {!! Form::hidden('signed', $aFilterParams['signed']) !!}
 
-                        {{--@foreach($oResults as $oResult)--}}
-                        {{--<tr>--}}
 
-                        {{--<td>{!! Form::checkbox('users_checkbox[]',$oResult->LOGIN.','.$oResult->server_id,false,['class'=>'users_checkbox']) !!}{{ $oResult->LOGIN }}</td>--}}
-                        {{--<td>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>--}}
-                        {{--<td>{{ $oResult->NAME }}</td>--}}
-                        {{--<td>{{ $oResult->GROUP }}</td>--}}
-                        {{--<td>--}}
-
-                        {{--@if(isset($oResult->users_id ) || (isset($oResult->account) && $oResult->account->users_id>0))--}}
-
-                        {{--{!! Form::button('<a><i class="fa fa-unlink "></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('accounts::accounts.un_assign') ,'type'=>'submit' ]) !!}--}}
-                        {{--@else--}}
-
-                        {{--{!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->LOGIN.','.$oResult->server_id  ,'class'=>'icon_button red_icon tooltip_number',' data-original-title'=>trans('accounts::accounts.assign'),'type'=>'submit' ]) !!}--}}
-                        {{--@endif--}}
-                        {{--</td>--}}
-                        {{--</tr>--}}
-                        {{--@endforeach--}}
-                        {{--</tbody>--}}
-                        {{--<tfoot>--}}
-                        {{--<tr>--}}
-                        {{--<td colspan="5">--}}
-
-                        {{--{!! Form::hidden('account_id', $aFilterParams['account_id']) !!}--}}
-                        {{--{!! Form::hidden('sort', $aFilterParams['sort']) !!}--}}
-                        {{--{!! Form::hidden('order', $aFilterParams['order']) !!}--}}
-
-                        {{--{!! Form::button( trans('accounts::accounts.assign') ,['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}--}}
-                        {{--{!! Form::button(trans('accounts::accounts.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}--}}
-                        {{--</td>--}}
-                        {{--</tr>--}}
-                        {{--</tfoot>--}}
-                        {{--</table>--}}
+                        {!! Form::close() !!}
                     @endif
-                    {!! Form::close() !!}
                     <div class="table-footer">
 
 
@@ -294,7 +266,9 @@
 
     </div>
 
-    <script src="{{ asset('/assets/js/jquery.2.0.3.min.js') }}"></script>
+@stop
+@section('script')
+    @parent
     <script>
 
         init.push(function () {

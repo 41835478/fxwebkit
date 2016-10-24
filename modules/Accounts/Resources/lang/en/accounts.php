@@ -195,5 +195,6 @@
     'equity'=>'Equity',
     'balance'=>'Balance',
     'fundAccount'=>'Fund Account',
-    'currency'=>'Currency'
+    'currency'=>'Currency',
+    'unAssigned'=>'unAssigned'
 ]; ?>

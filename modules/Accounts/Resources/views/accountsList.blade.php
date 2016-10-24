@@ -151,9 +151,6 @@
                                                            data-original-title="{{trans('accounts::accounts.activateUser')}}"></a>
                                                     @endif
 
-                                                    <a href="{{ route('accounts.assignAccountManager').'?account_id='.$oResult->id }}"
-                                                       class="fa fa-user   tooltip_number"
-                                                       data-original-title="{{trans('accounts::accounts.assignAccountManager')}}"></a>
 
                                                 </div>
 

@@ -806,3 +806,5 @@ a.scroll-to-top.visible {
 	filter: alpha(opacity=75);
 	opacity: 0.75;
 }
+
+header nav ul.nav-main ul.dropdown-menu li:hover > a { background-color: rgb(164, 166, 219);}
