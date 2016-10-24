@@ -195,11 +195,12 @@ class EloquentMt4UserRepository implements Mt4UserContract{
 
             if ($aFilters['signed'] == 1) {
 
-                $oResult = $oResult->with('account')->whereHas('account', function($query) use($account_id) {
-                    $query->where(DB::raw('mt4_users_users.server_id'),'=',DB::raw(' mt4_users.server_id'));
-                    $query->where('users_id', $account_id);
-                });
 
+                $oResult = $oResult::join('mt4_users_users', function($join) use($account_id) {
+                    $join->on('mt4_users.LOGIN', '=', 'mt4_users_users.mt4_users_id')
+                        ->on('mt4_users.server_id', '=', 'mt4_users_users.server_id')
+                        ->where('mt4_users_users.users_id', '=', $account_id);
+                });
             }
         }else{
 
@@ -208,7 +209,10 @@ class EloquentMt4UserRepository implements Mt4UserContract{
                 $join->on('mt4_users.LOGIN', '=', 'mt4_users_users.mt4_users_id')
                     ->on('mt4_users.server_id', '=', 'mt4_users_users.server_id');
                 $join->where('mt4_users_users.users_id', '=',$account_id );
-            })->select(['mt4_users.*','mt4_users_users.users_id']);
+
+            })->where('mt4_users_users.mt4_users_id', '=',null )->select(['mt4_users.*','mt4_users_users.users_id']);
+
+
         }
         /* =============== Login Filters =============== */
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {

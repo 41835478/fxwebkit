@@ -144,7 +144,7 @@
                                             <div class="td"><label>{!! trans('reports::reports.liveDemo') !!} : </label><p>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
                                             <div class="td"><label>{!! trans('reports::reports.symbol') !!} : </label><p>{{ $oResult->SYMBOL }}</p></div>
                                             <div class="td"><label>{!! trans('reports::reports.type') !!} : </label><p>{{ $oResult->TYPE }}</p></div>
-                                            <div class="td"><label>{!! trans('reports::reports.lots') !!} : </label><p>{{ $oResult->VOLUME }}</p></div>
+                                            <div class="td"><label>{!! trans('reports::reports.lots') !!} : </label><p>@if(!($oResult->CMD==6 || $oResult->CMD==7 )) {{ $oResult->VOLUME }}@endif</p></div>
                                             <div class="td"><label>{!! trans('reports::reports.open_time') !!} : </label><p>{{ $oResult->OPEN_TIME }}</p></div>
                                             <div class="td"><label>{!! trans('reports::reports.open_Price') !!} : </label><p>{{ $oResult->OPEN_PRICE }}</p></div>
                                             <div class="td"><label>{!! trans('reports::reports.SL') !!} : </label><p>{{ $oResult->SL }}</p></div>
@@ -251,7 +251,7 @@
                                             <div class="td"><label>{!! trans('reports::reports.liveDemo') !!} : </label><p>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
                                             <div class="td"><label>{!! trans('reports::reports.symbol') !!} : </label><p>{{ $oResult->SYMBOL }}</p></div>
                                             <div class="td"><label>{!! trans('reports::reports.type') !!} : </label><p>{{ $oResult->TYPE }}</p></div>
-                                            <div class="td"><label>{!! trans('reports::reports.lots') !!} : </label><p>{{ $oResult->VOLUME }}</p></div>
+                                            <div class="td"><label>{!! trans('reports::reports.lots') !!} : </label><p>@if(!($oResult->CMD==6 || $oResult->CMD==7 )) {{ $oResult->VOLUME }}@endif</p></div>
                                             <div class="td"><label>{!! trans('reports::reports.open_time') !!} : </label><p>{{ $oResult->OPEN_TIME }}</p></div>
                                             <div class="td"><label>{!! trans('reports::reports.open_Price') !!} : </label><p>{{ $oResult->OPEN_PRICE }}</p></div>
                                             <div class="td"><label>{!! trans('reports::reports.SL') !!} : </label><p>{{ $oResult->SL }}</p></div>

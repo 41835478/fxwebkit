@@ -308,6 +308,8 @@ class MenusController extends Controller
                 $returnArray[] = array(
                     'id' => $child,
                     'name' =>  $link['name'] ,
+                    'disable' =>  $link['disable'] ,
+
                     'translate'=> ($translate == '') ? $link['name'] : $translate,
                     'children' => $this->order_menu($links, $child)
                 );
