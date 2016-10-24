@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('accounts::accounts.addAccount'))
+@section('title', trans('accounts::accounts.user_details'))
 @section('content')
     <div id="content-wrapper">
         <div class="page-header">

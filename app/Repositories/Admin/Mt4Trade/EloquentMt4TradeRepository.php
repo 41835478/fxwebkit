@@ -88,9 +88,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
                     $aGroupsSecurities[]=$group->position;
                 }
 
-
-
-
                 $oResult =Symbols::whereIn('type',$aGroupsSecurities)->get();
                 foreach($oResult as &$result){
                     $result->SYMBOL= $result->symbol;
@@ -102,11 +99,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
                     $result->SYMBOL= $result->symbol;
                 }
             }
-
     return $oResult;
-
-
-
     }
 
     /**
@@ -149,9 +142,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             foreach($groupsSecurities as $group){
                 $aGroupsSecurities[]=$group->position;
             }
-
-
-
 
             $oResult =Symbols::whereIn('type',$aGroupsSecurities)->get();
             foreach($oResult as &$result){
@@ -223,29 +213,10 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
     {
         $oFxHelper = new Fx();
 
-//dd($aFilters);
-        /* ===============================check admin or user================ */
         $oResult = '';
-//        if ($user = current_user()->getUser()) {
-//
-//            if (!$user->InRole('admin')) {
-//                $account_id = $user->id;
-//
-//                $oResult = Mt4Closed::with('users')->whereHas('users', function ($query) use ($account_id) {
-//
-//                    $query->where('users_id', $account_id);
-//                });
-//            } else {
-//
-//                $oResult = new Mt4Closed();
-//            }
-//        }
-
 
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
-
-
 
                 $oResult =new Mt4ClosedActual();
 
@@ -260,15 +231,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
                     }
                 }
 
-
                 $oResult=$oResult->join("mt4_users_users",function($query) use($account_id,$table_name){
                     $query->on($table_name.".login","=","mt4_users_users.mt4_users_id");
                     $query->on($table_name.".server_id","=","mt4_users_users.server_id");
                     $query->where("mt4_users_users.users_id","=",$account_id);
                 });
-
-
-
 
             } else {
                 $oResult =new Mt4ClosedActual();
@@ -282,7 +249,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
             }
         }
-
 
         /* =============== Login Filters =============== */
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
@@ -299,7 +265,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
                 $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
             }
         }
-
 
         /* =============== Server Id Filter  =============== */
 
@@ -369,9 +334,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
 
             //OPenPrice/SL/TP/CLOSED_PRICE
+            $price=$oValue->Mt4Prices;
 
-            //$price = $oResult[$dKey]->Mt4Prices()->first();
-            $digits = 5;//($price) ? $price->DIGITS : 5;
+            $digits = ($price) ? $price->DIGITS : 5;
             $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
             $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
             $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);

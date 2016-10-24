@@ -196,5 +196,11 @@
     'balance'=>'Balance',
     'fundAccount'=>'Fund Account',
     'currency'=>'Currency',
-    'unAssigned'=>'unAssigned'
+    'success'=>'Success',
+    'the_user_has'=>'The User has been assigned successfully',
+    'this_user_has'=>'This user has been assigned successfully',
+    'error_please_try_again'=>'Error please try again.',
+    'error_please'=>'Error, please try again later .',
+    'unAssigned'=>'unAssigned',
+    'the_user_has'=>'The User has been Unassigned Successfully',
 ]; ?>
