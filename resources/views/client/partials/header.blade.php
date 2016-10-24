@@ -45,7 +45,7 @@
                                 <li>
                                     <a href="{{ route('client.users.changePassword') }}">
                                         <i class="dropdown-icon fa fa-user"></i>&nbsp;&nbsp;
-                                        {{ Lang::get('general.changePassword') }}
+                                        {{ trans('general.changePassword') }}
                                     </a>
                                 </li>
 

@@ -99,4 +99,11 @@
     'mt4AccountLogin'=>'MT4 Account Login',
     'server'=>'server',
     'sign_up_with_mt4'=>'Sign Up with MT4 Account',
+
+    'memberAreaPassword'=>'Members Area Pass',
+    'passwordLengthError'=>"the password should be between 5 and 30 character",
+    'changePassword'=>'Change Password',
+    'newPassword'=>'New Password',
+    'confirmPassword'=>'Confirm Password',
+    'successfully'=>'Successfully',
 ]; ?>

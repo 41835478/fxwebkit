@@ -42,14 +42,14 @@
                         </div>
                     </div>
                     <!-- col-sm-6 -->
+
+
                     <div class="col-sm-6">
                         <div class="form-group no-margin-hr">
-                            <label class="control-label">{{ trans('user.password') }}</label>
-                            {!! Form::password('password',['class'=>'form-control','value'=>$userInfo['password']]) !!}
-
+                            <label class="control-label">{{ trans('user.ZipCode') }}</label>
+                            {!! Form::text('zip_code',$userInfo['zip_code'],['class'=>'form-control']) !!}
                         </div>
                     </div>
-                    <!-- col-sm-6 -->
                 </div>
                 <!-- row -->
 
@@ -104,17 +104,12 @@
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{ trans('user.City') }}</label>
                             {!! Form::text('city',$userInfo['city'],['class'=>'form-control']) !!}
-
                         </div>
                     </div>
                     <!-- col-sm-6 -->
-                    <div class="col-sm-6">
-                        <div class="form-group no-margin-hr">
-                            <label class="control-label">{{ trans('user.ZipCode') }}</label>
-                            {!! Form::text('zip_code',$userInfo['zip_code'],['class'=>'form-control']) !!}
-                        </div>
                     </div>
                     <!-- col-sm-6 -->
+                    <div class="row">
                     <div class="col-sm-6">
                         <label class="control-label "
                                style="text-align: left;display: block;">{{ trans('user.gender') }}</label>
