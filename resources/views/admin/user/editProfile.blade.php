@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('user.addAccount'))
+@section('title', trans('user.edit_user'))
 @section('content')
 
     <div id="content-wrapper">

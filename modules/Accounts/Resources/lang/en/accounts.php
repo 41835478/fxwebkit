@@ -177,7 +177,7 @@
     'assignedUsers' => 'Assigned Users',
     'lastLogin' => 'Last Login',
     'registrationDate' => 'Registration Date',
-    'assignedMt4Users' => 'assigned MT4 Users',
+    'assignedMt4Users' => 'Assigned MT4 Users',
     'active' => 'Active',
     'notActive' => 'Not Active',
     'activateUser' => 'Activate User',

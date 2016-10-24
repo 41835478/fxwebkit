@@ -7,7 +7,7 @@
                     <a href="{{ route('admin.users.profile') }}" class="btn btn-xs btn-primary btn-outline dark">
                         <i class="fa fa-user"></i>
                     </a>
-                  
+
                     <a href="{{ route('admin.auth.logout') }}" class="btn btn-xs btn-danger btn-outline dark">
                         <i class="fa fa-power-off"></i>
                     </a>

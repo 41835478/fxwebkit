@@ -91,6 +91,8 @@
 
             </div>
         </div><!-- col-sm-6 -->
+        </div>
+        <div class="row">
 
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
@@ -98,6 +100,7 @@
                 {!! Form::text('zip_code',$userInfo['zip_code'],['class'=>'form-control']) !!}           
             </div>
         </div><!-- col-sm-6 -->
+
         <div class="col-sm-6">
             <label class="control-label " style="text-align: left;display: block;">{{ trans('user.gender') }}</label>
             <div class="radio col-xs-2">
