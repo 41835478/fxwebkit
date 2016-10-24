@@ -213,4 +213,7 @@
     'demoAccountPort'=>'Demo Account Port',
     'demoAccountServer'=>'Demo Account Server',
     'last_login'=>'Last Login',
+
+    'changePassword'=>'Change Password',
+    'newPassword'=>'New Password',
 ]; ?>

@@ -8,6 +8,7 @@ Route::group(['middleware' => ['authenticate.client']], function()
 	Route::controller('users', 'UserController', [
 		'getSettings' => 'client.users.settings',
 		 'getProfiles'=>'client.users.profile',
+		'getChangePassword'=>'client.users.changePassword',
                 'getEditProfile' => 'clinet.editProfile',   
                 'postEditProfile' => 'clinet.users.editProfiles', 
                

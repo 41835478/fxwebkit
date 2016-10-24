@@ -49,9 +49,9 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.editProfile') }}">
-                                        <i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;
-                                        {{ trans('general.Settings') }}
+                                    <a href="{{ route('admin.users.changePassword') }}">
+                                        <i class="dropdown-icon fa fa-user"></i>&nbsp;&nbsp;
+                                        {{ trans('general.changePassword') }}
                                     </a>
                                 </li>
                                 <li class="divider"></li>

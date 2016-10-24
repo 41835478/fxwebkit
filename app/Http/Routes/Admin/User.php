@@ -7,6 +7,7 @@ Route::group(['middleware' => ['authenticate.admin']], function () {
     Route::controller('users', 'UserController', [
         'getSettings' => 'admin.users.settings',
         'getProfiles' => 'admin.users.profile',
+        'getChangePassword' => 'admin.users.changePassword',
         'getEditProfile' => 'admin.editProfile',
         'postEditProfile' => 'admin.editProfiles',
     ]);

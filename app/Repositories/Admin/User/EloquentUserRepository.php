@@ -1066,5 +1066,24 @@ class EloquentUserRepository implements UserContract
         }
     }
 
+    public function changePassword($oRequest)
+    {
+
+        $user = Sentinel::findById($oRequest->edit_id);
+
+        $aCredentials = [
+            'password' => $oRequest->password,
+        ];
+
+        try {
+            $user = Sentinel::update($user, $aCredentials);
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            return trans('general.the_email_has');
+        }
+
+        return $user->id;
+    }
+
 
 }

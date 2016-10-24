@@ -42,6 +42,13 @@
                                     </a>
                                 </li>
 
+                                <li>
+                                    <a href="{{ route('client.users.changePassword') }}">
+                                        <i class="dropdown-icon fa fa-user"></i>&nbsp;&nbsp;
+                                        {{ trans('general.changePassword') }}
+                                    </a>
+                                </li>
+
                                 <li class="divider"></li>
                                 <li>
                                     <a href="{{ route('client.auth.logout') }}">

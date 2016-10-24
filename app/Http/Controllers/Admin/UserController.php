@@ -6,6 +6,7 @@ use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Fxweb\Http\Requests\Admin\EditUserRequest;
 use Illuminate\Support\Facades\Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Fxweb\Http\Requests\Admin\ChangePasswordRequest;
 use Redirect;
 
 class UserController extends Controller
@@ -106,6 +107,35 @@ class UserController extends Controller
         } else {
             return Redirect::route('general.editUser')->withErrors($result);
         }
+    }
+
+    public function getChangePassword()
+    {
+        $user = current_user()->getUser();
+
+        $userInfo = [
+            'edit_id'=>$user->id,
+            'password' => '',
+            'password_confirmation' =>'',
+        ];
+        return view('admin.user.changePassword')->with('userInfo', $userInfo);
+    }
+
+    public function postChangePassword(ChangePasswordRequest $request)
+    {
+
+
+        $result = $this->oUsers->changePassword($request);
+
+        $userInfo = [
+            'edit_id'=>'',
+            'password' => '',
+            'password_confirmation' =>'',
+        ];
+
+        \Session::flash('flash_success',trans('user.successfully'));
+
+        return Redirect::route('admin.users.changePassword')->with('userInfo', $userInfo);
     }
 
 }

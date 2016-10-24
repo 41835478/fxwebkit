@@ -153,7 +153,7 @@
                                         <div class="th">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</div>
                                         <div class="th">{!! th_sort(trans('accounts::accounts.Group'), 'GROUP', $oResults) !!}</div>
 
-                                        <div class="th">{!! th_sort(trans('accounts::accounts.last_date'), 'LASTDATE', $oResults) !!}</div>
+                                        <div class="th">{!! th_sort(trans('accounts::accounts.reg_date'), 'REGDATE', $oResults) !!}</div>
 
                                         <div class="th">{!! th_sort(trans('accounts::accounts.leverage'), 'LEVERAGE', $oResults) !!}</div>
                                         <div class="th">{!! trans('accounts::accounts.action') !!}</div>
