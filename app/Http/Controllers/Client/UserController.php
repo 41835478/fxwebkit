@@ -85,4 +85,9 @@ class UserController extends Controller
         }
     }
 
+    public function getChangePassword()
+    {
+        return'das';
+    }
+
 }

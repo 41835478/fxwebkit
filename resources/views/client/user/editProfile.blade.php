@@ -41,14 +41,20 @@
                         {!! Form::text('email',$userInfo['email'],['class'=>'form-control']) !!}
                     </div>
                 </div>
-                <!-- col-sm-6 -->
                 <div class="col-sm-6">
                     <div class="form-group no-margin-hr">
-                        <label class="control-label">{{ trans('user.password') }}</label>
-                        {!! Form::password('password',['class'=>'form-control','value'=>$userInfo['password']]) !!}
-
+                        <label class="control-label">{{ trans('user.ZipCode') }}</label>
+                        {!! Form::text('zip_code',$userInfo['zip_code'],['class'=>'form-control']) !!}
                     </div>
                 </div>
+                <!-- col-sm-6 -->
+                {{--<div class="col-sm-6">--}}
+                    {{--<div class="form-group no-margin-hr">--}}
+                        {{--<label class="control-label">{{ trans('user.password') }}</label>--}}
+                        {{--{!! Form::password('password',['class'=>'form-control','value'=>$userInfo['password']]) !!}--}}
+
+                    {{--</div>--}}
+                {{--</div>--}}
                 <!-- col-sm-6 -->
             </div>
             <!-- row -->
@@ -108,12 +114,7 @@
                     </div>
                 </div>
                 <!-- col-sm-6 -->
-                <div class="col-sm-6">
-                    <div class="form-group no-margin-hr">
-                        <label class="control-label">{{ trans('user.ZipCode') }}</label>
-                        {!! Form::text('zip_code',$userInfo['zip_code'],['class'=>'form-control']) !!}
-                    </div>
-                </div>
+
                 <!-- col-sm-6 -->
                 <div class="col-sm-6">
                     <label class="control-label "
