@@ -8,6 +8,7 @@ Route::group(['middleware' => ['authenticate.admin','ACLAdmin.admin']], function
         'getAdminsList' => 'admin.adminsList',
         'getEditUser' => 'general.editUser',
         'getAddUser' => 'general.addUser',
+        'getChangePassword' => 'general.changePassword',
         'getUserDetails' => 'general.userDetails',
         'getMt4UsersList' => 'admin.mt4UsersList',
         'getMt4UsersDetails' => 'admin.mt4UsersDetails',

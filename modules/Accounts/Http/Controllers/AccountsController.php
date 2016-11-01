@@ -5,6 +5,7 @@ namespace Modules\Accounts\Http\Controllers;
 use Fxweb\Models\User;
 use Pingpong\Modules\Routing\Controller;
 use Modules\Accounts\Http\Requests\AccountsRequest;
+use Modules\Accounts\Http\Requests\ChangePasswordRequest;
 use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
@@ -1047,5 +1048,32 @@ class AccountsController extends Controller
         $this->oUsers->unsignMt4UsersToAccount($oRequest->user_id, [$oRequest->login.','. $oRequest->server_id],3);
 
             return $this->getMt4AssignedUsers($oRequest);
+    }
+
+    public function getChangePassword(Request $oRequest)
+    {
+        $userInfo = [
+            'account_id' => $oRequest->account_id,
+            'password' => '',
+            'password_confirmation' => '',
+        ];
+        return view('accounts::changePassword')->with('userInfo', $userInfo);
+    }
+
+    public function postChangePassword(ChangePasswordRequest $request)
+    {
+
+
+        $result = $this->oUsers->changePassword($request);
+
+        $userInfo = [
+            'account_id' => '',
+            'password' => '',
+            'password_confirmation' => '',
+        ];
+
+        \Session::flash('flash_success', trans('user.successfully'));
+
+        return Redirect::route('accounts.accountsList')->with('userInfo', $userInfo);
     }
 }

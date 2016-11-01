@@ -103,6 +103,7 @@
                                     <div class="td">
                                             <a href="{{ route('general.editUser').'?edit_id='.$oResult->id }}" class="fa fa-edit tooltip_number" data-original-title="{{trans('user.editUser')}}"></a>
                                             <a href="{{ route('general.userDetails').'?edit_id='.$oResult->id }}" class="fa fa-file-text tooltip_number"  data-original-title="{{trans('user.userDetails')}}"></a>
+                                        <a href="{{ route('general.changePassword').'?edit_id='.$oResult->id }}" class="fa fa-star tooltip_number"  data-original-title="{{trans('user.changePassword')}}"></a>
                                             <a href="{{ route('admin.deleteUser').'?delete_id='.$oResult->id }}" class="fa fa-trash-o tooltip_number"  data-original-title="{{trans('user.deleteUser')}}"></a>
                                           </div>
 

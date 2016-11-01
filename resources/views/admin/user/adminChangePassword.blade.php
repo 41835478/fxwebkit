@@ -1,16 +1,16 @@
 @extends('admin.layouts.main')
-@section('title', trans('accounts::accounts.changePassword'))
+@section('title', trans('user.changePassword'))
 @section('content')
 
     <div id="content-wrapper">
         <div class="page-header">
-            <h1>{{ trans('accounts::accounts.changePassword') }}</h1>
+            <h1>{{ trans('user.changePassword') }}</h1>
         </div>
 
         <div class="panel">
             {!! Form::open(['class'=>'panel form-horizontal']) !!}
             <div class="panel-heading">
-                <span class="panel-title">{{ trans('accounts::accounts.changePassword') }}</span>
+                <span class="panel-title">{{ trans('user.changePassword') }}</span>
             </div>
 
 
@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group no-margin-hr">
-                            <label class="control-label">{{ trans('accounts::accounts.password') }}</label>
+                            <label class="control-label">{{ trans('user.password') }}</label>
 
                             {!! Form::password('password',$userInfo['password'],['class'=>'form-control']) !!}
                         </div>
@@ -26,7 +26,7 @@
                     <!-- col-sm-6 -->
                     <div class="col-sm-6">
                         <div class="form-group no-margin-hr">
-                            <label class="control-label">{{ trans('accounts::accounts.confirmPassword') }}</label>
+                            <label class="control-label">{{ trans('user.confirmPassword') }}</label>
                             {!! Form::password('password_confirmation',$userInfo['password_confirmation'],['class'=>'form-control']) !!}
 
                         </div>
@@ -41,9 +41,9 @@
 
 
             <div class="panel-footer text-right">
-                <a href="{{ route('accounts.accountsList')}}">
+                <a href="{{ route('client.users.profile')}}">
                     <button type="submit" class="btn btn-primary" name="edit_id"
-                            value="{{ $userInfo['account_id']}}">{{ trans('accounts::accounts.save') }}</button>
+                            value="{{ $userInfo['edit_id']}}">{{ trans('user.save') }}</button>
                 </a>
             </div>
             {!! Form::close() !!}

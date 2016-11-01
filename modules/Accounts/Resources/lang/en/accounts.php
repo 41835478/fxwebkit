@@ -203,4 +203,5 @@
     'error_please'=>'Error, please try again later .',
     'unAssigned'=>'unAssigned',
     'the_user_has'=>'The User has been Unassigned Successfully',
+    'confirmPassword'=>'Confirm Password',
 ]; ?>

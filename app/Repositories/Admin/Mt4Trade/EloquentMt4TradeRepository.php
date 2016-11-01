@@ -56,50 +56,57 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
     {
         $user = current_user()->getUser();
 
-            if (!$user->InRole('admin')) {
-                $account_id = $user->id;
+        if (!$user->InRole('admin')) {
+            $account_id = $user->id;
 
-                $oUserMt4Groups = modelMt4User::with('accounts')->whereHas('accounts', function($query) use($account_id) {
-                    $query->where(DB::raw('mt4_users_users.server_id'),'=',DB::raw(' mt4_users.server_id'));
-                    $query->where('users_id', $account_id);
-                })->select('group')->get();
+            $oUserMt4Groups = modelMt4User::with('accounts')->whereHas('accounts', function($query) use($account_id) {
+                $query->where(DB::raw('mt4_users_users.server_id'),'=',DB::raw(' mt4_users.server_id'));
+                $query->where('users_id', $account_id);
+            })->select('group')->get();
 
-                $aUserMt4Groups=[];
-                foreach($oUserMt4Groups as $group){
-                    $aUserMt4Groups[]=$group->group;
-                }
-
-                $oAgentMt4Groups = modelMt4User::with('agents')->whereHas('agents', function($query) use($account_id) {
-                    $query->where(DB::raw('mt4_users_users.server_id'),'=',DB::raw(' mt4_users.server_id'));
-                    $query->where('agent_id', $account_id);
-                })->select('group')->get();
-
-                $aAgentMt4Groups=[];
-                foreach($oAgentMt4Groups as $group){
-                    $aAgentMt4Groups[]=$group->group;
-                }
-
-                $groupsSecurities=GroupsSecurities::select()
-                    ->whereIn('group',$aUserMt4Groups+$aAgentMt4Groups)
-                    ->where('show','=',1)->get();
-
-                $aGroupsSecurities=[];
-                foreach($groupsSecurities as $group){
-                    $aGroupsSecurities[]=$group->position;
-                }
-
-                $oResult =Symbols::whereIn('type',$aGroupsSecurities)->get();
-                foreach($oResult as &$result){
-                    $result->SYMBOL= $result->symbol;
-                }
-            } else {
-
-                $oResult =Symbols::get();
-                foreach($oResult as &$result){
-                    $result->SYMBOL= $result->symbol;
-                }
+            $aUserMt4Groups=[];
+            foreach($oUserMt4Groups as $group){
+                $aUserMt4Groups[]=$group->group;
             }
-    return $oResult;
+
+            $oAgentMt4Groups = modelMt4User::with('agents')->whereHas('agents', function($query) use($account_id) {
+                $query->where(DB::raw('mt4_users_users.server_id'),'=',DB::raw(' mt4_users.server_id'));
+                $query->where('agent_id', $account_id);
+            })->select('group')->get();
+
+            $aAgentMt4Groups=[];
+            foreach($oAgentMt4Groups as $group){
+                $aAgentMt4Groups[]=$group->group;
+            }
+
+            $groupsSecurities=GroupsSecurities::select()
+                ->whereIn('group',$aUserMt4Groups+$aAgentMt4Groups)
+                ->where('show','=',1)->get();
+
+            $aGroupsSecurities=[];
+            foreach($groupsSecurities as $group){
+                $aGroupsSecurities[]=$group->position;
+            }
+
+
+
+
+            $oResult =Symbols::whereIn('type',$aGroupsSecurities)->get();
+            foreach($oResult as &$result){
+                $result->SYMBOL= $result->symbol;
+            }
+        } else {
+
+            $oResult =Symbols::get();
+            foreach($oResult as &$result){
+                $result->SYMBOL= $result->symbol;
+            }
+        }
+
+        return $oResult;
+
+
+
     }
 
     /**
@@ -109,6 +116,61 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
      * @param string $sSort
      * @return mixed
      */
+
+    public function getAgentsClosedTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC')
+    {
+        $user = current_user()->getUser();
+
+        if (!$user->InRole('admin')) {
+            $account_id = $user->id;
+
+            $oUserMt4Groups = modelMt4User::with('accounts')->whereHas('accounts', function($query) use($account_id) {
+                $query->where(DB::raw('mt4_users_users.server_id'),'=',DB::raw(' mt4_users.server_id'));
+                $query->where('users_id', $account_id);
+            })->select('group')->get();
+
+            $aUserMt4Groups=[];
+            foreach($oUserMt4Groups as $group){
+                $aUserMt4Groups[]=$group->group;
+            }
+
+            $oAgentMt4Groups = modelMt4User::with('agents')->whereHas('agents', function($query) use($account_id) {
+                $query->where(DB::raw('mt4_users_users.server_id'),'=',DB::raw(' mt4_users.server_id'));
+                $query->where('agent_id', $account_id);
+            })->select('group')->get();
+
+            $aAgentMt4Groups=[];
+            foreach($oAgentMt4Groups as $group){
+                $aAgentMt4Groups[]=$group->group;
+            }
+
+            $groupsSecurities=GroupsSecurities::select()
+                ->whereIn('group',$aUserMt4Groups+$aAgentMt4Groups)
+                ->where('show','=',1)->get();
+
+            $aGroupsSecurities=[];
+            foreach($groupsSecurities as $group){
+                $aGroupsSecurities[]=$group->position;
+            }
+
+
+
+
+            $oResult =Symbols::whereIn('type',$aGroupsSecurities)->get();
+            foreach($oResult as &$result){
+                $result->SYMBOL= $result->symbol;
+            }
+        } else {
+
+            $oResult =Symbols::get();
+            foreach($oResult as &$result){
+                $result->SYMBOL= $result->symbol;
+            }
+        }
+        return $oResult;
+    }
+
+
     public function getOpenTradesSymbols($sOrderBy = 'SYMBOL', $sSort = 'ASC')
     {
         /* TODO[Galya] please tell me if the close symbols different  from close order */
@@ -122,12 +184,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
         if (!$user->InRole('admin')) {
             $account_id = $user->id;
+            $agentLogin=\Modules\Ibportal\Entities\IbportalUserIbid::select('login')->where('user_id', current_user()->getUser()->id)->first();
 
 
-            $oAgentMt4Groups = modelMt4User::with('agents')->whereHas('agents', function($query) use($account_id) {
-                $query->where(DB::raw('mt4_users_users.server_id'),'=',DB::raw(' mt4_users.server_id'));
-                $query->where('agent_id', $account_id);
-            })->select('group')->get();
+            $oAgentMt4Groups = modelMt4User::select('group')->where('COMMENT','like','%M:'.$agentLogin->login.';%')->get();
+
 
             $aAgentMt4Groups=[];
             foreach($oAgentMt4Groups as $group){
@@ -142,6 +203,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             foreach($groupsSecurities as $group){
                 $aGroupsSecurities[]=$group->position;
             }
+
 
             $oResult =Symbols::whereIn('type',$aGroupsSecurities)->get();
             foreach($oResult as &$result){
@@ -171,8 +233,25 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         ];
     }
 
+    public function getAgentsTradesTypes()
+    {
+        return [
+            0 => 'ACTUAL_TRADES',
+            1 => 'PENDING_TRADES',
+        ];
+    }
+
 
     public function getServerTypes()
+    {
+        return [
+            -1 => trans('accounts::accounts.all'),
+            0 => config('fxweb.liveServerName'),
+            1 => config('fxweb.demoServerName'),
+        ];
+    }
+
+    public function getAgentsServerTypes()
     {
         return [
             -1 => trans('accounts::accounts.all'),
@@ -200,6 +279,19 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         ];
     }
 
+    public function getAgentsAccountantTypes()
+    {
+
+        return [
+            1 => 'BalanceOperations',
+            2 => 'CreditOperations',
+            3 => 'Deposits',
+            4 => 'Withdraws',
+            5 => 'CreditIn',
+            6 => 'CreditOut',
+        ];
+    }
+
     /**
      * Gets the closed orders by filters
      *
@@ -213,12 +305,13 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
     {
         $oFxHelper = new Fx();
 
+        /* ===============================check admin or user================ */
         $oResult = '';
 
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
 
-                $oResult =new Mt4ClosedActual();
+                $oResult = Mt4ClosedActual::with('Mt4Prices');
 
                 $account_id = $user->id;
 
@@ -237,18 +330,24 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
                     $query->where("mt4_users_users.users_id","=",$account_id);
                 });
 
-            } else {
-                $oResult =new Mt4ClosedActual();
 
+
+
+            } else {
+                $oResult = Mt4ClosedActual::with('Mt4Prices');
+
+                $table_name="mt4_closed_actual";
 
                 if (isset($aFilters['type']) && !empty($aFilters['type'])){
                     if($aFilters['type'] == 1){
                         $oResult =new Mt4ClosedPending();
+                        $table_name="mt4_closed_pending";
                     }
                 }
 
             }
         }
+
 
         /* =============== Login Filters =============== */
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
@@ -266,17 +365,18 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             }
         }
 
+
         /* =============== Server Id Filter  =============== */
 
         if (isset($aFilters['server_id']) && in_array($aFilters['server_id'], [0, 1])) {
 
-            $oResult = $oResult->where('server_id', $aFilters['server_id']);
+            $oResult = $oResult->where($table_name.'.server_id', $aFilters['server_id']);
         }
 
         /* =============== Groups Filter  =============== */
         if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
             $aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
-            $oResult = $oResult->whereIn('LOGIN', $aUsers);
+            $oResult = $oResult->whereIn($table_name.'.LOGIN', $aUsers);
         }
 
         /* =============== Date Filter  =============== */
@@ -285,18 +385,18 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         ) {
 
             if (!empty($aFilters['from_date'])) {
-                $oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
+                $oResult = $oResult->where($table_name.'.CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
             }
 
             if (!empty($aFilters['to_date'])) {
-                $oResult = $oResult->where('CLOSE_TIME', '<=', $aFilters['to_date'] . ' 23:59:59');
+                $oResult = $oResult->where($table_name.'.CLOSE_TIME', '<=', $aFilters['to_date'] . ' 23:59:59');
             }
         }
 
         /* =============== Symbols Filter  =============== */
         if (!isset($aFilters['all_symbols']) || !$aFilters['all_symbols']) {
             $aFilters['symbol']=(!is_array($aFilters['symbol']))? explode(',',$aFilters['symbol']):$aFilters['symbol'];
-            $oResult = $oResult->whereIn('SYMBOL', $aFilters['symbol']);
+            $oResult = $oResult->whereIn($table_name.'.SYMBOL', $aFilters['symbol']);
         }
 
         /* =============== Type Filter  =============== */
@@ -305,17 +405,17 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
             if ($aFilters['type'] == 1) {
 
-                $oResult = $oResult->where('CMD', '<', 2);
+                $oResult = $oResult->where($table_name.'.CMD', '<', 2);
             } elseif ($aFilters['type'] == 2) {
 
-                $oResult = $oResult->whereBetween('CMD', [2, 5]);
+                $oResult = $oResult->whereBetween($table_name.'.CMD', [2, 5]);
             }
         } else {
 
-            $oResult = $oResult->where('CMD', '<', 6);
+            $oResult = $oResult->where($table_name.'.CMD', '<', 6);
         }
 
-        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+        $oResult = $oResult->orderBy($table_name.'.'.$sOrderBy, $sSort);
 
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
@@ -335,8 +435,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
             //OPenPrice/SL/TP/CLOSED_PRICE
             $price=$oValue->Mt4Prices;
-
-            $digits = ($price) ? $price->DIGITS : 5;
+            $digits =($price) ? $price->DIGITS : 5;
             $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
             $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
             $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
@@ -351,16 +450,20 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
     {
 
         $oFxHelper = new Fx();
-        $oResult = new Mt4Open();
 
+        $oResult = Mt4Open::with('Mt4Prices');
         /* =============== Login Filters =============== */
 
-        $oResult = $oResult->where('LOGIN', '=', $aFilters['login'])->where('server_id', '=', $aFilters['server_id']);
+        $oResult = $oResult->where('LOGIN', '=', $aFilters['login']);
+
+        if ((isset($aFilters['server_id']) && $aFilters['server_id']>-1)){
+            $oResult = $oResult->where('server_id', '=', $aFilters['server_id']);
+        }
 
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
             (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
-        ) {
+        ){
 
             if (!empty($aFilters['from_date'])) {
                 $oResult = $oResult->where('OPEN_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
@@ -392,7 +495,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
 
             //OPenPrice/SL/TP/CLOSED_PRICE
-            $digits = $oResult[$dKey]->Mt4Prices()->first()->DIGITS;
+            $price=$oValue->Mt4Prices;
+
+            $digits =($price) ? $price->DIGITS : 5;
             $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
             $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
             $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
@@ -415,12 +520,16 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
     {
 
         $oFxHelper = new Fx();
-        $oResult = new Mt4Closed();
+        $oResult = Mt4Closed::with('Mt4Prices');
 
         /* =============== Login Filters =============== */
 
 
-        $oResult = $oResult->where('LOGIN', '=', $aFilters['login'])->where('server_id', '=', $aFilters['server_id']);
+        $oResult = $oResult->where('LOGIN', '=', $aFilters['login']);
+
+        if ((isset($aFilters['server_id']) && $aFilters['server_id']>-1)){
+            $oResult = $oResult->where('server_id', '=', $aFilters['server_id']);
+        }
 
         /* =============== Date Filter  =============== */
         if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
@@ -455,7 +564,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
 
             //OPenPrice/SL/TP/CLOSED_PRICE
-            $digits = 5;
+            $price=$oValue->Mt4Prices;
+            $digits =($price) ? $price->DIGITS : 5;
+
             $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
             $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
             $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
@@ -483,9 +594,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
 
-
-
-                $oResult =new Mt4OpenActual();
+                $oResult =Mt4OpenActual::with('Mt4Prices');
 
                 $account_id = $user->id;
 
@@ -493,7 +602,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
                 if (isset($aFilters['type']) && !empty($aFilters['type'])){
                     if($aFilters['type'] == 1){
-                        $oResult =new Mt4OpenPending();
+                        $oResult = Mt4OpenPending::with('Mt4Prices');
                         $table_name="mt4_open_pending";
                     }
                 }
@@ -505,19 +614,17 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
                     $query->where("mt4_users_users.users_id","=",$account_id);
                 });
 
-
-
-
             } else {
-                $oResult =new Mt4OpenActual();
+                $oResult = Mt4OpenActual::with('Mt4Prices');
 
 
+                $table_name="mt4_open_actual";
                 if (isset($aFilters['type']) && !empty($aFilters['type'])){
                     if($aFilters['type'] == 1){
-                        $oResult =new Mt4OpenPending();
+                        $oResult = Mt4OpenPending::with('Mt4Prices');
+                        $table_name="mt4_open_pending";
                     }
                 }
-
             }
         }
         /* =============== Login Filters =============== */
@@ -529,11 +636,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         ) {
 
             if (!empty($aFilters['from_login'])) {
-                $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
+                $oResult = $oResult->where($table_name.'.'.'LOGIN', '>=', $aFilters['from_login']);
             }
 
             if (!empty($aFilters['to_login'])) {
-                $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
+                $oResult = $oResult->where($table_name.'.'.'LOGIN', '<=', $aFilters['to_login']);
             }
         }
 
@@ -541,33 +648,22 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
         if (isset($aFilters['server_id']) && in_array($aFilters['server_id'], [0, 1])) {
 
-            $oResult = $oResult->where('server_id', $aFilters['server_id']);
+            $oResult = $oResult->where($table_name.'.server_id', $aFilters['server_id']);
         }
 
         /* =============== Groups Filter  =============== */
         if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
             $aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
-            $oResult = $oResult->whereIn('LOGIN', $aUsers);
+            $oResult = $oResult->whereIn($table_name.'.'.'LOGIN', $aUsers);
         }
 
         /* =============== Symbols Filter  =============== */
         if (!isset($aFilters['all_symbols']) || !$aFilters['all_symbols']) {
             $aFilters['symbol']=(!is_array($aFilters['symbol']))? explode(',',$aFilters['symbol']):$aFilters['symbol'];
-            $oResult = $oResult->whereIn('SYMBOL', $aFilters['symbol']);
+            $oResult = $oResult->whereIn($table_name.'.'.'SYMBOL', $aFilters['symbol']);
         }
 
-        /* =============== Type Filter  ===============
-        if (isset($aFilters['type']) && !empty($aFilters['type'])) {
-            if ($aFilters['type'] == 1) {
-                $oResult = $oResult->where('CMD', '<', 2);
-            } elseif ($aFilters['type'] == 2) {
-                $oResult = $oResult->whereBetween('CMD', [2, 5]);
-            }
-        } else {
-            $oResult = $oResult->where('CMD', '<', 6);
-        }
-        */
-        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+        $oResult = $oResult->orderBy($table_name.'.'.$sOrderBy,$sSort);
 
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
@@ -586,7 +682,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
 
             //OPenPrice/SL/TP/CLOSED_PRICE
-            $digits =5;// $oResult[$dKey]->Mt4Prices()->first()->DIGITS;
+            $price=$oValue->Mt4Prices;
+
+            $digits =($price) ? $price->DIGITS : 5;
             $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
             $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
             $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
@@ -693,7 +791,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
      */
     public function getClosedTradeByLogin($aFilters)
     {
-        //$oResult = Mt4Trade::select('PROFIT')->where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
         /* ===============================check admin or user================ */
         $oResult = '';
         if ($user = current_user()->getUser()) {
@@ -736,8 +833,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
      */
     public function getFloatingByLogin($aFilters)
     {
-
-        // $oResult = Mt4Trade::select('PROFIT')->where('CLOSE_TIME', '=', '1970-01-01 00:00:00');
         /* ===============================check admin or user================ */
         $oResult = '';
         if ($user = current_user()->getUser()) {
@@ -783,7 +878,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
     public function getCommissionByFilters($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC')
     {
         $oFxHelper = new Fx();
-        // $oResult = Mt4Trade::where('CLOSE_TIME', '!=', '1970-01-01 00:00:00');
         /* ===============================check admin or user================ */
         $oResult = '';
         if ($user = current_user()->getUser()) {
@@ -793,7 +887,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
                     $query->where('users_id', $account_id);
                 });
             } else {
-                $oResult = new Mt4ClosedActual();
+                $oResult = Mt4ClosedActual::with('Mt4Prices');
             }
         }
 
@@ -829,7 +923,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         $totalResult = clone $oResult;
         $totalLotsResult = clone $oResult;
         $totalCommission = $totalResult->where('COMMISSION', '!=', 0)->sum('COMMISSION');
-        $totalLots = $totalLotsResult->where('COMMISSION', '!=', 0)->sum('VOLUME') /100;
+        $totalLots = $totalLotsResult->where('COMMISSION', '!=', 0)->sum('VOLUME')/100;
 
 
         /* =============== $oResult = $oResult; ===================== */
@@ -865,7 +959,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
     public function getAgentCommissionByFilters($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC')
     {
         $oFxHelper = new Fx();
-        //$oResult = Mt4Trade::where('CLOSE_TIME', '!=', '1970-01-01 00:00:00')->where('COMMISSION_AGENT', '!=', 0);
         /* ===============================check admin or user================ */
         $oResult = '';
         if ($user = current_user()->getUser()) {
@@ -911,7 +1004,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         $totalResult = clone $oResult;
         $totalLotsResult = clone $oResult;
         $totalCommission = $totalResult->where('COMMISSION', '!=', 0)->sum('COMMISSION');
-        $totalLots = $totalLotsResult->where('COMMISSION', '!=', 0)->sum('VOLUME') /100;
+        $totalLots = $totalLotsResult->where('COMMISSION', '!=', 0)->sum('VOLUME')/100;
 
         $oResult->groupBy('SYMBOL');
 
@@ -945,10 +1038,10 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
     public function getAccountantByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC')
     {
         $oFxHelper = new Fx();
-        $oResult = new Mt4ClosedBalance();
+        $oResult = Mt4ClosedBalance::with('Mt4Prices');
         $aSummury = [];
         /* ===============================check admin or user================ */
-        $oResult = new Mt4ClosedBalance();
+        $oResult = Mt4ClosedBalance::with('Mt4Prices');
         if ($user = current_user()->getUser()) {
             if (!$user->InRole('admin')) {
                 $account_id = $user->id;
@@ -956,7 +1049,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
                     $query->where('users_id', $account_id);
                 });
             } else {
-                $oResult = new Mt4ClosedBalance();
+                $oResult = Mt4ClosedBalance::with('Mt4Prices');
             }
         }
 
@@ -1015,15 +1108,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         $aSummury ['creditIn'] = $creditInResult->where('CMD', 7)->where('PROFIT', '>', 0)->sum('PROFIT');
         $aSummury ['creditOut'] = $creditOutResult->where('CMD', 7)->where('PROFIT', '<', 0)->sum('PROFIT');
 
-        /* =============== Type Filter  ===============
 
-          1 => 'BalanceOperations',
-          2 => 'CreditOperations',
-          3 => 'Deposits',
-          4 => 'Withdraws',
-          5 => 'CreditIn',
-          6 => 'CreditOut',
-         */
         if (isset($aFilters['type']) && !empty($aFilters['type'])) {
             if ($aFilters['type'] == 1) {
                 $oResult = $oResult->where('CMD', 6);
@@ -1039,7 +1124,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
                 $oResult = $oResult->where('CMD', 7)->where('PROFIT', '<', 0);
             }
         } else {
-            $oResult = $oResult->where('CMD', '=', 6)->Orwhere('CMD', '=', 7);
+            $oResult = $oResult->whereIn('CMD',[6,7]);
         }
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
@@ -1066,6 +1151,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
         return [$oResult, $aSummury];
     }
+
 
     public function getClientGrowthChart($login, $server_id)
     {
@@ -1376,7 +1462,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
         /*______________________________________________*/
 
-
         $maxProfit = 0;
         $maxProfitNumber = 0;
         foreach ($maxWinArray as $row) {
@@ -1398,8 +1483,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
                 $minProfitNumber = ($minProfitNumber < $row[0]) ? $minProfitNumber : $row[0];
             }
         }
-
-        /*_________________________________________________*/
 
         $statistics['maximum_consecutive_wins_number'] = $maxWinNumber;
         $statistics['maximum_consecutive_wins'] = $maxWin;
@@ -1425,9 +1508,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             ->count();
         $statistics['long_trades'] = $long_trades;
 
-
         /* === short_trades ==== */
-
         $short_trades = Mt4ClosedActual::where('cmd', '=', '1')
             ->where('login', $login)
             ->where('server_id', $server_id)
@@ -1454,34 +1535,18 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
     {
         $oFxHelper = new Fx();
 
-
-
-
-        //  $oResult =new    Mt4ClosedActual();
-//        $oResult =Mt4Closed::with('agents')->whereHas('agents', function ($query) use ($agent_id) {
-//
-//                    $query->where('agent_id', $agent_id);
-//                });
-
-
-
-        $oResult =new Mt4ClosedActual();
+        $oResult = Mt4ClosedActual::with('Mt4Prices');
 
         $table_name="mt4_closed_actual";
 
         if (isset($aFilters['type']) && !empty($aFilters['type'])){
             if($aFilters['type'] == 1){
-                $oResult =new Mt4ClosedPending();
+                $oResult = Mt4ClosedPending::with('Mt4Prices');
                 $table_name="mt4_closed_pending";
             }
         }
 
-
-
-
-//______________________________get agent user and their mt4 users
         $agetUsersResult=\Modules\Ibportal\Entities\IbportalAgentUser::where('agent_id',$agent_id)
-
             ->get();
 
         $users_id=[];
@@ -1491,7 +1556,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
                 $users_id[] = $user->user_id;
         }
 
-
         if(!count($users_id)){return null;}
 
         $oResult=$oResult->join("mt4_users_users",function($query) use($users_id,$table_name){
@@ -1499,9 +1563,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             $query->on($table_name.".server_id","=","mt4_users_users.server_id");
             $query->whereIn("mt4_users_users.users_id",$users_id);
         });
-
-
-
 
         /* =============== Login Filters =============== */
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
@@ -1549,25 +1610,11 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
         /* =============== Symbols Filter  =============== */
         if (!isset($aFilters['all_symbols']) || !$aFilters['all_symbols']) {
+
+            $aFilters['symbol']=(!is_array($aFilters['symbol']))? explode(',',$aFilters['symbol']):$aFilters['symbol'];
             $oResult = $oResult->whereIn('SYMBOL', $aFilters['symbol']);
         }
 
-        /* =============== Type Filter  ===============
-
-        if (isset($aFilters['type']) && !empty($aFilters['type'])) {
-
-            if ($aFilters['type'] == 1) {
-
-                $oResult = $oResult->where('CMD', '<', 2);
-            } elseif ($aFilters['type'] == 2) {
-
-                $oResult = $oResult->whereBetween('CMD', [2, 5]);
-            }
-        } else {
-
-            $oResult = $oResult->where('CMD', '<', 6);
-        }
-        */
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
         if (!$bFullSet) {
@@ -1587,9 +1634,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
 
             //OPenPrice/SL/TP/CLOSED_PRICE
+            $price=$oValue->Mt4Prices;
 
-            //$price = $oResult[$dKey]->Mt4Prices()->first();
-            $digits = 5;//($price) ? $price->DIGITS : 5;
+            $digits =($price) ? $price->DIGITS : 5;
             $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
             $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
             $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
@@ -1605,37 +1652,18 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
     {
         $oFxHelper = new Fx();
 
-//        select count(*) as aggregate from `mt4_open_actual` where
-//    (select count(*) from
-//        `ibportal_agent_user` inner join `mt4_users_users`
-//        on
-//        `ibportal_agent_user`.`id` = `mt4_users_users`.`users_id`
-//
-//        where `mt4_users_users`.`mt4_users_id` = `mt4_open_actual`.`login`
-//    and `agent_id` = 5
-//    ) >= 1
 
-
-        //$oResult = new Mt4Open();
-
-        $oResult =new Mt4OpenActual();
+        $oResult = Mt4OpenActual::with('Mt4Prices');
 
         $table_name="mt4_open_actual";
         if (isset($aFilters['type']) && !empty($aFilters['type'])){
             if($aFilters['type'] == 1){
-                $oResult =new Mt4OpenPending();
+                $oResult = Mt4OpenPending::with('Mt4Prices');
                 $table_name="mt4_open_pending";
             }
         }
 
-//        SELECT * FROM `mt4_open_actual` inner join `mt4_users_users` on mt4_open_actual.login = mt4_users_users.mt4_users_id and mt4_open_actual.server_id = mt4_users_users.server_id where mt4_users_users.users_id in (5,1,2)
-
-
-
-//______________________________get agent user and their mt4 users
-        $agetUsersResult=\Modules\Ibportal\Entities\IbportalAgentUser::where('agent_id',$agent_id)
-
-            ->get();
+        $agetUsersResult=\Modules\Ibportal\Entities\IbportalAgentUser::where('agent_id',$agent_id)->get();
 
         $users_id=[];
         foreach($agetUsersResult as $user){
@@ -1652,13 +1680,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             $query->on($table_name.".server_id","=","mt4_users_users.server_id");
             $query->whereIn("mt4_users_users.users_id",$users_id);
         });
-
-
-//        $oResult =$oResult->with('agents')->whereHas('agents', function ($query) use ($agent_id) {
-//
-//           $query->where('agent_id', $agent_id);
-//       });
-
 
         /* =============== Login Filters =============== */
 
@@ -1694,18 +1715,7 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         if (!isset($aFilters['all_symbols']) || !$aFilters['all_symbols']) {
             $oResult = $oResult->whereIn('SYMBOL', $aFilters['symbol']);
         }
-
         /* =============== Type Filter  =============== */
-
-//        if (isset($aFilters['type']) && !empty($aFilters['type'])) {
-//            if ($aFilters['type'] == 1) {
-//                $oResult = $oResult->where('CMD', '<', 2);
-//            } elseif ($aFilters['type'] == 2) {
-//                $oResult = $oResult->whereBetween('CMD', [2, 5]);
-//            }
-//        } else {
-//            $oResult = $oResult->where('CMD', '<', 6);
-//        }
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
@@ -1726,7 +1736,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
 
             //OPenPrice/SL/TP/CLOSED_PRICE
-            $digits =5;// $oResult[$dKey]->Mt4Prices()->first()->DIGITS;
+            $price=$oValue->Mt4Prices;
+
+            $digits =($price) ? $price->DIGITS : 5;
             $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
             $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
             $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
@@ -1734,5 +1746,784 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         }
 
         return $oResult;
+    }
+
+    public function getMoneyManagerClosedTradesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC',$agent_id)
+    {
+        $oFxHelper = new Fx();
+
+        $oResult = Mt4Closed::with('Mt4Prices');
+
+
+        $server_id=$aFilters['server_id'];
+        $agentLogin=$aFilters['agentLogin'];
+
+        $mt4_users=modelMt4User::join("mt4_users_users",function($query) {
+            $query->on(DB::raw("mt4_users.COMMENT"),DB::raw("like"),DB::raw(" CONCAT('%M:', mt4_users_users.mt4_users_id,';%') "));
+
+            $query->where("mt4_users_users.users_id","=",current_user()->getUser()->id);
+            $query->where("mt4_users_users.server_id","=",0);
+        })->where("mt4_users.server_id","=",0)->get();
+
+
+        $mt4_users_array=[];
+        if(count($mt4_users)){
+            foreach($mt4_users as $user){
+                $mt4_users_array[]=$user->LOGIN;
+            }
+        }else{
+            return null;
+        }
+
+        $oResult=$oResult->whereIn('LOGIN',$mt4_users_array);
+        $oResult=$oResult->where('server_id',"=",0);
+
+        /* =============== Login Filters =============== */
+        if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
+            $oResult = $oResult->where('LOGIN', $aFilters['login']);
+        } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+        ) {
+
+            if (!empty($aFilters['from_login'])) {
+                $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
+            }
+
+            if (!empty($aFilters['to_login'])) {
+                $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
+            }
+        }
+
+        /* =============== Server Id Filter  =============== */
+
+        if (isset($aFilters['server_id']) && in_array($aFilters['server_id'], [0, 1])) {
+
+            $oResult = $oResult->where('server_id', $aFilters['server_id']);
+        }
+
+        /* =============== Groups Filter  =============== */
+        if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
+            $aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
+            $oResult = $oResult->whereIn('LOGIN', $aUsers);
+        }
+
+        /* =============== Date Filter  =============== */
+        if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
+        ) {
+
+            if (!empty($aFilters['from_date'])) {
+                $oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
+            }
+
+            if (!empty($aFilters['to_date'])) {
+                $oResult = $oResult->where('CLOSE_TIME', '<=', $aFilters['to_date'] . ' 23:59:59');
+            }
+        }
+
+        /* =============== Type Filter  =============== */
+
+        if (isset($aFilters['type']) && !empty($aFilters['type'])) {
+
+            if ($aFilters['type'] == 1) {
+
+                $oResult = $oResult->where('CMD', '<', 2);
+            } elseif ($aFilters['type'] == 2) {
+
+                $oResult = $oResult->whereBetween('CMD', [2, 5]);
+            }
+        } else {
+
+            $oResult = $oResult->where('CMD', '<', 6);
+        }
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+        }
+
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+            // Set CMD type
+            $oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
+            $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
+
+            $oResult[$dKey]->COMMISSION = round($oResult[$dKey]->COMMISSION, 2);
+            $oResult[$dKey]->SWAPS = round($oResult[$dKey]->SWAPS, 2);
+            $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
+
+            //OPenPrice/SL/TP/CLOSED_PRICE
+            $price=$oValue->Mt4Prices;
+
+            $digits =($price) ? $price->DIGITS : 5;;
+            $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
+            $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
+            $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
+            $oResult[$dKey]->CLOSE_PRICE = round($oResult[$dKey]->CLOSE_PRICE, $digits);
+        }
+
+
+        return $oResult;
+    }
+
+
+    public function getMoneyManagerOpenTradesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC',$agent_id)
+    {
+        $oFxHelper = new Fx();
+
+        $oResult = Mt4OpenActual::with('Mt4Prices');
+
+
+
+        $server_id=$aFilters['server_id'];
+        $agentLogin=$aFilters['agentLogin'];
+
+        $mt4_users=modelMt4User::join("mt4_users_users",function($query) {
+            $query->on(DB::raw("mt4_users.COMMENT"),DB::raw("like"),DB::raw(" CONCAT('%M:', mt4_users_users.mt4_users_id,';%') "));
+
+            $query->where("mt4_users_users.users_id","=",current_user()->getUser()->id);
+            $query->where("mt4_users_users.server_id","=",0);
+        })->where("mt4_users.server_id","=",0)->get();
+
+
+        $mt4_users_array=[];
+        if(count($mt4_users)){
+            foreach($mt4_users as $user){
+                $mt4_users_array[]=$user->LOGIN;
+            }
+        }else{
+            return null;
+        }
+
+
+        $oResult=$oResult->whereIn('LOGIN',$mt4_users_array);
+        $oResult=$oResult->where('server_id',"=",0);
+
+        /* =============== Login Filters =============== */
+
+        if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
+            $oResult = $oResult->where('LOGIN', $aFilters['login']);
+        } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+        ) {
+
+            if (!empty($aFilters['from_login'])) {
+                $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
+            }
+
+            if (!empty($aFilters['to_login'])) {
+                $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
+            }
+        }
+
+        /* =============== Server Id Filter  =============== */
+
+        if (isset($aFilters['server_id']) && in_array($aFilters['server_id'], [0, 1])) {
+
+            $oResult = $oResult->where('server_id', $aFilters['server_id']);
+        }
+
+        /* =============== Groups Filter  =============== */
+        if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
+            $aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
+            $oResult = $oResult->whereIn('LOGIN', $aUsers);
+        }
+
+        /* =============== Type Filter  =============== */
+        if (isset($aFilters['type']) && !empty($aFilters['type'])) {
+            if ($aFilters['type'] == 1) {
+                $oResult = $oResult->where('CMD', '<', 2);
+            } elseif ($aFilters['type'] == 2) {
+                $oResult = $oResult->whereBetween('CMD', [2, 5]);
+            }
+        } else {
+            $oResult = $oResult->where('CMD', '<', 6);
+        }
+
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+        }
+
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+            // Set CMD type
+            $oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
+            $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
+
+            $oResult[$dKey]->COMMISSION = round($oResult[$dKey]->COMMISSION, 2);
+            $oResult[$dKey]->SWAPS = round($oResult[$dKey]->SWAPS, 2);
+            $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
+
+            //OPenPrice/SL/TP/CLOSED_PRICE
+            $price=$oValue->Mt4Prices;
+
+            $digits =($price) ? $price->DIGITS : 5;
+            $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
+            $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
+            $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
+            $oResult[$dKey]->CLOSE_PRICE = round($oResult[$dKey]->CLOSE_PRICE, $digits);
+        }
+
+        return $oResult;
+    }
+
+    public function getAgentsClosedTradesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC',$agent_id)
+    {
+        $oFxHelper = new Fx();
+
+        $oResult = Mt4Closed::with('Mt4Prices');
+
+
+        $mt4_users=modelMt4User::join("mt4_users_users",function($query) {
+            $query->on("mt4_users.AGENT_ACCOUNT","=","mt4_users_users.mt4_users_id");
+
+            $query->where("mt4_users_users.users_id","=",current_user()->getUser()->id);
+            $query->where("mt4_users_users.server_id","=",0);
+        })->where("mt4_users.server_id","=",0)->get();
+
+
+        $mt4_users_array=[];
+        if(count($mt4_users)){
+            foreach($mt4_users as $user){
+                $mt4_users_array[]=$user->LOGIN;
+            }
+        }else{
+            return null;
+        }
+
+        $oResult=$oResult->whereIn('LOGIN',$mt4_users_array);
+        $oResult=$oResult->where('server_id',"=",0);
+
+        /* =============== Login Filters =============== */
+        if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
+            $oResult = $oResult->where('mt4_closed.LOGIN', $aFilters['login']);
+        } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+        ) {
+
+            if (!empty($aFilters['from_login'])) {
+                $oResult = $oResult->where('mt4_closed.LOGIN', '>=', $aFilters['from_login']);
+            }
+
+            if (!empty($aFilters['to_login'])) {
+                $oResult = $oResult->where('mt4_closed.LOGIN', '<=', $aFilters['to_login']);
+            }
+        }
+
+
+        /* =============== Server Id Filter  =============== */
+
+        if (isset($aFilters['server_id']) && in_array($aFilters['server_id'], [0, 1])) {
+
+            $oResult = $oResult->where('mt4_closed.server_id', $aFilters['server_id']);
+        }
+
+        /* =============== Groups Filter  =============== */
+        if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
+            $aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
+
+
+            $oResult = $oResult->whereIn('mt4_closed.LOGIN', $aUsers);
+        }
+
+        /* =============== Date Filter  =============== */
+        if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
+        ) {
+
+            if (!empty($aFilters['from_date'])) {
+                $oResult = $oResult->where('mt4_closed.CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
+            }
+
+            if (!empty($aFilters['to_date'])) {
+                $oResult = $oResult->where('mt4_closed.CLOSE_TIME', '<=', $aFilters['to_date'] . ' 23:59:59');
+            }
+        }
+
+        /* =============== Type Filter  =============== */
+
+        if (isset($aFilters['type']) && !empty($aFilters['type'])) {
+
+            if ($aFilters['type'] == 1) {
+
+                $oResult = $oResult->where('mt4_closed.CMD', '<', 2);
+            } elseif ($aFilters['type'] == 2) {
+
+                $oResult = $oResult->whereBetween('mt4_closed.CMD', [2, 5]);
+            }
+        } else {
+            $oResult = $oResult->where('mt4_closed.CMD', '<', 6);
+        }
+
+        $oResult = $oResult->orderBy("mt4_closed.".$sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+        }
+
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+            // Set CMD type
+            $oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
+            $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
+
+            $oResult[$dKey]->COMMISSION = round($oResult[$dKey]->COMMISSION, 2);
+            $oResult[$dKey]->SWAPS = round($oResult[$dKey]->SWAPS, 2);
+            $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
+
+            //OPenPrice/SL/TP/CLOSED_PRICE
+
+            $price=$oValue->Mt4Prices;
+
+            $digits =($price) ? $price->DIGITS : 5;
+            $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
+            $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
+            $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
+            $oResult[$dKey]->CLOSE_PRICE = round($oResult[$dKey]->CLOSE_PRICE, $digits);
+        }
+
+
+        return $oResult;
+    }
+
+
+    public function getAgentsOpenTradesByFilters($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC',$agent_id)
+    {
+
+        $oFxHelper = new Fx();
+        $oResult = Mt4OpenActual::with('Mt4Prices');
+
+        $mt4_users=modelMt4User::join("mt4_users_users",function($query) {
+            $query->on("mt4_users.AGENT_ACCOUNT","=","mt4_users_users.mt4_users_id");
+
+            $query->where("mt4_users_users.users_id","=",current_user()->getUser()->id);
+            $query->where("mt4_users_users.server_id","=",0);
+        })->where("mt4_users.server_id","=",0)->get();
+
+
+
+        $mt4_users_array=[];
+        if(count($mt4_users)){
+            foreach($mt4_users as $user){
+                $mt4_users_array[]=$user->LOGIN;
+            }
+        }else{
+            return null;
+        }
+
+
+        $oResult=$oResult->whereIn('LOGIN',$mt4_users_array);
+        $oResult=$oResult->where('server_id',"=",0);
+
+        /* =============== Login Filters =============== */
+
+        if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
+            $oResult = $oResult->where('LOGIN', $aFilters['login']);
+        } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+        ) {
+
+            if (!empty($aFilters['from_login'])) {
+                $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
+            }
+
+            if (!empty($aFilters['to_login'])) {
+                $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
+            }
+        }
+
+        /* =============== Server Id Filter  =============== */
+
+        if (isset($aFilters['server_id']) && in_array($aFilters['server_id'], [0, 1])) {
+
+            $oResult = $oResult->where('mt4_open_actual.server_id', $aFilters['server_id']);
+        }
+
+        /* =============== Groups Filter  =============== */
+        if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
+            $aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
+            $oResult = $oResult->whereIn('LOGIN', $aUsers);
+        }
+
+        /* =============== Type Filter  =============== */
+        if (isset($aFilters['type']) && !empty($aFilters['type'])) {
+            if ($aFilters['type'] == 1) {
+                $oResult = $oResult->where('CMD', '<', 2);
+            } elseif ($aFilters['type'] == 2) {
+                $oResult = $oResult->whereBetween('CMD', [2, 5]);
+            }
+        } else {
+            $oResult = $oResult->where('CMD', '<', 6);
+        }
+
+        $oResult = $oResult->orderBy("mt4_open_actual.".$sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+        }
+
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+            // Set CMD type
+            $oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
+            $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
+
+            $oResult[$dKey]->COMMISSION = round($oResult[$dKey]->COMMISSION, 2);
+            $oResult[$dKey]->SWAPS = round($oResult[$dKey]->SWAPS, 2);
+            $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
+
+            //OPenPrice/SL/TP/CLOSED_PRICE
+            $price=$oValue->Mt4Prices;
+
+            $digits =($price) ? $price->DIGITS : 5;
+            $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
+            $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
+            $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
+            $oResult[$dKey]->CLOSE_PRICE = round($oResult[$dKey]->CLOSE_PRICE, $digits);
+        }
+
+        return $oResult;
+    }
+
+    public function getAgentsTradingVolumeByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC',$agent_id)
+    {
+        $oFxHelper = new Fx();
+
+        $oResult = Mt4ClosedActual::with('Mt4Prices');
+
+        /* =================================== */
+
+        $mt4_users=modelMt4User::join("mt4_users_users",function($query) {
+            $query->on("mt4_users.AGENT_ACCOUNT","=","mt4_users_users.mt4_users_id");
+
+            $query->where("mt4_users_users.users_id","=",current_user()->getUser()->id);
+            $query->where("mt4_users_users.server_id","=",0);
+        })->where("mt4_users.server_id","=",0)->get();
+
+        $mt4_users_array=[];
+        if(count($mt4_users)){
+            foreach($mt4_users as $user){
+                $mt4_users_array[]=$user->LOGIN;
+            }
+        }else{
+            return null;
+        }
+
+        $oResult=$oResult->whereIn('LOGIN',$mt4_users_array);
+        $oResult=$oResult->where('server_id',"=",0);
+
+        /* =============== Login Filters =============== */
+        if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
+            $oResult = $oResult->where('mt4_closed_actual.LOGIN', $aFilters['login']);
+        } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+        ) {
+
+            if (!empty($aFilters['from_login'])) {
+                $oResult = $oResult->where('mt4_closed_actual.LOGIN', '>=', $aFilters['from_login']);
+            }
+
+            if (!empty($aFilters['to_login'])) {
+                $oResult = $oResult->where('mt4_closed_actual.LOGIN', '<=', $aFilters['to_login']);
+            }
+        }
+
+
+        /* =============== Type Filter  =============== */
+
+        if (isset($aFilters['type']) && !empty($aFilters['type'])) {
+
+            if ($aFilters['type'] == 1) {
+
+                $oResult = $oResult->where('mt4_closed_actual.CMD', '<', 2);
+            } elseif ($aFilters['type'] == 2) {
+
+                $oResult = $oResult->whereBetween('mt4_closed_actual.CMD', [2, 5]);
+            }
+        } else {
+
+            $oResult = $oResult->where('mt4_closed_actual.CMD', '<', 6);
+        }
+
+        $oResult = $oResult->groupBy("mt4_closed_actual.LOGIN");
+        $oResult = $oResult->select(['*',DB::raw('sum(VOLUME)/100 as tradingVolume')]);
+
+        $oResult = $oResult->orderBy("mt4_closed_actual.".$sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+        }
+
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+            // Set CMD type
+            $oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
+            $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
+
+            $oResult[$dKey]->COMMISSION = round($oResult[$dKey]->COMMISSION, 2);
+            $oResult[$dKey]->SWAPS = round($oResult[$dKey]->SWAPS, 2);
+            $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
+
+            //OPenPrice/SL/TP/CLOSED_PRICE
+
+            $price=$oValue->Mt4Prices;
+
+            $digits =($price) ? $price->DIGITS : 5;
+            $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
+            $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
+            $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
+            $oResult[$dKey]->CLOSE_PRICE = round($oResult[$dKey]->CLOSE_PRICE, $digits);
+        }
+
+
+        return $oResult;
+    }
+
+
+
+    public function getAgentsRebateByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC',$agent_id)
+    {
+        $oFxHelper = new Fx();
+
+        $oResult = Mt4ClosedBalance::with('Mt4Prices');
+
+        $mt4_users=modelMt4User::join("mt4_users_users",function($query) {
+            $query->on("mt4_users.AGENT_ACCOUNT","=","mt4_users_users.mt4_users_id");
+
+            $query->where("mt4_users_users.users_id","=",current_user()->getUser()->id);
+            $query->where("mt4_users_users.server_id","=",0);
+        })->where("mt4_users.server_id","=",0)->distinct('mt4_users.AGENT_ACCOUNT')->get();
+
+
+
+        $mt4_users_array=[];
+        if(count($mt4_users)){
+            foreach($mt4_users as $user){
+                $mt4_users_array[]=$user->AGENT_ACCOUNT;
+            }
+        }else{
+            return null;
+        }
+
+
+        $oResult=$oResult->whereIn('LOGIN',$mt4_users_array);
+        $oResult=$oResult->where('server_id',"=",0);
+
+        /* =============== Login Filters =============== */
+        if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
+            $oResult = $oResult->where('mt4_closed_balance.LOGIN', $aFilters['login']);
+        } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+        ) {
+
+            if (!empty($aFilters['from_login'])) {
+                $oResult = $oResult->where('mt4_closed_balance.LOGIN', '>=', $aFilters['from_login']);
+            }
+
+            if (!empty($aFilters['to_login'])) {
+                $oResult = $oResult->where('mt4_closed_balance.LOGIN', '<=', $aFilters['to_login']);
+            }
+        }
+
+
+
+        /* =============== Groups Filter  =============== */
+        if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
+            $aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
+            $oResult = $oResult->whereIn('mt4_closed_balance.LOGIN', $aUsers);
+        }
+
+        /* =============== Date Filter  =============== */
+        if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
+        ) {
+
+            if (!empty($aFilters['from_date'])) {
+                $oResult = $oResult->where('mt4_closed_balance.CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
+            }
+
+            if (!empty($aFilters['to_date'])) {
+                $oResult = $oResult->where('mt4_closed_balance.CLOSE_TIME', '<=', $aFilters['to_date'] . ' 23:59:59');
+            }
+        }
+
+
+        /* =============== Type Filter  =============== */
+
+        $oResult = $oResult->where('mt4_closed_balance.CMD', '=', 6);
+        $oResult = $oResult->where('mt4_closed_balance.PROFIT', '>',0);
+
+        $oResult = $oResult->orderBy("mt4_closed_balance.".$sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+        }
+
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+            // Set CMD type
+            $oResult[$dKey]->TYPE = $oFxHelper->getCmdType($oValue->CMD);
+            $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
+
+            $oResult[$dKey]->COMMISSION = round($oResult[$dKey]->COMMISSION, 2);
+            $oResult[$dKey]->SWAPS = round($oResult[$dKey]->SWAPS, 2);
+            $oResult[$dKey]->PROFIT = round($oResult[$dKey]->PROFIT, 2);
+
+            //OPenPrice/SL/TP/CLOSED_PRICE
+
+            $price=$oValue->Mt4Prices;
+
+
+            $digits =($price) ? $price->DIGITS : 5;
+            $oResult[$dKey]->OPEN_PRICE = round($oResult[$dKey]->OPEN_PRICE, $digits);
+            $oResult[$dKey]->SL = round($oResult[$dKey]->SL, $digits);
+            $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
+            $oResult[$dKey]->CLOSE_PRICE = round($oResult[$dKey]->CLOSE_PRICE, $digits);
+        }
+
+
+        return $oResult;
+    }
+
+
+    public function getAgentsDepositWithdrawalByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC')
+    {
+        $oFxHelper = new Fx();
+        $oResult = Mt4ClosedBalance::with('Mt4Prices');
+        $aSummury = [];
+        /* ===============================check admin or user================ */
+        $oResult = Mt4ClosedBalance::with('Mt4Prices');
+
+
+        $mt4_users=modelMt4User::join("mt4_users_users",function($query) {
+            $query->on("mt4_users.AGENT_ACCOUNT","=","mt4_users_users.mt4_users_id");
+
+            $query->where("mt4_users_users.users_id","=",current_user()->getUser()->id);
+            $query->where("mt4_users_users.server_id","=",0);
+        })->where("mt4_users.server_id","=",0)->get();
+
+
+
+        $mt4_users_array=[];
+        if(count($mt4_users)){
+            foreach($mt4_users as $user){
+                $mt4_users_array[]=$user->LOGIN;
+            }
+        }else{
+            return null;
+        }
+
+
+        $oResult=$oResult->whereIn('LOGIN',$mt4_users_array);
+        $oResult=$oResult->where('server_id',"=",0);
+
+        /* =============== Login Filters =============== */
+
+        if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
+            $oResult = $oResult->where('LOGIN', $aFilters['login']);
+        } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+        ) {
+
+            if (!empty($aFilters['from_login'])) {
+                $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
+            }
+
+            if (!empty($aFilters['to_login'])) {
+                $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
+            }
+        }
+
+        if (isset($aFilters['server_id']) && in_array($aFilters['server_id'], [0, 1])) {
+
+            $oResult = $oResult->where('server_id', $aFilters['server_id']);
+        }
+
+        /* =============== Groups Filter  =============== */
+        if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
+            $aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
+            $oResult = $oResult->whereIn('LOGIN', $aUsers);
+        }
+
+        /* =============== Date Filter  =============== */
+        if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
+        ) {
+
+            if (!empty($aFilters['from_date'])) {
+                $oResult = $oResult->where('CLOSE_TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
+            }
+
+            if (!empty($aFilters['to_date'])) {
+                $oResult = $oResult->where('CLOSE_TIME', '<=', $aFilters['to_date'] . ' 23:59:59');
+            }
+        }
+
+        /* =============== Get sum info and others =============== */
+        $depositResult = clone $oResult;
+        $withdrawsResult = clone $oResult;
+        $creditInResult = clone $oResult;
+        $creditOutResult = clone $oResult;
+
+
+        $aSummury ['deposits'] = $depositResult->where('CMD', 6)->where('PROFIT', '>', 0)->sum('PROFIT');
+        $aSummury ['withdraws'] = $withdrawsResult->where('CMD', 6)->where('PROFIT', '<', 0)->sum('PROFIT');
+        $aSummury ['creditIn'] = $creditInResult->where('CMD', 7)->where('PROFIT', '>', 0)->sum('PROFIT');
+        $aSummury ['creditOut'] = $creditOutResult->where('CMD', 7)->where('PROFIT', '<', 0)->sum('PROFIT');
+
+
+        if (isset($aFilters['type']) && !empty($aFilters['type'])) {
+            if ($aFilters['type'] == 1) {
+                $oResult = $oResult->where('CMD', 6);
+            } elseif ($aFilters['type'] == 2) {
+                $oResult = $oResult->where('CMD', 7);
+            } elseif ($aFilters['type'] == 3) {
+                $oResult = $oResult->where('CMD', 6)->where('PROFIT', '>', 0);
+            } elseif ($aFilters['type'] == 4) {
+                $oResult = $oResult->where('CMD', 6)->where('PROFIT', '<', 0);
+            } elseif ($aFilters['type'] == 5) {
+                $oResult = $oResult->where('CMD', 7)->where('PROFIT', '>', 0);
+            } elseif ($aFilters['type'] == 6) {
+                $oResult = $oResult->where('CMD', 7)->where('PROFIT', '<', 0);
+            }
+        } else {
+            $oResult = $oResult->whereIn('CMD', [6,7]);
+        }
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+        }
+        /* =============== Preparing Output  =============== */
+        foreach ($oResult as $dKey => $oValue) {
+            // Set CMD type
+            $oResult[$dKey]->TYPE = $oFxHelper->getAccountantType($oValue->CMD, $oValue->PROFIT);
+            $oResult[$dKey]->VOLUME = $oValue->VOLUME / 100;
+
+            $oResult[$dKey]->EQUITY = round($oResult[$dKey]->EQUITY, 2);
+            $oResult[$dKey]->BALANCE = round($oResult[$dKey]->BALANCE, 2);
+            $oResult[$dKey]->AGENT_ACCOUNT = round($oResult[$dKey]->AGENT_ACCOUNT, 2);
+            $oResult[$dKey]->MARGIN = round($oResult[$dKey]->MARGIN, 2);
+            $oResult[$dKey]->MARGIN_FREE = round($oResult[$dKey]->MARGIN_FREE, 2);
+            $oResult[$dKey]->LEVERAGE = round($oResult[$dKey]->LEVERAGE, 2);
+        }
+        return [$oResult, $aSummury];
     }
 }

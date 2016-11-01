@@ -115,7 +115,10 @@
                                                     <a href="{{ route('accounts.detailsAccount').'?edit_id='.$oResult->id }}"
                                                        class="fa fa-file-text tooltip_number"
                                                        data-original-title="{{trans('accounts::accounts.detailsAccount')}}"></a>
-                                                    <a href="{{ route('accounts.asignMt4Users').'?account_id='.$oResult->id }}"
+                                                <a href="{{ route('accounts.changePassword').'?account_id='.$oResult->id }}"
+                                                   class="fa fa-star tooltip_number"
+                                                   data-original-title="{{trans('accounts::accounts.changePassword')}}"></a>
+                                                <a href="{{ route('accounts.asignMt4Users').'?account_id='.$oResult->id }}"
                                                        class="fa fa-link tooltip_number"
                                                        data-original-title="{{trans('accounts::accounts.asignMt4Users')}}"></a>
 
