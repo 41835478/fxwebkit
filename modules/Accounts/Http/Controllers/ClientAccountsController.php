@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Redirect;
 use Modules\Accounts\Http\Controllers\ApiController;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Fxweb\Models\Mt4User as modelMt4User;
+use Modules\Request\Entities\RequestChangeLeverage;
+use Modules\Request\Repositories\RequestContract as RequestLog;
 
 class ClientAccountsController extends Controller
 {
@@ -21,13 +23,14 @@ class ClientAccountsController extends Controller
     protected $oUsers;
     protected $oMt4Trade;
     protected $oMt4User;
+    protected $RequestLog;
 
     public function __construct(
-        Users $oUsers, Mt4User $oMt4User, Mt4Trade $oMt4Trade
+        Users $oUsers, Mt4User $oMt4User, Mt4Trade $oMt4Trade,RequestLog $RequestLog
     )
     {
         $this->oUsers = $oUsers;
-
+        $this->RequestLog = $RequestLog;
         $this->oMt4Trade = $oMt4Trade;
         $this->oMt4User = $oMt4User;
     }
@@ -165,10 +168,25 @@ class ClientAccountsController extends Controller
             $currentLeverage = [$oCurrentLeverage, $oCurrentLeverage];
         }
 
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+
+        $aRequestStatus = config('request.requestStatus');
+
+        $oResults = null;
+        $status = (isset($oRequest->status))? $oRequest->status : -1;
+            $aFilterParams['status']=$status;
+            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['server_id'] = $oRequest->server_id;
+
+            $oResults = $this->RequestLog->getChangeLeverageRequestByFilters($aFilterParams, false, $sOrder, $sSort);
+       // dd($oResults);
 
         return view('accounts::client.addLeverage')
             ->with('Pssword', $Pssword)
             ->with('Result', $Result)
+            ->with('oResults', $oResults)
+            ->with('aRequestStatus', $aRequestStatus)
             ->with('currentLeverage', $currentLeverage)
             ->with('changeleverage', $changeleverage)
             ->with('login', $oRequest->login)

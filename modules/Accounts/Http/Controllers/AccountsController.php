@@ -66,7 +66,6 @@ class AccountsController extends Controller
             $aFilterParams['last_name'] = $oRequest->last_name;
             $aFilterParams['email'] = $oRequest->email;
             $aFilterParams['active'] = $oRequest->active;
-
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
 
@@ -74,14 +73,12 @@ class AccountsController extends Controller
 
         if ($oRequest->has('search')||$oRequest->has('active')) {
 
-            $aFilterParams['active'] = $oRequest->active;
+            $aFilterParams['active'] = 1;
             $role = explode(',', Config::get('fxweb.client_default_role'));
 
             $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
 
         }
-
-
 
         return view('accounts::accountsList')
             ->with('oResults', $oResults)
@@ -96,21 +93,20 @@ class AccountsController extends Controller
 
 
     public function getActivateUser(Request $oRequest){
-        $user=Sentinel::findById($oRequest->account_id);
-        $activation = Activation::exists($user);
 
+        $user=Sentinel::findById($oRequest->id);
+
+        $activation = Activation::exists($user);
 
         if ($activation)
         {
-           Activation::where('user_id',$oRequest->account_id)->update(['completed'=>1]);
-
-
+           Activation::where('user_id',$oRequest->id)->update(['completed'=>1]);
         }
         else
         {
             if(Activation::create($user))
             {
-                Activation::where('user_id',$oRequest->account_id)->update(['completed'=>1]);
+                Activation::where('user_id',$oRequest->id)->update(['completed'=>1]);
             }else{
 
             return Redirect::route('accounts.accountsList')
@@ -118,10 +114,9 @@ class AccountsController extends Controller
             }
         }
 
-        $assignMt4UsresByEmail=$this->oMt4User->getMt4UsersByEmail($user);
-
         return Redirect::route('accounts.accountsList');
     }
+
     public function getDeleteAccount(Request $oRequest)
     {
         $result = $this->oUsers->deleteUser($oRequest->delete_id);

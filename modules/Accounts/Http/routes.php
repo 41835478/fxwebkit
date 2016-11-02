@@ -27,8 +27,8 @@ Route::group(['middleware' => ['authenticate.admin'], 'prefix' => 'admin', 'name
         'getWithDrawal'=>'accounts.withDrawal',
         'getMt4AssignedUsers'=>'accounts.mt4AssignedUsers',
         'getUnssignUserFromMt4User'=>'accounts.unssignUserFromMt4User',
-        'getActivateUser'=>'accounts.activateUser'
-            ,'getAssignAccountManager'=>'accounts.assignAccountManager',
+       'getActivateUser'=>'accounts.activateUser',
+            'getAssignAccountManager'=>'accounts.assignAccountManager',
             'getChangePassword'=>'accounts.changePassword',
 
     ]);

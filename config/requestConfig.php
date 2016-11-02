@@ -42,11 +42,10 @@ return [
 			'icon' => 'fa-briefcase',
 		],
 		[
-			'route' => 'admin.request.assignAccount',
-			'title' => 'assignAccount',
+			'route' => 'admin.request.activateUser',
+			'title' => 'activateUser',
 			'icon' => 'fa-briefcase',
 		]
-
 
 	],
 	'client_menu' => [

@@ -99,6 +99,10 @@ class EloquentRequestContractRepository implements RequestContract
         if (isset($aFilters['status']) && $aFilters['status'] >= 0) {
             $oResult = $oResult->where('status', $aFilters['status']);
         }
+
+        if (isset($aFilters['server_id']) && $aFilters['server_id'] >= 0) {
+            $oResult = $oResult->where('server_id', $aFilters['server_id']);
+        }
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
         if (!$bFullSet) {

@@ -50,5 +50,7 @@ return [
     'password_type'=>'Password Type',
     'forword'=>'Forword',
     'edit'=>'Edit',
+    'activateUser'=>'Activate User',
+    'id'=>'ID',
 
 ];
