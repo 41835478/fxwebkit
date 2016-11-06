@@ -182,6 +182,7 @@
 'activateUser'=>'تفعيل المستخدم',
 'notAssigned'=>'لم يتم تعيين',
 'currentLeverage'=>'الرافعة المالية الحالية',
+
 'yes'=>'نعم',
 'no'=>'لا',
 'are_you_sure'=>'Are you sure you want to UnAssign User',

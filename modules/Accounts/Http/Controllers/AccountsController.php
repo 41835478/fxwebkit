@@ -1011,13 +1011,16 @@ class AccountsController extends Controller
             'showWithDrawal'=>$showWithDrawal,
             'changeLeverageWarning'=>$oRequest->changeLeverageWarning,
             'apiMasterPassword'=>$oRequest->apiMasterPassword,
-            'is_client' => $is_client,
-
+            'is_client' => $is_client
         ];
 
 
         $editConfig = new EditConfig();
-        $editConfig->editConfigFile('config/accountsConfig.php', $accountsSetting);
+        $editConfig->editConfigFile('config/accountsConfig.php', $accountsSetting,
+            [
+
+                'client_menu'=>$editConfig-> menuToStringWithDisplay(config('accounts.client_menu'),$oRequest->client_menu_display)
+            ]);
 
         \Session::flash('refresh', 'true');
 

@@ -580,7 +580,11 @@ class ReportsController extends Controller
 
         $editConfig = new EditConfig();
 
-        $editConfig->editConfigFile('config/reportsConfig.php', $reportsSetting);
+        $editConfig->editConfigFile('config/reportsConfig.php', $reportsSetting,
+            [
+
+                'client_menu'=>$editConfig-> menuToStringWithDisplay(config('reports.client_menu'),$oRequest->client_menu_display)
+            ]);
 
         \Session::flash('refresh', 'true');
 

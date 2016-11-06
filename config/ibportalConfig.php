@@ -53,37 +53,42 @@ return [
             'icon' => 'fa fa-gears',
         ]
 
-    ],
-    'client_menu' => [
-        [
-            'route' => 'clients.ibportal.agentSummary',
-            'title' => 'summary',
-            'icon' => 'fa fa-bar-chart-o',
-        ], [
-            'route' => 'client.ibportal.agentUser',
-            'title' => 'agent_users',
-            'icon' => 'fa fa-user',
-        ],[
-            'route' => 'clients.ibportal.agentMoney',
-            'title' => 'agentMoney',
-            'icon' => 'fa fa-money',
-        ],
-
-        [
-            'route' => 'clients.ibportal.openOrders',
-            'title' => 'OpenOrders',
-            'icon' => 'fa-folder-open-o',
-        ],
-        [
-            'route' => 'clients.ibportal.closedOrders',
-            'title' => 'ClosedOrders',
-            'icon' => 'fa-briefcase',
-        ],
-        [
-            'route' => 'client.ibportal.planList',
-            'title' => 'plans',
-            'icon' => 'fa-briefcase',
-        ]
-    ]
+    ],'client_menu' => [ [
+                    'display'=>'1',
+                    'route' => 'clients.ibportal.agentSummary',
+                    'title' => 'summary',
+                    'icon' => 'fa fa-bar-chart-o',
+                ],
+             [
+                    'display'=>'1',
+                    'route' => 'client.ibportal.agentUser',
+                    'title' => 'agent_users',
+                    'icon' => 'fa fa-user',
+                ],
+             [
+                    'display'=>'1',
+                    'route' => 'clients.ibportal.agentMoney',
+                    'title' => 'agentMoney',
+                    'icon' => 'fa fa-money',
+                ],
+             [
+                    'display'=>'1',
+                    'route' => 'clients.ibportal.openOrders',
+                    'title' => 'OpenOrders',
+                    'icon' => 'fa-folder-open-o',
+                ],
+             [
+                    'display'=>'1',
+                    'route' => 'clients.ibportal.closedOrders',
+                    'title' => 'ClosedOrders',
+                    'icon' => 'fa-briefcase',
+                ],
+             [
+                    'display'=>'1',
+                    'route' => 'client.ibportal.planList',
+                    'title' => 'plans',
+                    'icon' => 'fa-briefcase',
+                ],
+            ]
 
 ];

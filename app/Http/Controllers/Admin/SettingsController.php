@@ -546,6 +546,9 @@ return $this->getMassMailer($oRequest);
 
         $editConfig = new EditConfig();
 
+
+
+
         $editConfig->editConfigFile('config/fxweb.php', $aSetting,
             [
                 'GroupLive'=>$editConfig->arrayToString('GroupLive',$oRequest->GroupLive),
@@ -553,8 +556,9 @@ return $this->getMassMailer($oRequest);
                  'DepositLive'=>$editConfig->arrayToString('DepositLive',$oRequest->DepositLive),
                 'DepositDemo'=>$editConfig->arrayToString('DepositDemo',$oRequest->DepositDemo),
                 'leverage'=>$editConfig->arrayToString('leverage',$oRequest->leverage),
-                'leverageDemo'=>$editConfig->arrayToString('leverageDemo',$oRequest->leverageDemo),
-            ]);
+                'leverageDemo'=>$editConfig->arrayToString('leverageDemo',$oRequest->leverageDemo)
+
+             ]);
 
 
 

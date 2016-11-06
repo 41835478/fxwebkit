@@ -543,7 +543,11 @@ class ToolsController extends Controller
         ];
 
         $editConfig = new EditConfig();
-        $editConfig->editConfigFile('config/toolsConfig.php', $toolsSetting);
+        $editConfig->editConfigFile('config/toolsConfig.php', $toolsSetting,
+            [
+
+                'client_menu'=>$editConfig-> menuToStringWithDisplay(config('tools.client_menu'),$oRequest->client_menu_display)
+            ]);
 
         \Session::flash('refresh', 'true');
 

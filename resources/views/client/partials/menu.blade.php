@@ -30,12 +30,14 @@
                 @if (count($aModule['menu']))
                 <ul>
                     @foreach($aModule['menu'] as $aSubMenu)
+                        @if( $aSubMenu['display'] )
                     <li>
                         <a tabindex="-1" href="{{ $aSubMenu['route'] }}">
                             <i class="menu-icon fa {{ $aSubMenu['icon'] }}"></i>
                             <span class="mm-text">{{ $aSubMenu['title'] }}</span>
                         </a>
                     </li>
+                        @endif
                     @endforeach
                 </ul>
                 @endif

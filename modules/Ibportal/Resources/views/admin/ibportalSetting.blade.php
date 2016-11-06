@@ -50,6 +50,28 @@
                                             </label>
                                         </div>
                                     </div>
+
+
+
+
+
+                                </div>
+
+                                <hr>
+                                <div class="row">
+                                    <div><span>{{trans('general.selectVisibleTabs')}}</span></div>
+
+                                    @foreach(config('ibportal.client_menu') as $index=>$tab)
+                                        <div class="col-sm-4">
+                                            <div class="checkbox">
+                                                <label>
+                                                    {!! Form::checkbox('client_menu_display['.$index.']', 1,$tab['display'], ['class'=>'px','id'=>'tab'.$tab['title']]) !!}
+                                                    <span class="lbl">{{ trans('ibportal::ibportal.'.$tab['title']) }}</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        @endforeach
+
                                     <!-- col-sm-6 -->
                                 </div>
                             </div>

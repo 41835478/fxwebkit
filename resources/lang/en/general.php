@@ -216,4 +216,5 @@
 
     'changePassword'=>'Change Password',
     'newPassword'=>'New Password',
+    'selectVisibleTabs'=>'please select tabs to display it for client'
 ]; ?>

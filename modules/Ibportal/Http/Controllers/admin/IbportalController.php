@@ -657,7 +657,11 @@ class IbportalController extends Controller
         ];
 
         $editConfig = new EditConfig();
-        $editConfig->editConfigFile('config/ibportalConfig.php', $ibportalSetting);
+        $editConfig->editConfigFile('config/ibportalConfig.php', $ibportalSetting,
+            [
+
+                'client_menu'=>$editConfig-> menuToStringWithDisplay(config('ibportal.client_menu'),$oRequest->client_menu_display)
+            ]);
 
         \Session::flash('refresh', 'true');
 

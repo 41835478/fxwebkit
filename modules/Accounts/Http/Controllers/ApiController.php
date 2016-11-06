@@ -146,6 +146,15 @@ class ApiController extends Controller
             $requestLog->updateChangePasswordRequest($logId, $login, $newPassword, '', '', 1,$passwordType);
             \Session::flash('flash_success',trans('accounts::accounts.success'));
 
+
+            $email = new Email();
+
+            $mt4User = Mt4User::select('EMAIL')->where('LOGIN', $login)->where('server_id', $this->server_id)->first();
+            $sendToEmail = ($mt4User && $mt4User->EMAIL != '') ? $mt4User->EMAIL : current_user()->getUser()->email;
+
+            $email->changeMt4Password(['email' => $sendToEmail, 'login' => $login, 'newPassword' => $newPassword, 'passwordType' => $passwordType]);
+
+
         } else {
 
             $requestLog->updateChangePasswordRequest($logId, $login, $newPassword, '', '', 2,$passwordType);
@@ -276,6 +285,15 @@ class ApiController extends Controller
             $requestLog->updateInternalTransferRequest($logId, $login1, $login2, $amount, '', '', 1);
             \Session::flash('flash_success',trans('accounts::accounts.success'));
 
+
+
+            $email = new Email();
+
+            $mt4User = Mt4User::select('EMAIL')->where('LOGIN', $login1)->where('server_id', $this->server_id)->first();
+            $sendToEmail = ($mt4User && $mt4User->EMAIL != '') ? $mt4User->EMAIL : current_user()->getUser()->email;
+
+            $email->internalTransfers(['email' => $sendToEmail, 'login1' => $login1, 'login2' => $login2, 'amount' => $amount]);
+
         } else {
             $requestLog->updateInternalTransferRequest($logId, $login1, $login2, $amount, '', '', 2);
 
@@ -340,6 +358,15 @@ class ApiController extends Controller
 
             $requestLog->updateWithDrawalRequest($logId, $login1, $amount, '', '', 1);
             \Session::flash('flash_success',trans('accounts::accounts.success'));
+
+
+            $email = new Email();
+
+            $mt4User = Mt4User::select('EMAIL')->where('LOGIN', $login1)->where('server_id', $this->server_id)->first();
+            $sendToEmail = ($mt4User && $mt4User->EMAIL != '') ? $mt4User->EMAIL : current_user()->getUser()->email;
+
+
+            $email->withDrawal(['email' => $sendToEmail, 'login' => $login1, 'amount' => $amount]);
 
         } else {
             $requestLog->updateWithDrawalRequest($logId, $login1, $amount, '', '', 2);
