@@ -82,4 +82,22 @@ class EditConfigController extends Controller
         return $sArray;
     }
 
+
+    public function menuToStringWithDisplay($client_menu,$client_menu_display)
+    {
+        $menuString="'client_menu' => [" ;
+        foreach ( $client_menu as $index=>$tab){
+
+            $display=(isset($client_menu_display[$index]))?$client_menu_display[$index]:0;
+            $menuString.=" [
+                    'display'=>'{$display}',
+                    'route' => '{$tab["route"]}',
+                    'title' => '{$tab["title"]}',
+                    'icon' => '{$tab["icon"]}',
+                ],
+            ";
+        }
+        $menuString.="]";
+        return $menuString;
+    }
 }

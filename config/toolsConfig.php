@@ -34,24 +34,23 @@ return [
             'title' => 'settings',
             'icon' => 'fa fa-gears',
         ]
-    ],
-
-    'client_menu' => [
-
-        [
-            'route' => 'client.tools.futureContract',
-            'title' => 'futureContract',
-            'icon' => 'fa fa-suitcase',
-        ],
-        [
-            'route' => 'client.tools.marketWatch',
-            'title' => 'marketWatch',
-            'icon' => 'fa fa-shopping-cart',
-        ],
-        [
-            'route' => 'client.tools.holiday',
-            'title' => 'holiday',
-            'icon' => 'fa fa-home',
-        ]
-    ]
+    ],'client_menu' => [ [
+                    'display'=>'1',
+                    'route' => 'client.tools.futureContract',
+                    'title' => 'futureContract',
+                    'icon' => 'fa fa-suitcase',
+                ],
+             [
+                    'display'=>'1',
+                    'route' => 'client.tools.marketWatch',
+                    'title' => 'marketWatch',
+                    'icon' => 'fa fa-shopping-cart',
+                ],
+             [
+                    'display'=>'1',
+                    'route' => 'client.tools.holiday',
+                    'title' => 'holiday',
+                    'icon' => 'fa fa-home',
+                ],
+            ]
 ];

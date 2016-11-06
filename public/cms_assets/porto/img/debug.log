@@ -1,0 +1,78 @@
+[1021/071042:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1021/071044:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1021/071044:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1021/071045:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1021/071045:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1021/071046:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1021/071046:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1021/071048:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1021/071048:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1021/071049:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1021/071049:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1021/071050:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1021/071050:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1021/071051:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1021/071051:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1021/071052:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1021/071052:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1021/071053:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1021/071054:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1021/071054:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1022/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1022/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1022/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1022/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1022/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1022/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1022/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1022/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1022/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1022/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1022/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1022/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1022/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1022/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1022/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1022/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1022/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1022/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1022/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1022/065530:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1023/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1023/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1023/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1023/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1023/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1023/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1023/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1023/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1023/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1023/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1023/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1023/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1023/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1023/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1023/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1023/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1023/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1023/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1023/065529:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1023/065529:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1024/121122:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1024/121122:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1024/121122:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1024/121122:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1024/121122:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1024/121122:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1024/121122:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1024/121122:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1024/121122:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1024/121122:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1024/121122:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1024/121122:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1024/121122:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1024/121122:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1024/121122:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1024/121122:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded
+[1024/121122:ERROR:registration_protocol_win.cc(53)] CreateFile: The system cannot find the file specified. (0x2)
+[1024/121122:ERROR:main_dll_loader_win.cc(199)] Could not find exported function RelaunchChromeBrowserWithNewCommandLineIfNeeded

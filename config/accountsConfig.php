@@ -54,19 +54,18 @@ return [
             'icon' => 'fa fa-gears',
         ]
 
-    ],
-    'client_menu' => [
-
-        [
-            'route' => 'client.accounts.addMt4User',
-            'title' => 'addMt4User',
-            'icon' => 'fa fa-plus',
-        ],
-        [
-            'route' => 'clients.accounts.Mt4UsersList',
-            'title' => 'mt4UsersList',
-            'icon' => 'fa-briefcase',
-        ]
-    ]
+    ],'client_menu' => [ [
+                    'display'=>'1',
+                    'route' => 'client.accounts.addMt4User',
+                    'title' => 'addMt4User',
+                    'icon' => 'fa fa-plus',
+                ],
+             [
+                    'display'=>'1',
+                    'route' => 'clients.accounts.Mt4UsersList',
+                    'title' => 'mt4UsersList',
+                    'icon' => 'fa-briefcase',
+                ],
+            ]
 
 ];

@@ -176,4 +176,5 @@
 'activateUser'=>'تفعيل المستخدم',
 'notAssigned'=>'لم يتم تعيين',
 'currentLeverage'=>'الرافعة المالية الحالية',
+    'assignAccountManager'=>' تعيين مدير حساب ',
 ]; ?>

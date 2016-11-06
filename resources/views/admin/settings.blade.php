@@ -504,6 +504,13 @@
                                             {!! Form::text('layoutAssetsFolder',config('fxweb.layoutAssetsFolder'),['class'=>'form-control']) !!}
                                         </div>
                                     </div>
+
+
+
+
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -523,7 +530,14 @@
         </div>
     </div>
 
-                {!! Form::close() !!}
+
+
+
+
+
+
+
+        {!! Form::close() !!}
 
 
 @stop
