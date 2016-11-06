@@ -99,7 +99,8 @@
 
             </div>
             <!-- col-sm-6 -->
-
+            </div>
+            <div class="row">
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('accounts::accounts.ZipCode') }}</label>

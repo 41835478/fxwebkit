@@ -177,7 +177,7 @@
     'assignedUsers' => 'Assigned Users',
     'lastLogin' => 'Last Login',
     'registrationDate' => 'Registration Date',
-    'assignedMt4Users' => 'assigned MT4 Users',
+    'assignedMt4Users' => 'Assigned MT4 Users',
     'active' => 'Active',
     'notActive' => 'Not Active',
     'activateUser' => 'Activate User',
@@ -196,5 +196,12 @@
     'balance'=>'Balance',
     'fundAccount'=>'Fund Account',
     'currency'=>'Currency',
-    'unAssigned'=>'unAssigned'
+    'success'=>'Success',
+    'the_user_has'=>'The User has been assigned successfully',
+    'this_user_has'=>'This user has been assigned successfully',
+    'error_please_try_again'=>'Error please try again.',
+    'error_please'=>'Error, please try again later .',
+    'unAssigned'=>'unAssigned',
+    'the_user_has'=>'The User has been Unassigned Successfully',
+    'confirmPassword'=>'Confirm Password',
 ]; ?>

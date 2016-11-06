@@ -226,7 +226,7 @@
                         <!-- ol-sm-6 -->
                         <div class="col-xs-8 col-sm-4 text-left">
                             <div class="form-group no-margin-hr">
-                                <label class="control-label">{{ $oResults->LAVARGE }}</label>
+                                <label class="control-label">1:{{ $oResults->LEVERAGE }}</label>
                             </div>
                         </div>
                         <!--ol-sm-6 -->
@@ -398,7 +398,7 @@
                         <th>{{ trans('accounts::accounts.status :') }} </th>
                         <td>{{ $oResults->STATUS }}</td>
                         <th>{{ trans('accounts::accounts.leverage :') }}</th>
-                        <td>{{ $oResults->LEVERAGE }}</td>
+                        <td>1:{{ $oResults->LEVERAGE }}</td>
                     </tr>
 
                     <tr>

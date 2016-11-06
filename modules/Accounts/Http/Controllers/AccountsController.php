@@ -5,6 +5,7 @@ namespace Modules\Accounts\Http\Controllers;
 use Fxweb\Models\User;
 use Pingpong\Modules\Routing\Controller;
 use Modules\Accounts\Http\Requests\AccountsRequest;
+use Modules\Accounts\Http\Requests\ChangePasswordRequest;
 use Illuminate\Http\Request;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
@@ -111,9 +112,9 @@ class AccountsController extends Controller
             {
                 Activation::where('user_id',$oRequest->account_id)->update(['completed'=>1]);
             }else{
-            /* TODO please translate this message */
+
             return Redirect::route('accounts.accountsList')
-                ->withErrors('Error, please try again later .');
+                ->withErrors(trans('accounts::accounts.error_please'));
             }
         }
 
@@ -124,7 +125,9 @@ class AccountsController extends Controller
     public function getDeleteAccount(Request $oRequest)
     {
         $result = $this->oUsers->deleteUser($oRequest->delete_id);
-     /* TODO with success */
+
+        \Session::flash('flash_success',trans('accounts::accounts.success'));
+
         return Redirect::route('accounts.accountsList')->withErrors($result);
     }
 
@@ -179,7 +182,6 @@ class AccountsController extends Controller
 
     public function getEditAccount(Request $oRequest)
     {
-
         $carbon = new Carbon();
         $dt = $carbon->now();
         $dt->subYears(18);
@@ -205,7 +207,6 @@ class AccountsController extends Controller
 
             $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
 
-
             $userInfo = [
                 'edit_id' => $oRequest->edit_id,
                 'first_name' => $oResult['first_name'],
@@ -228,7 +229,6 @@ class AccountsController extends Controller
 
     public function postAddAccount(AddUserRequest $oRequest)
     {
-
         $result = 0;
 
         $admin_role = explode(',', Config::get('fxweb.client_default_role'));
@@ -306,8 +306,6 @@ class AccountsController extends Controller
 
     public function getAsignMt4Users(Request $oRequest)
     {
-
-
         $account_id = $oRequest->account_id;
 
         $oGroups = $this->oMt4User->getAllGroups();
@@ -333,7 +331,6 @@ class AccountsController extends Controller
             $aGroups[$oGroup->group] = $oGroup->group;
         }
 
-
         if ($oRequest->has('search')) {
             $aFilterParams['from_login'] = $oRequest->from_login;
             $aFilterParams['to_login'] = $oRequest->to_login;
@@ -346,8 +343,7 @@ class AccountsController extends Controller
             $aFilterParams['signed'] = $oRequest->signed;
             $aFilterParams['account_id'] = $account_id;
             $aFilterParams['order'] = $oRequest->order;
-
-           }
+             }
         $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
 
 
@@ -418,7 +414,6 @@ class AccountsController extends Controller
 
     public function getDetailsAccount(Request $oRequest)
     {
-
         $oResult = $this->oUsers->getUserDetails($oRequest->edit_id);
 
         $user_details = [
@@ -443,7 +438,6 @@ class AccountsController extends Controller
 
     public function getEditClientInfo(Request $oRequest)
     {
-
         $userInfo = ['edit_id' => 0,
             'first_name' => '',
             'last_name' => '',
@@ -486,7 +480,6 @@ class AccountsController extends Controller
 
     public function getMt4UsersList(Request $oRequest)
     {
-
         $oGroups = $this->oMt4User->getAllGroups();
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
@@ -600,8 +593,6 @@ class AccountsController extends Controller
 
     public function getClientAddMt4User(Request $oRequest)
     {
-
-
         $userInfo = [
             'login' => $oRequest['login'],
             'password' => $oRequest['password']
@@ -612,7 +603,6 @@ class AccountsController extends Controller
 
     public function postClientAddMt4User(AsignMt4User $oRequest)
     {
-
         $userInfo = [
             'login' => $oRequest['login'],
             'password' => $oRequest['password']];
@@ -623,14 +613,11 @@ class AccountsController extends Controller
 
     public function getBlockAccount(Request $oRequest)
     {
-
-
         $user = Sentinel::findById($oRequest->account_id);
         $user->removePermission('user.block')->save();
 
-//        $role = Sentinel::findRoleByName('block');
-//        $role->users()->attach($user);
-        /* TODO with success */
+        \Session::flash('flash_success',trans('accounts::accounts.success'));
+
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.unblock_user'));
     }
 
@@ -642,9 +629,10 @@ class AccountsController extends Controller
             'user.block' => true
         ];
         $user->save();
-//        $role = Sentinel::findRoleByName('block');
-//        $role->users()->detach($user);
-        /* TODO with success */
+
+
+        \Session::flash('flash_success',trans('accounts::accounts.success'));
+
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.block_user'));
     }
 
@@ -654,12 +642,10 @@ class AccountsController extends Controller
         $user = Sentinel::findById($oRequest->account_id);
 
         $user->removePermission('user.denyLiveAccount')->save();
-//        $role = Sentinel::findRoleByName('denyLiveAccount');
-//        $role->users()->detach($user);
-        /* TODO with success */
+
+        \Session::flash('flash_success',trans('accounts::accounts.success'));
+
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.allowCreatLiveMt4Account'));
-
-
     }
 
 
@@ -667,13 +653,13 @@ class AccountsController extends Controller
     {
         $user = Sentinel::findById($oRequest->account_id);
 
-//        $role = Sentinel::findRoleByName('denyLiveAccount');
-//        $role->users()->attach($user);
         $user->permissions = [
             'user.denyLiveAccount' => true
         ];
         $user->save();
-        /* TODO with success */
+
+        \Session::flash('flash_success',trans('accounts::accounts.success'));
+
         return Redirect::route('accounts.accountsList')->withErrors(trans('accounts::accounts.denyCreatLiveMt4Account'));
 
     }
@@ -704,10 +690,8 @@ class AccountsController extends Controller
 
     public function postMt4Leverage(Request $oRequest)
     {
-
         $Result = config('fxweb.leverage');
         $Pssword = config('accountsConfig.apiReqiredConfirmMt4Password');
-
 
         $changeleverage = [
             'login' => '',
@@ -724,7 +708,9 @@ class AccountsController extends Controller
         }
         $result = $oApiController->changeMt4Leverage($oRequest['login'], $oRequest['leverage'], $oRequest['oldPassword']);
 
-        /* TODO with success */
+
+        \Session::flash('flash_success',trans('accounts::accounts.success'));
+
         return view('accounts::addLeverage')
             ->with('Result', $Result)
             ->with('Pssword', $Pssword)
@@ -771,6 +757,8 @@ class AccountsController extends Controller
             'passwordType_array'=>$loginPasswordType,
             'passwordType'=>''];
 
+        \Session::flash('flash_success',trans('accounts::accounts.success'));
+
         $mT4ChangePassword = new ApiController();
         if($oRequest['server_id']==1){
             $mT4ChangePassword->mt4Host=config('fxweb.mt4CheckDemoHost');
@@ -812,8 +800,6 @@ class AccountsController extends Controller
 
     public function postMt4InternalTransfer(Request $oRequest)
     {
-
-
         $Pssword = config('accountsConfig.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);
 
@@ -832,7 +818,9 @@ class AccountsController extends Controller
 
         $result = $oApiController->internalTransfer($oRequest['login'], $oRequest['login2'], $oRequest['oldPassword'], $oRequest['amount']);
 
-        /* TODO with success */
+
+        \Session::flash('flash_success',trans('accounts::accounts.success'));
+
         return view('accounts::internalTransfer')
             ->withErrors($result)
             ->with('Pssword', $Pssword)
@@ -883,7 +871,9 @@ class AccountsController extends Controller
 
         $result = $oApiController->withDrawal($oRequest['login'], $oRequest['amount'],$oRequest['oldPassword']);
 
-        /* TODO with success */
+
+        \Session::flash('flash_success',trans('accounts::accounts.success'));
+
         return view('accounts::withDrawal')
             ->withErrors($result)
             ->with('Pssword', $Pssword)
@@ -942,7 +932,8 @@ class AccountsController extends Controller
 
         $oApiController = new ApiController();
         $result = $oApiController->operation($oRequest['login'], $amount, $operation);
-        /* TODO with success */
+
+        \Session::flash('flash_success',trans('accounts::accounts.success'));
         return view('accounts::operation')
             ->withErrors($result)
             ->with('Pssword', $Pssword)
@@ -983,10 +974,6 @@ class AccountsController extends Controller
      * @param Request $oRequest
      * @return $this
      */
-
-
-
-
     public function postAccountsSettings(Request $oRequest)
     {
 
@@ -1008,8 +995,6 @@ class AccountsController extends Controller
 
         $showWithDrawal = ($oRequest->showWithDrawal) ? true : false;
         $is_client = ($oRequest->is_client) ? 1 : 0;
-
-
 
         $accountsSetting = [
 
@@ -1062,9 +1047,36 @@ class AccountsController extends Controller
     }
 
     public function getUnssignUserFromMt4User(Request $oRequest){
-dd($oRequest);
+
         $this->oUsers->unsignMt4UsersToAccount($oRequest->user_id, [$oRequest->login.','. $oRequest->server_id],3);
 
             return $this->getMt4AssignedUsers($oRequest);
+    }
+
+    public function getChangePassword(Request $oRequest)
+    {
+        $userInfo = [
+            'account_id' => $oRequest->account_id,
+            'password' => '',
+            'password_confirmation' => '',
+        ];
+        return view('accounts::changePassword')->with('userInfo', $userInfo);
+    }
+
+    public function postChangePassword(ChangePasswordRequest $request)
+    {
+
+
+        $result = $this->oUsers->changePassword($request);
+
+        $userInfo = [
+            'account_id' => '',
+            'password' => '',
+            'password_confirmation' => '',
+        ];
+
+        \Session::flash('flash_success', trans('user.successfully'));
+
+        return Redirect::route('accounts.accountsList')->with('userInfo', $userInfo);
     }
 }

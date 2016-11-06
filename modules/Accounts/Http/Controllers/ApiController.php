@@ -113,8 +113,9 @@ class ApiController extends Controller
             /* TODO comment and reason should be from addmin not $result,$result  */
 
             $requestLog->insertChangePasswordRequest($login, $this->server_id, $newPassword, '', '', 1,$passwordType);
+            \Session::flash('flash_success',trans('accounts::accounts.success'));
 
-            \Session::flash('flash_success','Success');
+
 
             $email = new Email();
             $email->changeMt4Password(['email' => config('fxweb.adminEmail'), 'login' => $login, 'newPassword' => $newPassword, 'passwordType' => $passwordType]);
@@ -143,7 +144,7 @@ class ApiController extends Controller
 
             /* TODO comment and reason should be from addmin not $result,$result  */
             $requestLog->updateChangePasswordRequest($logId, $login, $newPassword, '', '', 1,$passwordType);
-            \Session::flash('flash_success','Success');
+            \Session::flash('flash_success',trans('accounts::accounts.success'));
 
 
             $email = new Email();
@@ -181,7 +182,7 @@ class ApiController extends Controller
             /* TODO comment and reason should be from addmin not $result,$result  */
             $requestLog->insertChangeLeverageRequest($login, $this->server_id, $leverage, '', '', 1);
 
-            \Session::flash('flash_success','Success');
+            \Session::flash('flash_success',trans('accounts::accounts.success'));
 
             $email = new Email();
             $email->changeLeverage(['email' => config('fxweb.adminEmail'), 'login' => $login, 'leverage' => $leverage]);
@@ -212,7 +213,7 @@ class ApiController extends Controller
         if ($result->result === 0) {
             /* TODO comment and reason should be from admin not $result,$result  */
             $requestLog->updateChangeLeverageRequest($logId, $login, $leverage, '', '', 1);
-            \Session::flash('flash_success','Success');
+            \Session::flash('flash_success',trans('accounts::accounts.success'));
 
             $email = new Email();
             $email->changeLeverage(['email' => config('fxweb.adminEmail'), 'login' => $login, 'leverage' => $leverage]);
@@ -251,7 +252,7 @@ class ApiController extends Controller
             /* TODO comment and reason should be from addmin not $result,$result  */
             $requestLog->insertInternalTransferRequest($login1, $login2, $this->server_id, $amount, '', '', 1);
 
-            \Session::flash('flash_success','Success');
+            \Session::flash('flash_success',trans('accounts::accounts.success'));
 
             $email = new Email();
             $email->internalTransfers(['email' => config('fxweb.adminEmail'), 'login1' => $login1, 'login2' => $login2, 'amount' => $amount]);
@@ -282,7 +283,7 @@ class ApiController extends Controller
         if ($result->result === 0) {
 
             $requestLog->updateInternalTransferRequest($logId, $login1, $login2, $amount, '', '', 1);
-            \Session::flash('flash_success','Success');
+            \Session::flash('flash_success',trans('accounts::accounts.success'));
 
 
 
@@ -326,7 +327,7 @@ class ApiController extends Controller
             /* TODO comment and reason should be from addmin not $result,$result  */
             $requestLog->insertWithDrawalRequest($login1, $this->server_id, $amount, '', '', 1);
 
-            \Session::flash('flash_success','Success');
+            \Session::flash('flash_success',trans('accounts::accounts.success'));
 
             $email = new Email();
             $email->withDrawal(['email' => config('fxweb.adminEmail'), 'login' => $login1, 'amount' => $amount]);
@@ -356,7 +357,7 @@ class ApiController extends Controller
         if ($result->result === 0) {
 
             $requestLog->updateWithDrawalRequest($logId, $login1, $amount, '', '', 1);
-            \Session::flash('flash_success','Success');
+            \Session::flash('flash_success',trans('accounts::accounts.success'));
 
 
             $email = new Email();
@@ -449,7 +450,7 @@ class ApiController extends Controller
             /* TODO comment and reason should be from addmin not $result,$result  */
 
             $requestLog->updateMt4UserFullDetailsRequest($logId, $mt4_user_details, 1, $result->data[0]->login, $mt4_user_details['accountId']);
-            \Session::flash('flash_success','Success');
+            \Session::flash('flash_success',trans('accounts::accounts.success'));
 
 
         } else {
@@ -517,13 +518,13 @@ class ApiController extends Controller
 
         if ($result->result === 0) {
             $requestLog->updateAssignAccountRequest($logId, $login, $password, '', '', 1);
-            \Session::flash('flash_success','The User has been assigned successfully');
+            \Session::flash('flash_success',trans('accounts::accounts.the_user_has'));
             /* TODO please trans() */
-            return 'This user has been assigned successfully';
+            return trans('accounts::accounts.this_user_has');
         } else {
 
             $requestLog->updateAssignAccountRequest($logId, $login, $password, '', '', 2);
-            return 'error please try again.';
+            return trans('accounts::accounts.error_please_try_again');
         }
 
     }

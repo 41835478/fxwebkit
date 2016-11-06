@@ -63,15 +63,22 @@ class ClientAccountsController extends Controller
         $aFilterParams['name'] = $oRequest->name;
         $aFilterParams['all_groups'] = true;
         $aFilterParams['group'] = $oRequest->group;
-        $aFilterParams['server_id'] = $oRequest->server_id;
+        $aFilterParams['server_id'] = 0;
         $aFilterParams['sort'] = $oRequest->sort;
         $aFilterParams['order'] = $oRequest->order;
+
         $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
 
+        $aFilterParams['server_id'] =1;
+        $oResults2 = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
+
+        $denyLiveAccount = (current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount'])) ? true:true;
 
         return view('accounts::client.mt4Accounts')
             ->with('aGroups', $aGroups)
+            ->with('denyLiveAccount', $denyLiveAccount)
             ->with('oResults', $oResults)
+            ->with('oResults2', $oResults2)
             ->with('serverTypes', $serverTypes)
             ->with('aFilterParams', $aFilterParams);
     }

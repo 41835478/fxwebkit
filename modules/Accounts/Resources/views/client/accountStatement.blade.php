@@ -14,27 +14,27 @@
             <div class="panel-body">
                 <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
                     <li class="active">
-                        <a href="#profile-tabs-board" data-toggle="tab">{{ trans('accounts::accounts.summry') }}</a>
+                        <a href="#profile-tabs-board" data-toggle="tab"><i class="fa fa-file-text"></i>{{ trans('accounts::accounts.summry') }}</a>
                     </li>
 
                     @if($showMt4Leverage)
                         <li>
-                            <a href="{{ route('clients.accounts.mt4Leverage').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}">{{ trans('accounts::accounts.leverage') }}</a>
+                            <a href="{{ route('clients.accounts.mt4Leverage').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}"><i class="fa fa-level-up"></i>{{ trans('accounts::accounts.leverage') }}</a>
                         </li>
                     @endif
                     @if($showMt4ChangePassword)
                         <li>
-                            <a href="{{ route('clients.accounts.mt4ChangePassword').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}} ">{{ trans('accounts::accounts.changePassword') }}</a>
+                            <a href="{{ route('clients.accounts.mt4ChangePassword').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}} "><i class="fa fa-lock"></i>{{ trans('accounts::accounts.changePassword') }}</a>
                         </li>
                     @endif
                     @if($showMt4Transfer)
                         <li>
-                            <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
+                            <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}"><i class="fa fa-retweet"></i> {{ trans('accounts::accounts.internalTransfer') }}</a>
                         </li>
                     @endif
                     @if($showWithDrawal)
                         <li>
-                            <a href="{{ route('client.accounts.withDrawal').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}">{{ trans('accounts::accounts.withDrawal') }}</a>
+                            <a href="{{ route('client.accounts.withDrawal').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}"><i class="fa fa-external-link"></i>{{ trans('accounts::accounts.withDrawal') }}</a>
                         </li>
                     @endif
                 </ul>
@@ -224,7 +224,7 @@
                         <!-- ol-sm-6 -->
                         <div class="col-xs-8 col-sm-4 text-left">
                             <div class="form-group no-margin-hr">
-                                <label class="control-label">{{ $oResults->LAVARGE }}</label>
+                                <label class="control-label">1:{{ $oResults->LEVERAGE }}</label>
                             </div>
                         </div>
                         <!--ol-sm-6 -->
@@ -396,7 +396,7 @@
                         <th>{{ trans('accounts::accounts.status :') }} </th>
                         <td>{{ $oResults->STATUS }}</td>
                         <th>{{ trans('accounts::accounts.leverage :') }}</th>
-                        <td>{{ $oResults->LEVERAGE }}</td>
+                        <td>1:{{ $oResults->LEVERAGE }}</td>
                     </tr>
 
                     <tr>

@@ -158,7 +158,6 @@ class EloquentUserRepository implements UserContract
         /* =============== active Filters =============== */
         if (isset($aFilters['active']) && $aFilters['active'] != 0) {
 
-
             if ($aFilters['active'] == 1) {
                 $oResult = $oResult->with('activations')->whereHas('activations', function ($query) {
                     $query->where('completed', 1);
@@ -170,7 +169,6 @@ class EloquentUserRepository implements UserContract
                         ->from('activations')
                         ->where('completed', 1)
                         ->whereRaw('activations.user_id = users.id');
-
                 });
             }
         }
@@ -193,7 +191,6 @@ class EloquentUserRepository implements UserContract
             $oResult = $oResult->where('email', 'like', '%' . $aFilters['email'] . '%');
         }
 
-
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
 
@@ -215,11 +212,8 @@ class EloquentUserRepository implements UserContract
 
     public function getUsersWithMassGroup($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC', $role = 'admin')
     {
-
         $oResult =new User();
         $group_id= (isset($aFilters['group_id'])) ? $aFilters['group_id'] : 0;
-
-
 
         /* =============== signed filter ============== */
         if ((isset($aFilters['signed']) && !empty($aFilters['signed']))) {
@@ -230,7 +224,6 @@ class EloquentUserRepository implements UserContract
                     $query->where(DB::raw('settings_mass_groups_users.user_id'),'=',DB::raw(' users.id'));
                     $query->where('group_id', $group_id);
                 });
-
             }
         }else{
 
@@ -241,8 +234,6 @@ class EloquentUserRepository implements UserContract
                 $join->where('settings_mass_groups_users.group_id', '=',$group_id );
             })->select(['users.*','settings_mass_groups_users.user_id']);
         }
-
-
 
         /* =============== id Filter  =============== */
         if (isset($aFilters['id']) && !empty($aFilters['id'])) {
@@ -269,15 +260,11 @@ class EloquentUserRepository implements UserContract
 
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
-
         } else {
             $oResult = $oResult->get();
 
         }
-
-
         /* =============== Preparing Output  =============== */
-
         return $oResult;
     }
 
@@ -304,7 +291,6 @@ class EloquentUserRepository implements UserContract
                 $query->select(DB::raw('ibportal_user_ibid.user_id'))
                     ->from('ibportal_user_ibid')
                     ->whereRaw('ibportal_user_ibid.user_id = users.id');
-
             });
         }
 
@@ -312,24 +298,18 @@ class EloquentUserRepository implements UserContract
         if (isset($aFilters['id']) && !empty($aFilters['id'])) {
             $oResult = $oResult->where('id', $aFilters['id']);
         }
-
         /* =============== Nmae Filter  =============== */
         if (isset($aFilters['first_name']) && !empty($aFilters['first_name'])) {
             $oResult = $oResult->where('first_name', 'like', '%' . $aFilters['first_name'] . '%');
         }
-
         if (isset($aFilters['last_name']) && !empty($aFilters['last_name'])) {
             $oResult = $oResult->where('last_name', 'like', '%' . $aFilters['last_name'] . '%');
         }
-
         /* =============== email Filter  =============== */
         if (isset($aFilters['email']) && !empty($aFilters['email'])) {
             $oResult = $oResult->where('email', 'like', '%' . $aFilters['email'] . '%');
         }
-
-
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
-
 
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
@@ -472,8 +452,6 @@ class EloquentUserRepository implements UserContract
         $oUser = Sentinel::registerAndActivate($aCredentials);
 
         $oClientRole->users()->attach($oUser);
-       // $oActivation = Activation::create($oUser);
-
 
         $fullDetails = new UsersDetails();
 
@@ -593,7 +571,6 @@ class EloquentUserRepository implements UserContract
     public function unsignMt4UsersToAccount($account_id, $users_id, $server_id = 1)
     {
 
-
         if (is_array($users_id)) {
             foreach ($users_id as $id => $user_id) {
 
@@ -608,7 +585,7 @@ class EloquentUserRepository implements UserContract
                 if ($asign) {
 
                     $asign->delete();
-                    \Session::flash('flash_success','The User has been Unassigned Successfully ');
+                    \Session::flash('flash_success',trans('accounts::accounts.the_user_has'));
                 }
             }
         }

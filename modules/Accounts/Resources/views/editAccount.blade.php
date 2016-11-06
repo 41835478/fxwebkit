@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('accounts::accounts.addAccount'))
+@section('title', trans('accounts::accounts.edit_account'))
 @section('content')
     <div id="content-wrapper">
         <div class="page-header">
@@ -106,7 +106,8 @@
 
                     </div>
                     <!-- col-sm-6 -->
-
+                    </div>
+                    <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group no-margin-hr">
                             <label class="control-label">{{ trans('accounts::accounts.ZipCode') }}</label>

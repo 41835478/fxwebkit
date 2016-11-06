@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('user.addUser'))
+@section('title', trans('user.edit_user'))
 @section('content')
 
     <div id="content-wrapper">
@@ -94,13 +94,16 @@
 
             </div>
         </div><!-- col-sm-6 -->
+        </div>
 
+        <div class="row">
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('user.ZipCode') }}</label>
                 {!! Form::text('zip_code',$userInfo['zip_code'],['class'=>'form-control']) !!}           
             </div>
         </div><!-- col-sm-6 -->
+
         <div class="col-sm-6">
             <label class="control-label " style="text-align: left;display: block;">{{ trans('user.gender') }}</label>
             <div class="radio col-xs-2">

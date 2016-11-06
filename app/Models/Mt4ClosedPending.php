@@ -7,7 +7,7 @@ class Mt4ClosedPending extends Model
     protected $table='mt4_closed_pending';
     public function Mt4Prices() {
         // instead of hasMany
-        return Mt4Prices::where('SYMBOL', $this->SYMBOL);
+        return $this->hasOne('Fxweb\Models\Mt4Prices','SYMBOL','SYMBOL');
     }
 
     public function users(){

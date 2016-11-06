@@ -8,6 +8,7 @@ use Fxweb\Repositories\Admin\User\UserContract as User;
 use Fxweb\Http\Requests\AdminsListRequest;
 use Fxweb\Http\Requests\Admin\AddUserRequest;
 use Fxweb\Http\Requests\Admin\EditUserRequest;
+use Fxweb\Http\Requests\Admin\ChangePasswordRequest;
 use Fxweb\Http\Requests;
 use Fxweb\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
@@ -839,6 +840,33 @@ return $this->getMassMailer($oRequest);
 
 
         }
+    }
+
+    public function getChangePassword(Request $oRequest)
+    {
+
+
+        $userInfo = [
+            'edit_id' => $oRequest->edit_id,
+            'password' => '',
+            'password_confirmation' => '',
+        ];
+        return view('admin.user.adminChangePassword')->with('userInfo', $userInfo);
+    }
+
+    public function postChangePassword(ChangePasswordRequest $request)
+    {
+        $result = $this->oUser->changePassword($request);
+
+        $userInfo = [
+            'edit_id' => '',
+            'password' => '',
+            'password_confirmation' => '',
+        ];
+
+        \Session::flash('flash_success', trans('user.successfully'));
+
+        return Redirect::route('admin.users.changePassword')->with('userInfo', $userInfo);
     }
 
 }
