@@ -175,10 +175,17 @@ class Repository extends BaseRepository
         foreach($this->configArray as $key=>$value){
 //            dd('/[\s\'\"]*'.$key.'[\s\'\"]*(=>)\[([\s\'\"\w]*(=>)*[\s\'\"\w]*,*)*\]/',
 //                $value);
-
+if(!preg_match('/[\s]*\[[\s]*\[/',$value)){
             $contents=preg_replace('/[^0-9\,][\s\'\"]*'.$key.'[\s\'\"]*(=>)[\s\'\"]*[\[]*[^\]]*\]/i',
             $value,
             $contents);
+}else{
+
+
+    $contents=preg_replace('/[^0-9\,][\s\'\"]*'.$key.'[\s\'\"]*(=>)[\w\W]*(\s*\]\s*\,?\s*\])/U',
+        $value,
+        $contents);
+}
           //  dd('/[\s\'\"]*'.$key.'[\s\'\"]*(=>)\[([\s\'\"\w]*(=>)*[\s\'\"\w]*,*)*\]/i');
 
         }
