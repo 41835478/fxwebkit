@@ -435,7 +435,7 @@ class ReportsController extends Controller
 
             foreach($oResults[0] as $resutl){
                 $chartData[]=['name'=>$resutl->SYMBOL,'y'=>$resutl->COMMISSION*-1];
-                $chartData2[]=[$resutl->SYMBOL,$resutl->COMMISSION*-1];
+                $chartData2[]=[$resutl->SYMBOL,$resutl->VOLUME];
 
             }
 

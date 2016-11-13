@@ -60,7 +60,9 @@
     <!-- ___________________END___________________-->
 
 
+
     <div class="mail-container " >
+
         <div class="mail-container-header">
             {{ trans('reports::reports.commission') }}
         </div>
@@ -81,11 +83,22 @@
 
                         </div>
                     </div>
+
+
+                    <div class="clear:both;"></div>
+                    <div id="container" style="width:50%; float:left; overflow: auto;"></div>
+                    <div id="container2" style="width:50%; float:left; overflow: auto;"></div>
+                    <div class="clear:both;"></div>
+
+
                 </div>
-            <div class="padding-xs-vr"></div>
+
+
+                <div class="padding-xs-vr"></div>
             @endif
-            <div id="container"></div>
-            <div id="container2"></div>
+
+
+
             <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
@@ -247,53 +260,38 @@
     $(function () {
         $('#container2').highcharts({
             chart: {
-                type: 'column'
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
             },
             title: {
-                text: 'World\'s largest cities per 2014'
-            },
-            subtitle: {
-                text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
-            },
-            xAxis: {
-                type: 'category',
-                labels: {
-                    rotation: -45,
-                    style: {
-                        fontSize: '13px',
-                        fontFamily: 'Verdana, sans-serif'
-                    }
-                }
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'Population (millions)'
-                }
-            },
-            legend: {
-                enabled: false
+                text: ''
             },
             tooltip: {
-                pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>'
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
-            series: [{
-                name: 'Population',
-                data:  {!! json_encode($chartData2)!!},
-                dataLabels: {
-                    enabled: true,
-                    rotation: -90,
-                    color: '#FFFFFF',
-                    align: 'right',
-                    format: '{point.y:.1f}', // one decimal
-                    y: 10, // 10 pixels down from the top
-                    style: {
-                        fontSize: '13px',
-                        fontFamily: 'Verdana, sans-serif'
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
                     }
                 }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: {!! json_encode($chartData2)!!}
             }]
         });
     });
+
+
 </script>
 @stop
