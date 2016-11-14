@@ -3,30 +3,21 @@
 namespace Fxweb\Repositories\Admin\Mt4Trade;
 
 use Fxweb\Helpers\Fx;
-//use Fxweb\Models\Mt4Trade;
-
 use Fxweb\Models\Mt4ClosedActual;
+use Fxweb\Models\MT4Daily;
 use Fxweb\Models\Mt4ClosedBalance;
 use Fxweb\Models\Mt4ClosedPending;
 use Fxweb\Models\Mt4OpenActual;
 use Fxweb\Models\Mt4OpenPending;
-
-
 use Fxweb\Models\Mt4ClosedActualBalance;
 use Fxweb\Models\Mt4Closed;
 use Fxweb\Models\Mt4Open;
 use Modules\Mt4Configrations\Entities\ConfigrationsSymbols as Symbols;
-
 use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
-
 use Fxweb\Models\Mt4User as modelMt4User;
-
-
 use Illuminate\Support\Facades\DB;
 use Config;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
-use \YaLinqo\Enumerable;
-
 use Modules\Mt4Configrations\Entities\ConfigrationsGroupsSecurities as GroupsSecurities;
 
 /**
@@ -186,7 +177,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             $account_id = $user->id;
             $agentLogin=\Modules\Ibportal\Entities\IbportalUserIbid::select('login')->where('user_id', current_user()->getUser()->id)->first();
 
-
             $oAgentMt4Groups = modelMt4User::select('group')->where('COMMENT','like','%M:'.$agentLogin->login.';%')->get();
 
 
@@ -259,8 +249,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             1 => config('fxweb.demoServerName'),
         ];
     }
-
-
     /**
      * Gets the accountant types
      *
@@ -291,7 +279,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             6 => 'CreditOut',
         ];
     }
-
     /**
      * Gets the closed orders by filters
      *
@@ -653,8 +640,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
         /* =============== Groups Filter  =============== */
         if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
-            $aUsers = $this->oUsers->getLoginsInGroup($aFilters['group']);
-            $oResult = $oResult->whereIn($table_name.'.'.'LOGIN', $aUsers);
+            $aUsers = $this->getLoginsInGroup($aFilters['group']);
+            $oResult = $oResult->whereIn('LOGIN', $aUsers);
         }
 
         /* =============== Symbols Filter  =============== */
@@ -1980,7 +1967,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
 
         $oResult = Mt4Closed::with('Mt4Prices');
 
-
         $mt4_users=modelMt4User::join("mt4_users_users",function($query) {
             $query->on("mt4_users.AGENT_ACCOUNT","=","mt4_users_users.mt4_users_id");
 
@@ -2525,5 +2511,55 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             $oResult[$dKey]->LEVERAGE = round($oResult[$dKey]->LEVERAGE, 2);
         }
         return [$oResult, $aSummury];
+    }
+
+    public function getDailyReportByFilters($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC')
+    {
+
+        /* ===============================check admin or user================ */
+        $oResult = '';
+        if ($user = current_user()->getUser()) {
+            if (!$user->InRole('admin')) {
+                $account_id = $user->id;
+                $oResult = MT4Daily::with('users')->whereHas('users', function ($query) use ($account_id) {
+                    $query->where('users_id', $account_id);
+                });
+            } else {
+                $oResult =new MT4Daily();
+            }
+        }
+
+        /* =============== Login Filters =============== */
+        if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
+            $oResult = $oResult->where('LOGIN', $aFilters['login']);
+        } else if ((isset($aFilters['from_login']) && !empty($aFilters['from_login'])) ||
+            (isset($aFilters['to_login']) && !empty($aFilters['to_login']))
+        )
+
+        {
+            if (!empty($aFilters['from_login'])) {
+                $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
+            }
+
+            if (!empty($aFilters['to_login'])) {
+                $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
+            }
+        }
+
+        /* =============== Groups Filter  =============== */
+        if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
+            $oResult = $oResult->where('GROUP','=',$aFilters['group']);
+        }
+
+        /* =============== $oResult = $oResult; ===================== */
+        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        if (!$bFullSet) {
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+        } else {
+            $oResult = $oResult->get();
+        }
+
+        return $oResult ;
     }
 }

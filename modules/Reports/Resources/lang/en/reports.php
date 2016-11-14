@@ -16,21 +16,12 @@ return [
     'AllSymbols' => 'All Symbols',
     'ExactLogin' => 'Exact Login',
     'search' => 'Search',
-
-
-
     'Name' => 'Name',
     'Group' => 'Group',
     'Equity' => 'Equity',
     'Balance' => 'Balance',
     'Comments' => 'Comments',
-
-
-
-
     'Summary' => 'Summary',
-
-
     'commission' => 'Commission',
     'agentCommission' => 'Agent Commission',
     'accountant' => 'Accountant',
@@ -38,7 +29,6 @@ return [
     'Margin' => 'Margin',
     'MarginFree' => 'Margin Free',
     'Leverage' => 'Leverage',
-
     'order#' => 'Order#',
     'open_time' => 'Open Time',
     'close_time' => 'Close Time',
@@ -54,7 +44,6 @@ return [
     'swaps' => 'Swaps',
     'price' => 'Price',
     'profit' => 'Profit',
-
     'entries'=>'entries',
     'of'=>'of',
     'to'=>'to',
@@ -69,7 +58,6 @@ return [
     'go'=>'Go',
     'ACCOUNTANT_TYPE_6_DEPOSITS' => 'Balance Operation',
     'ACCOUNTANT_TYPE_7_CREDIT' => 'Credits Operation',
-
     'registration_date'=>'Registration date :',
     'name'=>'Name :',
     'city'=>'City :',
@@ -91,13 +79,10 @@ return [
     'balance'=>'Balance :',
     'equity'=>'Equity :',
     'free_margin'=>'Free Margin :',
-
     'total_commission'=>'Total Commission :',
     'total_lots'=>'Total Lots :',
     'account'=>'Account :',
-
     'settings'=>'Settings',
-
     'save'=>'Save',
     'is_client'=>'Show This Module To Client',
     'demo'=>'Demo',
@@ -107,4 +92,5 @@ return [
     'accountStatement'=>'Account Statement',
     'accountant_total'=>'Accountant Total',
     'total'=>'Total',
+    'dailyReport'=>'Daily Report',
 ];

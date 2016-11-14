@@ -22,25 +22,21 @@ return [
 			'title' => 'accountStatement',
 			'icon' => 'fa fa-user',
 		],
-//		[
-//			'route' => 'admin.reports.accountStatement',
-//			'title' => 'accountStatement',
-//			'icon' => 'fa fa-gears',
-//		],
 		[
 			'route' => 'admin.reports.commission',
 			'title' => 'commission',
 			'icon' => 'fa fa-money',
 		],
-//		[
-//			'route' => 'admin.reports.agentCommission',
-//			'title' => 'agentCommission',
-//			'icon' => 'fa fa-money',
-//		],
+
 		[
 			'route' => 'admin.reports.accountant',
 			'title' => 'accountant',
 			'icon' => 'fa fa-money',
+		],
+		[
+			'route' => 'admin.reports.dailyReport',
+			'title' => 'dailyReport',
+			'icon' => 'fa fa-gears',
 		],
 		[
 			'route' => 'admin.reports.reportsSettings',
@@ -78,5 +74,12 @@ return [
                     'title' => 'accountant',
                     'icon' => 'fa fa-money',
                 ],
+
+		[
+			'display'=>'1',
+			'route' => 'clients.reports.dailyReport',
+			'title' => 'dailyReport',
+			'icon' => 'fa fa-gears',
+		]
             ]
 ];
