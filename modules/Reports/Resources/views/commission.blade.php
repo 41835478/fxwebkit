@@ -60,7 +60,9 @@
     <!-- ___________________END___________________-->
 
 
+
     <div class="mail-container " >
+
         <div class="mail-container-header">
             {{ trans('reports::reports.commission') }}
         </div>
@@ -81,9 +83,21 @@
 
                         </div>
                     </div>
+
+
+                    <div class="clear:both;"></div>
+                    <div id="container" style="width:50%; float:left; overflow: auto;"></div>
+                    <div id="container2" style="width:50%; float:left; overflow: auto;"></div>
+                    <div class="clear:both;"></div>
+
+
                 </div>
-            <div class="padding-xs-vr"></div>
+
+
+                <div class="padding-xs-vr"></div>
             @endif
+
+
 
             <div class="table-light">
                 <div class="table-header">
@@ -139,6 +153,11 @@
     </div>
 </div>
 </div>
+    @stop
+@section('script')
+    @parent
+
+    {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/highcharts.js') !!}
 <script>
     init.push(function () {
         var options = {
@@ -195,5 +214,84 @@
             $("#login_li").hide();
         }
     });
+
+
+
+
+    $(function () {
+        $('#container').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: {!! json_encode($chartData)!!}
+            }]
+        });
+    });
+
+
+
+
+
+    $(function () {
+        $('#container2').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: {!! json_encode($chartData2)!!}
+            }]
+        });
+    });
+
+
 </script>
 @stop

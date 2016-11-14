@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel {
 		'Fxweb\Console\Commands\SetupCommand',
 		'Fxweb\Console\Commands\SendMassMailCommand',
 		'Fxweb\Console\Commands\CreateAdminCommand',
+		'Fxweb\Console\Commands\SyncConfigCommand',
 	];
 
 	/**
