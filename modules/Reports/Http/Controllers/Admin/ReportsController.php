@@ -602,4 +602,49 @@ class ReportsController extends Controller
 
     }
 
+    public function getDailyReport(Request $oRequest)
+    {
+        $oGroups = $this->oMt4Group->getAllGroups();
+        $sSort = $oRequest->sort;
+        $sOrder = $oRequest->order;
+        $aGroups = [];
+        $oResults = null;
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
+            'from_date' => '',
+            'to_date' => '',
+            'all_groups' => true,
+            'group' => '',
+            'sort' => 'ASC',
+            'order' => 'LOGIN',
+        ];
+
+        foreach ($oGroups as $oGroup) {
+            $aGroups[$oGroup->group] = $oGroup->group;
+        }
+
+        if ($oRequest->has('search')) {
+            $aFilterParams['from_login'] = $oRequest->from_login;
+            $aFilterParams['to_login'] = $oRequest->to_login;
+            $aFilterParams['exactLogin'] = $oRequest->exactLogin;
+            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['from_date'] = $oRequest->from_date;
+            $aFilterParams['to_date'] = $oRequest->to_date;
+            $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
+            $aFilterParams['group'] = $oRequest->group;
+        }
+
+        if ($oRequest->has('search')) {
+            $oResults = $this->oMt4Trade->getDailyReportByFilters($aFilterParams, false, $sOrder, $sSort);
+        }
+
+        return view('reports::dailyReport')
+            ->with('aGroups', $aGroups)
+            ->with('oResults', $oResults)
+            ->with('aFilterParams', $aFilterParams);
+    }
+
 }

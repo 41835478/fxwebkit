@@ -13,6 +13,8 @@ use Modules\Request\Entities\RequestChangeLeverage;
 use Modules\Request\Entities\RequestAssignAccount;
 use Modules\Request\Entities\RequestAddAccount as AddAccount;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
+use Illuminate\Support\Facades\Config;
+
 
 class RequestController extends Controller
 {
@@ -88,7 +90,6 @@ class RequestController extends Controller
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
 
-        /* TODO[moaid]  translate this array in language file then in the .blade.php file insert trans() method */
         $aRequestStatus = config('request.requestStatus');
 
         $oResults = null;
@@ -101,7 +102,6 @@ class RequestController extends Controller
             $aFilterParams['login'] = $oRequest->login;
 
             $oResults = $this->RequestLog->getChangeLeverageRequestByFilters($aFilterParams, false, $sOrder, $sSort);
-
 
         }
 
@@ -349,15 +349,12 @@ class RequestController extends Controller
 
         }
 
-
         return view('request::admin/withDrawalRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus)
             ->with('status',$status);
     }
 
     public function getWithDrawalEdit(Request $oRequest)
     {
-
-
         $oResults = $this->RequestLog->getWithDrawalById($oRequest->logId);
         $aRequestStatus = config('request.requestStatus');
 
@@ -503,10 +500,7 @@ class RequestController extends Controller
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
 
-        /* TODO[moaid]  translate this array in language file then in the .blade.php file insert trans() method */
         $aRequestStatus=config('request.requestStatus');
-
-
 
         $oResults = null;
 
@@ -588,6 +582,33 @@ $oResult= $this->RequestLog->getAssignAccountById($oRequest->logId);
         return Redirect::route('admin.request.assignAccount');
 
 
+    }
+
+    public function getActivateUser(Request $oRequest){
+
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+
+        $aRequestStatus = config('request.requestStatus');
+
+        $oResults = null;
+
+
+        $status = (isset($oRequest->status))? $oRequest->status : -1;
+        if ($oRequest->has('search')) {
+            $aFilterParams['status'] = $status;
+
+            $aFilterParams['id'] = $oRequest->id;
+
+            $aFilterParams['active'] = 2;
+            $role = explode(',', Config::get('fxweb.client_default_role'));
+
+            $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
+
+        }
+
+        return view('request::admin.activateUserRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus)
+            ->with('status',$status);
     }
 
 }

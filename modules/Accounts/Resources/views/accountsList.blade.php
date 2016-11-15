@@ -32,10 +32,6 @@
                             </div>
                         </li>
 
-                        <li>
-                            <div class=" nav-input-div  ">
-                                {!! Form::select('active', $aActive, $aFilterParams['active'], ['class'=>'form-control  input-sm']) !!}</div>
-                        </li>
 
                         <li>
                             <div class=" nav-input-div  ">
@@ -148,11 +144,11 @@
                                                            data-original-title="{{trans('accounts::accounts.allowLiveAccoun')}}"></a>
                                                     @endif
 
-                                                    @if((count($oResult->activations) && $oResult->activations[0]->completed ==0) || !count($oResult->activations))
-                                                        <a href="{{ route('accounts.activateUser').'?account_id='.$oResult->id }}"
-                                                           class="fa fa-check tooltip_number"
-                                                           data-original-title="{{trans('accounts::accounts.activateUser')}}"></a>
-                                                    @endif
+                                                    {{--@if((count($oResult->activations) && $oResult->activations[0]->completed ==0) || !count($oResult->activations))--}}
+                                                        {{--<a href="{{ route('accounts.activateUser').'?account_id='.$oResult->id }}"--}}
+                                                           {{--class="fa fa-check tooltip_number"--}}
+                                                           {{--data-original-title="{{trans('accounts::accounts.activateUser')}}"></a>--}}
+                                                    {{--@endif--}}
 
 
                                                 </div>

@@ -3,9 +3,7 @@
 namespace Fxweb\Repositories\Admin\Mt4User;
 
 use Fxweb\Models\Mt4User;
-use Fxweb\Helpers\Fx;
 use Config;
-use fxweb\Repositories\Admin\User\UserContract ;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\DB;
 use Fxweb\Repositories\Admin\User\UserContract as Users;

@@ -78,9 +78,85 @@
             </div>
         </div>
 
+        <div class="table-light">
+            <div class="table-header">
+                <div class="table-caption">
+
+                    {{ trans('request::request.changeLeverage') }}
+
+                </div>
+            </div>
+
+            <div class="primary_table_div info" >
+                <div class="table">
+
+                    <div class="thead">
+                        <div class="tr">
+
+
+                            <div class="th">{!! th_sort(trans('request::request.login'), 'login', $oResults) !!}</div>
+                            <div class="th">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</div>
+                            <div class="th">{!! th_sort(trans('request::request.leverage'), 'leverage', $oResults) !!}</div>
+                            <div class="th">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</div>
+                            <div class="th">{!! th_sort(trans('request::request.reason'), 'reason', $oResults) !!}</div>
+                            <div class="th">{!! th_sort(trans('request::request.status'), 'status', $oResults) !!}</div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="tbody">
+
+                        @if (count($oResults))
+                            {{-- */$i=0;/* --}}
+                            {{-- */$class='';/* --}}
+                            @foreach($oResults as $oResult)
+                                {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                <div class="tr {{ $class }}">
+
+                                    <div class="td"><label>{!! trans('request::request.login') !!} : </label><p>{{ $oResult->login }}</p></div>
+                                    <div class="td"><label>{!! trans('request::request.liveDemo') !!} : </label><p>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                    <div class="td"><label>{!! trans('request::request.leverage') !!} : </label><p>1:{{ $oResult->leverage }}</p></div>
+                                    <div class="td"><label>{!! trans('request::request.comment') !!} : </label><p>{{ $oResult->comment }}</p></div>
+                                    <div class="td"><label>{!! trans('request::request.reason') !!} : </label><p>{{ $oResult->reason }}</p></div>
+                                    <div class="td"><label>{!! trans('request::request.status') !!} : </label><p>{{ $aRequestStatus[$oResult->status] }}</p></div>
+
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
+                <div class="tableFooter">
+                </div>
+            </div>
+
+            <div class="table-footer">
+
+
+                @if (count($oResults))
+
+                    {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->render()) !!}
+                    @if($oResults->total()>25)
+
+                        <div class="DT-lf-right change_page_all_div">
+
+                            {!! Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('request::request.page'),'class'=>'form-control input-sm']) !!}
+
+                            {!! Form::submit(trans('request::request.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+
+                        </div>
+                    @endif
+
+                    <div class="col-sm-3">
+                        <span class="text-xs">{{trans('request::request.showing')}} {{ $oResults->firstItem() }} {{trans('request::request.to')}} {{ $oResults->lastItem() }} {{trans('request::request.of')}} {{ $oResults->total() }} {{trans('request::request.entries')}}</span>
+                    </div>
+                @endif
+            </div>
+        </div>
+
 
         {!!   View('admin/partials/messages')->with('errors',$errors) !!}
-</div>
+        </div>
         {!! Form::close() !!}
         @stop
 
