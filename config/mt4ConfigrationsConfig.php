@@ -9,6 +9,11 @@ return [
 	'route' => '',
 	'admin_menu' => [
 		[
+			'route' => 'admin.mt4Configrations.dashboard',
+			'title' => 'dashboard',
+			'icon' => 'fa fa-gears',
+		],
+		[
 			'route' => 'admin.mt4Configrations.symbolsList',
 			'title' => 'symbolsList',
 			'icon' => 'fa-briefcase',
@@ -28,6 +33,7 @@ return [
 			'title' => 'settings',
 			'icon' => 'fa fa-gears',
 		]
+
 
 
 

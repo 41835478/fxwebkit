@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Redirect;
 use Modules\Mt4Configrations\Repositories\Mt4ConfigrationsContract as Mt4Configrations;
 use Fxweb\Http\Controllers\Admin\EditConfigController as EditConfig;
 
+
+use Modules\Mt4Configrations\Entities\ConfigrationsGroups;
+use Modules\Mt4Configrations\Entities\ConfigrationsSymbols;
+
 class Mt4ConfigrationsController extends Controller
 {
 
@@ -31,7 +35,12 @@ class Mt4ConfigrationsController extends Controller
 
     }
 
+public function getDashboard(){
 
+    $groups_number=ConfigrationsGroups::count();
+    $symbols_number=ConfigrationsSymbols::count();
+    return view('mt4configrations::dashboard')->withStatistic(['groups_number'=>$groups_number,'symbols_number'=>$symbols_number]);
+}
     public function getSymbolsList(Request $oRequest)
     {
 
