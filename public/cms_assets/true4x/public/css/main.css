@@ -1,0 +1,709 @@
+/*____________________________fonts*/
+/*_____________________END____fonts*/
+/*_________________float and direction*/
+/*_______________END__float and direction*/
+/*__________________________________height_*/
+/*_______________________________End___height_*/
+/*________________________________________background_gradient*/
+/*________________________________________background_gradient*/
+/*_________________________________________shadow_images*/
+body {
+  margin: 0px; }
+
+*:not(i) {
+  font-family: sans-serif;
+  font-size: 14px; }
+
+a {
+  text-decoration: none; }
+
+.button, .whiteButton {
+  text-align: center;
+  display: block;
+  padding: 5px 10px;
+  color: #ffffff; }
+
+.mainButton {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #038d8d;
+  background-color: #038d8d;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#038d8d), to(#44596a));
+  background-image: -webkit-linear-gradient(top, #038d8d, #44596a);
+  background-image: -moz-linear-gradient(top, #038d8d, #44596a);
+  background-image: -ms-linear-gradient(top, #038d8d, #44596a);
+  background-image: -o-linear-gradient(top, #038d8d, #44596a);
+  background-image: linear-gradient(top, #038d8d, #44596a);
+  filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#44596a');
+  font-size: 16px;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer; }
+  .mainButton:hover {
+    text-decoration: none;
+    color: #ffffff; }
+
+.secondaryButton {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #44596a;
+  font-size: 16px;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer; }
+  .secondaryButton:hover {
+    text-decoration: none;
+    color: #ffffff; }
+
+.horizMenu {
+  margin: 0px; }
+  .horizMenu li {
+    list-style: none;
+    float: left; }
+
+.horizLine {
+  background-color: #038d8d;
+  background-color: #038d8d;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#038d8d), to(#44596a));
+  background-image: -webkit-linear-gradient(top, #038d8d, #44596a);
+  background-image: -moz-linear-gradient(top, #038d8d, #44596a);
+  background-image: -ms-linear-gradient(top, #038d8d, #44596a);
+  background-image: -o-linear-gradient(top, #038d8d, #44596a);
+  background-image: linear-gradient(top, #038d8d, #44596a);
+  filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#44596a');
+  border-top: 1px solid #ffffff;
+  min-height: 10px; }
+
+.textWithHeaderDiv {
+  text-align: center; }
+  .textWithHeaderDiv h3 {
+    color: #04baba;
+    margin: 0px;
+    font-size: 32px;
+    font-size: 2rem; }
+  .textWithHeaderDiv p {
+    margin: 0px; }
+  .textWithHeaderDiv .readMore {
+    color: #038d8d;
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    cursor: pointer; }
+
+.whiteButton {
+  background-color: #F5F5F5;
+  color: #038d8d;
+  border: 1px solid #ffffff; }
+  .whiteButton:hover {
+    text-decoration: none; }
+
+.smallTextDiv {
+  text-align: center; }
+  .smallTextDiv p {
+    font-size: 10px; }
+
+/*_______________pages */
+#headerWatchRow #watchDiv {
+  padding: 2px 0px;
+  text-align: center; }
+  #headerWatchRow #watchDiv #watchUl {
+    padding: 0px;
+    margin: 0px;
+    display: inline-block;
+    margin: auto; }
+    #headerWatchRow #watchDiv #watchUl li {
+      list-style: none;
+      float: left; }
+      #headerWatchRow #watchDiv #watchUl li a {
+        text-decoration: none; }
+    #headerWatchRow #watchDiv #watchUl li {
+      padding: 0px 10px; }
+      #headerWatchRow #watchDiv #watchUl li.oneBorder {
+        border-right: 1px solid #038d8d; }
+      #headerWatchRow #watchDiv #watchUl li .cityName {
+        color: #44596a;
+        font-weight: bold;
+        font-size: 10px; }
+      #headerWatchRow #watchDiv #watchUl li .cityHour {
+        color: #44596a;
+        font-size: 10px; }
+      #headerWatchRow #watchDiv #watchUl li .cityIcon {
+        width: 17px;
+        height: 17px;
+        color: #038d8d; }
+
+#logoRow {
+  padding: 40px 0;
+  overflow: auto; }
+  #logoRow #headerLogoDiv {
+    float: left;
+    width: 150px; }
+    #logoRow #headerLogoDiv img {
+      max-width: 100%; }
+  #logoRow #headerBesideLogin {
+    float: right;
+    margin-top: 20px; }
+    #logoRow #headerBesideLogin * {
+      color: #ffffff; }
+    #logoRow #headerBesideLogin #headerSearchDiv {
+      float: left; }
+      #logoRow #headerBesideLogin #headerSearchDiv #searchInput {
+        height: 30px;
+        width: 100px;
+        float: right;
+        margin: 0px 10px;
+        text-align: center;
+        border: none;
+        color: #ffffff;
+        background-color: #038d8d;
+        background-color: #038d8d;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#038d8d), to(#44596a));
+        background-image: -webkit-linear-gradient(top, #038d8d, #44596a);
+        background-image: -moz-linear-gradient(top, #038d8d, #44596a);
+        background-image: -ms-linear-gradient(top, #038d8d, #44596a);
+        background-image: -o-linear-gradient(top, #038d8d, #44596a);
+        background-image: linear-gradient(top, #038d8d, #44596a);
+        filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#44596a'); }
+        #logoRow #headerBesideLogin #headerSearchDiv #searchInput::-webkit-input-placeholder {
+          /* Chrome/Opera/Safari */
+          color: #ffffff; }
+        #logoRow #headerBesideLogin #headerSearchDiv #searchInput::-moz-placeholder {
+          /* Firefox 19+ */
+          color: #ffffff; }
+        #logoRow #headerBesideLogin #headerSearchDiv #searchInput:-ms-input-placeholder {
+          /* IE 10+ */
+          color: #ffffff; }
+        #logoRow #headerBesideLogin #headerSearchDiv #searchInput:-moz-placeholder {
+          /* Firefox 18- */
+          color: #ffffff; }
+      #logoRow #headerBesideLogin #headerSearchDiv button {
+        height: 30px;
+        width: 30px;
+        float: right;
+        border: none;
+        background-color: #44596a;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        -ms-border-radius: 100%;
+        border-radius: 100%; }
+    #logoRow #headerBesideLogin #headerLangDiv {
+      float: left; }
+      #logoRow #headerBesideLogin #headerLangDiv select {
+        background-color: #44596a;
+        height: 30px;
+        padding: 5px;
+        font-size: 10px; }
+
+#headerMenuRow {
+  background-color: #44596a;
+  text-align: center; }
+  #headerMenuRow #mainMenuDiv {
+    display: inline-block;
+    margin: 10px 0px; }
+    #headerMenuRow #mainMenuDiv #mainMenuUl {
+      padding: 0px;
+      margin: 0px;
+      overflow: hidden; }
+      #headerMenuRow #mainMenuDiv #mainMenuUl li {
+        list-style: none;
+        float: left; }
+        #headerMenuRow #mainMenuDiv #mainMenuUl li a {
+          text-decoration: none; }
+      #headerMenuRow #mainMenuDiv #mainMenuUl li a {
+        color: #ffffff;
+        padding: 5px 10px;
+        text-align: center;
+        font-size: 24px;
+        font-size: 1.5rem; }
+
+#sliderRow {
+  height: 500px; }
+  #sliderRow .sliderContainer .sliderInnerContainer {
+    background-image: url(../images/slider/Banner_bg_1.png);
+    background-size: 100% 100%;
+    position: relative;
+    height: 500px; }
+    #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      height: 500px;
+      width: 100%; }
+      #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv .oneSlideInnerDiv .div_img_1 {
+        float: left;
+        width: 30%;
+        padding-top: 30px;
+        z-index: 2;
+        position: absolute;
+        bottom: 0px;
+        left: 12%; }
+        #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv .oneSlideInnerDiv .div_img_1 img {
+          max-width: 90%;
+          float: left; }
+      #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv .oneSlideInnerDiv .div_text_1 {
+        z-index: 1;
+        float: left;
+        width: 30%;
+        position: absolute;
+        bottom: 170px;
+        left: 35%; }
+        #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv .oneSlideInnerDiv .div_text_1 p {
+          padding: 5px 40px;
+          background-color: #44596a;
+          color: #ffffff;
+          font-size: 32px;
+          text-transform: capitalize; }
+        #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv .oneSlideInnerDiv .div_text_1 span {
+          color: #44596a;
+          font-size: 32px;
+          padding-left: 40px; }
+      #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv .oneSlideInnerDiv .div_button_1 {
+        position: absolute;
+        bottom: 100px;
+        left: 45%; }
+        #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv .oneSlideInnerDiv .div_button_1 .mainButton {
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          -ms-border-radius: 5px;
+          border-radius: 5px;
+          padding: 5px 50px; }
+      #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv .oneSlideInnerDiv .div_img_2 {
+        position: absolute;
+        bottom: 0px;
+        right: 10%;
+        z-index: 2;
+        width: 40%;
+        padding-top: 30px; }
+        #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv .oneSlideInnerDiv .div_img_2 img {
+          max-width: 70%;
+          float: right; }
+
+#openAccountButtonsRow {
+  text-align: center;
+  background-color: #44596a;
+  margin-bottom: 40px; }
+  #openAccountButtonsRow #buttonsDiv {
+    position: relative;
+    display: inline-block;
+    background-color: #ffffff;
+    min-width: 50%;
+    margin-bottom: -20px;
+    margin-top: 20px;
+    border: 1px solid #cdcdcd; }
+    #openAccountButtonsRow #buttonsDiv:after {
+      position: absolute;
+      bottom: 0px;
+      right: 0;
+      display: block;
+      height: 20px;
+      margin-bottom: -20px;
+      width: 100%;
+      background-image: url("../images/shadows/open_account_shadow.png");
+      background-repeat: no-repeat;
+      background-size: 100% 20px;
+      content: ""; }
+    #openAccountButtonsRow #buttonsDiv .oneButtonDiv {
+      width: 50%;
+      padding: 10px;
+      float: left; }
+
+#platformsRow {
+  border-top: 2px solid #cdcdcd;
+  border-bottom: 2px solid #cdcdcd;
+  background-color: #F5F5F5;
+  margin: 80px 0px; }
+  #platformsRow #linksListArrowDiv .linksDiv {
+    position: relative;
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 20px 100%; }
+    #platformsRow #linksListArrowDiv .linksDiv:after {
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      display: block;
+      width: 30px;
+      height: 100%;
+      background-image: url("../images/shadows/v_shadow.png");
+      background-repeat: no-repeat;
+      background-size: 30px 100%;
+      z-index: 2;
+      content: ""; }
+    #platformsRow #linksListArrowDiv .linksDiv a {
+      display: block;
+      text-align: center;
+      font-size: 18px;
+      font-size: 1.125rem;
+      color: #44596a;
+      position: relative;
+      padding: 10px 0px;
+      width: 75%;
+      margin-left: 25%;
+      text-align: left;
+      padding-left: 10px; }
+      #platformsRow #linksListArrowDiv .linksDiv a:hover {
+        background-color: #038d8d;
+        background-color: #038d8d;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#038d8d), to(#44596a));
+        background-image: -webkit-linear-gradient(top, #038d8d, #44596a);
+        background-image: -moz-linear-gradient(top, #038d8d, #44596a);
+        background-image: -ms-linear-gradient(top, #038d8d, #44596a);
+        background-image: -o-linear-gradient(top, #038d8d, #44596a);
+        background-image: linear-gradient(top, #038d8d, #44596a);
+        filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#44596a');
+        color: #ffffff;
+        text-decoration: none;
+        position: relative; }
+        #platformsRow #linksListArrowDiv .linksDiv a:hover:before {
+          background-image: url(../images/arrow_head.png);
+          float: right;
+          height: 100%;
+          width: 25px;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+          content: ""; }
+        #platformsRow #linksListArrowDiv .linksDiv a:hover:after {
+          position: absolute;
+          bottom: 0px;
+          right: 0;
+          display: block;
+          height: 20px;
+          margin-bottom: -20px;
+          width: 100%;
+          background-image: url("../images/shadows/h_shadow.png");
+          background-repeat: no-repeat;
+          background-size: 100% 20px;
+          content: ""; }
+  #platformsRow .textWithHeaderDiv p {
+    text-align: justify; }
+  #platformsRow .imgContainer img {
+    margin-top: -50px;
+    margin-bottom: -50px;
+    max-width: 100%; }
+
+#bigImageRow #bigImageDiv {
+  text-align: center; }
+  #bigImageRow #bigImageDiv img {
+    display: block;
+    margin: 20px auto; }
+
+#tradeAccountsRow {
+  margin: 60px 0px;
+  background-image: url("../images/trading_accounts_bg.png");
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  height: 350px;
+  overflow: visible;
+  margin-bottom: 200px;
+  padding-top: 15px; }
+  #tradeAccountsRow #tradeInnerContainer .textWithHeaderDiv {
+    margin: 30px 0px; }
+    #tradeAccountsRow #tradeInnerContainer .textWithHeaderDiv p {
+      line-height: 25px; }
+  #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn {
+    background-color: #038d8d; }
+    #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn header {
+      background-color: #038d8d;
+      padding: 10px;
+      min-height: 95px; }
+      #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn header .whiteButton {
+        width: 80%;
+        margin: -30px 10% 10px 10%;
+        font-size: 18px;
+        font-size: 1.125rem; }
+      #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn header p {
+        color: #ffffff; }
+    #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn section {
+      padding: 10px;
+      color: #ffffff;
+      background-color: #005756; }
+      #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn section .optionsList {
+        margin: 0px;
+        padding: 0px; }
+        #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn section .optionsList li {
+          list-style: none; }
+          #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn section .optionsList li .fa {
+            color: #038d8d;
+            font-size: 10px;
+            font-size: 0.625rem; }
+    #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn footer {
+      padding: 10px;
+      color: #ffffff;
+      background-color: #038d8d; }
+      #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn footer .linkDiv .rightButton {
+        position: relative; }
+        #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn footer .linkDiv .rightButton:after {
+          position: absolute;
+          bottom: 0px;
+          right: 0;
+          display: block;
+          height: 20px;
+          margin-bottom: -20px;
+          width: 100%;
+          background-image: url("../images/shadows/right_button_shdow.png");
+          background-repeat: no-repeat;
+          background-size: 100% 20px;
+          content: ""; }
+      #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn footer .linkDiv .leftButton {
+        position: relative; }
+        #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn footer .linkDiv .leftButton:after {
+          position: absolute;
+          bottom: 0px;
+          right: 0;
+          display: block;
+          height: 20px;
+          margin-bottom: -20px;
+          width: 100%;
+          background-image: url("../images/shadows/left_button_shadow.png");
+          background-repeat: no-repeat;
+          background-size: 100% 20px;
+          content: ""; }
+      #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn footer .linkDiv .whiteButton {
+        width: 80%;
+        margin: 10px 10% -30px 10%; }
+
+#calendarSpreadRow {
+  margin-bottom: 50px; }
+  #calendarSpreadRow .col-xs-8 .partTitle {
+    text-align: center;
+    color: #038d8d;
+    font-size: 32px;
+    font-size: 2rem; }
+  #calendarSpreadRow .col-xs-8 table {
+    width: 100%; }
+    #calendarSpreadRow .col-xs-8 table thead tr th {
+      text-align: center;
+      padding: 2px 5px; }
+    #calendarSpreadRow .col-xs-8 table tbody tr {
+      border-top: 5px solid #ffffff; }
+      #calendarSpreadRow .col-xs-8 table tbody tr img {
+        width: 30px;
+        height: 20px; }
+      #calendarSpreadRow .col-xs-8 table tbody tr .priority {
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        border-radius: 5px;
+        text-align: center;
+        color: #ffffff;
+        width: 80%;
+        margin: 3px 10%;
+        padding: 2px; }
+        #calendarSpreadRow .col-xs-8 table tbody tr .priority.low {
+          background-color: #04baba; }
+        #calendarSpreadRow .col-xs-8 table tbody tr .priority.medium {
+          background-color: #cca152; }
+        #calendarSpreadRow .col-xs-8 table tbody tr .priority.high {
+          background-color: #ff664c; }
+      #calendarSpreadRow .col-xs-8 table tbody tr .dateDiv {
+        padding: 2px;
+        font-size: 8px;
+        text-align: center;
+        color: #ffffff; }
+      #calendarSpreadRow .col-xs-8 table tbody tr td {
+        padding: 2px 5px; }
+    #calendarSpreadRow .col-xs-8 table tbody .oddTableRow {
+      background-color: #FBFBFB; }
+      #calendarSpreadRow .col-xs-8 table tbody .oddTableRow td .dateDiv {
+        background-color: #5c5c5c; }
+    #calendarSpreadRow .col-xs-8 table tbody .evenTableRow {
+      background-color: #F5F5F5; }
+      #calendarSpreadRow .col-xs-8 table tbody .evenTableRow td .dateDiv {
+        background-color: #038d8d; }
+  #calendarSpreadRow .col-xs-4 {
+    text-align: center; }
+    #calendarSpreadRow .col-xs-4 .partTitle {
+      text-align: center;
+      color: #038d8d;
+      font-size: 32px;
+      font-size: 2rem; }
+    #calendarSpreadRow .col-xs-4 .oneSpreadDiv .symbolNameDiv {
+      font-size: 14px; }
+      #calendarSpreadRow .col-xs-4 .oneSpreadDiv .symbolNameDiv .fa {
+        font-size: 14px; }
+    #calendarSpreadRow .col-xs-4 .oneSpreadDiv .bidAskAllDiv {
+      display: block;
+      width: 100%;
+      height: 35px; }
+      #calendarSpreadRow .col-xs-4 .oneSpreadDiv .bidAskAllDiv .onePrice {
+        width: 50%;
+        float: left;
+        padding: 0px 5px; }
+        #calendarSpreadRow .col-xs-4 .oneSpreadDiv .bidAskAllDiv .onePrice > span {
+          font-size: 8px;
+          text-align: right;
+          display: block;
+          padding-right: 3px; }
+        #calendarSpreadRow .col-xs-4 .oneSpreadDiv .bidAskAllDiv .onePrice .changeDiv {
+          line-height: 10px; }
+          #calendarSpreadRow .col-xs-4 .oneSpreadDiv .bidAskAllDiv .onePrice .changeDiv .bigNumber {
+            font-size: 18px;
+            float: left; }
+          #calendarSpreadRow .col-xs-4 .oneSpreadDiv .bidAskAllDiv .onePrice .changeDiv .smallNumber {
+            font-size: 10px; }
+        #calendarSpreadRow .col-xs-4 .oneSpreadDiv .bidAskAllDiv .onePrice.bidDiv {
+          border-right: 1px solid #038d8d; }
+    #calendarSpreadRow .col-xs-4 .oneSpreadDiv .binDiv {
+      display: block;
+      text-align: center;
+      margin-top: 10px; }
+      #calendarSpreadRow .col-xs-4 .oneSpreadDiv .binDiv .bin {
+        display: online-block;
+        border-top: 1px solid #038d8d;
+        padding-top: 10px; }
+    #calendarSpreadRow .col-xs-4 .oneSpreadDiv.up .symbolNameDiv .fa {
+      color: #038d8d; }
+      #calendarSpreadRow .col-xs-4 .oneSpreadDiv.up .symbolNameDiv .fa:before {
+        content: "\f0d8"; }
+    #calendarSpreadRow .col-xs-4 .oneSpreadDiv.up .bigNumber {
+      color: #038d8d; }
+    #calendarSpreadRow .col-xs-4 .oneSpreadDiv.up .smallNumber {
+      color: #038d8d; }
+    #calendarSpreadRow .col-xs-4 .oneSpreadDiv.down .symbolNameDiv .fa {
+      color: #ff664c; }
+      #calendarSpreadRow .col-xs-4 .oneSpreadDiv.down .symbolNameDiv .fa:before {
+        content: "\f0d7"; }
+    #calendarSpreadRow .col-xs-4 .oneSpreadDiv.down .bigNumber {
+      color: #ff664c; }
+    #calendarSpreadRow .col-xs-4 .oneSpreadDiv.down .smallNumber {
+      color: #ff664c; }
+    #calendarSpreadRow .col-xs-4 .mainButton {
+      margin-top: 15px;
+      padding: 2px 25px; }
+
+#partnershipRow {
+  text-align: center;
+  background-image: url("../images/True4x_partnership_bg.png");
+  background-size: 100% 100%;
+  padding: 30px 0px; }
+  #partnershipRow .textWithHeaderDiv p {
+    margin: 10px 0px;
+    color: white; }
+  #partnershipRow .textWithHeaderDiv .lineMenuDiv ul {
+    padding: 0px;
+    margin: 0px;
+    background-color: rgba(255, 255, 255, 0.3);
+    display: inline-block;
+    margin: auto; }
+    #partnershipRow .textWithHeaderDiv .lineMenuDiv ul li {
+      list-style: none;
+      float: left; }
+      #partnershipRow .textWithHeaderDiv .lineMenuDiv ul li a {
+        text-decoration: none; }
+    #partnershipRow .textWithHeaderDiv .lineMenuDiv ul li a {
+      padding: 5px 15px;
+      color: black; }
+
+#ourPartnersPaymentRow .tableDiv {
+  display: table;
+  margin: 15px 0px; }
+  #ourPartnersPaymentRow .tableDiv .oneCellDiv {
+    display: table-cell;
+    width: 11%;
+    min-width: auto !important;
+    float: left; }
+    #ourPartnersPaymentRow .tableDiv .oneCellDiv img {
+      max-width: 100%; }
+    #ourPartnersPaymentRow .tableDiv .oneCellDiv label {
+      color: #038d8d;
+      font-size: 18px;
+      font-size: 1.125rem;
+      padding: 15px 0px 0px 5px; }
+    #ourPartnersPaymentRow .tableDiv .oneCellDiv.withOneBorder {
+      border-right: 1px solid #038d8d; }
+
+#bottomColumnsMenu {
+  background-color: #44596a;
+  padding: 20px 0px; }
+  #bottomColumnsMenu .oneColumnMenuDiv {
+    width: 20%;
+    float: left; }
+    #bottomColumnsMenu .oneColumnMenuDiv h5 {
+      color: #038d8d; }
+    #bottomColumnsMenu .oneColumnMenuDiv ul {
+      margin: 0px;
+      padding: 0px; }
+      #bottomColumnsMenu .oneColumnMenuDiv ul li {
+        list-style: none; }
+        #bottomColumnsMenu .oneColumnMenuDiv ul li a {
+          color: #ffffff; }
+
+#bottomLogoRow {
+  text-align: center;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 5px solid #44596a; }
+  #bottomLogoRow .bottomLogoDiv img {
+    max-width: 100%; }
+  #bottomLogoRow .bottomHorzMenu {
+    display: inline-block; }
+    #bottomLogoRow .bottomHorzMenu ul {
+      padding: 0px;
+      margin: 0px;
+      margin-top: 25px;
+      display: inline-block; }
+      #bottomLogoRow .bottomHorzMenu ul li {
+        list-style: none;
+        float: left; }
+        #bottomLogoRow .bottomHorzMenu ul li a {
+          text-decoration: none; }
+      #bottomLogoRow .bottomHorzMenu ul li a {
+        padding: 0px 10px;
+        display: block;
+        color: #44596a; }
+      #bottomLogoRow .bottomHorzMenu ul .rightBorder {
+        border-right: 1px solid #44596a;
+        font-size: 10px;
+        font-size: 0.625rem; }
+  #bottomLogoRow .bottomSocialIconsDiv .oneSocialIcon {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    border-radius: 100%;
+    text-align: center;
+    padding: 5px;
+    padding-top: 10px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    font-size: 1.5rem;
+    margin-top: 20px; }
+    #bottomLogoRow .bottomSocialIconsDiv .oneSocialIcon.facebook {
+      background-color: #375597; }
+    #bottomLogoRow .bottomSocialIconsDiv .oneSocialIcon.twitter {
+      background-color: #3593ff; }
+    #bottomLogoRow .bottomSocialIconsDiv .oneSocialIcon.youtube {
+      background-color: #ff664c; }
+    #bottomLogoRow .bottomSocialIconsDiv .oneSocialIcon.v {
+      background-color: #5bc8ff; }
+    #bottomLogoRow .bottomSocialIconsDiv .oneSocialIcon .fa {
+      color: #ffffff; }
+
+#copyRightsRow {
+  background-color: #038d8d;
+  background-color: #038d8d;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#038d8d), to(#44596a));
+  background-image: -webkit-linear-gradient(top, #038d8d, #44596a);
+  background-image: -moz-linear-gradient(top, #038d8d, #44596a);
+  background-image: -ms-linear-gradient(top, #038d8d, #44596a);
+  background-image: -o-linear-gradient(top, #038d8d, #44596a);
+  background-image: linear-gradient(top, #038d8d, #44596a);
+  filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#44596a');
+  border-top: 1px solid #ffffff;
+  border-bottom: 3px solid #ffffff; }
+  #copyRightsRow .copyRightsDiv {
+    float: left;
+    color: #ffffff;
+    padding: 5px;
+    font-size: 10px;
+    font-size: 0.625rem; }
+  #copyRightsRow .powerDiv {
+    float: right;
+    color: #ffffff;
+    padding: 5px;
+    font-size: 10px;
+    font-size: 0.625rem; }
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,113 @@
+.button{
+
+  text-align: center;
+  display: block;
+  padding: 5px 10px;
+  color: #ffffff;
+}
+
+.mainButton{
+  display:inline-block;
+  padding:5px 10px;
+  @include  bgMainGradient;
+  font-size: $fontSizeMainButton;
+  color:$colorWhite;
+  text-decoration: none;
+
+  &:hover{
+    text-decoration: none;
+    color: $colorWhite;
+  }
+  cursor:pointer;
+}
+
+.secondaryButton{
+
+  display:inline-block;
+  padding:5px 10px;
+  background-color:$colorDark;
+
+  font-size: $fontSizeMainButton;
+  color:$colorWhite;
+  text-decoration: none;
+
+  &:hover{
+    text-decoration: none;
+    color: $colorWhite;
+  }
+  cursor:pointer;
+}
+
+
+.horizMenu{
+  margin:0px;
+  li{
+    list-style: none;
+    float:left;
+  }
+
+
+}
+
+
+.horizLine{
+  @include bgMainGradient;
+  border-top:1px solid $colorWhite;
+  min-height: 10px;
+}
+
+
+
+.textWithHeaderDiv {
+  text-align:center;
+  h3 {
+    color:$colorMainLight1;
+    margin:0px;
+    @include font-size($fontSizeLargeHeader);
+  }
+
+  p {
+    margin:0px;
+
+
+  }
+  .readMore {
+    color: $colorMainLight;
+    display: block;
+    text-align:$float2;
+text-decoration: none;
+
+    cursor:pointer;
+  }
+}
+
+
+
+.whiteButton {
+  @extend .button;
+  background-color: $colorBgGray;
+  color: $colorMainLight;
+  border:1px solid $colorWhite;
+
+&:hover{
+  text-decoration: none;
+}
+  h3 {
+
+  }
+
+  p {
+
+  }
+
+}
+
+
+
+
+.smallTextDiv {
+  text-align: center;
+  p {
+    font-size: $fontSizeSmall;
+  }
+}
