@@ -34,4 +34,7 @@ return [
     'apiAdminPassword'=>'API Admin Password',
     'save'=>'Save',
     'go'=>'Go',
+    'symbol'=>'Symbol',
+    'group'=>'Group',
+    'dashboard'=>'Dashboard'
 ];

@@ -390,14 +390,25 @@ class ReportsController extends Controller
             $aFilterParams['group'] = [];
         }
 
+        $chartData=[];
+        $chartData2=[];
         if ($oRequest->has('search')) {
             $oResults = $this->oMt4Trade->getCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults[0]->order = $aFilterParams['order'];
             $oResults[0]->sorts = $aFilterParams['sort'];
+
+
+            foreach($oResults[0] as $resutl){
+                $chartData[]=['name'=>$resutl->SYMBOL,'y'=>$resutl->COMMISSION*-1];
+                $chartData2[]=[$resutl->SYMBOL,$resutl->VOLUME];
+
+            }
         }
 
         return view('reports::client.commission')
             ->with('oResults', $oResults)
+            ->with('chartData', $chartData)
+            ->with('chartData2', $chartData2)
             ->with('aFilterParams', $aFilterParams);
     }
 

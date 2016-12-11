@@ -1,0 +1,191 @@
+//.box { @include border-radius(10px); }
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+
+
+@mixin horizMenu{
+  padding:0px;
+  margin:0px;
+  //overflow: auto;
+  li{
+    list-style: none;
+    float:$float1;
+    a{
+      text-decoration:none;
+    }
+  }
+}
+
+@mixin blockCenter{
+  display:inline-block;
+  margin:auto;
+}
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+
+@mixin bgMainGradient{
+
+  background-color: $colorMainLight;
+  @include bg-gradient-t2b($colorMainLight,$colorDark );
+}
+
+@mixin placeHolderColor($color){
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $color;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $color;
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $color;
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $color;
+  }
+}
+
+
+@mixin boxShadow($value){
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@mixin backgroundFixed($url){
+  background-image: url($url);
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+@mixin backgroundCover($url){
+  background-image: url($url);
+
+  background-size: 100% 100%;
+}
+
+
+
+
+@mixin bp-large {
+  @media only screen and (max-width: 60em) {
+    @content;
+  }
+}
+
+@mixin bp-medium {
+  @media only screen and (max-width: 40em) {
+    @content;
+  }
+}
+
+@mixin bp-small {
+  @media only screen and (max-width: 30em) {
+    @content;
+  }
+}
+
+
+//.thisIsExampleElement {
+//  width: 60%;
+//  float: left;
+//  margin: 0 2% 0 0;
+//  @include bp-small {
+//    width: 100%;
+//    float: none;
+//    margin: 0;
+//  }
+//}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/*________________________________________background_gradient*/
+// Background Gradient: Top to Bottom
+@mixin bg-gradient-t2b($start-colour, $end-colour) {
+  background-color: $start-colour;
+  background-image: -webkit-gradient(linear, left top, left bottom, from($start-colour), to($end-colour));
+  background-image: -webkit-linear-gradient(top, $start-colour, $end-colour);
+  background-image:    -moz-linear-gradient(top, $start-colour, $end-colour);
+  background-image:     -ms-linear-gradient(top, $start-colour, $end-colour);
+  background-image:      -o-linear-gradient(top, $start-colour, $end-colour);
+  background-image:         linear-gradient(top, $start-colour, $end-colour);
+  filter:            progid:DXImageTransform.Microsoft.gradient(start-colourStr='#{$start-colour}', end-colourStr='#{$end-colour}');
+}
+
+
+// Background Gradient: Left to Right
+@mixin bg-gradient-l2r($start-colour, $end-colour) {
+  background-color: $start-colour;
+  background-image: -webkit-gradient(linear, left top, right top, from($start-colour), to($end-colour));
+  background-image: -webkit-linear-gradient(left, $start-colour, $end-colour);
+  background-image:    -moz-linear-gradient(left, $start-colour, $end-colour);
+  background-image:     -ms-linear-gradient(left, $start-colour, $end-colour);
+  background-image:      -o-linear-gradient(left, $start-colour, $end-colour);
+  background-image:         linear-gradient(left, $start-colour, $end-colour);
+  filter:            progid:DXImageTransform.Microsoft.gradient(start-colourStr='#{$start-colour}', end-colourStr='#{$end-colour}', gradientType='1');
+}
+
+/*________________________________________background_gradient*/
+
+
+/*_________________________________________shadow_images*/
+@mixin shdowBottomImg($img,$heihgt){
+  position:relative;
+  &:after{position:absolute;
+    bottom:0px;
+    right: 0;
+    display:block;
+    height: $heihgt;
+    margin-bottom: -1 * $heihgt;
+    width:100%;
+    background-image: url($img);
+
+    background-repeat:no-repeat;
+    background-size: 100% $heihgt;
+    content:"";}
+}
+
+@mixin shdowRightImg($img,$width){
+  position:relative;
+  &:after{position:absolute;
+    bottom:0px;
+right:0px;
+    display:block;
+    width: $width;
+
+    height:100%;
+    background-image: url($img);
+
+    background-repeat:no-repeat;
+    background-size: $width 100% ;
+    z-index: 2;
+    content:"";}
+}

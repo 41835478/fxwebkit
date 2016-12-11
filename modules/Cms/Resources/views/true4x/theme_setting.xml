@@ -1,0 +1,35 @@
+<?xml version="1.0" standalone="yes"?>
+<theme>
+    <rows>
+        <row>
+            <column class="col-xs-12" name="true4x_top_header_line"></column>
+        </row>
+
+
+        <row>
+            <column class="col-xs-12" name="true4x_header"></column>
+        </row>
+        <row>
+            <column class="col-xs-12" name="true4x_main_slider"></column>
+        </row>
+
+
+        <row>
+            <column class="col-xs-4" name="true4x_aside"></column>
+
+            <column class="col-xs-8" name="true4x_body"></column>
+        </row>
+
+
+        <row>
+            <column class="col-xs-12" name="true4x_position_1"></column>
+        </row>
+
+        <row>
+            <column class="col-xs-12" name="true4x_footer_upper"></column>
+        </row>
+        <row>
+            <column class="col-xs-12" name="true4x_footer"></column>
+        </row>
+    </rows>
+</theme>
