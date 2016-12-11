@@ -43,6 +43,18 @@
                     </div>
                 </li>
 
+                <div class=" nav-input-div form-group ">
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
+                            <span class="lbl">{{ trans('accounts::accounts.AllGroups') }}</span>
+                        </label>
+                    </div>
+                    {!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','id'=>'all-groups-slc']) !!}
+                </div>
+
+
+
                 <li><div  class=" nav-input-div  ">
                         {!! Form::submit(trans('reports::reports.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div></li>
@@ -79,9 +91,19 @@
                     <thead>
                         <tr>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.login'), 'LOGIN', $oResults) !!}</th>
-
                             <th class="no-warp">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.time'), 'TIME', $oResults) !!}</th>
                             <th class="no-warp">{!! th_sort(trans('reports::reports.Group'), 'GROUP', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.bank'), 'BANK', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.Balance_Prev'), 'BALANCE_PREV', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.Balance'), 'BALANCE', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.deposit'), 'DEPOSIT', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.credit'), 'CREDIT', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.PROFIT_CLOSED'), 'PROFIT_CLOSED', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.profit'), 'PROFIT', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.Equity'), 'EQUITY', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.Margin'), 'MARGIN', $oResults) !!}</th>
+                            <th class="no-warp">{!! th_sort(trans('reports::reports.MarginFree'), 'MARGIN_FREE', $oResults) !!}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -93,7 +115,19 @@
                         <tr class='{{ $class }}'> 
                             <td>{{ $oResult->LOGIN }}</td>
                             <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                            <td>{{ $oResult->TIME }}</td>
                             <td>{{ $oResult->GROUP }}</td>
+                            <td>{{ $oResult->BANK }}</td>
+                            <td>{{ $oResult->BALANCE_PREV }}</td>
+                            <td>{{ $oResult->BALANCE }}</td>
+                            <td>{{ $oResult->DEPOSIT }}</td>
+                            <td>{{ $oResult->CREDIT }}</td>
+                            <td>{{ $oResult->PROFIT_CLOSED }}</td>
+                            <td>{{ $oResult->PROFIT }}</td>
+                            <td>{{ $oResult->EQUITY }}</td>
+                            <td>{{ $oResult->MARGIN }}</td>
+                            <td>{{ $oResult->MARGIN_FREE }}</td>
+
                         </tr>
                         @endforeach
                         @endif

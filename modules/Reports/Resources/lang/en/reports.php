@@ -93,4 +93,10 @@ return [
     'accountant_total'=>'Accountant Total',
     'total'=>'Total',
     'dailyReport'=>'Daily Report',
+    'time'=>'Time',
+    'bank'=>'Bank',
+    'deposit'=>'Deposit',
+    'credit'=>'Credit',
+    'Balance_Prev'=>'Prev balance',
+    'PROFIT_CLOSED'=>'Profit Closed',
 ];
