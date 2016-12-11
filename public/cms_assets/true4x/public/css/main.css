@@ -72,7 +72,8 @@ a {
   background-image: linear-gradient(top, #038d8d, #44596a);
   filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#44596a');
   border-top: 1px solid #ffffff;
-  min-height: 10px; }
+  min-height: 10px;
+  line-height: 1; }
 
 .textWithHeaderDiv {
   text-align: center; }
@@ -281,7 +282,8 @@ a {
 #openAccountButtonsRow {
   text-align: center;
   background-color: #44596a;
-  margin-bottom: 40px; }
+  margin-bottom: 40px;
+  line-height: 1; }
   #openAccountButtonsRow #buttonsDiv {
     position: relative;
     display: inline-block;
@@ -465,52 +467,54 @@ a {
 
 #calendarSpreadRow {
   margin-bottom: 50px; }
-  #calendarSpreadRow .col-xs-8 .partTitle {
-    text-align: center;
-    color: #038d8d;
-    font-size: 32px;
-    font-size: 2rem; }
-  #calendarSpreadRow .col-xs-8 table {
-    width: 100%; }
-    #calendarSpreadRow .col-xs-8 table thead tr th {
+  #calendarSpreadRow .col-xs-8 {
+    line-height: 1; }
+    #calendarSpreadRow .col-xs-8 .partTitle {
       text-align: center;
-      padding: 2px 5px; }
-    #calendarSpreadRow .col-xs-8 table tbody tr {
-      border-top: 5px solid #ffffff; }
-      #calendarSpreadRow .col-xs-8 table tbody tr img {
-        width: 30px;
-        height: 20px; }
-      #calendarSpreadRow .col-xs-8 table tbody tr .priority {
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        -ms-border-radius: 5px;
-        border-radius: 5px;
+      color: #038d8d;
+      font-size: 32px;
+      font-size: 2rem; }
+    #calendarSpreadRow .col-xs-8 table {
+      width: 100%; }
+      #calendarSpreadRow .col-xs-8 table thead tr th {
         text-align: center;
-        color: #ffffff;
-        width: 80%;
-        margin: 3px 10%;
-        padding: 2px; }
-        #calendarSpreadRow .col-xs-8 table tbody tr .priority.low {
-          background-color: #04baba; }
-        #calendarSpreadRow .col-xs-8 table tbody tr .priority.medium {
-          background-color: #cca152; }
-        #calendarSpreadRow .col-xs-8 table tbody tr .priority.high {
-          background-color: #ff664c; }
-      #calendarSpreadRow .col-xs-8 table tbody tr .dateDiv {
-        padding: 2px;
-        font-size: 8px;
-        text-align: center;
-        color: #ffffff; }
-      #calendarSpreadRow .col-xs-8 table tbody tr td {
         padding: 2px 5px; }
-    #calendarSpreadRow .col-xs-8 table tbody .oddTableRow {
-      background-color: #FBFBFB; }
-      #calendarSpreadRow .col-xs-8 table tbody .oddTableRow td .dateDiv {
-        background-color: #5c5c5c; }
-    #calendarSpreadRow .col-xs-8 table tbody .evenTableRow {
-      background-color: #F5F5F5; }
-      #calendarSpreadRow .col-xs-8 table tbody .evenTableRow td .dateDiv {
-        background-color: #038d8d; }
+      #calendarSpreadRow .col-xs-8 table tbody tr {
+        border-top: 5px solid #ffffff; }
+        #calendarSpreadRow .col-xs-8 table tbody tr img {
+          width: 30px;
+          height: 20px; }
+        #calendarSpreadRow .col-xs-8 table tbody tr .priority {
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          -ms-border-radius: 5px;
+          border-radius: 5px;
+          text-align: center;
+          color: #ffffff;
+          width: 80%;
+          margin: 3px 10%;
+          padding: 2px; }
+          #calendarSpreadRow .col-xs-8 table tbody tr .priority.low {
+            background-color: #04baba; }
+          #calendarSpreadRow .col-xs-8 table tbody tr .priority.medium {
+            background-color: #cca152; }
+          #calendarSpreadRow .col-xs-8 table tbody tr .priority.high {
+            background-color: #ff664c; }
+        #calendarSpreadRow .col-xs-8 table tbody tr .dateDiv {
+          padding: 2px;
+          font-size: 8px;
+          text-align: center;
+          color: #ffffff; }
+        #calendarSpreadRow .col-xs-8 table tbody tr td {
+          padding: 2px 5px; }
+      #calendarSpreadRow .col-xs-8 table tbody .oddTableRow {
+        background-color: #FBFBFB; }
+        #calendarSpreadRow .col-xs-8 table tbody .oddTableRow td .dateDiv {
+          background-color: #5c5c5c; }
+      #calendarSpreadRow .col-xs-8 table tbody .evenTableRow {
+        background-color: #F5F5F5; }
+        #calendarSpreadRow .col-xs-8 table tbody .evenTableRow td .dateDiv {
+          background-color: #038d8d; }
   #calendarSpreadRow .col-xs-4 {
     text-align: center; }
     #calendarSpreadRow .col-xs-4 .partTitle {

@@ -2,42 +2,34 @@
 <theme>
     <rows>
         <row>
-            <column class="col-xs-12" name="house_top_header_line"></column>
-        </row>
-
-        <row>
-            <column class="col-xs-8 col-xs-offset-4 " name="house_main_menu"></column>
-        </row>
-        <row>
-            <column class="col-xs-12" name="house_header"></column>
-        </row>
-        <row>
-            <column class="col-xs-12" name="house_main_slider"></column>
-        </row>
-        <row>
-            <column class="col-xs-12" name="house_under_slider"></column>
-        </row>
-
-        <row>
-            <column class="col-xs-12" name="house_top_banner"></column>
-        </row>
-
-        <row>
-            <column class="col-xs-4" name="house_aside"></column>
-
-            <column class="col-xs-8" name="house_body"></column>
+            <column class="col-xs-12" name="true4x_top_header_line"></column>
         </row>
 
 
         <row>
-            <column class="col-xs-12" name="house_position_1"></column>
+            <column class="col-xs-12" name="true4x_header"></column>
+        </row>
+        <row>
+            <column class="col-xs-12" name="true4x_main_slider"></column>
+        </row>
+
+
+        <row>
+            <column class="col-xs-4" name="true4x_aside"></column>
+
+            <column class="col-xs-8" name="true4x_body"></column>
+        </row>
+
+
+        <row>
+            <column class="col-xs-12" name="true4x_position_1"></column>
         </row>
 
         <row>
-            <column class="col-xs-12" name="house_footer_upper"></column>
+            <column class="col-xs-12" name="true4x_footer_upper"></column>
         </row>
         <row>
-            <column class="col-xs-12" name="house_footer"></column>
+            <column class="col-xs-12" name="true4x_footer"></column>
         </row>
     </rows>
 </theme>

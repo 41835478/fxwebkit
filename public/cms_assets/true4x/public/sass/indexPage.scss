@@ -255,6 +255,9 @@ position:absolute;
   text-align: center;
   background-color: $colorDark;
   margin-bottom:40px;
+
+  line-height: 1;
+
   #buttonsDiv {
 
     @include shdowBottomImg("../images/shadows/open_account_shadow.png",20px);
@@ -535,9 +538,11 @@ line-height: 25px;
 
 #calendarSpreadRow {
 
+
+
   margin-bottom:50px;
   .col-xs-8 {
-
+    line-height: 1;
     .partTitle {
       text-align: center;
       color:$colorMainLight ;
