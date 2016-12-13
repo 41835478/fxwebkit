@@ -2,9 +2,11 @@
     <div class="container">
         <div id="mainMenuDiv">
             <ul id="mainMenuUl">
+                <li class="">
+                    <a href="/">Home</a>
+                </li>
                 @foreach($menu_array as $menu)
-
-                    <li class=" @if($menu['id'] == $selected_id )  active @endif "><a href="{{ asset($menu['name']) }}">{{ str_replace('-',' ',$menu['translate']) }}</a>
+                    <li class=" @if($menu['id'] == $selected_id )  active @endif "><a href="#">{{ str_replace('-',' ',$menu['translate']) }}</a>
                         @if(isset($menu['children']) && $menu['children']!= null)
                         <div class="zeroSubmenuDiv">
                             <div class="subMenuDiv">
