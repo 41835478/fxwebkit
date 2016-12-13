@@ -1,0 +1,74 @@
+#sideButtonsAllDiv {
+
+  #innerSideButtonsAllDiv {
+
+    p {
+color:$colorDark;
+
+      text-align: center;
+      b {
+
+      }
+
+      br {
+
+      }
+    }
+
+    #sideDemoLiveAccountsDiv {
+
+      .oneButtonDiv {
+        @include shdowBottomImg("../images/shadows/open_account_shadow.png",20px);
+        margin:30px 0px;
+        .mainButton {
+width:100%;
+          text-align: center;
+        }
+
+        .secondaryButton  {
+          width:100%;
+          text-align: center;
+        }
+      }
+    }
+
+    #tradTipsNoteDiv {
+
+      .imgContainer {
+
+        margin:30px 0px 0px 0px;
+        img {
+display: block;
+          margin:auto;
+          max-width:30%;
+        }
+      }
+
+      p {
+
+        color:$colorDark;
+        text-align: center;
+      }
+    }
+
+    #email_input{
+width:100%;
+      padding:10px;
+      border:none;
+      margin:10px 0px;
+    }
+    #sideSubmitButton {
+
+      .yellowButton {
+        background-color: $colorYellow;
+        color: $colorWhite;
+        width:100%;
+        display: block;
+        padding:10px 0px;
+        text-align: center;
+        border:none;
+
+      }
+    }
+  }
+}

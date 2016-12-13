@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,cAAc;EACZ,WAAW,EAAC,IAAI;EAChB,cAAc,EAAC,IAAI;;AAErB,QAAQ;EACN,WAAW,EAAC,IAAI;EAChB,cAAc,EAAC,IAAI",
+"sources": ["../sass/innerPages.scss"],
+"names": [],
+"file": "innerPages.css"
+}
