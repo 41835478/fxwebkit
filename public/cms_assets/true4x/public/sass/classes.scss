@@ -10,7 +10,9 @@
   display:inline-block;
   padding:5px 10px;
   @include  bgMainGradient;
-  font-size: $fontSizeMainButton;
+  @include font-size($fontSizeMainButton);
+  font-weight:lighter;
+
   color:$colorWhite;
   text-decoration: none;
 
