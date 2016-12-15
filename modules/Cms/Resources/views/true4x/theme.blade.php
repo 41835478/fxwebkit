@@ -57,14 +57,6 @@
 
             <div class="container">
 
-                <div id="sidebar"class="col-xs-3">
-                    @if(isset($positions["true4x_aside"]) )
-                        @foreach($positions['true4x_aside'] as $position)
-                            {!! $position !!}
-                        @endforeach
-                    @endif
-                </div>
-
 
 
                 <div id="page-contents" class=" @if(isset($positions["true4x_aside"]) )col-xs-9 @else col-xs-12  @endif" >
@@ -76,6 +68,17 @@
                         @endforeach
                     @endif
                 </div><!--#page-contents-->
+
+
+
+                <div id="sidebar"class="col-xs-3">
+                    @if(isset($positions["true4x_aside"]) )
+                        @foreach($positions['true4x_aside'] as $position)
+                            {!! $position !!}
+                        @endforeach
+                    @endif
+                </div>
+
 
             </div><!--.container-->
         @endif

@@ -10,12 +10,21 @@
 body {
   margin: 0px; }
 
+@font-face {
+  font-family: 'roboto';
+  src: url("../fonts/roboto/Roboto-Light.ttf");
+  /* IE9 Compat Modes */
+  src: url("../fonts/roboto/Roboto-Light.ttf?#iefix") format("embedded-opentype"), url("../fonts/roboto/Roboto-Light.ttf") format("woff2"), url("../fonts/roboto/Roboto-Light.ttf") format("woff"), url("../fonts/roboto/Roboto-Light.ttf") format("truetype"), url("../fonts/roboto/Roboto-Light.ttf") format("svg");
+  /* Legacy iOS */ }
 *:not(i) {
-  font-family: sans-serif;
+  font-family: roboto, helvetica, opensans;
   font-size: 14px; }
 
 a {
   text-decoration: none; }
+
+.row {
+  margin: 0px; }
 
 .button, .whiteButton {
   text-align: center;
@@ -28,14 +37,16 @@ a {
   padding: 5px 10px;
   background-color: #038d8d;
   background-color: #038d8d;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#038d8d), to(#44596a));
-  background-image: -webkit-linear-gradient(top, #038d8d, #44596a);
-  background-image: -moz-linear-gradient(top, #038d8d, #44596a);
-  background-image: -ms-linear-gradient(top, #038d8d, #44596a);
-  background-image: -o-linear-gradient(top, #038d8d, #44596a);
-  background-image: linear-gradient(top, #038d8d, #44596a);
-  filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#44596a');
-  font-size: 16px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#038d8d), to(#095756));
+  background-image: -webkit-linear-gradient(top, #038d8d, #095756);
+  background-image: -moz-linear-gradient(top, #038d8d, #095756);
+  background-image: -ms-linear-gradient(top, #038d8d, #095756);
+  background-image: -o-linear-gradient(top, #038d8d, #095756);
+  background-image: linear-gradient(top, #038d8d, #095756);
+  filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#095756');
+  font-size: 24px;
+  font-size: 1.5rem;
+  font-weight: lighter;
   color: #ffffff;
   text-decoration: none;
   cursor: pointer; }
@@ -47,7 +58,7 @@ a {
   display: inline-block;
   padding: 5px 10px;
   background-color: #44596a;
-  font-size: 16px;
+  font-size: 24px;
   color: #ffffff;
   text-decoration: none;
   cursor: pointer; }
@@ -64,13 +75,13 @@ a {
 .horizLine {
   background-color: #038d8d;
   background-color: #038d8d;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#038d8d), to(#44596a));
-  background-image: -webkit-linear-gradient(top, #038d8d, #44596a);
-  background-image: -moz-linear-gradient(top, #038d8d, #44596a);
-  background-image: -ms-linear-gradient(top, #038d8d, #44596a);
-  background-image: -o-linear-gradient(top, #038d8d, #44596a);
-  background-image: linear-gradient(top, #038d8d, #44596a);
-  filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#44596a');
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#038d8d), to(#095756));
+  background-image: -webkit-linear-gradient(top, #038d8d, #095756);
+  background-image: -moz-linear-gradient(top, #038d8d, #095756);
+  background-image: -ms-linear-gradient(top, #038d8d, #095756);
+  background-image: -o-linear-gradient(top, #038d8d, #095756);
+  background-image: linear-gradient(top, #038d8d, #095756);
+  filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#095756');
   border-top: 1px solid #ffffff;
   min-height: 10px;
   line-height: 1; }
@@ -78,7 +89,7 @@ a {
 .textWithHeaderDiv {
   text-align: center; }
   .textWithHeaderDiv h3 {
-    color: #04baba;
+    color: #095756;
     margin: 0px;
     font-size: 32px;
     font-size: 2rem; }
@@ -104,34 +115,43 @@ a {
     font-size: 10px; }
 
 /*_______________pages */
-#headerWatchRow #watchDiv {
-  padding: 2px 0px;
-  text-align: center; }
-  #headerWatchRow #watchDiv #watchUl {
-    padding: 0px;
-    margin: 0px;
-    display: inline-block;
-    margin: auto; }
-    #headerWatchRow #watchDiv #watchUl li {
-      list-style: none;
-      float: left; }
-      #headerWatchRow #watchDiv #watchUl li a {
-        text-decoration: none; }
-    #headerWatchRow #watchDiv #watchUl li {
-      padding: 0px 10px; }
-      #headerWatchRow #watchDiv #watchUl li.oneBorder {
-        border-right: 1px solid #038d8d; }
-      #headerWatchRow #watchDiv #watchUl li .cityName {
-        color: #44596a;
-        font-weight: bold;
-        font-size: 10px; }
-      #headerWatchRow #watchDiv #watchUl li .cityHour {
-        color: #44596a;
-        font-size: 10px; }
-      #headerWatchRow #watchDiv #watchUl li .cityIcon {
-        width: 17px;
-        height: 17px;
-        color: #038d8d; }
+#headerWatchRow {
+  background-color: #98a4ad;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#98a4ad), to(#ffffff));
+  background-image: -webkit-linear-gradient(top, #98a4ad, #ffffff);
+  background-image: -moz-linear-gradient(top, #98a4ad, #ffffff);
+  background-image: -ms-linear-gradient(top, #98a4ad, #ffffff);
+  background-image: -o-linear-gradient(top, #98a4ad, #ffffff);
+  background-image: linear-gradient(top, #98a4ad, #ffffff);
+  filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#98a4ad', end-colourStr='#ffffff'); }
+  #headerWatchRow #watchDiv {
+    padding: 2px 0px;
+    text-align: center; }
+    #headerWatchRow #watchDiv #watchUl {
+      padding: 0px;
+      margin: 0px;
+      display: inline-block;
+      margin: auto; }
+      #headerWatchRow #watchDiv #watchUl li {
+        list-style: none;
+        float: left; }
+        #headerWatchRow #watchDiv #watchUl li a {
+          text-decoration: none; }
+      #headerWatchRow #watchDiv #watchUl li {
+        padding: 0px 10px; }
+        #headerWatchRow #watchDiv #watchUl li.oneBorder {
+          border-right: 1px solid #038d8d; }
+        #headerWatchRow #watchDiv #watchUl li .cityName {
+          color: #44596a;
+          font-weight: bold;
+          font-size: 10px; }
+        #headerWatchRow #watchDiv #watchUl li .cityHour {
+          color: #44596a;
+          font-size: 10px; }
+        #headerWatchRow #watchDiv #watchUl li .cityIcon {
+          width: 17px;
+          height: 17px;
+          color: #038d8d; }
 
 #logoRow {
   padding: 40px 0;
@@ -158,13 +178,13 @@ a {
         color: #ffffff;
         background-color: #038d8d;
         background-color: #038d8d;
-        background-image: -webkit-gradient(linear, left top, left bottom, from(#038d8d), to(#44596a));
-        background-image: -webkit-linear-gradient(top, #038d8d, #44596a);
-        background-image: -moz-linear-gradient(top, #038d8d, #44596a);
-        background-image: -ms-linear-gradient(top, #038d8d, #44596a);
-        background-image: -o-linear-gradient(top, #038d8d, #44596a);
-        background-image: linear-gradient(top, #038d8d, #44596a);
-        filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#44596a'); }
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#038d8d), to(#095756));
+        background-image: -webkit-linear-gradient(top, #038d8d, #095756);
+        background-image: -moz-linear-gradient(top, #038d8d, #095756);
+        background-image: -ms-linear-gradient(top, #038d8d, #095756);
+        background-image: -o-linear-gradient(top, #038d8d, #095756);
+        background-image: linear-gradient(top, #038d8d, #095756);
+        filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#095756'); }
         #logoRow #headerBesideLogin #headerSearchDiv #searchInput::-webkit-input-placeholder {
           /* Chrome/Opera/Safari */
           color: #ffffff; }
@@ -203,19 +223,50 @@ a {
     margin: 10px 0px; }
     #headerMenuRow #mainMenuDiv #mainMenuUl {
       padding: 0px;
-      margin: 0px;
-      overflow: hidden; }
+      margin: 0px; }
       #headerMenuRow #mainMenuDiv #mainMenuUl li {
         list-style: none;
         float: left; }
         #headerMenuRow #mainMenuDiv #mainMenuUl li a {
           text-decoration: none; }
-      #headerMenuRow #mainMenuDiv #mainMenuUl li a {
+      #headerMenuRow #mainMenuDiv #mainMenuUl > li > a {
         color: #ffffff;
         padding: 5px 10px;
         text-align: center;
         font-size: 24px;
         font-size: 1.5rem; }
+      #headerMenuRow #mainMenuDiv #mainMenuUl > li:hover .zeroSubmenuDiv {
+        overflow: visible; }
+  #headerMenuRow .zeroSubmenuDiv {
+    width: 100%;
+    height: 0 !important;
+    overflow: hidden;
+    min-width: 100%;
+    position: relative; }
+    #headerMenuRow .zeroSubmenuDiv .subMenuDiv {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      min-width: 200%;
+      background-color: #44596a;
+      z-index: 100000;
+      display: block;
+      padding-top: 20px; }
+      #headerMenuRow .zeroSubmenuDiv .subMenuDiv .submenuUl {
+        margin: 0px;
+        padding: 0px;
+        width: 100%; }
+        #headerMenuRow .zeroSubmenuDiv .subMenuDiv .submenuUl li {
+          width: 100%; }
+          #headerMenuRow .zeroSubmenuDiv .subMenuDiv .submenuUl li a {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 5px 10px;
+            color: #ffffff;
+            border-bottom: 1px solid #038d8d; }
+          #headerMenuRow .zeroSubmenuDiv .subMenuDiv .submenuUl li:hover a {
+            background-color: #038d8d; }
 
 #sliderRow {
   height: 500px; }
@@ -288,9 +339,9 @@ a {
     position: relative;
     display: inline-block;
     background-color: #ffffff;
-    min-width: 50%;
-    margin-bottom: -20px;
-    margin-top: 20px;
+    min-width: 60%;
+    margin-bottom: -40px;
+    margin-top: 40px;
     border: 1px solid #cdcdcd; }
     #openAccountButtonsRow #buttonsDiv:after {
       position: absolute;
@@ -308,6 +359,10 @@ a {
       width: 50%;
       padding: 10px;
       float: left; }
+      #openAccountButtonsRow #buttonsDiv .oneButtonDiv .mainButton {
+        padding: 10px 20px; }
+      #openAccountButtonsRow #buttonsDiv .oneButtonDiv .secondaryButton {
+        padding: 10px 20px; }
 
 #platformsRow {
   border-top: 2px solid #cdcdcd;
@@ -346,13 +401,13 @@ a {
       #platformsRow #linksListArrowDiv .linksDiv a:hover {
         background-color: #038d8d;
         background-color: #038d8d;
-        background-image: -webkit-gradient(linear, left top, left bottom, from(#038d8d), to(#44596a));
-        background-image: -webkit-linear-gradient(top, #038d8d, #44596a);
-        background-image: -moz-linear-gradient(top, #038d8d, #44596a);
-        background-image: -ms-linear-gradient(top, #038d8d, #44596a);
-        background-image: -o-linear-gradient(top, #038d8d, #44596a);
-        background-image: linear-gradient(top, #038d8d, #44596a);
-        filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#44596a');
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#038d8d), to(#095756));
+        background-image: -webkit-linear-gradient(top, #038d8d, #095756);
+        background-image: -moz-linear-gradient(top, #038d8d, #095756);
+        background-image: -ms-linear-gradient(top, #038d8d, #095756);
+        background-image: -o-linear-gradient(top, #038d8d, #095756);
+        background-image: linear-gradient(top, #038d8d, #095756);
+        filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#095756');
         color: #ffffff;
         text-decoration: none;
         position: relative; }
@@ -404,22 +459,23 @@ a {
     #tradeAccountsRow #tradeInnerContainer .textWithHeaderDiv p {
       line-height: 25px; }
   #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn {
-    background-color: #038d8d; }
+    background-color: #378d8c; }
     #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn header {
-      background-color: #038d8d;
+      background-color: #378d8c;
       padding: 10px;
       min-height: 95px; }
       #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn header .whiteButton {
         width: 80%;
         margin: -30px 10% 10px 10%;
-        font-size: 18px;
-        font-size: 1.125rem; }
+        font-size: 24px;
+        font-size: 1.5rem;
+        color: #095756; }
       #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn header p {
         color: #ffffff; }
     #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn section {
       padding: 10px;
       color: #ffffff;
-      background-color: #005756; }
+      background-color: #095756; }
       #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn section .optionsList {
         margin: 0px;
         padding: 0px; }
@@ -432,7 +488,7 @@ a {
     #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn footer {
       padding: 10px;
       color: #ffffff;
-      background-color: #038d8d; }
+      background-color: #378d8c; }
       #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn footer .linkDiv .rightButton {
         position: relative; }
         #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn footer .linkDiv .rightButton:after {
@@ -463,7 +519,10 @@ a {
           content: ""; }
       #tradeAccountsRow #tradeInnerContainer #accountsColumnsDiv .oneAccountColumn footer .linkDiv .whiteButton {
         width: 80%;
-        margin: 10px 10% -30px 10%; }
+        margin: 10px 10% -30px 10%;
+        font-size: 24px;
+        font-size: 1.5rem;
+        color: #095756; }
 
 #calendarSpreadRow {
   margin-bottom: 50px; }
@@ -478,7 +537,9 @@ a {
       width: 100%; }
       #calendarSpreadRow .col-xs-8 table thead tr th {
         text-align: center;
-        padding: 2px 5px; }
+        padding: 2px 5px;
+        font-weight: normal;
+        color: #000; }
       #calendarSpreadRow .col-xs-8 table tbody tr {
         border-top: 5px solid #ffffff; }
         #calendarSpreadRow .col-xs-8 table tbody tr img {
@@ -495,7 +556,7 @@ a {
           margin: 3px 10%;
           padding: 2px; }
           #calendarSpreadRow .col-xs-8 table tbody tr .priority.low {
-            background-color: #04baba; }
+            background-color: #095756; }
           #calendarSpreadRow .col-xs-8 table tbody tr .priority.medium {
             background-color: #cca152; }
           #calendarSpreadRow .col-xs-8 table tbody tr .priority.high {
@@ -667,7 +728,7 @@ a {
     border-radius: 100%;
     text-align: center;
     padding: 5px;
-    padding-top: 10px;
+    padding-top: 5px;
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -688,13 +749,13 @@ a {
 #copyRightsRow {
   background-color: #038d8d;
   background-color: #038d8d;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#038d8d), to(#44596a));
-  background-image: -webkit-linear-gradient(top, #038d8d, #44596a);
-  background-image: -moz-linear-gradient(top, #038d8d, #44596a);
-  background-image: -ms-linear-gradient(top, #038d8d, #44596a);
-  background-image: -o-linear-gradient(top, #038d8d, #44596a);
-  background-image: linear-gradient(top, #038d8d, #44596a);
-  filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#44596a');
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#038d8d), to(#095756));
+  background-image: -webkit-linear-gradient(top, #038d8d, #095756);
+  background-image: -moz-linear-gradient(top, #038d8d, #095756);
+  background-image: -ms-linear-gradient(top, #038d8d, #095756);
+  background-image: -o-linear-gradient(top, #038d8d, #095756);
+  background-image: linear-gradient(top, #038d8d, #095756);
+  filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#038d8d', end-colourStr='#095756');
   border-top: 1px solid #ffffff;
   border-bottom: 3px solid #ffffff; }
   #copyRightsRow .copyRightsDiv {
@@ -709,5 +770,60 @@ a {
     padding: 5px;
     font-size: 10px;
     font-size: 0.625rem; }
+
+#page-contents {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+#sidebar {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+#sideButtonsAllDiv #innerSideButtonsAllDiv p {
+  color: #44596a;
+  text-align: center; }
+#sideButtonsAllDiv #innerSideButtonsAllDiv #sideDemoLiveAccountsDiv .oneButtonDiv {
+  position: relative;
+  margin: 30px 0px; }
+  #sideButtonsAllDiv #innerSideButtonsAllDiv #sideDemoLiveAccountsDiv .oneButtonDiv:after {
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    display: block;
+    height: 20px;
+    margin-bottom: -20px;
+    width: 100%;
+    background-image: url("../images/shadows/open_account_shadow.png");
+    background-repeat: no-repeat;
+    background-size: 100% 20px;
+    content: ""; }
+  #sideButtonsAllDiv #innerSideButtonsAllDiv #sideDemoLiveAccountsDiv .oneButtonDiv .mainButton {
+    width: 100%;
+    text-align: center; }
+  #sideButtonsAllDiv #innerSideButtonsAllDiv #sideDemoLiveAccountsDiv .oneButtonDiv .secondaryButton {
+    width: 100%;
+    text-align: center; }
+#sideButtonsAllDiv #innerSideButtonsAllDiv #tradTipsNoteDiv .imgContainer {
+  margin: 30px 0px 0px 0px; }
+  #sideButtonsAllDiv #innerSideButtonsAllDiv #tradTipsNoteDiv .imgContainer img {
+    display: block;
+    margin: auto;
+    max-width: 30%; }
+#sideButtonsAllDiv #innerSideButtonsAllDiv #tradTipsNoteDiv p {
+  color: #44596a;
+  text-align: center; }
+#sideButtonsAllDiv #innerSideButtonsAllDiv #email_input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  margin: 10px 0px; }
+#sideButtonsAllDiv #innerSideButtonsAllDiv #sideSubmitButton .yellowButton {
+  background-color: #ffbe46;
+  color: #ffffff;
+  width: 100%;
+  display: block;
+  padding: 10px 0px;
+  text-align: center;
+  border: none; }
 
 /*# sourceMappingURL=main.css.map */

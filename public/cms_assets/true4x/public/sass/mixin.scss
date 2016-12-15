@@ -41,7 +41,7 @@
 @mixin bgMainGradient{
 
   background-color: $colorMainLight;
-  @include bg-gradient-t2b($colorMainLight,$colorDark );
+  @include bg-gradient-t2b($colorMainLight,$colorMainLight1 );
 }
 
 @mixin placeHolderColor($color){
