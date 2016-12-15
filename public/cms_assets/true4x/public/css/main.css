@@ -23,6 +23,9 @@ body {
 a {
   text-decoration: none; }
 
+.row {
+  margin: 0px; }
+
 .button, .whiteButton {
   text-align: center;
   display: block;
@@ -113,14 +116,14 @@ a {
 
 /*_______________pages */
 #headerWatchRow {
-  background-color: #44596a;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#44596a), to(#ffffff));
-  background-image: -webkit-linear-gradient(top, #44596a, #ffffff);
-  background-image: -moz-linear-gradient(top, #44596a, #ffffff);
-  background-image: -ms-linear-gradient(top, #44596a, #ffffff);
-  background-image: -o-linear-gradient(top, #44596a, #ffffff);
-  background-image: linear-gradient(top, #44596a, #ffffff);
-  filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#44596a', end-colourStr='#ffffff'); }
+  background-color: #98a4ad;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#98a4ad), to(#ffffff));
+  background-image: -webkit-linear-gradient(top, #98a4ad, #ffffff);
+  background-image: -moz-linear-gradient(top, #98a4ad, #ffffff);
+  background-image: -ms-linear-gradient(top, #98a4ad, #ffffff);
+  background-image: -o-linear-gradient(top, #98a4ad, #ffffff);
+  background-image: linear-gradient(top, #98a4ad, #ffffff);
+  filter: progid:DXImageTransform.Microsoft.gradient(start-colourStr='#98a4ad', end-colourStr='#ffffff'); }
   #headerWatchRow #watchDiv {
     padding: 2px 0px;
     text-align: center; }
