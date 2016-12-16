@@ -6,13 +6,14 @@ $colorMainLight:#038d8d;
 $colorMainDark:#005756;//darken($colorMainLight,20%)
 
 
-$colorMainLight1:lighten($colorMainLight,9%);
-$colorMainLight2:lighten($colorMainLight,40%);
+$colorMainLight1:#095756;
+$colorMainLight2:#378d8c;
 
 
 
 $colorDark:#44596a;
 $colorDark1:#404040;
+$colorDark2:#98a4ad;
 
 
 $colorLight1:#57585c;
@@ -79,7 +80,7 @@ $fontSizeLargeHeader:32px;
 
 
 $fontSizeTopLine:$fontSizeSmall;
-$fontSizeMainButton:$fontSizeNormalHeader;
+$fontSizeMainButton:$fontSizeHeader;
 $fontSizeCopyRights:$fontSizeSmall;
 $fontSizeBodyVerySmallText:$fontSizeVerySmall;
 
