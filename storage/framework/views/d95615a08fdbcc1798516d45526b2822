@@ -1,0 +1,364 @@
+<?php $__env->startSection('title', trans('user.adminsList')); ?>
+<?php $__env->startSection('content'); ?>
+
+
+
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- .row -->
+            <div class="row bg-title" style="background:url(<?php echo e('/assets/'.config('fxweb.layoutAssetsFolder')); ?>/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
+                <div class="col-lg-12">
+                    <h4 class="page-title"><?php echo e(trans('user.adminsList')); ?></h4>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <ol class="breadcrumb pull-left">
+                        <li><a href="#">Fxwebkit</a></li>
+                        <li class="active"><?php echo e(trans('user.adminsList')); ?></li>
+                    </ol>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <form role="search" class="app-search hidden-xs pull-right">
+                        <input type="text" placeholder=" <?php echo e(trans('user.Search')); ?> ..." class="form-control">
+                        <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="white-box">
+                        <h3 class="box-title m-b-0">Kitchen Sink</h3>
+                        <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
+                        <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
+                            <thead>
+                            <tr>
+
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1"><abbr title="Rotten Tomato Rating"><?php echo th_sort(trans('user.id'), 'id', $oResults); ?></th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist"><?php echo th_sort(trans('user.first_name'), 'first_name', $oResults); ?></th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-sortable-default-col data-tablesaw-priority="3"><?php echo th_sort(trans('user.last_name'), 'last_name', $oResults); ?></th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4"><?php echo th_sort(trans('user.email'), 'email', $oResults); ?></th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5"></th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+
+
+                            <?php if(count($oResults)): ?>
+                             <?php /**/$i=0;/**/ ?>
+                             <?php /**/$class='';/**/ ?>
+                            <?php foreach($oResults as $oResult): ?>
+                             <?php /**/$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/**/ ?>
+
+
+                             <tr>
+                                 <td ><a href="javascript:void(0)"><?php echo e($oResult->id); ?></a></td>
+                                 <td class="title"><?php echo e($oResult->first_name); ?></td>
+                                 <td><?php echo e($oResult->last_name); ?></td>
+                                 <td><?php echo e($oResult->email); ?></td>
+                                 <td>
+                                     <a href="<?php echo e(route('general.editUser').'?edit_id='.$oResult->id); ?>" class="fa fa-edit tooltip_number" data-original-title="<?php echo e(trans('user.editUser')); ?>"></a>
+                                     <a href="<?php echo e(route('general.userDetails').'?edit_id='.$oResult->id); ?>" class="fa fa-file-text tooltip_number"  data-original-title="<?php echo e(trans('user.userDetails')); ?>"></a>
+                                     <a href="<?php echo e(route('general.changePassword').'?edit_id='.$oResult->id); ?>" class="fa fa-star tooltip_number"  data-original-title="<?php echo e(trans('user.changePassword')); ?>"></a>
+                                     <a href="<?php echo e(route('admin.deleteUser').'?delete_id='.$oResult->id); ?>" class="fa fa-trash-o tooltip_number"  data-original-title="<?php echo e(trans('user.deleteUser')); ?>"></a>
+
+
+                                 </td>
+                             </tr>
+
+
+
+                            <?php endforeach; ?>
+                            <?php endif; ?>
+
+                            </tbody>
+                        </table>
+
+
+
+
+
+
+                        <?php if(count($oResults)): ?>
+                            <?php echo str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()); ?>
+
+                        <?php endif; ?>
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="dataTables_info" id="editable-datatable_info" role="status" aria-live="polite">Showing 51 to 57 of 57 entries</div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="dataTables_paginate paging_simple_numbers" id="editable-datatable_paginate">
+                                    <ul class="pagination" style="margin:0px;">
+                                        <li class="paginate_button previous" aria-controls="editable-datatable" tabindex="0" id="editable-datatable_previous"><a href="#">Previous</a></li>
+                                        <li class="paginate_button " aria-controls="editable-datatable" tabindex="0"><a href="#">1</a></li>
+
+                                        <li class="paginate_button next disabled" aria-controls="editable-datatable" tabindex="0" id="editable-datatable_next"><a href="#">Next</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+        <!-- /.container-fluid -->
+        <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
+    </div>
+    <!-- /#page-wrapper -->
+    <!-- .right panel -->
+
+
+
+
+
+
+
+
+    <div class="right-side-panel">
+        <div class="scrollable-right">
+            <!-- .Theme settings -->
+            <h3 class="title-heading"><?php echo e(trans('user.Search')); ?></h3>
+
+
+
+
+
+            <?php echo Form::open(['method'=>'get', 'class'=>'form-bordered']); ?>
+
+
+            <?php echo Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('user.id'),'class'=>'form-control input-sm']); ?>
+
+
+
+            <?php echo Form::text('first_name', $aFilterParams['first_name'], ['placeholder'=>trans('user.first_name'),'class'=>'form-control input-sm']); ?>
+
+
+            <?php echo Form::text('last_name', $aFilterParams['last_name'], ['placeholder'=>trans('user.last_name'),'class'=>'form-control input-sm']); ?>
+
+
+            <?php echo Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('user.email'),'class'=>'form-control input-sm']); ?>
+
+
+            <?php echo Form::submit(trans('user.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']); ?>
+
+
+            <?php echo Form::hidden('sort', $aFilterParams['sort']); ?>
+
+            <?php echo Form::hidden('order', $aFilterParams['order']); ?>
+
+            <?php echo Form::close( ); ?>
+
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <?php /**/ ?>
+<?php /*<div class="  theme-default page-mail" >*/ ?>
+    <?php /*<div class="mail-nav" >*/ ?>
+        <?php /*<div class="navigation">*/ ?>
+            <?php /*<?php echo Form::open(['method'=>'get', 'class'=>'form-bordered']); ?>*/ ?>
+            <?php /*<ul class="sections">*/ ?>
+                <?php /*<li class="active"><a href="#"> <i class="fa fa-search"></i> <?php echo e(trans('user.Search')); ?>  </a></li>*/ ?>
+                <?php /**/ ?>
+                <?php /*<li  >*/ ?>
+                    <?php /*<div  class=" nav-input-div  ">*/ ?>
+                        <?php /*<?php echo Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('user.id'),'class'=>'form-control input-sm']); ?>*/ ?>
+                    <?php /*</div>*/ ?>
+                <?php /*</li>*/ ?>
+                <?php /*<li  >*/ ?>
+                    <?php /*<div  class=" nav-input-div  ">*/ ?>
+                        <?php /*<?php echo Form::text('first_name', $aFilterParams['first_name'], ['placeholder'=>trans('user.first_name'),'class'=>'form-control input-sm']); ?>*/ ?>
+                    <?php /*</div>*/ ?>
+                <?php /*</li>*/ ?>
+                <?php /*<li  >*/ ?>
+                    <?php /*<div  class=" nav-input-div  ">*/ ?>
+                        <?php /*<?php echo Form::text('last_name', $aFilterParams['last_name'], ['placeholder'=>trans('user.last_name'),'class'=>'form-control input-sm']); ?>*/ ?>
+                    <?php /*</div>*/ ?>
+                <?php /*</li>*/ ?>
+                <?php /*<li>*/ ?>
+                    <?php /*<div  class=" nav-input-div  ">*/ ?>
+                        <?php /*<?php echo Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('user.email'),'class'=>'form-control input-sm']); ?>*/ ?>
+                    <?php /*</div>*/ ?>
+                <?php /*</li>*/ ?>
+
+
+
+
+                <?php /*<li><div  class=" nav-input-div  ">*/ ?>
+                        <?php /*<?php echo Form::submit(trans('user.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']); ?>*/ ?>
+                    <?php /*</div></li>*/ ?>
+                <?php /*<li class="divider"></li>*/ ?>
+            <?php /*</ul>*/ ?>
+
+
+            <?php /*<?php echo Form::hidden('sort', $aFilterParams['sort']); ?>*/ ?>
+            <?php /*<?php echo Form::hidden('order', $aFilterParams['order']); ?>*/ ?>
+
+
+
+        <?php /*</div>*/ ?>
+    <?php /*</div>*/ ?>
+
+    <?php /*<div class="mail-container " >*/ ?>
+        <?php /*<div class="mail-container-header">*/ ?>
+            <?php /*<?php echo e(trans('user.adminsList')); ?>*/ ?>
+        <?php /*</div>*/ ?>
+        <?php /*<div class="center_page_all_div">*/ ?>
+            <?php /*<?php echo $__env->make('admin.partials.messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>*/ ?>
+
+            <?php /*<div class="table-light">  */ ?>
+                <?php /*<div class="table-header">*/ ?>
+                    <?php /*<div class="table-caption">*/ ?>
+                        <?php /*<?php echo e(trans('user.adminsList')); ?>*/ ?>
+                        <?php /*<a href="<?php echo e(route('general.addUser')); ?>" style="float:right;">*/ ?>
+                            <?php /*<input name="new_menu_submit" class="btn btn-primary btn-flat" type="button" value="<?php echo e(trans('user.addUser')); ?>"> </a>*/ ?>
+                    <?php /*</div>*/ ?>
+                <?php /*</div>*/ ?>
+
+
+
+
+                <?php /*<div class="primary_table_div info" >*/ ?>
+                    <?php /*<div class="table">*/ ?>
+
+
+                        <?php /*<div class="thead">*/ ?>
+                            <?php /*<div class="tr">*/ ?>
+
+
+
+                            <?php /*<div class="th"><?php echo th_sort(trans('user.id'), 'id', $oResults); ?></div>*/ ?>
+                            <?php /*<div class="th"><?php echo th_sort(trans('user.first_name'), 'first_name', $oResults); ?></div>*/ ?>
+                            <?php /*<div class="th"><?php echo th_sort(trans('user.last_name'), 'last_name', $oResults); ?></div>*/ ?>
+                            <?php /*<div class="th"><?php echo th_sort(trans('user.email'), 'email', $oResults); ?></div>*/ ?>
+                                <?php /*<div class="th"></div>*/ ?>
+
+                            <?php /*</div>*/ ?>
+                        <?php /*</div>*/ ?>
+
+
+                        <?php /*<div class="tbody">*/ ?>
+
+                            <?php /*<?php if(count($oResults)): ?>*/ ?>
+                                <?php /* */$i=0;/* */ ?>
+                                <?php /* */$class='';/* */ ?>
+                                <?php /*<?php foreach($oResults as $oResult): ?>*/ ?>
+                                    <?php /* */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* */ ?>
+                                    <?php /*<div class="tr <?php echo e($class); ?>">*/ ?>
+
+
+                                    <?php /*<div class="td"><label><?php echo trans('user.id'); ?> : </label><p><?php echo e($oResult->id); ?></p></div>*/ ?>
+                                    <?php /*<div class="td"><label><?php echo trans('user.first_name'); ?> : </label><p><?php echo e($oResult->first_name); ?></p></div>*/ ?>
+                                    <?php /*<div class="td"><label><?php echo trans('user.last_name'); ?> : </label><p><?php echo e($oResult->last_name); ?></p></div>*/ ?>
+                                    <?php /*<div class="td"><label><?php echo trans('user.email'); ?> : </label><p><?php echo e($oResult->email); ?></p></div>*/ ?>
+                                    <?php /*<div class="td">*/ ?>
+                                            <?php /*<a href="<?php echo e(route('general.editUser').'?edit_id='.$oResult->id); ?>" class="fa fa-edit tooltip_number" data-original-title="<?php echo e(trans('user.editUser')); ?>"></a>*/ ?>
+                                            <?php /*<a href="<?php echo e(route('general.userDetails').'?edit_id='.$oResult->id); ?>" class="fa fa-file-text tooltip_number"  data-original-title="<?php echo e(trans('user.userDetails')); ?>"></a>*/ ?>
+                                        <?php /*<a href="<?php echo e(route('general.changePassword').'?edit_id='.$oResult->id); ?>" class="fa fa-star tooltip_number"  data-original-title="<?php echo e(trans('user.changePassword')); ?>"></a>*/ ?>
+                                            <?php /*<a href="<?php echo e(route('admin.deleteUser').'?delete_id='.$oResult->id); ?>" class="fa fa-trash-o tooltip_number"  data-original-title="<?php echo e(trans('user.deleteUser')); ?>"></a>*/ ?>
+                                          <?php /*</div>*/ ?>
+
+
+
+                                    <?php /*</div>*/ ?>
+                                <?php /*<?php endforeach; ?>*/ ?>
+                            <?php /*<?php endif; ?>*/ ?>
+
+                        <?php /*</div>*/ ?>
+
+                    <?php /*</div>*/ ?>
+
+                    <?php /*<div class="tableFooter">*/ ?>
+
+                    <?php /*</div>*/ ?>
+                <?php /*</div>*/ ?>
+
+
+
+
+
+                <?php /*<div class="table-footer">*/ ?>
+                    <?php /*<?php if(count($oResults)): ?>*/ ?>
+                    <?php /*<?php echo str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()); ?>*/ ?>
+                   <?php /*<?php if($oResults->total()>25): ?>*/ ?>
+                    <?php /**/ ?>
+                     <?php /*<div class="DT-lf-right change_page_all_div" >*/ ?>
+                  <?php /**/ ?>
+                           <?php /**/ ?>
+                              <?php /**/ ?>
+                                    <?php /*<?php echo Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('user.page'),'class'=>'form-control input-sm']); ?>*/ ?>
+                    <?php /**/ ?>
+                            <?php /**/ ?>
+                               <?php /**/ ?>
+                                    <?php /*<?php echo Form::submit(trans('user.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']); ?>*/ ?>
+                               <?php /**/ ?>
+                            <?php /**/ ?>
+                   <?php /**/ ?>
+                    <?php /*</div>*/ ?>
+                   <?php /*<?php endif; ?>*/ ?>
+                    <?php /**/ ?>
+                    <?php /*<div class=" col-xs-12 col-lg-3 ">*/ ?>
+                        <?php /*<span class="text-xs"><?php echo e(trans('user.showing')); ?> <?php echo e($oResults->firstItem()); ?> <?php echo e(trans('user.to')); ?> <?php echo e($oResults->lastItem()); ?> <?php echo e(trans('user.of')); ?> <?php echo e($oResults->total()); ?> <?php echo e(trans('user.entries')); ?></span>*/ ?>
+                    <?php /*</div>*/ ?>
+                    <?php /*<?php endif; ?>*/ ?>
+                <?php /*</div>*/ ?>
+            <?php /*</div>*/ ?>
+        <?php /*</div>*/ ?>
+    <?php /*</div>*/ ?>
+<?php /*</div>*/ ?>
+
+<?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

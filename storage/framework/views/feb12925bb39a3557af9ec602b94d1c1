@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+	<meta name="_token" content="<?php echo e(csrf_token()); ?>" />
+	<title><?php echo $__env->yieldContent('title'); ?> - <?php echo e(app_name()); ?></title>
+	<!-- Bootstrap Core CSS -->
+	<?php echo HTML::style('/assets/'.config('fxweb.layoutAssetsFolder').'/bootstrap/dist/css/bootstrap.min.css'); ?>
+
+
+	<?php echo HTML::style('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/tablesaw-master/dist/tablesaw.css'); ?>
+
+			<!-- animation CSS -->
+	<?php echo HTML::style('/assets/'.config('fxweb.layoutAssetsFolder').'/css/animate.css'); ?>
+
+			<!-- Custom CSS -->
+	<?php echo HTML::style('/assets/'.config('fxweb.layoutAssetsFolder').'/css/style.css'); ?>
+
+			<!-- color CSS -->
+	<?php echo HTML::style('/assets/'.config('fxweb.layoutAssetsFolder').'/css/colors/default.css'); ?>
+
+			<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	<?php echo HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/js/ie.min.js'); ?>
+
+
+</head>
+<body class="fix-sidebar">
+<!-- Preloader -->
+<div class="preloader">
+	<div class="cssload-speeding-wheel"></div>
+</div>
+<div id="wrapper">
+
+
+
+
+
+	<?php echo $__env->make('admin.partials.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->make('admin.partials.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+	<?php echo $__env->yieldContent('content'); ?>
+
+
+</div>
+<!-- /#wrapper -->
+
+<?php $__env->startSection('script'); ?>
+		<!-- jQuery -->
+<?php echo HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/jquery/dist/jquery.min.js'); ?>
+
+		<!-- Bootstrap Core JavaScript -->
+<?php echo HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/bootstrap/dist/js/bootstrap.min.js'); ?>
+
+
+		<!--slimscroll JavaScript -->
+<?php echo HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/js/jquery.slimscroll.js'); ?>
+
+		<!--Wave Effects -->
+<?php echo HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/js/waves.js'); ?>
+
+		<!-- Custom Theme JavaScript -->
+<?php echo HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/js/custom.min.js'); ?>
+
+		<!-- jQuery peity -->
+<?php echo HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/tablesaw-master/dist/tablesaw.js'); ?>
+
+<?php echo HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/tablesaw-master/dist/tablesaw-init.js'); ?>
+
+		<!--Style Switcher -->
+<?php echo HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/styleswitcher/jQuery.style.switcher.js'); ?>
+
+
+<?php echo $__env->yieldSection(); ?>
+
+
+</body>
+</html>

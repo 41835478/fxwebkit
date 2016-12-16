@@ -1,6 +1,7 @@
 @extends('admin.layouts.main')
 @section('title', Lang::get('dashboard.PageTitle'))
-@section('content')
+@section('content') jhhj @stop
+@section('content3')
 
     <div id="content-wrapper">
         <div class="page-header">

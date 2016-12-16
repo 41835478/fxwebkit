@@ -1,0 +1,104 @@
+  <!-- .Side panel -->
+  <div class=" side-mini-panel"   >
+    <ul class="mini-nav">
+         <div class="togglediv"><a href="javascript:void(0)" id="togglebtn"><i class="ti-menu"></i></a></div>
+
+
+
+  <?php /**/ $aAdminMenu = get_admin_menu() /**/ ?>
+            <?php if(count($aAdminMenu)): ?>
+            <?php foreach($aAdminMenu as $aModule): ?>
+
+            <?php /*<?php echo e($aModule['route']); ?>*/ ?>
+            <?php /*<?php echo e($aModule['icon']); ?>*/ ?>
+            <?php /**/ ?>
+
+
+
+
+<li class="<?php if( $aModule['title']=="Settings"): ?> selected <?php endif; ?>"> <a href="javascript:void(0)"><i class="fa <?php echo e($aModule['icon']); ?>" data-icon="v"></i></a>
+    <div class="sidebarmenu">
+        <!-- Left navbar-header -->
+        <h3 class="menu-title"><?php echo e($aModule['title']); ?></h3>
+        <div class="searchable-menu">
+            <form role="search" class="menu-search">
+                <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
+        </div>
+        <ul class="sidebar-menu">
+
+                        <?php if(count($aModule['menu'])): ?>
+                 <?php foreach($aModule['menu'] as $aSubMenu): ?>
+
+                 <?php /*<?php echo e($aSubMenu['icon']); ?>*/ ?>
+
+ <li><a href=" <?php echo e($aSubMenu['route']); ?>"><?php echo e($aSubMenu['title']); ?></a></li>
+                    <?php endforeach; ?>
+
+                <?php endif; ?>
+
+
+
+            <hr>
+            <h3 class="menu-title">Other Demos</h3>
+            <li><a href="../eliteadmin-inverse/index.html" target="_blank">Eliteadmin Inverse</a></li>
+        </ul>
+        <!-- Left navbar-header end -->
+    </div>
+</li>
+
+
+
+            <?php endforeach; ?>
+            <?php endif; ?>
+    </ul>
+  </div>
+  <!-- /.Side panel -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php /*"data:image/jpeg;base64,<?php echo e(current_user()->getAvatar()); ?>*/ ?>
+<?php /*<?php echo e(route('admin.users.profile')); ?>*/ ?>
+<?php /*<?php echo e(route('admin.auth.logout')); ?>*/ ?>
+<?php /*<?php echo e(route('admin.index')); ?>*/ ?>
+<?php /*<?php echo e(trans('dashboard.PageTitle')); ?>*/ ?>
+
+            <?php /**/ $aAdminMenu = get_admin_menu() /**/ ?>
+            <?php /*<?php if(count($aAdminMenu)): ?>*/ ?>
+            <?php /*<?php foreach($aAdminMenu as $aModule): ?>*/ ?>
+
+            <?php /*<?php echo e($aModule['route']); ?>*/ ?>
+            <?php /*<?php echo e($aModule['icon']); ?>*/ ?>
+            <?php /*<?php echo e($aModule['title']); ?>*/ ?>
+
+                <?php /*<?php if(count($aModule['menu'])): ?>*/ ?>
+                 <?php /*<?php foreach($aModule['menu'] as $aSubMenu): ?>*/ ?>
+                 <?php /*<?php echo e($aSubMenu['route']); ?>*/ ?>
+                 <?php /*<?php echo e($aSubMenu['icon']); ?>*/ ?>
+<?php /*<?php echo e($aSubMenu['title']); ?>*/ ?>
+
+                    <?php /*<?php endforeach; ?>*/ ?>
+
+                <?php /*<?php endif; ?>*/ ?>
+
+
+            <?php /*<?php endforeach; ?>*/ ?>
+            <?php /*<?php endif; ?>*/ ?>
+

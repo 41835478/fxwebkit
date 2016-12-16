@@ -30,7 +30,7 @@ return [
     'demoServerName' => 'demo',
     'senderEmail' => 'm.hashim@mqplanet.com',
     'displayName' => 'Mqplanet',
-    'layoutAssetsFolder'=>'fxwebkit',
+    'layoutAssetsFolder'=>'elite',
 
 
     'adminEmail' => 'mag@mqplanet.com',
