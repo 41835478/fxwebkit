@@ -1,0 +1,458 @@
+<?php $__env->startSection('title', trans('accounts::accounts.accounts')); ?>
+<?php $__env->startSection('content'); ?>
+
+
+
+
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- .row -->
+            <div class="row bg-title" style="background:url(<?php echo e('/assets/'.config('fxweb.layoutAssetsFolder')); ?>/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
+                <div class="col-lg-12">
+                    <h4 class="page-title"><?php echo e(trans('accounts::accounts.accounts')); ?></h4>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <ol class="breadcrumb pull-left">
+                        <li><a href="#">Fxwebkit</a></li>
+                        <li class="active"><?php echo e(trans('accounts::accounts.accounts')); ?></li>
+                    </ol>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <form role="search" class="app-search hidden-xs pull-right">
+                        <input type="text" placeholder=" <?php echo e(trans('user.Search')); ?> ..." class="form-control">
+                        <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="white-box">
+                        <h3 class="box-title m-b-0">Kitchen Sink</h3>
+                        <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
+                        <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
+                            <thead>
+                            <tr>
+
+
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1"><abbr title="Rotten Tomato Rating"><?php echo th_sort(trans('accounts::accounts.id'), 'id', $oResults); ?></th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist"><?php echo th_sort(trans('accounts::accounts.first_name'), 'first_name', $oResults); ?></th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-sortable-default-col data-tablesaw-priority="3"><?php echo th_sort(trans('accounts::accounts.last_name'), 'last_name', $oResults); ?></th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4"><?php echo th_sort(trans('accounts::accounts.Email'), 'email', $oResults); ?></th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5"><?php echo th_sort(trans('accounts::accounts.lastLogin'), 'last_login', $oResults); ?></th>
+
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6"></th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+
+
+                            <?php if(count($oResults)): ?>
+                                <?php /**/$i=0;/**/ ?>
+                                <?php /**/$class='';/**/ ?>
+                                <?php foreach($oResults as $oResult): ?>
+                                    <?php /**/$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/**/ ?>
+
+
+                                    <tr>
+                                        <td ><a href="javascript:void(0)"><?php echo e($oResult->id); ?></a></td>
+                                        <td class="title"><?php echo e($oResult->first_name); ?></td>
+                                        <td><?php echo e($oResult->last_name); ?></td>
+                                        <td><?php echo e($oResult->email); ?></td>
+                                        <td><?php echo e($oResult->last_login); ?></td>
+                                        <td>
+                                            <a href="<?php echo e(route('accounts.editAccount').'?edit_id='.$oResult->id); ?>"
+                                               class="fa fa-edit tooltip_number"
+                                               data-original-title="<?php echo e(trans('accounts::accounts.editAccount')); ?>"></a>
+                                            <a href="<?php echo e(route('accounts.deleteAccount').'?delete_id='.$oResult->id); ?>"
+                                               class="fa fa-trash-o tooltip_number"
+                                               data-original-title="<?php echo e(trans('accounts::accounts.deleteAccount')); ?>"></a>
+                                            <a href="<?php echo e(route('accounts.detailsAccount').'?edit_id='.$oResult->id); ?>"
+                                               class="fa fa-file-text tooltip_number"
+                                               data-original-title="<?php echo e(trans('accounts::accounts.detailsAccount')); ?>"></a>
+                                            <a href="<?php echo e(route('accounts.changePassword').'?account_id='.$oResult->id); ?>"
+                                               class="fa fa-star tooltip_number"
+                                               data-original-title="<?php echo e(trans('accounts::accounts.changePassword')); ?>"></a>
+                                            <a href="<?php echo e(route('accounts.asignMt4Users').'?account_id='.$oResult->id); ?>"
+                                               class="fa fa-link tooltip_number"
+                                               data-original-title="<?php echo e(trans('accounts::accounts.asignMt4Users')); ?>"></a>
+
+                                            <?php if(!$oResult->hasAnyAccess('user.block')): ?>
+
+                                                <a href="<?php echo e(route('accounts.unBlockAccount').'?account_id='.$oResult->id); ?>"
+                                                   class="fa fa-unlock tooltip_number"
+                                                   data-original-title="<?php echo e(trans('accounts::accounts.blockAccount')); ?>"></a>
+
+                                            <?php else: ?>
+
+                                                <a href="<?php echo e(route('accounts.blockAccount').'?account_id='.$oResult->id); ?>"
+                                                   class="fa fa-lock tooltip_number"
+                                                   data-original-title="<?php echo e(trans('accounts::accounts.unBlockAccount')); ?>"> </a>
+                                            <?php endif; ?>
+
+                                            <?php if(!$oResult->hasAnyAccess('user.denyLiveAccount')): ?>
+
+                                                <a href="<?php echo e(route('accounts.unAllowedLiveAccount').'?account_id='.$oResult->id); ?>"
+                                                   class="fa fa-circle-o tooltip_number"
+                                                   data-original-title="<?php echo e(trans('accounts::accounts.unAllowedLiveAccount')); ?>"></a>
+
+                                            <?php else: ?>
+
+                                                <a href="<?php echo e(route('accounts.allowLiveAccoun').'?account_id='.$oResult->id); ?>"
+                                                   class="fa fa-check-circle-o tooltip_number"
+                                                   data-original-title="<?php echo e(trans('accounts::accounts.allowLiveAccoun')); ?>"></a>
+                                            <?php endif; ?>
+
+                                        </td>
+                                    </tr>
+
+
+
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+
+                            </tbody>
+                        </table>
+
+
+                        <?php if(count($oResults)): ?>
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-6 ">
+                                    <span class="text-xs"><?php echo e(trans('accounts::accounts.showing')); ?> <?php echo e($oResults->firstItem()); ?> <?php echo e(trans('accounts::accounts.to')); ?> <?php echo e($oResults->lastItem()); ?> <?php echo e(trans('accounts::accounts.of')); ?> <?php echo e($oResults->total()); ?> <?php echo e(trans('accounts::accounts.entries')); ?></span>
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-6 ">
+                                    <?php echo str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()); ?>
+
+                                </div>
+                            </div>
+
+
+                        <?php endif; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+        <!-- /.container-fluid -->
+        <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
+    </div>
+    <!-- /#page-wrapper -->
+    <!-- .right panel -->
+
+
+
+
+
+
+<?php $__env->stopSection(); ?>
+
+
+
+
+
+<?php $__env->startSection('hidden'); ?>
+
+
+
+
+    <div class="padding">
+        <div class="theme-default page-mail">
+            <div class="mail-nav">
+                <div class="navigation">
+                    <?php echo Form::open(['method'=>'get', 'class'=>'form-bordered']); ?>
+
+                    <ul class="sections">
+                        <li class="active"><a href="#"> <i
+                                        class="fa fa-search"></i> <?php echo e(trans('accounts::accounts.search')); ?> </a></li>
+
+                        <li>
+                            <div class=" nav-input-div  ">
+                                <?php echo Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('accounts::accounts.id'),'class'=>'form-control input-sm']); ?>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class=" nav-input-div  ">
+                                <?php echo Form::text('first_name', $aFilterParams['first_name'], ['placeholder'=>trans('accounts::accounts.first_name'),'class'=>'form-control input-sm']); ?>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class=" nav-input-div  ">
+                                <?php echo Form::text('last_name', $aFilterParams['last_name'], ['placeholder'=>trans('accounts::accounts.last_name'),'class'=>'form-control input-sm']); ?>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class=" nav-input-div  ">
+                                <?php echo Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('accounts::accounts.Email'),'class'=>'form-control input-sm']); ?>
+
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <div class=" nav-input-div  ">
+                                <?php echo Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']); ?>
+
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                    </ul>
+
+
+                    <?php echo Form::hidden('sort', $aFilterParams['sort']); ?>
+
+                    <?php echo Form::hidden('order', $aFilterParams['order']); ?>
+
+
+
+                </div>
+            </div>
+
+            <div class="mail-container ">
+                <div class="mail-container-header">
+                    <?php echo e(trans('accounts::accounts.accounts')); ?>
+
+                </div>
+                <div class="center_page_all_div">
+                    <?php echo $__env->make('admin.partials.messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                    <div class="table-light">
+                        <div class="table-header">
+                            <div class="table-caption">
+                                <?php echo e(trans('accounts::accounts.accounts')); ?>
+
+                                <a href="<?php echo e(route('accounts.addAccount')); ?>" style="float:right;">
+                                    <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button"
+                                           value="<?php echo e(trans('accounts::accounts.addAccount')); ?>"> </a>
+                            </div>
+                        </div>
+
+                        <div class="primary_table_div info" >
+                            <div class="table">
+
+
+                                <div class="thead">
+                                    <div class="tr">
+
+
+                                        <div class="th"><?php echo th_sort(trans('accounts::accounts.id'), 'id', $oResults); ?></div>
+                                        <div class="th"><?php echo th_sort(trans('accounts::accounts.first_name'), 'first_name', $oResults); ?></div>
+                                        <div class="th"><?php echo th_sort(trans('accounts::accounts.last_name'), 'last_name', $oResults); ?></div>
+                                        <div class="th"><?php echo th_sort(trans('accounts::accounts.Email'), 'email', $oResults); ?></div>
+                                        <div class="th"><?php echo th_sort(trans('accounts::accounts.lastLogin'), 'last_login', $oResults); ?></div>
+                                        <div class="th"> </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="tbody">
+
+                                    <?php if(count($oResults)): ?>
+                                        <?php /* */$i=0;/* */ ?>
+                                        <?php /* */$class='';/* */ ?>
+                                        <?php foreach($oResults as $oResult): ?>
+                                            <?php /* */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* */ ?>
+                                            <div class="tr <?php echo e($class); ?>">
+
+
+
+                                                <div class="td"><label><?php echo trans('accounts::accounts.id'); ?> : </label><p><?php echo e($oResult->id); ?></p></div>
+                                                <div class="td"><label><?php echo trans('accounts::accounts.first_name'); ?> : </label><p><?php echo e($oResult->first_name); ?></p></div>
+                                                <div class="td"><label><?php echo trans('accounts::accounts.last_name'); ?> : </label><p><?php echo e($oResult->last_name); ?></p></div>
+                                                <div class="td"><label><?php echo trans('accounts::accounts.Email'); ?> : </label><p><?php echo e($oResult->email); ?></p></div>
+                                                <div class="td"><label><?php echo trans('accounts::accounts.lastLogin'); ?> : </label><p><?php echo e($oResult->last_login); ?></p></div>
+                                                <div class="td">
+                                                    <a href="<?php echo e(route('accounts.editAccount').'?edit_id='.$oResult->id); ?>"
+                                                       class="fa fa-edit tooltip_number"
+                                                       data-original-title="<?php echo e(trans('accounts::accounts.editAccount')); ?>"></a>
+                                                    <a href="<?php echo e(route('accounts.deleteAccount').'?delete_id='.$oResult->id); ?>"
+                                                       class="fa fa-trash-o tooltip_number"
+                                                       data-original-title="<?php echo e(trans('accounts::accounts.deleteAccount')); ?>"></a>
+                                                    <a href="<?php echo e(route('accounts.detailsAccount').'?edit_id='.$oResult->id); ?>"
+                                                       class="fa fa-file-text tooltip_number"
+                                                       data-original-title="<?php echo e(trans('accounts::accounts.detailsAccount')); ?>"></a>
+                                                    <a href="<?php echo e(route('accounts.changePassword').'?account_id='.$oResult->id); ?>"
+                                                       class="fa fa-star tooltip_number"
+                                                       data-original-title="<?php echo e(trans('accounts::accounts.changePassword')); ?>"></a>
+                                                    <a href="<?php echo e(route('accounts.asignMt4Users').'?account_id='.$oResult->id); ?>"
+                                                       class="fa fa-link tooltip_number"
+                                                       data-original-title="<?php echo e(trans('accounts::accounts.asignMt4Users')); ?>"></a>
+
+                                                    <?php if(!$oResult->hasAnyAccess('user.block')): ?>
+
+                                                        <a href="<?php echo e(route('accounts.unBlockAccount').'?account_id='.$oResult->id); ?>"
+                                                           class="fa fa-unlock tooltip_number"
+                                                           data-original-title="<?php echo e(trans('accounts::accounts.blockAccount')); ?>"></a>
+
+                                                    <?php else: ?>
+
+                                                        <a href="<?php echo e(route('accounts.blockAccount').'?account_id='.$oResult->id); ?>"
+                                                           class="fa fa-lock tooltip_number"
+                                                           data-original-title="<?php echo e(trans('accounts::accounts.unBlockAccount')); ?>"> </a>
+                                                    <?php endif; ?>
+
+                                                    <?php if(!$oResult->hasAnyAccess('user.denyLiveAccount')): ?>
+
+                                                        <a href="<?php echo e(route('accounts.unAllowedLiveAccount').'?account_id='.$oResult->id); ?>"
+                                                           class="fa fa-circle-o tooltip_number"
+                                                           data-original-title="<?php echo e(trans('accounts::accounts.unAllowedLiveAccount')); ?>"></a>
+
+                                                    <?php else: ?>
+
+                                                        <a href="<?php echo e(route('accounts.allowLiveAccoun').'?account_id='.$oResult->id); ?>"
+                                                           class="fa fa-check-circle-o tooltip_number"
+                                                           data-original-title="<?php echo e(trans('accounts::accounts.allowLiveAccoun')); ?>"></a>
+                                                    <?php endif; ?>
+
+                                                    <?php /*<?php if((count($oResult->activations) && $oResult->activations[0]->completed ==0) || !count($oResult->activations)): ?>*/ ?>
+                                                    <?php /*<a href="<?php echo e(route('accounts.activateUser').'?account_id='.$oResult->id); ?>"*/ ?>
+                                                    <?php /*class="fa fa-check tooltip_number"*/ ?>
+                                                    <?php /*data-original-title="<?php echo e(trans('accounts::accounts.activateUser')); ?>"></a>*/ ?>
+                                                    <?php /*<?php endif; ?>*/ ?>
+
+
+                                                </div>
+
+                                            </div>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+
+
+
+
+                                </div>
+
+
+
+
+
+
+
+                            </div>
+
+                            <div class="tableFooter">
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+                        <div class="table-footer">
+                            <?php if(count($oResults)): ?>
+                                <?php echo str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()); ?>
+
+                                <?php if($oResults->total()>25): ?>
+
+                                    <div class="DT-lf-right change_page_all_div">
+
+
+                                        <?php echo Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']); ?>
+
+
+
+
+                                        <?php echo Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']); ?>
+
+
+
+                                    </div>
+                                <?php endif; ?>
+
+                                <div class="col-xs-12 col-lg-3 ">
+                                    <span class="text-xs"><?php echo e(trans('accounts::accounts.showing')); ?> <?php echo e($oResults->firstItem()); ?> <?php echo e(trans('accounts::accounts.to')); ?> <?php echo e($oResults->lastItem()); ?> <?php echo e(trans('accounts::accounts.of')); ?> <?php echo e($oResults->total()); ?> <?php echo e(trans('accounts::accounts.entries')); ?></span>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php echo Form::close(); ?>
+
+    <script>
+        init.push(function () {
+
+
+            $('.tooltip_number').tooltip();
+
+
+            $('#all-groups-chx').change(function () {
+
+                if ($('#all-groups-chx').prop('checked')) {
+                    $('#all-groups-slc').attr('disabled', 'disabled');
+                } else {
+                    $('#all-groups-slc').removeAttr('disabled');
+                }
+            });
+            if ($('#all-groups-chx').prop('checked')) {
+                $('#all-groups-slc').attr('disabled', 'disabled');
+            } else {
+                $('#all-groups-slc').removeAttr('disabled');
+            }
+
+
+            $('#exactLogin').change(function () {
+                if ($('#exactLogin').prop('checked')) {
+                    $("#from_login_li,#to_login_li").hide();
+                    $("#login_li").show();
+                } else {
+                    $("#from_login_li,#to_login_li").show();
+                    $("#login_li").hide();
+                }
+            });
+
+            if ($('#exactLogin').prop('checked')) {
+                $("#from_login_li,#to_login_li").hide();
+                $("#login_li").show();
+            } else {
+                $("#from_login_li,#to_login_li").show();
+                $("#login_li").hide();
+            }
+
+        });
+
+    </script>
+
+
+    <?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

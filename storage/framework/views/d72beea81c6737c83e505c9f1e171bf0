@@ -31,7 +31,7 @@
 
                  <?php /*<?php echo e($aSubMenu['icon']); ?>*/ ?>
 
- <li><a href=" <?php echo e($aSubMenu['route']); ?>"><?php echo e($aSubMenu['title']); ?></a></li>
+ <li><a href=" <?php echo e($aSubMenu['route']); ?>?search=1"><?php echo e($aSubMenu['title']); ?></a></li>
                     <?php endforeach; ?>
 
                 <?php endif; ?>

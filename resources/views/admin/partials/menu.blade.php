@@ -31,7 +31,7 @@
 
                  {{--{{ $aSubMenu['icon'] }}--}}
 
- <li><a href=" {{ $aSubMenu['route'] }}">{{ $aSubMenu['title'] }}</a></li>
+ <li><a href=" {{ $aSubMenu['route'] }}?search=1">{{ $aSubMenu['title'] }}</a></li>
                     @endforeach
 
                 @endif

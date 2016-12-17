@@ -1,0 +1,302 @@
+<?php $__env->startSection('content'); ?>
+
+
+
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- .row -->
+            <div class="row bg-title" style="background:url(<?php echo e('/assets/'.config('fxweb.layoutAssetsFolder')); ?>/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
+                <div class="col-lg-12">
+                    <h4 class="page-title"><?php echo e(trans('cms::cms.pagesList')); ?></h4>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <ol class="breadcrumb pull-left">
+                        <li><a href="#"><?php echo e(trans('cms::cms.ModuleTitle')); ?></a></li>
+                        <li class="active"><?php echo e(trans('cms::cms.pagesList')); ?></li>
+                    </ol>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <form role="search" class="app-search hidden-xs pull-right">
+                        <input type="text" placeholder=" <?php echo e(trans('user.Search')); ?> ..." class="form-control">
+                        <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="white-box">
+
+
+                        <?php echo Form::open(['url'=>asset('cms/articles/article'),'method'=>'get', 'style'=>'margin-bottom:30px']); ?>
+
+
+                        <?php echo Form::submit(trans('cms::cms.create_new_article'),["name"=>'new_article_submit','class'=>'btn btn-primary' ]); ?>
+
+
+                        <?php echo Form::close(); ?>
+
+
+                        
+                        <h3 class="box-title m-b-0">Kitchen Sink</h3>
+                        <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
+                        <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
+                            <thead>
+                            <tr>
+
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1"> <?php echo Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('cms::cms.select_all')); ?></th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"> <?php echo e(trans('cms::cms.id')); ?></th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3"> <?php echo e(trans('cms::cms.title')); ?></th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4"> <?php echo e(trans('cms::cms.page')); ?></th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5"> </th>
+
+   </tr>
+                            </thead>
+                            <tbody>
+
+
+                            <?php if(count($articles)): ?>
+                                <?php /* */$i=0;/* */ ?>
+                                <?php /* */$class='';/* */ ?>
+                                <?php foreach($articles as $article): ?>
+                                    <?php /* */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* */ ?>
+                                    <tr>
+
+
+                                        <td><?php echo Form::checkbox('articles_checkbox[]',$article->id,false,['class'=>'articles_checkbox']); ?></td>
+                                        <td ><?php echo e($article->id); ?></td>
+                                        <td ><?php echo e($article->title); ?></td>
+                                        <td><?php echo e($pages[$article->page_id]); ?></td>
+                                        <td>
+
+                                            <?php echo Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_article_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete articles with its links")) return false;','class'=>'icon_button tooltip_number','data-original-title'=>trans('cms::cms.delete'),'type'=>'submit','value'=>$article->id ]); ?>
+
+                                            <?php echo Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_article_page' ,'class'=>'icon_button blue_icon tooltip_number','data-original-title'=>trans('cms::cms.edit'),'type'=>'submit','value'=>$article->id ]); ?>
+
+
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+
+                            <?php endif; ?>
+
+
+
+
+
+
+
+
+
+                            </tbody>
+                        </table>
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
+    </div>
+    <!-- /#page-wrapper -->
+    <!-- .right panel -->
+
+
+
+
+
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('hidden'); ?>
+    <div id="content-wrapper">
+        <div class="page-header">
+            <h1><?php echo e(trans('cms::cms.articlesList')); ?></h1>
+        </div>
+
+        <?php echo Form::open(['url'=>asset('cms/articles/article'),'method'=>'get', 'style'=>'margin-bottom:30px']); ?>
+
+
+        <?php echo Form::submit(trans('cms::cms.create_new_article'),["name"=>'new_article_submit','class'=>'btn btn-primary' ]); ?>
+
+
+        <?php echo Form::close(); ?>
+
+
+
+        <div class="table-light">
+            <div class="table-header">
+                <div class="table-caption">
+
+                    <?php echo e(trans('cms::cms.articlesList')); ?>
+
+                </div>
+            </div>
+            <?php echo Form::open(['url'=>asset('cms/articles/articles')]); ?>
+
+
+
+            <div class="primary_table_div info" >
+                <div class="table">
+
+                    <div class="thead">
+                        <div class="tr">
+                            <div class="th"><?php echo Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('cms::cms.select_all')); ?></div>
+                            <div class="th"><?php echo e(trans('cms::cms.id')); ?></div>
+                            <div class="th"><?php echo e(trans('cms::cms.title')); ?></div>
+                            <div class="th"><?php echo e(trans('cms::cms.page')); ?></div>
+                            <div class="th"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="tbody">
+
+
+                            <?php /* */$i=0;/* */ ?>
+                            <?php /* */$class='';/* */ ?>
+                            <?php foreach($articles as $article): ?>
+                                <?php /* */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* */ ?>
+                                <div class="tr <?php echo e($class); ?>">
+
+
+                                    <div class="td"><p><?php echo Form::checkbox('articles_checkbox[]',$article->id,false,['class'=>'articles_checkbox']); ?></p></div>
+                                    <div class="td"><label><?php echo trans('cms::cms.id'); ?> : </label><p><?php echo e($article->id); ?></p></div>
+                                    <div class="td"><label><?php echo trans('cms::cms.title'); ?> : </label><p><?php echo e($article->title); ?></p></div>
+                                    <div class="td"><label><?php echo trans('cms::cms.page'); ?> : </label><p><?php echo e($pages[$article->page_id]); ?></p></div>
+                                    <div class="td">
+
+                                        <?php echo Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_article_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete articles with its links")) return false;','class'=>'icon_button tooltip_number','data-original-title'=>trans('cms::cms.delete'),'type'=>'submit','value'=>$article->id ]); ?>
+
+                                        <?php echo Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_article_page' ,'class'=>'icon_button blue_icon tooltip_number','data-original-title'=>trans('cms::cms.edit'),'type'=>'submit','value'=>$article->id ]); ?>
+
+
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                    </div>
+                    <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <?php echo Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_groub_article_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete articles with its links")) return false;','class'=>'icon_button tooltip_number','data-original-title'=>trans('cms::cms.delete'),'type'=>'submit' ]); ?>
+
+
+                            <div style="width:250px;display: inline-block; ">
+                                <?php echo Form::select('pages_select',$pages,0); ?>
+
+                            </div>
+                            <?php echo Form::button(trans('cms::cms.change_articles_page'),['name'=>'change_groub_article_pages_submit' ,'type'=>'submit' ,'class'=>'btn btn-primary']); ?>
+
+                        </td>
+                    </tr>
+                    </tfoot>
+                </div>
+
+                <div class="tableFooter">
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <?php /*<table border="0" class="table table-bordered table-striped cms_table">*/ ?>
+                <?php /*<thead>*/ ?>
+                <?php /*<th><?php echo Form::checkbox('check_all','0',false,['id'=>'check_all']).Form::label('check_all',trans('cms::cms.select_all')); ?></th>*/ ?>
+                <?php /*<th><?php echo e(trans('cms::cms.id')); ?></th>*/ ?>
+                <?php /*<th><?php echo e(trans('cms::cms.title')); ?></th>*/ ?>
+                <?php /*<th><?php echo e(trans('cms::cms.page')); ?> </th>*/ ?>
+                <?php /*<th></th>*/ ?>
+                <?php /*</thead>*/ ?>
+                <?php /*<tbody>*/ ?>
+                 <?php /**/$i=0;/**/ ?>
+                 <?php /**/$class='';/**/ ?>
+                <?php /*<?php foreach($articles as $article): ?>*/ ?>
+                     <?php /**/$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/**/ ?>
+                    <?php /*<tr class='<?php echo e($class); ?>'>*/ ?>
+                        <?php /*<td><?php echo Form::checkbox('articles_checkbox[]',$article->id,false,['class'=>'articles_checkbox']); ?></td>*/ ?>
+                        <?php /*<td><?php echo e($article->id); ?></td>*/ ?>
+                        <?php /*<td><?php echo e($article->title); ?></td>*/ ?>
+                        <?php /*<td><?php echo e($pages[$article->page_id]); ?></td>*/ ?>
+                        <?php /*<td>*/ ?>
+                            <?php /*<?php echo Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_article_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete articles with its links")) return false;','class'=>'icon_button tooltip_number','data-original-title'=>trans('cms::cms.delete'),'type'=>'submit','value'=>$article->id ]); ?>*/ ?>
+                            <?php /*<?php echo Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_article_page' ,'class'=>'icon_button blue_icon tooltip_number','data-original-title'=>trans('cms::cms.edit'),'type'=>'submit','value'=>$article->id ]); ?>*/ ?>
+                        <?php /*</td>*/ ?>
+                    <?php /*<tr>*/ ?>
+                <?php /*<?php endforeach; ?>*/ ?>
+                <?php /*</tbody>*/ ?>
+                <?php /*<tfoot>*/ ?>
+                <?php /*<tr>*/ ?>
+                    <?php /*<td colspan="5">*/ ?>
+                        <?php /*<?php echo Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_groub_article_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete articles with its links")) return false;','class'=>'icon_button tooltip_number','data-original-title'=>trans('cms::cms.delete'),'type'=>'submit' ]); ?>*/ ?>
+
+                        <?php /*<div style="width:250px;display: inline-block; ">*/ ?>
+                            <?php /*<?php echo Form::select('pages_select',$pages,0); ?>*/ ?>
+                        <?php /*</div>*/ ?>
+                        <?php /*<?php echo Form::button(trans('cms::cms.change_articles_page'),['name'=>'change_groub_article_pages_submit' ,'type'=>'submit' ,'class'=>'btn btn-primary']); ?>*/ ?>
+                    <?php /*</td>*/ ?>
+                <?php /*</tr>*/ ?>
+                <?php /*</tfoot>*/ ?>
+            <?php /*</table>*/ ?>
+            <?php echo Form::close(); ?>
+
+        </div>
+
+        <link rel="stylesheet" type="text/css" href="<?php echo e(asset($asset_folder.'main.css')); ?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo e(asset($asset_folder.'cms_articlesList.css')); ?>">
+        <script src="<?php echo e(asset($asset_folder.'jquery-2.1.1.min.js')); ?>"></script>
+        <!-- Javascript -->
+        <script>
+
+            init.push(function () {
+
+                $('.tooltip_number').tooltip();
+                // Single select
+                $("select[name='pages_select']").select2({
+                    allowClear: true,
+                    placeholder: "select page"
+                });
+
+
+            });
+            $('input[name="check_all"]').click(function () {
+                if ($(this).prop("checked")) {
+                    $("input[name='articles_checkbox[]']").prop("checked", true);
+                } else {
+
+                    $("input[name='articles_checkbox[]']").prop("checked", false);
+                }
+            });
+        </script>
+        <!-- / Javascript -->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make(Config::get('cms.admin_theme'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

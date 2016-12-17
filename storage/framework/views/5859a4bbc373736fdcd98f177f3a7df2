@@ -1,0 +1,183 @@
+<?php $__env->startSection('title', Lang::get('dashboard.PageTitle')); ?>
+<?php $__env->startSection('content'); ?> jhhj <?php $__env->stopSection(); ?>
+<?php $__env->startSection('content3'); ?>
+
+    <div id="content-wrapper">
+        <div class="page-header">
+            <h1><i class="fa fa-dashboard page-header-icon"></i><?php echo e(trans('dashboard.PageTitle')); ?></h1>
+        </div>
+
+        <div class="col-xs-12 col-sm-6">
+            <div class="stat-panel ">
+                <!-- Success background, bordered, without top and bottom borders, without left border, without padding, vertically and horizontally centered text, large text -->
+                <a href="<?php echo e(route('accounts.accountsList').'?active=0'); ?>"
+                   class="stat-cell col-xs-5 bg-info bordered no-border-vr no-border-l no-padding valign-middle text-center text-lg">
+                    <i class="fa fa-users"></i>&nbsp;&nbsp;<strong><?php echo e($statistics['usersNumber']); ?></strong>
+                </a> <!-- /.stat-cell -->
+                <!-- Without padding, extra small text -->
+                <div class="stat-cell col-xs-7 no-padding valign-middle">
+                    <!-- Add parent div.stat-rows if you want build nested rows -->
+                    <div class="stat-rows">
+                        <div class="stat-row">
+                            <!-- Success background, small padding, vertically aligned text -->
+                            <a href="<?php echo e(route('accounts.accountsList').'?active=1'); ?>"
+                               class="stat-cell bg-info padding-sm valign-middle">
+                                <?php echo e($statistics['activeUsersNumber']); ?> <?php echo e(trans('dashboard.activeAccount')); ?>
+
+                                <i class="fa fa-check pull-right"></i>
+                            </a>
+                        </div>
+                        <div class="stat-row">
+                            <!-- Success darken background, small padding, vertically aligned text -->
+                            <a href="<?php echo e(route('accounts.accountsList').'?active=2'); ?>"
+                               class="stat-cell bg-info darken padding-sm valign-middle">
+                                <?php echo e($statistics['usersNumber'] - $statistics['activeUsersNumber']); ?> <?php echo e(trans('dashboard.notActive')); ?>
+
+                                <i class="fa fa-times pull-right"></i>
+                            </a>
+                        </div>
+                        <div class="stat-row">
+                            <!-- Success darker background, small padding, vertically aligned text -->
+                            <a href="<?php echo e(route('accounts.accountsList').'?active=0'); ?>"
+                               class="stat-cell bg-info darker padding-sm valign-middle">
+                                <?php echo e($statistics['usersNumber']); ?><?php echo e(trans('dashboard.user')); ?>
+
+                                <i class="fa fa-users pull-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.stat-rows -->
+                </div>
+                <!-- /.stat-cell -->
+            </div>
+
+        </div>
+
+
+        <div class="col-xs-12 col-sm-6">
+            <div class="stat-panel ">
+                <!-- Success background, bordered, without top and bottom borders, without left border, without padding, vertically and horizontally centered text, large text -->
+                <a href="<?php echo e(route('accounts.Mt4UsersList').'?server_id=-1'); ?>"
+                   class="stat-cell col-xs-5 bg-info bordered no-border-vr no-border-l no-padding valign-middle text-center text-lg">
+                    <i class="fa fa-exchange"></i>&nbsp;&nbsp;<strong><?php echo e($statistics['mt4UsersNumber']); ?></strong>
+                </a> <!-- /.stat-cell -->
+                <!-- Without padding, extra small text -->
+                <div class="stat-cell col-xs-7 no-padding valign-middle">
+                    <!-- Add parent div.stat-rows if you want build nested rows -->
+                    <div class="stat-rows">
+                        <div class="stat-row">
+                            <!-- Success background, small padding, vertically aligned text -->
+                            <a href="<?php echo e(route('accounts.Mt4UsersList').'?server_id=0'); ?>"
+                               class="stat-cell bg-info padding-sm valign-middle">
+                                <?php echo e($statistics['liveMt4UsersNumber']); ?><?php echo e(trans('dashboard.liveMt4User')); ?>
+
+                                <i class="fa fa-thumbs-up pull-right"></i>
+                            </a>
+                        </div>
+                        <div class="stat-row">
+                            <!-- Success darken background, small padding, vertically aligned text -->
+                            <a href="<?php echo e(route('accounts.Mt4UsersList').'?server_id=1'); ?>"
+                               class="stat-cell bg-info darken padding-sm valign-middle">
+                                <?php echo e($statistics['mt4UsersNumber'] - $statistics['liveMt4UsersNumber']); ?><?php echo e(trans('dashboard.demoMt4User')); ?>
+
+                                <i class="fa fa-user pull-right"></i>
+                            </a>
+                        </div>
+                        <div class="stat-row">
+                            <!-- Success darker background, small padding, vertically aligned text -->
+                            <a href="<?php echo e(route('accounts.Mt4UsersList').'?server_id=-1'); ?>"
+                               class="stat-cell bg-info darker padding-sm valign-middle">
+                                <?php echo e($statistics['mt4UsersNumber']); ?><?php echo e(trans('dashboard.mt4User')); ?>
+
+                                <i class="fa fa-users pull-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.stat-rows -->
+                </div>
+                <!-- /.stat-cell -->
+            </div>
+
+        </div>
+
+        <div class="col-xs-12">
+            <div class="table-info">
+                <div class="table-header">
+                    <div class="table-caption">
+                        <?php echo e(trans('dashboard.request')); ?>
+
+                    </div>
+                </div>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th class="no-warp"><?php echo (trans('dashboard.request')); ?></th>
+                        <th class="no-warp"><?php echo (trans('dashboard.complete')); ?></th>
+                        <th class="no-warp"><?php echo (trans('dashboard.pending')); ?></th>
+                        <th class="no-warp"><?php echo (trans('dashboard.fail')); ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <th><?php echo (trans('dashboard.internalTransfer')); ?></th>
+                        <td><?php echo e($InternalTransfer['complete']); ?></td>
+                        <td><?php echo e($InternalTransfer['pending']); ?></td>
+                        <td><?php echo e($InternalTransfer['fail']); ?></td>
+
+                    </tr>
+                    <tr>
+                        <th><?php echo (trans('dashboard.withdrawal')); ?></th>
+                        <td><?php echo e($Withdrawal['complete']); ?></td>
+                        <td><?php echo e($Withdrawal['pending']); ?></td>
+                        <td><?php echo e($Withdrawal['fail']); ?></td>
+
+                    </tr>
+                    <tr>
+                        <th><?php echo (trans('dashboard.changeLeverage')); ?></th>
+                        <td><?php echo e($ChangeLeverage['complete']); ?></td>
+                        <td><?php echo e($ChangeLeverage['pending']); ?></td>
+                        <td><?php echo e($ChangeLeverage['fail']); ?></td>
+
+                    </tr>
+
+                    <tr>
+                        <th><?php echo (trans('dashboard.changePassword')); ?></th>
+                        <td><?php echo e($ChangePassword['complete']); ?></td>
+                        <td><?php echo e($ChangePassword['pending']); ?></td>
+                        <td><?php echo e($ChangePassword['fail']); ?></td>
+
+                    </tr>
+
+                    <tr>
+                        <th><?php echo (trans('dashboard.addAccount')); ?></th>
+                        <td><?php echo e($AddAccount['complete']); ?></td>
+                        <td><?php echo e($AddAccount['pending']); ?></td>
+                        <td><?php echo e($AddAccount['fail']); ?></td>
+
+                    </tr>
+
+                    <tr>
+                        <th><?php echo (trans('dashboard.assignAccounts')); ?></th>
+                        <td><?php echo e($AssingAccounts['complete']); ?></td>
+                        <td><?php echo e($AssingAccounts['pending']); ?></td>
+                        <td><?php echo e($AssingAccounts['fail']); ?></td>
+
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+        <div class="clearFix" style="clear:both;"></div>
+
+
+    </div>
+
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('admin.layouts.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

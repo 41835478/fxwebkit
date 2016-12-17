@@ -1,0 +1,231 @@
+<?php $__env->startSection('content'); ?>
+    <div id="content-wrapper">
+    <div class="page-header">
+        <h1><?php echo e(trans('cms::cms.menuBuilder')); ?></h1>
+
+        <?php echo Form::open(['url'=>asset('cms/menus/menus'),'method'=>'get','class'=>'language_select_form']); ?>
+
+        <?php echo Form::hidden('selected_id',$selected_id); ?>
+
+        <?php echo Form::select('selected_language',$languages,$selected_language,['class'=>'language_select']); ?>
+
+        <?php echo Form::submit(trans('cms::cms.translate'),["name"=>'select_language_submit','class'=>'btn btn-primary btn-flat' ]); ?>
+
+
+        <?php echo Form::close(); ?>
+
+    </div>
+
+
+    <?php if($selected_id != 0): ?>
+
+
+        <div class="table-light">
+            <div class="table-header">
+                <div class="table-caption">
+
+                    <?php echo Form::button(trans('cms::cms.add_link'),["id"=>'show_add_menu_item_button','onclick'=>'window.location.href="/cms/menus/edit-menu-item/0/'.$selected_id.'";','class'=>'btn btn-primary btn-flat' ]); ?>
+
+
+                    <?php echo View('admin/partials/messages')->with('errors',$errors); ?>
+
+                </div>
+            </div>
+            <?php if($selected_language==1): ?>
+                <?php echo Form::open(); ?>
+
+                <?php echo Form::hidden('selected_id',$selected_id); ?>
+
+
+
+
+                <div class="primary_table_div info" >
+                    <div class="table">
+
+
+                        <div class="thead">
+                            <div class="tr">
+
+                                <div class="th"><?php echo e(trans('cms::cms.id')); ?></div>
+                                <div class="th"><?php echo e(trans('cms::cms.name')); ?></div>
+                                <div class="th"><?php echo e(trans('cms::cms.parent')); ?></div>
+                                <div class="th"><?php echo e(trans('cms::cms.disable')); ?></div>
+                                <div class="th"><?php echo e(trans('cms::cms.hide')); ?></div>
+                                <div class="th"><?php echo e(trans('cms::cms.link_to')); ?></div>
+                                <div class="th"></div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div class="tbody">
+
+                            <?php /*<?php if(count($oResults)): ?>*/ ?>
+                                <?php /* */$i=0;/* */ ?>
+                                <?php /* */$class='';/* */ ?>
+                                <?php foreach($menu_items as $item): ?>
+                                    <?php /* */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* */ ?>
+
+                                    <?php if($item->type == 1 && $item->article['title']==''): ?>
+                                    <?php else: ?>
+                                    <div class="tr <?php echo e($class); ?>">
+
+                                        <div class="td"><label><?php echo trans('cms::cms.id'); ?> : </label><p><?php echo e($item->id); ?></p></div>
+                                        <div class="td"><label><?php echo trans('cms::cms.name'); ?> : </label><p><?php echo e($item->name); ?></p></div>
+                                        <div class="td"><label><?php echo trans('cms::cms.parent'); ?> : </label><p><?php echo e($item->cms_menus_items['name']); ?></p></div>
+                                        <div class="td"><label><?php echo trans('cms::cms.disable'); ?> : </label><p><i class="<?php echo e($disable_icons[$item->disable]); ?>"></i></p></div>
+                                        <div class="td"><label><?php echo trans('cms::cms.hide'); ?> : </label><p><i class="<?php echo e($hide_icons[$item->hide]); ?>"></i></p></div>
+                                        <div class="td"><label><?php echo trans('cms::cms.link_to'); ?> : </label>
+                                            <?php if($item->type == 0): ?>
+                                            page  (<?php echo e($item->page['title']); ?>)
+                                            <?php elseif($item->type == 1): ?>
+                                            article (<?php echo e($item->article['title']); ?>)
+                                            <?php elseif($item->type == 2): ?>
+                                            form (<?php echo e($item->form['name']); ?>)
+                                            <?php endif; ?>
+                                            </div>
+
+                                        <div class="td">
+                                        <?php echo Form::button('<i class="fa fa-trash-o"></i>',['name'=>'remove_menu_item_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete  link")) return false;','class'=>'icon_button red_icon','type'=>'submit','value'=>$item->id ]); ?>
+
+                                        <?php echo Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_menu_item_id' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$item->id ]); ?>
+
+                                        </div>
+
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php endforeach; ?>
+
+                            </div>
+                    </div>
+
+                    <div class="tableFooter">
+
+                    </div>
+                </div>
+
+
+
+                <?php /*<table border="0" class="table table-bordered">*/ ?>
+                    <?php /*<thead>*/ ?>
+                    <?php /*<th><?php echo e(trans('cms::cms.id')); ?></th>*/ ?>
+                    <?php /*<th><?php echo e(trans('cms::cms.name')); ?></th>*/ ?>
+                    <?php /*<th><?php echo e(trans('cms::cms.parent')); ?></th>*/ ?>
+                    <?php /*<th><?php echo e(trans('cms::cms.disable')); ?> </th>*/ ?>
+                    <?php /*<th><?php echo e(trans('cms::cms.hide')); ?></th>*/ ?>
+                    <?php /*<th><?php echo e(trans('cms::cms.link_to')); ?></th>*/ ?>
+                    <?php /*<th></th>*/ ?>
+                    <?php /*</thead>*/ ?>
+                    <?php /*<tbody>*/ ?>
+                    <?php /*<?php foreach($menu_items as $item): ?>*/ ?>
+                        <?php /*<?php if($item->type == 1 && $item->article['title']==''): ?>*/ ?>
+                        <?php /*<?php else: ?>*/ ?>
+                            <?php /*<tr>*/ ?>
+                                <?php /*<td><?php echo e($item->id); ?></td>*/ ?>
+                                <?php /*<td><?php echo e($item->name); ?></td>*/ ?>
+                                <?php /*<td> <?php echo e($item->cms_menus_items['name']); ?></td>*/ ?>
+                                <?php /*<td><i class="<?php echo e($disable_icons[$item->disable]); ?>"></i></td>*/ ?>
+                                <?php /*<td><i class="<?php echo e($hide_icons[$item->hide]); ?>"></i></td>*/ ?>
+                                <?php /*<td>*/ ?>
+                                    <?php /*<?php if($item->type == 0): ?>*/ ?>
+                                        <?php /*page  (<?php echo e($item->page['title']); ?>)*/ ?>
+                                    <?php /*<?php elseif($item->type == 1): ?>*/ ?>
+                                        <?php /*article (<?php echo e($item->article['title']); ?>)*/ ?>
+                                    <?php /*<?php elseif($item->type == 2): ?>*/ ?>
+                                        <?php /*form (<?php echo e($item->form['name']); ?>)*/ ?>
+                                    <?php /*<?php endif; ?>*/ ?>
+                                <?php /*</td>*/ ?>
+                                <?php /*<td>*/ ?>
+                                    <?php /*<?php echo Form::button('<i class="fa fa-trash-o"></i>',['name'=>'remove_menu_item_submit' ,'onclick'=>'if(!confirm("Are you sure you want to delete  link")) return false;','class'=>'icon_button red_icon','type'=>'submit','value'=>$item->id ]); ?>*/ ?>
+                                    <?php /*<?php echo Form::button('<i class="fa fa-cog "></i>',['name'=>'edit_menu_item_id' ,'class'=>'icon_button blue_icon','type'=>'submit','value'=>$item->id ]); ?>*/ ?>
+                                <?php /*</td>*/ ?>
+                            <?php /*<tr>*/ ?>
+                        <?php /*<?php endif; ?>*/ ?>
+                    <?php /*<?php endforeach; ?>*/ ?>
+                    <?php /*</tbody>*/ ?>
+                <?php /*</table>*/ ?>
+                <?php echo Form::close(); ?>
+
+            <?php else: ?>
+
+                <?php echo Form::open(['url'=>'/cms/menus/save-items-translate']); ?>
+
+                <?php echo Form::hidden('selected_id',$selected_id); ?>
+
+                <table border="0" class="table table-bordered">
+                    <thead>
+                    <th><?php echo e(trans('cms::cms.id')); ?></th>
+                    <th><?php echo e(trans('cms::cms.name')); ?></th>
+                    <th>
+
+                        <?php echo Form::hidden('selected_language',$selected_language); ?>
+
+                        <?php echo Form::submit('save '.$languages[$selected_language].' translate',["name"=>'save_menu_name_translate','class'=>'btn btn-primary btn-flat' ]); ?>
+
+                    </th>
+                    <th></th>
+                    </thead>
+                    <tbody>
+                    <?php foreach($menu_items as $item): ?>
+                        <?php if($item->type == 1 && $item->article['title']==''): ?>
+                        <?php else: ?>
+                            <tr>
+                                <td><?php echo e($item->id); ?></td>
+                                <td><?php echo e($item->name); ?></td>
+
+
+                                <td>
+                                    <?php echo Form::text('translate_name['.$item->id.']',(isset($item->cms_menus_items_languages->first()->translate))? $item->cms_menus_items_languages->first()->translate:'',['placeholder'=>$item->name .' ( '.$languages[$selected_language].' ) ']); ?></td>
+
+
+                                <td>
+                                    <?php echo Form::button('<i class="fa fa-trash-o"></i>',['name'=>'remove_menu_item_submit' ,'class'=>'icon_button red_icon','type'=>'submit','value'=>$item->id ]); ?>
+
+                                </td>
+                            <tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <?php echo Form::close(); ?>
+
+
+
+
+            <?php endif; ?>
+        </div>
+
+
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title"><?php echo e(trans('cms::cms.the_render_menu')); ?></span>
+            </div>
+            <div class="panel-body" id="preview_menu_div">
+
+
+                <div class="dropdown" style="position:relative">
+
+                    <?php echo $menu_preview; ?>
+
+
+                </div>
+
+
+            </div>
+
+            <div class="panel-body">
+                <?php echo $render_menu_html; ?>
+
+            </div>
+        </div>
+</div>
+    <?php endif; ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset($asset_folder.'main.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset($asset_folder.'cms_menus.css')); ?>">
+    <script src="<?php echo e(asset($asset_folder.'jquery-2.1.1.min.js')); ?>"></script>
+    <script src="<?php echo e(asset($asset_folder.'cms_menus.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make(Config::get('cms.admin_theme'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
