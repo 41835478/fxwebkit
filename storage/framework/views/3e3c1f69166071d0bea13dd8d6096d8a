@@ -1,0 +1,274 @@
+<?php $__env->startSection('content'); ?>
+
+
+
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- .row -->
+            <div class="row bg-title" style="background:url(<?php echo e('/assets/'.config('fxweb.layoutAssetsFolder')); ?>/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
+                <div class="col-lg-12">
+                    <h4 class="page-title"><?php echo e(trans('cms::cms.menusList')); ?></h4>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <ol class="breadcrumb pull-left">
+                        <li><a href="#"><?php echo e(trans('cms::cms.ModuleTitle')); ?></a></li>
+                        <li class="active"><?php echo e(trans('cms::cms.menusList')); ?></li>
+                    </ol>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <form role="search" class="app-search hidden-xs pull-right">
+                        <input type="text" placeholder=" <?php echo e(trans('user.Search')); ?> ..." class="form-control">
+                        <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <td class="col-lg-12">
+                    <div class="white-box">
+
+                        <?php echo Form::open(['url'=>asset('cms/menus/menus-list'),'method'=>'get','class'=>'language_select_form']); ?>
+
+
+                        <?php echo Form::select('selected_language',$languages,$selected_language,['class'=>'language_select']); ?>
+
+                        <?php echo Form::submit(trans('cms::cms.translate'),["name"=>'select_language_submit','class'=>'btn btn-primary btn-flat' ]); ?>
+
+
+                        <?php echo Form::close(); ?>
+
+
+                        <h3 class="box-title m-b-0">Kitchen Sink</h3>
+                        <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
+
+
+
+                        <?php if($selected_language==1): ?>
+                            <?php echo Form::open(['url'=>asset('cms/menus/menus')]); ?>
+
+                            <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
+                            <thead>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1"><?php echo e(trans('cms::cms.id')); ?></th>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"><?php echo e(trans('cms::cms.title')); ?></th>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3"></th>
+                                </thead>
+                                <tbody>
+                                <?php /* */$i=0;/* */ ?>
+                                <?php /* */$class='';/* */ ?>
+                                <?php foreach($menus as $menu): ?>
+                                    <?php /* */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* */ ?>
+                                    <tr class='<?php echo e($class); ?>'>
+
+
+                                        <td><?php echo e($menu->id); ?></td>
+                                        <td><?php echo e($menu->title); ?></td>
+
+                                        <td>
+                                            <?php echo Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_menu_submit' ,'class'=>'icon_button red_icon tooltip_number','data-original-title'=>trans('cms::cms.delete'),'onclick'=>'if(!confirm("Are you sure you want to delete menu with all links in it")) return false;','type'=>'submit','value'=>$menu->id ]); ?>
+
+                                            <?php echo Form::button('<i class="fa fa-cog "></i>',['name'=>'selected_id' ,'class'=>'icon_button blue_icon tooltip_number','data-original-title'=>trans('cms::cms.edit'),'type'=>'submit','value'=>$menu->id ]); ?>
+
+                                        </td>
+                                    <tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <?php echo Form::close(); ?>
+
+
+                        <?php else: ?>
+
+                            <?php echo Form::open(['url'=>asset('cms/menus/save-translate')]); ?>
+
+                            <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
+                            <thead>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1"><?php echo e(trans('cms::cms.id')); ?></th>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"><?php echo e(trans('cms::cms.title')); ?></th>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">
+                                    <?php echo Form::hidden('selected_language',$selected_language); ?>
+
+                                    <?php echo Form::submit('save '.$languages[$selected_language].' translate',["name"=>'save_menu_name_translate','class'=>'btn btn-primary btn-flat' ]); ?>
+
+                                </th>
+
+                                </thead>
+                                <tbody>
+                                <?php foreach($menus as $menu): ?>
+
+                                    <tr>
+                                        <td><?php echo e($menu->id); ?></td>
+                                        <td><?php echo e($menu->title); ?></td>
+                                        <td><?php echo Form::text('translate_title['.$menu->id.']',(isset($menu->cms_menus_languages->first()->translate))? $menu->cms_menus_languages->first()->translate:'',['placeholder'=>$menu->title .' ( '.$languages[$selected_language].' ) ']); ?></td>
+                                        </td>
+                                    <tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <?php echo Form::close(); ?>
+
+                        <?php endif; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
+    </div>
+    <!-- /#page-wrapper -->
+    <!-- .right panel -->
+
+
+
+
+
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+    <div id="content-wrapper">
+    <div class="page-header">
+        <h1><?php echo e(trans('cms::cms.menusList')); ?></h1>
+
+        <?php echo Form::open(['url'=>asset('cms/menus/menus-list'),'method'=>'get','class'=>'language_select_form']); ?>
+
+
+        <?php echo Form::select('selected_language',$languages,$selected_language,['class'=>'language_select']); ?>
+
+        <?php echo Form::submit(trans('cms::cms.translate'),["name"=>'select_language_submit','class'=>'btn btn-primary btn-flat' ]); ?>
+
+
+        <?php echo Form::close(); ?>
+
+
+
+    </div>
+
+
+
+    <div class="table-light">
+        <div class="table-header">
+            <div class="table-caption">
+                <?php echo Form::open(['url'=>asset('cms/menus/insert-new-menu') ,'id'=>'create_menu_form','class'=>'']); ?>
+
+
+                <?php echo Form::text('new_menu_name_input','',['placeholder'=>trans('cms::cms.new_menu_name'),'class'=>'form-control ']); ?>
+
+                <?php echo Form::submit( trans('cms::cms.create_new_menu'),["name"=>'new_menu_submit','class'=>'btn btn-primary btn-flat' ]); ?>
+
+
+
+                <?php echo View('admin/partials/messages')->with('errors',$errors); ?>
+
+
+                <?php echo Form::close(); ?>
+
+
+
+            </div>
+        </div>
+        <?php if($selected_language==1): ?>
+            <?php echo Form::open(['url'=>asset('cms/menus/menus')]); ?>
+
+            <table border="0" class="table table-bordered table-striped cms_table" style="display: table">
+                <thead>
+                <th><?php echo e(trans('cms::cms.id')); ?></th>
+                <th><?php echo e(trans('cms::cms.title')); ?></th>
+                <th></th>
+                </thead>
+                <tbody>
+                <?php /* */$i=0;/* */ ?>
+                <?php /* */$class='';/* */ ?>
+                <?php foreach($menus as $menu): ?>
+                    <?php /* */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* */ ?>
+                    <tr class='<?php echo e($class); ?>'>
+
+
+                        <td><?php echo e($menu->id); ?></td>
+                        <td><?php echo e($menu->title); ?></td>
+
+                        <td>
+                            <?php echo Form::button('<i class="fa fa-trash-o"></i>',['name'=>'delete_menu_submit' ,'class'=>'icon_button red_icon tooltip_number','data-original-title'=>trans('cms::cms.delete'),'onclick'=>'if(!confirm("Are you sure you want to delete menu with all links in it")) return false;','type'=>'submit','value'=>$menu->id ]); ?>
+
+                            <?php echo Form::button('<i class="fa fa-cog "></i>',['name'=>'selected_id' ,'class'=>'icon_button blue_icon tooltip_number','data-original-title'=>trans('cms::cms.edit'),'type'=>'submit','value'=>$menu->id ]); ?>
+
+                        </td>
+                    <tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php echo Form::close(); ?>
+
+
+        <?php else: ?>
+
+            <?php echo Form::open(['url'=>asset('cms/menus/save-translate')]); ?>
+
+            <table border="0" class="table table-bordered" style="display: table">
+                <thead>
+                <th><?php echo e(trans('cms::cms.id')); ?></th>
+                <th><?php echo e(trans('cms::cms.title')); ?></th>
+                <th>
+                    <?php echo Form::hidden('selected_language',$selected_language); ?>
+
+                    <?php echo Form::submit('save '.$languages[$selected_language].' translate',["name"=>'save_menu_name_translate','class'=>'btn btn-primary btn-flat' ]); ?>
+
+                </th>
+
+                </thead>
+                <tbody>
+                <?php foreach($menus as $menu): ?>
+
+                    <tr>
+                        <td><?php echo e($menu->id); ?></td>
+                        <td><?php echo e($menu->title); ?></td>
+                        <td><?php echo Form::text('translate_title['.$menu->id.']',(isset($menu->cms_menus_languages->first()->translate))? $menu->cms_menus_languages->first()->translate:'',['placeholder'=>$menu->title .' ( '.$languages[$selected_language].' ) ']); ?></td>
+                        </td>
+                    <tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php echo Form::close(); ?>
+
+        <?php endif; ?>
+    </div>
+
+        </div>
+
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset($asset_folder.'main.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset($asset_folder.'cms_pagesList.css')); ?>">
+    <script src="<?php echo e(asset($asset_folder.'jquery-2.1.1.min.js')); ?>"></script>
+    <script >
+
+        init.push(function () {
+            $('.tooltip_number').tooltip();
+        });
+    </script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make(Config::get('cms.admin_theme'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

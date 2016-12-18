@@ -1,0 +1,356 @@
+<?php $__env->startSection('title', trans('accounts::accounts.mt4UsersList')); ?>
+<?php $__env->startSection('content'); ?>
+
+
+
+
+
+
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- .row -->
+            <div class="row bg-title" style="background:url(<?php echo e('/assets/'.config('fxweb.layoutAssetsFolder')); ?>/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
+                <div class="col-lg-12">
+                    <h4 class="page-title"><?php echo e(trans('accounts::accounts.mt4UsersList')); ?></h4>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <ol class="breadcrumb pull-left">
+                        <li><a href="#"><?php echo e(trans('accounts::accounts.accounts')); ?></a></li>
+                        <li class="active"><?php echo e(trans('accounts::accounts.mt4Users')); ?></li>
+                    </ol>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <form role="search" class="app-search hidden-xs pull-right">
+                        <input type="text" placeholder=" <?php echo e(trans('user.Search')); ?> ..." class="form-control">
+                        <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <td class="col-lg-12">
+                    <div class="white-box">
+                        <h3 class="box-title m-b-0">Kitchen Sink</h3>
+                        <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
+                        <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
+                            <thead>
+                            <tr>
+
+
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1"><?php echo th_sort(trans('accounts::accounts.Login'), 'LOGIN', $oResults); ?></th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"><?php echo th_sort(trans('accounts::accounts.liveDemo'), 'server_id', $oResults); ?></th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3"><?php echo th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults); ?></th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4"><?php echo th_sort(trans('accounts::accounts.reg_date'), 'REGDATE', $oResults); ?></th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5"><?php echo th_sort(trans('accounts::accounts.last_date'), 'LASTDATE', $oResults); ?></th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6"><?php echo th_sort(trans('accounts::accounts.leverage'), 'LEVERAGE', $oResults); ?></th>
+
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="7">  </th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+
+
+                            <?php if(count($oResults)): ?>
+                                <?php /**/$i=0;/**/ ?>
+                                <?php /**/$class='';/**/ ?>
+                                <?php foreach($oResults as $oResult): ?>
+                                    <?php /**/$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/**/ ?>
+
+
+                                    <tr>
+
+                                        <td><?php echo e($oResult->LOGIN); ?></td>
+                                        <td><?php echo e(($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName')); ?></td>
+                                        <td><?php echo e($oResult->NAME); ?></td>
+                                        <td><?php echo e($oResult->REGDATE); ?></td>
+                                        <td><?php echo e($oResult->LASTDATE); ?></td>
+                                        <td>1:<?php echo e($oResult->LEVERAGE); ?></td>
+                                        <td>
+                                            <a href="<?php echo e(route('accounts.mt4UserDetails').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id); ?>&from_date=&to_date=&search=Search&sort=asc&order=login"
+                                               class="fa fa-file-text tooltip_number"
+                                               data-original-title="<?php echo e(trans('accounts::accounts.mt4UserDetails')); ?>"></a>
+                                        </td>
+
+
+                                    </tr>
+
+
+
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+
+                            </tbody>
+                        </table>
+
+
+                        <?php if(count($oResults)): ?>
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-6 ">
+                                    <span class="text-xs"><?php echo e(trans('accounts::accounts.showing')); ?> <?php echo e($oResults->firstItem()); ?> <?php echo e(trans('accounts::accounts.to')); ?> <?php echo e($oResults->lastItem()); ?> <?php echo e(trans('accounts::accounts.of')); ?> <?php echo e($oResults->total()); ?> <?php echo e(trans('accounts::accounts.entries')); ?></span>
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-6 ">
+                                    <?php echo str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()); ?>
+
+                                </div>
+                            </div>
+
+
+                        <?php endif; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+        <!-- /.container-fluid -->
+        <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
+    </div>
+    <!-- /#page-wrapper -->
+    <!-- .right panel -->
+
+
+
+
+<?php $__env->stopSection(); ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php $__env->startSection('hidden'); ?>
+
+    <div class="  theme-default page-mail">
+        <div class="mail-nav">
+            <div class="navigation">
+                <?php echo Form::open(['method'=>'get', 'class'=>'form-bordered']); ?>
+
+                <ul class="sections">
+                    <li class="active"><a href="#"> <i
+                                    class="fa fa-search"></i> <?php echo e(trans('accounts::accounts.search')); ?> </a></li>
+                    <li>
+                        <div class="nav-input-div">
+                            <div class="checkbox">
+                                <label>
+                                    <?php echo Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']); ?>
+
+                                    <span class="lbl"><?php echo e(trans('accounts::accounts.ExactLogin')); ?></span>
+                                </label>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="from_login_li">
+                        <div class=" nav-input-div  "><?php echo Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('accounts::accounts.FromLogin'),'class'=>'form-control input-sm']); ?></div>
+                    </li>
+                    <li id="to_login_li">
+                        <div class=" nav-input-div  "><?php echo Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('accounts::accounts.ToLogin'),'class'=>'form-control input-sm']); ?></div>
+                    </li>
+                    <li id="login_li">
+                        <div class=" nav-input-div  "><?php echo Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']); ?></div>
+                    </li>
+                    <li>
+                        <div class=" nav-input-div  "><?php echo Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']); ?></div>
+                    </li>
+                    <li>
+                        <div class=" nav-input-div  "><?php echo Form::select('server_id', $serverTypes, $aFilterParams['server_id'], ['class'=>'form-control  input-sm']); ?></div>
+                    </li>
+                    <li>
+                        <div class=" nav-input-div  "><?php echo Form::select('assigned', $aAssigned, $aFilterParams['assigned'], ['class'=>'form-control  input-sm']); ?></div>
+                    </li>
+                    <li>
+                        <div class=" nav-input-div  ">
+                            <?php echo Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']); ?>
+
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                </ul>
+
+
+                <?php echo Form::hidden('sort', $aFilterParams['sort']); ?>
+
+                <?php echo Form::hidden('order', $aFilterParams['order']); ?>
+
+
+
+            </div>
+        </div>
+
+        <div class="mail-container ">
+            <div class="mail-container-header">
+                <?php echo e(trans('accounts::accounts.mt4UsersList')); ?>
+
+            </div>
+            <div class="center_page_all_div">
+                <?php echo $__env->make('admin.partials.messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <div class="table-light">
+                    <div class="table-header">
+                        <div class="table-caption">
+                            <?php echo e(trans('accounts::accounts.mt4Users')); ?>
+
+                        </div>
+                    </div>
+
+
+                    <div class="primary_table_div info" >
+                        <div class="table">
+
+
+                            <div class="thead">
+                                <div class="tr">
+
+                                    <div class="th"><?php echo th_sort(trans('accounts::accounts.Login'), 'LOGIN', $oResults); ?></div>
+                                    <div class="th"><?php echo th_sort(trans('accounts::accounts.liveDemo'), 'server_id', $oResults); ?></div>
+                                    <div class="th"><?php echo th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults); ?></div>
+                                    <div class="th"><?php echo th_sort(trans('accounts::accounts.reg_date'), 'REGDATE', $oResults); ?></div>
+                                    <div class="th"><?php echo th_sort(trans('accounts::accounts.last_date'), 'LASTDATE', $oResults); ?></div>
+                                    <div class="th"><?php echo th_sort(trans('accounts::accounts.leverage'), 'LEVERAGE', $oResults); ?></div>
+                                    <div class="th">  </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="tbody">
+
+                                <?php if(count($oResults)): ?>
+                                    <?php /* */$i=0;/* */ ?>
+                                    <?php /* */$class='';/* */ ?>
+                                    <?php foreach($oResults as $oResult): ?>
+                                        <?php /* */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* */ ?>
+                                        <div class="tr <?php echo e($class); ?>">
+
+
+
+                                            <div class="td"><label><?php echo trans('accounts::accounts.Login'); ?> : </label><p><?php echo e($oResult->LOGIN); ?></p></div>
+                                            <div class="td"><label><?php echo trans('accounts::accounts.liveDemo'); ?> : </label><p><?php echo e(($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName')); ?></p></div>
+                                            <div class="td"><label><?php echo trans('accounts::accounts.Name'); ?> : </label><p><?php echo e($oResult->NAME); ?></p></div>
+                                            <div class="td"><label><?php echo trans('accounts::accounts.reg_date'); ?> : </label><p><?php echo e($oResult->REGDATE); ?></p></div>
+                                            <div class="td"><label><?php echo trans('accounts::accounts.last_date'); ?> : </label><p><?php echo e($oResult->LASTDATE); ?></p></div>
+                                            <div class="td"><label><?php echo trans('accounts::accounts.leverage'); ?> : </label><p>1:<?php echo e($oResult->LEVERAGE); ?></p></div>
+                                            <div class="td">
+                                                <a href="<?php echo e(route('accounts.mt4UserDetails').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id); ?>&from_date=&to_date=&search=Search&sort=asc&order=login"
+                                                   class="fa fa-file-text tooltip_number"
+                                                   data-original-title="<?php echo e(trans('accounts::accounts.mt4UserDetails')); ?>"></a>
+                                            </div>
+
+
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+
+
+
+
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+                        <div class="tableFooter">
+
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="table-footer ">
+                        <?php if(count($oResults)): ?>
+                            <?php echo str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()); ?>
+
+
+                            <?php if($oResults->total()>25): ?>
+                                <div class="DT-lf-right change_page_all_div">
+
+
+                                    <?php echo Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('accounts::accounts.page'),'class'=>'form-control input-sm']); ?>
+
+
+
+
+                                    <?php echo Form::submit(trans('accounts::accounts.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']); ?>
+
+
+
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="col-xs-12 col-lg-3">
+                                <span class="text-xs"><?php echo e(trans('accounts::accounts.showing')); ?> <?php echo e($oResults->firstItem()); ?> <?php echo e(trans('accounts::accounts.to')); ?> <?php echo e($oResults->lastItem()); ?> <?php echo e(trans('accounts::accounts.of')); ?> <?php echo e($oResults->total()); ?> <?php echo e(trans('accounts::accounts.entries')); ?></span>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php echo Form::close(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

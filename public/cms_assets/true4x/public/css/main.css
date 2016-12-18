@@ -274,7 +274,8 @@ a {
     background-image: url(../images/slider/Banner_bg_1.png);
     background-size: 100% 100%;
     position: relative;
-    height: 500px; }
+    height: 500px;
+    overflow: hidden; }
     #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv {
       position: absolute;
       top: 0px;
@@ -283,22 +284,21 @@ a {
       width: 100%; }
       #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv .oneSlideInnerDiv .div_img_1 {
         float: left;
-        width: 30%;
-        padding-top: 30px;
         z-index: 2;
         position: absolute;
         bottom: 0px;
-        left: 12%; }
+        width: 45%; }
         #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv .oneSlideInnerDiv .div_img_1 img {
-          max-width: 90%;
-          float: left; }
+          max-width: 100%;
+          height: 480px;
+          padding-top: 10px;
+          float: right; }
       #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv .oneSlideInnerDiv .div_text_1 {
         z-index: 1;
         float: left;
-        width: 30%;
         position: absolute;
         bottom: 170px;
-        left: 35%; }
+        left: 40%; }
         #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv .oneSlideInnerDiv .div_text_1 p {
           padding: 5px 40px;
           background-color: #44596a;
@@ -323,12 +323,12 @@ a {
         position: absolute;
         bottom: 0px;
         right: 10%;
-        z-index: 2;
-        width: 40%;
-        padding-top: 30px; }
+        width: 28%;
+        z-index: 2; }
         #sliderRow .sliderContainer .sliderInnerContainer .oneSlideDiv .oneSlideInnerDiv .div_img_2 img {
-          max-width: 70%;
-          float: right; }
+          height: 480px;
+          padding-top: 10px;
+          float: left; }
 
 #openAccountButtonsRow {
   text-align: center;

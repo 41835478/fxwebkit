@@ -1,0 +1,55 @@
+<?php $__env->startSection('title', trans('user.PageTitleSignIn')); ?>
+<?php $__env->startSection('content'); ?>
+<div class="signin-container">
+
+
+
+    <div class="signin-form">
+
+        <a href="" class="logo">
+
+            <?php echo HTML::image('assets/'.config('fxweb.layoutAssetsFolder').'/img/logo.png', '', ['style' => 'margin-top: -5px;width:90px;height:28px;']); ?>
+
+            &nbsp;
+        </a>
+
+        <div class="panel-heading-controls ">
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i> Language</a>
+                <ul class="dropdown-menu">
+                    <?php foreach(config('app.language')  as $locale=>$name): ?>
+                        <li><a href="?locale=<?php echo e($locale); ?>"><?php echo e(trans('general.'.$name)); ?></a></li>
+
+                    <?php endforeach; ?>
+                </ul></div>
+        </div>
+
+
+
+
+        <?php echo Form::open(['id'=>'signin-form_id']); ?>
+
+        <div class="signin-text">
+            <span><?php echo e(trans('user.SignInText')); ?></span>
+        </div>
+        <?php echo $__env->make('admin.partials.messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <div class="form-group w-icon">
+            <?php echo Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>trans('user.email')]); ?>
+
+            <span class="fa fa-user signin-form-icon"></span>
+        </div>
+        <div class="form-group w-icon">
+            <?php echo Form::password('password', ['class'=>'form-control input-lg','placeholder'=>trans('user.password')]); ?>
+
+            <span class="fa fa-lock signin-form-icon"></span>
+        </div>
+        <div class="form-actions">
+            <?php echo Form::submit(trans('user.SignIn'), ['class'=>'signin-btn bg-primary']); ?>
+
+        </div>
+        <?php echo Form::close(); ?>
+
+    </div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.login', array('class' => 'page-signin'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

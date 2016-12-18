@@ -1,0 +1,420 @@
+<?php $__env->startSection('title', trans('ibportal::ibportal.agent')); ?>
+
+<?php $__env->startSection('content'); ?>
+
+
+
+
+
+    <th id="page-wrapper">
+        <th class="container-fluid">
+            <!-- .row -->
+            <div class="row bg-title" style="background:url(<?php echo e('/assets/'.config('fxweb.layoutAssetsFolder')); ?>/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
+                <div class="col-lg-12">
+                    <h4 class="page-title"><?php echo e(trans('ibportal::ibportal.plans')); ?></h4>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <ol class="breadcrumb pull-left">
+                        <li><a href="#"><?php echo e(trans('ibportal::ibportal.ModuleTitle')); ?></a></li>
+                        <li class="active"><?php echo e(trans('ibportal::ibportal.plans')); ?></li>
+                    </ol>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <form role="search" class="app-search hidden-xs pull-right">
+                        <input type="text" placeholder=" <?php echo e(trans('user.Search')); ?> ..." class="form-control">
+                        <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <th class="row">
+                <td class="col-lg-12">
+                    <th class="white-box">
+
+
+                        <a href="<?php echo e(route('admin.ibportal.addAliases')); ?>" style="float:right;">
+                            <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button"
+                                   value="<?php echo e(trans('ibportal::ibportal.addAliases')); ?>"> </a>
+
+
+                        <h3 class="box-title m-b-0">Kitchen Sink</h3>
+                        <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
+                        <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
+
+                            <thead>
+                            <tr>
+
+
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1"><?php echo th_sort(trans('ibportal::ibportal.id'), 'id', $oResults); ?></th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"><?php echo th_sort(trans('ibportal::ibportal.first_name'), 'first_name', $oResults); ?></th>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3"><?php echo th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults); ?></th>
+        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4"><?php echo th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults); ?></th>
+    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5"></th>
+                            </tr>
+
+
+                            </thead>
+                            <tbody>
+
+
+
+
+                            <?php if(count($oResults)): ?>
+                                <?php /* */$i=0;/* */ ?>
+                                <?php /* */$class='';/* */ ?>
+                                <?php foreach($oResults as $oResult): ?>
+                                    <?php /* */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* */ ?>
+                                    <tr class="tr <?php echo e($class); ?>">
+
+
+                                        <td><?php echo e($oResult->id); ?></td>
+                                        <td><?php echo e($oResult->first_name); ?></td>
+                                        <td><?php echo e($oResult->last_name); ?></td>
+                                        <td><?php echo e($oResult->email); ?></td>
+                                        <td>
+                                            <?php if(!$oResult->isAgent): ?>
+                                                <a href="<?php echo e(route('admin.ibportal.addAgents').'?agentId='.$oResult->id); ?>"
+                                                   class="fa fa-plus tooltip_number"
+                                                   data-original-title="<?php echo e(trans('ibportal::ibportal.makeUserAgent')); ?>"></a>
+                                            <?php else: ?>
+
+                                                <a href="<?php echo e(route('admin.ibportal.agentUsres').'?agentId='.$oResult->id); ?>"
+                                                   class="fa fa-users tooltip_number"
+                                                   data-original-title="<?php echo e(trans('ibportal::ibportal.agentUsres')); ?>"></a>
+                                                <a href="<?php echo e(route('admin.ibportal.agentPlans').'?agentId='.$oResult->id); ?>"
+                                                   class="fa fa-briefcase tooltip_number"
+                                                   data-original-title="<?php echo e(trans('ibportal::ibportal.agentPlans')); ?>"></a>
+                                                <!--
+                                        <a href="<?php echo e(route('admin.ibportal.agentCommission').'?agentId='.$oResult->id); ?>"
+                                           class="fa fa-money tooltip_number"
+                                           data-original-title="<?php echo e(trans('ibportal::ibportal.agentCommission')); ?>"></a>
+                                           -->
+
+                                                <a href="<?php echo e(route('admin.ibportal.assignAgents').'?agentId='.$oResult->id); ?>"
+                                                   class="fa  fa-link  tooltip_number"
+                                                   data-original-title="<?php echo e(trans('ibportal::ibportal.assignAgents')); ?>"></a>
+
+                                                <a href="<?php echo e(route('admin.ibportal.agentMoney').'?agentId='.$oResult->id); ?>"
+                                                   class="fa fa-money tooltip_number"
+                                                   data-original-title="<?php echo e(trans('ibportal::ibportal.agentMoney')); ?>"></a>
+
+                                                <a href="<?php echo e(route('admin.ibportal.summary').'?agentId='.$oResult->id); ?>"
+                                                   class="fa fa-bar-chart-o tooltip_number"
+                                                   data-original-title="<?php echo e(trans('ibportal::ibportal.summary')); ?>"></a>
+
+                                                <a href="<?php echo e(route('admin.ibportal.assignUsresAgent').'?agent_id='.$oResult->id); ?>"
+                                                   class="fa  fa-link  tooltip_number"
+                                                   data-original-title="<?php echo e(trans('ibportal::ibportal.assignUsersToAgent')); ?>"></a>
+                                            <?php endif; ?>
+                                        </td>
+
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+
+
+
+
+
+                            </tbody>
+
+
+
+                        </table>
+
+
+                        <?php if(count($oResults)): ?>
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-6 ">
+                                    <span class="text-xs"><?php echo e(trans('accounts::accounts.showing')); ?> <?php echo e($oResults->firstItem()); ?> <?php echo e(trans('accounts::accounts.to')); ?> <?php echo e($oResults->lastItem()); ?> <?php echo e(trans('accounts::accounts.of')); ?> <?php echo e($oResults->total()); ?> <?php echo e(trans('accounts::accounts.entries')); ?></span>
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-6 ">
+                                    <?php echo str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()); ?>
+
+                                </div>
+                            </div>
+
+
+                        <?php endif; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+        <!-- /.container-fluid -->
+        <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
+    </div>
+    <!-- /#page-wrapper -->
+    <!-- .right panel -->
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+
+    <div class="  theme-default page-mail">
+        <div class="mail-nav">
+            <div class="navigation">
+                <?php echo Form::open(['method'=>'get', 'class'=>'form-bordered']); ?>
+
+                <ul class="sections">
+                    <li class="active"><a href="#"> <i
+                                    class="fa fa-search"></i> <?php echo e(trans('ibportal::ibportal.search')); ?> </a></li>
+
+                    <li>
+                        <div class=" nav-input-div  ">
+                            <?php echo Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('ibportal::ibportal.id'),'class'=>'form-control input-sm']); ?>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class=" nav-input-div  ">
+                            <?php echo Form::text('first_name', $aFilterParams['first_name'], ['placeholder'=>trans('ibportal::ibportal.first_name'),'class'=>'form-control input-sm']); ?>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class=" nav-input-div  ">
+                            <?php echo Form::text('last_name', $aFilterParams['last_name'], ['placeholder'=>trans('ibportal::ibportal.last_name'),'class'=>'form-control input-sm']); ?>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class=" nav-input-div  ">
+                            <?php echo Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('ibportal::ibportal.Email'),'class'=>'form-control input-sm']); ?>
+
+                        </div>
+                    </li>
+
+                    <li><div  class=" nav-input-div  "><?php echo Form::select('agents', $agents, $agent, ['class'=>'form-control  input-sm']); ?></div></li>
+
+
+
+                    <li>
+                        <div class=" nav-input-div  ">
+
+                            <?php echo Form::hidden('sort', $aFilterParams['sort']); ?>
+
+                            <?php echo Form::hidden('order', $aFilterParams['order']); ?>
+
+                            <?php echo Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']); ?>
+
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                </ul>
+
+
+            </div>
+        </div>
+
+        <div class="mail-container ">
+            <div class="mail-container-header">
+                <?php echo e(trans('ibportal::ibportal.agent')); ?>
+
+            </div>
+            <div class="center_page_all_div">
+                <?php echo $__env->make('admin.partials.messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+                <div class="table-light">
+                    <div class="table-header">
+                        <div class="table-caption">
+                            <?php echo e(trans('ibportal::ibportal.agent')); ?>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="primary_table_div info" >
+                        <div class="table">
+
+
+                            <div class="thead">
+                                <div class="tr">
+
+
+                                <div class="th"><?php echo th_sort(trans('ibportal::ibportal.id'), 'id', $oResults); ?></div>
+                                <div class="th"><?php echo th_sort(trans('ibportal::ibportal.first_name'), 'first_name', $oResults); ?></div>
+                                <div class="th"><?php echo th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults); ?></div>
+                                <div class="th"><?php echo th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults); ?></div>
+                                <div class="th"></div>
+                                </div>
+                            </div>
+
+
+                            <div class="tbody">
+
+                                <?php if(count($oResults)): ?>
+                                    <?php /* */$i=0;/* */ ?>
+                                    <?php /* */$class='';/* */ ?>
+                                    <?php foreach($oResults as $oResult): ?>
+                                        <?php /* */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* */ ?>
+                                        <div class="tr <?php echo e($class); ?>">
+
+
+                                        <div class="td"><label><?php echo trans('ibportal::ibportal.id'); ?> : </label><p><?php echo e($oResult->id); ?></p></div>
+                                        <div class="td"><label><?php echo trans('ibportal::ibportal.first_name'); ?> : </label><p><?php echo e($oResult->first_name); ?></p></div>
+                                        <div class="td"><label><?php echo trans('ibportal::ibportal.last_name'); ?> : </label><p><?php echo e($oResult->last_name); ?></p></div>
+                                        <div class="td"><label><?php echo trans('ibportal::ibportal.Email'); ?> : </label><p><?php echo e($oResult->email); ?></p></div>
+                                        <div class="td">
+                                                <?php if(!$oResult->isAgent): ?>
+                                                    <a href="<?php echo e(route('admin.ibportal.addAgents').'?agentId='.$oResult->id); ?>"
+                                                       class="fa fa-plus tooltip_number"
+                                                       data-original-title="<?php echo e(trans('ibportal::ibportal.makeUserAgent')); ?>"></a>
+                                                <?php else: ?>
+
+                                                    <a href="<?php echo e(route('admin.ibportal.agentUsres').'?agentId='.$oResult->id); ?>"
+                                                       class="fa fa-users tooltip_number"
+                                                       data-original-title="<?php echo e(trans('ibportal::ibportal.agentUsres')); ?>"></a>
+                                                    <a href="<?php echo e(route('admin.ibportal.agentPlans').'?agentId='.$oResult->id); ?>"
+                                                       class="fa fa-briefcase tooltip_number"
+                                                       data-original-title="<?php echo e(trans('ibportal::ibportal.agentPlans')); ?>"></a>
+                                                    <!--
+                                        <a href="<?php echo e(route('admin.ibportal.agentCommission').'?agentId='.$oResult->id); ?>"
+                                           class="fa fa-money tooltip_number"
+                                           data-original-title="<?php echo e(trans('ibportal::ibportal.agentCommission')); ?>"></a>
+                                           -->
+
+                                                    <a href="<?php echo e(route('admin.ibportal.assignAgents').'?agentId='.$oResult->id); ?>"
+                                                       class="fa  fa-link  tooltip_number"
+                                                       data-original-title="<?php echo e(trans('ibportal::ibportal.assignAgents')); ?>"></a>
+
+                                                    <a href="<?php echo e(route('admin.ibportal.agentMoney').'?agentId='.$oResult->id); ?>"
+                                                       class="fa fa-money tooltip_number"
+                                                       data-original-title="<?php echo e(trans('ibportal::ibportal.agentMoney')); ?>"></a>
+
+                                                    <a href="<?php echo e(route('admin.ibportal.summary').'?agentId='.$oResult->id); ?>"
+                                                       class="fa fa-bar-chart-o tooltip_number"
+                                                       data-original-title="<?php echo e(trans('ibportal::ibportal.summary')); ?>"></a>
+
+                                                    <a href="<?php echo e(route('admin.ibportal.assignUsresAgent').'?agent_id='.$oResult->id); ?>"
+                                                       class="fa  fa-link  tooltip_number"
+                                                       data-original-title="<?php echo e(trans('ibportal::ibportal.assignUsersToAgent')); ?>"></a>
+                                                <?php endif; ?>
+                                                </div>
+
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+
+
+
+
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+                        <div class="tableFooter">
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="table-footer">
+                        <?php if(count($oResults)): ?>
+                            <?php echo str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()); ?>
+
+                            <?php if($oResults->total()>25): ?>
+
+                                <div class="DT-lf-right change_page_all_div">
+
+
+                                    <?php echo Form::text('page',$oResults->currentPage(), ['type'=>'number', 'placeholder'=>trans('ibportal::ibportal.page'),'class'=>'form-control input-sm']); ?>
+
+
+
+
+                                    <?php echo Form::submit(trans('ibportal::ibportal.go'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']); ?>
+
+
+
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="col-xs-12 col-lg-3">
+                                <span class="text-xs"><?php echo e(trans('ibportal::ibportal.showing')); ?> <?php echo e($oResults->firstItem()); ?> <?php echo e(trans('ibportal::ibportal.to')); ?> <?php echo e($oResults->lastItem()); ?> <?php echo e(trans('ibportal::ibportal.of')); ?> <?php echo e($oResults->total()); ?> <?php echo e(trans('ibportal::ibportal.entries')); ?></span>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <?php echo Form::close(); ?>
+
+    <script>
+        init.push(function () {
+
+
+            $('.tooltip_number').tooltip();
+
+            $('#all-groups-chx').change(function () {
+
+                if ($('#all-groups-chx').prop('checked')) {
+                    $('#all-groups-slc').attr('disabled', 'disabled');
+                } else {
+                    $('#all-groups-slc').removeAttr('disabled');
+                }
+            });
+            if ($('#all-groups-chx').prop('checked')) {
+                $('#all-groups-slc').attr('disabled', 'disabled');
+            } else {
+                $('#all-groups-slc').removeAttr('disabled');
+            }
+
+
+            $('#exactLogin').change(function () {
+                if ($('#exactLogin').prop('checked')) {
+                    $("#from_login_li,#to_login_li").hide();
+                    $("#login_li").show();
+                } else {
+                    $("#from_login_li,#to_login_li").show();
+                    $("#login_li").hide();
+                }
+            });
+
+            if ($('#exactLogin').prop('checked')) {
+                $("#from_login_li,#to_login_li").hide();
+                $("#login_li").show();
+            } else {
+                $("#from_login_li,#to_login_li").show();
+                $("#login_li").hide();
+            }
+
+        });
+
+    </script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,73 @@
+<div class="row" id="headerMenuRow">
+    <div class="container">
+        <div id="mainMenuDiv">
+            <ul id="mainMenuUl">
+                <li class="">
+                    <a href="/">Home</a>
+                </li>
+                <?php foreach($menu_array as $menu): ?>
+                    <li class=" <?php if($menu['id'] == $selected_id ): ?>  active <?php endif; ?> "><a href="#"><?php echo e(str_replace('-',' ',$menu['translate'])); ?></a>
+                        <?php if(isset($menu['children']) && $menu['children']!= null): ?>
+                        <div class="zeroSubmenuDiv">
+                            <div class="subMenuDiv">
+
+                                <ul class="submenuUl">
+                                    <?php foreach($menu['children'] as $sub_menu): ?>
+                                    <li class="<?php if($sub_menu['id'] == $selected_id ): ?>   active <?php endif; ?>" >
+                                        <a href="<?php echo e(asset(strtolower($sub_menu['name']))); ?>">
+                                            <?php echo e(str_replace('-',' ',$sub_menu['translate'])); ?>
+
+                                        </a> </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>
+                        <?php endif; ?>
+
+                    </li>
+                <?php endforeach; ?>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="horizLine">&nbsp;</div>
+</div>
+
+
+<?php /*<ul class="b-top-nav__1level_wrap ">*/ ?>
+
+    <?php /*<?php foreach($menu_array as $menu): ?>*/ ?>
+
+    <?php /*<li class=" b-top-nav__1level f-top-nav__1level  f-primary-b  <?php if($menu['id'] == $selected_id ): ?>  active <?php endif; ?> ">*/ ?>
+        <?php /*<a href='<?php echo e(asset($menu['name'])); ?>' onclick="return false;" >*/ ?>
+
+            <?php /*<i class="fa fa-folder-open b-menu-1level-ico"></i><?php echo e(str_replace('-',' ',$menu['translate'])); ?><span class="b-ico-dropdown"><i class="fa fa-arrow-circle-down"></i></span>*/ ?>
+
+        <?php /*</a>*/ ?>
+
+
+        <?php /*<?php if(isset($menu['children']) && $menu['children']!= null): ?>*/ ?>
+            <?php /*<div class="b-top-nav__dropdomn" style="display:none;opacity:0; ">*/ ?>
+                <?php /*<ul class=" b-top-nav__2level_wrap ">*/ ?>
+
+                <?php /*<?php foreach($menu['children'] as $sub_menu): ?>*/ ?>
+                        <?php /*<li class=" b-top-nav__2level f-top-nav__2level f-primary  <?php if($sub_menu['id'] == $selected_id ): ?>   active <?php endif; ?>">*/ ?>
+                            <?php /*<a href='<?php echo e(asset(strtolower($sub_menu['name']))); ?>' >*/ ?>
+                                <?php /*<?php echo e(str_replace('-',' ',$sub_menu['translate'])); ?>*/ ?>
+                            <?php /*</a>*/ ?>
+                        <?php /*</li>*/ ?>
+                          <?php /*<?php endforeach; ?>*/ ?>
+                <?php /*<ul>*/ ?>
+            <?php /*</div>*/ ?>
+
+        <?php /*<?php endif; ?>*/ ?>
+
+
+
+    <?php /*</li>*/ ?>
+
+
+    <?php /*<?php endforeach; ?>*/ ?>
+
+<?php /*</ul>*/ ?>

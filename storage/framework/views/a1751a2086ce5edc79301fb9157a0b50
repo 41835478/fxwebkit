@@ -1,0 +1,72 @@
+<?php $__env->startSection('title', Lang::get('dashboard.PageTitle')); ?>
+<?php $__env->startSection('content'); ?>
+
+
+    <div id="content-wrapper">
+        <div class="page-header">
+            <h1><?php echo e(trans('translate')); ?></h1>
+        </div>
+
+        <div class="panel">
+            <div class="panel-heading">
+                <span class="panel-title"><?php echo e(trans('translate')); ?></span>
+
+
+                <?php echo Form::open(['method'=>'get']); ?>
+
+                <?php echo Form::select('module',$modules,$module,['onChange'=>'$(this).parent().submit();']); ?>
+
+                <?php echo Form::select('language',$languages,$language,['onChange'=>'$(this).parent().submit();']); ?>
+
+                <?php echo Form::select('file',$files,$file,['onChange'=>'$(this).parent().submit();']); ?>
+
+                <?php echo Form::close(); ?>
+
+            </div>
+            <?php echo Form::open(); ?>
+
+            <div class="panel-body">
+                <div class="row">
+
+                    <?php foreach($enArray as $key=>$value): ?>
+                        <div class="col-sm-6">
+                            <div class="form-group no-margin-hr">
+                                <label class="control-label col-xs-4"><?php echo str_replace(']','',$key); ?> </label>
+
+                                <?php if(array_key_exists($key,$otherLanguageArray)): ?>
+                                    <?php echo Form::text('translate['.$key,$otherLanguageArray[$key],['class'=>'col-xs-8']); ?>
+
+                                <?php else: ?>
+                                    <?php echo Form::text('translate['.$key,$value,['class'=>'col-xs-8']); ?>
+
+                                <?php endif; ?>
+
+                            </div>
+                        </div>
+
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="panel-footer text-right">
+                <?php echo Form::hidden('module',$module); ?>
+
+                <?php echo Form::hidden('language',$language); ?>
+
+                <?php echo Form::hidden('file',$file); ?>
+
+                <?php echo Form::submit('save',['class'=>'btn btn-primary']); ?>
+
+            </div>
+            <?php echo Form::close(); ?>
+
+        </div>
+    </div>
+
+
+
+
+
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('admin.layouts.main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

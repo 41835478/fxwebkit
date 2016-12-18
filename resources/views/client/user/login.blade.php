@@ -40,6 +40,7 @@
                 <span class="fa fa-lock signin-form-icon"></span>
             </div>
             <div class="form-actions">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 {!! Form::submit(Lang::get('user.SignIn'), ['class'=>'signin-btn bg-primary']) !!}
                 <a href="{{ route('client.auth.recover') }}"
