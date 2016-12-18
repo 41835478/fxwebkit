@@ -32,8 +32,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
+
+                        <a href="{{ route('accounts.addAccount') }}" style="float:right;">
+                            <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button"
+                                   value="{{ trans('accounts::accounts.addAccount') }}"> </a>
+
+
                         <h3 class="box-title m-b-0">Kitchen Sink</h3>
                         <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
+
+
                         <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
                             <thead>
                             <tr>
