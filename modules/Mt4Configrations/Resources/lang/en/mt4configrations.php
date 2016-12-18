@@ -36,5 +36,7 @@ return [
     'go'=>'Go',
     'symbol'=>'Symbol',
     'group'=>'Group',
-    'dashboard'=>'Dashboard'
+    'dashboard'=>'Dashboard',
+        'tableHead'=>'Kitchen Sink',
+    'tableDescription'=>'Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch',
 ];

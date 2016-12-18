@@ -2,9 +2,6 @@
 @section('title', trans('user.adminsList'))
 @section('content')
 
-
-
-
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- .row -->
@@ -26,11 +23,11 @@
                 </div>
             </div>
 
-
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
+                        <a href="{{ route('general.addUser') }}" style="float:right;">
+                            <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button" value="{{ trans('user.addUser') }}"> </a>
                         <h3 class="box-title m-b-0">Kitchen Sink</h3>
                         <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
                         <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
@@ -47,15 +44,11 @@
                             </thead>
                             <tbody>
 
-
-
                             @if (count($oResults))
                              {{--*/$i=0;/*--}}
                              {{--*/$class='';/*--}}
                             @foreach($oResults as $oResult)
                              {{--*/$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/*--}}
-
-
                              <tr>
                                  <td ><a href="javascript:void(0)">{{ $oResult->id }}</a></td>
                                  <td class="title">{{ $oResult->first_name }}</td>
@@ -71,18 +64,11 @@
                                  </td>
                              </tr>
 
-
-
                             @endforeach
                             @endif
 
                             </tbody>
                         </table>
-
-
-
-
-
 
                         @if (count($oResults))
                             {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
@@ -106,30 +92,10 @@
 
                         </div>
 
-
-
-
-
-
-
-
-
-
-
-
                     </div>
-
-
-
 
                 </div>
             </div>
-
-
-
-
-
-
 
         </div>
         <!-- /.container-fluid -->
@@ -137,13 +103,6 @@
     </div>
     <!-- /#page-wrapper -->
     <!-- .right panel -->
-
-
-
-
-
-
-
 
     <div class="right-side-panel">
         <div class="scrollable-right">

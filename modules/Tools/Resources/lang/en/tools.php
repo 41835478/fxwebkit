@@ -59,4 +59,6 @@
 'close'=>'Close',
 'add'=>'Add',
 'select_symbols'=>'Select Symbols',
+    'tableHead'=>'Kitchen Sink',
+    'tableDescription'=>'Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch',
 ]; ?>

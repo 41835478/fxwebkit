@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <form role="search" class="app-search hidden-xs pull-right">
-                        <input type="text" placeholder=" {{ trans('user.Search') }} ..." class="form-control">
+                        <input type="text" placeholder=" {{ trans('ibportal::ibportal.search') }} ..." class="form-control">
                         <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
                     </form>
                 </div>
@@ -39,8 +39,8 @@
                                    value="{{ trans('ibportal::ibportal.addPlan') }}"> </a>
 
 
-                        <h3 class="box-title m-b-0">Kitchen Sink</h3>
-                        <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
+                        <h3 class="box-title m-b-0">{{ trans('ibportal::ibportal.tableHead') }}</h3>
+                        <p class="text-muted m-b-20">{{ trans('ibportal::ibportal.tableDescription') }}</p>
                         <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
                             <thead>
                             <tr>
@@ -104,7 +104,7 @@
                             <div class="row">
 
                                 <div class="col-xs-12 col-sm-6 ">
-                                    <span class="text-xs">{{trans('accounts::accounts.showing')}} {{ $oResults->firstItem() }} {{trans('accounts::accounts.to')}} {{ $oResults->lastItem() }} {{trans('accounts::accounts.of')}} {{ $oResults->total() }} {{trans('accounts::accounts.entries')}}</span>
+                                    <span class="text-xs">{{trans('ibportal::ibportal.showing')}} {{ $oResults->firstItem() }} {{trans('ibportal::ibportal.to')}} {{ $oResults->lastItem() }} {{trans('ibportal::ibportal.of')}} {{ $oResults->total() }} {{trans('ibportal::ibportal.entries')}}</span>
                                 </div>
 
 

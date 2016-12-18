@@ -2,6 +2,259 @@
 @section('title', trans('reports::reports.commission'))
 @section('content')
 
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- .row -->
+            <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
+                <div class="col-lg-12">
+                    <h4 class="page-title">{{ trans('reports::reports.commission') }}</h4>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <ol class="breadcrumb pull-left">
+                        <li><a href="#">{{ trans('reports::reports.ModuleTitle') }}</a></li>
+                        <li class="active">{{ trans('reports::reports.commission') }}</li>
+                    </ol>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <form role="search" class="app-search hidden-xs pull-right">
+                        <input type="text" placeholder=" {{ trans('reports::reports.search') }} ..." class="form-control">
+                        <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="white-box">
+
+                        @include('admin.partials.messages')
+
+
+                        @if (count($oResults[0]))
+                            <div class="stat-panel no-margin-b">
+                                <div class="stat-row">
+                                    <div class="stat-counters bg-panel no-padding text-center">
+                                        <div class="stat-cell col-xs-4 padding-xs-vr">
+                                            <span class="text-xs">{{ trans('reports::reports.total_commission') }}{{ round($oResults[1], 2) }}</span>
+                                        </div>
+                                        <div class="stat-cell col-xs-4 padding-xs-vr">
+                                            <span class="text-xs">{{ trans('reports::reports.total_lots') }} {{ round($oResults[2], 2) }}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="clear:both;"></div>
+                                <div id="container" style="width:50%; float:left; overflow: auto;"></div>
+                                <div id="container2" style="width:50%; float:left; overflow: auto;"></div>
+                                <div class="clear:both;"></div>
+
+
+                            </div>
+
+
+                            <div class="padding-xs-vr"></div>
+                        @endif
+
+
+                        <h3 class="box-title m-b-0">{{ trans('reports::reports.tableHead') }}</h3>
+                        <p class="text-muted m-b-20">{{ trans('reports::reports.tableDescription') }}</p>
+                        <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
+
+                            <thead>
+                            <tr>
+
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oResults[0]) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oResults[0]) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oResults[0]) !!}</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            @if (count($oResults[0]))
+                                {{-- */$i=0;/* --}}
+                                {{-- */$class='';/* --}}
+                                @foreach($oResults[0] as $oResult)
+                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                    <tr class='{{ $class }}'>
+                                        <td>{{ $oResult->SYMBOL }}</td>
+                                        <td>{{ round($oResult->COMMISSION, 2) }}</td>
+                                        <td>{{ $oResult->VOLUME }}</td>
+
+                                    </tr>
+                                @endforeach
+                            @endif
+                            </tbody>
+                        </table>
+                        @if (count($oResults))
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-6 ">
+                                    <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oResults->firstItem() }} {{trans('reports::reports.to')}} {{ $oResults->lastItem() }} {{trans('reports::reports.of')}} {{ $oResults->total() }} {{trans('reports::reports.entries')}}</span>
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-6 ">
+                                    {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
+    </div>
+    <!-- /#page-wrapper -->
+    <!-- .right panel -->
+@section('script')
+    @parent
+
+    {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/highcharts.js') !!}
+    <script>
+        init.push(function () {
+            var options = {
+                todayBtn: "linked",
+                orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto',
+                format: "yyyy-mm-dd"
+            }
+            $('.datepicker-warpper').datepicker(options);
+
+            $('#all-groups-chx').change(function () {
+                if ($('#all-groups-chx').prop('checked')) {
+                    $('#all-groups-slc').attr('disabled', 'disabled');
+                } else {
+                    $('#all-groups-slc').removeAttr('disabled');
+                }
+            });
+
+            $('#all-symbols-chx').change(function () {
+                if ($('#all-symbols-chx').prop('checked')) {
+                    $('#all-symbols-slc').attr('disabled', 'disabled');
+                } else {
+                    $('#all-symbols-slc').removeAttr('disabled');
+                }
+            });
+
+            if ($('#all-groups-chx').prop('checked')) {
+                $('#all-groups-slc').attr('disabled', 'disabled');
+            } else {
+                $('#all-groups-slc').removeAttr('disabled');
+            }
+
+            if ($('#all-symbols-chx').prop('checked')) {
+                $('#all-symbols-slc').attr('disabled', 'disabled');
+            } else {
+                $('#all-symbols-slc').removeAttr('disabled');
+            }
+
+
+            $('#exactLogin').change(function () {
+                if ($('#exactLogin').prop('checked')) {
+                    $("#from_login_li,#to_login_li").hide();
+                    $("#login_li").show();
+                } else {
+                    $("#from_login_li,#to_login_li").show();
+                    $("#login_li").hide();
+                }
+            });
+
+            if ($('#exactLogin').prop('checked')) {
+                $("#from_login_li,#to_login_li").hide();
+                $("#login_li").show();
+            } else {
+                $("#from_login_li,#to_login_li").show();
+                $("#login_li").hide();
+            }
+        });
+
+
+
+
+        $(function () {
+            $('#container').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Brands',
+                    colorByPoint: true,
+                    data: {!! json_encode($chartData)!!}
+            }]
+            });
+        });
+
+
+
+
+
+        $(function () {
+            $('#container2').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Brands',
+                    colorByPoint: true,
+                    data: {!! json_encode($chartData2)!!}
+            }]
+            });
+        });
+
+
+    </script>
+
+@stop
+@section('hidden')
+
 
 <div class="  theme-default page-mail" >
     <div class="mail-nav" >

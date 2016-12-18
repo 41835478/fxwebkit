@@ -39,7 +39,7 @@ return [
     'city'=>'City',
     'changeLeverage'=>'Change Leverage',
     'changePassword'=>'Change Password',
-    'newPassord'=>'New Passord',
+    'newPassword'=>'New Password',
     'assignAccount'=>'Assign Account',
     'password'=>'Password',
     'accountId'=>'Account Id',
@@ -52,5 +52,7 @@ return [
     'edit'=>'Edit',
     'activateUser'=>'Activate User',
     'id'=>'ID',
+    'tableHead'=>'Kitchen Sink',
+    'tableDescription'=>'Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch',
 
 ];

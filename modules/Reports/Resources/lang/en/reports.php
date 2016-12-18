@@ -99,4 +99,6 @@ return [
     'credit'=>'Credit',
     'Balance_Prev'=>'Prev balance',
     'PROFIT_CLOSED'=>'Profit Closed',
+    'tableHead'=>'Kitchen Sink',
+    'tableDescription'=>'Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch',
 ];

@@ -1,11 +1,6 @@
 @extends('admin.layouts.main')
 @section('title', trans('accounts::accounts.accounts'))
 @section('content')
-
-
-
-
-
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- .row -->
@@ -120,8 +115,6 @@
                                         </td>
                                     </tr>
 
-
-
                                 @endforeach
                             @endif
 
@@ -141,47 +134,16 @@
                                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
                                 </div>
                             </div>
-
-
                         @endif
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
-
-
-
-
                 </div>
             </div>
-
-
-
-
-
-
-
-        </div>
+     </div>
         <!-- /.container-fluid -->
         <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
     </div>
     <!-- /#page-wrapper -->
     <!-- .right panel -->
-
-
-
-
-
-
 @stop
 
 
