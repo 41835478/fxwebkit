@@ -52,8 +52,6 @@
                                 {{--*/$class='';/*--}}
                                 @foreach($oResults as $oResult)
                                     {{--*/$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/*--}}
-
-
                                     <tr>
                                         <td>{{ $oResult->id }}</td>
                                         <td>{{ $oResult->first_name }}</td>

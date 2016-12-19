@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('tools::tools.futureContract'))
+@section('title', trans('tools::tools.holiday'))
 @section('content')
 
     <div id="page-wrapper">
@@ -7,12 +7,12 @@
             <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
-                    <h4 class="page-title">{{ trans('tools::tools.futureContract') }}</h4>
+                    <h4 class="page-title">{{ trans('tools::tools.holiday') }}</h4>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <ol class="breadcrumb pull-left">
                         <li><a href="#">{{ trans('tools::tools.ModuleTitle') }}</a></li>
-                        <li class="active">{{ trans('tools::tools.futureContract') }}</li>
+                        <li class="active">{{ trans('tools::tools.holiday') }}</li>
                     </ol>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">

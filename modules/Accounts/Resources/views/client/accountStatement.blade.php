@@ -1,6 +1,7 @@
 @extends('client.layouts.main')
 @section('title', trans('accounts::accounts.accountStatement'))
 @section('content')
+
     <div id="content-wrapper">
 
         <div class="page-header">

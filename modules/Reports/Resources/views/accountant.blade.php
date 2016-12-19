@@ -104,10 +104,6 @@
     @parent
     {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/highcharts.js') !!}
 
-
-
-
-
     <script >
         function buildHighCharts(){
             $('#total_accountant_chart').highcharts({
@@ -160,6 +156,7 @@
         $(".highcharts-legend-item").attr('onclick', 'return false;');
     </script>
 @stop
+
 @section('hidden')
 
 

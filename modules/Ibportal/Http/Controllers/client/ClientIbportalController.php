@@ -493,7 +493,7 @@ class ClientIbportalController extends Controller
 
 
         if (count($userIbid)) {
-            return view('reports::client.closedOrders')
+            return view('ibportal::client.ibportalClosedOrders')
                 ->with('aSymbols', $aSymbols)
                 ->with('aTradeTypes', $aTradeTypes)
                 ->with('oResults', $oResults)
@@ -560,7 +560,7 @@ class ClientIbportalController extends Controller
 
 
         if (count($userIbid)) {
-            return view('reports::client.openOrders')
+            return view('ibportal::client.ibportalOpenOrders')
                 ->with('aSymbols', $aSymbols)
                 ->with('aTradeTypes', $aTradeTypes)
                 ->with('serverTypes', $serverTypes)
