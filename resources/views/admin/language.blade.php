@@ -3,17 +3,43 @@
 @section('content')
 
 
-    <div id="content-wrapper">
-        <div class="page-header">
-            <h1>{{ trans('translate') }}</h1>
-        </div>
-
-        <div class="panel">
-            <div class="panel-heading">
-                <span class="panel-title">{{ trans('translate') }}</span>
+    <div id="page-wrapper" style="min-height: 366px;">
+        <div class="container-fluid">
 
 
-                {!! Form::open(['method'=>'get']) !!}
+
+
+
+            <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
+                <div class="col-lg-12">
+                    <h4 class="page-title">{{ trans('general.translate') }}</h4>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <ol class="breadcrumb pull-left">
+                        <li><a href="#">Fxwebkit</a></li>
+                        <li class="active">{{ trans('general.translate') }}</li>
+                    </ol>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <form role="search" class="app-search hidden-xs pull-right">
+                        <input type="text" placeholder=" {{ trans('user.Search') }} ..." class="form-control">
+                        <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="white-box">
+                        <h3 class="box-title m-b-0">{{ trans('general.translate') }}</h3>
+                        <p class="text-muted m-b-30 font-13">{{ trans('general.translate') }}</p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+
+                                {!! Form::open(['method'=>'get']) !!}
                 {!! Form::select('module',$modules,$module,['onChange'=>'$(this).parent().submit();']) !!}
                 {!! Form::select('language',$languages,$language,['onChange'=>'$(this).parent().submit();']) !!}
                 {!! Form::select('file',$files,$file,['onChange'=>'$(this).parent().submit();']) !!}
@@ -47,10 +73,13 @@
                 {!! Form::submit('save',['class'=>'btn btn-primary']) !!}
             </div>
             {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-
 
 
 

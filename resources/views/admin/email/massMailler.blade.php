@@ -1,18 +1,44 @@
 @extends('admin.layouts.main')
 @section('content')
-    {{--*/ $dCounter = 0 /*--}}
-    <div id="content-wrapper">
-        <div class="page-header">
-            <div class="page-title">
-                <h1>{{ trans('general.massMailler') }}</h1>
-            </div>
-        </div>
-        <div class="panel">
 
-            <div class="panel-heading">
-                <span class="panel-title">{{ trans('general.massMailler') }}</span>
+
+
+
+
+    <div id="page-wrapper" style="min-height: 366px;">
+        <div class="container-fluid">
+
+
+
+
+
+            <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
+                <div class="col-lg-12">
+                    <h4 class="page-title">{{ trans('general.massMailler') }}</h4>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <ol class="breadcrumb pull-left">
+                        <li><a href="#">Fxwebkit</a></li>
+                        <li class="active">{{ trans('general.massMailler') }}</li>
+                    </ol>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <form role="search" class="app-search hidden-xs pull-right">
+                        <input type="text" placeholder=" {{ trans('user.Search') }} ..." class="form-control">
+                        <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+                    </form>
+                </div>
             </div>
 
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="white-box">
+                        <h3 class="box-title m-b-0">{{ trans('general.massMailler') }}</h3>
+                        <p class="text-muted m-b-30 font-13">{{ trans('general.massMailler') }} <code> {{ trans('general.email') }}</code></p>
+                        <div class="row">
+                            <div class="col-md-12">
             {!! Form::open(array('method'=>'get','id'=>'showTemplateForm')) !!}
             <fieldset>
                 <div class="panel-body">
@@ -67,11 +93,16 @@
                         </div>
                         {!! Form::hidden('templateId', $templateId) !!}
                         {!! Form::hidden('lang', $sLanguage) !!}
+            </fieldset>
                         {!! Form::close() !!}
 
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </fieldset>
+            </div>
+        </div>
+    </div>
             @stop
             @section('script')
                 @parent

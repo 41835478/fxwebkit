@@ -5,6 +5,7 @@
     'Welcome' => 'Welcome',
     'Search' => 'Search',
     'ALL' => 'All',
+    'translate'=>'Translate',
     'ACTUAL_TRADES' => 'Actual Trades',
     'PENDING_TRADES' => 'Pending Trades',
     'CMD_TYPE_0' => 'Buy',
