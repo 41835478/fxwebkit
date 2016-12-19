@@ -111,148 +111,148 @@
     </div>
     <!-- /#page-wrapper -->
     <!-- .right panel -->
-@section('script')
-    @parent
+        @stop
+        @section('script')
+            @parent
 
-    {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/highcharts.js') !!}
-    <script>
-        init.push(function () {
-            var options = {
-                todayBtn: "linked",
-                orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto',
-                format: "yyyy-mm-dd"
-            }
-            $('.datepicker-warpper').datepicker(options);
-
-            $('#all-groups-chx').change(function () {
-                if ($('#all-groups-chx').prop('checked')) {
-                    $('#all-groups-slc').attr('disabled', 'disabled');
-                } else {
-                    $('#all-groups-slc').removeAttr('disabled');
-                }
-            });
-
-            $('#all-symbols-chx').change(function () {
-                if ($('#all-symbols-chx').prop('checked')) {
-                    $('#all-symbols-slc').attr('disabled', 'disabled');
-                } else {
-                    $('#all-symbols-slc').removeAttr('disabled');
-                }
-            });
-
-            if ($('#all-groups-chx').prop('checked')) {
-                $('#all-groups-slc').attr('disabled', 'disabled');
-            } else {
-                $('#all-groups-slc').removeAttr('disabled');
-            }
-
-            if ($('#all-symbols-chx').prop('checked')) {
-                $('#all-symbols-slc').attr('disabled', 'disabled');
-            } else {
-                $('#all-symbols-slc').removeAttr('disabled');
-            }
-
-
-            $('#exactLogin').change(function () {
-                if ($('#exactLogin').prop('checked')) {
-                    $("#from_login_li,#to_login_li").hide();
-                    $("#login_li").show();
-                } else {
-                    $("#from_login_li,#to_login_li").show();
-                    $("#login_li").hide();
-                }
-            });
-
-            if ($('#exactLogin').prop('checked')) {
-                $("#from_login_li,#to_login_li").hide();
-                $("#login_li").show();
-            } else {
-                $("#from_login_li,#to_login_li").show();
-                $("#login_li").hide();
-            }
-        });
-
-
-
-
-        $(function () {
-            $('#container').highcharts({
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false,
-                    type: 'pie'
-                },
-                title: {
-                    text: ''
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: true,
-                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                            style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                            }
-                        }
+            {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/highcharts.js') !!}
+            <script>
+                init.push(function () {
+                    var options = {
+                        todayBtn: "linked",
+                        orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto',
+                        format: "yyyy-mm-dd"
                     }
-                },
-                series: [{
-                    name: 'Brands',
-                    colorByPoint: true,
-                    data: {!! json_encode($chartData)!!}
-            }]
-            });
-        });
+                    $('.datepicker-warpper').datepicker(options);
 
-
-
-
-
-        $(function () {
-            $('#container2').highcharts({
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false,
-                    type: 'pie'
-                },
-                title: {
-                    text: ''
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: true,
-                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                            style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                            }
+                    $('#all-groups-chx').change(function () {
+                        if ($('#all-groups-chx').prop('checked')) {
+                            $('#all-groups-slc').attr('disabled', 'disabled');
+                        } else {
+                            $('#all-groups-slc').removeAttr('disabled');
                         }
+                    });
+
+                    $('#all-symbols-chx').change(function () {
+                        if ($('#all-symbols-chx').prop('checked')) {
+                            $('#all-symbols-slc').attr('disabled', 'disabled');
+                        } else {
+                            $('#all-symbols-slc').removeAttr('disabled');
+                        }
+                    });
+
+                    if ($('#all-groups-chx').prop('checked')) {
+                        $('#all-groups-slc').attr('disabled', 'disabled');
+                    } else {
+                        $('#all-groups-slc').removeAttr('disabled');
                     }
-                },
-                series: [{
-                    name: 'Brands',
-                    colorByPoint: true,
-                    data: {!! json_encode($chartData2)!!}
+
+                    if ($('#all-symbols-chx').prop('checked')) {
+                        $('#all-symbols-slc').attr('disabled', 'disabled');
+                    } else {
+                        $('#all-symbols-slc').removeAttr('disabled');
+                    }
+
+
+                    $('#exactLogin').change(function () {
+                        if ($('#exactLogin').prop('checked')) {
+                            $("#from_login_li,#to_login_li").hide();
+                            $("#login_li").show();
+                        } else {
+                            $("#from_login_li,#to_login_li").show();
+                            $("#login_li").hide();
+                        }
+                    });
+
+                    if ($('#exactLogin').prop('checked')) {
+                        $("#from_login_li,#to_login_li").hide();
+                        $("#login_li").show();
+                    } else {
+                        $("#from_login_li,#to_login_li").show();
+                        $("#login_li").hide();
+                    }
+                });
+
+
+
+
+                $(function () {
+                    $('#container').highcharts({
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                    style: {
+                                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                    }
+                                }
+                            }
+                        },
+                        series: [{
+                            name: 'Brands',
+                            colorByPoint: true,
+                            data: {!! json_encode($chartData)!!}
             }]
-            });
-        });
+                    });
+                });
 
 
-    </script>
 
-@stop
+
+
+                $(function () {
+                    $('#container2').highcharts({
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                    style: {
+                                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                    }
+                                }
+                            }
+                        },
+                        series: [{
+                            name: 'Brands',
+                            colorByPoint: true,
+                            data: {!! json_encode($chartData2)!!}
+            }]
+                    });
+                });
+
+
+            </script>
+        @stop
 @section('hidden')
 
 

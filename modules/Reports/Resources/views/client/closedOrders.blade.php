@@ -2,6 +2,112 @@
 @section('title', trans('reports::reports.ClosedOrders'))
 @section('content')
 
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- .row -->
+            <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
+                <div class="col-lg-12">
+                    <h4 class="page-title">{{ trans('reports::reports.ClosedOrders') }}</h4>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <ol class="breadcrumb pull-left">
+                        <li><a href="#">{{ trans('reports::reports.ModuleTitle') }}</a></li>
+                        <li class="active">{{ trans('reports::reports.ClosedOrders') }}</li>
+                    </ol>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <form role="search" class="app-search hidden-xs pull-right">
+                        <input type="text" placeholder=" {{ trans('reports::reports.search') }} ..." class="form-control">
+                        <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="white-box">
+
+
+                        <h3 class="box-title m-b-0">{{ trans('reports::reports.tableHead') }}</h3>
+                        <p class="text-muted m-b-20">{{ trans('reports::reports.tableDescription') }}</p>
+                        <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
+
+                            <thead>
+                            <tr>
+
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="7">{!! th_sort(trans('reports::reports.open_time'), 'open_time', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="8">{!! th_sort(trans('reports::reports.open_Price'), 'OPEN_PRICE', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="9">{!! th_sort(trans('reports::reports.SL'), 'SL', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="10">{!! th_sort(trans('reports::reports.TP'), 'TP', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="11">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="12">{!! th_sort(trans('reports::reports.swaps'), 'SWAPS', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="13">{!! th_sort(trans('reports::reports.price'), 'CLOSE_PRICE', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="14">{!! th_sort(trans('reports::reports.profit'), 'PROFIT', $oResults) !!}</th>
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @if (count($oResults))
+                                {{-- */$i=0;/* --}}
+                                {{-- */$class='';/* --}}
+                                @foreach($oResults as $oResult)
+                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                    <tr class="tr {{ $class }}">
+
+                                        <td>{{ $oResult->TICKET }}</td>
+                                        <td>{{ $oResult->LOGIN }}</td>
+                                        <td>{{($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                                        <td>{{ $oResult->SYMBOL }}</td>
+                                        <td>{{ $oResult->TYPE }}</td>
+                                        <td>{{ $oResult->VOLUME }}</td>
+                                        <td>{{ $oResult->OPEN_TIME }}</td>
+                                        <td>{{ $oResult->OPEN_PRICE }}</td>
+                                        <td>{{ $oResult->SL }}</td>
+                                        <td>{{ $oResult->TP }}</td>
+                                        <td>{{ $oResult->COMMISSION }}</td>
+                                        <td>{{ $oResult->SWAPS }}</td>
+                                        <td>{{ $oResult->CLOSE_PRICE }}</td>
+                                        <td>{{ $oResult->PROFIT }}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                            </tbody>
+                        </table>
+                        @if (count($oResults))
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-6 ">
+                                    <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oResults->firstItem() }} {{trans('reports::reports.to')}} {{ $oResults->lastItem() }} {{trans('reports::reports.of')}} {{ $oResults->total() }} {{trans('reports::reports.entries')}}</span>
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-6 ">
+                                    {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
+        </div>
+        <!-- /#page-wrapper -->
+        <!-- .right panel -->
+
+
+        @stop
+        @section('hidden')
+
 
 
 

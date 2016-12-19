@@ -141,5 +141,6 @@
     'equity :'=>'Equity :',
     'tableHead'=>'Kitchen Sink',
     'tableDescription'=>'Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch',
+    'server'=>'Server',
 
 ]; ?>
