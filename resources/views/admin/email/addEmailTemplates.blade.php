@@ -1,16 +1,14 @@
 @extends('admin.layouts.main')
 @section('content')
-    {{--*/ $dCounter = 0 /*--}}
-    <div id="content-wrapper">
-        <div class="page-header">
-            <div class="page-title">
-                <h1>{{ trans('general.emailTemplates') }}</h1>
-            </div>
-        </div>
-        <div class="panel">
-            <div class="panel-heading">
-                <span class="panel-title">{{ trans('general.email') }}</span>
-            </div>
+    <div id="page-wrapper" style="min-height: 366px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="white-box">
+                        <h3 class="box-title m-b-0">{{ trans('general.emailTemplates') }}</h3>
+                        <p class="text-muted m-b-30 font-13">{{ trans('general.emailTemplates') }} <code> {{ trans('general.email') }}</code></p>
+                        <div class="row">
+                            <div class="col-md-12">
             {!! Form::open(array('method'=>'get','id'=>'showTemplateForm')) !!}
             <fieldset>
                 <div class="panel-body">
@@ -63,11 +61,17 @@
                             {!! Form::submit(trans('general.saveNew'), array('name'=>'saveNew','class'=>'btn btn-primary  pull-left btn-flat')) !!}
                         </div>
 
-                        {!! Form::close() !!}
                 </div>
 
             </fieldset>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
         @stop
         @section('script')
