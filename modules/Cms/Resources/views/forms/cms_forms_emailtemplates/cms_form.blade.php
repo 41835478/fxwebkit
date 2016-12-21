@@ -1,4 +1,3 @@
-
     <h1>Create New email templates</h1>
     <hr/>
 

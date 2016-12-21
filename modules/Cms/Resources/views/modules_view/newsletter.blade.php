@@ -1,4 +1,3 @@
-
             <div class="container newsletter">
                 <div class="sub-section">
                     <div class="title clearfix">

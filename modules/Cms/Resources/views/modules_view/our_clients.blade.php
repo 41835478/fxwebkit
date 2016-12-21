@@ -1,4 +1,3 @@
-
             <div class="container centered">
                 <div class="sub-section">
                     <div class="title clearfix">

@@ -1,5 +1,4 @@
 
-
 <ul class="b-top-nav__1level_wrap ">
 
     @foreach($menu_array as $menu)

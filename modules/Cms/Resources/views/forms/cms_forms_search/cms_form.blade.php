@@ -1,4 +1,3 @@
-
 <h2>Search for ( {{$search}} ) results :</h2>
 <hr/>
 

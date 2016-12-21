@@ -1,4 +1,3 @@
-
 <?php
 
 use Pingpong\Widget\WidgetFacade;

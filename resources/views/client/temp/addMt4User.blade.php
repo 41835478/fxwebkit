@@ -1,4 +1,3 @@
-
 @extends('admin.layouts.main')
 @section('title', trans('accounts::accounts.addAccount'))
 @section('content')

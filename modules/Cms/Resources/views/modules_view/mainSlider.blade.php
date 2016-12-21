@@ -1,5 +1,4 @@
 
-
 <!-- slider end -->
 <section id="main-slider" class="slider">
     <section id="slider-container" class="carousel slide" data-ride="carousel" >
