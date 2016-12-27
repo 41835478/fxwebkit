@@ -96,7 +96,7 @@
     'assign' => 'Assign',
     'details' => 'Details',
     'edit_info' => 'Edit Info',
-    'adminsList' => 'Admins List',
+    'adminsList' => 'Admins',
     'mt4UsersList' => 'Mt4 Users',
     'Mt4Users' => 'Mt4 Users',
     'Email' => 'Email',
@@ -217,5 +217,7 @@
 
     'changePassword'=>'Change Password',
     'newPassword'=>'New Password',
-    'selectVisibleTabs'=>'please select tabs to display it for client'
+    'selectVisibleTabs'=>'please select tabs to display it for client',
+    'tableHead'=>'Kitchen Sink',
+    'tableDescription'=>'Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch',
 ]; ?>

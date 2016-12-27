@@ -2,7 +2,7 @@
 @section('title', trans('accounts::accounts.accounts'))
 @section('content')
 
-    <div class="  theme-default page-mail">
+    <div class="theme-default page-mail">
         <div class="mail-nav">
             <div class="navigation">
                 {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}

@@ -730,7 +730,7 @@ class AccountsController extends Controller
             'passwordType'=>''
         ];
 
-        return view('accounts::changePassword')
+        return view('accounts::mt4ChangePassword')
             ->with('Password', $Password)
             ->with('loginPasswordType', $loginPasswordType)
             ->with('changePassword', $changePassword)
@@ -764,7 +764,7 @@ class AccountsController extends Controller
 
         $result = $mT4ChangePassword->changeMt4Password($oRequest['login'], $oRequest['newPassword'],$oRequest['passwordType'], $oRequest['oldPassword']);
         /* TODO with success */
-        return view('accounts::changePassword')
+        return view('accounts::mt4ChangePassword')
             ->withErrors($result)
             ->with('Password', $Password)
             ->with('loginPasswordType', $loginPasswordType)

@@ -1,13 +1,6 @@
 @extends('admin.layouts.main')
-@section('title', trans('accounts::accounts.accounts'))
+@section('title', trans('cms::cms.pagesList'))
 @section('content')
-
-
-
-
-
-
-
 
     <div id="page-wrapper">
         <div class="container-fluid">
@@ -24,7 +17,7 @@
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <form role="search" class="app-search hidden-xs pull-right">
-                        <input type="text" placeholder=" {{ trans('user.Search') }} ..." class="form-control">
+                        <input type="text" placeholder=" {{ trans('cms::cms.Search') }} ..." class="form-control">
                         <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
                     </form>
                 </div>
@@ -35,12 +28,21 @@
             <div class="row">
                 <td class="col-lg-12">
                     <div class="white-box">
-                        <h3 class="box-title m-b-0">Kitchen Sink</h3>
-                        <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
+
+                        {!! Form::open(['url'=>asset('cms/pages/insert-new-page'),'class'=>'']) !!}
+
+                        {!! Form::text('new_page_name_input' ,'',['placeholder'=>trans('cms::cms.new_page_name'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::submit(trans('cms::cms.create_new_page'),["name"=>'new_page_submit','class'=>'btn btn-primary btn-flat' ]) !!}
+
+                        {!!   View('admin/partials/messages')->with('errors',$errors) !!}
+                        {!! Form::close() !!}
+
+                        {!! Form::open(['url'=>asset('cms/pages/pages')]) !!}
+                        <h3 class="box-title m-b-0">{{ trans('cms::cms.tableHead') }}</h3>
+                        <p class="text-muted m-b-20">{{ trans('cms::cms.tableDescription') }}</p>
                         <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
                             <thead>
                             <tr>
-
 
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">  {{ trans('cms::cms.id') }}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{{ trans('cms::cms.title') }}  </th>
@@ -66,33 +68,9 @@
                                     <tr>
                                 @endforeach
                             @endif
-
-
-
-
-
-
-
-
-
                             </tbody>
                         </table>
-
-
-
-
-
-
-
-
-
-
-
-                    </div>
-
-
-
-
+            </div>
             </div>
         </div>
 

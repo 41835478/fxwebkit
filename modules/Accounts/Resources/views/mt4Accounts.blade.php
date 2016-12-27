@@ -16,13 +16,13 @@
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <ol class="breadcrumb pull-left">
-                        <li><a href="#">{{ trans('accounts::accounts.accounts') }}</a></li>
+                        <li><a href="#">{{ trans('accounts::accounts.ModuleTitle') }}</a></li>
                         <li class="active">{{ trans('accounts::accounts.mt4Users') }}</li>
                     </ol>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <form role="search" class="app-search hidden-xs pull-right">
-                        <input type="text" placeholder=" {{ trans('user.Search') }} ..." class="form-control">
+                        <input type="text" placeholder=" {{ trans('accounts::accounts.Search') }} ..." class="form-control">
                         <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
                     </form>
                 </div>
@@ -33,8 +33,8 @@
             <div class="row">
                 <td class="col-lg-12">
                     <div class="white-box">
-                        <h3 class="box-title m-b-0">Kitchen Sink</h3>
-                        <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
+                        <h3 class="box-title m-b-0">{{ trans('accounts::accounts.tableHead') }}</h3>
+                        <p class="text-muted m-b-20">{{ trans('accounts::accounts.tableDescription') }}</p>
                         <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
                             <thead>
                             <tr>

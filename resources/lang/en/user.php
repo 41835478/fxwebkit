@@ -106,4 +106,6 @@
     'newPassword'=>'New Password',
     'confirmPassword'=>'Confirm Password',
     'successfully'=>'Successfully',
+    'tableHead'=>'Kitchen Sink',
+    'tableDescription'=>'Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch',
 ]; ?>

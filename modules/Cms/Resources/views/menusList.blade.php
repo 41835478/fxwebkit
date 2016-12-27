@@ -1,9 +1,6 @@
 @extends(Config::get('cms.admin_theme'))
 @section('content')
 
-
-
-
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- .row -->
@@ -19,7 +16,7 @@
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <form role="search" class="app-search hidden-xs pull-right">
-                        <input type="text" placeholder=" {{ trans('user.Search') }} ..." class="form-control">
+                        <input type="text" placeholder=" {{ trans('cms::cms.Search') }} ..." class="form-control">
                         <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
                     </form>
                 </div>
@@ -31,15 +28,18 @@
                 <td class="col-lg-12">
                     <div class="white-box">
 
-                        {!! Form::open(['url'=>asset('cms/menus/menus-list'),'method'=>'get','class'=>'language_select_form']) !!}
+                        {!! Form::open(['url'=>asset('cms/menus/insert-new-menu') ,'id'=>'create_menu_form','class'=>'']) !!}
 
-                        {!! Form::select('selected_language',$languages,$selected_language,['class'=>'language_select']) !!}
-                        {!! Form::submit(trans('cms::cms.translate'),["name"=>'select_language_submit','class'=>'btn btn-primary btn-flat' ]) !!}
+                        {!! Form::text('new_menu_name_input','',['placeholder'=>trans('cms::cms.new_menu_name'),'class'=>'form-control ']) !!}
+                        {!! Form::submit( trans('cms::cms.create_new_menu'),["name"=>'new_menu_submit','class'=>'btn btn-primary btn-flat' ]) !!}
+
+
+                        {!!   View('admin/partials/messages')->with('errors',$errors) !!}
 
                         {!! Form::close() !!}
 
-                        <h3 class="box-title m-b-0">Kitchen Sink</h3>
-                        <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
+                        <h3 class="box-title m-b-0">{{ trans('cms::cms.tableHead') }}</h3>
+                        <p class="text-muted m-b-20">{{ trans('cms::cms.tableDescription') }}</p>
 
 
 
@@ -99,34 +99,9 @@
                             </table>
                             {!! Form::close() !!}
                         @endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
-
-
-
-
             </div>
         </div>
-
-
-
-
-
-
-
     </div>
     <!-- /.container-fluid -->
     <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
@@ -134,13 +109,8 @@
     <!-- /#page-wrapper -->
     <!-- .right panel -->
 
-
-
-
-
-
 @stop
-@section('content')
+@section('hidden')
     <div id="content-wrapper">
     <div class="page-header">
         <h1>{{ trans('cms::cms.menusList') }}</h1>

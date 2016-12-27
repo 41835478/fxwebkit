@@ -2,6 +2,117 @@
 @section('title', trans('general.assignMt4ToMassGroup'))
 @section('content')
 
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- .row -->
+            <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
+                <div class="col-lg-12">
+                    <h4 class="page-title">{{ trans('general.massGroupsList') }}</h4>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <ol class="breadcrumb pull-left">
+                        <li><a href="#">{{ trans('general.Settings') }}</a></li>
+                        <li class="active">{{ trans('general.massGroupsList') }}</li>
+                    </ol>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <form role="search" class="app-search hidden-xs pull-right">
+                        <input type="text" placeholder=" {{ trans('general.Search') }} ..." class="form-control">
+                        <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+                    </form>
+                </div>
+            </div>
+
+            <ul ul id="uidemo-tabs-default-demo" class="nav nav-tabs noIcons">
+                <li>
+                    <a href="{{ route('admin.assginToMassAccountsList').'?group_id='.$aFilterParams['group_id'] }}">{{ trans('general.assginToUsers') }}</a>
+                </li>
+                <li class="active">
+
+                    <a href="{{ route('admin.assignToMassGroup').'?group_id='.$aFilterParams['group_id']}}">{{ trans('general.assignedMt4Users') }}</a>
+
+                </li>
+            </ul>
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="white-box">
+
+                        <a href="{{ route('admin.addMassGroup') }}" style="float:right;">
+                            <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button"
+                                   value="{{ trans('general.addMassGroup') }}"> </a>
+
+                        <h3 class="box-title m-b-0">{{ trans('general.tableHead') }}</h3>
+                        <p class="text-muted m-b-20">{{ trans('general.tableDescription') }}</p>
+                        <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
+
+                            <thead>
+                            <tr>
+                                <div scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.Form::label('check_all',trans('general.Login')) !!}</div>
+                                <div scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('general.liveDemo'), 'server_id', $oResults) !!}</div>
+                                <div scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('general.name '), 'NAME', $oResults) !!}</div>
+                                <div scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('general.group'), 'GROUP', $oResults) !!}</div>
+                                <div scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! trans('general.action') !!}</div>
+
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @if (count($oResults))
+                                {{-- */$i=0;/* --}}
+                                {{-- */$class='';/* --}}
+                                @foreach($oResults as $oResult)
+                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                    <tr class="tr {{ $class }}">
+
+
+                                        <td>{!! Form::checkbox('users_checkbox[]',$oResult->uid,false,['class'=>'users_checkbox']) !!} {{ $oResult->LOGIN }}</td>
+                                        <td>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                                        <td>{{ $oResult->NAME }}</td>
+                                        <td>{{ $oResult->GROUP }}</td>
+                                        <td>
+                                            @if(isset($oResult->user_id ) || (isset($oResult->massGroup) && $oResult->massGroup->first()->user_id) )
+                                                {!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->uid  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+                                            @else
+
+                                                {!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->uid ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}
+                                            @endif
+
+                                        </td>
+
+                                    </tr>
+                                @endforeach
+                            @endif
+                            </tbody>
+                        </table>
+                        @if (count($oResults))
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-6 ">
+                                    <span class="text-xs">{{trans('general.showing')}} {{ $oResults->firstItem() }} {{trans('general.to')}} {{ $oResults->lastItem() }} {{trans('general.of')}} {{ $oResults->total() }} {{trans('general.entries')}}</span>
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-6 ">
+                                    {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
+        </div>
+        <!-- /#page-wrapper -->
+        <!-- .right panel -->
+
+
+        @stop
+        @section('hidden')
+
     <div class="  theme-default page-mail">
         <div class="mail-nav">
             <div class="navigation">
