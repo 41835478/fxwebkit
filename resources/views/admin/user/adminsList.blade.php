@@ -107,15 +107,14 @@
 
 
     <div class="right-side-panel">
-        <div class="scrollable-right">
+        <div class="scrollable-right container">
             <!-- .Theme settings -->
             <h3 class="title-heading">{{ trans('user.Search') }}</h3>
 
 
 
 
-
-            {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
+            {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
 
 
             <div class="form-group">

@@ -2,10 +2,6 @@
 @section('title', trans('ibportal::ibportal.plan'))
 @section('content')
 
-
-
-
-
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- .row -->
@@ -44,13 +40,9 @@
                         <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
                             <thead>
                             <tr>
-
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">  {!! th_sort(trans('ibportal::ibportal.name'), 'name', $oResults) !!}</th>
-
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">  {!! th_sort(trans('ibportal::ibportal.public'), 'Public', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">  </th>
-
-
                             </tr>
                             </thead>
                             <tbody>
@@ -87,18 +79,12 @@
                                                    class="fa fa-link tooltip_number" data-original-title="{{trans('ibportal::ibportal.assignPlan')}}"></a>
                                             @endif
 
-
                                         </td>
                                     </tr>
-
-
-
                                 @endforeach
                             @endif
-
                             </tbody>
                         </table>
-
 
                         @if (count($oResults))
                             <div class="row">
@@ -112,35 +98,10 @@
                                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
                                 </div>
                             </div>
-
-
                         @endif
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
-
-
-
-
             </div>
         </div>
-
-
-
-
-
-
-
     </div>
     <!-- /.container-fluid -->
     <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
@@ -148,7 +109,38 @@
     <!-- /#page-wrapper -->
     <!-- .right panel -->
 
+    <div class="right-side-panel">
+        <div class="scrollable-right container">
+            <!-- .Theme settings -->
+            <h3 class="title-heading">{{ trans('user.Search') }}</h3>
 
+
+
+
+            {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
+
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('ibportal::ibportal.plan'),'class'=>'form-control input-sm']) !!}
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-12"></label>
+                <div class="col-md-12">
+                    {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+
+                </div>
+            </div>
+
+            {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+            {!! Form::hidden('order', $aFilterParams['order']) !!}
+            {!! Form::close( ) !!}
+
+
+        </div>
+    </div>
 
 
 @stop
@@ -161,10 +153,9 @@
 
 
                 <ul class="sections">
-                    <li class="active"><a href="#"> <i
-                                    class="fa fa-search"></i> {{ trans('ibportal::ibportal.search') }} </a></li>
-
-
+                    <li class="active">
+                        <a href="#">
+                            <i class="fa fa-search"></i> {{ trans('ibportal::ibportal.search') }} </a></li>
                     <li>
                         <div class=" nav-input-div  ">
                             {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('ibportal::ibportal.plan'),'class'=>'form-control input-sm']) !!}
