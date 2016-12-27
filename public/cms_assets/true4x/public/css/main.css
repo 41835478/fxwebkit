@@ -779,6 +779,22 @@ a {
   padding-top: 20px;
   padding-bottom: 20px; }
 
+#page-contents h2:first-child {
+  color: #44596a;
+  position: relative;
+  font-size: 28px;
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 40px; }
+
+#page-contents h2:after {
+  content: " ";
+  border-top: 5px solid #038d8d;
+  margin-top: 10px;
+  display: block;
+  float: right;
+  width: 50%; }
+
 #sideButtonsAllDiv #innerSideButtonsAllDiv p {
   color: #44596a;
   text-align: center; }
