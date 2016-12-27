@@ -1,94 +1,93 @@
 @extends('client.layouts.login', array('class' => 'page-signin'))
 @section('title', Lang::get('user.PageTitleSignIn'))
 @section('content')
-    <div class="signin-container">
+    <div class="login-box">
+        <div class="white-box">
+            {!! HTML::image('assets/'.config('fxweb.layoutAssetsFolder').'/images/logo.png', '', ['style' => 'margin-top: -5px;width:90px;height:28px;']) !!}
 
+            {!! Form::open(['id'=>'loginform' , 'class'=>'form-horizontal form-material']) !!}
+            <div class="dropdown" style="float:right;">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i> Language</a>
+                <ul class="dropdown-menu">
+                    @foreach(config('app.language')  as $locale=>$name)
+                        <li><a href="?locale={{$locale}}">{{ trans('general.'.$name) }}</a></li>
 
-        <div class="signin-form">
-
-            <a href="" class="logo">
-
-                {!! HTML::image('assets/'.config('fxweb.layoutAssetsFolder').'/img/logo.png', '', ['style' => 'margin-top: -5px;width:90px;height:28px;']) !!}
-                &nbsp;
-            </a>
-
-            <div class="panel-heading-controls ">
-                <div class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                class="fa fa-language"></i> {{ trans('user.language') }}</a>
-                    <ul class="dropdown-menu">
-                        @foreach(config('app.language')  as $locale=>$name)
-                            <li><a href="?locale={{$locale}}">{{ trans('general.'.$name) }}</a></li>
-
-                        @endforeach
-                    </ul>
-                </div>
+                    @endforeach
+                </ul>
             </div>
 
+            <h3 class="box-title m-b-20">{{ trans('user.SignInText') }}</h3>
 
-            {!! Form::open(['id'=>'signin-form_id']) !!}
-            <div class="signin-text">
-                <span>{{ Lang::get('user.SignInText') }}</span>
-            </div>
             @include('client.partials.messages')
-            <div class="form-group w-icon">
-                {!! Form::text('email', '', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.email')]) !!}
-                <span class="fa fa-user signin-form-icon"></span>
-            </div>
-            <div class="form-group w-icon">
-                {!! Form::password('password', ['class'=>'form-control input-lg','placeholder'=>Lang::get('user.password')]) !!}
-                <span class="fa fa-lock signin-form-icon"></span>
-            </div>
-            <div class="form-actions">
 
-                {!! Form::submit(Lang::get('user.SignIn'), ['class'=>'signin-btn bg-primary']) !!}
-                <a href="{{ route('client.auth.recover') }}"
-                   class="forgot-password">{{ Lang::get('user.ForgotYourPassword') }}</a>
+            <div class="form-group ">
+                <div class="col-xs-12">
+                    {!! Form::text('email', null, ['class'=>'form-control','placeholder'=>trans('user.email')]) !!}
 
-
-            </div>
-            {!! Form::close() !!}
-
-            <div class="signin-with">
-{{--*/ $socialNumber=config('fxweb.EnableFacebookRegister')+ config('fxweb.EnableGoogleRegister')+config('fxweb.EnableLinkedinRegister');
-$width=($socialNumber>0)? 94/$socialNumber:0;
-/*--}}
-                @if(config('fxweb.EnableFacebookRegister'))
-                    <a href="{{ route('client.facebook.login') }}" class="signin-with-btn"
-                       style="background:#4f6faa;background:rgba(79, 111, 170, .8); width:{{$width}}% !important;">
-                        {{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.Facebook') }}</span>
-                    </a>
-                @endif
-                @if(config('fxweb.EnableGoogleRegister'))
-                    <a href="{{ route('client.google.login') }}" class="signin-with-btn"
-                       style="background:#4285F4;background:rgba(66, 133, 244, .8); width:{{$width}}% !important;">
-                        {{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.google') }}</span>
-                    </a>
-                @endif
-                @if(config('fxweb.EnableLinkedinRegister'))
-                    <a href="{{ route('client.linkedin.login') }}" class="signin-with-btn"
-                       style="background:#0077B5;background:rgba(0, 119, 181, .8); width:{{$width}}% !important;">
-                        {{ Lang::get('user.SignInWith') }} <span>{{ Lang::get('user.linkedin') }}</span>
-                    </a>
-                @endif
-
-
-                <div class="text-center">
-                    <div class="clearfix"></div>
-                    {{ Lang::get('user.not_a_member') }}
-                    <a href="{{ route('client.auth.register') }}">{{ Lang::get('user.sign_up_now') }}</a>
-or
-
-                    <a href="{{ route('client.auth.mt4Signup') }}">{{ Lang::get('user.sign_up_with_mt4') }}</a>
-
-                    <div class="clearfix"></div>
                 </div>
             </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    {!! Form::password('password', ['class'=>'form-control','placeholder'=>trans('user.password')]) !!}
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="checkbox checkbox-primary pull-left p-t-0" style="display: none;">
+                        <input id="checkbox-signup" type="checkbox">
+                        <label for="checkbox-signup"> Remember me </label>
+                    </div>
+                    <a href="{{ route('client.auth.recover') }}" id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i>{{ Lang::get('user.ForgotYourPassword') }}</a> </div>
+
+            </div>
+            <div class="form-group text-center m-t-20">
+                <div class="col-xs-12">
+                    <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">{{trans('user.SignIn')}}</button>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+                    <div class="social">
+
+
+                        @if(config('fxweb.EnableFacebookRegister'))
+                            <a href="{{ route('client.facebook.login') }}" class="btn  btn-facebook"  data-toggle="tooltip"  title="{{ Lang::get('user.Facebook') }}">
+                                <i aria-hidden="true" class="fa fa-facebook"></i>
+                            </a>
+                        @endif
+                        @if(config('fxweb.EnableGoogleRegister'))
+                            <a href="{{ route('client.google.login') }}" class="btn btn-googleplus" data-toggle="tooltip"  title="{{ Lang::get('user.google') }}">
+                                <i aria-hidden="true" class="fa fa-google-plus"></i>
+                            </a>
+                        @endif
+                        @if(config('fxweb.EnableLinkedinRegister'))
+                            <a aria-hidden="true"  href="{{ route('client.linkedin.login') }}" class="btn  btn-facebook"  data-toggle="tooltip"  title="{{ Lang::get('user.linkedin') }}">
+                                <i aria-hidden="true" class="fa fa-linkedin"></i>
+                            </a>
+                        @endif
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group m-b-0">
+                <div class="col-sm-12 text-center">
+                    <p>
+                        {{ Lang::get('user.not_a_member') }}
+
+                        <a href="{{ route('client.auth.register') }}" class="text-primary m-l-5">{{ Lang::get('user.sign_up_now') }}</a>
+                        <br>
+                        or
+                        <br>
+
+                        <a href="{{ route('client.auth.mt4Signup') }}" class="text-primary m-l-5">{{ Lang::get('user.sign_up_with_mt4') }}</a>
+                        </p>
+                </div>
+            </div>
+            </form>
 
         </div>
-
     </div>
-
-
-
 @stop

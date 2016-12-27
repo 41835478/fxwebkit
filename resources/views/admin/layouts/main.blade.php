@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
 	<meta name="_token" content="{{ csrf_token() }}" />
 	<title>@yield('title') - {{ app_name() }}</title>
 	<!-- Bootstrap Core CSS -->
@@ -26,7 +26,7 @@
 	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
-	{!! HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/js/ie.min.js') !!}
+{{--	{!! HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/js/ie.min.js') !!}--}}
 
 </head>
 <body class="fix-sidebar">

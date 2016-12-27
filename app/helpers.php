@@ -261,9 +261,4 @@ if (!function_exists('hasMtUser')) {
 
 
 
-function getMenuTabName(){
-	$route =new \Illuminate\Routing\Route();
-	$targetController=$route->getActionName();
-	$method=explode('@',$targetController);
-	return [$method[0],$method[1]];
-}
+

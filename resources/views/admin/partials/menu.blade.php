@@ -16,7 +16,7 @@
 
 
 
-<li class="@if( $aModule['title']=="Settings") selected @endif"> <a href="javascript:void(0)"><i class="fa {{$aModule['icon']}}" data-icon="v"></i></a>
+<li class=""> <a href="javascript:void(0)"><i class="fa {{$aModule['icon']}}" data-icon="v"></i></a>
     <div class="sidebarmenu">
         <!-- Left navbar-header -->
         <h3 class="menu-title">{{$aModule['title']}}</h3>
@@ -54,8 +54,26 @@
   </div>
   <!-- /.Side panel -->
 
+@section('script')
+@parent
+<script>
 
+function activeCurrentMenu(){
 
+    var currentA=$('.sidebar-menu a.active');
+
+    currentA.parent().parent().parent().parent().parent().addClass('selected');
+
+}
+    $(document).ready(function(){
+
+       activeCurrentMenu();
+        setTimeout('activeCurrentMenu()',1000);
+
+    });
+
+</script>
+@stop
 
 
 
