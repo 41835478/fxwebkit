@@ -48,7 +48,7 @@
 			</form>
 
 			<div class="not-a-member">
-				 <a href="{{ route('client.auth.register') }}">Sign up now</a>
+				{{ Lang::get('user.not_a_member') }} <a href="{{ route('client.auth.register') }}">{{ Lang::get('user.sign_up_now') }}</a>
 			</div>
 
 		</div>

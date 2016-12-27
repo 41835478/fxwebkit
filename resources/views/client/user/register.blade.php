@@ -91,17 +91,22 @@
 
             <div class="form-group">
                 <div class=" col-xs-6">
-                    <label class='radio gender_radio_0'>
-                        {!! Form::radio('gender', 0,true,['id'=>'gender_radio_0','class'=>'px']) !!}
-                        <span class="lbl">{{ trans('user.male') }}</span>
-                    </label>
+
+                    <div class="radio radio-info">
+
+                        {!! Form::radio('gender', 0,true,['id'=>'radio15','class'=>'px']) !!}
+                        <label for="radio15"> {{ trans('user.male') }} </label>
+                    </div>
                 </div>
                 <div class=" col-xs-6">
-                    <label class='radio gender_radio_1'>
-                        {!! Form::radio('gender', 1,false,['id'=>'gender_radio_1','class'=>'px']) !!}
-                        <span class="lbl">{{ trans('user.female') }}</span>
-                    </label>
+
+                    <div class="radio radio-info">
+                        {!! Form::radio('gender', 1,false,['id'=>'radio16','class'=>'px']) !!}
+                        <label for="radio16"> {{ trans('user.female') }}  </label>
+                    </div>
                 </div>
+
+
             </div>
 
 
@@ -298,33 +303,8 @@
             </div>
         </div>
     </div>
-    @section('script')
-    @parent
-    <script>
-        init.push(function () {
-            var options = {
-                format: "yyyy-mm-dd",
-                todayBtn: "linked",
-                orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-            }
-            $('input[name="birthday"]').datepicker(options);
 
-            $('#bs-datepicker-component').datepicker();
 
-            var options2 = {
-                orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-            }
-            $('#bs-datepicker-range').datepicker(options2);
-
-            $('#bs-datepicker-inline').datepicker();
-        });
-
-        $('#jq-validation-select2').select2({allowClear: true, placeholder: 'Select a country...'}).change(function () {
-            $(this).valid();
-        });
-
-    </script>
-    @stop
     @stop
 
 
