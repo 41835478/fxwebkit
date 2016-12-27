@@ -7,12 +7,12 @@
             <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
-                    <h4 class="page-title">{{ trans('ibportal::ibportal.plans') }}</h4>
+                    <h4 class="page-title">{{ trans('ibportal::ibportal.agent') }}</h4>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <ol class="breadcrumb pull-left">
                         <li><a href="#">{{ trans('ibportal::ibportal.ModuleTitle') }}</a></li>
-                        <li class="active">{{ trans('ibportal::ibportal.plans') }}</li>
+                        <li class="active">{{ trans('ibportal::ibportal.agent') }}</li>
                     </ol>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">

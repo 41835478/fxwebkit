@@ -7,12 +7,12 @@
             <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
-                    <h4 class="page-title">{{ trans('ibportal::ibportal.plans') }}</h4>
+                    <h4 class="page-title">{{ trans('ibportal::ibportal.aliases') }}</h4>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <ol class="breadcrumb pull-left">
                         <li><a href="#">{{ trans('ibportal::ibportal.ModuleTitle') }}</a></li>
-                        <li class="active">{{ trans('ibportal::ibportal.plans') }}</li>
+                        <li class="active">{{ trans('ibportal::ibportal.aliases') }}</li>
                     </ol>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
@@ -44,7 +44,7 @@
                             <tr>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1"> {!! th_sort(trans('ibportal::ibportal.aliases'), 'alias', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"> {!! th_sort(trans('ibportal::ibportal.operand'), 'operand', $oResults) !!}</th>
-                                < <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3"> {!! th_sort(trans('ibportal::ibportal.value'), 'value', $oResults) !!}</th>
+                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3"> {!! th_sort(trans('ibportal::ibportal.value'), 'value', $oResults) !!}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -79,20 +79,7 @@
                                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
                                 </div>
                             </div>
-
-
                         @endif
-
-
-
-
-
-
-
-
-
-
-
                     </div>
             </div>
     </div>
@@ -100,7 +87,32 @@
     <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
     </div>
     <!-- /#page-wrapper -->
-    <!-- .right panel -->
+    <div class="right-side-panel">
+        <div class="scrollable-right container">
+            <!-- .Theme settings -->
+            <h3 class="title-heading">{{ trans('user.Search') }}</h3>
+            {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('ibportal::ibportal.aliases'),'class'=>'form-control input-sm']) !!}
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-12"></label>
+                <div class="col-md-12">
+                    {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+
+                </div>
+            </div>
+
+            {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+            {!! Form::hidden('order', $aFilterParams['order']) !!}
+            {!! Form::close( ) !!}
+
+
+        </div>
+    </div>
 
 
 @stop

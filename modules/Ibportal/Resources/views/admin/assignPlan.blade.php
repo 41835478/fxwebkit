@@ -7,12 +7,12 @@
             <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
-                    <h4 class="page-title">{{ trans('ibportal::ibportal.plans') }}</h4>
+                    <h4 class="page-title">{{ trans('ibportal::ibportal.assignPlan') }}</h4>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <ol class="breadcrumb pull-left">
                         <li><a href="#">{{ trans('ibportal::ibportal.ModuleTitle') }}</a></li>
-                        <li class="active">{{ trans('ibportal::ibportal.plans') }}</li>
+                        <li class="active">{{ trans('ibportal::ibportal.assignPlan') }}</li>
                     </ol>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
@@ -35,7 +35,7 @@
                         <p class="text-muted m-b-20">{{ trans('ibportal::ibportal.tableDescription') }}</p>
                         <div class="panel">
                             {!! Form::open(['class'=>'panel form-horizontal']) !!}
-                            
+
                             <div class="col-sm-6">
                                 <div class="form-group no-margin-hr">
                                     <label class="control-label">{{ trans('ibportal::ibportal.name:') }}</label>

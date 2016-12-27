@@ -124,6 +124,63 @@
     </div>
     <!-- /#page-wrapper -->
     <!-- .right panel -->
+    <div class="right-side-panel">
+        <div class="scrollable-right container">
+            <!-- .Theme settings -->
+            <h3 class="title-heading">{{ trans('user.Search') }}</h3>
+
+
+
+
+            {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
+
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('ibportal::ibportal.id'),'class'=>'form-control input-sm']) !!}
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::text('first_name', $aFilterParams['first_name'], ['placeholder'=>trans('ibportal::ibportal.first_name'),'class'=>'form-control input-sm']) !!}
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::text('last_name', $aFilterParams['last_name'], ['placeholder'=>trans('ibportal::ibportal.last_name'),'class'=>'form-control input-sm']) !!}
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('ibportal::ibportal.Email'),'class'=>'form-control input-sm']) !!}
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::select('agents', $agents, $agent, ['class'=>'form-control  input-sm']) !!}</div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-12"></label>
+                <div class="col-md-12">
+                    {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+
+                </div>
+            </div>
+
+            {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+            {!! Form::hidden('order', $aFilterParams['order']) !!}
+            {!! Form::close( ) !!}
+
+
+        </div>
+    </div>
 @stop
 
 @section('hidden')
@@ -157,7 +214,8 @@
                         </div>
                     </li>
 
-                    <li><div  class=" nav-input-div  ">{!! Form::select('agents', $agents, $agent, ['class'=>'form-control  input-sm']) !!}</div></li>
+                    <li><div  class=" nav-input-div  ">
+                            {!! Form::select('agents', $agents, $agent, ['class'=>'form-control  input-sm']) !!}</div></li>
 
 
 
