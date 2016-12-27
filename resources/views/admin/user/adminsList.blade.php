@@ -69,7 +69,7 @@
                                             <a href="{{ route('general.userDetails').'?edit_id='.$oResult->id }}" class="fa fa-file-text tooltip_number"  data-original-title="{{trans('user.userDetails')}}"></a>
                                             <a href="{{ route('general.changePassword').'?edit_id='.$oResult->id }}" class="fa fa-star tooltip_number"  data-original-title="{{trans('user.changePassword')}}"></a>
                                             <a href="{{ route('admin.deleteUser').'?delete_id='.$oResult->id }}" class="fa fa-trash-o tooltip_number"  data-original-title="{{trans('user.deleteUser')}}"></a>
-                                            
+
                                         </td>
 
                                         </td>
@@ -102,6 +102,66 @@
         <!-- /.container-fluid -->
         <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
     </div>
+
+
+
+
+    <div class="right-side-panel">
+        <div class="scrollable-right">
+            <!-- .Theme settings -->
+            <h3 class="title-heading">{{ trans('user.Search') }}</h3>
+
+
+
+
+
+            {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
+
+
+            <div class="form-group">
+                <label class="col-md-12">{{trans('user.id')}}</label>
+                <div class="col-md-12">
+                    {!! Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('user.id'),'class'=>'form-control ']) !!}
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-12">{{trans('user.first_name')}}</label>
+                <div class="col-md-12">
+                    {!! Form::text('first_name', $aFilterParams['first_name'], ['placeholder'=>trans('user.first_name'),'class'=>'form-control ']) !!}
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-12">{{trans('user.last_name')}}</label>
+                <div class="col-md-12">
+                    {!! Form::text('last_name', $aFilterParams['last_name'], ['placeholder'=>trans('user.last_name'),'class'=>'form-control ']) !!}
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-12">{{trans('user.email')}}</label>
+                <div class="col-md-12">
+                    {!! Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('user.email'),'class'=>'form-control ']) !!}
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-12"></label>
+                <div class="col-md-12">
+                    {!! Form::submit(trans('user.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+
+                </div>
+            </div>
+
+            {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+            {!! Form::hidden('order', $aFilterParams['order']) !!}
+            {!! Form::close( ) !!}
+
+
+        </div>
+    </div>
+
     <!-- /#page-wrapper -->
     <!-- .right panel -->
 @stop
@@ -213,36 +273,6 @@
     </div>
     <!-- /#page-wrapper -->
     <!-- .right panel -->
-
-    <div class="right-side-panel">
-        <div class="scrollable-right">
-            <!-- .Theme settings -->
-            <h3 class="title-heading">{{ trans('user.Search') }}</h3>
-
-
-
-
-
-            {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
-
-            {!! Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('user.id'),'class'=>'form-control input-sm']) !!}
-
-
-            {!! Form::text('first_name', $aFilterParams['first_name'], ['placeholder'=>trans('user.first_name'),'class'=>'form-control input-sm']) !!}
-
-            {!! Form::text('last_name', $aFilterParams['last_name'], ['placeholder'=>trans('user.last_name'),'class'=>'form-control input-sm']) !!}
-
-            {!! Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('user.email'),'class'=>'form-control input-sm']) !!}
-
-            {!! Form::submit(trans('user.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-
-            {!! Form::hidden('sort', $aFilterParams['sort']) !!}
-            {!! Form::hidden('order', $aFilterParams['order']) !!}
-            {!! Form::close( ) !!}
-
-
-        </div>
-    </div>
 
     {{----}}
 {{--<div class="  theme-default page-mail" >--}}
@@ -400,4 +430,14 @@
 {{--</div>--}}
 
 {!! Form::close() !!}
+
+
+
+
+
+
+
+
+
+
 @stop
