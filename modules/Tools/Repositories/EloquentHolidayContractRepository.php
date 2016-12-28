@@ -177,7 +177,7 @@ class EloquentHolidayContractRepository implements HolidayContract
                 ];
 
         }
-    dd(10);
+
         return [$aSymbolsHours, $aDates, $date];
     }
 

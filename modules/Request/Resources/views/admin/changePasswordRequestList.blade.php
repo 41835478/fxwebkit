@@ -66,11 +66,11 @@
                                         <td>{{ $oResult->reason }}</td>
                                         <td>{{$aRequestStatus[$oResult->status] }}</td>
                                         <td>
-                                            <a href="{{ route('admin.request.withDrawalEdit').'?logId='.$oResult->id }}"
+                                            <a href="{{ route('admin.request.changePasswordEdit').'?logId='.$oResult->id }}"
                                                class="fa fa-edit tooltip_number" data-original-title="{{trans('request::request.edit')}}"></a>
                                             @if($oResult->status != 1)
 
-                                                <a href="{{ route('admin.request.withDrawalEdit').'?logId='.$oResult->id }}"
+                                                <a href="{{ route('admin.request.forwordChangePassword').'?logId='.$oResult->id }}"
                                                    class="fa fa-mail-forward tooltip_number" data-original-title="{{trans('request::request.forword')}}"></a>
                                             @endif
                                         </td>
@@ -101,7 +101,40 @@
         </div>
         <!-- /#page-wrapper -->
         <!-- .right panel -->
+        <div class="right-side-panel">
+            <div class="scrollable-right container">
+                <!-- .Theme settings -->
+                <h3 class="title-heading">{{ trans('mt4configrations::mt4configrations.search') }}</h3>
 
+                {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
+
+
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('login', '', ['placeholder'=>trans('request::request.login'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::select('status',$aRequestStatus,$status, ['class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-md-12"></label>
+                    <div class="col-md-12">
+                        {!! Form::submit(trans('request::request.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                    </div>
+                </div>
+
+
+                {!! Form::close()!!}
+            </div>
+        </div>
 
         @stop
         @section('hidden')
