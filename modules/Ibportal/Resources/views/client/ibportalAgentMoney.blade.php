@@ -108,6 +108,52 @@
     </div>
     <!-- /#page-wrapper -->
     <!-- .right panel -->
+
+    <div class="right-side-panel">
+        <div class="scrollable-right container">
+            <!-- .Theme settings -->
+            <h3 class="title-heading">{{ trans('user.Search') }}</h3>
+            {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('ibportal::ibportal.Login'),'class'=>'form-control input-sm']) !!}
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::text('from_date', $aFilterParams['from_date'], ['placeholder'=>trans('ibportal::ibportal.FromDate'),'class'=>'form-control input-sm']) !!}
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::text('to_date', $aFilterParams['to_date'], ['placeholder'=>trans('reports::reports.ToDate'),'class'=>'form-control input-sm']) !!}
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::select('type', $aTradeTypes, $aFilterParams['type'], ['class'=>'form-control  input-sm']) !!}
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-12"></label>
+                <div class="col-md-12">
+                    {!! Form::submit(trans('ibportal::ibportal.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+
+                </div>
+            </div>
+
+            {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+            {!! Form::hidden('order', $aFilterParams['order']) !!}
+            {!! Form::close( ) !!}
+
+
+        </div>
+    </div>
 @stop
 
 @section('hidden')

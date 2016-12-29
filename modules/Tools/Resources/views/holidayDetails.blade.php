@@ -132,7 +132,48 @@
     </div>
     <!-- /#page-wrapper -->
     <!-- .right panel -->
-@stop
+        @stop
+        @section("script")
+            @parent
+            <link rel="stylesheet" type="text/css" href="/assets/css/autoCompleteInput.css">
+            <script>
+
+                init.push(function () {
+                    $('.hourPeriodDiv').tooltip();
+                });
+
+                init.push(function () {
+                    var options = {
+                        format: "yyyy-mm-dd",
+                        todayBtn: "linked",
+                        orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+                    }
+
+                    $('input[name="expiry_date"],input[name="start_date"]').datepicker(options);
+                });
+
+                var options2 = {
+                    minuteStep: 1,
+                    showSeconds: true,
+                    showMeridian: false,
+                    showInputs: false,
+                    orientation: $('body').hasClass('right-to-left') ? {x: 'right', y: 'auto'} : {x: 'auto', y: 'auto'}
+                }
+                $('input[name="end_time"],input[name="start_time"]').timepicker(options2);
+
+
+                $('.securitiesCheckbox').change(function () {
+                    var security_id = $(this).val();
+
+                    if ($(this).prop("checked")) {
+                        $(".symbols_tr_" + security_id + " .symbolsCheckbox").prop("checked", true);
+                    } else {
+
+                        $(".symbols_tr_" + security_id + " .symbolsCheckbox").prop("checked", false);
+                    }
+                });
+            </script>
+            @stop
 @section('hidden')
     <div id="content-wrapper">
         <div class="page-header">

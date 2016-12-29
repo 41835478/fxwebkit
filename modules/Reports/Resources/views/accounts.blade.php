@@ -98,7 +98,7 @@
         <div class="right-side-panel">
             <div class="scrollable-right container">
                 <!-- .Theme settings -->
-                <h3 class="title-heading">{{ trans('mt4configrations::mt4configrations.search') }}</h3>
+                <h3 class="title-heading">{{ trans('reports::reports.search') }}</h3>
 
                 {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
 
@@ -147,7 +147,7 @@
                 <div class="form-group">
                     <label class="col-md-12"></label>
                     <div class="col-md-12">
-                        {!! Form::submit(trans('mt4configrations::mt4configrations.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('reports::reports.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div>
                 </div>
 

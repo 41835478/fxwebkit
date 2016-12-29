@@ -91,6 +91,7 @@
     </div>
     <!-- /#page-wrapper -->
     <!-- .right panel -->
+
     <div class="right-side-panel">
         <div class="scrollable-right container">
             <!-- .Theme settings -->

@@ -101,81 +101,89 @@
                                 </div>
                             </div>
 
-
                         @endif
 
-
-
-
-
-
-
-
-
-
-
-
                     </div>
-
-
-
-
-                </div>
             </div>
-
-
-
-
-
-
-
         </div>
+    </div>
         <!-- /.container-fluid -->
         <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
     </div>
     <!-- /#page-wrapper -->
     <!-- .right panel -->
 
+    <div class="right-side-panel">
+        <div class="scrollable-right container">
+            <!-- .Theme settings -->
+            <h3 class="title-heading">{{ trans('accounts::accounts.search') }}</h3>
+
+            {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label>
+                        {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
+                        <span class="lbl">{{ trans('accounts::accounts.ExactLogin') }}</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('accounts::accounts.FromLogin'),'class'=>'form-control input-sm']) !!}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('accounts::accounts.ToLogin'),'class'=>'form-control input-sm']) !!}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']) !!}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']) !!}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::select('server_id', $serverTypes, $aFilterParams['server_id'], ['class'=>'form-control  input-sm']) !!}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    {!! Form::select('assigned', $aAssigned, $aFilterParams['assigned'], ['class'=>'form-control  input-sm']) !!}
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-12"></label>
+                <div class="col-md-12">
+                    {!! Form::submit(trans('accounts::accounts.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                </div>
+            </div>
+
+
+            {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+            {!! Form::hidden('order', $aFilterParams['order']) !!}
+            {!! Form::close()!!}
+        </div>
+    </div>
+
 
 
 
 @stop
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @section('hidden')
 
     <div class="  theme-default page-mail">
