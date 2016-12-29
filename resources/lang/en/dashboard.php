@@ -17,4 +17,8 @@
     'changePassword' => 'Change Password',
     'addAccount' => 'Add Account',
     'assignAccounts' => 'Assign Accounts',
+    'aboutFxwebkit'=>'About Fxwebkit',
+    'aboutFxwebkitText'=>'Fxwebkit is a full package for FOREX managements, All tools to success.'
+
+
 ]; ?>

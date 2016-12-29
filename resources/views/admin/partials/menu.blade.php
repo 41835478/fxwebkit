@@ -1,9 +1,30 @@
   <!-- .Side panel -->
   <div class=" side-mini-panel"   >
     <ul class="mini-nav">
-         <div class="togglediv"><a href="javascript:void(0)" id="togglebtn"><i class="ti-menu"></i></a></div>
+         <div class="togglediv"><a href="javascript:void(0)" id="togglebtn" ><i class="ti-menu"></i></a></div>
 
 
+<li class=""> <a href="javascript:void(0)"><i class="fa fa-dashboard" data-icon="v"></i></a>
+    <div class="sidebarmenu">
+        <!-- Left navbar-header -->
+        <h3 class="menu-title">{{ trans('dashboard.PageTitle') }}</h3>
+                <div class="searchable-menu">
+            <form role="search" class="menu-search">
+                <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
+        </div>
+        <ul class="sidebar-menu">
+          <li><a href="/admin#" target="">{{ trans('dashboard.PageTitle') }}</a></li>
+<hr>
+        <h3 class="menu-title">{{trans('dashboard.aboutFxwebkit')}}</h3>
+          <li>
+
+{{trans('dashboard.aboutFxwebkitText')}}
+</li>
+        </ul>
+
+
+        </div>
+</li>
 
   {{--*/ $aAdminMenu = get_admin_menu() /*--}}
             @if(count($aAdminMenu))

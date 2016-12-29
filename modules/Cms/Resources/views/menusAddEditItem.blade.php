@@ -77,6 +77,9 @@
                                 {!!   Form::label('hide',trans('cms::cms.hide_or_show'),['class'=>'form_lable']) .Form::select('hide',$hide_array, ($menu_item===0)? 0:$menu_item->hide,['class'=>'form-control ']) !!}
                             </div>
 
+                            <div class="from_row_div">
+                                {!!   Form::label('hide',trans('cms::cms.item_order'),['class'=>'form_lable']) .Form::select('item_order',$orderArray, ($menu_item===0)? 0:$menu_item->item_order,['class'=>'form-control ']) !!}
+                            </div>
                             <div class="form_row_div">
                                 {!! Form::hidden('selected_id',$selected_id ) !!}
                                 @if($menu_item === 0)

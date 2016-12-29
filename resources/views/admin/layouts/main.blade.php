@@ -29,7 +29,7 @@
 {{--	{!! HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/js/ie.min.js') !!}--}}
 
 </head>
-<body class="fix-sidebar">
+<body class="fix-sidebar rmv-right-panel content-wrapper">
 <!-- Preloader -->
 <div class="preloader">
 	<div class="cssload-speeding-wheel"></div>

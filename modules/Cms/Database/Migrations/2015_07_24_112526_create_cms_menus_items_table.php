@@ -15,6 +15,7 @@ class CreateCmsMenusItemsTable extends Migration {
             $table->increments('id');
             $table->string('name'); //the display name to click on
             $table->integer('parent_item_id'); //this field return to this table to deside the id of the parent menu item when we display the menu
+            $table->integer('item_order');
             $table->integer('menu_id')->unsigned(); //the menu id from the menus table because we have more than one menu in our web site like a side menu or header menu
             $table->boolean('disable'); //if we need to make the menu item no click able or do no think when we click on it in the page but desplay the child menu items
             $table->boolean('hide'); //do not show me this menu item or it's childs item when you render the menu for now
