@@ -14,6 +14,9 @@
         </div>
         <ul class="sidebar-menu">
           <li><a href="/client#" target="">{{ trans('dashboard.PageTitle') }}</a></li>
+
+          <li><a href="{{route('client.balanceChart') }}" target="">{{ trans('general.balance') }}</a></li>
+
 <hr>
         <h3 class="menu-title">{{trans('dashboard.aboutFxwebkit')}}</h3>
           <li>
@@ -86,8 +89,25 @@
 
 function activeCurrentMenu(){
 
+var pageUrl=window.location.pathname;
+
+var pageUrlArray=pageUrl.split('/');
+
+var firstUrlPart='/'+pageUrlArray[1];
+var secondUrlPart='/'+pageUrlArray[1]+'/'+pageUrlArray[2];console.log(pageUrl,pageUrlArray,firstUrlPart,secondUrlPart);
     var currentA=$('.sidebar-menu a.active');
 
+if(currentA.length == 0){
+currentA=$('.sidebar-menu a[href*="'+pageUrl+'"]').first();
+if(currentA.length == 0){
+currentA=$('.sidebar-menu a[href*="'+secondUrlPart+'"]').first();
+if(currentA.length == 0){
+currentA=$('.sidebar-menu a[href*="'+firstUrlPart+'"]').first();
+
+}
+}
+}
+currentA.addClass('active');
     currentA.parent().parent().parent().parent().parent().addClass('selected');
 
 }

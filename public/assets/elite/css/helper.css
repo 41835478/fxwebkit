@@ -1014,3 +1014,15 @@ g.highcharts-legend {
     .tooltip_number_dashborad{width:100%;}
 }
 
+
+
+.activeUser{
+   background-color: #cfe0f1;
+}
+
+.activeUser *{
+   /*color:#ffffff;*/
+}
+.activeUser:hover .progress-bar{
+width:100%;
+}

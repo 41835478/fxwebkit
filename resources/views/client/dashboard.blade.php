@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <ol class="breadcrumb pull-left">
-                        <li><a href="#">Admin</a></li>
+                        <li><a href="#">Client</a></li>
                         <li class="active">{{ trans('dashboard.PageTitle') }}</li>
                     </ol>
                 </div>
@@ -90,26 +90,44 @@
                                     <div class="scrollUp fa fa-chevron-up"></div>
                                     <div class="scrollDown fa fa-chevron-down"></div>
                                     <div class="scrollBody">
+
+
                                         @foreach($aLogin as $oneLogin)
-                                            <a href="?login={{$oneLogin[0].'&server_id='.$oneLogin[1]}}"
-                                               class="stat-cell @if($oneLogin[0].$oneLogin[1] ==$login.$server_id  ) bg-info @else bg-default @endif  valign-middle col-xs-12 ">
-                                                <!-- Stat panel bg icon -->
-                                                <i class="fa fa-user bg-icon"></i>
-                                                <!-- Extra large text -->
-                                <span class="text-xlg"><span
-                                            class="text-lg text-slim"></span><strong> {{$oneLogin[0]}}</strong>/@if($oneLogin[1]==0){{config('fxweb.liveServerName')}}@else {{config('fxweb.demoServerName')}}@endif </span><br>
-                                                <!-- Big text -->
-                                <span class="text-bg">{{ trans('user.growth') }} @if($oneLogin[0].$oneLogin[1] ==$login.$server_id  ) {{ $growth }}  @else
-                                        {{ trans('user.click_here') }}  @endif % </span><br> <!-- Big text -->
-                                <span class="text-bg">{{ trans('user.profit') }} @if($oneLogin[0].$oneLogin[1] ==$login.$server_id  ){{$statistics['profit']}} @else
-                                        {{ trans('user.click_here') }} @endif </span><br>
-                                                <!-- Small text -->
-                                                <span class="text-sm"></span>
-                                            </a> <!-- /.stat-cell -->
+
+                                        <a href="?login={{$oneLogin[0].'&server_id='.$oneLogin[1]}}" class="col-xs-12 row-in-br   @if($oneLogin[0].$oneLogin[1] ==$login.$server_id  )  activeUser   @endif ">
+                                            <div class="">
+                                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                                    <h5 class="text-muted vb">@if($oneLogin[1]==0){{config('fxweb.liveServerName')}}@else {{config('fxweb.demoServerName')}}@endif</h5>
+                                                    <span class="text-bg">{{ trans('user.growth') }}
+                                                        @if($oneLogin[0].$oneLogin[1] ==$login.$server_id  )
+                                                            {{ $growth }}
+                                                        @else
+                                                      {{ trans('user.click_here') }}  @endif
+                                                        %
+
+                                                    </span>
+                                                    <span class="text-bg">{{ trans('user.profit') }} @if($oneLogin[0].$oneLogin[1] ==$login.$server_id  ){{$statistics['profit']}} @else
+
+                                                        {{ trans('user.click_here') }} @endif </span>
+
+                                                                                </div>
+                                                                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                                                                    <h3 class="counter text-right m-t-15 text-danger"><strong> {{$oneLogin[0]}}</strong></h3>
+                                                                                </div>
+                                                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                                    <div class="progress">
+                                                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"> <span class="sr-only">40% Complete (success)</span> </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+
+
 
 
 
                                         @endforeach
+                                        <div style="clear:both;"></div>
                                     </div>
 
 
@@ -369,14 +387,16 @@
                 function scrollButton(container, amount, direction) {
                     var scrollBody = container.find('.scrollBody');
 
+
                     // console.log(direction +'==-&&('+ scrollBody.css('marginTop').replace("px", "") +'>= 0 )');
                     if (direction == '-') {
 
                         amount = ( scrollBody.css('marginTop').replace("px", "") * -1 < (scrollBody.height() - container.height())  ) ? direction + "=" + amount + "px" : 0;
                     } else {
                         // console.log(scrollBody.css('marginTop').replace("px", "") >  0  );
-                        amount = ( scrollBody.css('marginTop').replace("px", "") > 0  ) ? 0 : direction + "=" + amount + "px";
+                        console.log(2);       amount = ( scrollBody.css('marginTop').replace("px", "") > 0  ) ? 0 : direction + "=" + amount + "px";
                     }
+                    console.log(amount);
                     scrollBody.animate({"marginTop": amount}, "fast");
                 }
 

@@ -163,14 +163,14 @@
         @section("script")
             @parent
             <script>
-
+/*
 
                 $('#jq-validation-select2').select2({
                     allowClear: true,
                     placeholder: 'Select a country...'
                 }).change(function () {
                     $(this).valid();
-                });
+                });*/
 
             </script>
 @stop
