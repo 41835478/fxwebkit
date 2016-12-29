@@ -142,5 +142,6 @@
     'tableHead'=>'Kitchen Sink',
     'tableDescription'=>'Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch',
     'server'=>'Server',
+    'plan_list'=>'Plan',
 
 ]; ?>

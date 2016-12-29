@@ -2,6 +2,232 @@
 @section('title', trans('reports::reports.OpenOrders'))
 @section('content')
 
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- .row -->
+            <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
+                <div class="col-lg-12">
+                    <h4 class="page-title">{{ trans('reports::reports.OpenOrders') }}</h4>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <ol class="breadcrumb pull-left">
+                        <li><a href="#">{{ trans('reports::reports.ModuleTitle') }}</a></li>
+                        <li class="active">{{ trans('reports::reports.OpenOrders') }}</li>
+                    </ol>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <form role="search" class="app-search hidden-xs pull-right">
+                        <input type="text" placeholder=" {{ trans('reports::reports.search') }} ..." class="form-control">
+                        <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="white-box">
+
+
+                        <h3 class="box-title m-b-0">{{ trans('reports::reports.tableHead') }}</h3>
+                        <p class="text-muted m-b-20">{{ trans('reports::reports.tableDescription') }}</p>
+                        <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
+
+                            <thead>
+                            <tr>
+
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="7">{!! th_sort(trans('reports::reports.open_time'), 'open_time', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="8">{!! th_sort(trans('reports::reports.open_Price'), 'OPEN_PRICE', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="9">{!! th_sort(trans('reports::reports.SL'), 'SL', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="10">{!! th_sort(trans('reports::reports.TP'), 'TP', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="11">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="12">{!! th_sort(trans('reports::reports.swaps'), 'SWAPS', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="13">{!! th_sort(trans('reports::reports.price'), 'CLOSE_PRICE', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="14">{!! th_sort(trans('reports::reports.profit'), 'PROFIT', $oResults) !!}</th>
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @if (count($oResults))
+                                {{-- */$i=0;/* --}}
+                                {{-- */$class='';/* --}}
+                                @foreach($oResults as $oResult)
+                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                    <tr class="tr {{ $class }}">
+
+                                        <td>{{ $oResult->TICKET }}</td>
+                                        <td>{{ $oResult->LOGIN }}</td>
+                                        <td>{{($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                                        <td>{{ $oResult->SYMBOL }}</td>
+                                        <td>{{ $oResult->TYPE }}</td>
+                                        <td>{{ $oResult->VOLUME }}</td>
+                                        <td>{{ $oResult->OPEN_TIME }}</td>
+                                        <td>{{ $oResult->OPEN_PRICE }}</td>
+                                        <td>{{ $oResult->SL }}</td>
+                                        <td>{{ $oResult->TP }}</td>
+                                        <td>{{ $oResult->COMMISSION }}</td>
+                                        <td>{{ $oResult->SWAPS }}</td>
+                                        <td>{{ $oResult->CLOSE_PRICE }}</td>
+                                        <td>{{ $oResult->PROFIT }}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                            </tbody>
+                        </table>
+                        @if (count($oResults))
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-6 ">
+                                    <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oResults->firstItem() }} {{trans('reports::reports.to')}} {{ $oResults->lastItem() }} {{trans('reports::reports.of')}} {{ $oResults->total() }} {{trans('reports::reports.entries')}}</span>
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-6 ">
+                                    {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
+        </div>
+        <!-- /#page-wrapper -->
+        <!-- .right panel -->
+        <div class="right-side-panel">
+            <div class="scrollable-right container">
+                <!-- .Theme settings -->
+                <h3 class="title-heading">{{ trans('reports::reports.search') }}</h3>
+
+                {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label>
+                            {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
+                            <span class="lbl">{{ trans('reports::reports.ExactLogin') }}</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::select('server_id', $serverTypes, $aFilterParams['server_id'], ['class'=>'form-control  input-sm']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::checkbox('all_symbols', 1, $aFilterParams['all_symbols'], ['class'=>'px','id'=>'all-symbols-chx']) !!}
+                        <span class="lbl">{{ trans('reports::reports.AllSymbols') }}</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::select('symbol[]', $aSymbols,((!is_array($aFilterParams['symbol']))? explode(',',$aFilterParams['symbol']):$aFilterParams['symbol']), ['multiple'=>true,'class'=>'form-control input-sm','disabled'=>true,'id'=>'all-symbols-slc']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::select('type', $aTradeTypes, $aFilterParams['type'], ['class'=>'form-control  input-sm']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-12"></label>
+                    <div class="col-md-12">
+                        {!! Form::submit(trans('reports::reports.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                    </div>
+                </div>
+
+                {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+                {!! Form::hidden('order', $aFilterParams['order']) !!}
+                {!! Form::close()!!}
+            </div>
+        </div>
+
+        <script>
+            init.push(function () {
+                $('#all-groups-chx').change(function () {
+                    if ($('#all-groups-chx').prop('checked')) {
+                        $('#all-groups-slc').attr('disabled', 'disabled');
+                    } else {
+                        $('#all-groups-slc').removeAttr('disabled');
+                    }
+                });
+
+                $('#all-symbols-chx').change(function () {
+                    if ($('#all-symbols-chx').prop('checked')) {
+                        $('#all-symbols-slc').attr('disabled', 'disabled');
+                    } else {
+                        $('#all-symbols-slc').removeAttr('disabled');
+                    }
+                });
+
+                if ($('#all-groups-chx').prop('checked')) {
+                    $('#all-groups-slc').attr('disabled', 'disabled');
+                } else {
+                    $('#all-groups-slc').removeAttr('disabled');
+                }
+
+                if ($('#all-symbols-chx').prop('checked')) {
+                    $('#all-symbols-slc').attr('disabled', 'disabled');
+                } else {
+                    $('#all-symbols-slc').removeAttr('disabled');
+                }
+
+
+                $('#exactLogin').change(function () {
+                    if ($('#exactLogin').prop('checked')) {
+                        $("#from_login_li,#to_login_li").hide();
+                        $("#login_li").show();
+                    } else {
+                        $("#from_login_li,#to_login_li").show();
+                        $("#login_li").hide();
+                    }
+                });
+
+                if ($('#exactLogin').prop('checked')) {
+                    $("#from_login_li,#to_login_li").hide();
+                    $("#login_li").show();
+                } else {
+                    $("#from_login_li,#to_login_li").show();
+                    $("#login_li").hide();
+                }
+            });
+        </script>
+        @stop
+        @section('hidden')
+
 
     <div class="  theme-default page-mail" >
         <div class="mail-nav" >

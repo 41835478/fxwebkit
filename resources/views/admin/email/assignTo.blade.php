@@ -39,9 +39,6 @@
                 <div class="col-lg-12">
                     <div class="white-box">
 
-                        <a href="{{ route('admin.addMassGroup') }}" style="float:right;">
-                            <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button"
-                                   value="{{ trans('general.addMassGroup') }}"> </a>
 
                         <h3 class="box-title m-b-0">{{ trans('general.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('general.tableDescription') }}</p>
@@ -49,11 +46,11 @@
 
                             <thead>
                             <tr>
-                                <div scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.Form::label('check_all',trans('general.Login')) !!}</div>
-                                <div scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('general.liveDemo'), 'server_id', $oResults) !!}</div>
-                                <div scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('general.name '), 'NAME', $oResults) !!}</div>
-                                <div scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('general.group'), 'GROUP', $oResults) !!}</div>
-                                <div scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! trans('general.action') !!}</div>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.Form::label('check_all',trans('general.Login')) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('general.liveDemo'), 'server_id', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('general.name '), 'NAME', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('general.group'), 'GROUP', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! trans('general.action') !!}</th>
 
 
 
@@ -109,6 +106,85 @@
         <!-- /#page-wrapper -->
         <!-- .right panel -->
 
+        <div class="right-side-panel">
+            <div class="scrollable-right container">
+                <!-- .Theme settings -->
+                <h3 class="title-heading">{{ trans('user.Search') }}</h3>
+
+
+
+
+                {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
+
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label>
+                            {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
+                            <span class="lbl">{{ trans('general.ExactLogin') }}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('general.FromLogin'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('general.ToLogin'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('general.Login'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('general.name '),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::radio('signed',0,$aFilterParams['signed'],['id'=>'signed_0','checked'=>'true']) !!}
+                        <label for="signed_0">{{ trans('general.all') }}</label>
+                        {!! Form::radio('signed',1,($aFilterParams['signed']==1),['id'=>'signed_1']) !!}<label
+                                for="signed_1">{{ trans('general.assigned') }}</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="checkbox">
+                            <label>
+                                {!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
+                                <span class="lbl">{{ trans('general.AllGroups') }}</span>
+                            </label>
+                        </div>
+                        {!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','id'=>'all-groups-slc']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-12"></label>
+                    <div class="col-md-12">
+                        {!! Form::submit(trans('user.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+
+                    </div>
+                </div>
+
+                {!! Form::hidden('group_id', $aFilterParams['group_id']) !!}
+                {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+                {!! Form::hidden('order', $aFilterParams['order']) !!}
+                {!! Form::close( ) !!}
+
+
+            </div>
+        </div>
+
 
         @stop
         @section('hidden')
@@ -133,7 +209,8 @@
                         </div>
                     </li>
                     <li id="from_login_li">
-                        <div class=" nav-input-div  ">{!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('general.FromLogin'),'class'=>'form-control input-sm']) !!}</div>
+                        <div class=" nav-input-div  ">
+                            {!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('general.FromLogin'),'class'=>'form-control input-sm']) !!}</div>
                     </li>
                     <li id="to_login_li">
                         <div class=" nav-input-div  ">{!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('general.ToLogin'),'class'=>'form-control input-sm']) !!}</div>

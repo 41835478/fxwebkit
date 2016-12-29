@@ -107,7 +107,7 @@
         <div class="right-side-panel">
             <div class="scrollable-right container">
                 <!-- .Theme settings -->
-                <h3 class="title-heading">{{ trans('mt4configrations::mt4configrations.search') }}</h3>
+                <h3 class="title-heading">{{ trans('reports::reports.search') }}</h3>
 
                 {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
 
@@ -163,7 +163,7 @@
                         <div class="checkbox">
                             <label>
                                 {!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
-                                <span class="lbl">{{ trans('accounts::accounts.AllGroups') }}</span>
+                                <span class="lbl">{{ trans('reports::reports.AllGroups') }}</span>
                             </label>
                         </div>
                         {!! Form::select('group[]', $aGroups, $aFilterParams['group'], ['multiple'=>true,'class'=>'form-control input-sm','id'=>'all-groups-slc']) !!}
@@ -177,7 +177,7 @@
                 <div class="form-group">
                     <label class="col-md-12"></label>
                     <div class="col-md-12">
-                        {!! Form::submit(trans('mt4configrations::mt4configrations.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                        {!! Form::submit(trans('reports::reports.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
                     </div>
                 </div>
 
