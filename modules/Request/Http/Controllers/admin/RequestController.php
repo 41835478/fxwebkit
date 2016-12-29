@@ -54,8 +54,10 @@ class RequestController extends Controller
         }
 
 
-        return view('request::admin/internalTransferRequestList')->with('oResults', $oResults)
+        return view('request::admin/internalTransferRequestList')
+            ->with('oResults', $oResults)
             ->with('aRequestStatus', $aRequestStatus)
+            ->with('aFilterParams', $aFilterParams)
             ->with('status',$status);
     }
 
@@ -106,8 +108,10 @@ class RequestController extends Controller
         }
 
 
-        return view('request::admin/changeLeverageRequestList')->with('oResults', $oResults)
+        return view('request::admin/changeLeverageRequestList')
+            ->with('oResults', $oResults)
             ->with('aRequestStatus', $aRequestStatus)
+            ->with('aFilterParams', $aFilterParams)
             ->with('status',$status);
     }
 
@@ -198,6 +202,7 @@ class RequestController extends Controller
         return view('request::admin/changePasswordRequestList')
             ->with('oResults', $oResults)
             ->with('aRequestStatus', $aRequestStatus)
+            ->with('aFilterParams', $aFilterParams)
             ->with('loginPasswordType', $loginPasswordType)
             ->with('status',$status);
     }
@@ -332,7 +337,6 @@ class RequestController extends Controller
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
 
-        /* TODO[moaid]  translate this array in language file then in the .blade.php file insert trans() method */
         $aRequestStatus = config('request.requestStatus');
 
         $oResults = null;
@@ -349,7 +353,10 @@ class RequestController extends Controller
 
         }
 
-        return view('request::admin/withDrawalRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus)
+        return view('request::admin/withDrawalRequestList')
+            ->with('oResults', $oResults)
+            ->with('aRequestStatus', $aRequestStatus)
+            ->with('aFilterParams', $aFilterParams)
             ->with('status',$status);
     }
 
@@ -396,7 +403,6 @@ class RequestController extends Controller
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
 
-        /* TODO[moaid]  translate this array in language file then in the .blade.php file insert trans() method */
         $aRequestStatus = config('request.requestStatus');
 
         $oResults = null;
@@ -414,7 +420,10 @@ class RequestController extends Controller
 
         }
 
-        return view('request::admin/addAccountRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus)
+        return view('request::admin/addAccountRequestList')
+            ->with('oResults', $oResults)
+            ->with('aRequestStatus', $aRequestStatus)
+            ->with('aFilterParams', $aFilterParams)
             ->with('status',$status);
     }
 
@@ -607,7 +616,10 @@ $oResult= $this->RequestLog->getAssignAccountById($oRequest->logId);
 
         }
 
-        return view('request::admin.activateUserRequestList')->with('oResults', $oResults)->with('aRequestStatus', $aRequestStatus)
+        return view('request::admin.activateUserRequestList')
+            ->with('oResults', $oResults)
+            ->with('aRequestStatus', $aRequestStatus)
+            ->with('aFilterParams', $aFilterParams)
             ->with('status',$status);
     }
 

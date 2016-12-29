@@ -32,6 +32,7 @@
 
                         <h3 class="box-title m-b-0">{{ trans('request::request.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('request::request.tableDescription') }}</p>
+
                         <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
 
                             <thead>
@@ -65,6 +66,7 @@
                                         <td>{{ $oResult->email }}</td>
                                         <td>{{ $oResult->leverage }}</td>
                                         <td>{{ $oResult->array_deposit }}</td>
+                                        <td>{{ $oResult->array_group }}</td>
                                         <td>{{ $oResult->phone }}</td>
                                         <td>{{ $oResult->country }}</td>
                                         <td>{{ $oResult->comment }}</td>
@@ -106,6 +108,43 @@
         </div>
         <!-- /#page-wrapper -->
         <!-- .right panel -->
+        <!-- /#page-wrapper -->
+        <!-- .right panel -->
+
+        <div class="right-side-panel">
+            <div class="scrollable-right container">
+                <!-- .Theme settings -->
+                <h3 class="title-heading">{{ trans('mt4configrations::mt4configrations.search') }}</h3>
+
+                {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
+
+
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('first_name', '', ['placeholder'=>trans('request::request.first_name'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::select('status',$aRequestStatus,$status, ['class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-md-12"></label>
+                    <div class="col-md-12">
+                        {!! Form::submit(trans('request::request.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                    </div>
+                </div>
+
+
+                {!! Form::close()!!}
+            </div>
+        </div>
 
 
         @stop

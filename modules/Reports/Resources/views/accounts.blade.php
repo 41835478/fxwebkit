@@ -95,8 +95,110 @@
     </div>
     <!-- /#page-wrapper -->
     <!-- .right panel -->
+        <div class="right-side-panel">
+            <div class="scrollable-right container">
+                <!-- .Theme settings -->
+                <h3 class="title-heading">{{ trans('mt4configrations::mt4configrations.search') }}</h3>
+
+                {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label>
+                            {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
+                            <span class="lbl">{{ trans('reports::reports.ExactLogin') }}</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
 
 
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('reports::reports.Name'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::select('server_id', $serverTypes, $aFilterParams['server_id'], ['class'=>'form-control  input-sm']) !!}
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="col-md-12"></label>
+                    <div class="col-md-12">
+                        {!! Form::submit(trans('mt4configrations::mt4configrations.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                    </div>
+                </div>
+
+                {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+                {!! Form::hidden('order', $aFilterParams['order']) !!}
+                {!! Form::close()!!}
+            </div>
+        </div>
+
+        <script>
+            init.push(function () {
+
+
+                $('.tooltip_number').tooltip();
+
+                $('#all-groups-chx').change(function () {
+
+                    if ($('#all-groups-chx').prop('checked')) {
+                        $('#all-groups-slc').attr('disabled', 'disabled');
+                    } else {
+                        $('#all-groups-slc').removeAttr('disabled');
+                    }
+                });
+                if ($('#all-groups-chx').prop('checked')) {
+                    $('#all-groups-slc').attr('disabled', 'disabled');
+                } else {
+                    $('#all-groups-slc').removeAttr('disabled');
+                }
+
+
+                $('#exactLogin').change(function () {
+                    if ($('#exactLogin').prop('checked')) {
+                        $("#from_login_li,#to_login_li").hide();
+                        $("#login_li").show();
+                    } else {
+                        $("#from_login_li,#to_login_li").show();
+                        $("#login_li").hide();
+                    }
+                });
+
+                if ($('#exactLogin').prop('checked')) {
+                    $("#from_login_li,#to_login_li").hide();
+                    $("#login_li").show();
+                } else {
+                    $("#from_login_li,#to_login_li").show();
+                    $("#login_li").hide();
+                }
+
+            });
+
+        </script>
 @stop
 @section('hidden')
 

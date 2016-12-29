@@ -83,6 +83,36 @@
     </div>
     <!-- /#page-wrapper -->
     <!-- .right panel -->
+        <div class="right-side-panel">
+            <div class="scrollable-right container">
+                <!-- .Theme settings -->
+                <h3 class="title-heading">{{ trans('mt4configrations::mt4configrations.search') }}</h3>
+
+
+
+
+                {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
+
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('mt4configrations::mt4configrations.securities'),'class'=>'form-control input-sm']) !!}
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-12"></label>
+                    <div class="col-md-12">
+                        {!! Form::submit(trans('mt4configrations::mt4configrations.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                    </div>
+                </div>
+
+                {!! Form::close()!!}
+
+
+            </div>
+        </div>
 
 
 @stop
@@ -94,7 +124,8 @@
                 {!! Form::open(['method'=>'get', 'class'=>'form-bordered']) !!}
                 <ul class="sections">
                     <li class="active"><a href="#"> <i
-                                    class="fa fa-search"></i> {{ trans('mt4configrations::mt4configrations.search') }} </a></li>
+                                    class="fa fa-search"></i>
+                            {{ trans('mt4configrations::mt4configrations.search') }} </a></li>
 
                     <li>
                         <div class=" nav-input-div  ">
