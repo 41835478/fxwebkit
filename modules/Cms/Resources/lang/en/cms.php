@@ -375,4 +375,5 @@
     'tableDescription'=>'Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch',
     'Search'=>'Search',
     'link_to_form'=>'Link To Form ',
+    'item_order'=>'Item Order'
 ]; ?>

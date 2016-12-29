@@ -4,6 +4,27 @@
          <div class="togglediv"><a href="javascript:void(0)" id="togglebtn"><i class="ti-menu"></i></a></div>
 
 
+<li class=""> <a href="javascript:void(0)"><i class="fa fa-dashboard" data-icon="v"></i></a>
+    <div class="sidebarmenu">
+        <!-- Left navbar-header -->
+        <h3 class="menu-title">{{ trans('dashboard.PageTitle') }}</h3>
+                <div class="searchable-menu">
+            <form role="search" class="menu-search">
+                <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
+        </div>
+        <ul class="sidebar-menu">
+          <li><a href="/client#" target="">{{ trans('dashboard.PageTitle') }}</a></li>
+<hr>
+        <h3 class="menu-title">{{trans('dashboard.aboutFxwebkit')}}</h3>
+          <li>
+
+{{trans('dashboard.aboutFxwebkitText')}}
+</li>
+        </ul>
+
+
+        </div>
+</li>
 
   {{--*/ $aClientMenu = get_client_menu() /*--}}
             @if(count($aClientMenu))
@@ -29,7 +50,7 @@
                         @if (count($aModule['menu']))
                  @foreach($aModule['menu'] as $aSubMenu)
 
-                 {{--{{ $aSubMenu['icon'] }}--}}
+                 {{--{{ $aSubMenu['icon'] }} --}}
 
  <li><a href=" {{ $aSubMenu['route'] }}?search=1">{{ $aSubMenu['title'] }}</a></li>
                     @endforeach

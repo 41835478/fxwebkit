@@ -95,6 +95,12 @@ class MenusController extends Controller
         $menu_item = ($menu_item_id != 0) ? cms_menus_items::with('cms_menus_items', 'page', 'article')->where('id', $menu_item_id)->first() : 0;
 
 
+        $parentId=(isset($menu_item->parent_item_id))? $menu_item->parent_item_id:0;
+        $numberOfItemsWithSameParent=cms_menus_items::where(['parent_item_id'=>$parentId])->count();
+        $orderArray=[];
+        for($i=0;$i<$numberOfItemsWithSameParent;$i++){$orderArray[]=$i;}
+
+
         $menu_items = cms_menus_items::with('cms_menus_items', 'page', 'article')->where('menu_id', $menu_id)->first();
         $pages = cms_pages::lists('title', 'id');
         $disable_array = ['0' => 'enable', '1' => 'disable'];
@@ -124,7 +130,8 @@ class MenusController extends Controller
                 'render_menu_html' => $this->render_menu($menu_id),
                 'languages' => $languages,
                 'selected_language' => $selected_language,
-                'asset_folder' => $asset_folder
+                'asset_folder' => $asset_folder,
+                'orderArray'=>$orderArray
             ]
         );
     }
@@ -202,6 +209,7 @@ class MenusController extends Controller
         $item->disable = Input::get('disable');
         $item->hide = Input::get('hide');
 
+        $item->item_order = Input::get('item_order');
        // $item->page_id = ($type == 0) ? Input::get('page_id') : Input::get('article_id');
         if($type == 0){
             $item->page_id = Input::get('page_id');
@@ -327,7 +335,7 @@ class MenusController extends Controller
         // $links=cms_menus_items_languages::where(['cms_languages_id'=>$language,'cms_menus_items_id'=>$id])->get();
         $links = cms_menus_items::with(['cms_menus_items_languages' => function ($query) use ($language) {
             $query->where('cms_languages_id', '=', $language);
-        }])->where('menu_id', $menu_id)->get();
+        }])->orderBy('item_order')->orderBy('id')->where('menu_id', $menu_id)->get();
         $links = $links->toArray();
 
         foreach($links as &$link){
