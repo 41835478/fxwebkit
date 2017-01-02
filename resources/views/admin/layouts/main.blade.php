@@ -79,18 +79,22 @@
 {!! HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js') !!}
 
 <script>
+	var options = {
+		format: "yyyy-mm-dd",
+		todayBtn: "linked",
+		orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+	}
 
-	$('.mydatepicker, #datepicker').datepicker();
+	$('.mydatepicker, #datepicker').datepicker(options);
 	$('#datepicker-autoclose').datepicker({
 		autoclose: true,
-		todayHighlight: true
+		todayHighlight: true,
 	});
 
 	$('#date-range').datepicker({
 		toggleActive: true
 	});
 	$('#datepicker-inline').datepicker({
-
 		todayHighlight: true
 	});
 

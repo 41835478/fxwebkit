@@ -23,12 +23,9 @@
                 </div>
             </div>
 
-
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
-
 
                         <h3 class="box-title m-b-0">{{ trans('reports::reports.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('reports::reports.tableDescription') }}</p>
@@ -198,7 +195,7 @@
 @stop
 
 @section('hidden')
-    
+
 <div class="  theme-default page-mail" >
     <div class="mail-nav" >
         <div class="navigation">

@@ -89,7 +89,8 @@
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('user.BirthDay') }}</label>
-                                        {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control']) !!}
+
+                                        {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control mydatepicker']) !!}
                                     </div>
                                 </div><!-- col-sm-6 -->
                                 <div class="col-sm-6">
@@ -164,24 +165,6 @@
         <!-- /#page-wrapper -->
         <!-- .right panel -->
         @stop
-
-                <script>
-                    init.push(function () {
-                        var options = {
-                            format: "yyyy-mm-dd",
-                            todayBtn: "linked",
-                            orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-                        }
-
-                        $('input[name="birthday"]').datepicker(options);
-
-                    });
-
-                    $('#jq-validation-select2').select2({allowClear: true, placeholder: 'Select a country...'}).change(function () {
-                        $(this).valid();
-                    });
-
-                </script>
       
         @section('hidden')
 
