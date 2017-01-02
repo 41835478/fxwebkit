@@ -70,6 +70,7 @@
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oResults[0]) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oResults[0]) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oResults[0]) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4"></th>
 
                             </tr>
                             </thead>
@@ -84,7 +85,7 @@
                                         <td>{{ $oResult->SYMBOL }}</td>
                                         <td>{{ round($oResult->COMMISSION, 2) }}</td>
                                         <td>{{ $oResult->VOLUME }}</td>
-                                        <td><a href="{{ $oResult->SYMBOL }}">{{trans('reports::reports.details')}}</a></td>
+                                        <td><a href="{{ route('clients.reports.closedOrders').'?search=1&symbol='.$oResult->SYMBOL.'&order=TICKET&sort=desc'}}">{{trans('reports::reports.details')}}</a></td>
 
                                     </tr>
                                 @endforeach

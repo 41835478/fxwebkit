@@ -485,8 +485,8 @@ class ClientIbportalController extends Controller
         if ($oRequest->has('search')) {
 
             $oResults = $this->oMt4Trade->getAgentClosedTradesByFilters($aFilterParams, false, $sOrder, $sSort,current_user()->getUser()->id);
-            $oResults->order = $aFilterParams['order'];
-            $oResults->sorts = $aFilterParams['sort'];
+//            $oResults->order = $aFilterParams['order'];
+//            $oResults->sorts = $aFilterParams['sort'];
         }
 
         $userIbid = UserIbid::where('user_id', current_user()->getUser()->id)->first();
