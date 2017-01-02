@@ -20,6 +20,13 @@
 			<!-- color CSS -->
 	{!! HTML::style('/assets/'.config('fxweb.layoutAssetsFolder').'/css/colors/default.css')!!}
 	{!! HTML::style('/assets/'.config('fxweb.layoutAssetsFolder').'/css/helper.css')!!}
+			<!-- Date PICKER CSS -->
+
+	{!! HTML::style('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.css')!!}
+	{!! HTML::style('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/jquery-asColorPicker-master/css/asColorPicker.css')!!}
+	{!! HTML::style('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.css')!!}
+	{!! HTML::style('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/timepicker/bootstrap-timepicker.min.css')!!}
+	{!! HTML::style('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.css')!!}
 			<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -66,6 +73,75 @@
 {!! HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/tablesaw-master/dist/tablesaw-init.js') !!}
 		<!--Style Switcher -->
 {!! HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/styleswitcher/jQuery.style.switcher.js') !!}
+		<!--Date PICKER -->
+{!! HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/moment/moment.js') !!}
+{!! HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js') !!}
+{!! HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js') !!}
+
+<script>
+
+	$('.mydatepicker, #datepicker').datepicker();
+	$('#datepicker-autoclose').datepicker({
+		autoclose: true,
+		todayHighlight: true
+	});
+
+	$('#date-range').datepicker({
+		toggleActive: true
+	});
+	$('#datepicker-inline').datepicker({
+
+		todayHighlight: true
+	});
+
+	$('#all-groups-chx').change(function () {
+		if ($('#all-groups-chx').prop('checked')) {
+			$('#all-groups-slc').attr('disabled', 'disabled');
+		} else {
+			$('#all-groups-slc').removeAttr('disabled');
+		}
+	});
+
+	$('#all-symbols-chx').change(function () {
+		if ($('#all-symbols-chx').prop('checked')) {
+			$('#all-symbols-slc').attr('disabled', 'disabled');
+		} else {
+			$('#all-symbols-slc').removeAttr('disabled');
+		}
+	});
+
+	if ($('#all-groups-chx').prop('checked')) {
+		$('#all-groups-slc').attr('disabled', 'disabled');
+	} else {
+		$('#all-groups-slc').removeAttr('disabled');
+	}
+
+	if ($('#all-symbols-chx').prop('checked')) {
+		$('#all-symbols-slc').attr('disabled', 'disabled');
+	} else {
+		$('#all-symbols-slc').removeAttr('disabled');
+	}
+
+
+	$('#exactLogin').change(function () {
+		if ($('#exactLogin').prop('checked')) {
+			$("#from_login_li,#to_login_li").hide();
+			$("#login_li").show();
+		} else {
+			$("#from_login_li,#to_login_li").show();
+			$("#login_li").hide();
+		}
+	});
+
+	if ($('#exactLogin').prop('checked')) {
+		$("#from_login_li,#to_login_li").hide();
+		$("#login_li").show();
+	} else {
+		$("#from_login_li,#to_login_li").show();
+		$("#login_li").hide();
+	}
+
+</script>
 
 @show
 
