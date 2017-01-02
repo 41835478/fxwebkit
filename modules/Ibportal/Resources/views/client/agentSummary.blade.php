@@ -31,68 +31,45 @@
                         <h3 class="box-title m-b-0">{{ trans('ibportal::ibportal.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('ibportal::ibportal.tableDescription') }}</p>
 
-                        <div class="col-xs-12 col-lg-4">
 
 
 
-                            <div class="stat-panel">
 
-                                <div class="stat-row">
 
-                                    <!-- Info background, without padding, horizontally centered text, super large text -->
-                                    <div class="stat-cell bg-info no-padding text-center text-slg">
-                                        <i class="fa fa-user"></i>
-                                    </div>
-                                </div> <!-- /.stat-row -->
-                                <div class="stat-row">
-                                    <!-- Bordered, without top border, horizontally centered text, large text -->
-                                    <div class="stat-cell bordered no-border-t text-center text-lg">
-                                        <strong>{{ $statistics['users_number'] }}</strong>
-                                        <small><small>{{ trans('ibportal::ibportal.user') }}</small></small>
-                                    </div>
-                                </div> <!-- /.stat-row -->
+
+
+
+
+
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="white-box">
+                                <h3 class="box-title">{{ trans('ibportal::ibportal.user') }}</h3>
+                                <ul class="list-inline two-part">
+                                    <li><i class="icon-people text-info"></i></li>
+                                    <li class="text-right"><span class="counter">{{ $statistics['users_number'] }}</span></li>
+                                </ul>
                             </div>
-                            <div class="clearFix"></div>
                         </div>
-
-
-
-                        <div class="col-xs-12 col-lg-4">
-                            <div class="stat-panel">
-                                <div class="stat-row">
-                                    <!-- Info background, without padding, horizontally centered text, super large text -->
-                                    <div class="stat-cell bg-info no-padding text-center text-slg">
-                                        <i class="fa fa-users"></i>
-                                    </div>
-                                </div> <!-- /.stat-row -->
-                                <div class="stat-row">
-                                    <!-- Bordered, without top border, horizontally centered text, large text -->
-                                    <div class="stat-cell bordered no-border-t text-center text-lg">
-                                        <strong>{{ $statistics['mt4_users_number'] }}</strong>
-                                        <small><small>{{ trans('ibportal::ibportal.mt4_users') }}</small></small>
-                                    </div>
-                                </div> <!-- /.stat-row -->
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="white-box">
+                                <h3 class="box-title">{{ trans('ibportal::ibportal.mt4_users') }}</h3>
+                                <ul class="list-inline two-part">
+                                    <li><i class=" text-danger fa fa-users"></i></li>
+                                    <li class="text-right"><span class="">{{ $statistics['mt4_users_number'] }}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-xs-12">
+                            <div class="white-box">
+                                <h3 class="box-title">{{ trans('ibportal::ibportal.plan') }}</h3>
+                                <ul class="list-inline two-part">
+                                    <li><i class=" text-success fa fa-certificate"></i></li>
+                                    <li class="text-right"><span class="">{{ $statistics['planes_number'] }}</span></li>
+                                </ul>
                             </div>
                         </div>
 
 
-                        <div class="col-xs-12 col-lg-4">
-                            <div class="stat-panel">
-                                <div class="stat-row">
-                                    <!-- Info background, without padding, horizontally centered text, super large text -->
-                                    <div class="stat-cell bg-info no-padding text-center text-slg">
-                                        <i class="fa fa-certificate"></i>
-                                    </div>
-                                </div> <!-- /.stat-row -->
-                                <div class="stat-row">
-                                    <!-- Bordered, without top border, horizontally centered text, large text -->
-                                    <div class="stat-cell bordered no-border-t text-center text-lg">
-                                        <strong>{{ $statistics['planes_number'] }}</strong>
-                                        <small><small>{{ trans('ibportal::ibportal.plan') }}</small></small>
-                                    </div>
-                                </div> <!-- /.stat-row -->
-                            </div>
-                        </div>
 
                         <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.agentAccount') }} : <b></b> {{$login}}</label>
                         <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.Commission') }} : <b></b> {{$commission}}</label>
@@ -176,11 +153,12 @@
     @parent
 
     {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/highcharts.js') !!}
+
     <script>
 
-        init.push(function () {
-            $('.tooltip_number').tooltip();
-        });
+//        init.push(function () {
+//            $('.tooltip_number').tooltip();
+//        });
 
         $(function () {
             $('#growth_chart_all_div').highcharts({
@@ -283,6 +261,8 @@
             });
         });
     </script>
+
+
 @stop
 
 @section('hidden')
@@ -432,114 +412,4 @@
 
 
 @stop
-@section('script')
-    @parent
-    {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/highcharts.js') !!}
-    <script>
 
-        init.push(function () {
-            $('.tooltip_number').tooltip();
-        });
-
-        $(function () {
-            $('#growth_chart_all_div').highcharts({
-                title: {
-                    text: '',
-                    x: - 20 //center
-                },
-                subtitle: {
-                    text: '',
-                    x: - 20
-                },
-                xAxis: {
-                    categories:{!! json_encode($commission_horizontal_line_numbers)!!}
-                },
-                yAxis: {
-                    title: {
-                        text: ''
-                    },
-                    plotLines: [{
-                        value: 0,
-                        width: 1,
-                        color: '#808080'
-                    }]
-                },
-                tooltip: {
-                    valueSuffix: ''
-                },
-                legend: {
-                    layout: 'vertical',
-                    align: 'bottom',
-                    verticalAlign: 'middle',
-                    borderWidth: 0
-                },
-                series: [{
-                    name: 'Commission',
-                    data: {!! json_encode($commission_array)!!},
-                    color:'#1d89cf'
-                }]
-            });
-        });
-
-
-function remove_copyrights(){
-        $('svg text').each(function(){if($(this).text() == 'Highcharts.com'){$(this).remove();} });
-}
-        setTimeout('remove_copyrights()',1000);
-
-
-
-        $(function () {
-            $('#chartContainer').highcharts({
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: ''
-                },
-                subtitle: {
-                    text: ''
-                },
-                xAxis: {
-                    categories:{!! json_encode($horizontal_line_numbers)!!},
-                    type: 'category',
-                    labels: {
-                        rotation: -45,
-                        style: {
-                            fontSize: '13px',
-                            fontFamily: 'Verdana, sans-serif'
-                        }
-                    }
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: ''
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                tooltip: {
-                    pointFormat: '{point.y:.1f}'
-                },
-                series: [{
-                    name: 'Population',
-                    data:{!! json_encode($balance_array)!!},
-                    dataLabels: {
-                        enabled: false,
-                        rotation: -90,
-                        color: '#FFFFFF',
-                        align: 'right',
-                        format: '{point.y:.1f}', // one decimal
-                        y: 10, // 10 pixels down from the top
-                        style: {
-                            fontSize: '13px',
-                            fontFamily: 'Verdana, sans-serif'
-                        }
-                    }
-                }]
-            });
-        });
-    </script>
-@stop

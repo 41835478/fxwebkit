@@ -55,7 +55,7 @@
 
                  {{--{{ $aSubMenu['icon'] }} --}}
 
- <li><a href=" {{ $aSubMenu['route'] }}?search=1">{{ $aSubMenu['title'] }}</a></li>
+ <li><a href=" {{ $aSubMenu['route'] }}">{{ $aSubMenu['title'] }}</a></li>
                     @endforeach
 
                 @endif
@@ -117,6 +117,13 @@ currentA.addClass('active');
         setTimeout('activeCurrentMenu()',1000);
 
     });
+
+{{--@if(Input::get('search')== '')--}}
+{{--//$('#searchForm input[name="search"]').click();--}}
+{{--var tablea=$('.tablesaw-sortable');--}}
+{{--var columnsNumber=tablea.find('th').length;--}}
+{{--alert(tablea.html());--}}
+{{--@endif--}}
 
 </script>
 @stop
