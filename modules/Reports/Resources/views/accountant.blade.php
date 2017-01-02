@@ -76,16 +76,16 @@
                             @endif
                             </tbody>
                         </table>
-                        @if (count($oResults))
+                        @if (count($oResults[0]))
                             <div class="row">
 
                                 <div class="col-xs-12 col-sm-6 ">
-                                    <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oResults->firstItem() }} {{trans('reports::reports.to')}} {{ $oResults->lastItem() }} {{trans('reports::reports.of')}} {{ $oResults->total() }} {{trans('reports::reports.entries')}}</span>
+                                    <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oResults[0]->firstItem() }} {{trans('reports::reports.to')}} {{ $oResults[0]->lastItem() }} {{trans('reports::reports.of')}} {{ $oResults[0]->total() }} {{trans('reports::reports.entries')}}</span>
                                 </div>
 
 
                                 <div class="col-xs-12 col-sm-6 ">
-                                    {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                                    {!! str_replace('/?', '?', $oResults[0]->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
                                 </div>
                             </div>
                         @endif

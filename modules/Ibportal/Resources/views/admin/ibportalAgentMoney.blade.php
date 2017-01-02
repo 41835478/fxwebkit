@@ -63,16 +63,16 @@
                             @endif
                             </tbody>
                         </table>
-                        @if (count($oResults))
+                        @if (count($oResults[0]))
                             <div class="row">
 
                                 <div class="col-xs-12 col-sm-6 ">
-                                    <span class="text-xs">{{trans('ibportal::ibportal.showing')}} {{ $oResults->firstItem() }} {{trans('ibportal::ibportal.to')}} {{ $oResults->lastItem() }} {{trans('ibportal::ibportal.of')}} {{ $oResults->total() }} {{trans('ibportal::ibportal.entries')}}</span>
+                                    <span class="text-xs">{{trans('ibportal::ibportal.showing')}} {{ $oResults[0]->firstItem() }} {{trans('ibportal::ibportal.to')}} {{ $oResults[0]->lastItem() }} {{trans('ibportal::ibportal.of')}} {{ $oResults[0]->total() }} {{trans('ibportal::ibportal.entries')}}</span>
                                 </div>
 
 
                                 <div class="col-xs-12 col-sm-6 ">
-                                    {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                                    {!! str_replace('/?', '?', $oResults[0]->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
                                 </div>
                             </div>
                         @endif

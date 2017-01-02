@@ -83,6 +83,9 @@
                                 @endif<!-- col-sm-6 -->
 
                         </div>
+
+                        {!!   View('admin/partials/messages')->with('errors',$errors) !!}
+
                         <div class="panel-footer text-right">
                             {!! Form::hidden('login',$login)!!}
                             {!! Form::hidden('server_id',$server_id)!!}
@@ -90,7 +93,6 @@
                         </div>
 
 
-                        {!!   View('admin/partials/messages')->with('errors',$errors) !!}
 
                     {!! Form::close() !!}
                         <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>

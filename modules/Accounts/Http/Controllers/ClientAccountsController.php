@@ -186,6 +186,7 @@ class ClientAccountsController extends Controller
             ->with('Pssword', $Pssword)
             ->with('Result', $Result)
             ->with('oResults', $oResults)
+            ->with('aFilterParams',$aFilterParams)
             ->with('aRequestStatus', $aRequestStatus)
             ->with('currentLeverage', $currentLeverage)
             ->with('changeleverage', $changeleverage)
@@ -234,19 +235,36 @@ class ClientAccountsController extends Controller
         }
         $result = $oApiController->changeMt4Leverage($oRequest['login'], $oRequest['leverage'], $oRequest['oldPassword']);
 
-        /* TODO with success */
-        return view('accounts::client.addLeverage')
-            ->with('Result', $Result)
-            ->with('currentLeverage', $currentLeverage)
-            ->with('Pssword', $Pssword)
-            ->with('login', $oRequest->login)
-            ->with('changeleverage', $changeleverage)
-            ->withErrors($result)
-            ->with('server_id', $oRequest->server_id)
-            ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
-            ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
-            ->with('showWithDrawal', config('accounts.showWithDrawal'))
-            ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
+return Redirect::back()->withErrors($result);
+//        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+//        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+//
+//        $aRequestStatus = config('request.requestStatus');
+//
+//        $oResults = null;
+//        $status = (isset($oRequest->status))? $oRequest->status : -1;
+//        $aFilterParams['status']=$status;
+//        $aFilterParams['login'] = $oRequest->login;
+//        $aFilterParams['server_id'] = $oRequest->server_id;
+//
+//        $oResults = $this->RequestLog->getChangeLeverageRequestByFilters($aFilterParams, false, $sOrder, $sSort);
+//
+//        /* TODO with success */
+//        return view('accounts::client.addLeverage')
+//            ->with('Result', $Result)
+//            ->with('oResults', $oResults)
+//            ->with('aRequestStatus', $aRequestStatus)
+//
+//            ->with('currentLeverage', $currentLeverage)
+//            ->with('Pssword', $Pssword)
+//            ->with('login', $oRequest->login)
+//            ->with('changeleverage', $changeleverage)
+//            ->withErrors($result)
+//            ->with('server_id', $oRequest->server_id)
+//            ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
+//            ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
+//            ->with('showWithDrawal', config('accounts.showWithDrawal'))
+//            ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
     }
 
     public function getMt4ChangePassword(Request $oRequest)
