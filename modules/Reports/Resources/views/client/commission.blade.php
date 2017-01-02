@@ -84,22 +84,23 @@
                                         <td>{{ $oResult->SYMBOL }}</td>
                                         <td>{{ round($oResult->COMMISSION, 2) }}</td>
                                         <td>{{ $oResult->VOLUME }}</td>
+                                        <td><a href="{{ $oResult->SYMBOL }}">{{trans('reports::reports.details')}}</a></td>
 
                                     </tr>
                                 @endforeach
                             @endif
                             </tbody>
                         </table>
-                        @if (count($oResults))
+                        @if (count($oResults[0]))
                             <div class="row">
 
                                 <div class="col-xs-12 col-sm-6 ">
-                                    <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oResults->firstItem() }} {{trans('reports::reports.to')}} {{ $oResults->lastItem() }} {{trans('reports::reports.of')}} {{ $oResults->total() }} {{trans('reports::reports.entries')}}</span>
+                                    <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oResults[0]->firstItem() }} {{trans('reports::reports.to')}} {{ $oResults[0]->lastItem() }} {{trans('reports::reports.of')}} {{ $oResults[0]->total() }} {{trans('reports::reports.entries')}}</span>
                                 </div>
 
 
                                 <div class="col-xs-12 col-sm-6 ">
-                                    {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                                    {!! str_replace('/?', '?', $oResults[0]->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
                                 </div>
                             </div>
                         @endif
@@ -181,61 +182,61 @@
 
             {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/highcharts.js') !!}
             <script>
-                init.push(function () {
-                    var options = {
-                        todayBtn: "linked",
-                        orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto',
-                        format: "yyyy-mm-dd"
-                    }
-                    $('.datepicker-warpper').datepicker(options);
-
-                    $('#all-groups-chx').change(function () {
-                        if ($('#all-groups-chx').prop('checked')) {
-                            $('#all-groups-slc').attr('disabled', 'disabled');
-                        } else {
-                            $('#all-groups-slc').removeAttr('disabled');
-                        }
-                    });
-
-                    $('#all-symbols-chx').change(function () {
-                        if ($('#all-symbols-chx').prop('checked')) {
-                            $('#all-symbols-slc').attr('disabled', 'disabled');
-                        } else {
-                            $('#all-symbols-slc').removeAttr('disabled');
-                        }
-                    });
-
-                    if ($('#all-groups-chx').prop('checked')) {
-                        $('#all-groups-slc').attr('disabled', 'disabled');
-                    } else {
-                        $('#all-groups-slc').removeAttr('disabled');
-                    }
-
-                    if ($('#all-symbols-chx').prop('checked')) {
-                        $('#all-symbols-slc').attr('disabled', 'disabled');
-                    } else {
-                        $('#all-symbols-slc').removeAttr('disabled');
-                    }
-
-
-                    $('#exactLogin').change(function () {
-                        if ($('#exactLogin').prop('checked')) {
-                            $("#from_login_li,#to_login_li").hide();
-                            $("#login_li").show();
-                        } else {
-                            $("#from_login_li,#to_login_li").show();
-                            $("#login_li").hide();
-                        }
-                    });
-
-                    if ($('#exactLogin').prop('checked')) {
-                        $("#from_login_li,#to_login_li").hide();
-                        $("#login_li").show();
-                    } else {
-                        $("#from_login_li,#to_login_li").show();
-                        $("#login_li").hide();
-                    }
-                });
+//                init.push(function () {
+//                    var options = {
+//                        todayBtn: "linked",
+//                        orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto',
+//                        format: "yyyy-mm-dd"
+//                    }
+//                    $('.datepicker-warpper').datepicker(options);
+//
+//                    $('#all-groups-chx').change(function () {
+//                        if ($('#all-groups-chx').prop('checked')) {
+//                            $('#all-groups-slc').attr('disabled', 'disabled');
+//                        } else {
+//                            $('#all-groups-slc').removeAttr('disabled');
+//                        }
+//                    });
+//
+//                    $('#all-symbols-chx').change(function () {
+//                        if ($('#all-symbols-chx').prop('checked')) {
+//                            $('#all-symbols-slc').attr('disabled', 'disabled');
+//                        } else {
+//                            $('#all-symbols-slc').removeAttr('disabled');
+//                        }
+//                    });
+//
+//                    if ($('#all-groups-chx').prop('checked')) {
+//                        $('#all-groups-slc').attr('disabled', 'disabled');
+//                    } else {
+//                        $('#all-groups-slc').removeAttr('disabled');
+//                    }
+//
+//                    if ($('#all-symbols-chx').prop('checked')) {
+//                        $('#all-symbols-slc').attr('disabled', 'disabled');
+//                    } else {
+//                        $('#all-symbols-slc').removeAttr('disabled');
+//                    }
+//
+//
+//                    $('#exactLogin').change(function () {
+//                        if ($('#exactLogin').prop('checked')) {
+//                            $("#from_login_li,#to_login_li").hide();
+//                            $("#login_li").show();
+//                        } else {
+//                            $("#from_login_li,#to_login_li").show();
+//                            $("#login_li").hide();
+//                        }
+//                    });
+//
+//                    if ($('#exactLogin').prop('checked')) {
+//                        $("#from_login_li,#to_login_li").hide();
+//                        $("#login_li").show();
+//                    } else {
+//                        $("#from_login_li,#to_login_li").show();
+//                        $("#login_li").hide();
+//                    }
+//                });
 
 
 

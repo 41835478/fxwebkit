@@ -101,4 +101,5 @@ return [
     'PROFIT_CLOSED'=>'Profit Closed',
     'tableHead'=>'Kitchen Sink',
     'tableDescription'=>'Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch',
+    'details'=>'Details'
 ];
