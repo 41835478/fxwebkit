@@ -85,7 +85,7 @@
                                         <td>{{ $oResult->SYMBOL }}</td>
                                         <td>{{ round($oResult->COMMISSION, 2) }}</td>
                                         <td>{{ $oResult->VOLUME }}</td>
-                                        <td><a href="{{ route('clients.reports.closedOrders').'?search=1&symbol='.$oResult->SYMBOL.'&order=TICKET&sort=desc'}}">{{trans('reports::reports.details')}}</a></td>
+                                        <td><a href="{{ route('clients.reports.closedOrders').'?search=1&symbol='.$oResult->SYMBOL.'&order=TICKET&sort=desc'}}"><span class="label label-info"> {{trans('reports::reports.details')}}</span></a></td>
 
                                     </tr>
                                 @endforeach

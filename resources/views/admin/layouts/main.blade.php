@@ -144,6 +144,14 @@
 		$("#from_login_li,#to_login_li").show();
 		$("#login_li").hide();
 	}
+$(document).ready(function(){
+
+	if($('.right-side-panel').length == 0){
+		$('.right-side-toggle').hide();
+	}
+
+});
+
 
 </script>
 

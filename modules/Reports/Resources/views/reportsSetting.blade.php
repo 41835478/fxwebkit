@@ -106,20 +106,20 @@
         @section("script")
             @parent
             <script>
-                init.push(function () {
-                    var options = {
-                        format: "yyyy-mm-dd",
-                        todayBtn: "linked",
-                        orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-                    }
-
-                    $('input[name="birthday"]').datepicker(options);
-
-                });
-
-                $('#jq-validation-select2').select2({allowClear: true, placeholder: 'Select a country...'}).change(function () {
-                    $(this).valid();
-                });
+//                init.push(function () {
+//                    var options = {
+//                        format: "yyyy-mm-dd",
+//                        todayBtn: "linked",
+//                        orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+//                    }
+//
+//                    $('input[name="birthday"]').datepicker(options);
+//
+//                });
+//
+//                $('#jq-validation-select2').select2({allowClear: true, placeholder: 'Select a country...'}).change(function () {
+//                    $(this).valid();
+//                });
 
             </script>
         @stop
@@ -208,20 +208,20 @@
 @section("script")
     @parent
     <script>
-        init.push(function () {
-            var options = {
-                format: "yyyy-mm-dd",
-                todayBtn: "linked",
-                orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-            }
+//        init.push(function () {
+//            var options = {
+//                format: "yyyy-mm-dd",
+//                todayBtn: "linked",
+//                orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+//            }
+//
+//            $('input[name="birthday"]').datepicker(options);
+//
+//        });
 
-            $('input[name="birthday"]').datepicker(options);
-
-        });
-
-        $('#jq-validation-select2').select2({allowClear: true, placeholder: 'Select a country...'}).change(function () {
-            $(this).valid();
-        });
+//        $('#jq-validation-select2').select2({allowClear: true, placeholder: 'Select a country...'}).change(function () {
+//            $(this).valid();
+//        });
 
     </script>
 @stop
