@@ -23,12 +23,9 @@
                 </div>
             </div>
 
-
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
-
 
                         <h3 class="box-title m-b-0">{{ trans('reports::reports.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('reports::reports.tableDescription') }}</p>
@@ -112,26 +109,26 @@
 
                 <div class="form-group">
                     <div class="col-md-12">
-                        <label>
+                        <div class="checkbox checkbox-success">
                             {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
-                            <span class="lbl">{{ trans('reports::reports.ExactLogin') }}</span>
-                        </label>
+                            <label for="exactLogin">{{ trans('reports::reports.ExactLogin') }}</label>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="from_login_li">
                     <div class="col-md-12">
                         {!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="to_login_li">
                     <div class="col-md-12">
                         {!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="login_li">
                     <div class="col-md-12">
                         {!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}
                     </div>
@@ -145,7 +142,7 @@
 
                 <div class="form-group">
                     <div class="col-md-12">
-                        {!! Form::text('from_date', $aFilterParams['from_date'], ['placeholder'=>trans('reports::reports.FromDate'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('from_date', $aFilterParams['from_date'], ['placeholder'=>trans('reports::reports.FromDate'),'class'=>'form-control input-sm mydatepicker']) !!}
                         <span class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </span>
@@ -154,7 +151,7 @@
 
                 <div class="form-group">
                     <div class="col-md-12">
-                        {!! Form::text('to_date', $aFilterParams['to_date'], ['placeholder'=>trans('reports::reports.ToDate'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('to_date', $aFilterParams['to_date'], ['placeholder'=>trans('reports::reports.ToDate'),'class'=>'form-control input-sm mydatepicker']) !!}
                         <span class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </span>
@@ -163,8 +160,10 @@
 
                 <div class="form-group">
                     <div class="col-md-12">
-                        {!! Form::checkbox('all_symbols', 1, $aFilterParams['all_symbols'], ['class'=>'px','id'=>'all-symbols-chx']) !!}
-                        <span class="lbl">{{ trans('reports::reports.AllSymbols') }}</span>
+                            <div class="checkbox checkbox-success">
+                                {!! Form::checkbox('all_symbols', 1, $aFilterParams['all_symbols'], ['class'=>'px','id'=>'all-symbols-chx']) !!}
+                                <label for="all-symbols-chx">{{ trans('reports::reports.AllSymbols') }}</label>
+                            </div>
                     </div>
                 </div>
 
@@ -193,69 +192,9 @@
             </div>
         </div>
 
+@stop
 
-        <script>
-            init.push(function () {
-                var options = {
-                    todayBtn: "linked",
-                    orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto',
-                    format: "yyyy-mm-dd"
-                }
-                $('.datepicker-warpper').datepicker(options);
-
-                $('#all-groups-chx').change(function () {
-                    if ($('#all-groups-chx').prop('checked')) {
-                        $('#all-groups-slc').attr('disabled', 'disabled');
-                    } else {
-                        $('#all-groups-slc').removeAttr('disabled');
-                    }
-                });
-
-                $('#all-symbols-chx').change(function () {
-                    if ($('#all-symbols-chx').prop('checked')) {
-                        $('#all-symbols-slc').attr('disabled', 'disabled');
-                    } else {
-                        $('#all-symbols-slc').removeAttr('disabled');
-                    }
-                });
-
-                if ($('#all-groups-chx').prop('checked')) {
-                    $('#all-groups-slc').attr('disabled', 'disabled');
-                } else {
-                    $('#all-groups-slc').removeAttr('disabled');
-                }
-
-                if ($('#all-symbols-chx').prop('checked')) {
-                    $('#all-symbols-slc').attr('disabled', 'disabled');
-                } else {
-                    $('#all-symbols-slc').removeAttr('disabled');
-                }
-
-
-
-
-                $('#exactLogin').change(function () {
-                    if ($('#exactLogin').prop('checked')) {
-                        $("#from_login_li,#to_login_li").hide();
-                        $("#login_li").show();
-                    } else {
-                        $("#from_login_li,#to_login_li").show();
-                        $("#login_li").hide();
-                    }
-                });
-
-                if ($('#exactLogin').prop('checked')) {
-                    $("#from_login_li,#to_login_li").hide();
-                    $("#login_li").show();
-                } else {
-                    $("#from_login_li,#to_login_li").show();
-                    $("#login_li").hide();
-                }
-            });
-        </script>
-        @stop
 @section('hidden')
-
 
 <div class="  theme-default page-mail" >
     <div class="mail-nav" >
@@ -385,10 +324,10 @@
 
 
                             @if (count($oResults))
-                                {{-- */$i=0;/* --}}
-                                {{-- */$class='';/* --}}
+                                 */$i=0;/*
+                                 */$class='';/*
                                 @foreach($oResults as $oResult)
-                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                     */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/*
                                     <div class="tr {{ $class }}">
 
 

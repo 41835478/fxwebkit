@@ -60,8 +60,6 @@
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('user.password') }}</label>
-
-
                                         {!! Form::password("password",["class"=>"form-control","value"=>$userInfo['password']]) !!}
                                     </div>
                                 </div><!-- col-sm-6 -->
@@ -88,7 +86,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('user.BirthDay') }}</label>
-                                        {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control']) !!}
+                                        {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control mydatepicker']) !!}
                                     </div>
                                 </div><!-- col-sm-6 -->
                                 <div class="col-sm-6">
