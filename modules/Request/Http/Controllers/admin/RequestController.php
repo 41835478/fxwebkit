@@ -44,14 +44,13 @@ class RequestController extends Controller
 
 
         $status = (isset($oRequest->status))? $oRequest->status : -1;
-        if ($oRequest->has('search')) {
+
             $aFilterParams['status']=$status;
 
-            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['login'] =  (isset($oRequest->login))? $oRequest->login:'';
 
             $oResults = $this->RequestLog->getInternalTransferRequestByFilters($aFilterParams, false, $sOrder, $sSort);
 
-        }
 
 
         return view('request::admin/internalTransferRequestList')
@@ -83,7 +82,7 @@ class RequestController extends Controller
 
         /* TODO with success */
 
-        return Redirect::route('admin.request.internalTransfer')->withErrors($forwordResult);
+        return Redirect::back()->withErrors($forwordResult);
     }
 
 
@@ -98,14 +97,14 @@ class RequestController extends Controller
 
 
         $status = (isset($oRequest->status))? $oRequest->status : -1;
-        if ($oRequest->has('search')) {
+
             $aFilterParams['status']=$status;
 
-            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['login'] =  (isset($oRequest->login))? $oRequest->login:'';
 
             $oResults = $this->RequestLog->getChangeLeverageRequestByFilters($aFilterParams, false, $sOrder, $sSort);
 
-        }
+
 
 
         return view('request::admin/changeLeverageRequestList')
@@ -188,13 +187,13 @@ class RequestController extends Controller
 
 
         $status = (isset($oRequest->status))? $oRequest->status : -1;
-        if ($oRequest->has('search')) {
+
             $aFilterParams['status']=$status;
 
-            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['login'] =  (isset($oRequest->login))? $oRequest->login:'';
 
             $oResults = $this->RequestLog->getChangePasswordRequestByFilters($aFilterParams, false, $sOrder, $sSort);
-        }
+
 
         $loginPasswordType=Config('accounts.loginPasswordType');
 
@@ -343,15 +342,15 @@ class RequestController extends Controller
 
 
         $status = (isset($oRequest->status))? $oRequest->status : -1;
-        if ($oRequest->has('search')) {
+
             $aFilterParams['status']=$status;
 
-            $aFilterParams['id'] = $oRequest->id;
+            $aFilterParams['id'] =  (isset($oRequest->id))? $oRequest->id:'';
 
 
             $oResults = $this->RequestLog->getWithDrawalRequestByFilters($aFilterParams, false, $sOrder, $sSort);
 
-        }
+
 
         return view('request::admin/withDrawalRequestList')
             ->with('oResults', $oResults)
@@ -410,15 +409,15 @@ class RequestController extends Controller
 
 
         $status = (isset($oRequest->status))? $oRequest->status : -1;
-        if ($oRequest->has('search')) {
+
             $aFilterParams['status']=$status;
 
-            $aFilterParams['first_name'] = $oRequest->first_name;
+            $aFilterParams['first_name'] = (isset($oRequest->first_name))? $oRequest->first_name:'';
 
 
             $oResults = $this->RequestLog->getAddAccountRequestByFilters($aFilterParams, false, $sOrder, $sSort);
 
-        }
+
 
         return view('request::admin/addAccountRequestList')
             ->with('oResults', $oResults)
@@ -514,14 +513,14 @@ class RequestController extends Controller
         $oResults = null;
 
         $status = (isset($oRequest->status))? $oRequest->status : -1;
-        if ($oRequest->has('search')) {
+
             $aFilterParams['status']=$status;
 
-            $aFilterParams['login'] = $oRequest->login;
+            $aFilterParams['login'] =  (isset($oRequest->login))? $oRequest->login:'';
             $oResults = $this->RequestLog->getAssignAccountRequestByFilters($aFilterParams, false, $sOrder, $sSort);
 
 
-        }
+
 
 
         return view('request::admin/assignAccountRequestList')
@@ -604,17 +603,17 @@ $oResult= $this->RequestLog->getAssignAccountById($oRequest->logId);
 
 
         $status = (isset($oRequest->status))? $oRequest->status : -1;
-        if ($oRequest->has('search')) {
+
             $aFilterParams['status'] = $status;
 
-            $aFilterParams['id'] = $oRequest->id;
+            $aFilterParams['id'] = (isset($oRequest->id))? $oRequest->id:'';
 
             $aFilterParams['active'] = 2;
             $role = explode(',', Config::get('fxweb.client_default_role'));
 
             $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
 
-        }
+
 
         return view('request::admin.activateUserRequestList')
             ->with('oResults', $oResults)
