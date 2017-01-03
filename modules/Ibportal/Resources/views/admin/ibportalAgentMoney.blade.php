@@ -7,12 +7,12 @@
             <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
-                    <h4 class="page-title">{{ trans('ibportal::ibportal.plans') }}</h4>
+                    <h4 class="page-title">{{ trans('ibportal::ibportal.agentMoney') }}</h4>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <ol class="breadcrumb pull-left">
                         <li><a href="#">{{ trans('ibportal::ibportal.ModuleTitle') }}</a></li>
-                        <li class="active">{{ trans('ibportal::ibportal.plans') }}</li>
+                        <li class="active">{{ trans('ibportal::ibportal.agentMoney') }}</li>
                     </ol>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
@@ -38,7 +38,7 @@
                             <tr>
 
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('ibportal::ibportal.order#'), 'TICKET', $oResults[0]) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">>{!! th_sort(trans('ibportal::ibportal.login'), 'LOGIN', $oResults[0]) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('ibportal::ibportal.login'), 'LOGIN', $oResults[0]) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('ibportal::ibportal.comment'), 'COMMENT', $oResults[0]) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('ibportal::ibportal.Commission'), 'PROFIT', $oResults[0]) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('ibportal::ibportal.close_time'), 'CLOSE_TIME', $oResults[0]) !!}</th>
@@ -52,9 +52,8 @@
                                 @foreach($oResults[0] as $oResult)
                                     {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
                                     <tr class="tr {{ $class }}">
-
-
                                         <td>{{ $oResult->TICKET }}</td>
+                                        <td>{{ $oResult->LOGIN }}</td>
                                         <td>{{ $oResult->COMMENT }}</td>
                                         <td>{{ $oResult->PROFIT }}</td>
                                         <td>{{ $oResult->CLOSE_TIME }}</td>
@@ -92,19 +91,24 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         {!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('ibportal::ibportal.Login'),'class'=>'form-control input-sm']) !!}
-
                     </div>
                 </div>
+
                 <div class="form-group">
                     <div class="col-md-12">
-                        {!! Form::text('from_date', $aFilterParams['from_date'], ['placeholder'=>trans('ibportal::ibportal.FromDate'),'class'=>'form-control input-sm']) !!}
-
+                        {!! Form::text('from_date', $aFilterParams['from_date'], ['placeholder'=>trans('ibportal::ibportal.FromDate'),'class'=>'form-control input-sm mydatepicker']) !!}
+                        <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <div class="col-md-12">
-                        {!! Form::text('to_date', $aFilterParams['to_date'], ['placeholder'=>trans('reports::reports.ToDate'),'class'=>'form-control input-sm']) !!}
-
+                        {!! Form::text('to_date', $aFilterParams['to_date'], ['placeholder'=>trans('ibportal::ibportal.ToDate'),'class'=>'form-control input-sm mydatepicker']) !!}
+                        <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
                     </div>
                 </div>
 

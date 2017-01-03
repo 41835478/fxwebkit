@@ -331,13 +331,9 @@ class IbportalController extends Controller
 
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-
-            $role = explode(',', Config::get('fxweb.client_default_role'));
-
-            $oResults = $this->Users->getClientAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
-
         }
-
+        $role = explode(',', Config::get('fxweb.client_default_role'));
+        $oResults = $this->Users->getClientAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
         return view('ibportal::admin.agent_users')->with('oResults', $oResults)
             ->with('aFilterParams', $aFilterParams);
 
@@ -360,15 +356,10 @@ class IbportalController extends Controller
 
         if ($oRequest->has('search')) {
 
-
             $aFilterParams['name'] = $oRequest->name;
-
-
-            $oResults = $this->Ibportal->getClientPlansByFilters($aFilterParams, false, $sOrder, $sSort, $agentId);
-
-
         }
 
+        $oResults = $this->Ibportal->getClientPlansByFilters($aFilterParams, false, $sOrder, $sSort, $agentId);
 
         return view('ibportal::admin.agent_plan_list')
             ->with('oResults', $oResults)
@@ -719,16 +710,17 @@ class IbportalController extends Controller
 
     public function getAgentMoney(Request $oRequest)
     {
+
        $agentId=($oRequest->has('agentId'))?  $oRequest->agentId:'';
         $login=UserIbid::select('login')->where('user_id',$agentId)->first();
 
-    $login=($login)? $login->login:0;
+         $login=($login)? $login->login:'';
 
         $oSymbols = $this->Ibportal->getClosedTradesSymbols();
         $aTradeTypes = ['' => 'ALL'] + $this->Ibportal->getAgentCommissionTypes();
         $serverTypes = $this->Ibportal->getServerTypes();
-        $sSort = $oRequest->sort;
-        $sOrder = $oRequest->order;
+        $sSort = (isset($oRequest->sort))? $oRequest->sort:'ASC';
+        $sOrder = (isset($oRequest->order))? $oRequest->order:'TICKET';
         $aGroups = [];
         $aSymbols = [];
         $oResults = null;
@@ -741,8 +733,8 @@ class IbportalController extends Controller
             'group' => '',
             'all_symbols' => true,
             'symbol' => '',
-            'sort' => 'ASC',
-            'order' => 'TICKET',
+            'sort' => $sSort,
+            'order' => $sOrder,
             'agentId' => $agentId
         ];
 
@@ -755,7 +747,7 @@ class IbportalController extends Controller
             $aTradeTypes[$sKey] = trans('general.' . $sValue);
         }
         if ($oRequest->has('search')) {
-            $aFilterParams['login'] = $login;
+            $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['agentId'] = $agentId;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
@@ -766,12 +758,7 @@ class IbportalController extends Controller
             $aFilterParams['symbol'] = $oRequest->symbol;
         }
 
-        if ($oRequest->has('search') ) {
-
             $oResults = $this->Ibportal->getAgentsAccountantByFilters($aFilterParams, false, $sOrder, $sSort);
-            $oResults[0]->order = $aFilterParams['order'];
-            $oResults[0]->sorts = $aFilterParams['sort'];
-        }
 
         return view('ibportal::admin.ibportalAgentMoney')
             ->with('aSymbols', $aSymbols)

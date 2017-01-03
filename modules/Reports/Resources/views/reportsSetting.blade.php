@@ -47,19 +47,12 @@
                                     <div id="collapseOne" class="panel-collapse in">
                                         <div class="panel-body">
                                             <div class="row">
-
-
                                                 <div class="col-sm-4">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            {!! Form::checkbox('is_client', 1,$reportsSetting['is_client'], ['class'=>'px','id'=>'is_client']) !!}
-                                                            <span class="lbl">{{ trans('reports::reports.is_client') }}</span>
-                                                        </label>
+                                                    <div class="checkbox checkbox-success">
+                                                        {!! Form::checkbox('is_client', 1,$reportsSetting['is_client'], ['class'=>'px','id'=>'is_client']) !!}
+                                                        <label for="is_client">{{ trans('reports::reports.is_client') }}</label>
                                                     </div>
                                                 </div>
-
-
-
                                             </div>
 
                                             <hr>
@@ -68,13 +61,12 @@
 
                                                 @foreach(config('reports.client_menu') as $index=>$tab)
                                                     <div class="col-sm-4">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                {!! Form::checkbox('client_menu_display['.$index.']', 1,$tab['display'], ['class'=>'px','id'=>'tab'.$tab['title']]) !!}
-                                                                <span class="lbl">{{ trans('reports::reports.'.$tab['title']) }}</span>
-                                                            </label>
+                                                        <div class="checkbox checkbox-success">
+                                                            {!! Form::checkbox('client_menu_display['.$index.']', 1,$tab['display'], ['class'=>'px','id'=>'tab'.$tab['title']]) !!}
+                                                            <label for="tab{{$tab['title']}}">{{ trans('reports::reports.'.$tab['title']) }}</label>
                                                         </div>
                                                     </div>
+
                                                 @endforeach
 
 

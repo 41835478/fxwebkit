@@ -164,7 +164,6 @@
                     {!! Form::select('agents', $agents, $agent, ['class'=>'form-control  input-sm']) !!}</div>
 
                 </div>
-            </div>
 
             <div class="form-group">
                 <label class="col-md-12"></label>
@@ -173,6 +172,9 @@
 
                 </div>
             </div>
+            </div>
+
+
 
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
             {!! Form::hidden('order', $aFilterParams['order']) !!}

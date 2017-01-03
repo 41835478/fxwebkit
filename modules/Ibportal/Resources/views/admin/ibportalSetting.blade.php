@@ -57,17 +57,11 @@
                                             <div class="row">
 
                                                 <div class="col-sm-4">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            {!! Form::checkbox('is_client', 1,$ibportalSetting['is_client'], ['class'=>'px','id'=>'is_client']) !!}
-                                                            <span class="lbl">{{ trans('ibportal::ibportal.is_client') }}</span>
-                                                        </label>
+                                                    <div class="checkbox checkbox-success">
+                                                        {!! Form::checkbox('is_client', 1,$ibportalSetting['is_client'], ['class'=>'px','id'=>'is_client']) !!}
+                                                        <label for="is_client">{{ trans('ibportal::ibportal.is_client') }}</label>
                                                     </div>
                                                 </div>
-
-
-
-
 
                                             </div>
 
@@ -76,14 +70,15 @@
                                                 <div><span>{{trans('general.selectVisibleTabs')}}</span></div>
 
                                                 @foreach(config('ibportal.client_menu') as $index=>$tab)
-                                                    <div class="col-sm-4">
-                                                        <div class="checkbox">
-                                                            <label>
+
+                                                        <div class="col-sm-4">
+                                                            <div class="checkbox checkbox-success">
                                                                 {!! Form::checkbox('client_menu_display['.$index.']', 1,$tab['display'], ['class'=>'px','id'=>'tab'.$tab['title']]) !!}
-                                                                <span class="lbl">{{ trans('ibportal::ibportal.'.$tab['title']) }}</span>
-                                                            </label>
+                                                                <label for="tab{{$tab['title']}}">{{ trans('ibportal::ibportal.'.$tab['title']) }}</label>
+                                                            </div>
                                                         </div>
-                                                    </div>
+
+
                                                     @endforeach
 
                                                             <!-- col-sm-6 -->
@@ -109,36 +104,36 @@
                                             <div class="row">
 
 
-                                                <div class="col-sm-4">
-                                                    <div class="checkbox">
-                                                        <label>
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox checkbox-success">
                                                             {!! Form::checkbox('allowAgentTransferToAll', 1,$ibportalSetting['allowAgentTransferToAll'], ['class'=>'px allow_transfer_check_box','id'=>'allowAgentTransferToAll']) !!}
-                                                            <span class="lbl">{{ trans('ibportal::ibportal.allowAgentTransferToAll') }}</span>
-                                                        </label>
+                                                            <label for="allowAgentTransferToAll">{{ trans('ibportal::ibportal.allowAgentTransferToAll') }}</label>
+                                                        </div>
                                                     </div>
-                                                </div>
 
 
 
 
 
-                                                <div class="col-sm-4">
-                                                    <div class="checkbox">
-                                                        <label>
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox checkbox-success">
                                                             {!! Form::checkbox('allowAgentTransferToHisAgentUsers', 1,$ibportalSetting['allowAgentTransferToHisAgentUsers'], ['class'=>'px allow_transfer_check_box','id'=>'allowAgentTransferToHisAgentUsers']) !!}
-                                                            <span class="lbl">{{ trans('ibportal::ibportal.allowAgentTransferToHisAgentUsers') }}</span>
-                                                        </label>
+                                                            <label for="allowAgentTransferToHisAgentUsers">{{ trans('ibportal::ibportal.allowAgentTransferToHisAgentUsers') }}</label>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="col-sm-4">
-                                                    <div class="checkbox">
-                                                        <label>
+
+
+
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox checkbox-success">
                                                             {!! Form::checkbox('allowAgentTransferToHisAgent', 1,$ibportalSetting['allowAgentTransferToHisAgent'], ['class'=>'px allow_transfer_check_box','id'=>'allowAgentTransferToHisAgent']) !!}
-                                                            <span class="lbl">{{ trans('ibportal::ibportal.allowAgentTransferToHisAgent') }}</span>
-                                                        </label>
+                                                            <label for="allowAgentTransferToHisAgent">{{ trans('ibportal::ibportal.allowAgentTransferToHisAgent') }}</label>
+                                                        </div>
                                                     </div>
-                                                </div>
+
+
+
                                                 <!-- col-sm-6 -->
                                             </div>
                                         </div>

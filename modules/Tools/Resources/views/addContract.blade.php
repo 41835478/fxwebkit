@@ -88,7 +88,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('tools::tools.start_date') }}</label>
-                                        {!! Form::text('start_date',$contractInfo['start_date'],['class'=>'form-control']) !!}
+                                        {!! Form::text('start_date',$contractInfo['start_date'],['class'=>'form-control mydatepicker']) !!}
                                     </div>
                                 </div>
                                 <!-- col-sm-6 -->
@@ -100,7 +100,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('tools::tools.expiry_date') }}</label>
-                                        {!! Form::text('expiry_date',$contractInfo['expiry_date'],['class'=>'form-control']) !!}
+                                        {!! Form::text('expiry_date',$contractInfo['expiry_date'],['class'=>'form-control mydatepicker']) !!}
 
                                     </div>
                                 </div>

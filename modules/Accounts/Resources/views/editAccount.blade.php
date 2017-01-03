@@ -94,7 +94,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('accounts::accounts.Birthday') }}</label>
-                                        {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control']) !!}
+                                        {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control mydatepicker']) !!}
                                     </div>
                                 </div>
                                 <!-- col-sm-6 -->
@@ -139,17 +139,18 @@
                                     <label class="control-label "
                                            style="text-align: left;display: block;">{{ trans('accounts::accounts.gender') }}</label>
 
-                                    <div class="radio col-xs-2">
-                                        <label class='gender_radio_0'>
-                                            {!! Form::radio('gender', 0,!$userInfo['gender'],['id'=>'gender_radio_0','class'=>'px']) !!}
-                                            <span class="lbl">{{ trans('accounts::accounts.male') }}</span>
+                                    <div class="radio-list">
+                                        <label class="radio-inline p-0">
+                                            <div class="radio radio-info">
+                                                {!! Form::radio('gender',0,!$userInfo['gender'],['id'=>'gender_radio_0','class'=>'radio']) !!}
+                                                <label for="gender_radio_0">{{ trans('accounts::accounts.male') }}</label>
+                                            </div>
                                         </label>
-                                    </div>
-                                    <div class="radio col-xs-2">
-                                        <label class='gender_radio_1'>
-
-                                            {!! Form::radio('gender',1,$userInfo['gender'],['id'=>'gender_radio_1','class'=>'px']) !!}
-                                            <span class="lbl">{{ trans('accounts::accounts.female') }}</span>
+                                        <label class="radio-inline">
+                                            <div class="radio radio-info">
+                                                {!! Form::radio('gender',1,$userInfo['gender'],['id'=>'gender_radio_1','class'=>'radio']) !!}
+                                                <label for="gender_radio_1">{{ trans('accounts::accounts.female') }} </label>
+                                            </div>
                                         </label>
                                     </div>
                                 </div>

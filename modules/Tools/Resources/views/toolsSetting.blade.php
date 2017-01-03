@@ -56,22 +56,12 @@
                                                     <div class="form-group">
                                                         <div class="col-sm-4">
                                                             <div class="checkbox checkbox-success">
-                                                                <input id="checkbox33" type="checkbox">
                                                                 {!! Form::checkbox('is_client', 1,$toolsSetting['is_client'], ['class'=>'px','id'=>'is_client']) !!}
-                                                                <label>
-                                                                    <span class="lbl">{{ trans('tools::tools.is_client') }}</span>
-                                                                </label>
+                                                                    <label for="is_client">{{ trans('tools::tools.is_client') }}</label>
+
                                                             </div>
                                                         </div>
 
-                                                    {{--<div class="col-sm-4">--}}
-                                                        {{--<div class="checkbox">--}}
-                                                            {{--<label>--}}
-                                                                {{--{!! Form::checkbox('is_client', 1,$toolsSetting['is_client'], ['class'=>'px','id'=>'is_client']) !!}--}}
-                                                                {{--<span class="lbl">{{ trans('tools::tools.is_client') }}</span>--}}
-                                                            {{--</label>--}}
-                                                        {{--</div>--}}
-                                                    {{--</div>--}}
                                                     </div>
 
 
@@ -82,14 +72,15 @@
                                                     <div><span>{{trans('general.selectVisibleTabs')}}</span></div>
 
                                                     @foreach(config('tools.client_menu') as $index=>$tab)
+
                                                         <div class="col-sm-4">
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    {!! Form::checkbox('client_menu_display['.$index.']', 1,$tab['display'], ['class'=>'px','id'=>'tab'.$tab['title']]) !!}
-                                                                    <span class="lbl">{{ trans('tools::tools.'.$tab['title']) }}</span>
-                                                                </label>
+                                                            <div class="checkbox checkbox-success">
+                                                                {!! Form::checkbox('client_menu_display['.$index.']', 1,$tab['display'], ['class'=>'px','id'=>'tab'.$tab['title']]) !!}
+                                                                <label for="tab{{$tab['title']}}">{{ trans('tools::tools.'.$tab['title']) }}</label>
+
                                                             </div>
                                                         </div>
+
                                                     @endforeach
                                                 </div>
                                             </div>

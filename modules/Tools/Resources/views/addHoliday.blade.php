@@ -47,7 +47,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('tools::tools.start_date') }}</label>
-                                        {!! Form::text('start_date',$holidayInfo['start_date'],['class'=>'form-control']) !!}
+                                        {!! Form::text('start_date',$holidayInfo['start_date'],['class'=>'form-control mydatepicker']) !!}
                                     </div>
                                 </div>
                                 <!-- col-sm-6 -->
@@ -61,7 +61,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('tools::tools.end_date') }}</label>
-                                        {!! Form::text('end_date',$holidayInfo['end_date'],['class'=>'form-control']) !!}
+                                        {!! Form::text('end_date',$holidayInfo['end_date'],['class'=>'form-control mydatepicker']) !!}
 
                                     </div>
                                 </div>

@@ -122,26 +122,26 @@
 
             <div class="form-group">
                 <div class="col-md-12">
-                    <label>
+                    <div class="checkbox checkbox-success">
                         {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
-                        <span class="lbl">{{ trans('accounts::accounts.ExactLogin') }}</span>
-                    </label>
+                        <label for="exactLogin">{{ trans('accounts::accounts.ExactLogin') }}</label>
+                    </div>
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="from_login_li">
                 <div class="col-md-12">
                     {!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('accounts::accounts.FromLogin'),'class'=>'form-control input-sm']) !!}
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="to_login_li">
                 <div class="col-md-12">
                     {!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('accounts::accounts.ToLogin'),'class'=>'form-control input-sm']) !!}
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="login_li">
                 <div class="col-md-12">
                     {!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('accounts::accounts.Login'),'class'=>'form-control input-sm']) !!}
                 </div>

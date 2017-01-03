@@ -98,7 +98,6 @@ class EloquentIbportalContractRepository implements IbportalContract
         }
 
         return $oResult;
-
     }
 
     public function addPlan($planName, $public)
@@ -653,6 +652,7 @@ class EloquentIbportalContractRepository implements IbportalContract
 
     public function getAgentsAccountantByFilters($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC')
     {
+      //  dd($aFilters);
         $oFxHelper = new Fx();
         $oResult = new Mt4ClosedBalance();
         $aSummury = [];
@@ -701,8 +701,6 @@ class EloquentIbportalContractRepository implements IbportalContract
 
                 $oResult = $oResult->where('PROFIT', '<', 0);
             }
-
-
         }
 
         $oResult = $oResult->where('CMD', '=', 6);

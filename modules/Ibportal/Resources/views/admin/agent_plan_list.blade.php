@@ -35,36 +35,35 @@
                         <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
                             <thead>
                             <tr>
-
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('ibportal::ibportal.id'), 'id', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('ibportal::ibportal.first_name'), 'first_name', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! trans('ibportal::ibportal.plan') !!} </th>
-
-
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('ibportal::ibportal.name'), 'name', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('ibportal::ibportal.public'), 'Public', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3"></th>
                             </tr>
                             </thead>
                             <tbody>
-
                             @if (count($oResults))
-                                {{--*/$i=0;/*--}}
-                                {{--*/$class='';/*--}}
+                                {{-- */$i=0;/* --}}
+                                {{-- */$class='';/* --}}
                                 @foreach($oResults as $oResult)
-                                    {{--*/$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/*--}}
-                                    <tr>
+                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                    <tr class='{{ $class }}'>
+                                        <td>{{ $oResult->name }}</td>
+                                        <td>
+                                            @if($oResult->public)
+                                                {{trans('ibportal::ibportal.public') }}
+                                            @endif
+                                        </td>
 
-                                        <td>{{ $oResult->id }}</td>
-                                        <td>{{ $oResult->first_name }}</td>
-                                        <td>{{ $oResult->last_name }}</td>
-                                        <td>{{ $oResult->email }}</td>
-                                        <td>{{ $oResult->agentPlan->plan->name }}</td>
+                                        <td>
+                                            @if(!$oResult->public)
+                                                <a href="{{ route('admin.ibportal.assignAgentPlan').'?planId='.$oResult->id.'&agentId='.$aFilterParams['agentId'] }}"
+                                                   class="fa fa-link"></a>
+                                            @endif
+                                        </td>
 
                                     </tr>
-
                                 @endforeach
                             @endif
-
                             </tbody>
                         </table>
 

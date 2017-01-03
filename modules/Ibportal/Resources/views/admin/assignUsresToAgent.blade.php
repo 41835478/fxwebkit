@@ -125,7 +125,7 @@
     <div class="right-side-panel">
         <div class="scrollable-right container">
             <!-- .Theme settings -->
-            <h3 class="title-heading">{{ trans('user.Search') }}</h3>
+            <h3 class="title-heading">{{ trans('ibportal::ibportal.search') }}</h3>
 
 
 
@@ -157,18 +157,27 @@
 
                 </div>
             </div>
+
+
             <div class="form-group">
                 <div class="col-md-12">
+                    <div class="radio-list">
+                        <label class="radio-inline p-0">
+                            <div class="radio radio-info">
+                                {!! Form::radio('signed',0,$aFilterParams['signed'],['id'=>'signed_0','checked'=>'true']) !!}
+                                <label for="signed_0">{{ trans('ibportal::ibportal.all') }}</label>
+                            </div>
+                        </label>
+                        <label class="radio-inline">
+                            <div class="radio radio-info">
+                                {!! Form::radio('signed',1,($aFilterParams['signed']==1),['id'=>'signed_1']) !!}
+                                <label for="signed_1">{{ trans('ibportal::ibportal.assigned') }}</label>
+                            </div>
+                        </label>
+                    </div>
 
-                        {!! Form::radio('signed',0,$aFilterParams['signed'],['id'=>'signed_0','checked'=>'true']) !!}
-                        <label for="signed_0">{{ trans('ibportal::ibportal.all') }}</label>
-                        {!! Form::radio('signed',1,($aFilterParams['signed']==1),['id'=>'signed_1']) !!}<label
-                                for="signed_1">{{ trans('ibportal::ibportal.assigned') }}</label>
-
-
-
+                </div>
             </div>
-        </div>
 
         <div class="form-group">
             <label class="col-md-12"></label>
@@ -187,6 +196,58 @@
 
     </div>
     </div>
+@stop
+@section('script')
+    @parent
+    <script>
+
+
+            $('#all-groups-chx').change(function () {
+
+                if ($('#all-groups-chx').prop('checked')) {
+                    $('#all-groups-slc').attr('disabled', 'disabled');
+                } else {
+                    $('#all-groups-slc').removeAttr('disabled');
+                }
+            });
+            if ($('#all-groups-chx').prop('checked')) {
+                $('#all-groups-slc').attr('disabled', 'disabled');
+            } else {
+                $('#all-groups-slc').removeAttr('disabled');
+            }
+
+
+            $('#exactLogin').change(function () {
+                if ($('#exactLogin').prop('checked')) {
+                    $("#from_login_li,#to_login_li").hide();
+                    $("#login_li").show();
+                } else {
+                    $("#from_login_li,#to_login_li").show();
+                    $("#login_li").hide();
+                }
+            });
+
+            if ($('#exactLogin').prop('checked')) {
+                $("#from_login_li,#to_login_li").hide();
+                $("#login_li").show();
+            } else {
+                $("#from_login_li,#to_login_li").show();
+                $("#login_li").hide();
+            }
+
+
+
+        $('input[name="check_all"]').click(function () {
+            if ($(this).prop("checked")) {
+                $(".users_checkbox").prop("checked", true);
+            } else {
+
+                $(".users_checkbox").prop("checked", false);
+            }
+        });
+
+    </script>
+
 @stop
 
 @section('hidden')

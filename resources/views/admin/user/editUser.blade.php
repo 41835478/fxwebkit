@@ -129,18 +129,19 @@
 
                                 <div class="col-sm-6">
                                     <label class="control-label " style="text-align: left;display: block;">{{ trans('user.gender') }}</label>
-                                    <div class="radio col-xs-2">
-                                        <label class='gender_radio_0'>
 
-                                            {!! Form::radio('gender',0,!$userInfo['gender'],['id'=>'gender_radio_0','class'=>'px']) !!}
-                                            <span class="lbl">{{ trans('user.male') }}</span>
+                                    <div class="radio-list">
+                                        <label class="radio-inline p-0">
+                                            <div class="radio radio-info">
+                                                {!! Form::radio('gender',0,!$userInfo['gender'],['id'=>'gender_radio_0','class'=>'radio']) !!}
+                                                <label for="gender_radio_0">{{ trans('user.male') }}</label>
+                                            </div>
                                         </label>
-                                    </div>
-                                    <div class="radio col-xs-2">
-                                        <label class='gender_radio_1'>
-
-                                            {!! Form::radio('gender',1,$userInfo['gender'],['id'=>'gender_radio_1','class'=>'px']) !!}
-                                            <span class="lbl">{{ trans('user.female') }}</span>
+                                        <label class="radio-inline">
+                                            <div class="radio radio-info">
+                                                {!! Form::radio('gender',1,$userInfo['gender'],['id'=>'gender_radio_1','class'=>'radio']) !!}
+                                                <label for="gender_radio_1">{{ trans('user.female') }} </label>
+                                            </div>
                                         </label>
                                     </div>
                                 </div>
@@ -165,7 +166,7 @@
         <!-- /#page-wrapper -->
         <!-- .right panel -->
         @stop
-      
+
         @section('hidden')
 
     <div id="content-wrapper">
@@ -233,7 +234,7 @@
         <div class="col-sm-6">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('user.BirthDay') }}</label>
-                {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control']) !!}
+                {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control mydatepicker']) !!}
             </div>
         </div><!-- col-sm-6 -->
         <div class="col-sm-6">
@@ -271,20 +272,38 @@
         </div><!-- col-sm-6 -->
 
         <div class="col-sm-6">
-            <label class="control-label " style="text-align: left;display: block;">{{ trans('user.gender') }}</label>
-            <div class="radio col-xs-2">
-                <label class='gender_radio_0'>
-
-                    {!! Form::radio('gender',0,!$userInfo['gender'],['id'=>'gender_radio_0','class'=>'px']) !!}
-                    <span class="lbl">{{ trans('user.male') }}</span>
-                </label>
+            <div class="form-group">
+                <label class="control-label">Membership</label>
+                <div class="radio-list">
+                    <label class="radio-inline p-0">
+                        <div class="radio radio-info">
+                            <input type="radio" name="radio" id="radio1" value="option1">
+                            <label for="radio1">Option 1</label>
+                        </div>
+                    </label>
+                    <label class="radio-inline">
+                        <div class="radio radio-info">
+                            <input type="radio" name="radio" id="radio2" value="option2">
+                            <label for="radio2">Option 2 </label>
+                        </div>
+                    </label>
+                </div>
             </div>
-            <div class="radio col-xs-2">
-                <label class='gender_radio_1'>
+            {{--<label class="control-label " style="text-align: left;display: block;">{{ trans('user.gender') }}</label>--}}
 
-                    {!! Form::radio('gender',1,$userInfo['gender'],['id'=>'gender_radio_1','class'=>'px']) !!}
-                    <span class="lbl">{{ trans('user.female') }}</span>
-                </label>
+            {{--<div class="radio col-xs-2">--}}
+                {{--<label class='gender_radio_0'>--}}
+
+                    {{--{!! Form::radio('gender',0,!$userInfo['gender'],['id'=>'gender_radio_0','class'=>'px']) !!}--}}
+                    {{--<span class="lbl">{{ trans('user.male') }}</span>--}}
+                {{--</label>--}}
+            {{--</div>--}}
+            {{--<div class="radio col-xs-2">--}}
+                {{--<label class='gender_radio_1'>--}}
+
+                    {{--{!! Form::radio('gender',1,$userInfo['gender'],['id'=>'gender_radio_1','class'=>'px']) !!}--}}
+                    {{--<span class="lbl">{{ trans('user.female') }}</span>--}}
+                {{--</label>--}}
             </div>
         </div>
     </div><!-- row -->
