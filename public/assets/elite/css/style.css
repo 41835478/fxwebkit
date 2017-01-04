@@ -15618,7 +15618,7 @@ ul.pro-amenities li span i {
 /************For Laptop (1549px)************/
 @media (min-width: 1549px) {
   #page-wrapper {
-    margin-right: 240px;
+    /*margin-right: 240px;*/
   }
 }
 /************For Laptop (1280px)************/
