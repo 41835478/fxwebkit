@@ -113,26 +113,26 @@
 
                 <div class="form-group">
                     <div class="col-md-12">
-                        <label>
+                        <div class="checkbox checkbox-success">
                             {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
-                            <span class="lbl">{{ trans('reports::reports.ExactLogin') }}</span>
-                        </label>
+                            <label for="exactLogin">{{ trans('reports::reports.ExactLogin') }}</label>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="from_login_li">
                     <div class="col-md-12">
                         {!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="to_login_li">
                     <div class="col-md-12">
                         {!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="login_li">
                     <div class="col-md-12">
                         {!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}
                     </div>
@@ -146,7 +146,7 @@
 
                 <div class="form-group">
                     <div class="col-md-12">
-                        {!! Form::text('from_date', $aFilterParams['from_date'], ['placeholder'=>trans('reports::reports.FromDate'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('from_date', $aFilterParams['from_date'], ['placeholder'=>trans('reports::reports.FromDate'),'class'=>'form-control input-sm mydatepicker']) !!}
                         <span class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </span>
@@ -155,7 +155,7 @@
 
                 <div class="form-group">
                     <div class="col-md-12">
-                        {!! Form::text('to_date', $aFilterParams['to_date'], ['placeholder'=>trans('reports::reports.ToDate'),'class'=>'form-control input-sm']) !!}
+                        {!! Form::text('to_date', $aFilterParams['to_date'], ['placeholder'=>trans('reports::reports.ToDate'),'class'=>'form-control input-sm mydatepicker']) !!}
                         <span class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </span>
@@ -164,8 +164,10 @@
 
                 <div class="form-group">
                     <div class="col-md-12">
-                        {!! Form::checkbox('all_symbols', 1, $aFilterParams['all_symbols'], ['class'=>'px','id'=>'all-symbols-chx']) !!}
-                        <span class="lbl">{{ trans('reports::reports.AllSymbols') }}</span>
+                        <div class="checkbox checkbox-success">
+                            {!! Form::checkbox('all_symbols', 1, $aFilterParams['all_symbols'], ['class'=>'px','id'=>'all-symbols-chx']) !!}
+                            <label for="all-symbols-chx">{{ trans('reports::reports.AllSymbols') }}</label>
+                        </div>
                     </div>
                 </div>
 

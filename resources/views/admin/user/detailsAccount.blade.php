@@ -32,7 +32,7 @@
 
                         <h3 class="box-title m-b-0">{{ trans('user.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('user.tableDescription') }}</p>
-
+                        <div class="panel">
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-xs-4 col-sm-2   text-right">
@@ -187,6 +187,7 @@
 
 
                     </div>
+                        </div>
                 </div>
             </div>
             <!-- /.container-fluid -->

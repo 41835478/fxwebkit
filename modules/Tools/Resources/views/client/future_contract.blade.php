@@ -117,13 +117,12 @@
 
                 <div class="form-group">
                     <div class="col-md-12">
-
-                        <label>
+                        <div class="checkbox checkbox-success">
                             {!! Form::checkbox('all_groups', 1, $aFilterParams['all_groups'], ['class'=>'px','id'=>'all-groups-chx']) !!}
-                            <span class="lbl">{{ trans('tools::tools.with_out') }}</span>
-                        </label>
-
+                            <label for="all-groups-chx">{{ trans('tools::tools.with_out') }}</label>
+                        </div>
                     </div>
+
                 </div>
 
 

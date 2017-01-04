@@ -2,6 +2,83 @@
 @section('title', trans('user.changePassword'))
 @section('content')
 
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- .row -->
+            <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
+                <div class="col-lg-12">
+                    <h4 class="page-title">{{ trans('user.changePassword') }}</h4>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <ol class="breadcrumb pull-left">
+                        <li><a href="#">{{ trans('general.settings') }}</a></li>
+                        <li class="active">{{ trans('user.changePassword') }}</li>
+                    </ol>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
+                    <form role="search" class="app-search hidden-xs pull-right">
+                        <input type="text" placeholder=" {{ trans('user.Search') }} ..." class="form-control">
+                        <a href="javascript:void(0)"><i class="fa fa-search"></i></a>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="white-box">
+
+                        <h3 class="box-title m-b-0">{{ trans('user.tableHead') }}</h3>
+                        <p class="text-muted m-b-20">{{ trans('user.tableDescription') }}</p>
+
+                        {!! Form::open(['class'=>'panel form-horizontal']) !!}
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group no-margin-hr">
+                                        <label class="control-label">{{ trans('user.password') }}</label>
+
+                                        {!! Form::password('password',$userInfo['password'],['class'=>'form-control']) !!}
+                                    </div>
+                                </div>
+                                <!-- col-sm-6 -->
+                                <div class="col-sm-6">
+                                    <div class="form-group no-margin-hr">
+                                        <label class="control-label">{{ trans('user.confirmPassword') }}</label>
+                                        {!! Form::password('password_confirmation',$userInfo['password_confirmation'],['class'=>'form-control']) !!}
+
+                                    </div>
+                                </div>
+                                <!-- col-sm-6 -->
+                            </div>
+                            <!-- row -->
+                            {!!   View('admin/partials/messages')->with('errors',$errors) !!}
+                        </div>
+
+
+                        <div class="panel-footer text-right">
+                            <a href="{{ route('client.users.profile')}}">
+                                <button type="submit" class="btn btn-primary" name="edit_id"
+                                        value="{{ $userInfo['edit_id']}}">{{ trans('user.save') }}</button>
+                            </a>
+                        </div>
+                        {!! Form::close() !!}
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
+        </div>
+        <!-- /#page-wrapper -->
+        <!-- .right panel -->
+        @stop
+
+        @section('hidden')
+
     <div id="content-wrapper">
         <div class="page-header">
             <h1>{{ trans('user.changePassword') }}</h1>

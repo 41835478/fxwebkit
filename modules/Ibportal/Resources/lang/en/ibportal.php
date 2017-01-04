@@ -144,5 +144,6 @@
     'server'=>'Server',
     'plan_list'=>'Plan',
     'ToDate' => 'To Date',
+    'AllSymbols'=>'All Symbols',
 
 ]; ?>
