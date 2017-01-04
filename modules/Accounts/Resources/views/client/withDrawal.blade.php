@@ -54,12 +54,12 @@
                 <div class="col-lg-12">
                     <div class="white-box">
 
-                        {!! Form::open(['class'=>'panel form-horizontal']) !!}
 
                         <h3 class="box-title m-b-0">{{ trans('accounts::accounts.tableHead') }}</h3>
 
                         <p class="text-muted m-b-20">{{ trans('accounts::accounts.tableDescription') }}</p>
 
+                        {!!   View('admin/partials/messages')->with('errors',$errors) !!}
                         <div class="row">
                             <br><br>
                             <label class="label label-primary label-tag">{{ trans('accounts::accounts.Balance') }} :
@@ -70,6 +70,34 @@
                                 <b>{{ $oCurrentWithDrawal['EQUITY'] }}</b> </label>
 
                             <div class="clearfix"></div>
+
+
+
+                            {!! Form::open(['method'=>'get','class'=>'panel form-horizontal','id'=>'selectLoginForm']) !!}
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label">{{ trans('accounts::accounts.server') }}</label>
+                                    {!! Form::select('server_id',$serversList,$server_id,array('class'=>'form-control','onchange'=>'$(\'#selectLoginForm\').submit();')) !!}
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group no-margin-hr">
+                                    <label class="control-label">{{ trans('accounts::accounts.Login') }}</label>
+
+                                    {!! Form::select('login',$mt4UsersArray,$login,array('class'=>'form-control','onchange'=>'$(\'#selectLoginForm\').submit();')) !!}
+                                </div>
+                            </div>
+                            {!! Form::hidden('current_server_id',$server_id) !!}
+
+
+                            {!! Form::close() !!}
+
+
+                            {!! Form::open(['class'=>'panel form-horizontal']) !!}
                             <div class="col-sm-6">
                                 <div class="form-group no-margin-hr">
                                     <label class="control-label">{{ trans('accounts::accounts.amount') }}</label>
@@ -77,9 +105,8 @@
                                 </div>
                             </div>
                             <!-- col-sm-6 -->
-                        </div>
 
-                        <div class="row">
+
                             @if($Pssword==true)
                                 <div class="col-sm-6">
 
@@ -101,7 +128,7 @@
                         </div>
 
 
-                    {!!   View('admin/partials/messages')->with('errors',$errors) !!}
+
 
             {!! Form::close() !!}
 

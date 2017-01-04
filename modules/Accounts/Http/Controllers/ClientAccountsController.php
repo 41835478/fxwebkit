@@ -141,6 +141,21 @@ class ClientAccountsController extends Controller
             ->with('showWithDrawal', config('accounts.showWithDrawal'))
             ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
     }
+    private function setDefaultLoginInfo(&$oRequest){
+
+        list($serversList,$firstServer)=$this->oMt4User->serversList($oRequest->server_id);
+        if(!isset($oRequest->server_id)){
+            $oRequest->merge(['server_id'=>$firstServer]);
+        }
+
+        list($mt4UsersArray,$firstLogin)=$this->oMt4User->getMt4UsersArray($oRequest->server_id);
+        if(!isset($oRequest->login)  ){
+            $oRequest->merge(['login'=>$firstLogin]);
+        }else if(( isset($oRequest->current_server_id) && $oRequest->server_id !=$oRequest->current_server_id  ) ){
+            $oRequest->login=$firstLogin;
+        }
+        return [$serversList,$mt4UsersArray];
+    }
 
     public function getMt4Leverage(Request $oRequest)
     {
@@ -337,6 +352,7 @@ return Redirect::back()->withErrors($result);
     public function getMt4InternalTransfer(Request $oRequest)
     {
 
+        list($serversList,$mt4UsersArray)=$this->setDefaultLoginInfo($oRequest);
         if(!hasMtUser($oRequest->login,$oRequest->server_id)){
             return Redirect::route('clients.accounts.Mt4UsersList');
         }
@@ -360,12 +376,15 @@ return Redirect::back()->withErrors($result);
             ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
             ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
             ->with('showWithDrawal', config('accounts.showWithDrawal'))
-            ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
+            ->with('showMt4Transfer', config('accounts.showMt4Transfer'))
+            ->with(['serversList'=>$serversList,'mt4UsersArray'=>$mt4UsersArray]);
     }
 
     public function postMt4InternalTransfer(Request $oRequest)
     {
 
+
+        list($serversList,$mt4UsersArray)=$this->setDefaultLoginInfo($oRequest);
 
         if(!hasMtUser($oRequest->login,$oRequest->server_id)){
             return Redirect::route('clients.accounts.Mt4UsersList');
@@ -429,7 +448,8 @@ return Redirect::back()->withErrors($result);
             ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
             ->with('showWithDrawal', config('accounts.showWithDrawal'))
             ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
-            ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
+            ->with('showMt4Transfer', config('accounts.showMt4Transfer'))
+            ->with(['serversList'=>$serversList,'mt4UsersArray'=>$mt4UsersArray]);
     }
 
 
@@ -573,6 +593,7 @@ return Redirect::back()->withErrors($result);
 
     }
 
+
     public function getMt4LiveAccount(Request $oRequest)
     {
 
@@ -669,6 +690,8 @@ return Redirect::back()->withErrors($result);
     public function getWithDrawal(Request $oRequest)
     {
 
+        list($serversList,$mt4UsersArray)=$this->setDefaultLoginInfo($oRequest);
+
         if(!hasMtUser($oRequest->login,$oRequest->server_id)){
             return Redirect::route('clients.accounts.Mt4UsersList');
         }
@@ -694,11 +717,14 @@ return Redirect::back()->withErrors($result);
             ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
             ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
             ->with('showWithDrawal', config('accounts.showWithDrawal'))
-            ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
+            ->with('showMt4Transfer', config('accounts.showMt4Transfer'))
+            ->with(['serversList'=>$serversList,'mt4UsersArray'=>$mt4UsersArray]);
     }
 
     public function postWithDrawal(Request $oRequest)
     {
+
+        list($serversList,$mt4UsersArray)=$this->setDefaultLoginInfo($oRequest);
 
         if(!hasMtUser($oRequest->login,$oRequest->server_id)){
             return Redirect::route('clients.accounts.Mt4UsersList');
@@ -734,7 +760,8 @@ return Redirect::back()->withErrors($result);
             ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
             ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
             ->with('showWithDrawal', config('accounts.showWithDrawal'))
-            ->with('showMt4Transfer', config('accounts.showMt4Transfer'));
+            ->with('showMt4Transfer', config('accounts.showMt4Transfer'))
+            ->with(['serversList'=>$serversList,'mt4UsersArray'=>$mt4UsersArray]);
     }
 
 

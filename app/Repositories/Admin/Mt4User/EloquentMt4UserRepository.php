@@ -82,6 +82,47 @@ class EloquentMt4UserRepository implements Mt4UserContract{
         return (count($oResult)) ? $oResult[0] : null;
     }
 
+    public function getMt4UsersArray($server_id) {
+
+        $aFilterParams = [
+            'from_login' => '',
+            'to_login' => '',
+            'exactLogin' => false,
+            'login' => '',
+            'name' => '',
+            'all_groups' => true,
+            'group' => '',
+            'server_id' => $server_id,
+            'sort' => 'LOGIN',
+            'order' => 'ASC',
+        ];
+        $oResult=$this->  getUsersByFilters($aFilterParams, true);
+
+
+        $firstLogin=0;
+        $loginList=[];
+        /* =============== Preparing Output  =============== */
+        if(count($oResult)){
+            foreach ($oResult as $dKey => $oValue) {
+                $firstLogin=( $firstLogin ==0)?$oValue->LOGIN: $firstLogin;
+                $loginList[$oValue->LOGIN]=$oValue->LOGIN;
+            }
+        }
+        /* =============== Preparing Output  =============== */
+
+        return [$loginList,$firstLogin];
+    }
+    public function serversList(){
+        $servers=config('fxweb.servers');
+        $serversList=[];
+        $firstServer=0;
+        foreach($servers as $server_id=>$server_info){
+            $firstServer=( $firstServer ==0)? $server_id: $firstServer;
+            $serversList[$server_id]=$server_info['serverName'];
+        }
+
+        return [$serversList,$firstServer];
+    }
     public function getUsersByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC') {
         //$oResult = new Mt4User();
         /* ===============================check admin or user================ */
