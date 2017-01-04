@@ -155,6 +155,7 @@
     'asignMt4Users' => 'Assign Mt4 Users',
     'mt4UserDetails' => 'User Details',
     'withDrawal' => 'Withdrawal',
+    'withdrawal' => 'Withdrawal',
     'directOrderToMt4Server' => 'Direct Order To Mt4 Server',
     'operationsForwardSettings'=>'Operations Forward Settings',
     'directLeverageOrderToMt4Server' => 'Direct Leverage Order To Server',
@@ -206,4 +207,5 @@
     'confirmPassword'=>'Confirm Password',
     'tableHead'=>'Kitchen Sink',
     'tableDescription'=>'Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch',
+    'server'=>'Server'
 ]; ?>

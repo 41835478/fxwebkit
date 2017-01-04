@@ -38,22 +38,23 @@
             <li><a href="{{ route('client.users.profile') }}"><i class="ti-user"></i> {{ trans('general.Profile') }}</a></li>
             <li><a href=" {{ route('client.users.changePassword') }}"><i class="ti-lock "></i>{{ trans('general.changePassword') }}</a></li>
 
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{route('clinet.editProfile')}}"><i class="ti-settings"></i> Account Setting</a></li>
-                            <li role="separator" class="divider"></li>
+           <li role="separator" class="divider"></li>
                             <li><a href="{{ route('client.auth.logout') }}"><i class="fa fa-power-off"></i> {{ trans('general.Logout') }}</a></li>
                                                           </ul>
                                                           <!-- /.dropdown-user -->
                                                         </li>
                                                         <!-- /.dropdown -->
                                                         <!-- .right toggle -->
-                                                        <li class="right-side-toggle"><a class="waves-effect waves-light" href="javascript:void(0)"><i class="ti-arrow-right"></i></a></li>
+                                                        <li class="right-side-toggle"><a class="waves-effect waves-light" href="javascript:void(0)"> <i class="ti-arrow-right"></i></a></li>
                                                         <!-- /.right toggle -->
                                                       </ul>
                                                       <!-- top right panel -->
                                                     </div>
                                                   </nav>
                                                   <!-- End Top Navigation -->
+
+
+
 
 
 

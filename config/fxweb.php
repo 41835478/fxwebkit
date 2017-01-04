@@ -28,6 +28,23 @@ return [
     'mt4CheckDemoHost' => '192.168.15.10',
     'mt4CheckDemoPort' => '443',
     'demoServerName' => 'demo',
+
+
+    'servers'=>[
+        0=>[
+            'type'=>'live',
+            'mt4CheckHost' => '192.168.15.10',
+            'mt4CheckPort' => '443',
+            'serverName' => 'live_1',
+        ],
+        1=>[
+            'type'=>'demo',
+            'mt4CheckHost' => '192.168.15.10',
+            'mt4CheckPort' => '443',
+            'serverName' => 'demo_1',
+        ]
+    ],
+
     'senderEmail' => 'm.hashim@mqplanet.com',
     'displayName' => 'Mqplanet',
     'layoutAssetsFolder'=>'elite',

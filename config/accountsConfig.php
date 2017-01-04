@@ -66,6 +66,18 @@ return [
                     'title' => 'mt4UsersList',
                     'icon' => 'fa-briefcase',
                 ],
+        [
+            'display'=>'1',
+            'route' => 'clients.accounts.mt4InternalTransfer',
+            'title' => 'internalTransfer',
+            'icon' => 'fa-retweet',
+        ],
+        [
+            'display'=>'1',
+            'route' => 'client.accounts.withDrawal',
+            'title' => 'withdrawal',
+            'icon' => 'fa-external-link',
+        ],
             ]
 
 ];
