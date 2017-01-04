@@ -1,0 +1,43 @@
+CREATE TRIGGER `UPdatePrices` BEFORE UPDATE ON `mt4_prices`
+ FOR EACH ROW BEGIN
+    UPDATE jordangold.ps_product set price=jordangold.ps_product.weight*NEW.ASK WHERE jordangold.ps_product.item_type=NEW.SYMBOL;
+END
+
+
+
+
+CREATE TRIGGER `assignNewMt4ToUser` AFTER INSERT ON `mt4_users`
+ FOR EACH ROW BEGIN
+DECLARE users_id integer;
+ SELECT id  INTO @users_id FROM users
+       WHERE users.email= NEW.Email limit 1;
+
+       IF @users_id > 0
+       THEN
+           insert INTO mt4_users_users(users_id,mt4_users_id,server_id)VALUES( @users_id ,NEW.LOGIN,NEW.server_id);
+        END IF;
+
+END
+
+
+
+
+CREATE TRIGGER `clean_mt4_users_users` BEFORE DELETE ON `mt4_users`
+ FOR EACH ROW delete from mt4_users_users where mt4_users_id = old.LOGIN and server_id=old.server_id
+
+
+
+
+ CREATE TRIGGER `re-assignWhenEditEmail` AFTER UPDATE ON `mt4_users`
+  FOR EACH ROW BEGIN
+ DECLARE users_id integer;
+  SELECT id  INTO @users_id FROM users
+        WHERE users.email= NEW.Email limit 1;
+
+        IF @users_id > 0
+        THEN
+        delete from mt4_users_users where mt4_users_id=NEW.LOGIN and server_id=NEW.server_id ;
+            insert INTO mt4_users_users(users_id,mt4_users_id,server_id)VALUES( @users_id ,NEW.LOGIN,NEW.server_id);
+         END IF;
+
+ END
