@@ -31,64 +31,70 @@
                         <h3 class="box-title m-b-0">{{ trans('ibportal::ibportal.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('ibportal::ibportal.tableDescription') }}</p>
 
-                        <div class="col-xs-12 col-lg-4">
 
-                            <div class="stat-panel">
-                                <div class="stat-row">
-                                    <!-- Info background, without padding, horizontally centered text, super large text -->
-                                    <div class="stat-cell bg-info no-padding text-center text-slg">
-                                        <i class="fa fa-user"></i>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4  row-in-br" onclick="window.location.href='{{route('admin.mt4Configrations.groupsList')}}';">
+                                <div class="col-in row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E" class="fa fa-user"></i>
+                                        <h5 class="text-muted vb"> {{ trans('ibportal::ibportal.user') }}</h5>
                                     </div>
-                                </div> <!-- /.stat-row -->
-                                <div class="stat-row">
-                                    <!-- Bordered, without top border, horizontally centered text, large text -->
-                                    <div class="stat-cell bordered no-border-t text-center text-lg">
-                                        <strong>{{ $statistics['users_number'] }}</strong>
-                                        <small><small>{{ trans('ibportal::ibportal.user') }}</small></small>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <h3 class="counter text-right m-t-15 text-danger">
+                                            {{ $statistics['users_number'] }}</h3>
                                     </div>
-                                </div> <!-- /.stat-row -->
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%"> <span class="sr-only">40% Complete (success)</span> </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="clearFix"></div>
+
+
+
+                            <div class="col-xs-12 col-sm-4 row-in-br  b-r-none" onclick="window.location.href='{{route('admin.mt4Configrations.symbolsList')}}';">
+                                <div class="col-in row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon fa fa-users" data-icon=""></i>
+                                        <h5 class="text-muted vb">{{ trans('ibportal::ibportal.mt4_users') }}</h5>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <h3 class="counter text-right m-t-15 text-megna">{{ $statistics['mt4_users_number'] }} </h3>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-megna" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%"> <span class="sr-only">40% Complete (success)</span> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-xs-12 col-sm-4  row-in-br" onclick="window.location.href='{{route('admin.mt4Configrations.groupsList')}}';">
+                                <div class="col-in row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E" class="fa fa-certificate"></i>
+                                        <h5 class="text-muted vb">  {{ trans('ibportal::ibportal.plan') }}</h5>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <h3 class="counter text-right m-t-15 text-danger">
+                                            {{ $statistics['planes_number'] }}</h3>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%"> <span class="sr-only">40% Complete (success)</span> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                         </div>
 
 
-                        <div class="col-xs-12 col-lg-4">
-                            <div class="stat-panel">
-                                <div class="stat-row">
-                                    <!-- Info background, without padding, horizontally centered text, super large text -->
-                                    <div class="stat-cell bg-info no-padding text-center text-slg">
-                                        <i class="fa fa-users"></i>
-                                    </div>
-                                </div> <!-- /.stat-row -->
-                                <div class="stat-row">
-                                    <!-- Bordered, without top border, horizontally centered text, large text -->
-                                    <div class="stat-cell bordered no-border-t text-center text-lg">
-                                        <strong>{{ $statistics['mt4_users_number'] }}</strong>
-                                        <small><small>{{ trans('ibportal::ibportal.mt4_users') }}</small></small>
-                                    </div>
-                                </div> <!-- /.stat-row -->
-                            </div>
-                        </div>
 
 
-                        <div class="col-xs-12 col-lg-4">
-                            <div class="stat-panel">
-                                <div class="stat-row">
-                                    <!-- Info background, without padding, horizontally centered text, super large text -->
-                                    <div class="stat-cell bg-info no-padding text-center text-slg">
-                                        <i class="fa fa-certificate"></i>
-                                    </div>
-                                </div> <!-- /.stat-row -->
-                                <div class="stat-row">
-                                    <!-- Bordered, without top border, horizontally centered text, large text -->
-                                    <div class="stat-cell bordered no-border-t text-center text-lg">
-                                        <strong>{{ $statistics['planes_number'] }}</strong>
-                                        <small><small>{{ trans('ibportal::ibportal.plan') }}</small></small>
-                                    </div>
-                                </div> <!-- /.stat-row -->
-                            </div>
-                        </div>
 
 
                         <div class="clearFix" style="clear:both;"></div>
@@ -137,9 +143,9 @@
     {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/highcharts.js') !!}
     <script>
 
-        init.push(function () {
-            $('.tooltip_number').tooltip();
-        });
+//        init.push(function () {
+//            $('.tooltip_number').tooltip();
+//        });
 
         $(function () {
             $('#growth_chart_all_div').highcharts({
@@ -355,9 +361,9 @@
     {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/highcharts.js') !!}
     <script>
 
-        init.push(function () {
-            $('.tooltip_number').tooltip();
-        });
+//        init.push(function () {
+//            $('.tooltip_number').tooltip();
+//        });
 
         $(function () {
             $('#growth_chart_all_div').highcharts({
