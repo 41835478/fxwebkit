@@ -787,14 +787,106 @@ a {
   font-weight: bold;
   margin-bottom: 40px; }
 
-#page-contents h2:after {
-  content: " ";
-  border-top: 5px solid #038d8d;
-  margin-top: 10px;
-  display: block;
-  float: right;
-  width: 50%; }
+.page {
+  width: 700px; }
 
+.page .mainInnerHeaderText .innerPageHeader {
+  color: #384656; }
+
+.page .mainInnerHeaderText .innerPageHeader:before {
+  content: " ";
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  border-bottom: 5px solid #089594; }
+
+.page .mainInnerHeaderText .innerPageHeader:after {
+  clear: both;
+  width: 100%;
+  display: block;
+  content: " "; }
+
+.page .mainInnerHeaderText .innerPageHeader h2 {
+  float: left;
+  margin-top: -20px;
+  display: inline-block;
+  padding: 5px;
+  background-color: #ffffff; }
+
+.page .mainInnerHeaderText p {
+  clear: both; }
+
+.innerSectionWithHeader {
+  clear: both; }
+
+.innerSectionWithHeader h3 {
+  color: #089594;
+  font-size: 18px; }
+
+.innerHLine {
+  width: 100%;
+  line-height: 0px;
+  border-bottom: 2px solid #44596a;
+  margin: 5px 0px;
+  clear: both; }
+
+.menuWithDots {
+  margin: 0px;
+  padding: 0px; }
+
+.menuWithDots li {
+  list-style: none;
+  overflow: auto; }
+
+.menuWithDots li:before {
+  content: "\f111";
+  font: normal normal normal 14px/1 FontAwesome;
+  margin-right: 5px;
+  margin-top: -5px;
+  font-size: 8px;
+  float: left;
+  color: #089594; }
+
+/*________________________________table*/
+.generalTable {
+  border-radius: 10px;
+  border: 1px solid #374557;
+  width: 100%; }
+
+.generalTable td, .generalTable th {
+  margin: 0px;
+  padding: 5px; }
+
+.generalTable td {
+  color: #374557; }
+
+.headerTh {
+  background-color: #374557;
+  color: #ffffff; }
+
+.normalHeaderTh {
+  background-color: #b7b7b7;
+  color: #374557; }
+
+.markedCell {
+  background-color: #bcbcbc;
+  text-align: center; }
+
+/*____________________________END____table*/
+.redBox {
+  border: 2px solid #f00;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 90%;
+  margin: 20px 5%; }
+
+/*_______________________________________________banner*/
+#innerPagesMainBanner {
+  background-image: url(/cms_assets/true4x/public/images/banner_1.jpg);
+  width: 100%;
+  height: 300px; }
+
+/*__________________________________________END_____banner*/
 #sideButtonsAllDiv #innerSideButtonsAllDiv p {
   color: #44596a;
   text-align: center; }
