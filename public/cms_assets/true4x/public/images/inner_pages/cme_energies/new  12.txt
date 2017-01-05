@@ -1,0 +1,35 @@
+CME Energies
+
+The energies sector offers the trading of energy products, specifically crude oil and natural gas.
+
+Energies are innately volatile markets because of the direct impact world events can have on supply. So trade oil and 
+gas now with True4x and enjoy the benefits of these markets as they allow for fast and efficient trade execution.
+
+Product        Contract Size    Max Lot  Min Fluctuation    Margin*    Pip Calculation    Trading Hours(CYT)  Limit/Stop order *             SWAPS
+
+XAUUSD 
+GOLD vs. 
+US Dollar         100 Oz		50 Lot		0.01	        1,000 USD 	0.1= 10 USD				                     2.5	            -2.1	  -5.66
+
+
+
+XAUUSD                                                                                     Monday – Friday
+GOLD vs.                                                                                   01:00 – 00:00  
+US Dollar        100 Oz	    	50 Lot		 0.01	           1,000 USD	0.1= 10 USD	                              2.5	            -2.1	  -5.66
+                                                                                          Friday close 23:30
+																						  
+																						  
+XAUUSD 
+GOLD vs. 
+US Dollar        100 Oz		  50 Lot		0.01	           1,000 USD	0.1= 10 USD				                 2.5	            -2.1	  -5.66
+
+
+*In compliance with the regulatory requirements of Polish Financial Supervision Authority (KNF), the maximum
+leverage for clients from Poland is 1:100
+
+“Stop/Limit Order levels may vary during news or unusual market conditions without prior notice.”
+
+Investor Alert: Forex Trading & Trading foreign exchange on margin carries a high level of risk, and may not be
+suitable for all investors. There is a possibility that you may sustain a loss of some or all of your investment
+and therefore you should not invest money that you cannot afford to lose.
+
