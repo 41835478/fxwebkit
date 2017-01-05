@@ -1,5 +1,315 @@
 
-<div id="android_trader" class="page"  >
+<div id="cfds_stocks" class="page" >
+    <div class="innerContainer">
+
+        <div class="mainInnerHeaderText">
+            <div class="innerPageHeader">
+                <h2>
+                    CFDs Stocks
+
+
+                </h2>
+            </div>
+
+        </div>
+
+        <table class="generalTable" cellpadding="0" cellspacing="0">
+            <thead>
+            <tr>
+                <th class="headerTh">Product </th>
+                <th class="headerTh"> Contract Size</th>
+                <th class="headerTh">Max Lot </th>
+                <th class="headerTh"> Main Fluctuation</th>
+                <th class="headerTh"> Margin*</th>
+                <th class="headerTh">Pip Calculation </th>
+                <th class="headerTh">Trading Hours(CYT) </th>
+                <th class="headerTh"> Limit/Stop order* </th>
+                <th class="headerTh" colspan="2">SWAPS</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr><td>
+
+                    XAUUSD  GOLD vs.  US Dollar </td><td>  100 Oz	</td><td>	50 Lot	</td><td>	0.01	  </td><td>       1,000 USD</td><td>	0.1= 10 USD		</td><td rowspan="3" class="markedCell">   Monday – Friday  <br> 01:00 – 00:00<br> Friday close<br>    23:30 </td><td>		           2.5	      </td><td>      -2.1</td><td>	  -5.66</td></tr>
+
+            <tr><td>
+
+
+                    XAUUSD    GOLD vs. US Dolla  </td><td>  100 Oz	</td><td>	50 Lot	</td><td>	0.01	  </td><td>1,000 USD</td><td>	0.1= 10 USD	</td> <td>         2.5	      </td><td>      -2.1	</td><td>  -5.66</td></tr>
+
+
+            <tr><td>
+
+
+                    XAUUSD    GOLD vs. US Dollar </td><td> 100 Oz	</td><td>	50 Lot	</td><td>	0.01	   </td><td>      1,000 USD	</td><td>0.1= 10 USD				   </td><td>        2.5	       </td><td>     -2.1	</td><td>  -5.66</td></tr>
+
+            </tbody>
+        </table>
+
+        <div>
+            <br><br>
+
+            *In compliance with the regulatory requirements of Polish Financial Supervision Authority (KNF), the maximum
+            leverage for clients from Poland is 1:100
+            <br><br>
+            When you start stock trading with True4x you’ll get everything you need to have a smooth and enjoyable
+            experience.
+            <br><br>
+            We offer a range of powerful trading platforms that allow you to trade instantly from live graphs and set a variety of
+            orders, stops and limits to manage your portfolio. You can also monitor and trade your equities on the same screen
+            as your forex and Commodities trades.
+
+            <br><br>
+
+
+            <div class="redBox">
+
+
+                Investor Alert: Forex Trading & Trading foreign exchange on margin carries a high level of risk, and may not be
+                suitable for all investors. There is a possibility that you may sustain a loss of some or all of your investment
+                and therefore you should not invest money that you cannot afford to lose.
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<div id="cfd_Indices" class="page"  style="display: none;" >
+    <div class="innerContainer">
+
+        <div class="mainInnerHeaderText">
+            <div class="innerPageHeader">
+                <h2>
+                    CFD Indices
+
+
+                </h2>
+            </div>
+
+        </div>
+
+        <table class="generalTable" cellpadding="0" cellspacing="0">
+            <thead>
+            <tr>
+                <th class="headerTh">Product </th>
+                <th class="headerTh"> Contract Size</th>
+                <th class="headerTh">Max Lot </th>
+                <th class="headerTh"> Main Fluctuation</th>
+                <th class="headerTh"> Margin*</th>
+                <th class="headerTh">Pip Calculation </th>
+                <th class="headerTh">Trading Hours(CYT) </th>
+                <th class="headerTh"> Limit/Stop order* </th>
+                <th class="headerTh" colspan="2">SWAPS</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr><td>
+
+                    XAUUSD  GOLD vs.  US Dollar </td><td>  100 Oz	</td><td>	50 Lot	</td><td>	0.01	  </td><td>       1,000 USD</td><td>	0.1= 10 USD		</td><td rowspan="3" class="markedCell">   Monday – Friday  <br> 01:00 – 00:00<br> Friday close<br>    23:30 </td><td>		           2.5	      </td><td>      -2.1</td><td>	  -5.66</td></tr>
+
+            <tr><td>
+
+
+                    XAUUSD    GOLD vs. US Dolla  </td><td>  100 Oz	</td><td>	50 Lot	</td><td>	0.01	  </td><td>1,000 USD</td><td>	0.1= 10 USD	</td> <td>         2.5	      </td><td>      -2.1	</td><td>  -5.66</td></tr>
+
+
+            <tr><td>
+
+
+                    XAUUSD    GOLD vs. US Dollar </td><td> 100 Oz	</td><td>	50 Lot	</td><td>	0.01	   </td><td>      1,000 USD	</td><td>0.1= 10 USD				   </td><td>        2.5	       </td><td>     -2.1	</td><td>  -5.66</td></tr>
+
+            </tbody>
+        </table>
+
+        <div>
+
+            <br><br>
+
+            *In compliance with the regulatory requirements of Polish Financial Supervision Authority (KNF), the maximum
+            leverage for clients from Poland is 1:100
+            <br><br>
+            **required margin will be reserved for both BUY and SELL positions within the same account.
+            <br><br>
+            “Stop/Limit Order levels may vary during news or unusual market conditions without prior notice.”
+
+            <br><br>
+
+
+            <div class="redBox">
+
+                Investor Alert: Forex Trading & Trading foreign exchange on margin carries a high level of risk, and may not be
+                suitable for all investors. There is a possibility that you may sustain a loss of some or all of your investment
+                and therefore you should not invest money that you cannot afford to lose.
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div id="commodities" class="page"  style="display: none;" >
+    <div class="innerContainer">
+
+        <div class="mainInnerHeaderText">
+            <div class="innerPageHeader">
+                <h2>
+                    CFD Commodities
+
+
+
+
+                </h2>
+            </div>
+<p>
+
+    Match your interests and market expertise to trade commodities with CFDs. Contracts for
+    <br><br>
+    Differences are contracts that mirror the profit and loss of a commodity as the difference between the purchase price
+    and selling price. True4x offers CFD trading on major soft commodities such as
+    <br><br>
+    Coffee and sugar. CFDs are derivative products that allow you to trade on live market price movements without
+    actually owning the underlying instrument.
+    <br><br>
+    Open your CFD trading account with True4x today and diversify your investment portfolio, whilst taking advantage
+    of the potential gains of these exciting instruments.
+</p>
+        </div>
+
+        <table class="generalTable" cellpadding="0" cellspacing="0">
+            <thead>
+            <tr>
+                <th class="headerTh">Product </th>
+                <th class="headerTh"> Contract Size</th>
+                <th class="headerTh">Max Lot </th>
+                <th class="headerTh"> Main Fluctuation</th>
+                <th class="headerTh"> Margin*</th>
+                <th class="headerTh">Pip Calculation </th>
+                <th class="headerTh">Trading Hours(CYT) </th>
+                <th class="headerTh"> Limit/Stop order* </th>
+                <th class="headerTh" colspan="2">SWAPS</th>
+            </tr>
+            </thead>
+            <tbody>
+           <tr><td>
+
+                   XAUUSD  GOLD vs.  US Dollar </td><td>  100 Oz	</td><td>	50 Lot	</td><td>	0.01	  </td><td>       1,000 USD</td><td>	0.1= 10 USD		</td><td rowspan="3" class="markedCell">   Monday – Friday  <br> 01:00 – 00:00<br> Friday close<br>    23:30 </td><td>		           2.5	      </td><td>      -2.1</td><td>	  -5.66</td></tr>
+
+           <tr><td>
+
+
+                   XAUUSD    GOLD vs. US Dolla  </td><td>  100 Oz	</td><td>	50 Lot	</td><td>	0.01	  </td><td>1,000 USD</td><td>	0.1= 10 USD	</td> <td>         2.5	      </td><td>      -2.1	</td><td>  -5.66</td></tr>
+
+
+           <tr><td>
+
+
+                   XAUUSD    GOLD vs. US Dollar </td><td> 100 Oz	</td><td>	50 Lot	</td><td>	0.01	   </td><td>      1,000 USD	</td><td>0.1= 10 USD				   </td><td>        2.5	       </td><td>     -2.1	</td><td>  -5.66</td></tr>
+
+            </tbody>
+        </table>
+
+        <div>
+
+
+            *In compliance with the regulatory requirements of Polish Financial Supervision Authority (KNF), the maximum
+            leverage for clients from Poland is 1:100
+            <br><br>
+            “Stop/Limit Order levels may vary during news or unusual market conditions without prior notice.”
+            <br><br>
+            <div class="redBox">
+            Investor Alert: Forex Trading & Trading foreign exchange on margin carries a high level of risk, and may not be
+            suitable for all investors. There is a possibility that you may sustain a loss of some or all of your investment
+            and therefore you should not invest money that you cannot afford to lose.
+        </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<div id="callback" class="page"  >
+    <div class="innerContainer">
+
+        <div class="mainInnerHeaderText">
+            <div class="innerPageHeader">
+                <h2>
+                    Request Callback
+
+
+
+                </h2>
+            </div>
+
+        </div>
+
+        <div class="innerSectionWithHeader" >
+            <header>
+                <h3>Enter your contact information and we will call you back </h3>
+            </header>
+            <section>
+                <form>
+                    <input>
+
+                    <input>
+
+                    <input>
+                    <button class="yellowButton" type="submit">Send Request</button>
+                </form>
+            </section>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="callback" class="page"  >
+    <div class="innerContainer">
+
+        <div class="mainInnerHeaderText">
+            <div class="innerPageHeader">
+                <h2>
+                    Request Callback
+
+
+
+                </h2>
+            </div>
+
+        </div>
+
+        <div class="innerSectionWithHeader" >
+            <header>
+                <h3>Enter your contact information and we will call you back </h3>
+            </header>
+            <section>
+                <form>
+                    <input>
+
+                    <input>
+
+                    <input>
+<button class="yellowButton" type="submit">Send Request</button>
+                </form>
+                </section>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div id="android_trader" class="page"   style="display: none;">
     <div class="innerContainer">
 
         <div class="mainInnerHeaderText">
@@ -678,7 +988,7 @@
     .headerTh{ background-color:#374557;color:#ffffff; }
     .normalHeaderTh{ background-color: #b7b7b7; color:#374557;}
 
-
+.markedCell{background-color: #bcbcbc; text-align: center;}
     /*____________________________END____table*/
 .redBox{
     border:2px solid #f00;
