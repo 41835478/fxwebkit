@@ -1,11 +1,114 @@
 
 
-<div id="aboutUsPage" class="page" style="display: none;" >
+<div id="fund_channel" class="page"  >
     <div class="innerContainer">
+
+        <div class="mainInnerHeaderText">
+            <div class="innerPageHeader">
+                <h2>fund_channel</h2>
+            </div>
+            <p >
+
+
+sdfsdfsdf
+            </p>
+
+        </div>
+
+        <style type="text/css">
+            #fund_channel .listWithImgs{margin:0px; padding:0px;}
+            #fund_channel .listWithImgs li{
+                list-style:none;
+                clear:both;
+            }
+            #fund_channel .listWithImgs{
+
+            }
+            #fund_channel .listWithImgs img{
+float:left;
+                padding-right:10px;
+                width:150px;
+            }
+
+            #fund_channel .listWithImgs h4{
+color:red;
+                margin:5px 0px;
+            }
+
+            #fund_channel .listWithImgs p{
+
+            }
+        </style>
+        <div class="listWithImgs">
+            <ul>
+                <li>
+                    <img src="/cms_assets/true4x/public/images/inner_pages/about_us/True4x-About-Us_17.png">
+                    <h4>af
+                        asdfasd
+                    </h4>
+                    <p>
+                        sdfasdfasd
+                    </p>
+                </li>
+                <li>
+                    <img src="/cms_assets/true4x/public/images/inner_pages/about_us/True4x-About-Us_17.png">
+                    <h4>af
+                        asdfasd
+                    </h4>
+                    <p>
+                        sdfasdfasd
+                    </p>
+                </li>
+                <li>
+                    <img src="/cms_assets/true4x/public/images/inner_pages/about_us/True4x-About-Us_17.png">
+                    <h4>af
+                        asdfasd
+                    </h4>
+                    <p>
+                        sdfasdfasd
+                    </p>
+                </li>
+            </ul>
+        </div>
+
+
+
+
+        <div class="innerSectionWithHeader" id="transferFees">
+            <header>
+                <h3>Here’s how Forex Trading with True4x will enhance your trading experience:</h3>
+            </header>
+            <section>
+
+                <table class="generalTable" cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th class="headerTh"></th>
+                        <th class="headerTh"></th>
+                        <th class="headerTh"></th>
+                    </tr>
+                    <tr>
+                        <th class="headerTh"></th>
+                        <th class="normalHeaderTh"></th>
+                        <th class="normalHeaderTh"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </section>
+
+            </div>
 
 
         </div>
-    </
+    </div>
 
 
 
@@ -266,6 +369,29 @@ content:"• ";
     float:left;
     color:#089594;
 }
+
+
+
+    /*________________________________table*/
+.generalTable{
+    border-radius:10px;
+    border:1px solid #374557;
+    width: 100%;
+
+
+}
+.generalTable td,.generalTable th{
+    margin:0px;
+    padding:5px;
+
+}
+.generalTable td{color:#374557;}
+.headerTh{ background-color:#374557;color:#ffffff; }
+.normalHeaderTh{ background-color: #b7b7b7; color:#374557;}
+.generalTable td:before,.generalTable th:before{content:"44";}
+
+/*____________________________END____table*/
+
 </style>
 
 
