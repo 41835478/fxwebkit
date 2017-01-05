@@ -1,12 +1,5 @@
 @extends(Config::get('cms.admin_theme'))
-
-
 @section('content')
-
-
-
-
-
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- .row -->
@@ -45,6 +38,7 @@
 
                         <h3 class="box-title m-b-0">Kitchen Sink</h3>
                         <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
+                        {!! Form::open(['url'=>asset('cms/customHtml/custom-html')]) !!}
                         <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
 
                            <thead>
@@ -70,30 +64,10 @@
                             @endforeach
                             </tbody>
                         </table>
-
-
-
-
-
-
-
-
-
-
-
+                        {!! Form::close() !!}
                     </div>
-
-
-
-
                 </div>
             </div>
-
-
-
-
-
-
 
         </div>
         <!-- /.container-fluid -->
