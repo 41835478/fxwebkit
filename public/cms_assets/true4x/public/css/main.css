@@ -842,7 +842,7 @@ a {
   content: "\f111";
   font: normal normal normal 14px/1 FontAwesome;
   margin-right: 5px;
-  margin-top: -5px;
+  margin-top: 5px;
   font-size: 8px;
   float: left;
   color: #089594; }
