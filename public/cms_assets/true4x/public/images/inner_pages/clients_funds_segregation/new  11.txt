@@ -1,0 +1,52 @@
+Clients Funds Segregation
+
+Clients Funds Deposited with True4x are held in segregated bank accounts and separated from the company's funds.
+True4x , upon receiving any Clients’ funds,promptly places those funds into one or more accounts, denoted as 
+“Clients”, opened with any of the following:
+
+	Central Bank
+	Credit Institution
+	Bank authorized in a third country
+	Qualifying money market fund
+	Deep liquidity from Tier-1 banks
+	Islamic (Swap Free) accounts
+	Separated from company’s funds.
+	
+Investor Compensation Fund
+
+Pursuant to section 17 of the Investment Services and Activities and Regulated Markets Law of 2007, "A Cypriot 
+Investment Firm (‘CIF') must be a member of the Investment Compensation Fund (‘ICF')". According to section 58 of 
+the Law, a CIF is not allowed to provide investment services without participating in the Investors Compensation
+Funds.
+
+True4x is a member in the Investor Compensation Fund the objective of which is to secure any claims of covered
+clients against members of the Fund and to compensate covered clients for any claims arising from the malfunction
+by a member of the Fund to fulfill its obligations despite whether that obligation arises from legislation, the client
+agreement or from wrongdoing on the part of the member of the Fund.
+
+The Investor Compensation Fund was established to secure the claims of covered clients against a CIF through the 
+payment of compensation in the event that the CIF in question was unable to: A- Return to covered Clients funds 
+owed to them or funds which belong to them but are held by the CIF in the context of providing investment services
+to the said Clients or B- Hand over to covered Clients financial instruments which belong to them and which the CIF
+concerned holds, manages or keeps on their account.
+
+Under the Rules and Regulations of the ICF, the total payable compensation to each covered Client may not exceed
+€20.000 EUR, irrespective of the number of accounts held, currency and place of offering the investment service.
+
+Clients that are not covered by the CIF are: The following categories of institutional and professional investors. States
+and international organizations. Central, federal, confederate, regional and local administrative authorities. Enterprises 
+associated with True4x, in accordance with the Fifth Schedule of the Law 144(I). Managerial and administrative staff of
+True4x. Shareholders of True4x Investors having in enterprises connected with True4x and, in general, of the group of 
+companies, to which True4x belongs, positions or duties corresponding to the ones listed in paragraphs (5) and (6). 
+Second-degree relatives and spouses of the persons listed in paragraphs (5), (6) and (7), as well as third parties acting
+for the account of these persons. Apart from the investors referred to in subsection (2) of section 55 of the Law 144(I),
+investors-Clients of a member of the Fund responsible for facts pertaining to the member of the Fund that have
+caused its financial difficulties or have contributed to the worsening of its financial situation or which have profited
+from these facts. Investors in the form of a company, which due to its size, is not allowed to draw a summary balance
+sheet in accordance with the Companies Law or a corresponding law of a Member State of the European Union.
+
+For more information about the Investor Compensation Fund
+
+Investor Alert: Forex Trading & Trading foreign exchange on margin carries a high level of risk, and may not be 
+suitable for all investors. There is a possibility that you may sustain a loss of some or all of your investment
+and therefore you should not invest money that you cannot afford to lose.

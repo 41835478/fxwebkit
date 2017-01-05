@@ -1,0 +1,21 @@
+Forex Currencies
+
+Forex (Foreign Exchange) Market is the global market for the trading of currencies through the relative values of the
+pairs. There are global financial centers that function as anchors of trading
+between buyers and sellers around the clock. The Forex market works through various financial institutions. Most
+foreign exchange dealers are banks with a few insurance companies involved.
+
+Investor Alert: Forex Trading & Trading foreign exchange on margin carries a high level of risk, and may not be
+suitable for all investors. There is a possibility that you may sustain a loss of some or all of your investment
+and therefore you should not invest money that you cannot afford to lose.
+
+Forex Currencies
+
+Instrument	Execution	Spread		Type of Spread	  Contract Size		Max Lot Per Trade	Margin (1:100 leverage)	  Limit/Stop			
+											 		                                               on USD			     Order	
+ EURUSD      Market		  3		         Fixed			100,000 EUR		     10			            1000			   	  8
+ EURUSD	     Market		  3		         Fixed			100,000 EUR		     10			            1000				  8
+ EURUSD	     Market		  3		         Fixed			100,000 EUR		     10			            1000				  8
+ EURUSD	     Market		  3		         Fixed			100,000 EUR		     10			            1000				  8
+ EURUSD	     Market		  3		         Fixed			100,000 EUR		     10			            1000				  8
+ EURUSD	     Market		  3		         Fixed			100,000 EUR		     10			            1000				  8
