@@ -1,5 +1,278 @@
 
-<div id="cfds_stocks" class="page" >
+
+
+
+
+<div id="contact_us" class="page" style="display: none" >
+    <div class="innerContainer">
+
+        <div class="mainInnerHeaderText">
+            <div class="innerPageHeader">
+                <h2>Contact us </h2>
+            </div>
+         </div>
+
+
+        <div class="innerSectionWithHeader" >
+            <header>
+                <h3>  Head Office:</h3>
+            </header>
+            <section>
+
+<style type="text/css">
+    #contact_us .contactMethodsList{
+margin:0px;
+        padding:0px;
+    }
+    #contact_us .contactMethodsList li{
+        list-style: none;
+width:100%;
+        display: block;
+        clear:both;
+        margin:10px 0px;
+        overflow: auto;
+    }
+    #contact_us .contactMethodsList i{
+        border:2px solid #354557;
+        color:#354557;
+        width:30px;
+        height:30px;
+        font-size:30px;
+        text-align: center;
+        padding:5px;
+float:left;
+        display: block;
+        margin-right:10px;
+border-radius: 100%;
+
+    }
+    #contact_us .contactMethodsList i.light{
+        border-color: #359ed7;
+        color:#359ed7;
+
+    }
+</style>
+
+<ul class="contactMethodsList">
+<li>
+    <i class="fa fa-map-marker "></i>
+                Cyprus
+                Office 3501, 5th floor,Maximos Plaza Tower 3, Maximos Michaelidi Street, Limassol 3106, Cyprus
+    </li>
+    <li>
+        <i class="light fa fa-phone" ></i>
+                +357 25588855
+                +357 25588853
+    </li>
+    <li>
+        <i class="light fa fa-envelope-o "></i>
+                Email
+    </li>
+</ul>
+<div class="clear:both"></div>
+                <div id="contactUsMap" class="mapContainer">
+
+                </div>
+</section>
+
+
+        </div>
+    </div>
+
+
+    <div class="clear:both"></div>
+
+
+
+
+
+
+
+
+<div id="cme_energies" class="page" style="display: none"   >
+    <div class="innerContainer">
+
+        <div class="mainInnerHeaderText">
+            <div class="innerPageHeader">
+                <h2>
+                    CME Energies
+
+
+                </h2>
+            </div>
+            <p>
+
+                The energies sector offers the trading of energy products, specifically crude oil and natural gas.
+<br><br>
+                Energies are innately volatile markets because of the direct impact world events can have on supply. So trade oil and
+                gas now with True4x and enjoy the benefits of these markets as they allow for fast and efficient trade execution.
+                <br><br>
+            </p>
+
+        </div>
+
+        <table class="generalTable" cellpadding="0" cellspacing="0">
+            <thead>
+            <tr>
+                <th class="headerTh">Product </th>
+                <th class="headerTh"> Contract Size</th>
+                <th class="headerTh">Max Lot </th>
+                <th class="headerTh"> Main Fluctuation</th>
+                <th class="headerTh"> Margin*</th>
+                <th class="headerTh">Pip Calculation </th>
+                <th class="headerTh">Trading Hours(CYT) </th>
+                <th class="headerTh"> Limit/Stop order* </th>
+                <th class="headerTh" colspan="2">SWAPS</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr><td>
+
+                    XAUUSD  GOLD vs.  US Dollar </td><td>  100 Oz	</td><td>	50 Lot	</td><td>	0.01	  </td><td>       1,000 USD</td><td>	0.1= 10 USD		</td><td rowspan="3" class="markedCell">   Monday – Friday  <br> 01:00 – 00:00<br> Friday close<br>    23:30 </td><td>		           2.5	      </td><td>      -2.1</td><td>	  -5.66</td></tr>
+
+            <tr><td>
+
+
+                    XAUUSD    GOLD vs. US Dolla  </td><td>  100 Oz	</td><td>	50 Lot	</td><td>	0.01	  </td><td>1,000 USD</td><td>	0.1= 10 USD	</td> <td>         2.5	      </td><td>      -2.1	</td><td>  -5.66</td></tr>
+
+
+            <tr><td>
+
+
+                    XAUUSD    GOLD vs. US Dollar </td><td> 100 Oz	</td><td>	50 Lot	</td><td>	0.01	   </td><td>      1,000 USD	</td><td>0.1= 10 USD				   </td><td>        2.5	       </td><td>     -2.1	</td><td>  -5.66</td></tr>
+
+            </tbody>
+        </table>
+
+        <div>
+            <br><br>
+
+
+            *In compliance with the regulatory requirements of Polish Financial Supervision Authority (KNF), the maximum
+            leverage for clients from Poland is 1:100
+            <br><br>
+            “Stop/Limit Order levels may vary during news or unusual market conditions without prior notice.”
+            <br><br>
+
+            <div class="redBox">
+
+
+
+                Investor Alert: Forex Trading & Trading foreign exchange on margin carries a high level of risk, and may not be
+                suitable for all investors. There is a possibility that you may sustain a loss of some or all of your investment
+                and therefore you should not invest money that you cannot afford to lose.
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+<div id="clients_funds_segregation" class="page"  style="display:none;" >
+    <div class="innerContainer">
+
+        <div class="mainInnerHeaderText">
+            <div class="innerPageHeader">
+                <h2>
+                    Clients Funds Segregation
+
+
+
+                </h2>
+            </div>
+<p>
+    Clients Funds Deposited with True4x are held in segregated bank accounts and separated from the company's funds.
+    True4x , upon receiving any Clients’ funds,promptly places those funds into one or more accounts, denoted as
+    “Clients”, opened with any of the following:
+
+            <style type="text/css">
+                #clients_funds_segregation .menuWithDots li{clear:both;}
+                </style>
+            <ul  class="menuWithDots" style="margin-left:30px;">
+                <li>  Central Bank</li>
+                <li>    Credit Institution</li>
+                <li>        Bank authorized in a third country</li>
+                <li>        Qualifying money market fund</li>
+                <li>        Deep liquidity from Tier-1 banks</li>
+                <li>        Islamic (Swap Free) accounts</li>
+                <li>        Separated from company’s funds.</li>
+            </ul>
+</p>
+        </div>
+
+        <div class="innerSectionWithHeader" >
+            <header>
+                <h3>Investor Compensation Fund</h3>
+            </header>
+            <section>
+
+
+            Pursuant to section 17 of the Investment Services and Activities and Regulated Markets Law of 2007, "A Cypriot
+            Investment Firm (‘CIF') must be a member of the Investment Compensation Fund (‘ICF')". According to section 58 of
+            the Law, a CIF is not allowed to provide investment services without participating in the Investors Compensation
+            Funds.
+
+                <br><br>
+
+            True4x is a member in the Investor Compensation Fund the objective of which is to secure any claims of covered
+            clients against members of the Fund and to compensate covered clients for any claims arising from the malfunction
+            by a member of the Fund to fulfill its obligations despite whether that obligation arises from legislation, the client
+            agreement or from wrongdoing on the part of the member of the Fund.
+                <br><br>
+            The Investor Compensation Fund was established to secure the claims of covered clients against a CIF through the
+            payment of compensation in the event that the CIF in question was unable to: A- Return to covered Clients funds
+            owed to them or funds which belong to them but are held by the CIF in the context of providing investment services
+            to the said Clients or B- Hand over to covered Clients financial instruments which belong to them and which the CIF
+            concerned holds, manages or keeps on their account.
+                <br><br>
+            Under the Rules and Regulations of the ICF, the total payable compensation to each covered Client may not exceed
+            €20.000 EUR, irrespective of the number of accounts held, currency and place of offering the investment service.
+                <br><br>
+            Clients that are not covered by the CIF are: The following categories of institutional and professional investors. States
+            and international organizations. Central, federal, confederate, regional and local administrative authorities. Enterprises
+            associated with True4x, in accordance with the Fifth Schedule of the Law 144(I). Managerial and administrative staff of
+            True4x. Shareholders of True4x Investors having in enterprises connected with True4x and, in general, of the group of
+            companies, to which True4x belongs, positions or duties corresponding to the ones listed in paragraphs (5) and (6).
+            Second-degree relatives and spouses of the persons listed in paragraphs (5), (6) and (7), as well as third parties acting
+            for the account of these persons. Apart from the investors referred to in subsection (2) of section 55 of the Law 144(I),
+            investors-Clients of a member of the Fund responsible for facts pertaining to the member of the Fund that have
+            caused its financial difficulties or have contributed to the worsening of its financial situation or which have profited
+            from these facts. Investors in the form of a company, which due to its size, is not allowed to draw a summary balance
+            sheet in accordance with the Companies Law or a corresponding law of a Member State of the European Union.
+</section>
+            </div>
+<div class="innerHLine"></div>
+
+        <div class="innerSectionWithHeader" >
+            <header>
+                <h3> For more information about the Investor Compensation Fund</h3>
+            </header>
+            <section>
+
+                <a href="#" class="yellowButton" style="display:block;margin:auto;">Download</a>
+</section>
+            </div>
+        <div class="redBox">
+            Investor Alert: Forex Trading & Trading foreign exchange on margin carries a high level of risk, and may not be
+            suitable for all investors. There is a possibility that you may sustain a loss of some or all of your investment
+            and therefore you should not invest money that you cannot afford to lose.
+</div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div id="cfds_stocks" class="page" style="display: none;" >
     <div class="innerContainer">
 
         <div class="mainInnerHeaderText">
@@ -893,7 +1166,7 @@
 
 
 </div>
-
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 <style type="text/css">
     .page{
@@ -905,7 +1178,7 @@
     }
     .page .mainInnerHeaderText .innerPageHeader{
 
-        color:#089594;
+        color:#384656;
 
     }
     .page .mainInnerHeaderText .innerPageHeader:before{
