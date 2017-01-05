@@ -1,0 +1,31 @@
+CFD Indices
+
+Product        Contract Size    Max Lot  Min Fluctuation    Margin*    Pip Calculation    Trading Hours(CYT)  Limit/Stop order *             SWAPS
+
+XAUUSD 
+GOLD vs. 
+US Dollar         100 Oz		50 Lot		0.01	         1,000 USD 	0.1= 10 USD				                     2.5	            -2.1	  -5.66
+
+
+
+XAUUSD                                                                                     Monday – Friday
+GOLD vs.                                                                                   01:00 – 00:00  
+US Dollar        100 Oz	    	50 Lot		 0.01	           1,000 USD	0.1= 10 USD	                              2.5	            -2.1	  -5.66
+                                                                                          Friday close 23:30
+																						  
+																						  
+XAUUSD 
+GOLD vs. 
+US Dollar        100 Oz		  50 Lot		0.01	           1,000 USD	0.1= 10 USD				                 2.5	            -2.1	  -5.66
+
+
+*In compliance with the regulatory requirements of Polish Financial Supervision Authority (KNF), the maximum 
+leverage for clients from Poland is 1:100
+
+**required margin will be reserved for both BUY and SELL positions within the same account.
+
+“Stop/Limit Order levels may vary during news or unusual market conditions without prior notice.”
+
+Investor Alert: Forex Trading & Trading foreign exchange on margin carries a high level of risk, and may not be
+suitable for all investors. There is a possibility that you may sustain a loss of some or all of your investment
+and therefore you should not invest money that you cannot afford to lose.

@@ -1,0 +1,34 @@
+CFDs Stocks
+
+Product        Contract Size    Max Lot  Min Fluctuation    Margin*    Pip Calculation    Trading Hours(CYT)  Limit/Stop order *             SWAPS
+
+XAUUSD 
+GOLD vs. 
+US Dollar         100 Oz		50 Lot		0.01	        1,000 USD 	0.1= 10 USD				                     2.5	            -2.1	  -5.66
+
+
+
+XAUUSD                                                                                     Monday – Friday
+GOLD vs.                                                                                   01:00 – 00:00  
+US Dollar        100 Oz	    	50 Lot		 0.01	           1,000 USD	0.1= 10 USD	                              2.5	            -2.1	  -5.66
+                                                                                          Friday close 23:30
+																						  
+																						  
+XAUUSD 
+GOLD vs. 
+US Dollar        100 Oz		  50 Lot		0.01	           1,000 USD	0.1= 10 USD				                 2.5	            -2.1	  -5.66
+
+
+*In compliance with the regulatory requirements of Polish Financial Supervision Authority (KNF), the maximum 
+leverage for clients from Poland is 1:100
+
+When you start stock trading with True4x you’ll get everything you need to have a smooth and enjoyable 
+experience.
+
+We offer a range of powerful trading platforms that allow you to trade instantly from live graphs and set a variety of
+orders, stops and limits to manage your portfolio. You can also monitor and trade your equities on the same screen
+as your forex and Commodities trades.
+
+Investor Alert: Forex Trading & Trading foreign exchange on margin carries a high level of risk, and may not be
+suitable for all investors. There is a possibility that you may sustain a loss of some or all of your investment
+and therefore you should not invest money that you cannot afford to lose.
