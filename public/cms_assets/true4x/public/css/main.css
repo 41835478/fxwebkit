@@ -827,7 +827,7 @@ a {
   width: 100%;
   line-height: 0px;
   border-bottom: 2px solid #44596a;
-  margin: 5px 0px;
+  margin: 25px 0px;
   clear: both; }
 
 .menuWithDots {
@@ -836,7 +836,7 @@ a {
 
 .menuWithDots li {
   list-style: none;
-  overflow: auto; }
+  overflow: visible; }
 
 .menuWithDots li:before {
   content: "\f111";
@@ -876,9 +876,9 @@ a {
 .redBox {
   border: 2px solid #f00;
   border-radius: 5px;
-  padding: 5px 10px;
-  width: 90%;
-  margin: 20px 5%; }
+  padding: 10px 40px;
+  width: 100%;
+  margin: 20px 0px; }
 
 /*_______________________________________________banner*/
 #innerPagesMainBanner {
