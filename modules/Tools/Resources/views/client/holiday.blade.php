@@ -86,6 +86,53 @@
         </div>
         <!-- /#page-wrapper -->
         <!-- .right panel -->
+        <div class="right-side-panel">
+            <div class="scrollable-right container">
+                <!-- .Theme settings -->
+                <h3 class="title-heading">{{ trans('mt4configrations::mt4configrations.search') }}</h3>
+
+                {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
+
+
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('tools::tools.name'),'class'=>'form-control input-sm']) !!}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('start_date', $aFilterParams['start_date'], ['placeholder'=>trans('tools::tools.start_date'),'class'=>'form-control input-sm mydatepicker']) !!}
+                        <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::text('end_date', $aFilterParams['end_date'], ['placeholder'=>trans('tools::tools.end_date'),'class'=>'form-control input-sm mydatepicker']) !!}
+                        <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-12"></label>
+                    <div class="col-md-12">
+                        {!! Form::submit(trans('tools::tools.search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
+                    </div>
+                </div>
+
+                {!! Form::hidden('sort', $aFilterParams['sort']) !!}
+                {!! Form::hidden('order', $aFilterParams['order']) !!}
+                {!! Form::close()!!}
+            </div>
+        </div>
 
 
         @stop

@@ -38,9 +38,7 @@
             <li><a href="{{ route('client.users.profile') }}"><i class="ti-user"></i> {{ trans('general.Profile') }}</a></li>
             <li><a href=" {{ route('client.users.changePassword') }}"><i class="ti-lock "></i>{{ trans('general.changePassword') }}</a></li>
 
-                            <li role="separator" class="divider"></li>
-
-                            <li role="separator" class="divider"></li>
+           <li role="separator" class="divider"></li>
                             <li><a href="{{ route('client.auth.logout') }}"><i class="fa fa-power-off"></i> {{ trans('general.Logout') }}</a></li>
                                                           </ul>
                                                           <!-- /.dropdown-user -->
@@ -69,18 +67,17 @@
 
 
 
-
-{{--app_name()--}}
-
+                                                                                {{--{{ trans('general.language') }} --}}
                                 {{--@foreach(config('app.language')  as $locale=>$name)--}}
-                                   {{--{{$locale}}{{ trans('general.'.$name) }}--}}
 
+                                  {{--{{$locale}}{{ trans('general.'.$name) }}--}}
                                 {{--@endforeach--}}
-                          {{--{{ current_user()->getAvatar() }}--}}
-                                {{--{{ current_user()->getName() }}--}}
-                                {{--{{ route('client.users.profile') }}--}}
-                                {{--{{ Lang::get('general.Profile') }}--}}
-                                {{--{{ route('client.users.changePassword') }}--}}
-                                {{--{{ trans('general.changePassword') }}--}}
-                                {{--{{ route('client.auth.logout') }}--}}
-                                {{--{{ Lang::get('general.Logout') }}--}}
+
+{{--"data:image/jpeg;base64,{{ current_user()->getAvatar() }}"--}}
+{{--{{ current_user()->getName() }}--}}
+{{--{{ route('admin.users.profile') }}--}}
+{{--{{ trans('general.Profile') }}--}}
+{{--{{ route('admin.users.changePassword') }}--}}
+{{--{{ trans('general.changePassword') }}--}}
+{{--{{ route('admin.auth.logout') }}--}}
+{{--{{ trans('general.Logout') }}--}}

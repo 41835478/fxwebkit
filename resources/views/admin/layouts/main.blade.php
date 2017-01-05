@@ -75,6 +75,7 @@
 {!! HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/styleswitcher/jQuery.style.switcher.js') !!}
 		<!--Date PICKER -->
 {!! HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/moment/moment.js') !!}
+{!! HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.js') !!}
 {!! HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js') !!}
 {!! HTML::script('/assets/'.config('fxweb.layoutAssetsFolder').'/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js') !!}
 
@@ -89,6 +90,14 @@
 	$('#datepicker-autoclose').datepicker({
 		autoclose: true,
 		todayHighlight: true,
+	});
+
+	$('#single-input').clockpicker({
+		placement: 'bottom',
+		align: 'left',
+		autoclose: true,
+		'default': 'now'
+
 	});
 
 	$('#date-range').datepicker({

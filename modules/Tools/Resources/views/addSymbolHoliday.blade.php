@@ -144,72 +144,72 @@
     <!-- /#page-wrapper -->
     <!-- .right panel -->
 @stop
-@section("script")
-    @parent
-    <link rel="stylesheet" type="text/css" href="/assets/css/autoCompleteInput.css">
+{{--@section("script")--}}
+    {{--@parent--}}
+    {{--<link rel="stylesheet" type="text/css" href="/assets/css/autoCompleteInput.css">--}}
 
-    <script>
+    {{--<script>--}}
         {{-- TODO [mohammad] check if the start hour less than end hour --}}
 
-            var options = {
-                format: "yyyy-mm-dd",
-                todayBtn: "linked",
-                orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-            }
+            {{--var options = {--}}
+                {{--format: "yyyy-mm-dd",--}}
+                {{--todayBtn: "linked",--}}
+                {{--orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'--}}
+            {{--}--}}
 
-            $('input[name="date"]').datepicker(options);
-
-
-        var options2 = {
-            minuteStep: 1,
-            showSeconds: true,
-            showMeridian: false,
-            showInputs: false,
-            orientation: $('body').hasClass('right-to-left') ? {x: 'right', y: 'auto'} : {x: 'auto', y: 'auto'}
-        }
-        $('input[name="end_hour"],input[name="start_hour"]').timepicker(options2);
+            {{--$('input[name="date"]').datepicker(options);--}}
 
 
-        $('.securitiesCheckbox').change(function () {
-            var security_id = $(this).val();
-
-            if ($(this).prop("checked")) {
-                $(".symbols_tr_" + security_id + " .symbolsCheckbox").prop("checked", true);
-            } else {
-
-                $(".symbols_tr_" + security_id + " .symbolsCheckbox").prop("checked", false);
-            }
-        });
+        {{--var options2 = {--}}
+            {{--minuteStep: 1,--}}
+            {{--showSeconds: true,--}}
+            {{--showMeridian: false,--}}
+            {{--showInputs: false,--}}
+            {{--orientation: $('body').hasClass('right-to-left') ? {x: 'right', y: 'auto'} : {x: 'auto', y: 'auto'}--}}
+        {{--}--}}
+        {{--$('input[name="end_hour"],input[name="start_hour"]').timepicker(options2);--}}
 
 
-        $('#addSymbolsToListButton').click(function () {
-            var html = '';
-            var selectedSymbols = $('#symbolsMultiSelect').val();
+        {{--$('.securitiesCheckbox').change(function () {--}}
+            {{--var security_id = $(this).val();--}}
 
-            if (selectedSymbols != null) {
-                var type = $('#symbolsType').val();
-                var value = $('#symbolsValue').val();
-                for (var i = 0; i < selectedSymbols.length; i++) {
-                    var symbolLabel = $('#symbolsMultiSelect option[value="' + selectedSymbols[i] + '"]').text();
-                    $('#symbolsMultiSelect option[value="' + selectedSymbols[i] + '"]').remove();
-                    html = '<tr id="tr_' + selectedSymbols[i] + '">' +
-                            '<td><input type="hidden" name="symbols[]" value="' + selectedSymbols[i] + '" />' + symbolLabel + '</td>' +
-                            '<td><i class="fa fa-trash-o" onclick="removeSelectedSymbolFromTable(\'' + selectedSymbols[i] + '\',\'' + symbolLabel + '\')"></i> </td>' +
-                            '</tr>';
-                    $('#symbolsListTable tbody').append(html);
-                }
-                $('#s2id_symbolsMultiSelect .select2-search-choice').remove();
-            }
+            {{--if ($(this).prop("checked")) {--}}
+                {{--$(".symbols_tr_" + security_id + " .symbolsCheckbox").prop("checked", true);--}}
+            {{--} else {--}}
+
+                {{--$(".symbols_tr_" + security_id + " .symbolsCheckbox").prop("checked", false);--}}
+            {{--}--}}
+        {{--});--}}
 
 
-        });
+        {{--$('#addSymbolsToListButton').click(function () {--}}
+            {{--var html = '';--}}
+            {{--var selectedSymbols = $('#symbolsMultiSelect').val();--}}
 
-        function removeSelectedSymbolFromTable(symbol, symbolLabel) {
-            $('#tr_' + symbol).remove();
-            $('#symbolsMultiSelect').append('<option value="' + symbol + '">' + symbolLabel + '</option>');
-        }
-    </script>
-@stop
+            {{--if (selectedSymbols != null) {--}}
+                {{--var type = $('#symbolsType').val();--}}
+                {{--var value = $('#symbolsValue').val();--}}
+                {{--for (var i = 0; i < selectedSymbols.length; i++) {--}}
+                    {{--var symbolLabel = $('#symbolsMultiSelect option[value="' + selectedSymbols[i] + '"]').text();--}}
+                    {{--$('#symbolsMultiSelect option[value="' + selectedSymbols[i] + '"]').remove();--}}
+                    {{--html = '<tr id="tr_' + selectedSymbols[i] + '">' +--}}
+                            {{--'<td><input type="hidden" name="symbols[]" value="' + selectedSymbols[i] + '" />' + symbolLabel + '</td>' +--}}
+                            {{--'<td><i class="fa fa-trash-o" onclick="removeSelectedSymbolFromTable(\'' + selectedSymbols[i] + '\',\'' + symbolLabel + '\')"></i> </td>' +--}}
+                            {{--'</tr>';--}}
+                    {{--$('#symbolsListTable tbody').append(html);--}}
+                {{--}--}}
+                {{--$('#s2id_symbolsMultiSelect .select2-search-choice').remove();--}}
+            {{--}--}}
+
+
+        {{--});--}}
+
+        {{--function removeSelectedSymbolFromTable(symbol, symbolLabel) {--}}
+            {{--$('#tr_' + symbol).remove();--}}
+            {{--$('#symbolsMultiSelect').append('<option value="' + symbol + '">' + symbolLabel + '</option>');--}}
+        {{--}--}}
+    {{--</script>--}}
+{{--@stop--}}
 @section('hidden')
     <div id="content-wrapper">
     <div class="page-header">

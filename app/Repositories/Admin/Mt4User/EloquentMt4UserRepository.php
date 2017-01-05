@@ -223,6 +223,7 @@ class EloquentMt4UserRepository implements Mt4UserContract{
 
     public function getUsersMt4UsersByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC') {
 
+
         $account_id = (isset($aFilters['account_id'])) ? $aFilters['account_id'] : 0;
 
         $oResult =new Mt4User();
@@ -260,31 +261,31 @@ class EloquentMt4UserRepository implements Mt4UserContract{
             (isset($aFilters['to_login']) && !empty($aFilters['to_login']))) {
 
             if (!empty($aFilters['from_login'])) {
-                $oResult = $oResult->where('LOGIN', '>=', $aFilters['from_login']);
+                $oResult = $oResult->where('mt4_users.LOGIN', '>=', $aFilters['from_login']);
             }
 
             if (!empty($aFilters['to_login'])) {
-                $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
+                $oResult = $oResult->where('mt4_users.LOGIN', '<=', $aFilters['to_login']);
             }
         }
         /* =============== Nmae Filter  =============== */
         if (isset($aFilters['name']) && !empty($aFilters['name'])) {
-            $oResult = $oResult->where('name', 'like', '%' . $aFilters['name'] . '%');
+            $oResult = $oResult->where('mt4_users.name', 'like', '%' . $aFilters['name'] . '%');
         }
 
         /* =============== Nmae Filter  =============== */
         if (isset($aFilters['server_id'])) {
-            $oResult = $oResult->where('server_id', '=', $aFilters['server_id']);
+            $oResult = $oResult->where('mt4_users.server_id', '=', $aFilters['server_id']);
         }
 
         /* =============== Groups Filter  =============== */
         if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
             $aUsers = $this->getLoginsInGroup($aFilters['group']);
-            $oResult = $oResult->whereIn('LOGIN', $aUsers);
+            $oResult = $oResult->whereIn('mt4_users.LOGIN', $aUsers);
         }
 
 
-        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+        $oResult = $oResult->orderBy('mt4_users.'.$sOrderBy, $sSort);
 
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));

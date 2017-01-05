@@ -66,7 +66,7 @@
                                         <td>{{ $oResult->BALANCE }}</td>
                                         <td>{{ $oResult->MARGIN }}</td>
                                         <td>{{ $oResult->MARGIN_FREE }}</td>
-                                        <td>{{ $oResult->LEVERAGE }}</td>
+                                        <td>1:{{ $oResult->LEVERAGE }}</td>
                                         <td><a href="{{ route('clients.reports.accountStatement').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text tooltip_number" data-original-title="{{trans('reports::reports.accountStatement')}}"></a></td>
 
                                     </tr>
@@ -104,26 +104,26 @@
 
                 <div class="form-group">
                     <div class="col-md-12">
-                        <label>
+                        <div class="checkbox checkbox-success">
                             {!! Form::checkbox('exactLogin', 1, $aFilterParams['exactLogin'], ['class'=>'px','id'=>'exactLogin']) !!}
-                            <span class="lbl">{{ trans('reports::reports.ExactLogin') }}</span>
-                        </label>
+                            <label for="exactLogin">{{ trans('reports::reports.ExactLogin') }}</label>
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="from_login_li">
                     <div class="col-md-12">
                         {!! Form::text('from_login', $aFilterParams['from_login'], ['placeholder'=>trans('reports::reports.FromLogin'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="to_login_li">
                     <div class="col-md-12">
                         {!! Form::text('to_login', $aFilterParams['to_login'], ['placeholder'=>trans('reports::reports.ToLogin'),'class'=>'form-control input-sm']) !!}
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="login_li">
                     <div class="col-md-12">
                         {!! Form::text('login', $aFilterParams['login'], ['placeholder'=>trans('reports::reports.Login'),'class'=>'form-control input-sm']) !!}
                     </div>
