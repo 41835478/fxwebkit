@@ -27,7 +27,7 @@
 
 
 .page{
-  width:700px;
+  /*width:700px;*/
 }
 
 .innerContainer{
@@ -66,7 +66,7 @@
 .innerSectionWithHeader{
   clear:both;
 }
-.innerSectionWithHeader h3{
+.innerSectionWithHeader h3,.innerArticleHeader{
   color:#089594;
   font-size: 18px;
 }
@@ -115,8 +115,10 @@
   padding:5px;
 
 }
-.generalTable td{color:#374557;}
-.headerTh{ background-color:#374557;color:#ffffff; }
+.generalTable td
+{color:#374557;
+}
+.headerTh,.generalTable th{ background-color:#374557;color:#ffffff !important; }
 .normalHeaderTh{ background-color: #b7b7b7; color:#374557;}
 
 .markedCell{background-color: #bcbcbc; text-align: center;}
