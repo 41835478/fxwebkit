@@ -70,6 +70,13 @@
   color:#089594;
   font-size: 18px;
 }
+
+.page  .innerArticleHeaderDark{
+
+
+  color:#44596a;
+
+}
 .innerHLine{
   width:100%;
   line-height: 0px;
@@ -99,6 +106,7 @@
   float:left;
   color:#089594;
 }
+
 
 
 
@@ -138,3 +146,29 @@
 }
 
 /*__________________________________________END_____banner*/
+
+.page .yellowButton{
+background-color: #ffbe46;
+color: #ffffff;
+width: 300px;
+          display: block;
+  margin:10px auto;
+padding: 10px 0px;
+text-align: center;
+border: none;
+  position:relative;
+}
+
+
+.page .yellowButton:after{position:absolute;
+  bottom:0px;
+  right: 0;
+  display:block;
+  height: 20px;
+  margin-bottom: -20px;
+  width:100%;
+  background-image: url("../images/shadows/open_account_shadow.png");
+
+  background-repeat:no-repeat;
+  background-size: 100% 20px;
+  content:"";}
