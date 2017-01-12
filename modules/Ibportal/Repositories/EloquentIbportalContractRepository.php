@@ -625,7 +625,7 @@ class EloquentIbportalContractRepository implements IbportalContract
             1 => 'BalanceOperations',
             2 => 'CreditOperations',
             3 => 'Deposits',
-            4 => 'Withdraws',
+            4 => 'Withdrawal',
             5 => 'CreditIn',
             6 => 'CreditOut',
         ];
@@ -636,7 +636,7 @@ class EloquentIbportalContractRepository implements IbportalContract
 
         return [
             6 => 'Commission',
-            7 => 'Withdraws'
+            7 => 'Withdrawal'
         ];
     }
 
@@ -682,15 +682,15 @@ class EloquentIbportalContractRepository implements IbportalContract
 
         /* =============== Get sum info and others =============== */
         $depositResult = clone $oResult;
-        $withdrawsResult = clone $oResult;
+        $withdrawalResult = clone $oResult;
 
         $aSummury ['deposits'] = $depositResult->where('CMD', 6)->where('PROFIT', '>', 0)->sum('PROFIT');
-        $aSummury ['withdraws'] = $withdrawsResult->where('CMD', 6)->where('PROFIT', '<', 0)->sum('PROFIT');
+        $aSummury ['Withdrawal'] = $withdrawalResult->where('CMD', 6)->where('PROFIT', '<', 0)->sum('PROFIT');
 
         /* =============== Type Filter  ===============
 
           1=> 'Commission',
-          2 => 'Withdraws',
+          2 => 'Withdrawal',
          */
 
         if (isset($aFilters['type']) && !empty($aFilters['type'])) {

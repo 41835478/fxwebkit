@@ -4,12 +4,9 @@ namespace Modules\Request\Repositories;
 
 interface RequestContract
 {
-
-
-
     public function getInternalTransferRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC');
 
-    public function getWithDrawalRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC');
+    public function getWithdrawalRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC');
 
     public function getChangeLeverageRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC');
 
@@ -19,7 +16,7 @@ interface RequestContract
 
     public function internalTransferEdit($internalTransfer);
 
-    public function getWithDrawalById($logId);
+    public function getWithdrawalById($logId);
 
     public function getAddAccountById($logId);
 
@@ -29,7 +26,7 @@ interface RequestContract
 
     public function getAssignAccountById($logId);
 
-    public function withDrawalEdit($withDrawal);
+    public function withdrawalEdit($withdrawal);
 
     public function assignAccountEdit($assignAccount);
 
@@ -42,5 +39,4 @@ interface RequestContract
     public function getAddAccountRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'id', $sSort = 'ASC');
 
     public function getAssignAccountRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC');
-
 }

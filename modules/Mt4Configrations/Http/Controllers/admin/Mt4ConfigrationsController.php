@@ -56,13 +56,10 @@ public function getDashboard(){
         ];
 
         if ($oRequest->has('search')) {
-
             $aFilterParams['name'] = $oRequest->name;
-
-
-            $oResults = $this->Mt4Configrations->getSymbolsByFilters($aFilterParams, false, $sOrder, $sSort);
         }
 
+        $oResults = $this->Mt4Configrations->getSymbolsByFilters($aFilterParams, false, $sOrder, $sSort);
 
         return view('mt4configrations::symbol_list')->with('oResults', $oResults)
             ->with('aFilterParams', $aFilterParams);
@@ -83,14 +80,10 @@ public function getDashboard(){
         ];
 
         if ($oRequest->has('search')) {
-
             $aFilterParams['name'] = $oRequest->name;
-
-
-            $oResults = $this->Mt4Configrations->getSecuritiesByFilters($aFilterParams, false, $sOrder, $sSort);
-
         }
 
+        $oResults = $this->Mt4Configrations->getSecuritiesByFilters($aFilterParams, false, $sOrder, $sSort);
 
         return view('mt4configrations::securities_list')->with('oResults', $oResults)
             ->with('aFilterParams', $aFilterParams);
@@ -113,16 +106,10 @@ public function getDashboard(){
 
 
         if ($oRequest->has('search')) {
-
-
             $aFilterParams['name'] = $oRequest->name;
-
-
-            $oResults = $this->Mt4Configrations->getGroupsByFilters($aFilterParams, false, $sOrder, $sSort);
-
-
         }
 
+        $oResults = $this->Mt4Configrations->getGroupsByFilters($aFilterParams, false, $sOrder, $sSort);
 
         return view('mt4configrations::group_list')->with('oResults', $oResults)
             ->with('aFilterParams', $aFilterParams);

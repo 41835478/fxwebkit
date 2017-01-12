@@ -106,8 +106,6 @@ class ClientIbportalController extends Controller
 
     public function getAgentUsers(Request $oRequest)
     {
-
-
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
         $agentId = current_user()->getUser()->id;
@@ -130,12 +128,10 @@ class ClientIbportalController extends Controller
             $aFilterParams['email'] = $oRequest->email;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-
-            $role = explode(',', Config::get('fxweb.client_default_role'));
-
-            $oResults = $this->Users->getClientAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role, $agentId);
-
         }
+
+        $role = explode(',', Config::get('fxweb.client_default_role'));
+        $oResults = $this->Users->getClientAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role, $agentId);
 
 
         $userIbid = UserIbid::where('user_id', current_user()->getUser()->id)->first();
@@ -146,8 +142,6 @@ class ClientIbportalController extends Controller
         } else {
             return $this->getAgreemmentPlan();
         }
-
-
     }
 
 
@@ -188,11 +182,11 @@ class ClientIbportalController extends Controller
 
         $totalCommission = 0;
 
-        if ($oRequest->has('search')) {
             list($oResults, $totalCommission) = $this->Ibportal->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
+
             $oResults->order = $aFilterParams['order'];
             $oResults->sorts = $aFilterParams['sort'];
-        }
+
         $data = [
             'agentName' => $this->Ibportal->getClientAgentName(),
             'planName' => $this->Ibportal->getClientPlansName([current_user()->getUser()->id]),
@@ -278,8 +272,8 @@ class ClientIbportalController extends Controller
         $oSymbols = $this->Ibportal->getClosedTradesSymbols();
         $aTradeTypes = ['' => 'ALL'] + $this->Ibportal->getAgentCommissionTypes();
         $serverTypes = $this->Ibportal->getServerTypes();
-        $sSort = $oRequest->sort;
-        $sOrder = $oRequest->order;
+        $sSort = (isset($oRequest->sort))? $oRequest->sort:'ASC';
+        $sOrder = (isset($oRequest->order))? $oRequest->order:'TICKET';
         $aGroups = [];
         $aSymbols = [];
         $oResults = null;
@@ -292,8 +286,8 @@ class ClientIbportalController extends Controller
             'all_symbols' => true,
             'symbol' => '',
             'type' => '',
-            'sort' => 'ASC',
-            'order' => 'TICKET',
+            'sort' => $sSort,
+            'order' => $sOrder,
         ];
 
 
@@ -317,14 +311,9 @@ class ClientIbportalController extends Controller
 
         }
 
-
-        if ($oRequest->has('search')) {
-
             $oResults = $this->Ibportal->getAgentsAccountantByFilters($aFilterParams, false, $sOrder, $sSort);
-
             $oResults[0]->order = $aFilterParams['order'];
             $oResults[0]->sorts = $aFilterParams['sort'];
-        }
 
         $userIbid = UserIbid::where('user_id', current_user()->getUser()->id)->first();
 
@@ -372,10 +361,7 @@ class ClientIbportalController extends Controller
 
     public function getAgentUserMt4Users(Request $oRequest)
     {
-
-
         $account_id = $oRequest->account_id;
-
 
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'asc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'login';
@@ -395,9 +381,6 @@ class ClientIbportalController extends Controller
             'account_id' => $account_id,
             'server_id'=>0
         ];
-
-
-
 
         if ($oRequest->has('search')) {
             $aFilterParams['from_login'] = $oRequest->from_login;
@@ -431,14 +414,12 @@ class ClientIbportalController extends Controller
 
     public function getClosedOrders(Request $oRequest)
     {
-
-
         $oSymbols = $this->oMt4Trade->getAgentSymbols();
 
         $aTradeTypes =  $this->oMt4Trade->getTradesTypes();
         $serverTypes = $this->oMt4Trade->getServerTypes();
-        $sSort = $oRequest->sort;
-        $sOrder = $oRequest->order;
+        $sSort = (isset($oRequest->sort))? $oRequest->sort:'ASC';
+        $sOrder = (isset($oRequest->order))? $oRequest->order:'TICKET';
         $aSymbols = [];
         $oResults = null;
         $aFilterParams = [
@@ -454,8 +435,8 @@ class ClientIbportalController extends Controller
             'symbol' => '',
             'type' => '',
             'server_id' => '',
-            'sort' => 'ASC',
-            'order' => 'TICKET',
+            'sort' => $sSort,
+            'order' => $sOrder,
         ];
 
         foreach ($oSymbols as $oSymbol) {
@@ -481,14 +462,7 @@ class ClientIbportalController extends Controller
             $aFilterParams['server_id'] = $oRequest->server_id;
         }
 
-
-        if ($oRequest->has('search')) {
-
-            $oResults = $this->oMt4Trade->getAgentClosedTradesByFilters($aFilterParams, false, $sOrder, $sSort,current_user()->getUser()->id);
-//            $oResults->order = $aFilterParams['order'];
-//            $oResults->sorts = $aFilterParams['sort'];
-        }
-
+        $oResults = $this->oMt4Trade->getAgentClosedTradesByFilters($aFilterParams, false, $sOrder, $sSort,current_user()->getUser()->id);
         $userIbid = UserIbid::where('user_id', current_user()->getUser()->id)->first();
 
 
@@ -515,8 +489,8 @@ class ClientIbportalController extends Controller
         $serverTypes = $this->oMt4Trade->getServerTypes();
         $aSymbols = [];
         $oResults = null;
-        $sSort = $oRequest->sort;
-        $sOrder = $oRequest->order;
+        $sSort = (isset($oRequest->sort))? $oRequest->sort:'ASC';
+        $sOrder = (isset($oRequest->order))? $oRequest->order:'TICKET';
         $aFilterParams = [
             'from_login' => '',
             'to_login' => '',
@@ -528,8 +502,8 @@ class ClientIbportalController extends Controller
             'symbol' => '',
             'type' => '',
             'server_id' => '',
-            'sort' => 'ASC',
-            'order' => 'TICKET'
+            'sort' => $sSort,
+            'order' => $sOrder
         ];
 
 
@@ -552,9 +526,9 @@ class ClientIbportalController extends Controller
             $aFilterParams['symbol'] = $oRequest->symbol;
             $aFilterParams['type'] = $oRequest->type;
             $aFilterParams['server_id'] = $oRequest->server_id;
-
-            $oResults = $this->oMt4Trade->getAgentOpenTradesByFilters($aFilterParams, false, $sOrder, $sSort,current_user()->getUser()->id);
         }
+
+        $oResults = $this->oMt4Trade->getAgentOpenTradesByFilters($aFilterParams, false, $sOrder, $sSort,current_user()->getUser()->id);
 
         $userIbid = UserIbid::where('user_id', current_user()->getUser()->id)->first();
 
@@ -674,12 +648,12 @@ class ClientIbportalController extends Controller
             ->with('login', $oRequest->login)
             ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
-            ->with('showWithDrawal',config('accounts.showWithDrawal'))
+            ->with('showWithdrawal',config('accounts.showWithdrawal'))
             ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
             ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 
-    public function getAgentwithDrawal(Request $oRequest)
+    public function getAgentwithdrawal(Request $oRequest)
     {
         $Pssword = Config('accounts.apiReqiredConfirmMt4Password');
 
@@ -689,16 +663,16 @@ class ClientIbportalController extends Controller
             'login2' => '',
             'amount' => ''];
 
-        $oCurrentAgentwithDrawal = modelMt4User::where(['login' => $oRequest->login, 'server_id' =>0])->first();
+        $oCurrentAgentwithdrawal = modelMt4User::where(['login' => $oRequest->login, 'server_id' =>0])->first();
 
-        return view('ibportal::client.withDrawal')
+        return view('ibportal::client.withdrawal')
             ->with('login', $oRequest->login)
-            ->with('oCurrentAgentwithDrawal', $oCurrentAgentwithDrawal)
+            ->with('oCurrentAgentwithdrawal', $oCurrentAgentwithdrawal)
             ->with('internalTransfer', $internalTransfer)
             ->with('Pssword', $Pssword);
     }
 
-    public function postAgentwithDrawal(Request $oRequest)
+    public function postAgentwithdrawal(Request $oRequest)
     {
 
         $login= \Modules\Ibportal\Entities\IbportalUserIbid::select('login')->where('user_id',current_user()->getUser()->id)->first();
@@ -718,10 +692,10 @@ class ClientIbportalController extends Controller
             $oApiController->server_id=1;
         }
 
-        $result = $oApiController->withDrawal($login, $oRequest['amount'],$oRequest['oldPassword']);
+        $result = $oApiController->withdrawal($login, $oRequest['amount'],$oRequest['oldPassword']);
 
         /* TODO with success */
-        return view('ibportal::client.withDrawal')
+        return view('ibportal::client.withdrawal')
             ->withErrors($result)
             ->with('Pssword', $Pssword)
             ->with('internalTransfer', $internalTransfer)
@@ -730,7 +704,7 @@ class ClientIbportalController extends Controller
             ->with('login', $oRequest->login)
             ->with('showMt4Leverage',config('accounts.showMt4Leverage'))
             ->with('showMt4ChangePassword',config('accounts.showMt4ChangePassword'))
-            ->with('showWithDrawal',config('accounts.showWithDrawal'))
+            ->with('showWithdrawal',config('accounts.showWithdrawal'))
             ->with('showMt4Transfer',config('accounts.showMt4Transfer'));
     }
 

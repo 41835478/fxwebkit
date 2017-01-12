@@ -42,9 +42,9 @@
                         <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}"><i class="fa fa-retweet"></i> {{ trans('accounts::accounts.internalTransfer') }}</a>
                     </li>
                 @endif
-                @if($showWithDrawal)
+                @if($showWithdrawal)
                     <li>
-                        <a href="{{ route('client.accounts.withDrawal').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}"><i class="fa fa-external-link"></i>{{ trans('accounts::accounts.withDrawal') }}</a>
+                        <a href="{{ route('client.accounts.withdrawal').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}"><i class="fa fa-external-link"></i>{{ trans('accounts::accounts.withdrawal') }}</a>
                     </li>
                 @endif
             </ul>
@@ -493,9 +493,9 @@
                             <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}"><i class="fa fa-retweet"></i> {{ trans('accounts::accounts.internalTransfer') }}</a>
                         </li>
                     @endif
-                    @if($showWithDrawal)
+                    @if($showWithdrawal)
                         <li>
-                            <a href="{{ route('client.accounts.withDrawal').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}"><i class="fa fa-external-link"></i>{{ trans('accounts::accounts.withDrawal') }}</a>
+                            <a href="{{ route('client.accounts.withdrawal').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}"><i class="fa fa-external-link"></i>{{ trans('accounts::accounts.withdrawal') }}</a>
                         </li>
                     @endif
                 </ul>

@@ -1,5 +1,5 @@
 @extends('client.layouts.main')
-@section('title', trans('ibportal::ibportal.agentwithDrawal'))
+@section('title', trans('ibportal::ibportal.agentwithdrawal'))
 @section('content')
 
     <div id="page-wrapper">
@@ -7,12 +7,12 @@
             <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
-                    <h4 class="page-title">{{ trans('ibportal::ibportal.agentwithDrawal') }}</h4>
+                    <h4 class="page-title">{{ trans('ibportal::ibportal.agentwithdrawal') }}</h4>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <ol class="breadcrumb pull-left">
                         <li><a href="#">{{ trans('ibportal::ibportal.ModuleTitle') }}</a></li>
-                        <li class="active">{{ trans('ibportal::ibportal.agentwithDrawal') }}</li>
+                        <li class="active">{{ trans('ibportal::ibportal.agentwithdrawal') }}</li>
                     </ol>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
@@ -33,7 +33,7 @@
                 </li>
 
                 <li class="active">
-                    <a href="{{ route('client.ibportal.agentwithDrawal').'?login='.$login}}"><i class="fa fa-external-link"></i>{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
+                    <a href="{{ route('client.ibportal.agentwithdrawal').'?login='.$login}}"><i class="fa fa-external-link"></i>{{ trans('ibportal::ibportal.agentwithdrawal') }}</a>
                 </li>
 
             </ul>
@@ -48,9 +48,9 @@
 
                         <div class="row">
                             <br><br>
-                            <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.Balance') }} : <b>{{ $oCurrentAgentwithDrawal['BALANCE'] }}</b> </label>
-                            <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.MarginFree') }} : <b>{{ $oCurrentAgentwithDrawal['MARGIN_FREE'] }}</b> </label>
-                            <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.equity :') }} <b>{{ $oCurrentAgentwithDrawal['EQUITY'] }}</b> </label>
+                            <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.Balance') }} : <b>{{ $oCurrentAgentwithdrawal['BALANCE'] }}</b> </label>
+                            <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.MarginFree') }} : <b>{{ $oCurrentAgentwithdrawal['MARGIN_FREE'] }}</b> </label>
+                            <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.equity :') }} <b>{{ $oCurrentAgentwithdrawal['EQUITY'] }}</b> </label>
 
                             <div class="clearfix"></div>
                             <div class="col-sm-6">
@@ -104,13 +104,13 @@
 
     <div id="content-wrapper">
         <div class="page-header">
-        <h1>{{ trans('ibportal::ibportal.agentwithDrawal') }}</h1>
+        <h1>{{ trans('ibportal::ibportal.agentwithdrawal') }}</h1>
     </div>
 
     <div class="panel">
         {!! Form::open(['class'=>'panel form-horizontal']) !!}
         <div class="panel-heading">
-            <span class="panel-title">{{ trans('ibportal::ibportal.agentwithDrawal') }}</span>
+            <span class="panel-title">{{ trans('ibportal::ibportal.agentwithdrawal') }}</span>
         </div>
 
 
@@ -125,7 +125,7 @@
                 </li>
 
                 <li class="active">
-                    <a href="{{ route('client.ibportal.agentwithDrawal').'?login='.$login}}"><i class="fa fa-external-link"></i>{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
+                    <a href="{{ route('client.ibportal.agentwithdrawal').'?login='.$login}}"><i class="fa fa-external-link"></i>{{ trans('ibportal::ibportal.agentwithdrawal') }}</a>
                 </li>
 
             </ul>
@@ -134,9 +134,9 @@
 
             <div class="row">
 <br><br>
-                <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.Balance') }} : <b>{{ $oCurrentAgentwithDrawal['BALANCE'] }}</b> </label>
-                <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.MarginFree') }} : <b>{{ $oCurrentAgentwithDrawal['MARGIN_FREE'] }}</b> </label>
-                <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.equity :') }} <b>{{ $oCurrentAgentwithDrawal['EQUITY'] }}</b> </label>
+                <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.Balance') }} : <b>{{ $oCurrentAgentwithdrawal['BALANCE'] }}</b> </label>
+                <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.MarginFree') }} : <b>{{ $oCurrentAgentwithdrawal['MARGIN_FREE'] }}</b> </label>
+                <label class="label label-primary label-tag">{{ trans('ibportal::ibportal.equity :') }} <b>{{ $oCurrentAgentwithdrawal['EQUITY'] }}</b> </label>
 
                 <div class="clearfix"></div>
                 <div class="col-sm-6">

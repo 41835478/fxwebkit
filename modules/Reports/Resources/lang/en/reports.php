@@ -50,7 +50,7 @@ return [
     'showing'=>'showing',
     'export'=>'Export',
     'deposits'=>'Deposits',
-    'withdraws'=>'Withdraws',
+    'Withdrawal'=>'Withdrawal',
     'credit_in'=>'CreditIn',
     'credit_out'=>'CreditOut',
     'total'=>'Total',

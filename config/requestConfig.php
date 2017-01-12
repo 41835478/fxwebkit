@@ -22,8 +22,8 @@ return [
 			'icon' => 'fa-briefcase',
 		],
 		[
-			'route' => 'admin.request.withDrawal',
-			'title' => 'withDrawal',
+			'route' => 'admin.request.withdrawal',
+			'title' => 'withdrawal',
 			'icon' => 'fa-briefcase',
 		],
 		[

@@ -304,13 +304,13 @@ class ApiController extends Controller
 
     }
 
-    public function withDrawal($login1, $amount, $oldPassword = null)
+    public function withdrawal($login1, $amount, $oldPassword = null)
     {
 
         $requestLog = new RequestLog();
         if ($this->directOrderToMt4Server == false) {
 
-            $notExist = $requestLog->insertWithDrawalRequest($login1, $this->server_id, $amount);
+            $notExist = $requestLog->insertWithdrawalRequest($login1, $this->server_id, $amount);
 
             return (!$notExist) ? trans('accounts::accounts.youHavePendingRequest') : trans('accounts::accounts.the_request');
         }
@@ -325,23 +325,23 @@ class ApiController extends Controller
 
         if ($result->result === 0) {
             /* TODO comment and reason should be from addmin not $result,$result  */
-            $requestLog->insertWithDrawalRequest($login1, $this->server_id, $amount, '', '', 1);
+            $requestLog->insertWithdrawalRequest($login1, $this->server_id, $amount, '', '', 1);
 
             \Session::flash('flash_success',trans('accounts::accounts.success'));
 
             $email = new Email();
-            $email->withDrawal(['email' => config('fxweb.adminEmail'), 'login' => $login1, 'amount' => $amount]);
+            $email->withdrawal(['email' => config('fxweb.adminEmail'), 'login' => $login1, 'amount' => $amount]);
 
         } else {
 
-            $requestLog->insertWithDrawalRequest($login1, $this->server_id, $amount, '', '', 2);
+            $requestLog->insertWithdrawalRequest($login1, $this->server_id, $amount, '', '', 2);
         }
         return $this->getApiResponseMessage($result);
 
 
     }
 
-    public function adminForwordWithDrawal($logId, $login1, $server_id, $amount, $oldPassword = null)
+    public function adminForwordWithdrawal($logId, $login1, $server_id, $amount, $oldPassword = null)
     {
         $this->changeServer($server_id);
         $requestLog = new RequestLog();
@@ -356,7 +356,7 @@ class ApiController extends Controller
 
         if ($result->result === 0) {
 
-            $requestLog->updateWithDrawalRequest($logId, $login1, $amount, '', '', 1);
+            $requestLog->updateWithdrawalRequest($logId, $login1, $amount, '', '', 1);
             \Session::flash('flash_success',trans('accounts::accounts.success'));
 
 
@@ -364,45 +364,29 @@ class ApiController extends Controller
 
             $mt4User = Mt4User::select('EMAIL')->where('LOGIN', $login1)->where('server_id', $this->server_id)->first();
             $sendToEmail = ($mt4User && $mt4User->EMAIL != '') ? $mt4User->EMAIL : current_user()->getUser()->email;
-
-
-            $email->withDrawal(['email' => $sendToEmail, 'login' => $login1, 'amount' => $amount]);
-
+            $email->withdrawal(['email' => $sendToEmail, 'login' => $login1, 'amount' => $amount]);
         } else {
-            $requestLog->updateWithDrawalRequest($logId, $login1, $amount, '', '', 2);
-
-
+            $requestLog->updateWithdrawalRequest($logId, $login1, $amount, '', '', 2);
         }
         return $this->getApiResponseMessage($result);
-
-
     }
 
     public function operation($login, $amount, $mode, $oldPassword = null)
     {
-
         $password = ($this->apiReqiredConfirmMt4Password) ? "CPASS=" . $oldPassword . "|" : "";
-
         $message = 'WMQWEBAPI MASTER=' . $this->apiMasterPassword . '|MODE=' . $mode . '|' . 'LOGIN=' . $login . '|' . $password . 'AMOUNT=' . $amount . '|COMMENT=ONLINE';
-
-
         return $this->getApiResponseMessage($this->sendApiMessage($message));
     }
 
-
     public function mt4UserFullDetails($accountId, $mt4_user_details, $oldPassword = null)
     {
-
-
         $requestLog = new RequestLog();
         if ($this->directOrderToMt4Server == false) {
             $notExist = $requestLog->insertMt4UserFullDetailsRequest($this->server_id, $mt4_user_details, 0, $accountId);
-
             return (!$notExist) ? trans('accounts::accounts.youHavePendingRequest') : trans('accounts::accounts.the_request');
         }
 
         $password = ($this->apiReqiredConfirmMt4Password) ? "CPASS=" . $oldPassword . "|" : "";
-
 
         $message = 'WMQWEBAPI MASTER=' . $this->apiMasterPassword . '|MODE=6' . '|' . 'GROUP=' . $mt4_user_details['array_group'] . '|NAME=' . $mt4_user_details['first_name'] . ' ' . $mt4_user_details['last_name']
             . '|PASSWORD=' . $mt4_user_details['password'] . '|INVESTOR=' . $mt4_user_details['investor'] . '|EMAIL=' . $mt4_user_details['email'] . '|COUNTRY=' . $mt4_user_details['country']

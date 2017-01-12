@@ -267,27 +267,26 @@ class RequestController extends Controller
 
 
     }
-    public function getForwordWithDrawalRequest(Request $oRequest)
+    public function getForwordWithdrawalRequest(Request $oRequest)
     {
         $logId = $oRequest->logId;
 
 
-        $requestWithDrawal = RequestWithdrawal::find($logId);
+        $requestWithdrawal = RequestWithdrawal::find($logId);
 
         $apiController = new ApiController();
 
         $forwordResult = $apiController->adminForwordWithDrawal(
             $logId,
-            $requestWithDrawal->login,
-            $requestWithDrawal->server_id,
-            $requestWithDrawal->amount,
-            $requestWithDrawal->comment,
-            $requestWithDrawal->reason,
-            $requestWithDrawal->status);
-
+            $requestWithdrawal->login,
+            $requestWithdrawal->server_id,
+            $requestWithdrawal->amount,
+            $requestWithdrawal->comment,
+            $requestWithdrawal->reason,
+            $requestWithdrawal->status);
 
         /* TODO with success */
-        return Redirect::route('admin.request.withDrawal')->withErrors($forwordResult);
+        return Redirect::route('admin.request.withdrawal')->withErrors($forwordResult);
     }
 
 
@@ -330,7 +329,7 @@ class RequestController extends Controller
     }
 
 
-    public function getWithDrawalList(Request $oRequest)
+    public function getWithdrawalList(Request $oRequest)
     {
 
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
@@ -348,23 +347,23 @@ class RequestController extends Controller
             $aFilterParams['id'] =  (isset($oRequest->id))? $oRequest->id:'';
 
 
-            $oResults = $this->RequestLog->getWithDrawalRequestByFilters($aFilterParams, false, $sOrder, $sSort);
+            $oResults = $this->RequestLog->getWithdrawalRequestByFilters($aFilterParams, false, $sOrder, $sSort);
 
 
 
-        return view('request::admin/withDrawalRequestList')
+        return view('request::admin/withdrawalRequestList')
             ->with('oResults', $oResults)
             ->with('aRequestStatus', $aRequestStatus)
             ->with('aFilterParams', $aFilterParams)
             ->with('status',$status);
     }
 
-    public function getWithDrawalEdit(Request $oRequest)
+    public function getWithdrawalEdit(Request $oRequest)
     {
-        $oResults = $this->RequestLog->getWithDrawalById($oRequest->logId);
+        $oResults = $this->RequestLog->getWithdrawalById($oRequest->logId);
         $aRequestStatus = config('request.requestStatus');
 
-        $withDrawal = [
+        $withdrawal = [
             'logId' => $oRequest->logId,
             'status'=>$oResults['status'],
             'status_array'=>$aRequestStatus,
@@ -373,24 +372,21 @@ class RequestController extends Controller
         ];
 
 
-        return view('request::admin.withDrawalEdit')->with('withDrawal', $withDrawal);
+        return view('request::admin.withdrawalEdit')->with('withdrawal', $withdrawal);
     }
 
-    public function postWithDrawalEdit(Request $oRequest)
+    public function postWithdrawalEdit(Request $oRequest)
     {
-
-
-        $withDrawal = [
+        $withdrawal = [
             'logId' => $oRequest->logId,
             'comment' => $oRequest->comment,
             'status'=>$oRequest->status,
             'reason' => $oRequest->reason,
         ];
 
-        $oResults = $this->RequestLog->withDrawalEdit($withDrawal);
+        $oResults = $this->RequestLog->withdrawalEdit($withdrawal);
 
-
-        return Redirect::route('admin.request.withDrawal');
+        return Redirect::route('admin.request.withdrawal');
 
 
     }

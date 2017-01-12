@@ -34,7 +34,7 @@
                 </li>
 
                 <li >
-                    <a href="{{ route('client.ibportal.agentwithDrawal').'?login='.$login}}"><i class="fa fa-external-link"></i>{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
+                    <a href="{{ route('client.ibportal.agentwithdrawal').'?login='.$login}}"><i class="fa fa-external-link"></i>{{ trans('ibportal::ibportal.agentwithdrawal') }}</a>
                 </li>
 
 
@@ -138,7 +138,7 @@
                 </li>
 
                     <li >
-                        <a href="{{ route('client.ibportal.agentwithDrawal').'?login='.$login}}"><i class="fa fa-external-link"></i>{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
+                        <a href="{{ route('client.ibportal.agentwithdrawal').'?login='.$login}}"><i class="fa fa-external-link"></i>{{ trans('ibportal::ibportal.agentwithdrawal') }}</a>
                     </li>
 
 

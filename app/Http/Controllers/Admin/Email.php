@@ -229,7 +229,7 @@ class Email extends Controller {
 
     }
 
-    public function withDrawal($info) {
+    public function withdrawal($info) {
 
 
         $this->sendEmail('Withdrawal',

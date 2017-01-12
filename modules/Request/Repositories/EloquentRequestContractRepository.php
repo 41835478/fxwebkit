@@ -3,11 +3,10 @@
 namespace Modules\Request\Repositories;
 
 use Modules\Request\Entities\RequestInternalTransfer as InternalTransfer;
-use Modules\Request\Entities\RequestWithdrawal as WithDrawal;
+use Modules\Request\Entities\RequestWithdrawal as Withdrawal;
 use Modules\Request\Entities\RequestChangeLeverage as ChangeLeverage;
 use Modules\Request\Entities\RequestChangePassword as ChangePassword;
 use Config;
-
 use Modules\Request\Entities\RequestAddAccount as AddAccount;
 use Modules\Request\Entities\RequestAssignAccount as AssignAccount;
 
@@ -36,7 +35,6 @@ class EloquentRequestContractRepository implements RequestContract
 
     public function getInternalTransferRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
     {
-
         $oResult = new InternalTransfer();
 
         if (isset($aFilters['login']) && !empty($aFilters['login'])) {
@@ -57,13 +55,11 @@ class EloquentRequestContractRepository implements RequestContract
         }
 
         return $oResult;
-
     }
 
-    public function getWithDrawalRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
+    public function getWithdrawalRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
     {
-
-        $oResult = new WithDrawal();
+        $oResult = new Withdrawal();
 
         if (isset($aFilters['login']) && !empty($aFilters['login'])) {
             $oResult = $oResult->where('from_login', 'like', '%' . $aFilters['login'] . '%');
@@ -83,12 +79,10 @@ class EloquentRequestContractRepository implements RequestContract
         }
 
         return $oResult;
-
     }
 
     public function getChangeLeverageRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
     {
-
         $oResult = new  ChangeLeverage();
 
         if (isset($aFilters['login']) && !empty($aFilters['login'])) {
@@ -113,12 +107,10 @@ class EloquentRequestContractRepository implements RequestContract
         }
 
         return $oResult;
-
     }
 
     public function getChangePasswordRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
     {
-
         $oResult = new  ChangePassword();
 
         if (isset($aFilters['login']) && !empty($aFilters['login'])) {
@@ -139,7 +131,6 @@ class EloquentRequestContractRepository implements RequestContract
         }
 
         return $oResult;
-
     }
 
 
@@ -147,9 +138,7 @@ class EloquentRequestContractRepository implements RequestContract
     {
 
         $oResult = InternalTransfer::find($logId);
-
         return $oResult;
-
     }
 
 
@@ -157,113 +146,81 @@ class EloquentRequestContractRepository implements RequestContract
     {
 
         $log = InternalTransfer::find($internalTransfer['logId']);
-
-
         $log->comment = $internalTransfer['comment'];
         $log->reason = $internalTransfer['reason'];
         $log->status = $internalTransfer['status'];
         $log->save();
-        /* TODO before return true please check if the record saved correctly */
-
-
         return true;
-
     }
 
 
-    public function getWithDrawalById($logId)
+    public function getWithdrawalById($logId)
     {
 
-        $oResult = WithDrawal::find($logId);
-
+        $oResult = Withdrawal::find($logId);
         return $oResult;
-
     }
 
     public function getAddAccountById($logId)
     {
 
         $oResult = AddAccount::find($logId);
-
         return $oResult;
-
     }
 
     public function getChangeLeverageById($logId)
     {
 
         $oResult = ChangeLeverage::find($logId);
-
         return $oResult;
-
     }
 
     public function getChangePasswordById($logId)
     {
 
         $oResult = ChangePassword::find($logId);
-
         return $oResult;
-
     }
 
     public function getAssignAccountById($logId)
     {
 
         $oResult = AssignAccount::find($logId);
-
         return $oResult;
-
     }
 
 
-    public function withDrawalEdit($withDrawal)
+    public function withdrawalEdit($withdrawal)
     {
 
-        $log = WithDrawal::find($withDrawal['logId']);
-
-
-        $log->comment = $withDrawal['comment'];
-        $log->reason = $withDrawal['reason'];
-        $log->status = $withDrawal['status'];
+        $log = Withdrawal::find($withdrawal['logId']);
+        $log->comment = $withdrawal['comment'];
+        $log->reason = $withdrawal['reason'];
+        $log->status = $withdrawal['status'];
         $log->save();
-        /* TODO before return true please check if the record saved correctly */
         return true;
-
     }
 
     public function assignAccountEdit($assignAccount)
     {
 
         $log = AssignAccount::find($assignAccount['logId']);
-
-
         $log->comment = $assignAccount['comment'];
         $log->reason = $assignAccount['reason'];
         $log->status = $assignAccount['status'];
         $log->save();
-        /* TODO before return true please check if the record saved correctly */
-
-
         return true;
-
     }
 
     public function addAccountEdit($addAccount)
     {
 
         $log = AddAccount::find($addAccount['logId']);
-
-
         $log->comment = $addAccount['comment'];
         $log->reason = $addAccount['reason'];
         $log->status = $addAccount['status'];
         $log->save();
-        /* TODO before return true please check if the record saved correctly */
-
-
         return true;
-
     }
 
 
@@ -271,42 +228,27 @@ class EloquentRequestContractRepository implements RequestContract
     {
 
         $log = ChangePassword::find($changePassword['logId']);
-
-
         $log->comment = $changePassword['comment'];
         $log->reason = $changePassword['reason'];
         $log->status = $changePassword['status'];
         $log->save();
-        /* TODO before return true please check if the record saved correctly */
-
-
         return true;
-
     }
 
 
     public function changeLeverageEdit($changeLeverage)
     {
-
         $log = ChangeLeverage::find($changeLeverage['logId']);
-
-
         $log->comment = $changeLeverage['comment'];
         $log->reason = $changeLeverage['reason'];
         $log->status = $changeLeverage['status'];
         $log->save();
-        /* TODO before return true please check if the record saved correctly */
-
-
         return true;
-
     }
 
     public function getAddAccountRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'id', $sSort = 'ASC')
     {
-
         $oResult = new  AddAccount();
-
 
         if (isset($aFilters['first_name']) && !empty($aFilters['first_name'])) {
             $oResult = $oResult->where('first_name', 'like', '%' . $aFilters['first_name'] . '%');
@@ -328,12 +270,10 @@ class EloquentRequestContractRepository implements RequestContract
         }
 
         return $oResult;
-
     }
 
     public function getAssignAccountRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
     {
-
         $oResult = new  AssignAccount();
 
         if (isset($aFilters['login']) && !empty($aFilters['login'])) {
@@ -354,6 +294,5 @@ class EloquentRequestContractRepository implements RequestContract
         }
 
         return $oResult;
-
     }
 }

@@ -43,9 +43,9 @@
                         <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
                     </li>
                 @endif
-                @if($showWithDrawal)
+                @if($showWithdrawal)
                     <li class="active">
-                        <a href="{{ route('client.accounts.withDrawal').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.withDrawal') }}</a>
+                        <a href="{{ route('client.accounts.withdrawal').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.withdrawal') }}</a>
                     </li>
                 @endif
             </ul>
@@ -63,11 +63,11 @@
                         <div class="row">
                             <br><br>
                             <label class="label label-primary label-tag">{{ trans('accounts::accounts.Balance') }} :
-                                <b>{{ $oCurrentWithDrawal['BALANCE'] }}</b> </label>
+                                <b>{{ $oCurrentWithdrawal['BALANCE'] }}</b> </label>
                             <label class="label label-primary label-tag">{{ trans('accounts::accounts.MarginFree') }} :
-                                <b>{{ $oCurrentWithDrawal['MARGIN_FREE'] }}</b> </label>
+                                <b>{{ $oCurrentWithdrawal['MARGIN_FREE'] }}</b> </label>
                             <label class="label label-primary label-tag">{{ trans('accounts::accounts.equity :') }}
-                                <b>{{ $oCurrentWithDrawal['EQUITY'] }}</b> </label>
+                                <b>{{ $oCurrentWithdrawal['EQUITY'] }}</b> </label>
 
                             <div class="clearfix"></div>
 
@@ -245,9 +245,9 @@
                             <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
                         </li>
                     @endif
-                    @if($showWithDrawal)
+                    @if($showWithdrawal)
                         <li class="active">
-                            <a href="{{ route('client.accounts.withDrawal').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.withDrawal') }}</a>
+                            <a href="{{ route('client.accounts.withdrawal').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.withDrawal') }}</a>
                         </li>
                     @endif
                 </ul>
@@ -256,11 +256,11 @@
                 <div class="row">
                     <br><br>
                     <label class="label label-primary label-tag">{{ trans('accounts::accounts.Balance') }} :
-                        <b>{{ $oCurrentWithDrawal['BALANCE'] }}</b> </label>
+                        <b>{{ $oCurrentWithdrawal['BALANCE'] }}</b> </label>
                     <label class="label label-primary label-tag">{{ trans('accounts::accounts.MarginFree') }} :
-                        <b>{{ $oCurrentWithDrawal['MARGIN_FREE'] }}</b> </label>
+                        <b>{{ $oCurrentWithdrawal['MARGIN_FREE'] }}</b> </label>
                     <label class="label label-primary label-tag">{{ trans('accounts::accounts.equity :') }}
-                        <b>{{ $oCurrentWithDrawal['EQUITY'] }}</b> </label>
+                        <b>{{ $oCurrentWithdrawal['EQUITY'] }}</b> </label>
 
                     <div class="clearfix"></div>
                     <div class="col-sm-6">

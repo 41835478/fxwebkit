@@ -42,9 +42,9 @@
                         <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
                     </li>
                 @endif
-                @if($showWithDrawal)
+                @if($showWithdrawal)
                     <li >
-                        <a href="{{ route('client.accounts.withDrawal').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.withDrawal') }}</a>
+                        <a href="{{ route('client.accounts.withdrawal').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.withdrawal') }}</a>
                     </li>
                 @endif
 
@@ -251,9 +251,9 @@
                     <a href="{{ route('clients.accounts.mt4InternalTransfer').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.internalTransfer') }}</a>
                 </li>
                 @endif
-                @if($showWithDrawal)
+                @if($showWithdrawal)
                     <li >
-                        <a href="{{ route('client.accounts.withDrawal').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.withDrawal') }}</a>
+                        <a href="{{ route('client.accounts.withdrawal').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.withdrawal') }}</a>
                     </li>
                 @endif
 

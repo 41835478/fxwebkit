@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('request::request.withDrawal'))
+@section('title', trans('request::request.withdrawal'))
 @section('content')
 
     <div id="page-wrapper">
@@ -7,12 +7,12 @@
             <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
-                    <h4 class="page-title">{{ trans('request::request.withDrawal') }}</h4>
+                    <h4 class="page-title">{{ trans('request::request.withdrawal') }}</h4>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <ol class="breadcrumb pull-left">
                         <li><a href="#">{{ trans('request::request.ModuleTitle') }}</a></li>
-                        <li class="active">{{ trans('request::request.withDrawal') }}</li>
+                        <li class="active">{{ trans('request::request.withdrawal') }}</li>
                     </ol>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
@@ -38,7 +38,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('request::request.comment') }}</label>
-                                        {!! Form::text('comment',$withDrawal['comment'],['class'=>'form-control']) !!}
+                                        {!! Form::text('comment',$withdrawal['comment'],['class'=>'form-control']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('request::request.reason') }}</label>
-                                        {!! Form::text('reason',$withDrawal['reason'],['class'=>'form-control']) !!}
+                                        {!! Form::text('reason',$withdrawal['reason'],['class'=>'form-control']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                                     <div class="form-group no-margin-hr">
 
                                         <label class="control-label">{{ trans('request::request.status') }}</label>
-                                        {!! Form::select('status',$withDrawal['status_array'],$withDrawal['status'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
+                                        {!! Form::select('status',$withdrawal['status_array'],$withdrawal['status'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
                                     </div>
                                 </div><!-- col-sm-6 -->
                             </div>
@@ -68,7 +68,7 @@
                         {!!   View('admin/partials/messages')->with('errors',$errors) !!}
                         <div class="panel-footer text-right">
                             <button type="submit" class="btn btn-primary" name="logId"
-                                    value="{{ $withDrawal['logId']}}">{{ trans('request::request.save') }}</button>
+                                    value="{{ $withdrawal['logId']}}">{{ trans('request::request.save') }}</button>
                         </div>
                     </div>
                     {!! Form::close() !!}
@@ -85,7 +85,7 @@
         @section('hidden')
     <div id="content-wrapper">
     <div class="page-header">
-        <h1>{{ trans('request::request.withDrawal') }}</h1>
+        <h1>{{ trans('request::request.withdrawal') }}</h1>
     </div>
     {!! Form::open(['class'=>'panel form-horizontal']) !!}
     <div class="panel-body">
@@ -93,7 +93,7 @@
             <div class="col-sm-12">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('request::request.comment') }}</label>
-                    {!! Form::text('comment',$withDrawal['comment'],['class'=>'form-control']) !!}
+                    {!! Form::text('comment',$withdrawal['comment'],['class'=>'form-control']) !!}
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
             <div class="col-sm-12">
                 <div class="form-group no-margin-hr">
                     <label class="control-label">{{ trans('request::request.reason') }}</label>
-                    {!! Form::text('reason',$withDrawal['reason'],['class'=>'form-control']) !!}
+                    {!! Form::text('reason',$withdrawal['reason'],['class'=>'form-control']) !!}
                 </div>
             </div>
         </div>
@@ -115,7 +115,7 @@
                 <div class="form-group no-margin-hr">
 
                     <label class="control-label">{{ trans('request::request.status') }}</label>
-                    {!! Form::select('status',$withDrawal['status_array'],$withDrawal['status'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
+                    {!! Form::select('status',$withdrawal['status_array'],$withDrawal['status'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
                 </div>
             </div><!-- col-sm-6 -->
         </div>
@@ -123,7 +123,7 @@
         {!!   View('admin/partials/messages')->with('errors',$errors) !!}
     <div class="panel-footer text-right">
         <button type="submit" class="btn btn-primary" name="logId"
-                value="{{ $withDrawal['logId']}}">{{ trans('request::request.save') }}</button>
+                value="{{ $withdrawal['logId']}}">{{ trans('request::request.save') }}</button>
     </div>
 </div>
     {!! Form::close() !!}

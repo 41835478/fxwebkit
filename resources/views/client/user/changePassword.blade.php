@@ -57,7 +57,6 @@
                             {!!   View('admin/partials/messages')->with('errors',$errors) !!}
                         </div>
 
-
                         <div class="panel-footer text-right">
                             <a href="{{ route('client.users.profile')}}">
                                 <button type="submit" class="btn btn-primary" name="edit_id"
@@ -65,8 +64,6 @@
                             </a>
                         </div>
                         {!! Form::close() !!}
-
-
                     </div>
                 </div>
             </div>

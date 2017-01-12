@@ -15,7 +15,6 @@ class CreateRequestWithdrawalTable extends Migration {
         Schema::create('request_withdrawal', function(Blueprint $table)
         {
             $table->increments('id');
-
             $table->integer('login');
             $table->tinyInteger('server_id');
             $table->double('amount');
@@ -35,5 +34,4 @@ class CreateRequestWithdrawalTable extends Migration {
     {
         Schema::drop('request_withdrawal');
     }
-
 }

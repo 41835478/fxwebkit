@@ -19,18 +19,13 @@ class EloquentHolidayContractRepository implements HolidayContract
         //
     }
 
-
     public function getHolidayByFilter($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
     {
-
-
         $oResult = new ToolsHoliday();
-
 
         if (isset($aFilters['id']) && !empty($aFilters['id'])) {
             $oResult = $oResult->where('id', $aFilters['id']);
         }
-
 
         if (isset($aFilters['name']) && !empty($aFilters['name'])) {
             $oResult = $oResult->where('name', 'like', '%' . $aFilters['name'] . '%');
@@ -40,11 +35,9 @@ class EloquentHolidayContractRepository implements HolidayContract
             $oResult = $oResult->where('start_date', 'like', '%' . $aFilters['start_date'] . '%');
         }
 
-
         if (isset($aFilters['end_date']) && !empty($aFilters['end_date'])) {
             $oResult = $oResult->where('expiry_date', 'like', '%' . $aFilters['end_date'] . '%');
         }
-
 
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
@@ -55,13 +48,11 @@ class EloquentHolidayContractRepository implements HolidayContract
 
         }
 
-
         return $oResult;
     }
 
     public function addHoliday($holiday_details)
     {
-
         $result = ToolsHoliday::create($holiday_details);
 
         return ($result) ? $result->id : 0;
@@ -69,21 +60,15 @@ class EloquentHolidayContractRepository implements HolidayContract
 
     public function getHolidayDetails($holidayId)
     {
-
         $result = ToolsHoliday::find($holidayId);
-
 
         return ($result) ? $result : 0;
 
     }
 
-
     public function getUpdateholiday($oRequest)
     {
-
-
         $result = ToolsHoliday::find($oRequest->edit_id);
-
 
         $aCredentials = [
             'name' => $oRequest->name,
@@ -98,7 +83,6 @@ class EloquentHolidayContractRepository implements HolidayContract
 
     public function getSymbols()
     {
-
         $aSymbols = ConfigrationsSymbols::select(['id', 'symbol'])->distinct('symbol')->lists('symbol', 'id');
 
         return $aSymbols;
@@ -192,6 +176,4 @@ class EloquentHolidayContractRepository implements HolidayContract
             return [trans('tools::tools.deleted_faild_message')];
         }
     }
-
-
 }
