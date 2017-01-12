@@ -288,7 +288,7 @@
                             <i class="fa fa-user bg-icon"></i>
                             <!-- Extra large text -->
                                 <span class="text-xlg"><span
-                                            class="text-lg text-slim"></span><strong> {{$oneLogin[0]}}</strong>/@if($oneLogin[1]==0){{config('fxweb.liveServerName')}}@else {{config('fxweb.demoServerName')}}@endif </span><br>
+                                            class="text-lg text-slim"></span><strong>  {{$oneLogin[0]}}</strong>/{{config('fxweb.servers')[$oneLogin[1]]['serverName']}} </span><br>
                             <!-- Big text -->
                                 <span class="text-bg">{{ trans('user.growth') }} @if($oneLogin[0].$oneLogin[1] ==$login.$server_id  ) {{ $balance }}  @else
                                         {{ trans('user.click_here') }}  @endif % </span><br> <!-- Big text -->

@@ -36,7 +36,7 @@
 
 
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('accounts::accounts.Login'), 'LOGIN', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('accounts::accounts.name'), 'NAME', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! trans('accounts::accounts.currency') !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('accounts::accounts.equity'), 'EQUITY', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('accounts::accounts.balance'), 'BALANCE', $oResults) !!}</th>
@@ -132,7 +132,7 @@
 
 
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('accounts::accounts.Login'), 'LOGIN', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('accounts::accounts.name'), 'NAME', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! trans('accounts::accounts.currency') !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('accounts::accounts.equity'), 'EQUITY', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('accounts::accounts.balance'), 'BALANCE', $oResults) !!}</th>
