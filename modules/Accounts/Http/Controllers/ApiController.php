@@ -1,6 +1,7 @@
 <?php namespace Modules\Accounts\Http\Controllers;
 
 use Fxweb\Http\Controllers\Admin\Email;
+use Fxweb\Http\Controllers\Admin\EmailController as Email2;
 use Pingpong\Modules\Routing\Controller;
 use Modules\Request\Http\Controllers\RequestController as RequestLog;
 use Fxweb\Models\Mt4User;
@@ -97,7 +98,7 @@ class ApiController extends Controller
     {
 
         $requestLog = new RequestLog();
-
+        $email=new Email2();
         if ($this->directOrderToMt4Server == false) {
             $notExist = $requestLog->insertChangePasswordRequest($login, $this->server_id, $newPassword,$passwordType);
 
@@ -108,22 +109,19 @@ class ApiController extends Controller
         $message = 'WMQWEBAPI MASTER=' . $this->apiMasterPassword . '|MODE=2|LOGIN=' . $login . '|' . $password . 'NPASS=' . $newPassword . '|TYPE=' . $passwordType . '|MANAGER=1';
         $result = $this->sendApiMessage($message);
 
-
+        $logId=0;
         if ($result->result === 0) {
             /* TODO comment and reason should be from addmin not $result,$result  */
 
-            $requestLog->insertChangePasswordRequest($login, $this->server_id, $newPassword, '', '', 1,$passwordType);
+            $logId=$requestLog->insertChangePasswordRequest($login, $this->server_id, $newPassword, '', '', 1,$passwordType);
             \Session::flash('flash_success',trans('accounts::accounts.success'));
 
-
-
-            $email = new Email();
-            $email->changeMt4Password(['email' => config('fxweb.adminEmail'), 'login' => $login, 'newPassword' => $newPassword, 'passwordType' => $passwordType]);
 
         } else {
 
             $requestLog->insertChangePasswordRequest($login, $this->server_id, $newPassword, '', '', 2,$passwordType);
         }
+        $email->sendChangePassword($logId);
         return $this->getApiResponseMessage($result);
     }
 
@@ -146,19 +144,13 @@ class ApiController extends Controller
             $requestLog->updateChangePasswordRequest($logId, $login, $newPassword, '', '', 1,$passwordType);
             \Session::flash('flash_success',trans('accounts::accounts.success'));
 
-
-            $email = new Email();
-
-            $mt4User = Mt4User::select('EMAIL')->where('LOGIN', $login)->where('server_id', $this->server_id)->first();
-            $sendToEmail = ($mt4User && $mt4User->EMAIL != '') ? $mt4User->EMAIL : current_user()->getUser()->email;
-
-            $email->changeMt4Password(['email' => $sendToEmail, 'login' => $login, 'newPassword' => $newPassword, 'passwordType' => $passwordType]);
-
-
         } else {
 
             $requestLog->updateChangePasswordRequest($logId, $login, $newPassword, '', '', 2,$passwordType);
         }
+
+        $email=new Email2();
+        $email->sendChangePassword($logId);
 
         return $this->getApiResponseMessage($result);
     }
@@ -178,23 +170,21 @@ class ApiController extends Controller
 
         $result = $this->sendApiMessage($message);
 
+        $logId=0;
         if ($result->result === 0) {
             /* TODO comment and reason should be from addmin not $result,$result  */
-            $requestLog->insertChangeLeverageRequest($login, $this->server_id, $leverage, '', '', 1);
+            $logId=$requestLog->insertChangeLeverageRequest($login, $this->server_id, $leverage, '', '', 1);
 
             \Session::flash('flash_success',trans('accounts::accounts.success'));
 
-            $email = new Email();
-            $email->changeLeverage(['email' => config('fxweb.adminEmail'), 'login' => $login, 'leverage' => $leverage]);
 
-            $mt4User = Mt4User::select('EMAIL')->where('LOGIN', $login)->where('server_id', $this->server_id)->get();
-            $sendToEmail = (isset($mt4User->EMAIL) && $mt4User->EMAIL != '') ? $mt4User->EMAIL : current_user()->getUser()->email;
-            $email->changeLeverage(['email' => $sendToEmail, 'login' => $login, 'leverage' => $leverage]);
 
         } else {
 
-            $requestLog->insertChangeLeverageRequest($login, $this->server_id, $leverage, '', '', 2);
+            $logId= $requestLog->insertChangeLeverageRequest($login, $this->server_id, $leverage, '', '', 2);
         }
+        $email=new Email2();
+        $email->sendChangeLeverage($logId);
         return $this->getApiResponseMessage($result);
     }
 
@@ -226,6 +216,8 @@ class ApiController extends Controller
             $requestLog->updateChangeLeverageRequest($logId, $login, $leverage, '', '', 2);
         }
 
+        $email=new Email2();
+        $email->sendChangeLeverage($logId);
         return $this->getApiResponseMessage($result);
     }
 
@@ -248,19 +240,20 @@ class ApiController extends Controller
 
         $result = $this->sendApiMessage($message);
 
+        $logId=0;
         if ($result->result === 0) {
             /* TODO comment and reason should be from addmin not $result,$result  */
-            $requestLog->insertInternalTransferRequest($login1, $login2, $this->server_id, $amount, '', '', 1);
+            $logId=$requestLog->insertInternalTransferRequest($login1, $login2, $this->server_id, $amount, '', '', 1);
 
             \Session::flash('flash_success',trans('accounts::accounts.success'));
 
-            $email = new Email();
-            $email->internalTransfers(['email' => config('fxweb.adminEmail'), 'login1' => $login1, 'login2' => $login2, 'amount' => $amount]);
-
         } else {
 
-            $requestLog->insertInternalTransferRequest($login1, $login2, $this->server_id, $amount, '', '', 2);
+            $logId= $requestLog->insertInternalTransferRequest($login1, $login2, $this->server_id, $amount, '', '', 2);
         }
+
+        $email=new Email2();
+        $email->sendInternalTransfer($logId);
         return $this->getApiResponseMessage($result);
 
 
@@ -285,20 +278,16 @@ class ApiController extends Controller
             $requestLog->updateInternalTransferRequest($logId, $login1, $login2, $amount, '', '', 1);
             \Session::flash('flash_success',trans('accounts::accounts.success'));
 
-
-
-            $email = new Email();
-
-            $mt4User = Mt4User::select('EMAIL')->where('LOGIN', $login1)->where('server_id', $this->server_id)->first();
-            $sendToEmail = ($mt4User && $mt4User->EMAIL != '') ? $mt4User->EMAIL : current_user()->getUser()->email;
-
-            $email->internalTransfers(['email' => $sendToEmail, 'login1' => $login1, 'login2' => $login2, 'amount' => $amount]);
-
         } else {
             $requestLog->updateInternalTransferRequest($logId, $login1, $login2, $amount, '', '', 2);
 
 
         }
+
+
+        $email=new Email2();
+        $email->sendInternalTransfer($logId);
+
         return $this->getApiResponseMessage($result);
 
 
@@ -322,22 +311,24 @@ class ApiController extends Controller
 
         $result = $this->sendApiMessage($message);
 
-
+        $logId=0;
         if ($result->result === 0) {
             /* TODO comment and reason should be from addmin not $result,$result  */
+
             $requestLog->insertWithdrawalRequest($login1, $this->server_id, $amount, '', '', 1);
 
             \Session::flash('flash_success',trans('accounts::accounts.success'));
 
             $email = new Email();
             $email->withdrawal(['email' => config('fxweb.adminEmail'), 'login' => $login1, 'amount' => $amount]);
-
         } else {
-
             $requestLog->insertWithdrawalRequest($login1, $this->server_id, $amount, '', '', 2);
         }
-        return $this->getApiResponseMessage($result);
 
+        $email=new Email2();
+        $email->sendWithdrawal($logId);
+
+        return $this->getApiResponseMessage($result);
 
     }
 
@@ -348,10 +339,7 @@ class ApiController extends Controller
         /* TODO check oldpassword and insert it in log InternalTransfer to re send it to this function */
 
         $password = "";
-
-
         $message = 'WMQWEBAPI MASTER=' . $this->apiMasterPassword . '|MODE=3|LOGIN=' . $login1 . '|' . $password . '|AMOUNT=' . '-' . $amount . '|COMMENT=ONLINE' . '|MANAGER=1';
-
         $result = $this->sendApiMessage($message);
 
         if ($result->result === 0) {
@@ -359,15 +347,20 @@ class ApiController extends Controller
             $requestLog->updateWithdrawalRequest($logId, $login1, $amount, '', '', 1);
             \Session::flash('flash_success',trans('accounts::accounts.success'));
 
-
             $email = new Email();
 
             $mt4User = Mt4User::select('EMAIL')->where('LOGIN', $login1)->where('server_id', $this->server_id)->first();
             $sendToEmail = ($mt4User && $mt4User->EMAIL != '') ? $mt4User->EMAIL : current_user()->getUser()->email;
             $email->withdrawal(['email' => $sendToEmail, 'login' => $login1, 'amount' => $amount]);
+
         } else {
             $requestLog->updateWithdrawalRequest($logId, $login1, $amount, '', '', 2);
         }
+
+
+        $email=new Email2();
+        $email->sendWithdrawal($logId);
+
         return $this->getApiResponseMessage($result);
     }
 
@@ -386,25 +379,34 @@ class ApiController extends Controller
             return (!$notExist) ? trans('accounts::accounts.youHavePendingRequest') : trans('accounts::accounts.the_request');
         }
 
-        $password = ($this->apiReqiredConfirmMt4Password) ? "CPASS=" . $oldPassword . "|" : "";
+        $password = ($this->apiReqiredConfirmMt4Password) ?     "CPASS=" . $oldPassword . "|" : "";
 
         $message = 'WMQWEBAPI MASTER=' . $this->apiMasterPassword . '|MODE=6' . '|' . 'GROUP=' . $mt4_user_details['array_group'] . '|NAME=' . $mt4_user_details['first_name'] . ' ' . $mt4_user_details['last_name']
             . '|PASSWORD=' . $mt4_user_details['password'] . '|INVESTOR=' . $mt4_user_details['investor'] . '|EMAIL=' . $mt4_user_details['email'] . '|COUNTRY=' . $mt4_user_details['country']
-            . '|CITY=' . $mt4_user_details['city'] . '|ADDRESS=' . $mt4_user_details['address'] . '|COMMENT=' . '|PHONE=' . $mt4_user_details['phone'] . '|ZIPCODE=' . $mt4_user_details['phone']
+           . '|CITY=' . $mt4_user_details['city'] . '|ADDRESS=' . $mt4_user_details['address'] . '|COM
+
+ENT=' . '|PHONE=' . $mt4_user_details['phone'] . '|ZIPCODE=' . $mt4_user_details['phone']
             . '|LEVERAGE=' . $mt4_user_details['array_leverage'] . '|SEND_REPORTS=1' . '|DEPOSIT=' . $mt4_user_details['array_deposit'];
 
         $result = $this->sendApiMessage($message);
 
+        $email=new Email2();
+        $logId=0;
         if ($result->result === 0) {
 
             /* TODO comment and reason should be from addmin not $result,$result  */
-            $requestLog->insertMt4UserFullDetailsRequest($this->server_id, $mt4_user_details, 1, $accountId);
+            $logId=$requestLog->insertMt4UserFullDetailsRequest($this->server_id, $mt4_user_details, 1, $accountId);
+            $email->sendAdditionalAccountEmail($logId);
             return ($result->data[0]->login);
 
         } else {
 
-            $requestLog->insertMt4UserFullDetailsRequest($this->server_id, $mt4_user_details, 2, $accountId);
+            $logId=$requestLog->insertMt4UserFullDetailsRequest($this->server_id, $mt4_user_details, 2, $accountId);
         }
+
+
+        $email->sendAdditionalAccountEmail($logId);
+
         return $this->getApiResponseMessage($result);
 
 
@@ -441,6 +443,10 @@ class ApiController extends Controller
 
             $requestLog->updateMt4UserFullDetailsRequest($logId, $mt4_user_details, 2, 0, $mt4_user_details['accountId']);
         }
+
+        $email=new Email2();
+        $email->sendAdditionalAccountEmail($logId);
+
         return $this->getApiResponseMessage($result);
 
 

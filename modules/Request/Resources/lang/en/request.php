@@ -54,5 +54,13 @@ return [
     'id'=>'ID',
     'tableHead'=>'Kitchen Sink',
     'tableDescription'=>'Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch',
+    'template'=>'Template',
+    'language'=>'Language',
+    'type'=>'Type',
+    'subject'=>'Subject',
+    'to_field'=>'field contain email',
+    'to_email'=>'To Email',
+    'saveNew'=>'Save New',
+    'delete'=>'Delete'
 
 ];

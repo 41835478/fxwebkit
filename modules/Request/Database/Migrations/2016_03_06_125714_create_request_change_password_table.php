@@ -22,6 +22,7 @@ class CreateRequestChangePasswordTable extends Migration {
             $table->text('comment');
             $table->text('reason');
             $table->tinyInteger('status');
+            $table->integer('users_id');
             $table->timestamps();
         });
     }
