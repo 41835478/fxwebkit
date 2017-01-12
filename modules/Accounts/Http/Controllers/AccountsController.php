@@ -693,7 +693,6 @@ class AccountsController extends Controller
         }
         $result = $oApiController->changeMt4Leverage($oRequest['login'], $oRequest['leverage'], $oRequest['oldPassword']);
 
-
         \Session::flash('flash_success',trans('accounts::accounts.success'));
 
         return view('accounts::addLeverage')
@@ -745,6 +744,7 @@ class AccountsController extends Controller
         \Session::flash('flash_success',trans('accounts::accounts.success'));
 
         $mT4ChangePassword = new ApiController();
+
         if($oRequest['server_id']==1){
             $mT4ChangePassword->mt4Host=config('fxweb.mt4CheckDemoHost');
             $mT4ChangePassword->mt4Port=config('fxweb.mt4CheckDemoPort');

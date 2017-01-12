@@ -253,7 +253,7 @@
 
 
                                             <div class="td"><label>{!! trans('accounts::accounts.Login') !!} : </label><p>{{ $oResult->LOGIN }}</p></div>
-                                            <div class="td"><label>{!! trans('accounts::accounts.liveDemo') !!} : </label><p>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                            <div class="td"><label>{!! trans('accounts::accounts.liveDemo') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
                                             <div class="td"><label>{!! trans('accounts::accounts.Name') !!} : </label><p>{{ $oResult->NAME }}</p></div>
                                             <div class="td"><label>{!! trans('accounts::accounts.reg_date') !!} : </label><p>{{ $oResult->REGDATE }}</p></div>
                                             <div class="td"><label>{!! trans('accounts::accounts.last_date') !!} : </label><p>{{ $oResult->LASTDATE }}</p></div>

@@ -63,7 +63,7 @@
                                     <tr class="tr {{ $class }}">
 
                                         <td>{{ $oResult->first_name.' '.$oResult->last_name }}</td>
-                                        <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                                        <td>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</td>
                                         <td>{{ $oResult->email }}</td>
                                         <td>{{ $oResult->leverage }}</td>
                                         <td>{{ $oResult->array_deposit }}</td>
@@ -238,7 +238,7 @@
                                         <div class="tr {{ $class }}">
 
                                             <div class="td"><label>{!! trans('request::request.first_name') !!} : </label><p>{{ $oResult->first_name.' '.$oResult->last_name }}</p></div>
-                                            <div class="td"><label>{!! trans('request::request.liveDemo') !!} : </label><p>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.liveDemo') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.email') !!} : </label><p>{{ $oResult->email }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.leverage') !!} : </label><p>1:{{ $oResult->leverage }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.array_deposit') !!} : </label><p>{{ $oResult->array_deposit }}</p></div>

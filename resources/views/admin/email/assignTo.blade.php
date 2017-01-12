@@ -66,7 +66,7 @@
 
 
                                         <td>{!! Form::checkbox('users_checkbox[]',$oResult->uid,false,['class'=>'users_checkbox']) !!} {{ $oResult->LOGIN }}</td>
-                                        <td>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                                        <td>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</td>
                                         <td>{{ $oResult->NAME }}</td>
                                         <td>{{ $oResult->GROUP }}</td>
                                         <td>
@@ -300,8 +300,6 @@
                                 <div class="thead">
                                     <div class="tr">
 
-
-
                                         <div class="th">{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.Form::label('check_all',trans('general.Login')) !!}</div>
                                         <div class="th">{!! th_sort(trans('general.liveDemo'), 'server_id', $oResults) !!}</div>
                                         <div class="th">{!! th_sort(trans('general.name '), 'NAME', $oResults) !!}</div>
@@ -323,7 +321,7 @@
 
 
                                                 <div class="td"><label>{!! trans('accounts::accounts.Login') !!} : </label><p>{!! Form::checkbox('users_checkbox[]',$oResult->uid,false,['class'=>'users_checkbox']) !!} {{ $oResult->LOGIN }}</p></div>
-                                                <div class="td"><label>{!! trans('accounts::accounts.liveDemo') !!} : </label><p>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                                <div class="td"><label>{!! trans('accounts::accounts.liveDemo') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
                                                 <div class="td"><label>{!! trans('accounts::accounts.Name') !!} : </label><p>{{ $oResult->NAME }}</p></div>
                                                 <div class="td"><label>{!! trans('accounts::accounts.Group') !!} : </label><p>{{ $oResult->GROUP }}</p></div>
                                                 <div class="td">
@@ -356,52 +354,6 @@
                             </tr>
                             </tfoot>
                         </div>
-
-
-                        {{--<table class="table table-bordered">--}}
-                            {{--<thead>--}}
-                            {{--<tr>--}}
-                                {{--<th>{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.Form::label('check_all',trans('general.Login')) !!}</th>--}}
-                                {{--<th class="no-warp">{!! th_sort(trans('general.liveDemo'), 'server_id', $oResults) !!}</th>--}}
-                                {{--<th class="no-warp">{!! th_sort(trans('general.name '), 'NAME', $oResults) !!}</th>--}}
-                                {{--<th class="no-warp">{!! th_sort(trans('general.group'), 'GROUP', $oResults) !!}</th>--}}
-                                {{--<th class="no-warp">{!! trans('general.action') !!}</th>--}}
-                            {{--</tr>--}}
-                            {{--</thead>--}}
-                            {{--<tbody>--}}
-
-                            {{--@foreach($oResults as $oResult)--}}
-                                {{--<tr>--}}
-
-                                    {{--<td>{!! Form::checkbox('users_checkbox[]',$oResult->uid,false,['class'=>'users_checkbox']) !!} {{ $oResult->LOGIN }}</td>--}}
-                                    {{--<td>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>--}}
-                                    {{--<td>{{ $oResult->NAME }}</td>--}}
-                                    {{--<td>{{ $oResult->GROUP }}</td>--}}
-                                    {{--<td>--}}
-
-                                        {{--@if(isset($oResult->user_id ) || (isset($oResult->massGroup) && $oResult->massGroup->first()->user_id) )--}}
-                                            {{--{!! Form::button('<a><i class="fa fa-unlink"></i></a>',['name'=>'un_sign_mt4_users_submit_id','value'=>$oResult->uid  ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}--}}
-                                        {{--@else--}}
-
-                                            {{--{!! Form::button('<a><i class="fa fa-link"></i></a>',['name'=>'asign_mt4_users_submit_id','value'=>$oResult->uid ,'class'=>'icon_button red_icon','type'=>'submit' ]) !!}--}}
-                                        {{--@endif--}}
-                                    {{--</td>--}}
-                                {{--</tr>--}}
-                            {{--@endforeach--}}
-                            {{--</tbody>--}}
-                            {{--<tfoot>--}}
-                            {{--<tr>--}}
-                                {{--<td colspan="5">--}}
-
-                                    {{--{!! Form::hidden('group_id', $aFilterParams['group_id']) !!}--}}
-                                    {{--{!! Form::hidden('sort', $aFilterParams['sort']) !!}--}}
-                                    {{--{!! Form::hidden('order', $aFilterParams['order']) !!}--}}
-                                    {{--{!! Form::button( trans('general.assign') ,['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary' ]) !!}--}}
-                                    {{--{!! Form::button(trans('general.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1' ,'type'=>'submit' ,'class'=>'btn btn-primary']) !!}--}}
-                                {{--</td>--}}
-                            {{--</tr>--}}
-                            {{--</tfoot>--}}
-                        {{--</table>--}}
                     @endif
                     {!! Form::close() !!}
                     <div class="table-footer">

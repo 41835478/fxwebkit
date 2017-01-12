@@ -398,10 +398,7 @@ class ClientIbportalController extends Controller
 
            }
 
-
         $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, false, $sOrder, $sSort);
-
-
 
         return view('ibportal::client.agentUserMt4Users')
             ->with('aGroups', $aGroups)
@@ -617,8 +614,6 @@ class ClientIbportalController extends Controller
 
             if (!count($oHisResults) && !count($oHisUsersResults) ) { $allowed = false; }
 
-
-
         }
 
         $internalTransfer = [
@@ -629,11 +624,10 @@ class ClientIbportalController extends Controller
         $result = '';
         if ($allowed) {
             $oApiController = new ApiController();
-            if($oRequest['server_id']==1){
-                $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
-                $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
-                $oApiController->server_id=1;
-            }
+
+            $oApiController->mt4Host = config('fxweb.servers')[$oRequest['server_id']]['mt4CheckHost'];
+            $oApiController->mt4Port = config('fxweb.servers')[$oRequest['server_id']]['mt4CheckPort'];
+            $oApiController->server_id =$oRequest['server_id'];
 
             $result = $oApiController->internalTransfer($login, $oRequest['login2'], $oRequest['oldPassword'], $oRequest['amount']);
         } else {
@@ -686,11 +680,10 @@ class ClientIbportalController extends Controller
             'amount' => ''];
 
         $oApiController = new ApiController();
-        if($oRequest['server_id']==1){
-            $oApiController->mt4Host=Config('fxweb.mt4CheckDemoHost');
-            $oApiController->mt4Port=Config('fxweb.mt4CheckDemoPort');
-            $oApiController->server_id=1;
-        }
+
+        $oApiController->mt4Host = config('fxweb.servers')[$oRequest['server_id']]['mt4CheckHost'];
+        $oApiController->mt4Port = config('fxweb.servers')[$oRequest['server_id']]['mt4CheckPort'];
+        $oApiController->server_id = $oRequest['server_id'];
 
         $result = $oApiController->withdrawal($login, $oRequest['amount'],$oRequest['oldPassword']);
 

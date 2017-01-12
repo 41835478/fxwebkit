@@ -37,31 +37,19 @@ class ApiController extends Controller
     {
         $this->apiReqiredConfirmMt4Password = Config('accounts.apiReqiredConfirmMt4Password');
         $this->apiMasterPassword = Config('accounts.apiMasterPassword');
-        $this->mt4Host = Config('fxweb.mt4CheckHost');
-        $this->mt4Port = Config('fxweb.mt4CheckPort');
-
+        $this->mt4Host =  config('fxweb.servers')[0]['mt4CheckHost'];
+        $this->mt4Port =  config('fxweb.servers')[ 0]['mt4CheckPort'];
         $this->server_id = 0;
-
-
         $user = current_user()->getUser();
-
         $this->admin = ($user && $user->InRole('admin')) ? true : false;
-
         $this->directOrderToMt4Server = (Config('accounts.directOrderToMt4Server') || $this->admin);
     }
 
     public function changeServer($server_id)
     {
-        if ($server_id == 1) {
-            $this->mt4Host = Config('fxweb.mt4CheckDemoHost');
-            $this->mt4Port = Config('fxweb.mt4CheckDemoPort');
-            $this->server_id = 1;
-        } else {
-            $this->mt4Host = Config('fxweb.mt4CheckHost');
-            $this->mt4Port = Config('fxweb.mt4CheckPort');
-            $this->server_id = $server_id;
-
-        }
+        $this->mt4Host =  config('fxweb.servers')[ $server_id]['mt4CheckHost'];
+        $this->mt4Port =  config('fxweb.servers')[ $server_id]['mt4CheckPort'];
+        $this->server_id = $server_id;
 
 
     }

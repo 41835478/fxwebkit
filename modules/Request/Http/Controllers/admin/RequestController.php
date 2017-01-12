@@ -66,7 +66,6 @@ class RequestController extends Controller
     {
         $logId = $oRequest->logId;
 
-
         $requestInternalTransfer = RequestInternalTransfer::find($logId);
 
         $apiController = new ApiController();
@@ -79,7 +78,6 @@ class RequestController extends Controller
             $requestInternalTransfer->comment,
             $requestInternalTransfer->reason,
             $requestInternalTransfer->status);
-
 
         /* TODO with success */
 

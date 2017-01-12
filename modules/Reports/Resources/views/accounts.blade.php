@@ -60,7 +60,7 @@
 
 
                                         <td>{{ $oResult->LOGIN }}</td>
-                                        <td>{{($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                                        <td>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</td>
                                         <td>{{ $oResult->NAME }}</td>
                                         <td>{{ $oResult->EQUITY }}</td>
                                         <td>{{ $oResult->BALANCE }}</td>
@@ -305,7 +305,7 @@
 
 
                                         <div class="td"><label>{!! trans('reports::reports.Login') !!} : </label><p>{{ $oResult->LOGIN }}</p></div>
-                                        <div class="td"><label>{!! trans('reports::reports.liveDemo') !!} : </label><p>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.liveDemo') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
                                         <div class="td"><label>{!! trans('reports::reports.Name') !!} : </label><p>{{ $oResult->NAME }}</p></div>
                                         <div class="td"><label>{!! trans('reports::reports.Equity') !!} : </label><p>{{ $oResult->EQUITY }}</p></div>
                                         <div class="td"><label>{!! trans('reports::reports.Balance') !!} : </label><p>{{ $oResult->BALANCE }}</p></div>

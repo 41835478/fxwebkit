@@ -3,9 +3,7 @@
 @section('content')
 
     <div id="page-wrapper" style="min-height: 502px;">
-
-<div class="container-fluid">
-
+        <div class="container-fluid">
 
     <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
         <div class="col-lg-12">
@@ -25,19 +23,14 @@
         </div>
     </div>
 
-
-
     <div class="row">
         <div class="col-sm-12">
             <div class="white-box">
+
                 <h3 class="box-title m-b-0">{{ trans('dashboard.user') }} / {{ trans('dashboard.mt4User') }} </h3>
                 <p class="text-muted m-b-30 font-13">  {{ trans('dashboard.request') }} </p>
 
-
-
-
                 <div class="row row-in">
-
                     <div class="col-lg-4 col-sm-6 row-in-br" onclick="window.location.href='{{ route('accounts.accountsList').'?active=0'}}';">
                         <div class="col-in row">
                             <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E" class="fa fa-users"></i>
@@ -55,9 +48,6 @@
                         </div>
                     </div>
 
-
-
-
                     <div class="col-lg-4 col-sm-6 row-in-br  b-r-none" onclick="window.location.href='{{ route('accounts.accountsList').'?active=1'}}';">
                         <div class="col-in row">
                             <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic" data-icon=""></i>
@@ -74,8 +64,6 @@
                         </div>
                     </div>
 
-
-
                     <div class="col-lg-4 col-sm-6 row-in-br" onclick="window.location.href='{{ route('accounts.accountsList').'?active=2'}}';">
                         <div class="col-in row">
                             <div class="col-md-6 col-sm-6 col-xs-6"> <i class="linea-icon linea-basic" data-icon=""></i>
@@ -91,23 +79,9 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
                 </div>
 
-
-
-
-
-
                 <div class="row row-in">
-
-
-
-
                     <div class="col-lg-4 col-sm-6  b-0" onclick="window.location.href='{{ route('accounts.Mt4UsersList').'?server_id=-1'}}';">
                         <div class="col-in row">
                             <div class="col-md-6 col-sm-6 col-xs-6"> <i class="fa fa-user" data-icon=""></i>
@@ -124,12 +98,7 @@
                         </div>
                     </div>
 
-
-
-
-
-
-                    <div class="col-lg-4 col-sm-6 row-in-br" onclick="window.location.href=' {{ route('accounts.Mt4UsersList').'?server_id=1'}}';">
+     <div class="col-lg-4 col-sm-6 row-in-br" onclick="window.location.href=' {{ route('accounts.Mt4UsersList').'?server_id=1'}}';">
                         <div class="col-in row">
                             <div class="col-md-6 col-sm-6 col-xs-6"> <i data-icon="E" class="linea-icon linea-basic"></i>
                                 <h5 class="text-muted vb"> {{ trans('dashboard.demoMt4User') }}</h5>
@@ -144,13 +113,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
 
                     <div class="col-lg-4 col-sm-6 row-in-br  b-r-none" onclick="window.location.href='{{ route('accounts.Mt4UsersList').'?server_id=0'}}';">
                         <div class="col-in row">
@@ -167,28 +129,7 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <table class="table full-color-table full-info-table hover-table">
                     <thead>
@@ -206,21 +147,18 @@
                         <td>{{$InternalTransfer['complete']}}</td>
                         <td>{{$InternalTransfer['pending']}}</td>
                         <td>{{$InternalTransfer['fail']}}</td>
-
                     </tr>
                     <tr>
                         <th>{!! (trans('dashboard.withdrawal')) !!}</th>
                         <td>{{$Withdrawal['complete']}}</td>
                         <td>{{$Withdrawal['pending']}}</td>
                         <td>{{$Withdrawal['fail']}}</td>
-
                     </tr>
                     <tr>
                         <th>{!! (trans('dashboard.changeLeverage')) !!}</th>
                         <td>{{$ChangeLeverage['complete']}}</td>
                         <td>{{$ChangeLeverage['pending']}}</td>
                         <td>{{$ChangeLeverage['fail']}}</td>
-
                     </tr>
 
                     <tr>
@@ -228,7 +166,6 @@
                         <td>{{$ChangePassword['complete']}}</td>
                         <td>{{$ChangePassword['pending']}}</td>
                         <td>{{$ChangePassword['fail']}}</td>
-
                     </tr>
 
                     <tr>
@@ -236,7 +173,6 @@
                         <td>{{$AddAccount['complete']}}</td>
                         <td>{{$AddAccount['pending']}}</td>
                         <td>{{$AddAccount['fail']}}</td>
-
                     </tr>
 
                     <tr>
@@ -246,10 +182,8 @@
                         <td>{{$AssingAccounts['fail']}}</td>
 
                     </tr>
-
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>

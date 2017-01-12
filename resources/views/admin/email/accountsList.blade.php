@@ -73,7 +73,7 @@
                                     <tr class="tr {{ $class }}">
 
                                         <td>{!! Form::checkbox('users_checkbox[]',$oResult->uid,false,['class'=>'users_checkbox']) !!} {{ $oResult->LOGIN }}</td>
-                                        <td>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                                        <td>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</td>
                                         <td>{{ $oResult->NAME }}</td>
                                         <td>{{ $oResult->GROUP }}</td>
                                         <td>{{ $oResult->last_login }}</td>
@@ -324,7 +324,7 @@
                                                             <div class="td"><label>{!! trans('general.liveDemo') !!}
                                                                     : </label>
 
-                                                                <p>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p>
+                                                                <p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p>
                                                             </div>
                                                             <div class="td">
                                                                 <label>{!! trans('general.name') !!}  </label>

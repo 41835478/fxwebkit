@@ -333,7 +333,7 @@
                         <tr class='{{ $class }}'>  
                             <td>{{ $oResult->TICKET }}</td>
                             <td>{{ $oResult->LOGIN }}</td>
-                            <td>{{config('fxweb.servers')[$oResult->server_id]['serverName'] }}</td>
+                            <td>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</td>
                             <td>{{ $oResult->SYMBOL }}</td>
                             <td>{{ $oResult->TYPE }}</td>
                             <td>{{ $oResult->VOLUME }}</td>

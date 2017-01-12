@@ -61,7 +61,7 @@
                                     <tr class="tr {{ $class }}">
 
                                         <td>{{ $oResult->login }}</td>
-                                        <td>{{($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                                        <td>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</td>
                                         <td>{{ $oResult->newPassword }}</td>
                                         <td>{{ $oResult->password_type }}</td>
                                         <td>{{ $oResult->comment }}</td>
@@ -225,7 +225,7 @@
 
 
                                             <div class="td"><label>{!! trans('request::request.login') !!} : </label><p>{{ $oResult->login }}</p></div>
-                                            <div class="td"><label>{!! trans('request::request.liveDemo') !!} : </label><p>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.liveDemo') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.newPassword') !!} : </label><p>{{ $oResult->newPassword }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.password_type') !!} : </label><p>{{ $loginPasswordType[$oResult->password_type] }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.comment') !!} : </label><p>{{ $oResult->comment }}</p></div>

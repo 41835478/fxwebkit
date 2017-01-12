@@ -5,8 +5,6 @@
 
     <div id="page-wrapper" style="min-height: 366px;">
         <div class="container-fluid">
-
-
             <div class="row bg-title"
                  style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
@@ -26,18 +24,16 @@
                 </div>
             </div>
 
-
             <div class="row">
                 <div class="col-sm-12">
                     <div class="white-box">
-                        <h3 class="box-title m-b-0">{{ trans('general.translate') }}</h3>
 
+                        <h3 class="box-title m-b-0">{{ trans('general.translate') }}</h3>
                         <p class="text-muted m-b-30 font-13">{{ trans('general.translate') }}</p>
 
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
-
                                     {!! Form::open(['method'=>'get']) !!}
                                     {!! Form::select('module',$modules,$module,['onChange'=>'$(this).parent().submit();']) !!}
                                     {!! Form::select('language',$languages,$language,['onChange'=>'$(this).parent().submit();']) !!}
@@ -72,9 +68,7 @@
                                     {!! Form::submit('save',['class'=>'btn btn-primary']) !!}
                                 </div>
                             </div>
-
                         </div>
-
                         {!! Form::close() !!}
                     </div>
                 </div>
