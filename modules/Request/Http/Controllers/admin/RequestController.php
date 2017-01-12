@@ -15,6 +15,7 @@ use Modules\Request\Entities\RequestAddAccount as AddAccount;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use Illuminate\Support\Facades\Config;
 
+use Fxweb\Http\Controllers\Admin\EmailController as Email;
 
 class RequestController extends Controller
 {
@@ -168,6 +169,11 @@ class RequestController extends Controller
 
         $oResults = $this->RequestLog->changeLeverageEdit($changeLeverage);
 
+        if(isset($oRequest->saveAndSend)){
+            $email=new Email();
+
+            $email->sendChangeLeverage($oRequest->logId);
+        }
 
         return Redirect::route('admin.request.changeLeverage');
 
@@ -261,6 +267,14 @@ class RequestController extends Controller
         ];
 
         $oResults = $this->RequestLog->changePasswordEdit($changePassword);
+
+
+        if(isset($oRequest->saveAndSend)){
+            $email=new Email();
+
+            $email->sendChangePassword($oRequest->logId);
+        }
+
 
 
         return Redirect::route('admin.request.changePassword');

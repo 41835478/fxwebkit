@@ -9,6 +9,7 @@ use Modules\Request\Entities\RequestChangePassword as ChangePassword;
 use Modules\Request\Entities\RequestAddAccount as addAccount;
 use Modules\Request\Entities\RequestAssignAccount as AssignAccount;
 use Fxweb\Repositories\Admin\User\EloquentUserRepository as Users;
+use Input;
 
 class RequestController extends Controller
 {
@@ -31,7 +32,7 @@ class RequestController extends Controller
         //$this->RequestLog->insertInternalTransferRequest($fromLogin,$toLogin,$amount,$comment,$reason,$status);
         $log = new InternalTransfer();
 
-        $log->insert([
+        $log->create([
             'from_login' => $fromLogin,
             'to_login' => $toLogin,
             'server_id'=>$server_id,
@@ -40,7 +41,8 @@ class RequestController extends Controller
             'reason' => $reason,
             'status' => $status
         ]);
-        return true;
+        $log->save();
+        return $log->id;
 
 
     }
@@ -59,7 +61,7 @@ class RequestController extends Controller
 
         $log = new Withdrawal();
 
-        $log->insert([
+        $log->create([
             'login' => $login,
             'server_id'=>$server_id,
             'amount' => $amount,
@@ -68,7 +70,8 @@ class RequestController extends Controller
             'status' => $status
         ]);
 
-        return true;
+        $log->save();
+        return $log->id;
 
 
     }
@@ -121,7 +124,7 @@ class RequestController extends Controller
         if(count($existResult)){ return false;}
         $log = new ChangeLeverage();
 
-        $log->insert([
+        $log->create([
             'login' => $login,
             'server_id'=>$server_id,
             'leverage' => $leverage,
@@ -129,8 +132,8 @@ class RequestController extends Controller
             //	'reason'=>$reason,
             'status' => $status
         ]);
-
-        return true;
+$log->save();
+        return $log->id;
     }
 
     public function updateChangeLeverageRequest($logId, $login, $leverage = 0, $comment = '', $reason = '', $status = 0)
@@ -165,17 +168,18 @@ class RequestController extends Controller
         if(count($existResult)){ return false;}
         $log = new ChangePassword();
 
-        $log->insert([
+        $log->create([
             'login' => $login,
             'server_id' => $server_id,
             'newPassword' => $newPassword,
             'password_type'=>$passwordType,
-            //	'comment'=>$comment,
+            'comment'=>''.Input::get('comment'),
             //	'reason'=>$reason,
+            'users_id'=>current_user()->getUser()->id,
             'status' => $status
         ]);
-
-        return true;
+        $log->save();
+        return $log->id;
     }
 
     public function updateChangePasswordRequest($logId, $login, $newPassword = 0, $comment = '', $reason = '', $status = 0,$passwordType)
@@ -191,7 +195,7 @@ class RequestController extends Controller
         $log->password_type = $passwordType;
 
         $log->save();
-        return true;
+        return $log->id;
 
 
     }
@@ -212,7 +216,7 @@ class RequestController extends Controller
 
         $log = new addAccount();
 
-        $log->insert([
+        $log->create([
             'server_id'=>$server_id,
             'first_name' => $mt4_user_details['first_name'],
             'last_name' => $mt4_user_details['last_name'],
@@ -234,7 +238,10 @@ class RequestController extends Controller
             'status'=>$status
         ]);
 
-        return true;
+
+        $log->save();
+        return $log->id;
+
 
 
     }

@@ -19,11 +19,12 @@ use Carbon\Carbon;
 use Fxweb\Repositories\Admin\User\UserContract as Users;
 use File;
 use Fxweb\Http\Controllers\Admin\Email;
+use Modules\Request\Entities\SettingsEmailTemplates;
 use Fxweb\Http\Controllers\Admin\EditConfigController as EditConfig;
 
 use Fxweb\Models\SettingsMassMail;
 use Fxweb\Models\SettingsMassTemplates;
-use Fxweb\Models\SettingsEmailTemplates;
+//use Fxweb\Models\SettingsEmailTemplates;
 
 
 class SettingsController extends Controller
@@ -272,102 +273,103 @@ class SettingsController extends Controller
         return view('admin.user.detailsAccount')->with('user_details', $user_details);
     }
 
+
+
+
     public function getEmailTemplates(Request $oRequest)
     {
 
-        $sLanguage =($oRequest->has('lang'))? $oRequest->lang:'en';
-        $aTemplates =SettingsEmailTemplates::select(['id','subject'])->where('language',$sLanguage)->lists('subject','id');
-        ;
+        $sLanguage = ($oRequest->has('lang')) ? $oRequest->lang : 'en';
+        $status = ($oRequest->has('status')) ? $oRequest->status : 0;
+        $type = ($oRequest->has('type')) ? $oRequest->type : 'client';
 
-        $templateId = 1;
-        $oEmail=[];
-        if($oRequest->has('templateId') && $oRequest->templateId !=0 ){
-            $templateId = $oRequest->templateId;
+        $searchData=[
+            'language'=>$sLanguage,
+            'status'=>$status,
+            'type'=>$type
+        ];
 
-        }else{
-            foreach($aTemplates as $key=>$value){
+        $aTemplates = config('fxweb.emailTemplates');
 
-                $templateId = $key;break;
-            }
+        $template_name = '';
+        foreach($aTemplates as $key=>$value){$template_name=$key;break;}
+
+        $oEmail = [];
+        if (isset($oRequest->template_name ) && $oRequest->template_name != '') {
+            $template_name = $oRequest->template_name;
+
         }
 
 
 
-        $oEmail= SettingsEmailTemplates::find($templateId);
+        $emailInfo=['id'=>0,'title'=>$template_name,'to_field'=>'accountInfo_email','to_email'=>'','type'=>$type,'status'=>$status,'mail'=>''];
 
-        $subject='';
-        $sContent='';
-        if(count($oEmail)){
-            if($sLanguage == $oEmail->language){
-            $sContent =$oEmail->mail;
-            $subject =$oEmail->subject;
-            }else{
-                $oEmailLanguage= SettingsEmailTemplates::where(['subject'=>$oEmail->subject,'language'=>$sLanguage])->first();
-                if(count($oEmailLanguage)){
 
-                    $sContent =$oEmailLanguage->mail;
-                    $subject =$oEmailLanguage->subject;
-                    $templateId = $oEmailLanguage->id;
-                }
-            }
+        $oEmailLanguage = SettingsEmailTemplates::where(['template_name' => $template_name]+$searchData)->first();
+        if (count($oEmailLanguage)) {
+            $emailInfo = $oEmailLanguage->toArray();
         }
 
-        $aLanguages =config('app.language');
+        $aLanguages = config('app.language');
 
 
+        $aStatus=(is_array(config('fxweb.status_'.$template_name)))? config('fxweb.status_'.$template_name)
+            :config('fxweb.generalStatus');
 
-        return view('admin.email.addEmailTemplates')
+
+        return view('request::admin.addEmailTemplates')
             ->with('aLanguages', $aLanguages)
             ->with('aTemplates', $aTemplates)
-            ->with('templateId', $templateId)
+            ->with('template_name', $template_name)
             ->with('sLanguage', $sLanguage)
-            ->with('subject', $subject)
-            ->with('sContent', $sContent);
+            ->with('aType',config('fxweb.emailTypes'))
+            ->with('aStatus',$aStatus)
+            ->with($emailInfo);
     }
 
     public function postEmailTemplates(Request $oRequest)
     {
         $templateId = $oRequest->templateId;
-        $subject=$oRequest->subject;
         $sLanguage = $oRequest->lang;
-        $sContent = $oRequest->template_body;
-
-        if($oRequest->has('save')){
-
-            $email= SettingsEmailTemplates::where(['id'=>$templateId,'language'=>$sLanguage])->first();
-                if(count($email)){
-                $email->update([
-                'subject'=>$subject,
-                'mail' => $sContent,
-                'language' => $sLanguage
-            ]);
-}else{
-
-                    $email= SettingsEmailTemplates::create([
-                        'subject'=>$subject,
-                        'mail' => $sContent,
-                        'language' =>$sLanguage
-                    ]);
-                    $templateId=$email->id;
-
-                }
-        }else if($oRequest->has('saveNew')){
+        $emailInfo=
+            [
+                'title'=>$oRequest->title,
+                'template_name'=>$oRequest->template_name,
+                'to_field'=>$oRequest->to_field,
+                'to_email'=>$oRequest->to_email,
+                'type'=>$oRequest->type,
+                'status'=>$oRequest->status,
+                'mail'=>$oRequest->template_body,
+                'language'=>$sLanguage];
 
 
-            $email= SettingsEmailTemplates::create([
-                'subject'=>$subject,
-                'mail' => $sContent,
-                'language' =>$sLanguage
-            ]);
-            $templateId=$email->id;
-        }elseif($oRequest->has('delete')){
+        if ($oRequest->has('save') && $templateId>0) {
+
+            $email = SettingsEmailTemplates::where(['id' => $templateId])->first();
+            if (count($email)) {
+                $email->update($emailInfo);
+            } else {
+
+                $email = SettingsEmailTemplates::create($emailInfo);
+                $templateId = $email->id;
+
+            }
+        } else if ($oRequest->has('saveNew') ||($oRequest->has('save') && $templateId==0)) {
+
+
+            $email = SettingsEmailTemplates::create($emailInfo);
+            $templateId = $email->id;
+        } elseif ($oRequest->has('delete') && $templateId>0) {
+
             SettingsEmailTemplates::find($templateId)->delete();
-            $templateId=0;
+            $templateId = 0;
         }
 
 
-        return Redirect::to(route('admin.addEmailTemplates') . '?templateId=' . $templateId . '&lang=' . $sLanguage);
+        return Redirect::to(route('admin.addEmailTemplates') . '?template_name=' . $oRequest->template_name. '&lang=' . $sLanguage.'&type='.$oRequest->type.
+            '&status='.$oRequest->status);
     }
+
 
 
     public function getMassMailer(Request $oRequest)

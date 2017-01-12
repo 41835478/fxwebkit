@@ -137,5 +137,70 @@ return [
     'htmlToPdfPath'=>'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe',
 
     'demoAccountHost'=>'85.25.207.30',
-    'demoAccountPort'=>'443'
+    'demoAccountPort'=>'443',
+
+    'emailTemplates'=>[
+    'additionalAccount'=>'Additional Account',
+    'internalTransfer'=>'Internal Transfer',
+    'withdrawal'=>'Withdrawal',
+    'changeLeverage'=>'Change Leverage',
+    'changePassword'=>'Change Password',
+    'signUp'=>' Sign Up ',
+    'forgetPassword'=>'Forget Password',
+    'bankAccount'=>'Bank Account'
+    //'Expiry Contract'=>'Expiry Contract',
+
+
+],
+    'generalStatus'=>[
+    0=>'pending',
+    1=>'complete',
+    2=>'fail',
+    3=>'Canceled'
+],
+
+	'status_additionalAccount'=>[
+    0=>'pending',
+    1=>'complete',
+    2=>'fail',
+    3=>'Canceled'
+],
+	'status_withdrawal'=>[
+    0=>'pending',
+    1=>'complete',
+    2=>'fail',
+    3=>'Canceled'
+],
+	'status_internalTransfer'=>[
+    0=>'pending',
+    1=>'complete',
+    2=>'fail',
+    3=>'Canceled'
+],
+	'status_changeLeverage'=>[
+    0=>'pending',
+    1=>'complete',
+    2=>'fail',
+    3=>'Canceled'
+],
+    'status_changePassword'=>[
+    0=>'pending',
+    1=>'complete',
+    2=>'fail',
+    3=>'Canceled'
+],
+    'status_signUp'=>[
+    0=>'pending',
+    1=>'complete',
+    2=>'active email'
+],'status_forgetPassword'=>[
+    0=>'Reset Code',
+    1=>'Success Reset'
+],'status_bankAccount'=>[
+    0=>'Add bank Account',
+    1=>"Activate Bank Account"
+]
+	,
+	'emailTypes'=>['admin'=>'admin','client'=>'client','pdf admin'=>'pdf admin','pdf client'=>'pdf client'],
+
 ];
