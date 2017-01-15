@@ -338,6 +338,12 @@ class RequestController extends Controller
         $oResults = $this->RequestLog->internalTransferEdit($intenalTransfer);
 
 
+        if(isset($oRequest->saveAndSend)){
+            $email=new Email();
+
+            $email->sendInternalTransfer($oRequest->logId);
+        }
+
         return Redirect::route('admin.request.internalTransfer');
 
 
@@ -404,6 +410,11 @@ class RequestController extends Controller
         $oResults = $this->RequestLog->withDrawalEdit($withDrawal);
 
 
+        if(isset($oRequest->saveAndSend)){
+            $email=new Email();
+
+            $email->sendWithdrawal($oRequest->logId);
+        }
         return Redirect::route('admin.request.withDrawal');
 
 
@@ -510,6 +521,15 @@ class RequestController extends Controller
 
         $oResults = $this->RequestLog->addAccountEdit($addAccount);
 
+
+        $oResults = $this->RequestLog->addAccountEdit($addAccount);
+
+
+        if(isset($oRequest->saveAndSend)){
+            $email=new Email();
+
+            $email->sendAdditionalAccountEmail($oRequest->logId);
+        }
 
         return Redirect::route('admin.request.addAccount');
 

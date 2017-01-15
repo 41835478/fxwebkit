@@ -68,8 +68,13 @@
                         </div>
                         {!!   View('admin/partials/messages')->with('errors',$errors) !!}
                         <div class="panel-footer text-right">
-                            <button type="submit" class="btn btn-primary" name="logId"
-                                    value="{{ $changeLeverage['logId']}}">{{ trans('request::request.save') }}</button>
+
+
+                            {!! Form::hidden('logId', $changeLeverage['logId'])  !!}
+                            <button type="submit" class="btn btn-primary" name="save"
+                                    value="">{{ trans('request::request.save') }}</button>
+                            <button type="submit" class="btn btn-primary" name="saveAndSend"
+                                    value="">{{ trans('request::request.saveAndSend') }}</button>
                         </div>
                     </div>
                     {!! Form::close() !!}

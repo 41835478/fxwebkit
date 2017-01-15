@@ -72,7 +72,7 @@
                                         <td>{{ $oResult->country }}</td>
                                         <td>{{ $oResult->comment }}</td>
                                         <td>{{ $oResult->reason }}</td>
-                                        <td>{{$aRequestStatus[$oResult->status] }}</td>
+                                        <td>{{(array_key_exists($oResult->status,$aRequestStatus))? $aRequestStatus[$oResult->status]:'' }}</td>
                                         <td>
                                             <a href="{{ route('admin.request.addAccountEdit').'?logId='.$oResult->id }}"
                                                class="fa fa-edit tooltip_number" data-original-title="{{trans('request::request.edit')}}"></a>
@@ -247,7 +247,7 @@
                                             <div class="td"><label>{!! trans('request::request.country') !!} : </label><p>{{ $oResult->country }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.comment') !!} : </label><p>{{ $oResult->comment }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.reason') !!} : </label><p>{{ $oResult->reason }}</p></div>
-                                            <div class="td"><label>{!! trans('request::request.status') !!} : </label><p>{{ $aRequestStatus[$oResult->status] }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.status') !!} : </label><p>{{ (array_key_exists($oResult->status,$aRequestStatus))? $aRequestStatus[$oResult->status]:'' }}</p></div>
                                             <div class="td">
 
                                                 <a href="{{ route('admin.request.addAccountEdit').'?logId='.$oResult->id }}"
