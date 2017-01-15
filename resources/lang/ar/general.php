@@ -59,7 +59,7 @@
 'BalanceOperations'=>'عمليات على رصيد الحساب',
 'CreditOperations'=>'عمليات الائتمان',
 'Deposits'=>'ايداعات',
-'Withdraws'=>'مسحوبات',
+'Withdrawal'=>'مسحوبات',
 'CreditIn'=>'ايداع تسهيلات',
 'CreditOut'=>'سحب تسهيلات',
 'ACCOUNTANT_TYPE_6_DEPOSITS'=>'عمليات التوازن',

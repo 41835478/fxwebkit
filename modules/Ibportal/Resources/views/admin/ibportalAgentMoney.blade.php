@@ -399,12 +399,12 @@
             xAxis: {
                 /*
                  trans('general.Deposits')
-                 trans('general.Withdraws')
+                 trans('general.Withdrawal')
                  trans('general.CreditIn')
                  trans('general.CreditOut')
-                 *  {{ $oResults[1]['deposits']+$oResults[1]['withdraws']}}
+                 *  {{ $oResults[1]['deposits']+$oResults[1]['Withdrawal']}}
              */
-                categories: ['{!! trans('ibportal::ibportal.Commission') !!}', '{!!   trans('ibportal::ibportal.withdraws') !!}']
+                categories: ['{!! trans('ibportal::ibportal.Commission') !!}', '{!!   trans('ibportal::ibportal.Withdrawal') !!}']
             },
             yAxis: {
                 min: 0,
@@ -425,8 +425,8 @@
                 data: [{!! $oResults[1]['deposits']  !!},0]
             },{
 
-                name: ['{!!  trans('ibportal::ibportal.withdraws') !!}'],
-                data: [0,{!! $oResults[1]['withdraws'] * - 1 !!}]
+                name: ['{!!  trans('ibportal::ibportal.Withdrawal') !!}'],
+                data: [0,{!! $oResults[1]['Withdrawal'] * - 1 !!}]
             }]
         });
     }

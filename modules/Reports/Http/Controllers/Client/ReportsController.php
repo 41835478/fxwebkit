@@ -36,14 +36,12 @@ class ReportsController extends Controller
 
     public function getClosedOrders(ClosedTradesRequest $oRequest)
     {
-
-
         $oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
 
         $aTradeTypes =  $this->oMt4Trade->getTradesTypes();
         $serverTypes = $this->oMt4Trade->getServerTypes();
-        $sSort = $oRequest->sort;
-        $sOrder = $oRequest->order;
+        $sSort = (isset($oRequest->sort))? $oRequest->sort:'ASC';
+        $sOrder = (isset($oRequest->order))? $oRequest->order:'TICKET';
         $aSymbols = [];
         $oResults = null;
         $aFilterParams = [
@@ -59,8 +57,8 @@ class ReportsController extends Controller
             'symbol' => '',
             'type' => '',
             'server_id' => '',
-            'sort' => 'ASC',
-            'order' => 'TICKET',
+            'sort' => $sSort,
+            'order' => $sOrder,
         ];
 
         foreach ($oSymbols as $oSymbol) {
@@ -125,12 +123,10 @@ class ReportsController extends Controller
             return $oExport->export($sOutput);
         }
 
-        if ($oRequest->has('search')) {
 
             $oResults = $this->oMt4Trade->getClosedTradesByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults->order = $aFilterParams['order'];
             $oResults->sorts = $aFilterParams['sort'];
-        }
 
         return view('reports::client.closedOrders')
             ->with('aSymbols', $aSymbols)
@@ -147,8 +143,8 @@ class ReportsController extends Controller
         $serverTypes = $this->oMt4Trade->getServerTypes();
         $aSymbols = [];
         $oResults = null;
-        $sSort = $oRequest->sort;
-        $sOrder = $oRequest->order;
+        $sSort = (isset($oRequest->sort))? $oRequest->sort:'ASC';
+        $sOrder = (isset($oRequest->order))? $oRequest->order:'TICKET';
         $aFilterParams = [
             'from_login' => '',
             'to_login' => '',
@@ -160,8 +156,8 @@ class ReportsController extends Controller
             'symbol' => '',
             'type' => '',
             'server_id' => '',
-            'sort' => 'ASC',
-            'order' => 'TICKET'
+            'sort' => $sSort,
+            'order' => $sOrder
         ];
 
 
@@ -225,9 +221,7 @@ class ReportsController extends Controller
             return $oExport->export($sOutput);
         }
 
-        if ($oRequest->has('search')) {
             $oResults = $this->oMt4Trade->getOpenTradesByFilters($aFilterParams, false, $sOrder, $sSort);
-        }
 
         return view('reports::client.openOrders')
             ->with('aSymbols', $aSymbols)
@@ -330,13 +324,13 @@ class ReportsController extends Controller
 
         if ($oRequest->has('search')) {
 
-
             $aFilterParams['login'] = $oRequest->login;
             $aFilterParams['server_id'] = $oRequest->server_id;
             $aFilterParams['from_date'] = $oRequest->from_date;
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
+
             $oOpenResults = $this->oMt4Trade->getOpenTradesByDate($aFilterParams, true, $sOrder, $sSort);
             $oCloseResults = $this->oMt4Trade->getClosedTradesByDate($aFilterParams, true, $sOrder, $sSort);
             $oResults = $this->oMt4User->getUserInfo($aFilterParams['login']);
@@ -361,8 +355,8 @@ class ReportsController extends Controller
 
     public function getCommission(CommissionRequest $oRequest)
     {
-        $sSort = $oRequest->sort;
-        $sOrder = $oRequest->order;
+        $sSort = (isset($oRequest->sort))? $oRequest->sort:'ASC';
+        $sOrder = (isset($oRequest->order))? $oRequest->order:'TICKET';
         $aGroups = [];
         $oResults = null;
         $aFilterParams = [
@@ -374,8 +368,8 @@ class ReportsController extends Controller
             'to_date' => '',
             'all_groups' => true,
             'group' => '',
-            'sort' => 'ASC',
-            'order' => 'TICKET',
+            'sort' => $sSort,
+            'order' => $sOrder,
         ];
 
 
@@ -392,7 +386,7 @@ class ReportsController extends Controller
 
         $chartData=[];
         $chartData2=[];
-        if ($oRequest->has('search')) {
+
             $oResults = $this->oMt4Trade->getCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults[0]->order = $aFilterParams['order'];
             $oResults[0]->sorts = $aFilterParams['sort'];
@@ -403,7 +397,7 @@ class ReportsController extends Controller
                 $chartData2[]=[$resutl->SYMBOL,$resutl->VOLUME];
 
             }
-        }
+
 
         return view('reports::client.commission')
             ->with('oResults', $oResults)
@@ -417,8 +411,8 @@ class ReportsController extends Controller
         $oSymbols = $this->oMt4Trade->getClosedTradesSymbols();
         $aTradeTypes = ['' => 'ALL'] + $this->oMt4Trade->getAccountantTypes();
         $serverTypes = $this->oMt4Trade->getServerTypes();
-        $sSort = $oRequest->sort;
-        $sOrder = $oRequest->order;
+        $sSort = (isset($oRequest->sort))? $oRequest->sort:'ASC';
+        $sOrder = (isset($oRequest->order))? $oRequest->order:'TICKET';
         $aGroups = [];
         $aSymbols = [];
         $oResults = null;
@@ -435,8 +429,8 @@ class ReportsController extends Controller
             'symbol' => '',
             'type' => '',
             'server_id' => '',
-            'sort' => 'ASC',
-            'order' => 'TICKET',
+            'sort' => $sSort,
+            'order' => $sOrder,
         ];
 
 
@@ -463,12 +457,10 @@ class ReportsController extends Controller
             $aFilterParams['server_id'] = $oRequest->server_id;
         }
 
-
-        if ($oRequest->has('search')) {
             $oResults = $this->oMt4Trade->getAccountantByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults[0]->order = $aFilterParams['order'];
             $oResults[0]->sorts = $aFilterParams['sort'];
-        }
+
 
         return view('reports::client.accountant')
             ->with('aSymbols', $aSymbols)
@@ -481,8 +473,8 @@ class ReportsController extends Controller
     public function getDailyReport(Request $oRequest)
     {
         $oGroups = $this->oMt4Group->getAllGroups();
-        $sSort = $oRequest->sort;
-        $sOrder = $oRequest->order;
+        $sSort = (isset($oRequest->sort))? $oRequest->sort:'ASC';
+        $sOrder = (isset($oRequest->order))? $oRequest->order:'login';
         $aGroups = [];
         $oResults = null;
         $aFilterParams = [
@@ -494,8 +486,8 @@ class ReportsController extends Controller
             'to_date' => '',
             'all_groups' => true,
             'group' => '',
-            'sort' => 'ASC',
-            'order' => 'LOGIN',
+            'sort' => $sSort,
+            'order' => $sOrder,
         ];
 
         foreach ($oGroups as $oGroup) {
@@ -513,9 +505,7 @@ class ReportsController extends Controller
             $aFilterParams['group'] = $oRequest->group;
         }
 
-        if ($oRequest->has('search')) {
             $oResults = $this->oMt4Trade->getDailyReportByFilters($aFilterParams, false, $sOrder, $sSort);
-        }
 
         return view('reports::client.dailyReport')
             ->with('aGroups', $aGroups)

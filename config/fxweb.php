@@ -13,7 +13,6 @@
 
 return [
     'app_name' => env('APP_NAME', 'FxWebKit'),
-    //   'app_name' => 'FxWebKit',
     'admin_roles' => env('ADMIN_ROLES', 'admin'),
     'client_default_role' => env('CLIENT_DEFAULT_ROLE'),
     'auto_activate_client' => env('CLIENT_AUTO_ACTIVATE', true),
@@ -28,7 +27,6 @@ return [
     'mt4CheckDemoHost' => '192.168.15.10',
     'mt4CheckDemoPort' => '443',
     'demoServerName' => 'demo',
-
 
     'servers'=>[
         0=>[
@@ -61,7 +59,6 @@ return [
     'EnableFacebookRegister'=>true,
     'facebookLoginScopes' => ['email'],
 
-
     'googleCallback' => 'http://www.fxwebkit.com/client/google-callback-login',
     'googleProvider' => 'google',
     'googleDriver' => 'Google',
@@ -69,7 +66,6 @@ return [
     'googleSecret' => 'FROszwzxu9ahiCqU40nRb28u',
     'EnableGoogleRegister'=>true,
     'googleScopes' => ['email'],
-
 
     'linkedinCallback' => 'http://www.fxwebkit.com/client/linkedin-callback-login',
     'linkedinProvider' => 'linkedin',
@@ -79,7 +75,6 @@ return [
     'linkedinSecret' => 'ddVzvRTG0Nmkyy6u',
 
     'key' => 'fgh',
-
     'value' => 'fgh','GroupLive'=>['1'=>'100','2'=>'300',],'GroupDemo'=>['1'=>'100',],'DepositLive'=>['1'=>'100',],'DepositDemo'=>['1'=>'100',],'leverage'=>['100'=>'1:100','200'=>'1:200',],'leverageDemo'=>['1'=>'1:150',],
 
     'theme' => [
@@ -126,16 +121,9 @@ return [
                 ]
             ]
         ],
-
     ]
-
-
-
-
-
     ,
     'htmlToPdfPath'=>'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe',
-
     'demoAccountHost'=>'85.25.207.30',
     'demoAccountPort'=>'443',
 

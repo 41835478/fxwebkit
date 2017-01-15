@@ -1,9 +1,9 @@
 @extends('admin.layouts.main')
 @section('title', trans('accounts::accounts.addAccount'))
 @section('content')
+
     <div id="page-wrapper">
         <div class="container-fluid">
-            <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
                     <h4 class="page-title">{{ trans('accounts::accounts.addAccount') }}</h4>
@@ -22,18 +22,15 @@
                 </div>
             </div>
 
-
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
-
-                        {!! Form::open(['class'=>'panel form-horizontal']) !!}
 
                         <h3 class="box-title m-b-0">{{ trans('accounts::accounts.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('accounts::accounts.tableDescription') }}</p>
 
                         <div class="panel-body">
+                            {!! Form::open(['class'=>'panel form-horizontal']) !!}
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
@@ -41,16 +38,13 @@
                                         {!! Form::text('first_name',$userInfo['first_name'],['class'=>'form-control']) !!}
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('accounts::accounts.last_name') }}</label>
                                         {!! Form::text('last_name',$userInfo['last_name'],['class'=>'form-control']) !!}
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
                             </div>
-                            <!-- row -->
 
                             <div class="row">
                                 <div class="col-sm-6">
@@ -59,7 +53,7 @@
                                         {!! Form::text('email',$userInfo['email'],['class'=>'form-control']) !!}
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
+
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('accounts::accounts.Password') }}</label>
@@ -67,9 +61,7 @@
 
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
                             </div>
-                            <!-- row -->
 
                             <div class="row">
                                 <div class="col-sm-6">
@@ -78,17 +70,14 @@
                                         {!! Form::text('nickname',$userInfo['nickname'],['class'=>'form-control']) !!}
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
+
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('accounts::accounts.address') }}</label>
                                         {!! Form::text('address',$userInfo['address'],['class'=>'form-control']) !!}
-
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
                             </div>
-                            <!-- row -->
 
                             <div class="row">
                                 <div class="col-sm-6">
@@ -97,35 +86,29 @@
                                         {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control mydatepicker']) !!}
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
+
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('accounts::accounts.Phone') }}</label>
                                         {!! Form::text('phone',$userInfo['phone'],['class'=>'form-control']) !!}
-
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
                             </div>
-                            <!-- row -->
 
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
-
                                         <label class="control-label">{{ trans('accounts::accounts.Country') }}</label>
                                         {!! Form::select('country',$userInfo['country_array'],$userInfo['country'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
+
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('accounts::accounts.City') }}</label>
                                         {!! Form::text('city',$userInfo['city'],['class'=>'form-control']) !!}
                                     </div>
-
                                 </div>
-                                <!-- col-sm-6 -->
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
@@ -134,11 +117,10 @@
                                         {!! Form::text('zip_code',$userInfo['zip_code'],['class'=>'form-control']) !!}
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
+
                                 <div class="col-sm-6">
                                     <label class="control-label "
                                            style="text-align: left;display: block;">{{ trans('accounts::accounts.gender') }}</label>
-
                                     <div class="radio-list">
                                         <label class="radio-inline p-0">
                                             <div class="radio radio-info">
@@ -153,18 +135,20 @@
                                             </div>
                                         </label>
                                     </div>
-
                                 </div>
                             </div>
-                            <!-- row -->
-                        </div>
-                        {!!   View('admin/partials/messages')->with('errors',$errors) !!}
-                        <div class="panel-footer text-right">
-                            <button type="submit" class="btn btn-primary" name="edit_id"
-                                    value="{{ $userInfo['edit_id']  or 0 }}">{{ trans('accounts::accounts.save') }}</button>
+                            {!!   View('admin/partials/messages')->with('errors',$errors) !!}
+                            <div class="panel-footer text-right">
+                                <button type="submit" class="btn btn-primary" name="edit_id"
+                                        value="{{ $userInfo['edit_id']  or 0 }}">{{ trans('accounts::accounts.save') }}</button>
+                            </div>
+
+                            {!! Form::close() !!}
                         </div>
 
-                        {!! Form::close() !!}
+
+
+
                     </div>
                 </div>
             </div>

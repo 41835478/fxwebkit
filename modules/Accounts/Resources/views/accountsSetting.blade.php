@@ -23,8 +23,6 @@
                 </div>
             </div>
 
-
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
@@ -33,8 +31,8 @@
                         <p class="text-muted m-b-20">{{ trans('ibportal::ibportal.tableDescription') }}</p>
 
                         <div class="panel-body">
-
                             <div class="panel-group" id="accordion-example">
+
                                 <div class="panel">
                                     <div class="panel-heading">
                                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-example"
@@ -42,10 +40,8 @@
                                             {{ trans('accounts::accounts.clientSettings') }}
                                         </a>
                                     </div>
-                                    <!-- / .panel-heading -->
                                     <div id="collapseOne" class="panel-collapse in">
                                         <div class="panel-body">
-
                                             <div class="row">
                                                 <div class="form-group">
                                                     <div class="col-sm-3">
@@ -56,14 +52,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
-
                                             <hr>
                                             <div class="row">
                                                 <div><span>{{trans('general.selectVisibleTabs')}}</span></div>
-
                                                 @foreach(config('accounts.client_menu') as $index=>$tab)
                                                         <div class="col-sm-4">
                                                             <div class="checkbox checkbox-success">
@@ -72,15 +63,11 @@
                                                             </div>
                                                         </div>
                                                 @endforeach
-
                                             </div>
-
                                         </div>
-                                        <!-- / .panel-body -->
                                     </div>
-                                    <!-- / .collapse -->
                                 </div>
-                                <!-- / .panel -->
+
                                 <div class="panel">
                                     <div class="panel-heading">
                                         <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-example"
@@ -88,10 +75,8 @@
                                             {{ trans('accounts::accounts.denyLiveAccount') }}
                                         </a>
                                     </div>
-                                    <!-- / .panel-heading -->
                                     <div id="collapseTwo" class="panel-collapse collapse">
                                         <div class="panel-body">
-
                                             <div class="row">
                                                 <div class="form-group">
                                                     <div class="col-sm-3">
@@ -101,14 +86,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
-                                        <!-- / .panel-body -->
                                     </div>
-                                    <!-- / .collapse -->
                                 </div>
-                                <!-- / .panel -->
 
                                 <div class="panel">
                                     <div class="panel-heading">
@@ -117,11 +98,9 @@
                                             {{ trans('accounts::accounts.operationsSettings') }}
                                         </a>
                                     </div>
-                                    <!-- / .panel-heading -->
                                     <div id="collapseThree" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <div class="row">
-
                                                 <div class="form-group">
                                                     <div class="col-sm-6">
                                                         <div class="checkbox checkbox-success">
@@ -130,12 +109,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
-
-                                                <!-- col-sm-6 -->
-
-
                                                 <div class="form-group">
                                                     <div class="col-sm-6">
                                                         <div class="checkbox checkbox-success">
@@ -144,9 +117,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
-                                            <!-- row -->
                                             <hr>
                                             <div class="row">
                                                 <div class="form-group">
@@ -157,9 +128,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
-
                                                 <div class="form-group">
                                                     <div class="col-sm-6">
                                                         <div class="checkbox checkbox-success">
@@ -168,12 +136,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <!-- col-sm-6 -->
-
-
                                             </div>
-
                                             <hr>
                                             <div class="row">
                                                 <div class="form-group">
@@ -184,37 +147,27 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="form-group">
                                                     <div class="col-sm-6">
                                                         <div class="checkbox checkbox-success">
-                                                            {!! Form::checkbox('showWithDrawal', 1, $accountsSetting['showWithDrawal'], ['class'=>'px','id'=>'showWithDrawal']) !!}
-                                                            <label for="showWithDrawal">{{ trans('accounts::accounts.showWithDrawal') }}</label>
+                                                            {!! Form::checkbox('showWithdrawal', 1, $accountsSetting['showWithdrawal'], ['class'=>'px','id'=>'showWithdrawal']) !!}
+                                                            <label for="showWithdrawal">{{ trans('accounts::accounts.showWithdrawal') }}</label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- col-sm-6 -->
                                             </div>
                                             <hr>
-
                                             <div class="row">
-
                                                 <div class="col-sm-6">
                                                     <div class="form-group no-margin-hr">
                                                         <label class="control-label">{{ trans('accounts::accounts.changeLeverageWarning') }}</label>
                                                         {!! Form::text('changeLeverageWarning',config('accounts.changeLeverageWarning'),['class'=>'form-control']) !!}
-
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <!-- row -->
                                         </div>
-                                        <!-- / .panel-body -->
                                     </div>
-                                    <!-- / .collapse -->
                                 </div>
-                                <!-- / .panel -->
 
                                 <div class="panel">
                                     <div class="panel-heading">
@@ -223,14 +176,9 @@
                                             {{ trans('accounts::accounts.operationsForwardSettings') }}
                                         </a>
                                     </div>
-                                    <!-- / .panel-heading -->
                                     <div id="collapseOperations1" class="panel-collapse collapse">
                                         <div class="panel-body">
-
-
                                             <div class="row">
-
-
                                                 <div class="form-group">
                                                     <div class="col-sm-6">
                                                         <div class="checkbox checkbox-success">
@@ -239,9 +187,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
-
                                                 <div class="form-group">
                                                     <div class="col-sm-6">
                                                         <div class="checkbox checkbox-success">
@@ -250,9 +195,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
-                                                <!-- col-sm-6 -->
                                             </div>
                                             <hr>
                                             <div class="row">
@@ -264,7 +206,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="form-group">
                                                     <div class="col-sm-6">
                                                         <div class="checkbox checkbox-success">
@@ -273,36 +214,22 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <!-- col-sm-6 -->
                                             </div>
                                             <hr>
                                             <div class="row">
-
                                                 <div class="form-group">
                                                     <div class="col-sm-6">
                                                         <div class="checkbox checkbox-success">
-                                                            {!! Form::checkbox('directWithDrawalOrderToMt4Server', 1, $accountsSetting['directWithDrawalOrderToMt4Server'], ['class'=>'px','id'=>'directWithDrawalOrderToMt4Server']) !!}
-                                                            <label for="directWithDrawalOrderToMt4Server">{{ trans('accounts::accounts.directWithDrawalOrderToMt4Server') }}</label>
+                                                            {!! Form::checkbox('directWithdrawalOrderToMt4Server', 1, $accountsSetting['directWithdrawalOrderToMt4Server'], ['class'=>'px','id'=>'directWithdrawalOrderToMt4Server']) !!}
+                                                            <label for="directWithdrawalOrderToMt4Server">{{ trans('accounts::accounts.directWithdrawalOrderToMt4Server') }}</label>
                                                         </div>
                                                     </div>
                                                 </div>
-
-
-
-                                                <!-- col-sm-6 -->
                                             </div>
                                             <hr>
-
-
-                                            <!-- row -->
                                         </div>
-                                        <!-- / .panel-body -->
                                     </div>
-                                    <!-- / .collapse -->
                                 </div>
-                                <!-- / .panel -->
-
 
                                 <div class="panel">
                                     <div class="panel-heading">
@@ -311,27 +238,18 @@
                                             {{ trans('accounts::accounts.apiSettings') }}
                                         </a>
                                     </div>
-                                    <!-- / .panel-heading -->
                                     <div id="collapseFour" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <div class="row">
-
-                                                <!-- col-sm-6 -->
-
                                                 <div class="col-sm-6">
                                                     <div class="form-group no-margin-hr">
                                                         <label class="control-label">{{ trans('accounts::accounts.apiMasterPassword') }}</label>
                                                         {!! Form::text('apiMasterPassword',config('accounts.apiMasterPassword'),['class'=>'form-control']) !!}
-
                                                     </div>
                                                 </div>
-
-                                                <!-- col-sm-6 -->
                                             </div>
-                                            <!-- row -->
                                             <hr>
                                             <div class="row">
-
                                                 <div class="form-group">
                                                     <div class="col-sm-6">
                                                         <div class="checkbox checkbox-success">
@@ -340,17 +258,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
-                                            <!-- col-sm-6 -->
                                         </div>
-                                        <!-- row -->
                                     </div>
-                                    <!-- / .panel-body -->
                                 </div>
-                                <!-- / .collapse -->
                             </div>
-                            <!-- / .panel -->
                             </div>
                             <!-- / .panel-group -->
                         {!!   View('admin/partials/messages')->with('errors',$errors) !!}
@@ -359,14 +271,9 @@
                             <button type="submit" class="btn btn-primary" name="edit_id"
                                     value="0">{{ trans('ibportal::ibportal.save') }}</button>
                             </a>
-
                             {!! Form::close() !!}
-
                         </div>
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
@@ -581,8 +488,8 @@
                                 <div class="col-sm-6">
                                     <div class="checkbox">
                                         <label>
-                                            {!! Form::checkbox('showWithDrawal', 1, $accountsSetting['showWithDrawal'], ['class'=>'px','id'=>'is_client']) !!}
-                                            <span class="lbl">{{ trans('accounts::accounts.showWithDrawal') }}</span>
+                                            {!! Form::checkbox('showWithdrawal', 1, $accountsSetting['showWithdrawal'], ['class'=>'px','id'=>'is_client']) !!}
+                                            <span class="lbl">{{ trans('accounts::accounts.showWithdrawal') }}</span>
                                         </label>
                                     </div>
                                 </div>
@@ -673,8 +580,8 @@
                                 <div class="col-sm-6">
                                     <div class="checkbox">
                                         <label>
-                                            {!! Form::checkbox('directWithDrawalOrderToMt4Server', 1, $accountsSetting['directWithDrawalOrderToMt4Server'], ['class'=>'px','id'=>'directWithDrawalOrderToMt4Server']) !!}
-                                            <span class="lbl">{{ trans('accounts::accounts.directWithDrawalOrderToMt4Server') }}</span>
+                                            {!! Form::checkbox('directWithdrawalOrderToMt4Server', 1, $accountsSetting['directWithdrawalOrderToMt4Server'], ['class'=>'px','id'=>'directWithdrawalOrderToMt4Server']) !!}
+                                            <span class="lbl">{{ trans('accounts::accounts.directWithdrawalOrderToMt4Server') }}</span>
                                         </label>
                                     </div>
                                 </div>

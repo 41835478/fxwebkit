@@ -47,7 +47,7 @@ class RequestController extends Controller
 
     }
 
-    public function insertWithDrawalRequest($login,$server_id, $amount = 0, $comment = '', $reason = '', $status = 0)
+    public function insertWithdrawalRequest($login,$server_id, $amount = 0, $comment = '', $reason = '', $status = 0)
     {
         $existResult= Withdrawal::where([
             'login' => $login,
@@ -95,7 +95,7 @@ class RequestController extends Controller
 
     }
 
-    public function updateWithDrawalRequest($logId, $login, $amount = 0, $comment = '', $reason = '', $status = 0)
+    public function updateWithdrawalRequest($logId, $login, $amount = 0, $comment = '', $reason = '', $status = 0)
     {
 
 

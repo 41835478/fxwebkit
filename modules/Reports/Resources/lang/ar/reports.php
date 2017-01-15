@@ -48,7 +48,7 @@
 'showing'=>'تظهر',
 'export'=>'تصدير',
 'deposits'=>'ايداعات',
-'withdraws'=>'السحوبات',
+'Withdrawal'=>'السحوبات',
 'credit_in'=>'ايداع تسهيلات',
 'credit_out'=>'سحب تسهيلات',
 'total'=>'مجموع',

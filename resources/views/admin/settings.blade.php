@@ -4,7 +4,6 @@
 
     <div id="page-wrapper">
         <div class="container-fluid">
-            <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
                     <h4 class="page-title">{{ trans('general.massGroupsList') }}</h4>
@@ -23,17 +22,16 @@
                 </div>
             </div>
 
-
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
-                        {!! Form::open(['class'=>'panel form-horizontal']) !!}
+
+
                         <h3 class="box-title m-b-0">{{ trans('ibportal::ibportal.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('ibportal::ibportal.tableDescription') }}</p>
 
                         <div class="panel-body">
-
+                            {!! Form::open(['class'=>'panel form-horizontal']) !!}
                             <div class="panel-group" id="accordion-example">
                                 <div class="panel">
                                     <div class="panel-heading">
@@ -42,7 +40,6 @@
                                             {{ trans('general.liveServerConfig') }}
                                         </a>
                                     </div>
-                                    <!-- / .panel-heading -->
                                     <div id="collapseOne" class="panel-collapse in">
                                         <div class="panel-body">
                                             <div class="row">
@@ -53,16 +50,13 @@
                                                     </div>
                                                 </div>
 
-
                                                 <div class="col-sm-6">
                                                     <div class="form-group no-margin-hr">
                                                         <label class="control-label">{{ trans('general.mt4CheckPort') }}</label>
                                                         {!! Form::text('mt4CheckPort',config('fxweb.mt4CheckPort'),['class'=>'form-control']) !!}
                                                     </div>
                                                 </div>
-
                                             </div>
-
                                             <hr>
                                             <div class="row">
                                                 <div class="col-sm-6">
@@ -71,7 +65,6 @@
                                                         {!! Form::text('liveServerName',config('fxweb.liveServerName'),['class'=>'form-control']) !!}
                                                     </div>
                                                 </div>
-
                                             </div>
                                             <hr>
                                             {!! $editGroupLive !!}
@@ -79,14 +72,10 @@
                                             {!! $editDepositLive  !!}
                                             <hr>
                                             {!! $editleverage !!}
-
-
                                         </div>
-                                        <!-- / .panel-body -->
                                     </div>
-                                    <!-- / .collapse -->
                                 </div>
-                                <!-- / .panel -->
+
                                 <div class="panel">
                                     <div class="panel-heading">
                                         <a class="accordion-toggle collapsed" data-toggle="collapse"
@@ -95,7 +84,6 @@
                                             {{ trans('general.demoServerConfig') }}
                                         </a>
                                     </div>
-                                    <!-- / .panel-heading -->
                                     <div id="collapseTwo" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <div class="row">
@@ -106,14 +94,12 @@
                                                     </div>
                                                 </div>
 
-
                                                 <div class="col-sm-6">
                                                     <div class="form-group no-margin-hr">
                                                         <label class="control-label">{{ trans('general.mt4CheckDemoPort') }}</label>
                                                         {!! Form::text('mt4CheckDemoPort',config('fxweb.mt4CheckDemoPort'),['class'=>'form-control']) !!}
                                                     </div>
                                                 </div>
-
                                             </div>
                                             <hr>
                                             <div class="row">
@@ -132,9 +118,7 @@
                                             <hr>
                                             {!! $editleverageDemo !!}
                                         </div>
-                                        <!-- / .panel-body -->
                                     </div>
-                                    <!-- / .collapse -->
                                 </div>
 
                                 <div class="panel">
@@ -145,7 +129,6 @@
                                             {{ trans('general.demoAccountServer') }}
                                         </a>
                                     </div>
-                                    <!-- / .panel-heading -->
                                     <div id="collapseDemoAccount" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <div class="row">
@@ -156,22 +139,15 @@
                                                     </div>
                                                 </div>
 
-
                                                 <div class="col-sm-6">
                                                     <div class="form-group no-margin-hr">
                                                         <label class="control-label">{{ trans('general.demoAccountPort') }}</label>
                                                         {!! Form::text('demoAccountPort',config('fxweb.demoAccountPort'),['class'=>'form-control']) !!}
                                                     </div>
                                                 </div>
-
                                             </div>
-
-
-
                                         </div>
-                                        <!-- / .panel-body -->
                                     </div>
-                                    <!-- / .collapse -->
                                 </div>
 
                                 <div class="panel">
@@ -182,7 +158,6 @@
                                             {{ trans('general.adminInformation') }}
                                         </a>
                                     </div>
-                                    <!-- / .panel-heading -->
                                     <div id="collapseThree" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <div class="row">
@@ -201,7 +176,6 @@
                                                 </div>
                                             </div>
                                             <hr>
-
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group no-margin-hr">
@@ -210,13 +184,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- / .panel-body -->
                                         </div>
-                                        <!-- / .collapse -->
                                     </div>
-                                    <!-- / .panel -->
                                 </div>
-                                <!-- / .panel-group -->
 
                                 <div class="panel">
                                     <div class="panel-heading">
@@ -226,7 +196,6 @@
                                             {{ trans('general.facebook') }}
                                         </a>
                                     </div>
-                                    <!-- / .panel-heading -->
                                     <div id="collapseFour" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <div class="row">
@@ -243,11 +212,8 @@
                                                         {!! Form::text('facebookLoginProvider',config('fxweb.facebookLoginProvider'),['class'=>'form-control']) !!}
                                                     </div>
                                                 </div>
-
                                             </div>
-                                            <!-- / .panel-body -->
                                             <hr>
-
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group no-margin-hr">
@@ -262,11 +228,8 @@
                                                         {!! Form::text('facebookLoginIdentifier',config('fxweb.facebookLoginIdentifier'),['class'=>'form-control']) !!}
                                                     </div>
                                                 </div>
-
                                             </div>
-                                            <!-- / .panel-body -->
                                             <hr>
-
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group no-margin-hr">
@@ -281,9 +244,7 @@
                                                         {!! Form::text('facebookLoginSecret',config('fxweb.facebookLoginSecret'),['class'=>'form-control']) !!}
                                                     </div>
                                                 </div>
-
                                             </div>
-
                                             <hr>
                                             <div class="row">
                                                 <div class="form-group">
@@ -295,11 +256,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- / .panel-body -->
                                         </div>
-                                        <!-- / .collapse -->
                                     </div>
-                                    <!-- / .panel -->
                                 </div>
 
                                 <div class="panel">
@@ -310,7 +268,6 @@
                                             {{ trans('general.google') }}
                                         </a>
                                     </div>
-                                    <!-- / .panel-heading -->
                                     <div id="collapseFive" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <div class="row">
@@ -327,11 +284,8 @@
                                                         {!! Form::text('googleProvider',config('fxweb.googleProvider'),['class'=>'form-control']) !!}
                                                     </div>
                                                 </div>
-
                                             </div>
-                                            <!-- / .panel-body -->
                                             <hr>
-
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group no-margin-hr">
@@ -346,11 +300,8 @@
                                                         {!! Form::text('googleIdentifier',config('fxweb.googleIdentifier'),['class'=>'form-control']) !!}
                                                     </div>
                                                 </div>
-
                                             </div>
-                                            <!-- / .panel-body -->
                                             <hr>
-
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group no-margin-hr">
@@ -359,7 +310,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <hr>
                                             <div class="row">
                                                 <div class="form-group">
@@ -383,7 +333,6 @@
                                             {{ trans('general.linkedin') }}
                                         </a>
                                     </div>
-                                    <!-- / .panel-heading -->
                                     <div id="collapseSix" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <div class="row">
@@ -400,11 +349,8 @@
                                                         {!! Form::text('linkedinProvider',config('fxweb.linkedinProvider'),['class'=>'form-control']) !!}
                                                     </div>
                                                 </div>
-
                                             </div>
-                                            <!-- / .panel-body -->
                                             <hr>
-
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group no-margin-hr">
@@ -419,11 +365,8 @@
                                                         {!! Form::text('linkedinIdentifier',config('fxweb.linkedinIdentifier'),['class'=>'form-control']) !!}
                                                     </div>
                                                 </div>
-
                                             </div>
-                                            <!-- / .panel-body -->
                                             <hr>
-
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group no-margin-hr">
@@ -431,9 +374,7 @@
                                                         {!! Form::text('linkedinSecret',config('fxweb.linkedinSecret'),['class'=>'form-control']) !!}
                                                     </div>
                                                 </div>
-
                                             </div>
-
                                             <hr>
                                             <div class="row">
                                                 <div class="form-group">
@@ -445,12 +386,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- / .panel-body -->
                                         </div>
-                                        <!-- / .collapse -->
                                     </div>
                                 </div>
-
 
                                 <div class="panel">
                                     <div class="panel-heading">
@@ -460,11 +398,8 @@
                                             {{ trans('general.webTrader') }}
                                         </a>
                                     </div>
-                                    <!-- / .panel-heading -->
                                     <div id="collapseSeven" class="panel-collapse collapse">
                                         <div class="panel-body">
-
-
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group no-margin-hr">
@@ -473,7 +408,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <hr>
                                             <div class="row">
                                                 <div class="form-group">
@@ -484,7 +418,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -498,7 +431,6 @@
                                             {{ trans('general.layoutAssetsFolder') }}
                                         </a>
                                     </div>
-                                    <!-- / .panel-heading -->
                                     <div id="collapseEight" class="panel-collapse collapse">
                                         <div class="panel-body">
                                             <div class="row">
@@ -513,19 +445,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- / .panel-group -->
-                        </div>
+                            {!!   View('admin/partials/messages')->with('errors',$errors) !!}
+                            <div class="panel-footer text-right">
 
+                                <button type="submit" class="btn btn-primary" name="edit_id"
+                                        value="0">{{ trans('ibportal::ibportal.save') }}</button>
+                                </a>
 
-                        {!!   View('admin/partials/messages')->with('errors',$errors) !!}
-                        <div class="panel-footer text-right">
+                                {!! Form::close() !!}
 
-                            <button type="submit" class="btn btn-primary" name="edit_id"
-                                    value="0">{{ trans('ibportal::ibportal.save') }}</button>
-                            </a>
-
-                            {!! Form::close() !!}
-
+                            </div>
                         </div>
                     </div>
                 </div>

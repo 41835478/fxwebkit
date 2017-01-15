@@ -71,14 +71,8 @@ class AccountsController extends Controller
 
         }
 
-        if ($oRequest->has('search')||$oRequest->has('active')) {
-
-            $aFilterParams['active'] = 1;
-            $role = explode(',', Config::get('fxweb.client_default_role'));
-
-            $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
-
-        }
+        $role = explode(',', Config::get('fxweb.client_default_role'));
+        $oResults = $this->oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
 
         return view('accounts::accountsList')
             ->with('oResults', $oResults)
@@ -344,7 +338,6 @@ class AccountsController extends Controller
 
         if ($oRequest->has('export')) {
             $oResults = $this->oMt4User->getUsersMt4UsersByFilter($aFilterParams, true, $sOrder, $sSort);
-
             $sOutput = $oRequest->export;
             $aData = [];
             $aHeaders = [
@@ -496,9 +489,7 @@ class AccountsController extends Controller
         ];
 
         foreach ($oGroups as $oGroup) {
-
             $aGroups[$oGroup->group] = $oGroup->group;
-
         }
 
         if ($oRequest->has('search')) {
@@ -511,7 +502,6 @@ class AccountsController extends Controller
             $aFilterParams['group'] = $oRequest->group;
             $aFilterParams['server_id'] = $oRequest->server_id;
             $aFilterParams['assigned'] = $oRequest->assigned;
-
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
             $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
@@ -519,9 +509,9 @@ class AccountsController extends Controller
 
         if ($oRequest->has('search')||$oRequest->has('server_id')) {
             $aFilterParams['server_id'] = $oRequest->server_id;
-            $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
         }
 
+        $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
 
         return view('accounts::mt4Accounts')
             ->with('aGroups', $aGroups)
@@ -567,8 +557,8 @@ class AccountsController extends Controller
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-            $oResults = $this->oMt4User->getUserInfo($aFilterParams['login'],$aFilterParams['server_id']);
 
+            $oResults = $this->oMt4User->getUserInfo($aFilterParams['login'],$aFilterParams['server_id']);
 
             $aSummery = [
                 'deposit' => $this->oMt4Trade->getDepositByLogin($aFilterParams),
@@ -703,7 +693,6 @@ class AccountsController extends Controller
         }
         $result = $oApiController->changeMt4Leverage($oRequest['login'], $oRequest['leverage'], $oRequest['oldPassword']);
 
-
         \Session::flash('flash_success',trans('accounts::accounts.success'));
 
         return view('accounts::addLeverage')
@@ -755,6 +744,7 @@ class AccountsController extends Controller
         \Session::flash('flash_success',trans('accounts::accounts.success'));
 
         $mT4ChangePassword = new ApiController();
+
         if($oRequest['server_id']==1){
             $mT4ChangePassword->mt4Host=config('fxweb.mt4CheckDemoHost');
             $mT4ChangePassword->mt4Port=config('fxweb.mt4CheckDemoPort');
@@ -825,11 +815,10 @@ class AccountsController extends Controller
             ->with('login', $oRequest->login);
     }
 
-    public function getWithDrawal(Request $oRequest)
+    public function getWithdrawal(Request $oRequest)
     {
         $Pssword = config('accountsConfig.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);
-
 
         $internalTransfer = [
             'login1' => '',
@@ -837,7 +826,7 @@ class AccountsController extends Controller
             'login2' => '',
             'amount' => ''];
 
-        return view('accounts::withDrawal')
+        return view('accounts::withdrawal')
             ->with('Pssword', $Pssword)
             ->with('internalTransfer', $internalTransfer)
             ->with('oResults', $oResults)
@@ -845,10 +834,8 @@ class AccountsController extends Controller
             ->with('server_id', $oRequest->server_id)   ;
     }
 
-    public function postWithDrawal(Request $oRequest)
+    public function postWithdrawal(Request $oRequest)
     {
-
-
         $Pssword = config('accountsConfig.apiReqiredConfirmMt4Password');
         $oResults = $this->oMt4User->getUserInfo($oRequest->login);
 
@@ -864,12 +851,11 @@ class AccountsController extends Controller
             $oApiController->server_id=1;
         }
 
-        $result = $oApiController->withDrawal($oRequest['login'], $oRequest['amount'],$oRequest['oldPassword']);
-
+        $result = $oApiController->withdrawal($oRequest['login'], $oRequest['amount'],$oRequest['oldPassword']);
 
         \Session::flash('flash_success',trans('accounts::accounts.success'));
 
-        return view('accounts::withDrawal')
+        return view('accounts::withdrawal')
             ->withErrors($result)
             ->with('Pssword', $Pssword)
             ->with('internalTransfer', $internalTransfer)
@@ -948,16 +934,16 @@ class AccountsController extends Controller
             'denyLiveAccount' => config('accountsConfig.denyLiveAccount'),
             'apiReqiredConfirmMt4Password' => config('accountsConfig.apiReqiredConfirmMt4Password'),
             'allowTransferToUnsignedMT4' => config('accountsConfig.allowTransferToUnsignedMT4'),
-            'showWithDrawal' => config('accountsConfig.showWithDrawal'),
+            'showWithdrawal' => config('accountsConfig.showWithdrawal'),
             'is_client' => config('accountsConfig.is_client'),
             'directOrderToMt4Server' => config('accountsConfig.directOrderToMt4Server'),
 
-            //Leverage     ChangePassword   Transfer    LiveAccount  WithDrawal
+            //Leverage     ChangePassword   Transfer    LiveAccount  Withdrawal
             'directLeverageOrderToMt4Server' => config('accountsConfig.directLeverageOrderToMt4Server'),
             'directChangePasswordOrderToMt4Server' => config('accountsConfig.directChangePasswordOrderToMt4Server'),
             'directTransferOrderToMt4Server' => config('accountsConfig.directTransferOrderToMt4Server'),
             'directLiveAccountOrderToMt4Server' => config('accountsConfig.directLiveAccountOrderToMt4Server'),
-            'directWithDrawalOrderToMt4Server' => config('accountsConfig.directWithDrawalOrderToMt4Server'),
+            'directWithdrawalOrderToMt4Server' => config('accountsConfig.directWithdrawalOrderToMt4Server'),
 
         ];
 
@@ -980,15 +966,15 @@ class AccountsController extends Controller
         $allowTransferToUnsignedMT4 = ($oRequest->allowTransferToUnsignedMT4) ? true : false;
         $directOrderToMt4Server = ($oRequest->directOrderToMt4Server) ? true : false;
 
-        //Leverage     ChangePassword   Transfer    LiveAccount  WithDrawal
+        //Leverage     ChangePassword   Transfer    LiveAccount  Withdrawal
 
         $directLeverageOrderToMt4Server = ($oRequest->directLeverageOrderToMt4Server) ? true : false;
         $directChangePasswordOrderToMt4Server = ($oRequest->directChangePasswordOrderToMt4Server) ? true : false;
         $directTransferOrderToMt4Server = ($oRequest->directTransferOrderToMt4Server) ? true : false;
         $directLiveAccountOrderToMt4Server = ($oRequest->directLiveAccountOrderToMt4Server) ? true : false;
-        $directWithDrawalOrderToMt4Server = ($oRequest->directWithDrawalOrderToMt4Server) ? true : false;
+        $directWithdrawalOrderToMt4Server = ($oRequest->directWithdrawalOrderToMt4Server) ? true : false;
 
-        $showWithDrawal = ($oRequest->showWithDrawal) ? true : false;
+        $showWithdrawal = ($oRequest->showWithdrawal) ? true : false;
         $is_client = ($oRequest->is_client) ? 1 : 0;
 
         $accountsSetting = [
@@ -1006,9 +992,9 @@ class AccountsController extends Controller
             'directChangePasswordOrderToMt4Server'=>$directChangePasswordOrderToMt4Server,
             'directTransferOrderToMt4Server'=>$directTransferOrderToMt4Server,
             'directLiveAccountOrderToMt4Server'=>$directLiveAccountOrderToMt4Server,
-            'directWithDrawalOrderToMt4Server'=>$directWithDrawalOrderToMt4Server,
+            'directWithdrawalOrderToMt4Server'=>$directWithdrawalOrderToMt4Server,
 
-            'showWithDrawal'=>$showWithDrawal,
+            'showWithdrawal'=>$showWithdrawal,
             'changeLeverageWarning'=>$oRequest->changeLeverageWarning,
             'apiMasterPassword'=>$oRequest->apiMasterPassword,
             'is_client' => $is_client

@@ -4,7 +4,6 @@
 
     <div id="page-wrapper">
         <div class="container-fluid">
-            <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
                     <h4 class="page-title">{{ trans('user.details') }}</h4>
@@ -22,18 +21,15 @@
                     </form>
                 </div>
             </div>
-
-
-
+            
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
-
-
+                        
                         <h3 class="box-title m-b-0">{{ trans('user.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('user.tableDescription') }}</p>
+                        
                         <div class="panel">
-
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-xs-4 col-sm-2   text-right">
@@ -41,27 +37,26 @@
                                         <label class="control-label">{{ trans('user.name') }}: </label>
                                     </div>
                                 </div>
-                                <!-- ol-sm-6 -->
+                           
                                 <div class="col-xs-8 col-sm-4  text-left">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{$user_details['first_name'].' '.$user_details['last_name'] }}</label>
                                     </div>
                                 </div>
-                                <!--ol-sm-6 -->
 
                                 <div class="col-xs-4 col-sm-2   text-right">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('user.nickname') }}:  </label>
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
+
                                 <div class="col-xs-8 col-sm-4  text-left">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{$user_details['nickname'] }}</label>
                                     </div>
                                 </div>
                             </div>
-                            <!-- row -->
+                            
 
                             <div class="row">
                                 <div class="col-xs-4 col-sm-2   text-right">
@@ -69,21 +64,19 @@
                                         <label class="control-label">{{ trans('user.email') }} : </label>
                                     </div>
                                 </div>
-                                <!-- ol-sm-6 -->
+                           
                                 <div class="col-xs-8 col-sm-4  text-left">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{$user_details['email'] }}</label>
                                     </div>
                                 </div>
-                                <!--ol-sm-6 -->
-
 
                                 <div class="col-xs-4 col-sm-2   text-right">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('user.gender') }} : </label>
                                     </div>
                                 </div>
-                                <!-- ol-sm-6 -->
+                           
                                 <div class="col-xs-8 col-sm-4  text-left">
                                     <div class="form-group no-margin-hr">
                                         @if($user_details['gender']==0)
@@ -93,7 +86,6 @@
                                         @endif
                                     </div>
                                 </div>
-                                <!-- row -->
                             </div>
 
                             <div class="row">
@@ -102,27 +94,26 @@
                                         <label class="control-label">{{ trans('user.address') }} : </label>
                                     </div>
                                 </div>
-                                <!-- ol-sm-6 -->
+                           
                                 <div class="col-xs-8 col-sm-4  text-left">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{$user_details['address'] }}</label>
                                     </div>
                                 </div>
-                                <!--ol-sm-6 -->
 
                                 <div class="col-xs-4 col-sm-2   text-right">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('user.BirthDay') }} : </label>
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
+
                                 <div class="col-xs-8 col-sm-4  text-left">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{$user_details['birthday'] }}</label>
                                     </div>
                                 </div>
                             </div>
-                            <!-- row -->
+                            
 
                             <div class="row">
                                 <div class="col-xs-4 col-sm-2   text-right">
@@ -130,27 +121,26 @@
                                         <label class="control-label">{{ trans('user.Phone') }} : </label>
                                     </div>
                                 </div>
-                                <!-- ol-sm-6 -->
+                           
                                 <div class="col-xs-8 col-sm-4  text-left">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{$user_details['phone'] }}</label>
                                     </div>
                                 </div>
-                                <!--ol-sm-6 -->
 
                                 <div class="col-xs-4 col-sm-2   text-right">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('user.Country') }}: </label>
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
+
                                 <div class="col-xs-8 col-sm-4  text-left">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{$user_details['country'] }}</label>
                                     </div>
                                 </div>
                             </div>
-                            <!-- row -->
+                            
 
                             <div class="row">
                                 <div class="col-xs-4 col-sm-2   text-right">
@@ -158,38 +148,33 @@
                                         <label class="control-label">{{ trans('user.City') }}:  </label>
                                     </div>
                                 </div>
-                                <!-- ol-sm-6 -->
+                           
                                 <div class="col-xs-8 col-sm-4 text-left">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{$user_details['city'] }}</label>
                                     </div>
                                 </div>
-                                <!--ol-sm-6 -->
 
                                 <div class="col-xs-4 col-sm-2   text-right">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('user.ZipCode') }}:</label>
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
+
                                 <div class="col-xs-8 col-sm-4  text-left">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{$user_details['zip_code'] }}</label>
                                     </div>
                                 </div>
                             </div>
-
-
-                            <!-- row -->
                         </div>
 
                         <div class="panel-footer text-right">
                             <a href="{{ route('admin.editProfile').'?edit_id='.$user_details['id'] }}">
                                 <button type="submit" class="btn btn-primary" name="edit_id" >{{ trans('user.edit') }}</button></a>
                         </div>
-</div>
+                        </div>
                     </div>
-
                 </div>
             </div>
             <!-- /.container-fluid -->
@@ -197,7 +182,6 @@
         </div>
         <!-- /#page-wrapper -->
         <!-- .right panel -->
-
 
         @stop
         @section('hidden')
@@ -218,7 +202,7 @@
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('user.name:') }}</label>
             </div>
-        </div><!-- ol-sm-6 -->
+        </div>
         <div class="col-xs-8 col-sm-4  text-left">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{$user_details['first_name'].' '.$user_details['last_name'] }}</label>
@@ -229,7 +213,7 @@
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('user.gender') }} : </label>
             </div>
-        </div><!-- ol-sm-6 -->
+        </div>
         <div class="col-xs-8 col-sm-4  text-left">
             <div class="form-group no-margin-hr">
                 @if($user_details['gender']==0)
@@ -239,14 +223,14 @@
                 @endif
             </div>
         </div><!--ol-sm-6 -->
-    </div><!-- row -->
+    </div>
 
     <div class="row">
         <div class="col-xs-4 col-sm-2   text-right">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('user.email') }} : </label>
             </div>
-        </div><!-- ol-sm-6 -->
+        </div>
         <div class="col-xs-8 col-sm-4  text-left">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{$user_details['email'] }}</label>
@@ -263,7 +247,7 @@
                 <label class="control-label">{{$user_details['nickname'] }}</label>
             </div>
         </div>
-    </div><!-- row -->
+    </div>
 
 
     <div class="row">
@@ -271,7 +255,7 @@
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('user.address') }} : </label>
             </div>
-        </div><!-- ol-sm-6 -->
+        </div>
         <div class="col-xs-8 col-sm-4  text-left">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{$user_details['address'] }}</label>
@@ -288,14 +272,14 @@
                 <label class="control-label">{{$user_details['birthday'] }}</label>
             </div>
         </div>
-    </div><!-- row -->
+    </div>
 
     <div class="row">
         <div class="col-xs-4 col-sm-2   text-right">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('user.Phone') }} : </label>
             </div>
-        </div><!-- ol-sm-6 -->
+        </div>
         <div class="col-xs-8 col-sm-4  text-left">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{$user_details['phone'] }}</label>
@@ -312,14 +296,14 @@
                 <label class="control-label">{{$user_details['country'] }}</label>
             </div>
         </div>
-    </div><!-- row -->
+    </div>
 
     <div class="row">
         <div class="col-xs-4 col-sm-2   text-right">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{ trans('user.City') }} : </label>
             </div>
-        </div><!-- ol-sm-6 -->
+        </div>
         <div class="col-xs-8 col-sm-4  text-left">
             <div class="form-group no-margin-hr">
                 <label class="control-label">{{$user_details['city'] }}</label>
@@ -336,7 +320,7 @@
                 <label class="control-label">{{$user_details['zip_code'] }}</label>
             </div>
         </div>
-    </div><!-- row -->
+    </div>
 
 </div>
 <div class="panel-footer text-right">

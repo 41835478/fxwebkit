@@ -66,7 +66,7 @@
 
                                         <td>{{ $oResult->TICKET }}</td>
                                         <td>{{ $oResult->LOGIN }}</td>
-                                        <td>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                                        <td>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</td>
                                         <td>{{ $oResult->TYPE }}</td>
                                         <td>{{ $oResult->PROFIT }}</td>
                                         <td>{{ $oResult->CLOSE_TIME }}</td>
@@ -197,12 +197,12 @@
                 xAxis: {
                     /*
                      trans('general.Deposits')
-                     trans('general.Withdraws')
+                     trans('general.Withdrawal')
                      trans('general.CreditIn')
                      trans('general.CreditOut')
-                     *  {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}
+                     *  {{ $oResults[1]['deposits']+$oResults[1]['Withdrawal']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}
              */
-                    categories: ['{!! trans('reports::reports.deposits') !!}', '{!!  trans('reports::reports.credit_in') !!}','{!!   trans('reports::reports.withdraws') !!}', '{!!   trans('reports::reports.credit_out') !!}']
+                    categories: ['{!! trans('reports::reports.deposits') !!}', '{!!  trans('reports::reports.credit_in') !!}','{!!   trans('reports::reports.Withdrawal') !!}', '{!!   trans('reports::reports.credit_out') !!}']
                 },
                 yAxis: {
                     min: 0,
@@ -225,8 +225,8 @@
                     name: ['{!! trans('reports::reports.credit_in') !!}'],
                     data: [0, {!! $oResults[1]['creditIn']  !!},0,0]
                 }, {
-                    name: ['{!!  trans('reports::reports.withdraws') !!}'],
-                    data: [0,0,{!! $oResults[1]['withdraws'] * - 1 !!}, 0]
+                    name: ['{!!  trans('reports::reports.Withdrawal') !!}'],
+                    data: [0,0,{!! $oResults[1]['Withdrawal'] * - 1 !!}, 0]
                 }, {
                     name: ['{!! trans('reports::reports.credit_out') !!}'],
                     data: [0,0,0, {!! $oResults[1]['creditOut'] * - 1 !!}]
@@ -349,7 +349,7 @@
 
                                         <div class="td"><label>{!! trans('reports::reports.order#') !!} : </label><p>{{ $oResult->TICKET }}</p></div>
                                         <div class="td"><label>{!! trans('reports::reports.login') !!} : </label><p>{{ $oResult->LOGIN }}</p></div>
-                                        <div class="td"><label>{!! trans('reports::reports.liveDemo') !!} : </label><p>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.liveDemo') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
                                         <div class="td"><label>{!! trans('reports::reports.type') !!} : </label><p>{{ $oResult->TYPE }}</p></div>
                                         <div class="td"><label>{!! trans('reports::reports.total') !!} : </label><p>{{ $oResult->PROFIT }}</p></div>
                                         <div class="td"><label>{!! trans('reports::reports.close_time') !!} : </label><p>{{ $oResult->CLOSE_TIME }}</p></div>
@@ -467,12 +467,12 @@
             xAxis: {
                 /*
                  trans('general.Deposits')
-                 trans('general.Withdraws')
+                 trans('general.Withdrawal')
                  trans('general.CreditIn')
                  trans('general.CreditOut')
-                 *  {{ $oResults[1]['deposits']+$oResults[1]['withdraws']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}
+                 *  {{ $oResults[1]['deposits']+$oResults[1]['Withdrawal']+$oResults[1]['creditIn']+ $oResults[1]['creditOut'] }}
              */
-                categories: ['{!! trans('reports::reports.deposits') !!}', '{!!  trans('reports::reports.credit_in') !!}','{!!   trans('reports::reports.withdraws') !!}', '{!!   trans('reports::reports.credit_out') !!}']
+                categories: ['{!! trans('reports::reports.deposits') !!}', '{!!  trans('reports::reports.credit_in') !!}','{!!   trans('reports::reports.Withdrawal') !!}', '{!!   trans('reports::reports.credit_out') !!}']
             },
             yAxis: {
                 min: 0,
@@ -495,8 +495,8 @@
                 name: ['{!! trans('reports::reports.credit_in') !!}'],
                 data: [0, {!! $oResults[1]['creditIn']  !!},0,0]
             }, {
-                name: ['{!!  trans('reports::reports.withdraws') !!}'],
-                data: [0,0,{!! $oResults[1]['withdraws'] * - 1 !!}, 0]
+                name: ['{!!  trans('reports::reports.Withdrawal') !!}'],
+                data: [0,0,{!! $oResults[1]['Withdrawal'] * - 1 !!}, 0]
             }, {
                 name: ['{!! trans('reports::reports.credit_out') !!}'],
                 data: [0,0,0, {!! $oResults[1]['creditOut'] * - 1 !!}]

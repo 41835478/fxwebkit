@@ -54,7 +54,7 @@ class SettingsController extends Controller
             'newPassword' => 'Admin-New Password',
             'changeMt4Password' => 'Admin-Mt4 User Change Password',
             'internalTransfers' => 'Admin-Internal Transfers',
-            'withDrawal'=>'Admin-With Drawal',
+            'withdrawal'=>'Admin-Withdrawal',
             'withdrawResult' => 'Admin-Withdraw Result',
             'newAgentNotify' => 'Admin-New Agent Notify',
             'withdrawRequest' => 'Admin-Withdraw Request',
@@ -95,11 +95,11 @@ class SettingsController extends Controller
             $aFilterParams['first_name'] = $oRequest->first_name;
             $aFilterParams['last_name'] = $oRequest->last_name;
             $aFilterParams['email'] = $oRequest->email;
-
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
 
         }
+
         $role = explode(',', Config::get('fxweb.admin_roles'));
         $oResults = $this->oUser->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role[0]);
 
@@ -589,16 +589,11 @@ return $this->getMassMailer($oRequest);
         if ($oRequest->has('search')) {
             $aFilterParams['id'] = $oRequest->id;
             $aFilterParams['group'] = $oRequest->first_name;
-
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-
-
-
-            $oResults = $this->oUser->getMassGroupsList($aFilterParams, false, $sOrder, $sSort);
-
         }
 
+        $oResults = $this->oUser->getMassGroupsList($aFilterParams, false, $sOrder, $sSort);
 
         return view('admin.email.massGroupsList')
             ->with('oResults', $oResults)
@@ -725,11 +720,8 @@ return $this->getMassMailer($oRequest);
             $aFilterParams['order'] = $oRequest->order;
 
         }
+
         $oResults = $this->oMt4User->getUsersMt4UsersWithMassGroup($aFilterParams, false, $sOrder, $sSort);
-
-
-
-
 
         return view('admin.email.assignTo')
             ->with('aGroups', $aGroups)
@@ -793,14 +785,9 @@ return $this->getMassMailer($oRequest);
             $aFilterParams['last_name'] = $oRequest->last_name;
             $aFilterParams['email'] = $oRequest->email;
             $aFilterParams['signed'] = $oRequest->signed;
-
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-
-
-
         }
-
 
         $oResults = $this->oUser->getUsersWithMassGroup($aFilterParams, false, $sOrder, $sSort);
 

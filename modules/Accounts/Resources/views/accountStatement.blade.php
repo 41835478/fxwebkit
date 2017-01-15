@@ -24,7 +24,6 @@
 
             <ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
 
-
                 <li class="active">
                     <a href="{{ route('accounts.mt4UserDetails').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}&from_date=&to_date=&search=Search&sort=asc&order=login"><i class="fa fa-file-text"></i>{{ trans('accounts::accounts.summry') }}</a>
                 </li>
@@ -50,6 +49,7 @@
                     <a href="{{ route('accounts.mt4AssignedUsers').'?login='.$oResults->LOGIN.'&server_id='.$oResults->server_id}}"><i class="fa fa-link"></i>{{ trans('accounts::accounts.assignedUsers') }}</a>
                 </li>
             </ul>
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
@@ -57,7 +57,6 @@
                         <h3 class="box-title m-b-0">{{ trans('accounts::accounts.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('accounts::accounts.tableDescription') }}</p>
 
-                        <!-- ___________________________footer_summery_____________-->
                         @if (count($oResults))
                             <div class="panel-body " id="mt4StatementListAllDiv">
 
@@ -445,7 +444,6 @@
                             </table>
                         @endif
                     </div>
-
                 </div>
             </div>
         </div>
@@ -456,11 +454,6 @@
     <!-- /#page-wrapper -->
     <!-- .right panel -->
 @stop
-
-
-
-
-
 @section('hidden')
     <div id="content-wrapper">
 

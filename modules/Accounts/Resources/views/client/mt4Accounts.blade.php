@@ -36,7 +36,7 @@
 
 
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('accounts::accounts.Login'), 'LOGIN', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('accounts::accounts.name'), 'NAME', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! trans('accounts::accounts.currency') !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('accounts::accounts.equity'), 'EQUITY', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('accounts::accounts.balance'), 'BALANCE', $oResults) !!}</th>
@@ -84,9 +84,9 @@
                                                data-original-title="{{ trans('accounts::accounts.internalTransfer') }}"
                                                     ></a>
 
-                                            <a href="{{ route('client.accounts.withDrawal').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id}}"
+                                            <a href="{{ route('client.accounts.withdrawal').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id}}"
                                                class="fa fa-external-link tooltip_number"
-                                               data-original-title="{{ trans('accounts::accounts.withDrawal') }}"
+                                               data-original-title="{{ trans('accounts::accounts.withdrawal') }}"
                                                     ></a>
 
                                             <a href="{{ route('client.aaccounts.unssignUserFromMt4User').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}"
@@ -132,7 +132,7 @@
 
 
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('accounts::accounts.Login'), 'LOGIN', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('accounts::accounts.name'), 'NAME', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! trans('accounts::accounts.currency') !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('accounts::accounts.equity'), 'EQUITY', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('accounts::accounts.balance'), 'BALANCE', $oResults) !!}</th>
@@ -180,9 +180,9 @@
                                                data-original-title="{{ trans('accounts::accounts.internalTransfer') }}"
                                                     ></a>
 
-                                            <a href="{{ route('client.accounts.withDrawal').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id}}"
+                                            <a href="{{ route('client.accounts.withdrawal').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id}}"
                                                class="fa fa-external-link tooltip_number"
-                                               data-original-title="{{ trans('accounts::accounts.withDrawal') }}"
+                                               data-original-title="{{ trans('accounts::accounts.withdrawal') }}"
                                                     ></a>
 
                                             <a href="{{ route('client.aaccounts.unssignUserFromMt4User').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}"
@@ -301,9 +301,9 @@
                                                        data-original-title="{{ trans('accounts::accounts.internalTransfer') }}"
                                                             ></a>
 
-                                                    <a href="{{ route('client.accounts.withDrawal').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id}}"
+                                                    <a href="{{ route('client.accounts.withdrawal').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id}}"
                                                        class="fa fa-external-link tooltip_number"
-                                                       data-original-title="{{ trans('accounts::accounts.withDrawal') }}"
+                                                       data-original-title="{{ trans('accounts::accounts.withdrawal') }}"
                                                             ></a>
 
                                                     <a href="{{ route('client.aaccounts.unssignUserFromMt4User').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}"
@@ -428,9 +428,9 @@
                                                        data-original-title="{{ trans('accounts::accounts.internalTransfer') }}"
                                                             ></a>
 
-                                                    <a href="{{ route('client.accounts.withDrawal').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id}}"
+                                                    <a href="{{ route('client.accounts.withdrawal').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id}}"
                                                        class="fa fa-external-link tooltip_number"
-                                                       data-original-title="{{ trans('accounts::accounts.withDrawal') }}"
+                                                       data-original-title="{{ trans('accounts::accounts.withdrawal') }}"
                                                             ></a>
 
                                                     <a href="{{ route('client.aaccounts.unssignUserFromMt4User').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}"

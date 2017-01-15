@@ -14,9 +14,9 @@ Route::group(['middleware' => ['authenticate.admin'],'prefix' => 'admin', 'names
 		'getForwordIntenalTransferRequest'=>'admin.request.forwordInternalTransfer',
 		'getIntenalTransferEdit'=>'admin.request.intenalTransferEdit',
 
-		'getForwordWithDrawalRequest'=>'admin.request.forwordWithDrawal',
-		'getWithDrawalEdit'=>'admin.request.withDrawalEdit',
-		'getWithDrawalList'=>'admin.request.withDrawal',
+		'getForwordWithdrawalRequest'=>'admin.request.forwordWithdrawal',
+		'getWithdrawalEdit'=>'admin.request.withdrawalEdit',
+		'getWithdrawalList'=>'admin.request.withdrawal',
 
 		'getChangeLeverageRequestList'=>'admin.request.changeLeverage',
 		'getForwordChangeLeverageRequest'=>'admin.request.forwordChangeLeverage',

@@ -75,12 +75,10 @@ class ToolsController extends Controller
             $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-
-            $role = explode(',', Config::get('fxweb.client_default_role'));
-            $oResults = $this->oFuture->getContractByFilter($aFilterParams, false, $sOrder, $sSort, $role);
-
         }
 
+        $role = explode(',', Config::get('fxweb.client_default_role'));
+        $oResults = $this->oFuture->getContractByFilter($aFilterParams, false, $sOrder, $sSort, $role);
 
         return view('tools::future_contract')
             ->with('oResults', $oResults)
@@ -326,12 +324,9 @@ class ToolsController extends Controller
             $aFilterParams['end_date'] = $oRequest->end_date;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-
-
-            $oResults = $this->oHoliday->getHolidayByFilter($aFilterParams, false, $sOrder, $sSort);
-
         }
 
+        $oResults = $this->oHoliday->getHolidayByFilter($aFilterParams, false, $sOrder, $sSort);
 
         return view('tools::holiday')
             ->with('oResults', $oResults)

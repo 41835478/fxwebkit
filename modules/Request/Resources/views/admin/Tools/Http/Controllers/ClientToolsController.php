@@ -69,9 +69,10 @@ class ClientToolsController extends Controller {
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
 
-            $role = explode(',', Config::get('fxweb.client_default_role'));
-            $oResults = $this->oFuture->getContractByFilter($aFilterParams, false, $sOrder, $sSort, $role);
         }
+
+        $role = explode(',', Config::get('fxweb.client_default_role'));
+        $oResults = $this->oFuture->getContractByFilter($aFilterParams, false, $sOrder, $sSort, $role);
 
         return view('tools::client.future_contract')
                         ->with('oResults', $oResults)
@@ -106,12 +107,9 @@ class ClientToolsController extends Controller {
             $aFilterParams['end_date'] = $oRequest->end_date;
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-
-
-            $oResults = $this->oHoliday->getHolidayByFilter($aFilterParams, false, $sOrder, $sSort);
-
         }
 
+        $oResults = $this->oHoliday->getHolidayByFilter($aFilterParams, false, $sOrder, $sSort);
 
         return view('tools::client.holiday')
             ->with('oResults', $oResults)

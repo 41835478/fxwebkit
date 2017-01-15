@@ -60,7 +60,7 @@
 
 
                                         <td>{{ $oResult->LOGIN }}</td>
-                                        <td>{{($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                                        <td>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</td>
                                         <td>{{ $oResult->NAME }}</td>
                                         <td>{{ $oResult->EQUITY }}</td>
                                         <td>{{ $oResult->BALANCE }}</td>
@@ -266,7 +266,7 @@
 
 
                                             <div class="td"><label>{!! trans('reports::reports.Login') !!} : </label><p>{{ $oResult->LOGIN }}</p></div>
-                                            <div class="td"><label>{!! trans('reports::reports.liveDemo') !!} : </label><p>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                            <div class="td"><label>{!! trans('reports::reports.liveDemo') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
                                             <div class="td"><label>{!! trans('reports::reports.Name') !!} : </label><p>{{ $oResult->NAME }}</p></div>
                                             <div class="td"><label>{!! trans('reports::reports.Equity') !!} : </label><p>{{ $oResult->EQUITY }}</p></div>
                                             <div class="td"><label>{!! trans('reports::reports.Balance') !!} : </label><p>{{ $oResult->BALANCE }}</p></div>
@@ -274,10 +274,6 @@
                                             <div class="td"><label>{!! trans('reports::reports.MarginFree') !!} : </label><p>{{ $oResult->MARGIN_FREE }}</p></div>
                                             <div class="td"><label>{!! trans('reports::reports.Leverage') !!} : </label><p>1:{{ $oResult->LEVERAGE }}</p></div>
                                             <div class="td"><a href="{{ route('clients.reports.accountStatement').'?login='. $oResult->LOGIN.'&server_id='.$oResult->server_id }}&from_date=&to_date=&search=Search&sort=asc&order=login" class="fa fa-file-text tooltip_number" data-original-title="{{trans('reports::reports.accountStatement')}}"></a></div>
-
-
-
-
 
                                         </div>
                                     @endforeach

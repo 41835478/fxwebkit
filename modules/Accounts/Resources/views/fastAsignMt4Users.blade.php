@@ -1,9 +1,9 @@
 @extends('admin.layouts.main')
 @section('title', trans('accounts::accounts.accounts'))
 @section('content')
+
     <div id="page-wrapper">
         <div class="container-fluid">
-            <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
                     <h4 class="page-title">{{ trans('accounts::accounts.accounts') }}</h4>
@@ -38,16 +38,15 @@
                 <div class="col-lg-12">
                     <div class="white-box">
 
-
                         <h3 class="box-title m-b-0">{{ trans('accounts::accounts.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('accounts::accounts.tableDescription') }}</p>
-
-                        {!! Form::open(['class'=>'panel form-horizontal']) !!}
 
                         <div class="panel-heading">
                             <span class="panel-title">{{ trans('accounts::accounts.enterMt4User') }}</span>
                         </div>
+
                         <div class="panel-body">
+                            {!! Form::open(['class'=>'panel form-horizontal']) !!}
                             <div class="row">
                                 <div class="col-sm-2">
                                     <label class="control-label">{{ trans('accounts::accounts.Login') }}</label>
@@ -58,33 +57,24 @@
                                         {!! Form::text('users_checkbox[]','',['class'=>'form-control']) !!}
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
 
                                 <div class="col-sm-2">
                                     {!! Form::hidden('account_id', $aFilterParams['account_id']) !!}
                                     {!! Form::hidden('server_id',0) !!}
                                     {!! Form::hidden('sort', $aFilterParams['sort']) !!}
                                     {!! Form::hidden('order', $aFilterParams['order']) !!}
-
                                     {!! Form::button(trans('accounts::accounts.assign'),['name'=>'asign_mt4_users_submit','value'=>'1' ,'type'=>'submit','class'=>'btn btn-primary']) !!}
-
-
                                 </div>
                             </div>
-                            <!-- row -->
-
+                                   {!! Form::close() !!}
                         </div>
 
-                        {!! Form::close() !!}
-
-
                         @if (count($oResults))
-                            {!! Form::open() !!}
-
+                        {!! Form::open() !!}
                         <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
+
                             <thead>
                             <tr>
-
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">
                                     {!! Form::checkbox('check_all','0',false,['id'=>'check_all']).
                                     Form::label('check_all',trans('accounts::accounts.Login')) !!}</th>
@@ -95,28 +85,19 @@
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6">{!! th_sort(trans('accounts::accounts.leverage'), 'LEVERAGE', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="7">{!! trans('accounts::accounts.action') !!}</th>
                                 <div class="form-group">
-
-
-
                                 </div>
-
                             </tr>
                             </thead>
                             <tbody>
-
-
 
                             @if (count($oResults))
                                 {{--*/$i=0;/*--}}
                                 {{--*/$class='';/*--}}
                                 @foreach($oResults as $oResult)
                                     {{--*/$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/*--}}
-
-
                                     <tr>
-
                                         <td >{!! Form::checkbox('users_checkbox[]',$oResult->LOGIN.','.$oResult->server_id,false,['class'=>'users_checkbox']) !!}{{ $oResult->LOGIN }}</td>
-                                        <td > {{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                                        <td >{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</td>
                                         <td>{{ $oResult->NAME }}</td>
                                         <td>{{ $oResult->GROUP }}</td>
                                         <td>{{ $oResult->LASTDATE }}</td>
@@ -134,15 +115,11 @@
 
                                 @endforeach
                             @endif
-
                             </tbody>
                         </table>
-
                             <div class="tableFooter" style="border:1px solid #eee">
                                 {!! Form::button(trans('accounts::accounts.assign'),['name'=>'asign_mt4_users_submit','value'=>'1'  ,'class'=>'btn btn-info btn-sm',' data-original-title'=>trans('accounts::accounts.assign'),'type'=>'submit' ]) !!}
                                 {!! Form::button(trans('accounts::accounts.un_assign'),['name'=>'un_sign_mt4_users_submit','value'=>'1'  ,'class'=>'btn btn-info btn-sm',' data-original-title'=>trans('accounts::accounts.un_assign'),'type'=>'submit' ]) !!}
-
-
                             </div>
 
                     {!! Form::hidden('account_id', $aFilterParams['account_id']) !!}
@@ -153,19 +130,14 @@
                     {!! Form::hidden('all_groups', $aFilterParams['all_groups']) !!}
                     {!! Form::hidden('exactLogin', $aFilterParams['exactLogin']) !!}
                     {!! Form::hidden('signed', $aFilterParams['signed']) !!}
-
-
                     {!! Form::close() !!}
+
                     @endif
-
-
                         @if (count($oResults))
                             <div class="row">
-
                                 <div class="col-xs-12 col-sm-6 ">
                                     <span class="text-xs">{{trans('accounts::accounts.showing')}} {{ $oResults->firstItem() }} {{trans('accounts::accounts.to')}} {{ $oResults->lastItem() }} {{trans('accounts::accounts.of')}} {{ $oResults->total() }} {{trans('accounts::accounts.entries')}}</span>
                                 </div>
-
 
                                 <div class="col-xs-12 col-sm-6 ">
                                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
@@ -186,9 +158,7 @@
         <div class="scrollable-right container">
             <!-- .Theme settings -->
             <h3 class="title-heading">{{ trans('accounts::accounts.search') }}</h3>
-
             {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
-
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="checkbox checkbox-success">
@@ -197,7 +167,6 @@
                     </div>
                 </div>
             </div>
-
 
             <div class="form-group" id="from_login_li">
                 <div class="col-md-12">
@@ -222,8 +191,6 @@
                     {!! Form::text('name', $aFilterParams['name'], ['placeholder'=>trans('accounts::accounts.Name'),'class'=>'form-control input-sm']) !!}
                 </div>
             </div>
-
-
 
             <div class="form-group">
                 <div class="col-md-12">
@@ -253,7 +220,6 @@
                     </div>
                 </div>
             </div>
-
 
             <div class="form-group">
                 <div class="col-md-12">

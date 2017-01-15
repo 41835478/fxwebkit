@@ -58,13 +58,11 @@ class IbportalController extends Controller
         ];
 
         if ($oRequest->has('search')) {
-
             $aFilterParams['name'] = $oRequest->name;
-
-            $oResults = $this->Ibportal->getPlansByFilters($aFilterParams, false, $sOrder, $sSort);
-
-
         }
+
+        $oResults = $this->Ibportal->getPlansByFilters($aFilterParams, false, $sOrder, $sSort);
+
         return view('ibportal::admin.plan_list')->with('oResults', $oResults)
             ->with('aFilterParams', $aFilterParams);
     }
@@ -168,17 +166,12 @@ class IbportalController extends Controller
             'order' => $sOrder,
         ];
 
-
         if ($oRequest->has('search')) {
-
-
             $aFilterParams['name'] = $oRequest->name;
-
-
-            $oResults = $this->Ibportal->getAliasesByFilters($aFilterParams, false, $sOrder, $sSort);
-
-
         }
+
+        $oResults = $this->Ibportal->getAliasesByFilters($aFilterParams, false, $sOrder, $sSort);
+
         return view('ibportal::admin.aliasesList')->with('oResults', $oResults)
             ->with('aFilterParams', $aFilterParams);
     }
@@ -249,6 +242,7 @@ class IbportalController extends Controller
             $aFilterParams['order'] = $oRequest->order;
 
                }
+
         $role = explode(',', Config::get('fxweb.client_default_role'));
         $oResults = $this->Users->getAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
 
@@ -332,8 +326,10 @@ class IbportalController extends Controller
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
         }
+
         $role = explode(',', Config::get('fxweb.client_default_role'));
         $oResults = $this->Users->getClientAgentUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
+
         return view('ibportal::admin.agent_users')->with('oResults', $oResults)
             ->with('aFilterParams', $aFilterParams);
 
@@ -430,17 +426,16 @@ class IbportalController extends Controller
             $aFilterParams['usresName'] = $oRequest->usresName;
             $aFilterParams['mt4UsresName'] = $oRequest->mt4UsresName;
             $aFilterParams['server_id'] = $oRequest->server_id;
-
         }
 
         $totalCommission = 0;
 
-        if ($oRequest->has('search')) {
+
 
             list($oResults, $totalCommission) = $this->Ibportal->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults->order = $aFilterParams['order'];
             $oResults->sorts = $aFilterParams['sort'];
-        }
+
         $data = [
             'agentName' => $this->Ibportal->getAgentName(),
             'planName' => [],
@@ -545,12 +540,10 @@ class IbportalController extends Controller
 
         $totalCommission = 0;
 
-        if ($oRequest->has('search')) {
-
             list($oResults, $totalCommission) = $this->Ibportal->getAgentCommissionByFilters($aFilterParams, false, $sOrder, $sSort);
             $oResults->order = $aFilterParams['order'];
             $oResults->sorts = $aFilterParams['sort'];
-        }
+
         $data = [
             'agentName' => $this->Ibportal->getAgentName(),
             'planName' => [],
@@ -835,19 +828,11 @@ class IbportalController extends Controller
             $aFilterParams['last_name'] = $oRequest->last_name;
             $aFilterParams['email'] = $oRequest->email;
             $aFilterParams['signed'] = $oRequest->signed;
-
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-
-
-
         }
 
         $oResults = $this->Ibportal->getAssignUsresToAgent($aFilterParams, false, $sOrder, $sSort);
-
-
-
-
 
         return view('ibportal::admin.assignUsresToAgent')
             ->with('oResults', $oResults)

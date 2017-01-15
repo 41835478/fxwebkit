@@ -60,7 +60,7 @@
     'BalanceOperations' => 'Balance Operations',
     'CreditOperations' => 'Credit Operations',
     'Deposits' => 'Deposits',
-    'Withdraws' => 'Withdraws',
+    'Withdrawal' => 'Withdrawal',
     'CreditIn' => 'Credit In',
     'CreditOut' => 'Credit Out',
     'ACCOUNTANT_TYPE_6_DEPOSITS' => 'Balance Operation',

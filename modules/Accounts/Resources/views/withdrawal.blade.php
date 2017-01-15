@@ -6,12 +6,12 @@
             <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
-                    <h4 class="page-title">{{ trans('accounts::accounts.withDrawal') }}</h4>
+                    <h4 class="page-title">{{ trans('accounts::accounts.withdrawal') }}</h4>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <ol class="breadcrumb pull-left">
                         <li><a href="#">{{trans('accounts::accounts.ModuleTitle') }}</a></li>
-                        <li class="active">{{ trans('accounts::accounts.mt4Users') }} / {{ trans('accounts::accounts.withDrawal') }}</li>
+                        <li class="active">{{ trans('accounts::accounts.mt4Users') }} / {{ trans('accounts::accounts.withdrawal') }}</li>
                     </ol>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
@@ -37,7 +37,7 @@
                     <a href="{{ route('accounts.mt4InternalTransfer').'?login='.$login.'&server_id='.$server_id}}"><i class="fa fa-retweet tooltip_number"></i></i>{{ trans('accounts::accounts.internalTransfer') }}</a>
                 </li>
                 <li  class="active">
-                    <a href="{{ route('accounts.withDrawal').'?login='.$login.'&server_id='.$server_id}}"><i class="fa fa-external-link"></i></i>{{ trans('accounts::accounts.withDrawal') }}</a>
+                    <a href="{{ route('accounts.withdrawal').'?login='.$login.'&server_id='.$server_id}}"><i class="fa fa-external-link"></i></i>{{ trans('accounts::accounts.withdrawal') }}</a>
                 </li>
 
                 <li class="">
@@ -132,7 +132,7 @@
                     <a href="{{ route('accounts.mt4InternalTransfer').'?login='.$login.'&server_id='.$server_id}}"><i class="fa fa-retweet tooltip_number"></i></i>{{ trans('accounts::accounts.internalTransfer') }}</a>
                 </li>
                 <li  class="active">
-                    <a href="{{ route('accounts.withDrawal').'?login='.$login.'&server_id='.$server_id}}"><i class="fa fa-external-link"></i></i>{{ trans('accounts::accounts.withDrawal') }}</a>
+                    <a href="{{ route('accounts.withdrawal').'?login='.$login.'&server_id='.$server_id}}"><i class="fa fa-external-link"></i></i>{{ trans('accounts::accounts.withdrawal') }}</a>
                 </li>
 
                 <li class="">

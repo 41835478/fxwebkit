@@ -24,7 +24,7 @@ Route::group(['middleware' => ['authenticate.admin'], 'prefix' => 'admin', 'name
         'getAllowLiveAccount' => 'accounts.allowLiveAccoun',
         'getUnAllowedLiveAccount' => 'accounts.unAllowedLiveAccount',
         'getAccountsSettings'=>'accounts.accountsSettings',
-        'getWithDrawal'=>'accounts.withDrawal',
+        'getWithdrawal'=>'accounts.withdrawal',
         'getMt4AssignedUsers'=>'accounts.mt4AssignedUsers',
         'getUnssignUserFromMt4User'=>'accounts.unssignUserFromMt4User',
        'getActivateUser'=>'accounts.activateUser',
@@ -45,7 +45,7 @@ Route::group(['middleware' => ['authenticate.client'], 'prefix' => 'client', 'na
         'getAddMt4User' => 'client.accounts.addMt4User',
         'getMt4DemoAccount' => 'client.accounts.mt4DemoAccount',
         'getMt4LiveAccount' => 'client.accounts.mt4LiveAccount',
-        'getWithDrawal'=>'client.accounts.withDrawal',
+        'getWithdrawal'=>'client.accounts.withdrawal',
         'getUnssignUserFromMt4User'=>'client.aaccounts.unssignUserFromMt4User',
     ]);
 });

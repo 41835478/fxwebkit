@@ -34,7 +34,7 @@
 
 
                 <li>
-                    <a href="{{ route('client.ibportal.agentwithDrawal').'?login='.$aFilterParams['login']}}"><i class="fa fa-external-link"></i>{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
+                    <a href="{{ route('client.ibportal.agentwithdrawal').'?login='.$aFilterParams['login']}}"><i class="fa fa-external-link"></i>{{ trans('ibportal::ibportal.agentwithdrawal') }}</a>
                 </li>
 
             </ul>
@@ -232,7 +232,7 @@
 
 
                     <li>
-                        <a href="{{ route('client.ibportal.agentwithDrawal').'?login='.$aFilterParams['login']}}"><i class="fa fa-external-link"></i>{{ trans('ibportal::ibportal.agentwithDrawal') }}</a>
+                        <a href="{{ route('client.ibportal.agentwithdrawal').'?login='.$aFilterParams['login']}}"><i class="fa fa-external-link"></i>{{ trans('ibportal::ibportal.agentwithdrawal') }}</a>
                     </li>
 
                 </ul>
@@ -424,12 +424,12 @@
                 xAxis: {
                     /*
                      trans('general.Deposits')
-                     trans('general.Withdraws')
+                     trans('general.Withdrawal')
                      trans('general.CreditIn')
                      trans('general.CreditOut')
-                     *  {{ $oResults[1]['deposits']+$oResults[1]['withdraws']}}
+                     *  {{ $oResults[1]['deposits']+$oResults[1]['Withdrawal']}}
              */
-                    categories: ['{!! trans('ibportal::ibportal.commissions') !!}', '{!!   trans('ibportal::ibportal.withdraws') !!}']
+                    categories: ['{!! trans('ibportal::ibportal.commissions') !!}', '{!!   trans('ibportal::ibportal.Withdrawal') !!}']
                 },
                 yAxis: {
                     min: 0,
@@ -449,8 +449,8 @@
                     name: ['{!!  trans('ibportal::ibportal.deposits') !!}'],
                     data: [{!! $oResults[1]['deposits']  !!}, 0]
                 }, {
-                    name: ['{!!  trans('ibportal::ibportal.withdraws') !!}'],
-                    data: [0, {!! $oResults[1]['withdraws'] * - 1 !!}]
+                    name: ['{!!  trans('ibportal::ibportal.Withdrawal') !!}'],
+                    data: [0, {!! $oResults[1]['Withdrawal'] * - 1 !!}]
                 }]
             });
         }

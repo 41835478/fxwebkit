@@ -12,7 +12,7 @@ return [
     'directChangePasswordOrderToMt4Server'=>false,
     'directTransferOrderToMt4Server'=>true,
     'directLiveAccountOrderToMt4Server'=>false,
-    'directWithDrawalOrderToMt4Server'=>false,
+    'directWithdrawalOrderToMt4Server'=>false,
     'operation' => [
         '0' => 'Credit In',
         '1' => 'Credit Out',
@@ -27,7 +27,7 @@ return [
     'changeLeverageWarning' => 'Please, be careful with this operation !',
     'denyLiveAccount' => false,
     'showMt4Leverage' => true,
-    'showWithDrawal' => true,
+    'showWithdrawal' => true,
     'showMt4ChangePassword' => true,
     'showMt4Transfer' => true,
 
@@ -74,7 +74,7 @@ return [
         ],
         [
             'display'=>'1',
-            'route' => 'client.accounts.withDrawal',
+            'route' => 'client.accounts.withdrawal',
             'title' => 'withdrawal',
             'icon' => 'fa-external-link',
         ],

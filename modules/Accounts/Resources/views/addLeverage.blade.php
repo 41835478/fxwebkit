@@ -1,9 +1,9 @@
 @extends('admin.layouts.main')
 @section('title', trans('accounts::accounts.user_details'))
 @section('content')
+
     <div id="page-wrapper">
         <div class="container-fluid">
-            <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
                     <h4 class="page-title">{{ trans('accounts::accounts.leverage') }}</h4>
@@ -37,37 +37,31 @@
                     <a href="{{ route('accounts.mt4InternalTransfer').'?login='.$login.'&server_id='.$server_id}}"><i class="fa fa-retweet tooltip_number"></i></i>{{ trans('accounts::accounts.internalTransfer') }}</a>
                 </li>
                 <li class="">
-                    <a href="{{ route('accounts.withDrawal').'?login='.$login.'&server_id='.$server_id}}"><i class="fa fa-external-link"></i></i>{{ trans('accounts::accounts.withDrawal') }}</a>
+                    <a href="{{ route('accounts.withdrawal').'?login='.$login.'&server_id='.$server_id}}"><i class="fa fa-external-link"></i></i>{{ trans('accounts::accounts.withdrawal') }}</a>
                 </li>
 
                 <li class="">
                     <a href="{{ route('accounts.mt4AssignedUsers').'?login='.$login.'&server_id='.$server_id}}"><i class="fa fa-link"></i>{{ trans('accounts::accounts.assignedUsers') }}</a>
                 </li>
-
             </ul>
-
-
 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
-                        {!! Form::open(['class'=>'panel form-horizontal']) !!}
+
                         <h3 class="box-title m-b-0">{{ trans('accounts::accounts.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('accounts::accounts.tableDescription') }}</p>
 
                         <div class="panel-body">
-
+                            {!! Form::open(['class'=>'panel form-horizontal']) !!}
                             <div class="row">
-
-
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
-
                                         <label class="control-label">{{ trans('accounts::accounts.leverage') }}</label>
                                         {!! Form::select('leverage',$Result,'',['id'=>'jq-validation-select2','class'=>'form-control']) !!}
                                     </div>
                                 </div>
-                                <!-- col-sm-6 -->
+
                                 @if($Pssword==true)
                                     <div class="col-sm-6">
                                         <div class="form-group no-margin-hr">
@@ -75,8 +69,8 @@
                                             {!! Form::password("password",["class"=>"form-control","value"=>$changeleverage['oldPassword']]) !!}
 
                                         </div>
-                                    </div><!-- col-sm-6 -->
-                                    @endif<!-- col-sm-6 -->
+                                    </div>
+                                    @endif
                             </div>
 
                             <div class="panel-footer text-right">
@@ -84,9 +78,7 @@
                                 {!! Form::hidden('server_id',$server_id)!!}
                                 {!! Form::submit(trans('accounts::accounts.submit'), ['class'=>'btn btn-info btn-sm', 'name' => 'save']) !!}
                             </div>
-
                             {!!   View('admin/partials/messages')->with('errors',$errors) !!}
-
                             {!! Form::close() !!}
                         </div>
                     </div>
@@ -127,7 +119,7 @@
                         <a href="{{ route('accounts.mt4InternalTransfer').'?login='.$login.'&server_id='.$server_id}}"><i class="fa fa-retweet tooltip_number"></i></i>{{ trans('accounts::accounts.internalTransfer') }}</a>
                     </li>
                     <li class="">
-                        <a href="{{ route('accounts.withDrawal').'?login='.$login.'&server_id='.$server_id}}"><i class="fa fa-external-link"></i></i>{{ trans('accounts::accounts.withDrawal') }}</a>
+                        <a href="{{ route('accounts.withdrawal').'?login='.$login.'&server_id='.$server_id}}"><i class="fa fa-external-link"></i></i>{{ trans('accounts::accounts.withdrawal') }}</a>
                     </li>
 
                     <li class="">

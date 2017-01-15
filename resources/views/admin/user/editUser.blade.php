@@ -4,7 +4,6 @@
 
     <div id="page-wrapper">
         <div class="container-fluid">
-            <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
                     <h4 class="page-title">{{ trans('user.edit_user') }}</h4>
@@ -23,51 +22,46 @@
                 </div>
             </div>
 
-
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
-                        {!! Form::open(['class'=>'panel form-horizontal']) !!}
+
                         <h3 class="box-title m-b-0">{{ trans('user.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('user.tableDescription') }}</p>
 
                         <div class="panel-body">
-
+                            {!! Form::open(['class'=>'panel form-horizontal']) !!}
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('user.first_name') }}</label>
                                         {!! Form::text('first_name',$userInfo['first_name'],['class'=>'form-control']) !!}
                                     </div>
-                                </div><!-- col-sm-6 -->
+                                </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('user.last_name') }}</label>
                                         {!! Form::text('last_name',$userInfo['last_name'],['class'=>'form-control']) !!}
-
                                     </div>
-                                </div><!-- col-sm-6 -->
-                            </div><!-- row -->
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('user.email') }}</label>
                                         {!! Form::text('email',$userInfo['email'],['class'=>'form-control']) !!}
-
                                     </div>
-                                </div><!-- col-sm-6 -->
+                                </div>
+
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
-                                        <label class="control-label">{{ trans('user.password') }}</label>
-
-
-                                        {!! Form::password("password",["class"=>"form-control","value"=>$userInfo['password']]) !!}
+                                        <label class="control-label">{{ trans('user.ZipCode') }}</label>
+                                        {!! Form::text('zip_code',$userInfo['zip_code'],['class'=>'form-control']) !!}
                                     </div>
-                                </div><!-- col-sm-6 -->
-
-                            </div><!-- row -->
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="col-sm-6">
@@ -75,61 +69,51 @@
                                         <label class="control-label">{{ trans('user.Nickname') }}</label>
                                         {!! Form::text('nickname',$userInfo['nickname'],['class'=>'form-control']) !!}
                                     </div>
-                                </div><!-- col-sm-6 -->
+                                </div>
+
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('user.address') }}</label>
                                         {!! Form::text('address',$userInfo['address'],['class'=>'form-control']) !!}
-
                                     </div>
-                                </div><!-- col-sm-6 -->
-                            </div><!-- row -->
-
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-                                        <label class="control-label">{{ trans('user.BirthDay') }}</label>
-
-                                        {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control mydatepicker']) !!}
-                                    </div>
-                                </div><!-- col-sm-6 -->
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-                                        <label class="control-label">{{ trans('user.Phone') }}</label>
-                                        {!! Form::text('phone',$userInfo['phone'],['class'=>'form-control']) !!}
-
-                                    </div>
-                                </div><!-- col-sm-6 -->
-                            </div><!-- row -->
-
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-
-                                        <label class="control-label">{{ trans('user.Country') }}</label>
-                                        {!! Form::select('country',$userInfo['country_array'],$userInfo['country'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
-                                    </div>
-                                </div><!-- col-sm-6 -->
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-                                        <label class="control-label">{{ trans('user.City') }}</label>
-                                        {!! Form::text('city',$userInfo['city'],['class'=>'form-control']) !!}
-
-                                    </div>
-                                </div><!-- col-sm-6 -->
+                                </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
-                                        <label class="control-label">{{ trans('user.ZipCode') }}</label>
-                                        {!! Form::text('zip_code',$userInfo['zip_code'],['class'=>'form-control']) !!}
+                                        <label class="control-label">{{ trans('user.BirthDay') }}</label>
+                                        {!! Form::text('birthday',$userInfo['birthday'],['class'=>'form-control mydatepicker']) !!}
                                     </div>
-                                </div><!-- col-sm-6 -->
+                                </div>
 
                                 <div class="col-sm-6">
-                                    <label class="control-label " style="text-align: left;display: block;">{{ trans('user.gender') }}</label>
+                                    <div class="form-group no-margin-hr">
+                                        <label class="control-label">{{ trans('user.Phone') }}</label>
+                                        {!! Form::text('phone',$userInfo['phone'],['class'=>'form-control']) !!}
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group no-margin-hr">
+                                        <label class="control-label">{{ trans('user.Country') }}</label>
+                                        {!! Form::select('country',$userInfo['country_array'],$userInfo['country'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group no-margin-hr">
+                                        <label class="control-label">{{ trans('user.City') }}</label>
+                                        {!! Form::text('city',$userInfo['city'],['class'=>'form-control']) !!}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="control-label " style="text-align: left;display: block;">{{ trans('user.gender') }}</label>
                                     <div class="radio-list">
                                         <label class="radio-inline p-0">
                                             <div class="radio radio-info">
@@ -145,18 +129,16 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div><!-- row -->
+                            </div>
+
+                            {!!   View('admin/partials/messages')->with('errors',$errors) !!}
+
+                            <div class="panel-footer text-right">
+                                <a href="{{ route('general.userDetails') }}">
+                                    <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']  or 0 }}">{{ trans('user.save') }}</button></a>
+
+                                {!! Form::close() !!}
                         </div>
-                        {!!   View('admin/partials/messages')->with('errors',$errors) !!}
-
-
-                        <div class="panel-footer text-right">
-                            <a href="{{ route('general.userDetails') }}">
-                                <button type="submit" class="btn btn-primary" name="edit_id" value="{{ $userInfo['edit_id']  or 0 }}">{{ trans('user.save') }}</button></a>
-
-                            {!! Form::close() !!}
-
-
                     </div>
                 </div>
             </div>

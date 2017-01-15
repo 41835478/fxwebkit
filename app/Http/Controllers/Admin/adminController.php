@@ -42,16 +42,12 @@ class adminController extends Controller
             $aFilterParams['first_name'] = $oRequest->first_name;
             $aFilterParams['last_name'] = $oRequest->last_name;
             $aFilterParams['email'] = $oRequest->email;
-
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
-
-            $role = explode(',', Config::get('fxweb.client_default_role'));
-
-            $oResults = $oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
-
         }
 
+        $role = explode(',', Config::get('fxweb.client_default_role'));
+        $oResults = $oUsers->getUsersByFilter($aFilterParams, false, $sOrder, $sSort, $role);
 
         return view('admin.accounts.accountsList')
             ->with('oResults', $oResults)

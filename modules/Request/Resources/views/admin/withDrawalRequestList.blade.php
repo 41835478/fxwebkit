@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', trans('request::request.withDrawal'))
+@section('title', trans('request::request.withdrawal'))
 @section('content')
 
     <div id="page-wrapper">
@@ -7,12 +7,12 @@
             <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
-                    <h4 class="page-title">{{ trans('request::request.withDrawal') }}</h4>
+                    <h4 class="page-title">{{ trans('request::request.withdrawal') }}</h4>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <ol class="breadcrumb pull-left">
                         <li><a href="#">{{ trans('request::request.ModuleTitle') }}</a></li>
-                        <li class="active">{{ trans('request::request.withDrawal') }}</li>
+                        <li class="active">{{ trans('request::request.withdrawal') }}</li>
                     </ol>
                 </div>
                 <div class="col-sm-6 col-md-6 col-xs-12">
@@ -45,8 +45,6 @@
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6">{!! th_sort(trans('request::request.status'), 'status', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="7"></th>
 
-
-
                             </tr>
                             </thead>
                             <tbody>
@@ -58,17 +56,17 @@
                                     <tr class="tr {{ $class }}">
 
                                         <td>{{ $oResult->login }}</td>
-                                        <td>{{($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                                        <td>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</td>
                                         <td>{{ $oResult->amount }}</td>
                                         <td>{{ $oResult->comment }}</td>
                                         <td>{{ $oResult->reason }}</td>
                                         <td>{{(array_key_exists($oResult->status,$aRequestStatus))? $aRequestStatus[$oResult->status]:'' }}</td>
                                         <td>
-                                            <a href="{{ route('admin.request.withDrawalEdit').'?logId='.$oResult->id }}"
+                                            <a href="{{ route('admin.request.withdrawalEdit').'?logId='.$oResult->id }}"
                                                class="fa fa-edit tooltip_number" data-original-title="{{trans('request::request.edit')}}"></a>
                                             @if($oResult->status != 1)
 
-                                                <a href="{{ route('admin.request.withDrawalEdit').'?logId='.$oResult->id }}"
+                                                <a href="{{ route('admin.request.withdrawalEdit').'?logId='.$oResult->id }}"
                                                    class="fa fa-mail-forward tooltip_number" data-original-title="{{trans('request::request.forword')}}"></a>
                                             @endif
                                         </td>
@@ -178,7 +176,7 @@
         <div class="mail-container ">
 
             <div class="mail-container-header">
-                {{ trans('request::request.withDrawal') }}
+                {{ trans('request::request.withdrawal') }}
             </div>
             <div class="center_page_all_div">
                 @include('admin.partials.messages')
@@ -187,7 +185,7 @@
                     <div class="table-header">
                         <div class="table-caption">
 
-                            {{ trans('request::request.withDrawal') }}
+                            {{ trans('request::request.withdrawal') }}
 
                         </div>
                     </div>
@@ -219,18 +217,18 @@
 
 
                                             <div class="td"><label>{!! trans('request::request.login') !!} : </label><p>{{ $oResult->login }}</p></div>
-                                            <div class="td"><label>{!! trans('request::request.liveDemo') !!} : </label><p>{{ ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.liveDemo') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.amount') !!} : </label><p>{{ $oResult->amount }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.comment') !!} : </label><p>{{ $oResult->comment }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.reason') !!} : </label><p>{{ $oResult->reason }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.status') !!} : </label><p>{{(array_key_exists($oResult->status,$aRequestStatus))? $aRequestStatus[$oResult->status]:'' }}</p></div>
                                             <div class="td">
 
-                                                <a href="{{ route('admin.request.withDrawalEdit').'?logId='.$oResult->id }}"
+                                                <a href="{{ route('admin.request.withdrawalEdit').'?logId='.$oResult->id }}"
                                                    class="fa fa-edit tooltip_number" data-original-title="{{trans('request::request.edit')}}"></a>
                                                 @if($oResult->status != 1)
 
-                                                    <a href="{{ route('admin.request.withDrawalEdit').'?logId='.$oResult->id }}"
+                                                    <a href="{{ route('admin.request.withdrawalEdit').'?logId='.$oResult->id }}"
                                                        class="fa fa-mail-forward tooltip_number" data-original-title="{{trans('request::request.forword')}}"></a>
                                                 @endif
                                             </div>

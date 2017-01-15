@@ -167,8 +167,6 @@ class EloquentMt4UserRepository implements Mt4UserContract{
             }
         }
 
-
-        /* =================================== */
         /* =============== Login Filters =============== */
         if (isset($aFilters['exactLogin']) && $aFilters['exactLogin']) {
             $oResult = $oResult->where('LOGIN', $aFilters['login']);
@@ -228,13 +226,10 @@ class EloquentMt4UserRepository implements Mt4UserContract{
 
         $oResult =new Mt4User();
 
-
-
         /* =============== signed filter ============== */
         if ((isset($aFilters['signed']) && !empty($aFilters['signed']))) {
 
             if ($aFilters['signed'] == 1) {
-
 
                 $oResult = $oResult::join('mt4_users_users', function($join) use($account_id) {
                     $join->on('mt4_users.LOGIN', '=', 'mt4_users_users.mt4_users_id')

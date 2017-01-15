@@ -50,7 +50,7 @@
                                     {{--*/$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/*--}}
                                     <tr>
                                         <td>{{ $oResult->LOGIN }}</td>
-                                        <td>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                                        <td>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</td>
                                         <td>{{ $oResult->NAME }}</td>
 
                                     </tr>
@@ -244,7 +244,7 @@
                                 <tr>
 
                                     <td>{{ $oResult->LOGIN }}</td>
-                                    <td>{{ ($oResult->server_id=="1")? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>
+                                    <td>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</td>
                                     <td>{{ $oResult->NAME }}</td>
 
                                 </tr>

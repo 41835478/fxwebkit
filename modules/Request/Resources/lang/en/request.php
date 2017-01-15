@@ -15,7 +15,7 @@ return [
     'to'=>'to',
     'showing'=>'showing',
     'save'=>'Save',
-    'withDrawal'=>'Withdrawal',
+    'withdrawal'=>'Withdrawal',
     'page'=>'page',
     'go'=>'Go',
     'login'=>'Login',

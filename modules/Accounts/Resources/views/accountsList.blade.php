@@ -22,8 +22,6 @@
                 </div>
             </div>
 
-
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
@@ -47,22 +45,17 @@
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-sortable-default-col data-tablesaw-priority="3">{!! th_sort(trans('accounts::accounts.last_name'), 'last_name', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('accounts::accounts.Email'), 'email', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('accounts::accounts.lastLogin'), 'last_login', $oResults) !!}</th>
-
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6"></th>
 
                             </tr>
                             </thead>
                             <tbody>
 
-
-
                             @if (count($oResults))
                                 {{--*/$i=0;/*--}}
                                 {{--*/$class='';/*--}}
                                 @foreach($oResults as $oResult)
                                     {{--*/$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/*--}}
-
-
                                     <tr>
                                         <td ><a href="javascript:void(0)">{{ $oResult->id }}</a></td>
                                         <td class="title">{{ $oResult->first_name }}</td>
@@ -91,36 +84,27 @@
                                                 <a href="{{ route('accounts.unBlockAccount').'?account_id='.$oResult->id }}"
                                                    class="fa fa-unlock tooltip_number"
                                                    data-original-title="{{trans('accounts::accounts.blockAccount')}}"></a>
-
                                             @else
-
                                                 <a href="{{ route('accounts.blockAccount').'?account_id='.$oResult->id }}"
                                                    class="fa fa-lock tooltip_number"
                                                    data-original-title="{{trans('accounts::accounts.unBlockAccount')}}"> </a>
                                             @endif
-
                                             @if(!$oResult->hasAnyAccess('user.denyLiveAccount'))
 
                                                 <a href="{{ route('accounts.unAllowedLiveAccount').'?account_id='.$oResult->id }}"
                                                    class="fa fa-circle-o tooltip_number"
                                                    data-original-title="{{trans('accounts::accounts.unAllowedLiveAccount')}}"></a>
-
                                             @else
-
                                                 <a href="{{ route('accounts.allowLiveAccoun').'?account_id='.$oResult->id }}"
                                                    class="fa fa-check-circle-o tooltip_number"
                                                    data-original-title="{{trans('accounts::accounts.allowLiveAccoun')}}"></a>
                                             @endif
-
                                         </td>
                                     </tr>
-
                                 @endforeach
                             @endif
-
                             </tbody>
                         </table>
-
 
                         @if (count($oResults))
                             <div class="row">
@@ -152,8 +136,6 @@
 
             {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
 
-
-
             <div class="form-group">
                 <div class="col-md-12">
                     {!! Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('accounts::accounts.id'),'class'=>'form-control input-sm']) !!}
@@ -177,7 +159,6 @@
                     {!! Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('accounts::accounts.Email'),'class'=>'form-control input-sm']) !!}
                 </div>
             </div>
-
 
             <div class="form-group">
                 <label class="col-md-12"></label>

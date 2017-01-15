@@ -4,7 +4,6 @@
 @section('content')
     <div id="page-wrapper">
         <div class="container-fluid">
-            <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
                     <h4 class="page-title">{{ trans('general.adminsList') }}</h4>
@@ -23,8 +22,6 @@
                 </div>
             </div>
 
-
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
@@ -32,9 +29,8 @@
                         <a href="{{ route('general.addUser') }}" style="float:right;">
                             <input name="new_menu_submit" class="btn btn-primary btn-flat" type="button" value="{{ trans('user.addUser') }}"> </a>
 
-
-                        <h3 class="box-title m-b-0">Kitchen Sink</h3>
-                        <p class="text-muted m-b-20">Swipe Mode, ModeSwitch, Minimap, Sortable, SortableSwitch</p>
+                        <h3 class="box-title m-b-0">{{ trans('user.tableHead') }}</h3>
+                        <p class="text-muted m-b-20">{{ trans('user.tableDescription') }}</p>
 
 
                         <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
@@ -45,20 +41,15 @@
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('user.last_name'), 'last_name', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('user.email'), 'email', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5"></th>
-
                             </tr>
                             </thead>
                             <tbody>
-
-
 
                             @if (count($oResults))
                                 {{--*/$i=0;/*--}}
                                 {{--*/$class='';/*--}}
                                 @foreach($oResults as $oResult)
                                     {{--*/$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/*--}}
-
-
                                     <tr>
                                         <td ><a href="javascript:void(0)">{{ $oResult->id }}</a></td>
                                         <td class="title">{{ $oResult->first_name }}</td>
@@ -69,18 +60,13 @@
                                             <a href="{{ route('general.userDetails').'?edit_id='.$oResult->id }}" class="fa fa-file-text tooltip_number"  data-original-title="{{trans('user.userDetails')}}"></a>
                                             <a href="{{ route('general.changePassword').'?edit_id='.$oResult->id }}" class="fa fa-star tooltip_number"  data-original-title="{{trans('user.changePassword')}}"></a>
                                             <a href="{{ route('admin.deleteUser').'?delete_id='.$oResult->id }}" class="fa fa-trash-o tooltip_number"  data-original-title="{{trans('user.deleteUser')}}"></a>
-
                                         </td>
-
                                         </td>
                                     </tr>
-
                                 @endforeach
                             @endif
-
                             </tbody>
                         </table>
-
 
                         @if (count($oResults))
                             <div class="row">
@@ -103,64 +89,53 @@
         <footer class="footer text-center"> 2016 &copy; Elite Admin brought to you by themedesigner.in </footer>
     </div>
 
-
-
-
     <div class="right-side-panel">
         <div class="scrollable-right container">
             <!-- .Theme settings -->
             <h3 class="title-heading">{{ trans('user.Search') }}</h3>
 
-
-
-
             {!! Form::open(['method'=>'get','id'=>'searchForm', 'class'=>'form-horizontal']) !!}
-
 
             <div class="form-group">
                 <label class="col-md-12">{{trans('user.id')}}</label>
                 <div class="col-md-12">
                     {!! Form::text('id', $aFilterParams['id'], ['placeholder'=>trans('user.id'),'class'=>'form-control ']) !!}
-
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="col-md-12">{{trans('user.first_name')}}</label>
                 <div class="col-md-12">
                     {!! Form::text('first_name', $aFilterParams['first_name'], ['placeholder'=>trans('user.first_name'),'class'=>'form-control ']) !!}
-
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="col-md-12">{{trans('user.last_name')}}</label>
                 <div class="col-md-12">
                     {!! Form::text('last_name', $aFilterParams['last_name'], ['placeholder'=>trans('user.last_name'),'class'=>'form-control ']) !!}
-
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="col-md-12">{{trans('user.email')}}</label>
                 <div class="col-md-12">
                     {!! Form::text('email', $aFilterParams['email'], ['placeholder'=>trans('user.email'),'class'=>'form-control ']) !!}
-
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="col-md-12"></label>
                 <div class="col-md-12">
                     {!! Form::submit(trans('user.Search'), ['class'=>'btn btn-info btn-sm', 'name' => 'search']) !!}
-
                 </div>
             </div>
 
             {!! Form::hidden('sort', $aFilterParams['sort']) !!}
             {!! Form::hidden('order', $aFilterParams['order']) !!}
             {!! Form::close( ) !!}
-
-
         </div>
     </div>
-
     <!-- /#page-wrapper -->
     <!-- .right panel -->
 @stop
