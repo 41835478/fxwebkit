@@ -110,6 +110,78 @@ currentA.addClass('active');
 
     });
 
+$('.mini-nav>li').mouseover(function(){
+$(this).click();
+});
+
+
+/*____________________________________column_status_save*/
+//var pageUrl=window.location.pathname;
+//$('.tablesaw-modeswitch  select').change(function(){});
+//
+//$('.tablesaw-columntoggle-btnwrap .btn-group label input[type=checkbox]');
+
+var columnsInfo=[
+{
+pageName:'/admin/reports/closed-orders',
+tables:{
+0:['Login','Order#']
+}
+}
+
+]
+;
+console.log(JSON.stringify(columnsInfo));
+function hideColumn(columnLabel){
+columnLabel.prop('checked',false);
+columnLabel.click();
+columnLabel.click();
+}
+
+function showColumn(columnLabel){
+columnLabel.prop('checked',false);
+columnLabel.click();
+}
+
+function setTableColumnsStatus(aColumnsNames,tableOrder){
+$('.tablesaw-modeswitch  select').val('columntoggle').change();
+$('.tablesaw-columntoggle-btnwrap .btn-group label  input[type="checkbox"]').each(function(){
+if(aColumnsNames.indexOf($(this).parent().text()) > -1){
+showColumn($(this));
+}else{
+hideColumn($(this))
+}
+});
+assignChangeEventTocolumnLabel(tableOrder);
+}
+
+function assignChangeEventTocolumnLabel(tableOrder){
+$('.tablesaw-columntoggle-btnwrap .btn-group label  input[type="checkbox"]').attr('onClick','changeColumnsStatus($(this),"'+tableOrder+'");');
+}
+
+function changeColumnsStatus(checkbox,tableOrder){
+
+
+
+}
+
+//setTimeout('setTableColumnsStatus(["Login"])',2000);
+function startSetTables(){
+var pageUrl=window.location.pathname;
+
+for(var i=0;i<columnsInfo.length;i++){
+if(columnsInfo[i]['pageName'] ==pageUrl){
+for (var key in columnsInfo[i]['tables']) {
+
+setTableColumnsStatus(columnsInfo[i]['tables'][key],key);
+}
+
+}
+}
+
+}
+setTimeout('startSetTables()',100);
+/*_____________________________________end__column_status_save*/
 </script>
 @stop
 
