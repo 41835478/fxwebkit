@@ -1,5 +1,20 @@
 <?php
 
+Route::post('/updateColumnsInfo', function () {
+    $users_id= current_user()->getUser()->id;
+    $data=Input::get('columnsInfo');
+
+
+    $user_columns_info=\Fxweb\Models\columnsInfo::where(['users_id'=>$users_id])->first();
+    if(!count($user_columns_info)){
+
+        \Fxweb\Models\columnsInfo::create(['users_id'=>$users_id,'columns_info'=>$data]);
+    }else{
+        $user_columns_info->columns_info=$data;
+        $user_columns_info->save();
+    }
+    return 1;
+});
 //Route::post('changeLanguage','\Client\AuthController@postChangeLanguage');
 
 //$password=\Illuminate\Support\Facades\Hash::make('admin');dd($password);
