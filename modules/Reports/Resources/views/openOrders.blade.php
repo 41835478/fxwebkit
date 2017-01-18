@@ -32,6 +32,7 @@
 
                         <h3 class="box-title m-b-0">{{ trans('reports::reports.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('reports::reports.tableDescription') }}</p>
+
                         <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
 
                             <thead>
@@ -290,8 +291,6 @@
         <div class="center_page_all_div">
             @include('admin.partials.messages')
 
-
-
             <div class="table-light">
                 <div class="table-header">
                     <div class="table-caption">
@@ -300,20 +299,7 @@
                     </div>
                 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <div class="primary_table_div info" >
+         <div class="primary_table_div info" >
                     <div class="table">
 
 
@@ -373,46 +359,16 @@
                                         <div class="td"><label>{!! trans('reports::reports.price') !!} : </label><p>{{ $oResult->CLOSE_PRICE }}</p></div>
                                         <div class="td"><label>{!! trans('reports::reports.profit') !!} : </label><p>{{ $oResult->PROFIT }}</p></div>
 
-
-
-
                                     </div>
                                 @endforeach
                             @endif
-
-
-
-
                         </div>
-
-
-
-
-
-
-
                     </div>
-
                     <div class="tableFooter">
-
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <div class="table-footer ">
+
                     @if (count($oResults))
                     {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->render()) !!}
 
