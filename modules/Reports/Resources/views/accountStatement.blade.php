@@ -56,8 +56,7 @@
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oOpenActualResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oOpenActualResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oOpenActualResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oOpenActualResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('reports::reports.type'), 'CMD', $oOpenActualResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oOpenActualResults) !!}</th>                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('reports::reports.type'), 'CMD', $oOpenActualResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oOpenActualResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="7">{!! th_sort(trans('reports::reports.open_time'), 'open_time', $oOpenActualResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="8">{!! th_sort(trans('reports::reports.open_Price'), 'OPEN_PRICE', $oOpenActualResults) !!}</th>
@@ -260,27 +259,27 @@
                                             <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
                                                 <thead>
                                                 <tr>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('reports::reports.type'), 'CMD', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="7">{!! th_sort(trans('reports::reports.open_time'), 'open_time', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="8">{!! th_sort(trans('reports::reports.open_Price'), 'OPEN_PRICE', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="9">{!! th_sort(trans('reports::reports.SL'), 'SL', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="10">{!! th_sort(trans('reports::reports.TP'), 'TP', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="11">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="12">{!! th_sort(trans('reports::reports.swaps'), 'SWAPS', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="13">{!! th_sort(trans('reports::reports.price'), 'CLOSE_PRICE', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="14">{!! th_sort(trans('reports::reports.profit'), 'PROFIT', $oCloseActualResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oClosePendingResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oClosePendingResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oClosePendingResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oClosePendingResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('reports::reports.type'), 'CMD', $oClosePendingResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oClosePendingResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="7">{!! th_sort(trans('reports::reports.open_time'), 'open_time', $oClosePendingResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="8">{!! th_sort(trans('reports::reports.open_Price'), 'OPEN_PRICE', $oClosePendingResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="9">{!! th_sort(trans('reports::reports.SL'), 'SL', $oClosePendingResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="10">{!! th_sort(trans('reports::reports.TP'), 'TP', $oClosePendingResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="11">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oClosePendingResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="12">{!! th_sort(trans('reports::reports.swaps'), 'SWAPS', $oClosePendingResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="13">{!! th_sort(trans('reports::reports.price'), 'CLOSE_PRICE', $oClosePendingResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="14">{!! th_sort(trans('reports::reports.profit'), 'PROFIT', $oClosePendingResults) !!}</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @if (count($oCloseActualResults))
+                                                @if (count($oClosePendingResults))
                                                     {{--*/$i=0;/*--}}
                                                     {{--*/$class='';/*--}}
-                                                    @foreach($oCloseActualResults as $oResult)
+                                                    @foreach($oClosePendingResults as $oResult)
                                                         {{--*/$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/*--}}
                                                         <tr class="tr {{ $class }}">
                                                             <td>{{ $oResult->TICKET }}</td>
@@ -302,16 +301,16 @@
                                                 @endif
                                                 </tbody>
                                             </table>
-                                            @if (count($oCloseActualResults))
+                                            @if (count($oClosePendingResults))
                                                 <div class="row">
 
                                                     <div class="col-xs-12 col-sm-6 ">
-                                                        <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oCloseActualResults->firstItem() }} {{trans('reports::reports.to')}} {{ $oCloseActualResults->lastItem() }} {{trans('reports::reports.of')}} {{ $oCloseActualResults->total() }} {{trans('reports::reports.entries')}}</span>
+                                                        <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oClosePendingResults->firstItem() }} {{trans('reports::reports.to')}} {{ $oClosePendingResults->lastItem() }} {{trans('reports::reports.of')}} {{ $oClosePendingResults->total() }} {{trans('reports::reports.entries')}}</span>
                                                     </div>
 
 
                                                     <div class="col-xs-12 col-sm-6 ">
-                                                        {!! str_replace('/?', '?', $oCloseActualResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                                                        {!! str_replace('/?', '?', $oClosePendingResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
                                                     </div>
                                                 </div>
                                             @endif
@@ -323,27 +322,27 @@
                                             <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
                                                 <thead>
                                                 <tr>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('reports::reports.type'), 'CMD', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="7">{!! th_sort(trans('reports::reports.open_time'), 'open_time', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="8">{!! th_sort(trans('reports::reports.open_Price'), 'OPEN_PRICE', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="9">{!! th_sort(trans('reports::reports.SL'), 'SL', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="10">{!! th_sort(trans('reports::reports.TP'), 'TP', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="11">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="12">{!! th_sort(trans('reports::reports.swaps'), 'SWAPS', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="13">{!! th_sort(trans('reports::reports.price'), 'CLOSE_PRICE', $oCloseActualResults) !!}</th>
-                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="14">{!! th_sort(trans('reports::reports.profit'), 'PROFIT', $oCloseActualResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oCloseBalanceResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('reports::reports.Login'), 'LOGIN', $oCloseBalanceResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oCloseBalanceResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('reports::reports.symbol'), 'SYMBOL', $oCloseBalanceResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('reports::reports.type'), 'CMD', $oCloseBalanceResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6">{!! th_sort(trans('reports::reports.lots'), 'VOLUME', $oCloseBalanceResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="7">{!! th_sort(trans('reports::reports.open_time'), 'open_time', $oCloseBalanceResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="8">{!! th_sort(trans('reports::reports.open_Price'), 'OPEN_PRICE', $oCloseBalanceResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="9">{!! th_sort(trans('reports::reports.SL'), 'SL', $oCloseBalanceResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="10">{!! th_sort(trans('reports::reports.TP'), 'TP', $oCloseBalanceResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="11">{!! th_sort(trans('reports::reports.Commission'), 'COMMISSION', $oCloseBalanceResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="12">{!! th_sort(trans('reports::reports.swaps'), 'SWAPS', $oCloseBalanceResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="13">{!! th_sort(trans('reports::reports.price'), 'CLOSE_PRICE', $oCloseBalanceResults) !!}</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="14">{!! th_sort(trans('reports::reports.profit'), 'PROFIT', $oCloseBalanceResults) !!}</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @if (count($oCloseActualResults))
+                                                @if (count($oCloseBalanceResults))
                                                     {{--*/$i=0;/*--}}
                                                     {{--*/$class='';/*--}}
-                                                    @foreach($oCloseActualResults as $oResult)
+                                                    @foreach($oCloseBalanceResults as $oResult)
                                                         {{--*/$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/*--}}
                                                         <tr class="tr {{ $class }}">
                                                             <td>{{ $oResult->TICKET }}</td>
@@ -365,16 +364,16 @@
                                                 @endif
                                                 </tbody>
                                             </table>
-                                            @if (count($oCloseActualResults))
+                                            @if (count($oCloseBalanceResults))
                                                 <div class="row">
 
                                                     <div class="col-xs-12 col-sm-6 ">
-                                                        <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oCloseActualResults->firstItem() }} {{trans('reports::reports.to')}} {{ $oCloseActualResults->lastItem() }} {{trans('reports::reports.of')}} {{ $oCloseActualResults->total() }} {{trans('reports::reports.entries')}}</span>
+                                                        <span class="text-xs">{{trans('reports::reports.showing')}} {{ $oCloseBalanceResults->firstItem() }} {{trans('reports::reports.to')}} {{ $oCloseBalanceResults->lastItem() }} {{trans('reports::reports.of')}} {{ $oCloseBalanceResults->total() }} {{trans('reports::reports.entries')}}</span>
                                                     </div>
 
 
                                                     <div class="col-xs-12 col-sm-6 ">
-                                                        {!! str_replace('/?', '?', $oCloseActualResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                                                        {!! str_replace('/?', '?', $oCloseBalanceResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
                                                     </div>
                                                 </div>
                                             @endif

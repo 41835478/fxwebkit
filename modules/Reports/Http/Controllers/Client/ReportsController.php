@@ -331,8 +331,14 @@ class ReportsController extends Controller
             $aFilterParams['sort'] = $oRequest->sort;
             $aFilterParams['order'] = $oRequest->order;
 
-            $oOpenResults = $this->oMt4Trade->getOpenTradesByDate($aFilterParams, true, $sOrder, $sSort);
-            $oCloseResults = $this->oMt4Trade->getClosedTradesByDate($aFilterParams, true, $sOrder, $sSort);
+        }
+
+            $oOpenActualResults = $this->oMt4Trade->getOpenTradesByDate($aFilterParams, false, $sOrder, $sSort,'page','mt4_open_actual');
+            $oOpenPendingResults = $this->oMt4Trade->getOpenTradesByDate($aFilterParams, false, $sOrder, $sSort,'first_page','mt4_open_pending');
+
+            $oCloseActualResults = $this->oMt4Trade->getClosedTradesByDate($aFilterParams, false, $sOrder, $sSort,'second_page','mt4_closed_actual');
+            $oCloseBalanceResults =$this->oMt4Trade->getClosedTradesByDate($aFilterParams, false, $sOrder, $sSort,'third_page','mt4_closed_balance');
+            $oClosePendingResults = $this->oMt4Trade->getClosedTradesByDate($aFilterParams, false, $sOrder, $sSort,'forth_page','mt4_closed_pending');
             $oResults = $this->oMt4User->getUserInfo($aFilterParams['login']);
 
             $aSummery = [
@@ -341,13 +347,16 @@ class ReportsController extends Controller
                 'closed_trade' => $this->oMt4Trade->getClosedTradeByLogin($aFilterParams),
                 'floating' => $this->oMt4Trade->getFloatingByLogin($aFilterParams),
             ];
-        }
+
 
 
         return view('reports::client.accountStatement')
             ->with('oResults', $oResults)
-            ->with('oOpenResults', $oOpenResults)
-            ->with('oCloseResults', $oCloseResults)
+            ->with('oOpenActualResults',$oOpenActualResults)
+            ->with('oOpenPendingResults',$oOpenPendingResults)
+            ->with('oCloseActualResults',$oCloseActualResults)
+            ->with('oCloseBalanceResults',$oCloseBalanceResults )
+            ->with('oClosePendingResults',$oClosePendingResults)
             ->with('aSummery', $aSummery)
             ->with('serverTypes', $serverTypes)
             ->with('aFilterParams', $aFilterParams);
