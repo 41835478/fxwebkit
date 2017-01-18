@@ -417,21 +417,51 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
             $oResult[$dKey]->CLOSE_PRICE = round($oResult[$dKey]->CLOSE_PRICE, $digits);
         }
+
         return $oResult;
     }
 
-    public function getOpenTradesByDate($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC')
+    public function getOpenTradesByDate($aFilters, $bFullSet = false, $sOrderBy = 'TICKET', $sSort = 'ASC',$pageName='page',$table='mt4_open_actual')
     {
 
         $oFxHelper = new Fx();
+        $oResult =new Mt4Open();
 
-        $oResult = Mt4Open::with('Mt4Prices');
+        if($table=='mt4_open_actual'){
+            $oResult =new Mt4OpenActual();
+        }elseif($table=='mt4_open_pending'){
+            $oResult =new Mt4OpenPending();
+        }
+        //  $oResult = $oResult->with('Mt4Prices');
+
+        $oResult=$oResult->join("mt4_users",function($query) use ($table) {
+            $query->on($table.".login","=","mt4_users.login");
+            $query->on($table.".server_id","=","mt4_users.server_id");
+        });
+
+        /* =============== Groups Filter  =============== */
+
+        if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
+
+
+            if (isset($aFilters['group'])) {
+
+
+                if (is_array($aFilters['group'])) {
+                    $oResult = $oResult->whereIn('GROUP', $aFilters['group']);
+                } else {
+                    $oResult = $oResult->where('GROUP', '=', $aFilters['group']);
+
+                }
+            }
+        }
+
         /* =============== Login Filters =============== */
 
-        $oResult = $oResult->where('LOGIN', '=', $aFilters['login']);
+        $oResult = $oResult->where('mt4_users.LOGIN', '=', $aFilters['login']);
 
         if ((isset($aFilters['server_id']) && $aFilters['server_id']>-1)){
-            $oResult = $oResult->where('server_id', '=', $aFilters['server_id']);
+            $oResult = $oResult->where($table.'.server_id', '=', $aFilters['server_id']);
         }
 
         /* =============== Date Filter  =============== */
@@ -448,10 +478,13 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             }
         }
 
-        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+
+        $oResult = $oResult->orderBy($table.'.'.$sOrderBy, $sSort);
 
         if (!$bFullSet) {
-            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+            //  $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'),['*'],$pageName);
+
         } else {
             $oResult = $oResult->get();
         }
@@ -476,10 +509,8 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             $oResult[$dKey]->TP = round($oResult[$dKey]->TP, $digits);
             $oResult[$dKey]->CLOSE_PRICE = round($oResult[$dKey]->CLOSE_PRICE, $digits);
         }
-
         return $oResult;
     }
-
     /**
      * Gets the closed orders by filters
      *
@@ -489,19 +520,43 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
      * @param string $sSort
      * @return object
      */
-    public function getClosedTradesByDate($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC')
+    public function getClosedTradesByDate($aFilters, $bFullSet = false, $sOrderBy = 'CLOSE_TIME', $sSort = 'ASC',$pageName='page',$table='mt4_closed_actual')
     {
 
         $oFxHelper = new Fx();
-        $oResult = Mt4Closed::with('Mt4Prices');
+        $oResult =new Mt4Closed();
+        if($table=='mt4_closed_actual'){
+            $oResult =new Mt4ClosedActual();
+        }elseif($table=='mt4_closed_balance'){
+            $oResult =new Mt4ClosedBalance();
+        }elseif($table=='mt4_closed_pending'){
+            $oResult =new Mt4ClosedPending();
+        }
+        //  $oResult = $oResult->with('Mt4Prices');
+
+        $oResult=$oResult->join("mt4_users",function($query) use($table) {
+            $query->on($table.".login","=","mt4_users.login");
+            $query->on($table.".server_id","=","mt4_users.server_id");
+        });
+        /* =============== Groups Filter  =============== */
+        if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
+            if(isset($aFilters['group'])){
+                if (is_array( $aFilters['group'])){
+                    $oResult = $oResult->whereIn('GROUP',$aFilters['group']);
+                }else{
+                    $oResult = $oResult->where('GROUP','=',$aFilters['group']);
+                }
+            }
+
+        }
 
         /* =============== Login Filters =============== */
 
 
-        $oResult = $oResult->where('LOGIN', '=', $aFilters['login']);
+        $oResult = $oResult->where($table.'.LOGIN', '=', $aFilters['login']);
 
         if ((isset($aFilters['server_id']) && $aFilters['server_id']>-1)){
-            $oResult = $oResult->where('server_id', '=', $aFilters['server_id']);
+            $oResult = $oResult->where($table.'.server_id', '=', $aFilters['server_id']);
         }
 
         /* =============== Date Filter  =============== */
@@ -518,10 +573,10 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
             }
         }
 
-        $oResult = $oResult->orderBy($sOrderBy, $sSort);
+        $oResult = $oResult->orderBy($table.'.'.$sOrderBy, $sSort);
 
         if (!$bFullSet) {
-            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'),['*'],$pageName);
         } else {
             $oResult = $oResult->get();
         }
