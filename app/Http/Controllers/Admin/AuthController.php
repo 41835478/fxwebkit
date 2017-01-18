@@ -36,9 +36,11 @@ class AuthController extends Controller
 		}
 
 		if ($oUser) {
-			$user_columns_info=\Fxweb\Models\columnsInfo::where(['users_id'=>$oUser->id])->first();
+		$user_columns_info=\Fxweb\Models\columnsInfo::where(['users_id'=>$oUser->id])->first();
 			if(count($user_columns_info)){
-				setcookie("columns_info",$user_columns_info->columns_info);
+			\Session::flash('columns_info',$user_columns_info->columns_info);
+
+
 			}
 
 			$aAllowedRoles = explode(',', config('fxweb.admin_roles'));

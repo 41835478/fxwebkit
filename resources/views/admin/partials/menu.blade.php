@@ -1,4 +1,4 @@
-  <!-- .Side panel -->
+<!-- .Side panel -->
   <div class=" side-mini-panel"   >
     <ul class="mini-nav">
          <div class="togglediv"><a href="javascript:void(0)" id="togglebtn" ><i class="ti-menu"></i></a></div>
@@ -129,9 +129,10 @@ var columnsInfo={
 0:{'Login':0,'Order#':1,'Lots':0,'Open Price':0}
 }
 };
-@if(isset($_COOKIE['columns_info']))
-localStorage.setItem("columns_info",'{!! $_COOKIE['columns_info'] !!}');
-{{--*/ unset($_COOKIE['columns_info']) /*--}}
+
+@if(\Session::get('columns_info')!=null)
+localStorage.setItem("columns_info",'{!! \Session::get('columns_info') !!}');
+{{-- unset($_GET["columns_info"]) /*--}}
 @endif
 
 
@@ -228,9 +229,9 @@ $('.tablesaw-modeswitch select').val('columntoggle').change();
 
 function updateColumnsInfo(){
 var columnsInfoString= JSON.stringify(columnsInfo);
-alert(columnsInfoString);
+
 $.ajax({
-type:"post",
+type:"get",
 url: "/updateColumnsInfo",
 data:{
 '_token':"{!! csrf_token() !!}",
