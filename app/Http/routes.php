@@ -1,6 +1,8 @@
 <?php
 
-Route::get('/updateColumnsInfo', function () {
+Route::any('/updateColumnsInfo', function () {
+
+
     $users_id= current_user()->getUser()->id;
     $data=Input::get('columnsInfo');
 

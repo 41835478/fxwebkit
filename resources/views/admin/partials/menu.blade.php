@@ -151,7 +151,7 @@ columnLabel.click();
 }
 
 function setTableColumnsStatus(aColumnsNames,tableOrder){
-$('.tablesaw-columntoggle-btnwrap .btn-group label  input[type="checkbox"]').each(function(){
+$('.tablesaw-columntoggle-btnwrap').eq(tableOrder).find('.btn-group label  input[type="checkbox"]').each(function(){
 if(aColumnsNames[$(this).parent().text()] === 0  ){
 hideColumn($(this));
 }else{
@@ -163,7 +163,7 @@ assignChangeEventTocolumnLabel(tableOrder);
 }
 
 function assignChangeEventTocolumnLabel(tableOrder){
-$('.tablesaw-columntoggle-btnwrap .btn-group label  input[type="checkbox"]').attr('onClick','changeColumnsStatus($(this),"'+tableOrder+'");');
+    $('.tablesaw-columntoggle-btnwrap').eq(tableOrder).find('.btn-group label  input[type="checkbox"]').attr('onClick','changeColumnsStatus($(this),"'+tableOrder+'");');
 }
 
 function changeColumnsStatus(checkbox,tableOrder){
