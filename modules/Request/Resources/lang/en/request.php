@@ -61,6 +61,7 @@ return [
     'to_field'=>'field contain email',
     'to_email'=>'To Email',
     'saveNew'=>'Save New',
-    'delete'=>'Delete'
+    'delete'=>'Delete',
+    'saveAndSend'=>'Save and Send'
 
 ];

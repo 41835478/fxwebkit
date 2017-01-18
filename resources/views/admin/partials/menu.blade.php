@@ -110,6 +110,140 @@ currentA.addClass('active');
 
     });
 
+$('.mini-nav>li').mouseover(function(){
+$(this).click();
+});
+
+
+/*____________________________________column_status_save*/
+//var pageUrl=window.location.pathname;
+//$('.tablesaw-modeswitch  select').change(function(){});
+//
+//$('.tablesaw-columntoggle-btnwrap .btn-group label input[type=checkbox]');
+
+
+
+var pageUrl=window.location.pathname;
+var columnsInfo={
+'/admin/reports/closed-orders':{
+0:{'Login':0,'Order#':1,'Lots':0,'Open Price':0}
+}
+};
+@if(isset($_COOKIE['columns_info']))
+localStorage.setItem("columns_info",'{!! $_COOKIE['columns_info'] !!}');
+{{--*/ unset($_COOKIE['columns_info']) /*--}}
+@endif
+
+
+
+columnsInfo=JSON.parse(localStorage.getItem("columns_info"));
+
+console.log(JSON.stringify(columnsInfo));
+function hideColumn(columnLabel){
+columnLabel.prop('checked',true);
+columnLabel.click();
+}
+
+function showColumn(columnLabel){
+columnLabel.prop('checked',false);
+columnLabel.click();
+}
+
+function setTableColumnsStatus(aColumnsNames,tableOrder){
+$('.tablesaw-columntoggle-btnwrap .btn-group label  input[type="checkbox"]').each(function(){
+if(aColumnsNames[$(this).parent().text()] === 0  ){
+hideColumn($(this));
+}else{
+showColumn($(this));
+
+}
+});
+assignChangeEventTocolumnLabel(tableOrder);
+}
+
+function assignChangeEventTocolumnLabel(tableOrder){
+$('.tablesaw-columntoggle-btnwrap .btn-group label  input[type="checkbox"]').attr('onClick','changeColumnsStatus($(this),"'+tableOrder+'");');
+}
+
+function changeColumnsStatus(checkbox,tableOrder){
+
+var columnNameLabel=checkbox.parent().text();
+
+var value=(checkbox.prop('checked'))? 1:0;
+
+columnsInfo[pageUrl][tableOrder][columnNameLabel]=value;
+
+//console.log(JSON.stringify(columnsInfo));
+
+updateColumnsInfo();
+}
+
+function addPageTablesToColumnsInfo(){
+
+if(typeof columnsInfo[pageUrl] !== 'undefined'){return false;}
+
+columnsInfo[pageUrl]={};
+
+var i=0;
+$('.dialog-table-coltoggle').each(function(){
+var columnsNames={};
+
+$(this).find('.btn-group label').each(function(){
+columnsNames[$(this).text()]=1;
+
+});
+
+
+
+columnsInfo[pageUrl][i]=columnsNames;
+});
+
+}
+
+function startSetTables(){
+
+changeSelectToToggle();
+addPageTablesToColumnsInfo();
+
+for (var tableOrder in columnsInfo[pageUrl]) {
+
+setTableColumnsStatus(columnsInfo[pageUrl][tableOrder],tableOrder);
+}
+
+
+
+
+}
+setTimeout('startSetTables()',100);
+
+
+
+function changeSelectToToggle(){
+if($('.tablesaw-modeswitch select').length){
+
+$('.tablesaw-modeswitch select').val('columntoggle').change();
+}
+}
+
+
+function updateColumnsInfo(){
+var columnsInfoString= JSON.stringify(columnsInfo);
+alert(columnsInfoString);
+$.ajax({
+type:"post",
+url: "/updateColumnsInfo",
+data:{
+'_token':"{!! csrf_token() !!}",
+'columnsInfo':columnsInfoString
+},
+ success: function(result){
+
+localStorage.setItem("columns_info",columnsInfoString);
+    }
+    });
+
+}
+/*_____________________________________end__column_status_save*/
 </script>
 @stop
 

@@ -125,6 +125,12 @@ currentA.addClass('active');
 {{--alert(tablea.html());--}}
 {{--@endif--}}
 
+$('.mini-nav>li').mouseover(function(){
+$(this).click();
+});
+
+
+
 </script>
 @stop
 
