@@ -197,6 +197,7 @@ columnsNames[$(this).text()]=1;
 
 
 columnsInfo[pageUrl][i]=columnsNames;
+    i++;
 });
 
 }

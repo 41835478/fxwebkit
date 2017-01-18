@@ -41,6 +41,8 @@ class AuthController extends Controller
 			\Session::flash('columns_info',$user_columns_info->columns_info);
 
 
+			}else{
+				\Session::flash('columns_info','{}');
 			}
 
 			$aAllowedRoles = explode(',', config('fxweb.admin_roles'));
