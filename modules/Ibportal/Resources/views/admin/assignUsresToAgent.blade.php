@@ -48,7 +48,7 @@
                             <thead>
                             <tr>
 
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!!  Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.th_sort(trans('ibportal::ibportal.id'), 'id', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-priority="1">{!!  Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.th_sort(trans('ibportal::ibportal.id'), 'id', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('ibportal::ibportal.first_name'), 'first_name', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('ibportal::ibportal.last_name'), 'last_name', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('ibportal::ibportal.Email'), 'email', $oResults) !!}</th>

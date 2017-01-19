@@ -62,6 +62,7 @@ return [
     'to_email'=>'To Email',
     'saveNew'=>'Save New',
     'delete'=>'Delete',
-    'saveAndSend'=>'Save and Send'
+    'saveAndSend'=>'Save and Send',
+    'emailTemplates'=>'Email Templates',
 
 ];

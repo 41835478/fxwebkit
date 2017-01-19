@@ -1,7 +1,5 @@
-
-
 @extends('admin.layouts.main')
-@section('title', trans('request::request.addAccount'))
+@section('title', trans('request::request.emailTemplates'))
 @section('content')
 
     <div id="page-wrapper">
@@ -25,13 +23,12 @@
                 </div>
             </div>
 
-
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
             <fieldset>
                 {!! Form::open(array('method'=>'get','id'=>'showTemplateForm')) !!}
+                <div class="panel">
                 <div class="panel-body">
 
                     <div class="well">
@@ -96,8 +93,7 @@
                         </div>
                     </div>
 
-<div class="clearfix"></div>
-
+                <div class="clearfix"></div>
 
                     <div class="well body">
                             {!! Form::textarea('template_body', $mail, array('id'=>'editor1','class' => 'form-control ckeditor')) !!}
@@ -117,6 +113,7 @@
                         </div>
 
                         {!! Form::close() !!}
+                </div>
                 </div>
 
             </fieldset>

@@ -3,7 +3,6 @@
 @section('content')
     <div id="page-wrapper">
         <div class="container-fluid">
-            <!-- .row -->
             <div class="row bg-title" style="background:url({{'/assets/'.config('fxweb.layoutAssetsFolder')}}/plugins/images/heading-title-bg.jpg) no-repeat center center /cover;">
                 <div class="col-lg-12">
                     <h4 class="page-title">{{ trans('accounts::accounts.accounts') }}</h4>
@@ -47,33 +46,26 @@
                         <a href="{{ route('client.accounts.withdrawal').'?login='.$login.'&server_id='.$server_id}}">{{ trans('accounts::accounts.withdrawal') }}</a>
                     </li>
                 @endif
-
             </ul>
 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
 
-
-
-
-
                         <h3 class="box-title m-b-0">{{ trans('accounts::accounts.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('accounts::accounts.tableDescription') }}</p>
+                        <div class="panel">
 
-                        {!!   View('admin/partials/messages')->with('errors',$errors) !!}
+                        {!! View('admin/partials/messages')->with('errors',$errors) !!}
                         <div class="row">
-                            <br><br>
+                            <br>
+                            <br>
                             <label class="label label-primary label-tag">{{ trans('accounts::accounts.Balance') }} : <b>{{ $oCurrentInternalTransfer['BALANCE'] }}</b> </label>
                             <label class="label label-primary label-tag">{{ trans('accounts::accounts.MarginFree') }} : <b>{{ $oCurrentInternalTransfer['MARGIN_FREE'] }}</b> </label>
                             <label class="label label-primary label-tag">{{ trans('accounts::accounts.equity :') }} <b>{{ $oCurrentInternalTransfer['EQUITY'] }}</b> </label>
                             <div class="clearfix"></div>
 
-
-
-
                             {!! Form::open(['method'=>'get','class'=>'panel form-horizontal','id'=>'selectLoginForm']) !!}
-
 
                             <div class="col-sm-6">
                                 <div class="form-group no-margin-hr">
@@ -81,7 +73,6 @@
                                     {!! Form::select('server_id',$serversList,$server_id,array('class'=>'form-control','onchange'=>'$(\'#selectLoginForm\').submit();')) !!}
                                 </div>
                             </div>
-
 
                             <div class="col-sm-6">
                                 <div class="form-group no-margin-hr">
@@ -91,11 +82,7 @@
                                 </div>
                             </div>
                             {!! Form::hidden('current_server_id',$server_id) !!}
-
-
                             {!! Form::close() !!}
-
-
                             {!! Form::open(['class'=>'panel form-horizontal']) !!}
                             <div class="col-sm-6">
                                 <div class="form-group no-margin-hr">
@@ -103,15 +90,13 @@
                                     {!! Form::text("login2",$internalTransfer['login2'],["class"=>"form-control"]) !!}
                                 </div>
                             </div>
-                            <!-- col-sm-6 -->
-                            <!-- col-sm-6 -->
+
                             <div class="col-sm-6">
                                 <div class="form-group no-margin-hr">
                                     <label class="control-label">{{ trans('accounts::accounts.transferAmount') }}</label>
                                     {!! Form::text('amount',$internalTransfer['amount'],['class'=>'form-control']) !!}
                                 </div>
                             </div>
-                            <!-- col-sm-6 -->
                         </div>
 
                         <div class="row">
@@ -124,7 +109,6 @@
                                     </div>
                                 </div><!-- col-sm-6 -->
                                 <div class="clearfix"></div>
-
                             @endif
                         </div>
 
@@ -133,75 +117,58 @@
                             {!! Form::hidden('server_id',$server_id)!!}
                             {!! Form::submit(trans('accounts::accounts.submit'), ['class'=>'btn btn-info btn-sm', 'name' => 'save']) !!}
                         </div>
+                        {!!   View('admin/partials/messages')->with('errors',$errors) !!}
+
+                        {!! Form::close() !!}
+                        </div>
+                        <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
+                            <thead>
+                            <tr>
+
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('request::request.from_login'), 'from_login', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('request::request.to_login'), 'to_login', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('request::request.amount'), 'amount', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6">{!! th_sort(trans('request::request.reason'), 'reason', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="7">{!! th_sort(trans('request::request.status'), 'status', $oResults) !!}</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @if (count($oResults))
+                                {{-- */$i=0;/* --}}
+                                {{-- */$class='';/* --}}
+                                @foreach($oResults as $oResult)
+                                    {{-- */$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/* --}}
+                                    <tr class="tr {{ $class }}">
+
+                                        <td>{{ $oResult->from_login }}</td>
+                                        <td>{{ $oResult->to_login }}</td>
+                                        <td>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</td>
+                                        <td>{{ $oResult->amount }}</td>
+                                        <td>{{ $oResult->comment }}</td>
+                                        <td>{{ $oResult->reason }}</td>
+                                        <td>{{ (array_key_exists($oResult->status,$aRequestStatus))?$aRequestStatus[$oResult->status] :''}}</td>
+
+                                    </tr>
+                                @endforeach
+                            @endif
+                            </tbody>
+                        </table>
+                        @if (count($oResults))
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-6 ">
+                                    <span class="text-xs">{{trans('request::request.showing')}} {{ $oResults->firstItem() }} {{trans('request::request.to')}} {{ $oResults->lastItem() }} {{trans('request::request.of')}} {{ $oResults->total() }} {{trans('request::request.entries')}}</span>
+                                </div>
 
 
-
-            {!! Form::close() !!}
-
-
-
-
-
-
-
-
-                        {{--<table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>--}}
-                        {{--<thead>--}}
-                        {{--<tr>--}}
-
-                        {{--<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('request::request.login'), 'login', $oResults) !!}</th>--}}
-                        {{--<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</th>--}}
-                        {{--<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('request::request.leverage'), 'leverage', $oResults) !!}</th>--}}
-                        {{--<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</th>--}}
-                        {{--<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('request::request.reason'), 'reason', $oResults) !!}</th>--}}
-                        {{--<th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6">{!! th_sort(trans('request::request.status'), 'status', $oResults) !!}</th--}}
-
-                        {{--</tr>--}}
-                        {{--</thead>--}}
-                        {{--<tbody>--}}
-
-
-
-                        {{--@if (count($oResults))--}}
-                        {{--*/$i=0;/*--}}
-                        {{--*/$class='';/*--}}
-                        {{--@foreach($oResults as $oResult)--}}
-                        {{--*/$class=($i%2==0)? 'gradeA even':'gradeA odd';$i+=1;/*--}}
-
-
-                        {{--<tr>--}}
-
-                        {{--<td>{{ $oResult->login }}</td>--}}
-                        {{--<td>{{  ($oResult->server_id)? config('fxweb.demoServerName'):config('fxweb.liveServerName') }}</td>--}}
-                        {{--<td>{{ $oResult->leverage }}  </td>--}}
-                        {{--<td>{{ $oResult->comment }}</td>--}}
-                        {{--<td>{{ $oResult->reason }}</td>--}}
-                        {{--<td>{{ $aRequestStatus[$oResult->status] }}</td>--}}
-                        {{--</tr>--}}
-
-
-
-                        {{--@endforeach--}}
-                        {{--@endif--}}
-
-                        {{--</tbody>--}}
-                        {{--</table>--}}
-
-
-                        {{--@if (count($oResults))--}}
-                        {{--<div class="row">--}}
-                        {{--<div class="col-xs-12 col-sm-6 ">--}}
-                        {{--<span class="text-xs">{{trans('accounts::accounts.showing')}} {{ $oResults->firstItem() }} {{trans('accounts::accounts.to')}} {{ $oResults->lastItem() }} {{trans('accounts::accounts.of')}} {{ $oResults->total() }} {{trans('accounts::accounts.entries')}}</span>--}}
-                        {{--</div>--}}
-
-
-                        {{--<div class="col-xs-12 col-sm-6 ">--}}
-                        {{--{!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}--}}
-                        {{--</div>--}}
-                        {{--</div>--}}
-                        {{--@endif--}}
-
-
+                                <div class="col-xs-12 col-sm-6 ">
+                                    {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

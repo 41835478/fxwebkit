@@ -23,8 +23,6 @@
                 </div>
             </div>
 
-
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
@@ -32,9 +30,10 @@
 
                         <h3 class="box-title m-b-0">{{ trans('request::request.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('request::request.tableDescription') }}</p>
-                        {!!   View('admin/partials/messages')->with('errors',$errors) !!}
-                        <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
 
+                        {!!   View('admin/partials/messages')->with('errors',$errors) !!}
+
+                        <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
                             <thead>
                             <tr>
 

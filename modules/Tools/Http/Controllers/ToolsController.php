@@ -478,7 +478,7 @@ class ToolsController extends Controller
             $oRequest->start_hour,
             $oRequest->end_hour,
             $oRequest->date);
-        
+
         $message = ($result == false) ? trans('tools::tools.no_thing_message') : '';
         return $this->getAddSymbolHoliday($oRequest, $message);
     }
