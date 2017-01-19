@@ -92,7 +92,7 @@
         todayHighlight: true,
     });
 
-    $('#single-input').clockpicker({
+    $('.myclockpicker, #clockpicker').clockpicker({
         placement: 'bottom',
         align: 'left',
         autoclose: true,

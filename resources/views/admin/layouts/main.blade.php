@@ -92,13 +92,14 @@
 		todayHighlight: true,
 	});
 
-	$('#single-input').clockpicker({
+	$('.myclockpicker, #clockpicker').clockpicker({
 		placement: 'bottom',
 		align: 'left',
 		autoclose: true,
 		'default': 'now'
 
 	});
+
 
 	$('#date-range').datepicker({
 		toggleActive: true
