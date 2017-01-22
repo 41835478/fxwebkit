@@ -40,7 +40,7 @@
 
             <div class="form-group ">
                         <div class="col-xs-12">
-            {!! Form::select('server_id',$serverList,null,['class'=>'form-control input-lg','placeholder'=>Lang::get('server')]) !!}
+           {!! Form::password('memberAreaPassword', ['class'=>'form-control input-lg','id'=>'field_memberAreaPassword',"pattern"=>".{5,30}","required"=>"","title"=>trans("user.passwordLengthError"),'placeholder'=>Lang::get('user.memberAreaPassword')]) !!}
 
                         </div>
             </div>

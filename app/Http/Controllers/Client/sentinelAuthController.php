@@ -23,6 +23,7 @@ use Cartalyst\Sentinel\Addons\Social\Laravel\Facades\Social;
 use Cartalyst\Sentinel\Addons\Social\Models\LinkInterface;
 use Fxweb\Models\UsersDetails;
 use Fxweb\Http\Controllers\Admin\Email;
+use Fxweb\Http\Controllers\Admin\EmailController as Email2;
 use Illuminate\Http\Request;
 
 use Fxweb\Repositories\Admin\User\UserContract;
@@ -145,10 +146,14 @@ class AuthController extends Controller
 
             $details = new UsersDetails($aCredentialsFullDetails);
             $details->save();
-            $oEmail = new Email;
-            @$oEmail->signUpWelcome($aCredentials + $aCredentialsFullDetails);
-           @$oEmail->newUserSignUp(['adminEmail'=>config('fxweb.adminEmail')]+$aCredentials + $aCredentialsFullDetails);
 
+
+            // TODO email template new way
+//            $oEmail = new Email;
+//            @$oEmail->signUpWelcome($aCredentials + $aCredentialsFullDetails);
+//           @$oEmail->newUserSignUp(['adminEmail'=>config('fxweb.adminEmail')]+$aCredentials + $aCredentialsFullDetails);
+            $email=new  Email2();
+            $email->sendSignUp(['id'=> $oUser->id,'status'=>[1]]);
 
             if(config('accounts.denyLiveAccount')){
                $oUser->permissions = [
@@ -179,13 +184,19 @@ class AuthController extends Controller
             $details = new UsersDetails($aCredentialsFullDetails);
             $details->save();
 
-            $oEmail = new Email;
-            @$oEmail->activeAccount(['email'=>$oRequest->email,
-                'code'=>$oActivation->code,
-                'userId'=>$oUser->id,
-            'website'=>$oRequest->root()
-            ]);
-            @$oEmail->newUserSignUp(['adminEmail'=>config('fxweb.adminEmail')]+$aCredentials + $aCredentialsFullDetails);
+            // TODO email template new way
+//            $oEmail = new Email;
+//            @$oEmail->activeAccount(['email'=>$oRequest->email,
+//                'code'=>$oActivation->code,
+//                'userId'=>$oUser->id,
+//            'website'=>$oRequest->root()
+//            ]);
+//            @$oEmail->newUserSignUp(['adminEmail'=>config('fxweb.adminEmail')]+$aCredentials + $aCredentialsFullDetails);
+
+
+            $email=new  Email2();
+            $email->sendSignUp(['id'=> $oUser->id,'status'=>[0,3]]);
+
 
             if(config('accounts.denyLiveAccount')){
             $oUser->permissions = [

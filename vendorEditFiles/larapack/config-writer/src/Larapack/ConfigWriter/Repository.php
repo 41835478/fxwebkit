@@ -176,7 +176,7 @@ class Repository extends BaseRepository
 //            dd('/[\s\'\"]*'.$key.'[\s\'\"]*(=>)\[([\s\'\"\w]*(=>)*[\s\'\"\w]*,*)*\]/',
 //                $value);
 if(!preg_match('/[\s]*\[[\s]*\[/',$value)){
-            $contents=preg_replace('/[^0-9\,][\s\'\"]*'.$key.'[\s\'\"]*(=>)[\s\'\"]*[\[]*[^\]]*\]/i',
+            $contents=preg_replace('/[^0-9\,a-zA-Z][\s\'\"]*'.$key.'[\s\'\"]*(=>)[\s\'\"]*[\[]*[^\]]*\]/i',
             $value,
             $contents);
 }else{

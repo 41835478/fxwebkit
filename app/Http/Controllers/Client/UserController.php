@@ -9,6 +9,8 @@ use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Fxweb\Http\Requests\Client\ChangePasswordRequest;
 use Redirect;
 
+
+
 class UserController extends Controller
 {
     protected $oUsers;

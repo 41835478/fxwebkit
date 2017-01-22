@@ -42,6 +42,8 @@ return [
             'serverName' => 'demo_1',
         ]
     ],
+    'liveServerId'=>0,
+    'demoServerId'=>1,
 
     'senderEmail' => 'm.hashim@mqplanet.com',
     'displayName' => 'Mqplanet',
@@ -118,6 +120,11 @@ return [
                     'route' => 'admin.settings',
                     'title' => 'settings',
                     'icon' => 'fa fa-gears',
+                ],
+                [
+                    'route' => 'admin.setPermissions',
+                    'title' => 'permissions',
+                    'icon' => 'fa fa-user-secret ',
                 ]
             ]
         ],

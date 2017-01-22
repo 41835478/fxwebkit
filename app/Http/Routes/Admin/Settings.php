@@ -22,6 +22,7 @@ Route::group(['middleware' => ['authenticate.admin','ACLAdmin.admin']], function
         'getDeleteContract'=>'admin.deleteMassGroup',
         'getAssignToMassGroup'=>'admin.assignToMassGroup',
         'getAssginToMassAccountsList'=>'admin.assginToMassAccountsList',
+        'getSetPermissions'=>'admin.setPermissions',
 
     ]);
 });

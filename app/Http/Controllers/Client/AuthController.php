@@ -35,6 +35,7 @@ use Fxweb\Repositories\Admin\Mt4User\Mt4UserContract as Mt4User;
 use Cartalyst\Sentinel\Laravel\Facades\Reminder;
 
 use Modules\Accounts\Http\Controllers\ApiController;
+use Fxweb\Http\Controllers\Admin\EmailController as Email2;
 
 class AuthController extends Controller
 {
@@ -110,7 +111,8 @@ class AuthController extends Controller
     {
         $login=$oRequest->login;
         $password=$oRequest->password;
-        $server_id=$oRequest->server_id;
+        $memberAreaPassword = $oRequest->memberAreaPassword;
+        $server_id=config('fxweb.liveServerId');
 
        $api=new ApiController();
 
@@ -143,7 +145,7 @@ class AuthController extends Controller
                 'first_name' => $mt4User->NAME,
                 'last_name' => '',
                 'email' => $mt4User->EMAIL,
-                'password' => $password,
+                'password' => $memberAreaPassword,
 
                 'nickname' => $mt4User->nickname,
                 'address' => $mt4User->ADDRESS,
@@ -282,9 +284,11 @@ class AuthController extends Controller
 
             $details = new UsersDetails($aCredentialsFullDetails);
             $details->save();
-            $oEmail = new Email;
-            @$oEmail->signUpWelcome($aCredentials + $aCredentialsFullDetails);
-            @$oEmail->newUserSignUp(['adminEmail'=>config('fxweb.adminEmail')]+$aCredentials + $aCredentialsFullDetails);
+//            $oEmail = new Email;
+//            @$oEmail->signUpWelcome($aCredentials + $aCredentialsFullDetails);
+//            @$oEmail->newUserSignUp(['adminEmail'=>config('fxweb.adminEmail')]+$aCredentials + $aCredentialsFullDetails);
+            $email=new  Email2();
+            $email->sendSignUp(['id'=> $oUser->id,'status'=>[0,1]]);
 
 
             if(config('accounts.denyLiveAccount')){
@@ -375,13 +379,14 @@ class AuthController extends Controller
 
             if ($oReminder) {
 
-                $oEmail = new Email();
-                $oEmail->forgetPassword([
-                    'userEmail' => $oRequest->email,
-                    'code' => $oReminder->code,
-                    'userId' => $user->id,
-                    'website' => $oRequest->root()
-                ]);
+
+                // TODO email template new way
+//                $oEmail = new Email();
+//                $oEmail->forgetPassword();
+                $email=new  Email2();
+                $email->sendForgetPassword(['id'=> $oReminder->id,'status'=>[0]]);
+
+
 
                 $message = trans('user.checkEmailResetPassword');
             }
@@ -411,6 +416,11 @@ class AuthController extends Controller
      if($oRequest->password ==$oRequest->confirmPassword && strlen($oRequest->password) > 7){
         if ($reminder = Reminder::complete($user, $code, $oRequest->password))
         {
+            $oReminder=Reminder::where(['code'=>$code,'user_id'=>$userId])->first();
+            // TODO email template new way
+            $email=new  Email2();
+            $email->sendForgetPassword(['id'=> $oReminder->id,'status'=>[1]]);
+
             // Reminder was successfull
             return Redirect::route('client.auth.login');
         }
