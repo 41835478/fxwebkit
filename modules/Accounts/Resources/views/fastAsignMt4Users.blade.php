@@ -75,7 +75,7 @@
 
                             <thead>
                             <tr>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">
+                                <th scope="col"data-tablesaw-priority="1">
                                     {!! Form::checkbox('check_all','0',false,['id'=>'check_all']).
                                     Form::label('check_all',trans('accounts::accounts.Login')) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('accounts::accounts.liveDemo'), 'server_id', $oResults) !!}</th>
@@ -201,7 +201,8 @@
                                 <label for="signed_0">{{ trans('accounts::accounts.unAssigned') }}</label>
                             </div>
                         </label>
-                        <label class="radio-inline">
+                        <div style="clear: both"></div>
+                        <label class="radio-inline p-0">
                             <div class="radio radio-info">
                                 {!! Form::radio('signed',1,($aFilterParams['signed']==1),['id'=>'signed_1']) !!}
                                 <label for="signed_1">{{ trans('accounts::accounts.assigned') }}</label>

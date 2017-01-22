@@ -195,7 +195,6 @@ class ClientAccountsController extends Controller
             $aFilterParams['server_id'] = $oRequest->server_id;
 
             $oResults = $this->RequestLog->getChangeLeverageRequestByFilters($aFilterParams, false, $sOrder, $sSort);
-       // dd($oResults);
 
         return view('accounts::client.addLeverage')
             ->with('Pssword', $Pssword)
@@ -269,10 +268,26 @@ class ClientAccountsController extends Controller
             'passwordType' => ''
         ];
 
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+
+        $aRequestStatus = config('request.requestStatus');
+
+        $oResults = null;
+        $status = (isset($oRequest->status))? $oRequest->status : -1;
+        $aFilterParams['status']=$status;
+        $aFilterParams['login'] = $oRequest->login;
+        $aFilterParams['server_id'] = $oRequest->server_id;
+
+        $oResults = $this->RequestLog->getChangePasswordRequestByFilters($aFilterParams, false, $sOrder, $sSort);
+
         return view('accounts::client.changePassword')
             ->with('Password', $Password)
             ->with('changePassword', $changePassword)
             ->with('login', $oRequest->login)
+            ->with('aRequestStatus', $aRequestStatus)
+            ->with('aFilterParams',$aFilterParams)
+            ->with('oResults', $oResults)
             ->with('loginPasswordType', $loginPasswordType)
             ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
@@ -337,11 +352,27 @@ class ClientAccountsController extends Controller
 
         $oCurrentInternalTransfer = modelMt4User::where(['login' => $oRequest->login, 'server_id' => $oRequest->server_id])->first();
 
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+
+        $aRequestStatus = config('request.requestStatus');
+
+        $oResults = null;
+        $status = (isset($oRequest->status))? $oRequest->status : -1;
+        $aFilterParams['status']=$status;
+        $aFilterParams['login'] = $oRequest->login;
+        $aFilterParams['server_id'] = $oRequest->server_id;
+
+        $oResults = $this->RequestLog->getInternalTransferRequestByFilters($aFilterParams, false, $sOrder, $sSort);
+
         return view('accounts::client.internalTransfer')
             ->with('Pssword', $Pssword)
             ->with('oCurrentInternalTransfer', $oCurrentInternalTransfer)
             ->with('internalTransfer', $internalTransfer)
             ->with('login', $oRequest->login)
+            ->with('aRequestStatus', $aRequestStatus)
+            ->with('aFilterParams',$aFilterParams)
+            ->with('oResults', $oResults)
             ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage', config('accounts.showMt4Leverage'))
             ->with('showMt4ChangePassword', config('accounts.showMt4ChangePassword'))
@@ -352,8 +383,6 @@ class ClientAccountsController extends Controller
 
     public function postMt4InternalTransfer(Request $oRequest)
     {
-
-
         list($serversList,$mt4UsersArray)=$this->setDefaultLoginInfo($oRequest);
 
         if(!hasMtUser($oRequest->login,$oRequest->server_id)){
@@ -677,11 +706,29 @@ class ClientAccountsController extends Controller
 
         $oCurrentWithdrawal = modelMt4User::where(['login' => $oRequest->login, 'server_id' => $oRequest->server_id])->first();
 
+        $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
+        $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
+
+        $aRequestStatus = config('request.requestStatus');
+
+        $oResultsTable = null;
+
+        $status = (isset($oRequest->status))? $oRequest->status : -1;
+
+        $aFilterParams['status']=$status;
+
+        $aFilterParams['id'] =  (isset($oRequest->id))? $oRequest->id:'';
+
+        $oResultsTable = $this->RequestLog->getWithdrawalRequestByFilters($aFilterParams, false, $sOrder, $sSort);
+
         return view('accounts::client.withdrawal')
             ->with('Pssword', $Pssword)
             ->with('internalTransfer', $internalTransfer)
             ->with('oCurrentWithdrawal', $oCurrentWithdrawal)
             ->with('oResults', $oResults)
+            ->with('oResultsTable', $oResultsTable)
+            ->with('aFilterParams',$aFilterParams)
+            ->with('aRequestStatus', $aRequestStatus)
             ->with('login', $oRequest->login)
             ->with('server_id', $oRequest->server_id)
             ->with('showMt4Leverage', config('accounts.showMt4Leverage'))

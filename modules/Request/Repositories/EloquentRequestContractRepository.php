@@ -59,6 +59,7 @@ class EloquentRequestContractRepository implements RequestContract
 
     public function getWithdrawalRequestByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC')
     {
+
         $oResult = new Withdrawal();
 
         if (isset($aFilters['login']) && !empty($aFilters['login'])) {

@@ -38,30 +38,24 @@
 
                             <div class="table-light">
 
-                                <table id="symbolsListTable" class="table table-bordered table-striped" style="display: table  ">
+
+                                <table id="symbolsListTable" class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch >
                                     <thead>
                                     <tr>
-
-                                        <th class="no-warp">{{trans('tools::tools.symbols')}}</th>
-                                        <th></th>
-
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{{trans('tools::tools.symbols')}}</th>
+                                        <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"></th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    </tbody>
-
+                                    <tbody></tbody>
                                 </table>
 
-                                <div class="table-footer">
 
+                                <div class="table-footer">
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                             data-target="#myModal">{{ trans('ibportal::ibportal.add_symbol') }}</button>
 
-
                                 </div>
                             </div>
-
-
 
                             <div class="row">
                                 <div class="col-sm-4">
@@ -75,7 +69,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('tools::tools.start_time') }}</label>
-                                        {!! Form::text('start_hour',$holidayInfo['start_hour'],['class'=>'form-control']) !!}
+                                        {!! Form::text('start_hour',$holidayInfo['start_hour'],['class'=>'form-control myclockpicker']) !!}
                                     </div>
                                 </div>
                                 <!-- col-sm-6 -->
@@ -83,7 +77,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group no-margin-hr">
                                         <label class="control-label">{{ trans('tools::tools.end_time') }}</label>
-                                        {!! Form::text('end_hour',$holidayInfo['end_hour'],['class'=>'form-control']) !!}
+                                        {!! Form::text('end_hour',$holidayInfo['end_hour'],['class'=>'form-control myclockpicker']) !!}
 
                                     </div>
                                 </div>
@@ -144,72 +138,43 @@
     <!-- /#page-wrapper -->
     <!-- .right panel -->
 @stop
-{{--@section("script")--}}
-    {{--@parent--}}
-    {{--<link rel="stylesheet" type="text/css" href="/assets/css/autoCompleteInput.css">--}}
+@section("script")
+    @parent
+    <link rel="stylesheet" type="text/css" href="/assets/css/autoCompleteInput.css">
 
-    {{--<script>--}}
-        {{-- TODO [mohammad] check if the start hour less than end hour --}}
-
-            {{--var options = {--}}
-                {{--format: "yyyy-mm-dd",--}}
-                {{--todayBtn: "linked",--}}
-                {{--orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'--}}
-            {{--}--}}
-
-            {{--$('input[name="date"]').datepicker(options);--}}
+    <script>
 
 
-        {{--var options2 = {--}}
-            {{--minuteStep: 1,--}}
-            {{--showSeconds: true,--}}
-            {{--showMeridian: false,--}}
-            {{--showInputs: false,--}}
-            {{--orientation: $('body').hasClass('right-to-left') ? {x: 'right', y: 'auto'} : {x: 'auto', y: 'auto'}--}}
-        {{--}--}}
-        {{--$('input[name="end_hour"],input[name="start_hour"]').timepicker(options2);--}}
+
+        $('#addSymbolsToListButton').click(function () {
+            var html = '';
+            var selectedSymbols = $('#symbolsMultiSelect').val();
+
+            if (selectedSymbols != null) {
+                var type = $('#symbolsType').val();
+                var value = $('#symbolsValue').val();
+                for (var i = 0; i < selectedSymbols.length; i++) {
+                    var symbolLabel = $('#symbolsMultiSelect option[value="' + selectedSymbols[i] + '"]').text();
+                    $('#symbolsMultiSelect option[value="' + selectedSymbols[i] + '"]').remove();
+                    html = '<tr id="tr_' + selectedSymbols[i] + '">' +
+                            '<td><input type="hidden" name="selectedSymbols[]" value="' + selectedSymbols[i] + '" />' + symbolLabel + '</td>' +
+                            '<td><i class="fa fa-trash-o" onclick="removeSelectedSymbolFromTable(' + selectedSymbols[i] + ',\'' + symbolLabel + '\')"></i> </td>' +
+                            '</tr>';
+
+                    $('#symbolsListTable tbody').append(html);
+                }
+                $('#s2id_symbolsMultiSelect .select2-search-choice').remove();
+            }
 
 
-        {{--$('.securitiesCheckbox').change(function () {--}}
-            {{--var security_id = $(this).val();--}}
+        });
 
-            {{--if ($(this).prop("checked")) {--}}
-                {{--$(".symbols_tr_" + security_id + " .symbolsCheckbox").prop("checked", true);--}}
-            {{--} else {--}}
-
-                {{--$(".symbols_tr_" + security_id + " .symbolsCheckbox").prop("checked", false);--}}
-            {{--}--}}
-        {{--});--}}
-
-
-        {{--$('#addSymbolsToListButton').click(function () {--}}
-            {{--var html = '';--}}
-            {{--var selectedSymbols = $('#symbolsMultiSelect').val();--}}
-
-            {{--if (selectedSymbols != null) {--}}
-                {{--var type = $('#symbolsType').val();--}}
-                {{--var value = $('#symbolsValue').val();--}}
-                {{--for (var i = 0; i < selectedSymbols.length; i++) {--}}
-                    {{--var symbolLabel = $('#symbolsMultiSelect option[value="' + selectedSymbols[i] + '"]').text();--}}
-                    {{--$('#symbolsMultiSelect option[value="' + selectedSymbols[i] + '"]').remove();--}}
-                    {{--html = '<tr id="tr_' + selectedSymbols[i] + '">' +--}}
-                            {{--'<td><input type="hidden" name="symbols[]" value="' + selectedSymbols[i] + '" />' + symbolLabel + '</td>' +--}}
-                            {{--'<td><i class="fa fa-trash-o" onclick="removeSelectedSymbolFromTable(\'' + selectedSymbols[i] + '\',\'' + symbolLabel + '\')"></i> </td>' +--}}
-                            {{--'</tr>';--}}
-                    {{--$('#symbolsListTable tbody').append(html);--}}
-                {{--}--}}
-                {{--$('#s2id_symbolsMultiSelect .select2-search-choice').remove();--}}
-            {{--}--}}
-
-
-        {{--});--}}
-
-        {{--function removeSelectedSymbolFromTable(symbol, symbolLabel) {--}}
-            {{--$('#tr_' + symbol).remove();--}}
-            {{--$('#symbolsMultiSelect').append('<option value="' + symbol + '">' + symbolLabel + '</option>');--}}
-        {{--}--}}
-    {{--</script>--}}
-{{--@stop--}}
+        function removeSelectedSymbolFromTable(symbol, symbolLabel) {
+            $('#tr_' + symbol).remove();
+            $('#symbolsMultiSelect').append('<option value="' + symbol + '">' + symbolLabel + '</option>');
+        }
+    </script>
+@stop
 @section('hidden')
     <div id="content-wrapper">
     <div class="page-header">

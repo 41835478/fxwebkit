@@ -266,6 +266,7 @@ class ToolsController extends Controller
     public function postEditContract(EditContractRequest $oRequest)
     {
 
+
         $result = 0;
 
         $result = $this->oFuture->updateContract($oRequest);
@@ -287,6 +288,7 @@ class ToolsController extends Controller
                 'start_date' => $oResult['start_date'],
                 'expiry_date' => $oResult['expiry_date'],
             ];
+
 
             return Redirect::route('tools.futureContract');
         }
@@ -471,12 +473,11 @@ class ToolsController extends Controller
         }
 
 
-        $result = $this->oHoliday->addSymbolsHoliday($oRequest->symbols,
+        $result = $this->oHoliday->addSymbolsHoliday($oRequest->selectedSymbols,
             $oRequest->holiday_id,
             $oRequest->start_hour,
             $oRequest->end_hour,
             $oRequest->date);
-
 
         $message = ($result == false) ? trans('tools::tools.no_thing_message') : '';
         return $this->getAddSymbolHoliday($oRequest, $message);
