@@ -468,7 +468,15 @@ return $this->getMassMailer($oRequest);
 
     public function getSettings(Request $oRequest)
     {
+
+
+
+
+
+
         $editConfig = new EditConfig();
+
+
         return view('admin.settings',
         [
             'editGroupLive'=>$editConfig->getEditDropDownHtml('GroupLive',config('fxweb.GroupLive')),
@@ -558,7 +566,8 @@ return $this->getMassMailer($oRequest);
                  'DepositLive'=>$editConfig->arrayToString('DepositLive',$oRequest->DepositLive),
                 'DepositDemo'=>$editConfig->arrayToString('DepositDemo',$oRequest->DepositDemo),
                 'leverage'=>$editConfig->arrayToString('leverage',$oRequest->leverage),
-                'leverageDemo'=>$editConfig->arrayToString('leverageDemo',$oRequest->leverageDemo)
+                'leverageDemo'=>$editConfig->arrayToString('leverageDemo',$oRequest->leverageDemo),
+                'servers'=>$editConfig->multiLivilArrayToString('servers',$oRequest->servers)
 
              ]);
 

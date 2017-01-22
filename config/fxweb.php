@@ -21,27 +21,15 @@ return [
     'LinkTradeForUser' => 'https://trade.mql5.com/trade?servers=MetaQuotes-Demo&demo_server=192.168.15.10&lang=en',
 
     'EnableLinkTradeForUser' => true,
-    'mt4CheckHost' => '192.168.15.10',
-    'mt4CheckPort' => '443',
-    'liveServerName' => 'live',
-    'mt4CheckDemoHost' => '192.168.15.10',
-    'mt4CheckDemoPort' => '443',
-    'demoServerName' => 'demo',
+    'mt4CheckHost' => null,
+    'mt4CheckPort' => null,
+    'liveServerName' => null,
+    'mt4CheckDemoHost' => null,
+    'mt4CheckDemoPort' => null,
+    'demoServerName' => null,'servers'=>['0'=>['type'=>'live','serverName'=>'live_1','mt4CheckHost'=>'192.168.15.10','mt4CheckPort'=>'443',],'1'=>['type'=>'demo','serverName'=>'demo_1','mt4CheckHost'=>'192.168.15.10','mt4CheckPort'=>'443',],'4'=>['type'=>'534','serverName'=>'234','mt4CheckHost'=>'234','mt4CheckPort'=>'234',],'sdf'=>['type'=>'fgdf','serverName'=>'gdsfg','mt4CheckHost'=>'dsfgds','mt4CheckPort'=>'',],],
 
-    'servers'=>[
-        0=>[
-            'type'=>'live',
-            'mt4CheckHost' => '192.168.15.10',
-            'mt4CheckPort' => '443',
-            'serverName' => 'live_1',
-        ],
-        1=>[
-            'type'=>'demo',
-            'mt4CheckHost' => '192.168.15.10',
-            'mt4CheckPort' => '443',
-            'serverName' => 'demo_1',
-        ]
-    ],
+
+
     'liveServerId'=>0,
     'demoServerId'=>1,
 
@@ -77,7 +65,7 @@ return [
     'linkedinSecret' => 'ddVzvRTG0Nmkyy6u',
 
     'key' => 'fgh',
-    'value' => 'fgh','GroupLive'=>['1'=>'100','2'=>'300',],'GroupDemo'=>['1'=>'100',],'DepositLive'=>['1'=>'100',],'DepositDemo'=>['1'=>'100',],'leverage'=>['100'=>'1:100','200'=>'1:200',],'leverageDemo'=>['1'=>'1:150',],
+    'value' => 'fgh','GroupLive'=>[],'GroupDemo'=>[],'DepositLive'=>[],'DepositDemo'=>[],'leverage'=>[],'leverageDemo'=>[],
 
     'theme' => [
         'color' => env('THEME_COLOR', 'default'),

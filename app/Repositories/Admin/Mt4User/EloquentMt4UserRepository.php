@@ -123,7 +123,7 @@ class EloquentMt4UserRepository implements Mt4UserContract{
 
         return [$serversList,$firstServer];
     }
-    public function getUsersByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC') {
+    public function getUsersByFilters($aFilters, $bFullSet = false, $sOrderBy = 'login', $sSort = 'ASC',$pageName='page') {
         //$oResult = new Mt4User();
         /* ===============================check admin or user================ */
 
@@ -201,7 +201,7 @@ class EloquentMt4UserRepository implements Mt4UserContract{
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
         if (!$bFullSet) {
-            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+            $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'),['*'],$pageName);
         } else {
             $oResult = $oResult->get();
         }

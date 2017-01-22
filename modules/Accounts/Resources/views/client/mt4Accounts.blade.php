@@ -131,13 +131,13 @@
                             <tr>
 
 
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('accounts::accounts.Login'), 'LOGIN', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('accounts::accounts.Login'), 'LOGIN', $oResults2) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('accounts::accounts.Name'), 'NAME', $oResults2) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! trans('accounts::accounts.currency') !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('accounts::accounts.equity'), 'EQUITY', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('accounts::accounts.balance'), 'BALANCE', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6">{!! th_sort(trans('accounts::accounts.last_date'), 'LASTDATE', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="7">{!! th_sort(trans('accounts::accounts.leverage'), 'LEVERAGE', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('accounts::accounts.equity'), 'EQUITY', $oResults2) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('accounts::accounts.balance'), 'BALANCE', $oResults2) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6">{!! th_sort(trans('accounts::accounts.last_date'), 'LASTDATE', $oResults2) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="7">{!! th_sort(trans('accounts::accounts.leverage'), 'LEVERAGE', $oResults2) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="8">  </th>
 
                             </tr>
@@ -203,15 +203,15 @@
                         </table>
 
 
-                        @if (count($oResults))
+                        @if (count($oResults2))
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6 ">
-                                    <span class="text-xs">{{trans('accounts::accounts.showing')}} {{ $oResults->firstItem() }} {{trans('accounts::accounts.to')}} {{ $oResults->lastItem() }} {{trans('accounts::accounts.of')}} {{ $oResults->total() }} {{trans('accounts::accounts.entries')}}</span>
+                                    <span class="text-xs">{{trans('accounts::accounts.showing')}} {{ $oResults2->firstItem() }} {{trans('accounts::accounts.to')}} {{ $oResults2->lastItem() }} {{trans('accounts::accounts.of')}} {{ $oResults2->total() }} {{trans('accounts::accounts.entries')}}</span>
                                 </div>
 
 
                                 <div class="col-xs-12 col-sm-6 ">
-                                    {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                                    {!! str_replace('/?', '?', $oResults2->appends(Input::except('second_page'))->appends($aFilterParams)->render()) !!}
                                 </div>
                             </div>
                         @endif
@@ -458,7 +458,7 @@
                         <div class="table-footer ">
 
                             @if (count($oResults2))
-                                {!! str_replace('/?', '?', $oResults->appends(Input::except('page'))->appends($aFilterParams)->render()) !!}
+                                {!! str_replace('/?', '?', $oResults->appends(Input::except('second_page'))->appends($aFilterParams)->render()) !!}
                                 @if($oResults2->total()>25)
                                     <div class="DT-lf-right change_page_all_div">
 

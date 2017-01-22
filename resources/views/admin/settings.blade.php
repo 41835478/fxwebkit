@@ -42,30 +42,106 @@
                                     </div>
                                     <div id="collapseOne" class="panel-collapse in">
                                         <div class="panel-body">
+
+<div id="serversList">
+                                                @foreach(config('fxweb.servers') as $server_id=>$server)
+                                                    <div class="row">
+
+
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group no-margin-hr">
+                                                                <label class="control-label">{{ trans('general.type') }}</label>
+                                                                {!! Form::text('servers['.$server_id.'][type]',$server['type'],['class'=>'form-control']) !!}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group no-margin-hr">
+                                                                <label class="control-label">{{ trans('general.name ') }}</label>
+                                                                {!! Form::text('servers['.$server_id.'][serverName]',$server['serverName'],['class'=>'form-control']) !!}
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-sm-3">
+                                                            <div class="form-group no-margin-hr">
+                                                                <label class="control-label">{{ trans('general.mt4CheckHost') }}</label>
+                                                                {!! Form::text('servers['.$server_id.'][mt4CheckHost]',$server['mt4CheckHost'],['class'=>'form-control']) !!}
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-sm-1">
+                                                            <div class="form-group no-margin-hr">
+                                                                <label class="control-label">{{ trans('general.mt4CheckPort') }}</label>
+                                                                {!! Form::text('servers['.$server_id.'][mt4CheckPort]',$server['mt4CheckPort'],['class'=>'form-control']) !!}
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-sm-2">
+                                                            <div class="form-group no-margin-hr">
+
+                                                                <button type="button" name="delete"  class="form-control" onClick="$(this).parent().parent().parent().remove();return false;">Delete</button>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                @endforeach
+</div>
+
+
                                             <div class="row">
-                                                <div class="col-sm-6">
+
+
+                                                <div class="col-sm-1">
                                                     <div class="form-group no-margin-hr">
-                                                        <label class="control-label">{{ trans('general.mt4CheckHost') }}</label>
-                                                        {!! Form::text('mt4CheckHost',config('fxweb.mt4CheckHost'),['class'=>'form-control']) !!}
+                                                        <label class="control-label">{{ trans('general.serverId') }}</label>
+                                                        {!! Form::text('new_server_id','',['class'=>'form-control']) !!}
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="form-group no-margin-hr">
+                                                        <label class="control-label">{{ trans('general.type') }}</label>
+                                                        {!! Form::text('server_type','',['class'=>'form-control']) !!}
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group no-margin-hr">
+                                                        <label class="control-label">{{ trans('general.name ') }}</label>
+                                                        {!! Form::text('server_name','',['class'=>'form-control']) !!}
                                                     </div>
                                                 </div>
 
-                                                <div class="col-sm-6">
+
+                                                <div class="col-sm-3">
+                                                    <div class="form-group no-margin-hr">
+                                                        <label class="control-label">{{ trans('general.mt4CheckHost') }}</label>
+                                                        {!! Form::text('server_mt4CheckHost','',['class'=>'form-control']) !!}
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-sm-1">
                                                     <div class="form-group no-margin-hr">
                                                         <label class="control-label">{{ trans('general.mt4CheckPort') }}</label>
-                                                        {!! Form::text('mt4CheckPort',config('fxweb.mt4CheckPort'),['class'=>'form-control']) !!}
+                                                        {!! Form::text('server_mt4CheckPort','',['class'=>'form-control']) !!}
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-sm-6">
+
+
+                                                <div class="col-sm-2">
                                                     <div class="form-group no-margin-hr">
-                                                        <label class="control-label">{{ trans('general.name ') }}</label>
-                                                        {!! Form::text('liveServerName',config('fxweb.liveServerName'),['class'=>'form-control']) !!}
+
+                                                        <button name="addServer"   type="button" class="form-control" onclick="addNewServer();return false;">Add Server</button>
                                                     </div>
                                                 </div>
+
+
                                             </div>
+
+
+
                                             <hr>
                                             {!! $editGroupLive !!}
                                             <hr>
@@ -86,31 +162,7 @@
                                     </div>
                                     <div id="collapseTwo" class="panel-collapse collapse">
                                         <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <div class="form-group no-margin-hr">
-                                                        <label class="control-label">{{ trans('general.mt4CheckDemoHost') }}</label>
-                                                        {!! Form::text('mt4CheckDemoHost',config('fxweb.mt4CheckDemoHost'),['class'=>'form-control']) !!}
-                                                    </div>
-                                                </div>
 
-                                                <div class="col-sm-6">
-                                                    <div class="form-group no-margin-hr">
-                                                        <label class="control-label">{{ trans('general.mt4CheckDemoPort') }}</label>
-                                                        {!! Form::text('mt4CheckDemoPort',config('fxweb.mt4CheckDemoPort'),['class'=>'form-control']) !!}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <div class="form-group no-margin-hr">
-                                                        <label class="control-label">{{ trans('general.name ') }}</label>
-                                                        {!! Form::text('demoServerName',config('fxweb.demoServerName'),['class'=>'form-control']) !!}
-                                                    </div>
-                                                </div>
-
-                                            </div>
                                             <hr>
                                             {!! $editGroupDemo !!}
                                             <hr>
@@ -468,42 +520,95 @@
         @section("script")
             @parent
         <script>
-            init.push(function () {
+//            init.push(function () {
+//
+//
+//                var options = {
+//                    format: "yyyy-mm-dd",
+//                    todayBtn: "linked",
+//                    orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+//                }
+//
+//                $('input[name="birthday"]').datepicker(options);
+//
+//            });
 
-
-                var options = {
-                    format: "yyyy-mm-dd",
-                    todayBtn: "linked",
-                    orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-                }
-
-                $('input[name="birthday"]').datepicker(options);
-
-            });
-
-            $('#jq-validation-select2').select2({
-                allowClear: true,
-                placeholder: 'Select a country...'
-            }).change(function () {
-                $(this).valid();
-            });
-
-
-            $('.dropDownEditAllDiv .add').click(function () {
-                var arrayName = $(this).data('arrayname');
-                console.log(arrayName);
-                var key = $('#keyInput_' + arrayName).val();
-                var value = $('#valueInput_' + arrayName).val();
-
-                $('#select_' + arrayName).append('<option value="' + key + ',' + value + '" onclick="$(this).remove();">' + value + '</option>');
-                $('.dropDownEditAllDiv  option').attr('selected', 'selected');
-            });
-            $('button[type="submit"],input[type="submit"]').click(function () {
-                $('.dropDownEditAllDiv  option').attr('selected', 'selected');
-            });
+//            $('#jq-validation-select2').select2({
+//                allowClear: true,
+//                placeholder: 'Select a country...'
+//            }).change(function () {
+//                $(this).valid();
+//            });
+//
+//
+//            $('.dropDownEditAllDiv .add').click(function () {
+//                var arrayName = $(this).data('arrayname');
+//                console.log(arrayName);
+//                var key = $('#keyInput_' + arrayName).val();
+//                var value = $('#valueInput_' + arrayName).val();
+//
+//                $('#select_' + arrayName).append('<option value="' + key + ',' + value + '" onclick="$(this).remove();">' + value + '</option>');
+//                $('.dropDownEditAllDiv  option').attr('selected', 'selected');
+//            });
+//            $('button[type="submit"],input[type="submit"]').click(function () {
+//                $('.dropDownEditAllDiv  option').attr('selected', 'selected');
+//            });
 
 
         </script>
+
+            <script >
+
+                function addNewServer(){
+                    var server_id=$('input[name="new_server_id"]').val();
+                    if(server_id.trim() ==''){alert("server Id is require");return false;}
+                    var server_type=$('input[name="server_type"]').val();
+                    var server_name=$('input[name="server_name"]').val();
+                    var server_mt4CheckHost=$('input[name="server_mt4CheckHost"]').val();
+                    var server_mt4CheckPort=$('input[name="server_mt4CheckPort"]').val();
+
+
+                    var server_id=$('input[name="new_server_id"]').val();
+                    var server_type=$('input[name="server_type"]').val();
+                    var server_name=$('input[name="server_name"]').val();
+                    var server_mt4CheckHost=$('input[name="server_mt4CheckHost"]').val();
+                    var server_mt4CheckPort=$('input[name="server_mt4CheckPort"]').val();
+
+                    var serverHtml='<div class="row">'+
+
+
+                            '<div class="col-sm-3">'+
+                            '<div class="form-group no-margin-hr">'+
+                            '<label class="control-label">{{ trans('general.type') }}</label>'+
+                            '<input name="servers['+server_id+'][type]" class="form-control" value="'+server_type+'">'+
+                            '</div>'+
+                            '</div>'+
+                            '<div class="col-sm-3">'+
+                            '<div class="form-group no-margin-hr">'+
+                            '<label class="control-label">{{ trans('general.name ') }}</label>'+
+                            '<input name="servers['+server_id+'][serverName]" class="form-control" value="'+server_name+'">'+
+                            '</div>'+
+                            '</div>'+
+                            '<div class="col-sm-3">'+
+                            '<div class="form-group no-margin-hr">'+
+                            '<label class="control-label">{{ trans('general.mt4CheckHost') }}</label>'+
+                            '<input name="servers['+server_id+'][mt4CheckHost]" class="form-control" value="'+server_mt4CheckHost+'">'+
+                            '</div>'+
+                            '</div>'+
+                            '<div class="col-sm-1">'+
+                            '<div class="form-group no-margin-hr">'+
+                            '<label class="control-label">{{ trans('general.mt4CheckPort') }}</label>'+
+                            '<input name="servers['+server_id+'][mt4CheckPort]" class="form-control" value="'+server_mt4CheckPort+'">'+
+                            ' </div>'+
+                            '</div>'+
+                            '<div class="col-sm-2">'+
+                            '<div class="form-group no-margin-hr">  <button name="delete"  class="form-control" onClick="$(this).parent().parent().parent().remove();" type="button">Delete</button> </div>'+
+                            '</div>'+
+                            '</div>';
+
+                    $('#serversList').append(serverHtml);
+                }
+            </script>
         @stop
         @section('hidden')
 {{ trans('general.settings') }}
@@ -1050,39 +1155,39 @@
 @section("script")
     @parent
     <script>
-        init.push(function () {
+//        init.push(function () {
+//
+//
+//            var options = {
+//                format: "yyyy-mm-dd",
+//                todayBtn: "linked",
+//                orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
+//            }
+//
+//            $('input[name="birthday"]').datepicker(options);
+//
+//        });
 
-
-            var options = {
-                format: "yyyy-mm-dd",
-                todayBtn: "linked",
-                orientation: $('body').hasClass('right-to-left') ? "auto right" : 'auto auto'
-            }
-
-            $('input[name="birthday"]').datepicker(options);
-
-        });
-
-        $('#jq-validation-select2').select2({
-            allowClear: true,
-            placeholder: 'Select a country...'
-        }).change(function () {
-            $(this).valid();
-        });
-
-
-        $('.dropDownEditAllDiv .add').click(function () {
-            var arrayName = $(this).data('arrayname');
-            console.log(arrayName);
-            var key = $('#keyInput_' + arrayName).val();
-            var value = $('#valueInput_' + arrayName).val();
-
-            $('#select_' + arrayName).append('<option value="' + key + ',' + value + '" onclick="$(this).remove();">' + value + '</option>');
-            $('.dropDownEditAllDiv  option').attr('selected', 'selected');
-        });
-        $('button[type="submit"],input[type="submit"]').click(function () {
-            $('.dropDownEditAllDiv  option').attr('selected', 'selected');
-        });
+//        $('#jq-validation-select2').select2({
+//            allowClear: true,
+//            placeholder: 'Select a country...'
+//        }).change(function () {
+//            $(this).valid();
+//        });
+//
+//
+//        $('.dropDownEditAllDiv .add').click(function () {
+//            var arrayName = $(this).data('arrayname');
+//            console.log(arrayName);
+//            var key = $('#keyInput_' + arrayName).val();
+//            var value = $('#valueInput_' + arrayName).val();
+//
+//            $('#select_' + arrayName).append('<option value="' + key + ',' + value + '" onclick="$(this).remove();">' + value + '</option>');
+//            $('.dropDownEditAllDiv  option').attr('selected', 'selected');
+//        });
+//        $('button[type="submit"],input[type="submit"]').click(function () {
+//            $('.dropDownEditAllDiv  option').attr('selected', 'selected');
+//        });
 
 
     </script>

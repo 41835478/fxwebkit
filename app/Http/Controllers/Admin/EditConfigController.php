@@ -100,4 +100,25 @@ class EditConfigController extends Controller
         $menuString.="]";
         return $menuString;
     }
+
+
+
+    public function multiLivilArrayToString($arrayName,$array){
+        if(!is_array($array)){return "'" . $arrayName . "'=>[]";}
+
+        $sArray = "'" . $arrayName . "'=>[";
+        foreach ($array as $key=>$value) {
+
+          if(is_array($value)){
+              $sArray .= $this->multiLivilArrayToString($key,$value).',';
+              continue;
+          }
+            $sArray .= "'" . $key . "'=>'" . $value . "',";
+
+        }
+        $sArray .= ']';
+        return $sArray;
+
+
+    }
 }

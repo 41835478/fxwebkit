@@ -73,7 +73,7 @@ class ClientAccountsController extends Controller
         $oResults = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
 
         $aFilterParams['server_id'] =1;
-        $oResults2 = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort);
+        $oResults2 = $this->oMt4User->getUsersByFilters($aFilterParams, false, $sOrder, $sSort,'second_page');
 
         $denyLiveAccount = (current_user()->getUser()->hasAnyAccess(['user.denyLiveAccount'])) ? true:true;
 
