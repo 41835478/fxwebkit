@@ -26,7 +26,7 @@ return [
     'liveServerName' => null,
     'mt4CheckDemoHost' => null,
     'mt4CheckDemoPort' => null,
-    'demoServerName' => null,'servers'=>['0'=>['type'=>'live','serverName'=>'live_1','mt4CheckHost'=>'192.168.15.10','mt4CheckPort'=>'443',],'1'=>['type'=>'demo','serverName'=>'demo_1','mt4CheckHost'=>'192.168.15.10','mt4CheckPort'=>'443',],'4'=>['type'=>'534','serverName'=>'234','mt4CheckHost'=>'234','mt4CheckPort'=>'234',],'sdf'=>['type'=>'fgdf','serverName'=>'gdsfg','mt4CheckHost'=>'dsfgds','mt4CheckPort'=>'',],],
+    'demoServerName' => null,'servers'=>['0'=>['type'=>'live','serverName'=>'live_1','mt4CheckHost'=>'192.168.15.10','mt4CheckPort'=>'443',],'1'=>['type'=>'demo','serverName'=>'demo_1','mt4CheckHost'=>'192.168.15.10','mt4CheckPort'=>'443',],'4'=>['type'=>'534','serverName'=>'234','mt4CheckHost'=>'234','mt4CheckPort'=>'234',],'sdf'=>['type'=>'asdf','serverName'=>'fasdf','mt4CheckHost'=>'asdffasd','mt4CheckPort'=>'',],],
 
 
 
@@ -109,11 +109,11 @@ return [
                     'title' => 'settings',
                     'icon' => 'fa fa-gears',
                 ],
-                [
-                    'route' => 'admin.setPermissions',
-                    'title' => 'permissions',
-                    'icon' => 'fa fa-user-secret ',
-                ]
+//                [
+//                    'route' => 'admin.setPermissions',
+//                    'title' => 'permissions',
+//                    'icon' => 'fa fa-user-secret ',
+//                ]
             ]
         ],
     ]
