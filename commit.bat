@@ -1,12 +1,8 @@
-
 E:
-
-cd /wamp/www/fxwebkit3
-
+cd /wamp/www/fxwebkit
 git add .
-git commit -am "%0"
+git commit -am "%1"
 
-
-echo complex@123 | git pull origin master
-echo complex@123 | git push origin master
+ git pull origin master --repo https://m.hashim:complex@123@office.mqplanet.com:/var/projects/applications/fxwebkit
+ git push origin master  --repo https://m.hashim:complex@123@office.mqplanet.com:/var/projects/applications/fxwebkit
 
