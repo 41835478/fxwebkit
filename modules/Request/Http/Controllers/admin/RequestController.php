@@ -39,7 +39,7 @@ class RequestController extends Controller
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
 
 
-        $aRequestStatus = config('request.requestStatus');
+        $aRequestStatus =['-1'=>'All']+ config('fxweb.status_internalTransfer');
 
         $oResults = null;
 
@@ -90,7 +90,7 @@ class RequestController extends Controller
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
 
-        $aRequestStatus = config('request.requestStatus');
+        $aRequestStatus =['-1'=>'All']+ config('fxweb.status_changeLeverage');
 
         $oResults = null;
 
@@ -140,7 +140,7 @@ class RequestController extends Controller
     public function getChangeLeverageEdit(Request $oRequest)
     {
         $oResults = $this->RequestLog->getChangeLeverageById($oRequest->logId);
-        $aRequestStatus = config('request.requestStatus');
+        $aRequestStatus = config('fxweb.status_changeLeverage');
 
         $changeLeverage = [
             'logId' => $oRequest->logId,
@@ -185,7 +185,7 @@ class RequestController extends Controller
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
 
-        $aRequestStatus = config('request.requestStatus');
+        $aRequestStatus = ['-1'=>'All']+config('fxweb.status_changePassword');
 
         $oResults = null;
 
@@ -239,7 +239,7 @@ class RequestController extends Controller
     public function getChangePasswordEdit(Request $oRequest)
     {
         $oResults = $this->RequestLog->getChangePasswordById($oRequest->logId);
-        $aRequestStatus = config('request.requestStatus');
+        $aRequestStatus = config('fxweb.status_changePassword');
 
         $changePassword = [
             'logId' => $oRequest->logId,
@@ -307,7 +307,7 @@ class RequestController extends Controller
 
 
         $oResults = $this->RequestLog->getInternalTransferById($oRequest->logId);
-        $aRequestStatus = config('request.requestStatus');
+        $aRequestStatus = config('fxweb.status_internalTransfer');
 
         $intenalTransfer = [
             'logId' => $oRequest->logId,
@@ -353,7 +353,7 @@ class RequestController extends Controller
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
 
-        $aRequestStatus = config('request.requestStatus');
+        $aRequestStatus = ['-1'=>'All']+config('fxweb.status_withdrawal');
 
         $oResults = null;
 
@@ -379,7 +379,7 @@ class RequestController extends Controller
     public function getWithdrawalEdit(Request $oRequest)
     {
         $oResults = $this->RequestLog->getWithdrawalById($oRequest->logId);
-        $aRequestStatus = config('request.requestStatus');
+        $aRequestStatus = config('fxweb.status_withdrawal');
 
         $withdrawal = [
             'logId' => $oRequest->logId,
@@ -423,7 +423,7 @@ class RequestController extends Controller
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
 
-        $aRequestStatus = config('request.requestStatus');
+        $aRequestStatus = ['-1'=>'All']+config('fxweb.status_additionalAccount');
 
         $oResults = null;
 
@@ -538,7 +538,7 @@ class RequestController extends Controller
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
 
-        $aRequestStatus=config('request.requestStatus');
+        $aRequestStatus=['-1'=>'All']+config('fxweb.status_additionalAccount');
 
         $oResults = null;
 
@@ -584,7 +584,7 @@ class RequestController extends Controller
     {
 
         $oResults = $this->RequestLog->getAssignAccountById($oRequest->logId);
-        $aRequestStatus = config('request.requestStatus');
+        $aRequestStatus = config('fxweb.status_additionalAccount');
 
         $assignAccount = [
             'logId' => $oRequest->logId,
@@ -627,7 +627,7 @@ $oResult= $this->RequestLog->getAssignAccountById($oRequest->logId);
         $sSort = ($oRequest->sort) ? $oRequest->sort : 'desc';
         $sOrder = ($oRequest->order) ? $oRequest->order : 'id';
 
-        $aRequestStatus = config('request.requestStatus');
+        $aRequestStatus = config('fxweb.generalStatus');
 
         $oResults = null;
 
