@@ -47,7 +47,7 @@
                             <thead>
                             <tr>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.Form::label('check_all',trans('general.Login')) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('general.liveDemo'), 'server_id', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('general.server'), 'server_id', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('general.name '), 'NAME', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('general.group'), 'GROUP', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! trans('general.action') !!}</th>
@@ -301,7 +301,7 @@
                                     <div class="tr">
 
                                         <div class="th">{!! Form::checkbox('check_all','0',false,['id'=>'check_all']).'  '.Form::label('check_all',trans('general.Login')) !!}</div>
-                                        <div class="th">{!! th_sort(trans('general.liveDemo'), 'server_id', $oResults) !!}</div>
+                                        <div class="th">{!! th_sort(trans('general.server'), 'server_id', $oResults) !!}</div>
                                         <div class="th">{!! th_sort(trans('general.name '), 'NAME', $oResults) !!}</div>
                                         <div class="th">{!! th_sort(trans('general.group'), 'GROUP', $oResults) !!}</div>
                                         <div class="th">{!! trans('general.action') !!}</div>
@@ -321,7 +321,7 @@
 
 
                                                 <div class="td"><label>{!! trans('accounts::accounts.Login') !!} : </label><p>{!! Form::checkbox('users_checkbox[]',$oResult->uid,false,['class'=>'users_checkbox']) !!} {{ $oResult->LOGIN }}</p></div>
-                                                <div class="td"><label>{!! trans('accounts::accounts.liveDemo') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
+                                                <div class="td"><label>{!! trans('accounts::accounts.server') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
                                                 <div class="td"><label>{!! trans('accounts::accounts.Name') !!} : </label><p>{{ $oResult->NAME }}</p></div>
                                                 <div class="td"><label>{!! trans('accounts::accounts.Group') !!} : </label><p>{{ $oResult->GROUP }}</p></div>
                                                 <div class="td">

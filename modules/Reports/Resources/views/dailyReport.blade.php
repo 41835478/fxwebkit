@@ -32,6 +32,13 @@
 
                         <h3 class="box-title m-b-0">{{ trans('reports::reports.tableHead') }}</h3>
                         <p class="text-muted m-b-20">{{ trans('reports::reports.tableDescription') }}</p>
+
+                        @if($chartData)
+                            <div class="row">
+                                <div id="dailyChartDiv" class="col-xs-12 "></div>
+                            </div>
+                        @endif
+
                         <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
 
                             <thead>
@@ -39,7 +46,7 @@
 
 
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.login'), 'LOGIN', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('reports::reports.server'), 'server_id', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('reports::reports.time'), 'TIME', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('reports::reports.Group'), 'GROUP', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('reports::reports.bank'), 'BANK', $oResults) !!}</th>
@@ -185,9 +192,75 @@
                 {!! Form::close()!!}
             </div>
         </div>
-
-
 @stop
+        @section('script')
+            @parent
+            {!! HTML::script('assets/'.config('fxweb.layoutAssetsFolder').'/js/highcharts.js') !!}
+            <script>
+
+                $(function () {
+                    $('#dailyChartDiv').highcharts({
+                        title: {
+                            text: '',
+                            x: -20 //center
+                        },
+                        subtitle: {
+                            text: '',
+                            x: -20
+                        },
+                        xAxis: {
+                            categories:{!! json_encode($chartXLine)!!}
+                },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            },
+                            plotLines: [{
+                                value: 0,
+                                width: 1,
+                                color: '#808080'
+                            }]
+                        },
+                        tooltip: {
+                            valueSuffix: ''
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'middle',
+                            borderWidth: 0
+                        },
+                        series: {!! json_encode($chartData)!!}
+            });
+                });
+
+                function removeHighchartWord(element){
+                    element.each(function(){
+                        if($(this).text()=='Highcharts.com'){
+                            $(this).hide();
+                        }
+                    });
+                }
+
+                function tryToGetElementWhenloaded(){
+                    var elementNodes=$('svg text');
+                    if(elementNodes ==undefined){
+
+                        setTimeout('tryToGetElementWhenloaded()',300);
+                    }else{
+                        removeHighchartWord(elementNodes);
+                    }
+                }
+                $(document).ready(function(){
+
+                    setTimeout('tryToGetElementWhenloaded()',300);
+
+                });
+
+
+
+            </script>
+        @stop
 @section('hidden')
 
 
@@ -279,7 +352,7 @@
                     <thead>
                         <tr>
                             <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.login'), 'LOGIN', $oResults) !!}</th>
-                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults) !!}</th>
+                            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.server'), 'server_id', $oResults) !!}</th>
                             <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.time'), 'TIME', $oResults) !!}</th>
                             <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.Group'), 'GROUP', $oResults) !!}</th>
                             <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.bank'), 'BANK', $oResults) !!}</th>

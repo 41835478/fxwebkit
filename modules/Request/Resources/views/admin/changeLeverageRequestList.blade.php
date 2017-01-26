@@ -39,7 +39,7 @@
                             <tr>
 
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('request::request.login'), 'login', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('request::request.server'), 'server_id', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('request::request.leverage'), 'leverage', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('request::request.reason'), 'reason', $oResults) !!}</th>
@@ -200,7 +200,7 @@
 
 
                                     <div class="th">{!! th_sort(trans('request::request.login'), 'login', $oResults) !!}</div>
-                                    <div class="th">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.server'), 'server_id', $oResults) !!}</div>
                                     <div class="th">{!! th_sort(trans('request::request.leverage'), 'leverage', $oResults) !!}</div>
                                     <div class="th">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</div>
                                     <div class="th">{!! th_sort(trans('request::request.reason'), 'reason', $oResults) !!}</div>
@@ -221,7 +221,7 @@
 
 
                                             <div class="td"><label>{!! trans('request::request.login') !!} : </label><p>{{ $oResult->login }}</p></div>
-                                            <div class="td"><label>{!! trans('request::request.liveDemo') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.server') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.leverage') !!} : </label><p>1:{{ $oResult->leverage }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.comment') !!} : </label><p>{{ $oResult->comment }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.reason') !!} : </label><p>{{ $oResult->reason }}</p></div>

@@ -48,7 +48,7 @@
 
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults[0]) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('reports::reports.login'), 'LOGIN', $oResults[0]) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults[0]) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('reports::reports.server'), 'server_id', $oResults[0]) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults[0]) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('reports::reports.total'), 'PROFIT', $oResults[0]) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6">{!! th_sort(trans('reports::reports.close_time'), 'CLOSE_TIME', $oResults[0]) !!}</th>
@@ -330,7 +330,7 @@
 
                                 <div class="th">{!! th_sort(trans('reports::reports.order#'), 'TICKET', $oResults[0]) !!}</div>
                                 <div class="th">{!! th_sort(trans('reports::reports.login'), 'LOGIN', $oResults[0]) !!}</div>
-                                <div class="th">{!! th_sort(trans('reports::reports.liveDemo'), 'server_id', $oResults[0]) !!}</div>
+                                <div class="th">{!! th_sort(trans('reports::reports.server'), 'server_id', $oResults[0]) !!}</div>
                                 <div class="th">{!! th_sort(trans('reports::reports.type'), 'CMD', $oResults[0]) !!}</div>
                                 <div class="th">{!! th_sort(trans('reports::reports.total'), 'PROFIT', $oResults[0]) !!}</div>
                                 <div class="th">{!! th_sort(trans('reports::reports.close_time'), 'CLOSE_TIME', $oResults[0]) !!}</div>
@@ -349,7 +349,7 @@
 
                                         <div class="td"><label>{!! trans('reports::reports.order#') !!} : </label><p>{{ $oResult->TICKET }}</p></div>
                                         <div class="td"><label>{!! trans('reports::reports.login') !!} : </label><p>{{ $oResult->LOGIN }}</p></div>
-                                        <div class="td"><label>{!! trans('reports::reports.liveDemo') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
+                                        <div class="td"><label>{!! trans('reports::reports.server') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
                                         <div class="td"><label>{!! trans('reports::reports.type') !!} : </label><p>{{ $oResult->TYPE }}</p></div>
                                         <div class="td"><label>{!! trans('reports::reports.total') !!} : </label><p>{{ $oResult->PROFIT }}</p></div>
                                         <div class="td"><label>{!! trans('reports::reports.close_time') !!} : </label><p>{{ $oResult->CLOSE_TIME }}</p></div>

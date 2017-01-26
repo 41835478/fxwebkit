@@ -73,7 +73,7 @@
 'is_client'=>'Show This Module To Client',
 'demo'=>'Demo',
 'live'=>'Live',
-'liveDemo'=>'Live/Demo',
+'server'=>'Server',
 'deletePlan'=>'Delete Plan',
 'detailPlan'=>'Detail Plan',
 'agentUsres'=>'Agent Users',

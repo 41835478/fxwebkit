@@ -53,8 +53,9 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group no-margin-hr">
-                                        <label class="control-label">{{ trans('user.email') }}</label>
-                                        {!! Form::text('email',$userInfo['email'],['class'=>'form-control']) !!}
+                                        <label class="control-label">{{ trans('user.City') }}</label>
+                                        {!! Form::text('city',$userInfo['city'],['class'=>'form-control']) !!}
+
                                     </div>
                                 </div>
                                 <!-- col-sm-6 -->
@@ -109,18 +110,7 @@
                                         {!! Form::select('country',$userInfo['country_array'],$userInfo['country'],['id'=>'jq-validation-select2','class'=>'form-control']) !!}
                                     </div>
                                 </div><!-- col-sm-6 -->
-                                <div class="col-sm-6">
-                                    <div class="form-group no-margin-hr">
-                                        <label class="control-label">{{ trans('user.City') }}</label>
-                                        {!! Form::text('city',$userInfo['city'],['class'=>'form-control']) !!}
-
-                                    </div>
-                                </div><!-- col-sm-6 -->
-                            </div>
-
-                            <div class="row">
-
-                                <div class="col-sm-6">
+                               <div class="col-sm-6">
                                     <label class="control-label " style="text-align: left;display: block;">{{ trans('user.gender') }}</label>
 
                                     <div class="radio-list">
@@ -137,8 +127,9 @@
                                             </div>
                                         </label>
                                     </div>
-                                </div>
-                            </div><!-- row -->
+                                </div><!-- col-sm-6 -->
+                            </div>
+
                         </div>
                         {!!   View('admin/partials/messages')->with('errors',$errors) !!}
 

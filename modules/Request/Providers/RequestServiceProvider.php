@@ -33,8 +33,6 @@ class RequestServiceProvider extends ServiceProvider {
 		$this->app->bind(
 			'Modules\Request\Repositories\RequestContract',
 			'Modules\Request\Repositories\EloquentRequestContractRepository'
-
-
 		);
 	}
 

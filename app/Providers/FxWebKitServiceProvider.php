@@ -46,9 +46,9 @@ class FxWebKitServiceProvider extends ServiceProvider {
 		);
                  $this->app->bind(
                          'Modules\Tools\Repositories\FutureContract',
-			'Modules\Tools\Repositories\EloquentFutureContractRepository'
-                        
-                        
+					 'Modules\Tools\Repositories\EloquentFutureContractRepository'
+
+
 		);
 	}
 }

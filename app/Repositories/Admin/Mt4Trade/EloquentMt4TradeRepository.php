@@ -137,9 +137,6 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
                 $aGroupsSecurities[]=$group->position;
             }
 
-
-
-
             $oResult =Symbols::whereIn('type',$aGroupsSecurities)->get();
             foreach($oResult as &$result){
                 $result->SYMBOL= $result->symbol;
@@ -2556,7 +2553,9 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
         /* ===============================check admin or user================ */
         $oResult = '';
         if ($user = current_user()->getUser()) {
+
             if (!$user->InRole('admin')) {
+
                 $account_id = $user->id;
                 $oResult = MT4Daily::with('users')->whereHas('users', function ($query) use ($account_id) {
                     $query->where('users_id', $account_id);
@@ -2582,21 +2581,96 @@ class EloquentMt4TradeRepository implements Mt4TradeContract
                 $oResult = $oResult->where('LOGIN', '<=', $aFilters['to_login']);
             }
         }
+        /* =============== server_id =============== */
+        if (isset($aFilters['server_id']) && $aFilters['server_id']&& $aFilters['server_id'] !='-1' ) {
+
+            $oResult = $oResult->where('server_id', '=', $aFilters['server_id']);
+
+        }
+
 
         /* =============== Groups Filter  =============== */
         if (!isset($aFilters['all_groups']) || !$aFilters['all_groups']) {
-            $oResult = $oResult->where('GROUP','=',$aFilters['group']);
+            if (!empty($aFilters['group'])) {
+                if (is_array( $aFilters['group'])){
+                    $oResult = $oResult->whereIn('GROUP',$aFilters['group']);
+                }else{
+                    $oResult = $oResult->where('GROUP','=',$aFilters['group']);
+                }
+            }
         }
+        /* =============== Date Filter  =============== */
+        if ((isset($aFilters['from_date']) && !empty($aFilters['from_date'])) ||
+            (isset($aFilters['to_date']) && !empty($aFilters['to_date']))
+        ) {
+
+            if (!empty($aFilters['from_date'])) {
+                $oResult = $oResult->where('TIME', '>=', $aFilters['from_date'] . ' 00:00:00');
+            }
+
+            if (!empty($aFilters['to_date'])) {
+                $oResult = $oResult->where('TIME', '<=', $aFilters['to_date'] . ' 23:59:59');
+            }
+        }
+
+
+
+        /* =============== chart data ===================== */
+        $chartQuery=clone $oResult;
+
+        $oResult = $oResult->orderBy('TIME', "asc");
+        $chartQueryResult = $chartQuery->paginate(Config::get('fxweb.pagination_size'));
+        list($RenderedChartData,$chartXLine)= $this->getDailyReportChartData($chartQueryResult);
 
         /* =============== $oResult = $oResult; ===================== */
         $oResult = $oResult->orderBy($sOrderBy, $sSort);
 
+
         if (!$bFullSet) {
             $oResult = $oResult->paginate(Config::get('fxweb.pagination_size'));
+
+
         } else {
             $oResult = $oResult->get();
         }
+        return [$oResult,$RenderedChartData,$chartXLine] ;
+    }
 
-        return $oResult ;
+    public function getDailyReportChartData($oChartDataResult)
+    {
+
+        $demoServerName=config('fxweb.servers')[1]['serverName'];
+        $liveServerName=config('fxweb.servers')[0]['serverName'];
+        $chartDataGroupDate=[];
+        $RenderedChartData=[];
+        $logins=[];
+        $loginsDataArray=[];
+        $chartXLine=[];
+
+        if($oChartDataResult){
+            foreach($oChartDataResult as $row){
+                $date=explode(' ',$row->TIME)[0];
+                $serverName=($row->server_id==0)? $liveServerName:$demoServerName;
+                $loginName=$row->LOGIN .' - '.$serverName;
+                $chartDataGroupDate[$date][$loginName]=  $row->BALANCE;
+                $logins[$loginName]='demo value';
+            }
+
+            foreach($chartDataGroupDate as $date=>$loginsArray) {
+                $chartXLine[]=$date;
+                foreach($logins as $login=>$demoData) {
+                    $value=(isset($loginsArray[$login]))? $loginsArray[$login]:((isset($loginsDataArray[$login]))?last($loginsDataArray[$login]):0);
+                    $loginsDataArray[$login][]=$value;
+                }
+            }
+
+            foreach($logins as $login=>$demoData) {
+                $RenderedChartData[] = [
+                    'name' => $login,
+                    'data' => $loginsDataArray[$login]
+                ];
+            }
+        }
+        return [$RenderedChartData,$chartXLine];
     }
 }

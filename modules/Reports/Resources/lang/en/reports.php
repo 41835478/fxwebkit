@@ -87,7 +87,7 @@ return [
     'is_client'=>'Show This Module To Client',
     'demo'=>'Demo',
     'live'=>'Live',
-    'liveDemo'=>'Live/Demo',
+    'server'=>'Server',
     'clientSettings'=>'Client Settings',
     'accountStatement'=>'Account Statement',
     'accountant_total'=>'Accountant Total',
@@ -104,4 +104,5 @@ return [
     'details'=>'Details',
     'pending'=>'Pending',
     'actual'=>'Actual',
+    'comment'=>'Comment',
 ];

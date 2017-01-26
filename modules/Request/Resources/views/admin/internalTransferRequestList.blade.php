@@ -39,7 +39,7 @@
 
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('request::request.from_login'), 'from_login', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('request::request.to_login'), 'to_login', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('request::request.server'), 'server_id', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('request::request.amount'), 'amount', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="6">{!! th_sort(trans('request::request.reason'), 'reason', $oResults) !!}</th>
@@ -200,7 +200,7 @@
                                 <div class="tr">
                                     <div class="th">{!! th_sort(trans('request::request.from_login'), 'from_login', $oResults) !!}</div>
                                     <div class="th">{!! th_sort(trans('request::request.to_login'), 'to_login', $oResults) !!}</div>
-                                    <div class="th">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.server'), 'server_id', $oResults) !!}</div>
                                     <div class="th">{!! th_sort(trans('request::request.amount'), 'amount', $oResults) !!}</div>
                                     <div class="th">{!! th_sort(trans('request::request.comment'), 'comment', $oResults) !!}</div>
                                     <div class="th">{!! th_sort(trans('request::request.reason'), 'reason', $oResults) !!}</div>
@@ -222,7 +222,7 @@
 
                                             <div class="td"><label>{!! trans('request::request.from_login') !!} : </label><p>{{ $oResult->from_login }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.to_login') !!} : </label><p>{{ $oResult->to_login }}</p></div>
-                                            <div class="td"><label>{!! trans('request::request.liveDemo') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.server') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.amount') !!} : </label><p>{{ $oResult->amount }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.comment') !!} : </label><p>{{ $oResult->comment }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.reason') !!} : </label><p>{{ $oResult->reason }}</p></div>

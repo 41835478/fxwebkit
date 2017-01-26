@@ -135,7 +135,7 @@
     'showMt4ChangePassword' => 'Show Mt4 Change Password',
     'showMt4Transfer' => 'Show Mt4 Transfer',
     'denyLiveAccount' => 'Deny Live Account',
-    'liveDemo' => 'Live/Demo',
+    'server' => 'Server',
     'demo' => 'Demo',
     'live' => 'Live',
     'is_client' => 'Show This Module To Client',

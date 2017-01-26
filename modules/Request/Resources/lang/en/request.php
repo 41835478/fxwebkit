@@ -44,7 +44,7 @@ return [
     'password'=>'Password',
     'accountId'=>'Account Id',
     'name'=>'Name',
-    'liveDemo'=>'Live/Demo',
+    'server'=>'Server',
     'demo'=>'Demo',
     'live'=>'Live',
     'password_type'=>'Password Type',

@@ -40,7 +40,7 @@
                             <tr>
 
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="1">{!! th_sort(trans('request::request.first_name'), 'first_name', $oResults) !!}</th>
-                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</th>
+                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">{!! th_sort(trans('request::request.server'), 'server_id', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="3">{!! th_sort(trans('request::request.email'), 'email', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4">{!! th_sort(trans('request::request.leverage'), 'leverage', $oResults) !!}</th>
                                 <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="5">{!! th_sort(trans('request::request.array_deposit'), 'array_deposit', $oResults) !!}</th>
@@ -213,7 +213,7 @@
 
 
                                     <div class="th">{!! th_sort(trans('request::request.first_name'), 'first_name', $oResults) !!}</div>
-                                    <div class="th">{!! th_sort(trans('request::request.liveDemo'), 'server_id', $oResults) !!}</div>
+                                    <div class="th">{!! th_sort(trans('request::request.server'), 'server_id', $oResults) !!}</div>
                                     <div class="th">{!! th_sort(trans('request::request.email'), 'email', $oResults) !!}</div>
                                     <div class="th">{!! th_sort(trans('request::request.leverage'), 'leverage', $oResults) !!}</div>
                                     <div class="th">{!! th_sort(trans('request::request.array_deposit'), 'array_deposit', $oResults) !!}</div>
@@ -238,7 +238,7 @@
                                         <div class="tr {{ $class }}">
 
                                             <div class="td"><label>{!! trans('request::request.first_name') !!} : </label><p>{{ $oResult->first_name.' '.$oResult->last_name }}</p></div>
-                                            <div class="td"><label>{!! trans('request::request.liveDemo') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
+                                            <div class="td"><label>{!! trans('request::request.server') !!} : </label><p>{{ config('fxweb.servers')[$oResult->server_id]['serverName'] }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.email') !!} : </label><p>{{ $oResult->email }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.leverage') !!} : </label><p>1:{{ $oResult->leverage }}</p></div>
                                             <div class="td"><label>{!! trans('request::request.array_deposit') !!} : </label><p>{{ $oResult->array_deposit }}</p></div>

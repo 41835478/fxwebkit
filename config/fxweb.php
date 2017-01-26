@@ -20,15 +20,20 @@ return [
 
     'LinkTradeForUser' => 'https://trade.mql5.com/trade?servers=MetaQuotes-Demo&demo_server=192.168.15.10&lang=en',
 
-    'EnableLinkTradeForUser' => true,
+    'EnableLinkTradeForUser' => false,
     'mt4CheckHost' => null,
     'mt4CheckPort' => null,
     'liveServerName' => null,
     'mt4CheckDemoHost' => null,
     'mt4CheckDemoPort' => null,
-    'demoServerName' => null,'servers'=>['0'=>['type'=>'live','serverName'=>'live_1','mt4CheckHost'=>'192.168.15.10','mt4CheckPort'=>'443',],'1'=>['type'=>'demo','serverName'=>'demo_1','mt4CheckHost'=>'192.168.15.10','mt4CheckPort'=>'443',],'4'=>['type'=>'534','serverName'=>'234','mt4CheckHost'=>'234','mt4CheckPort'=>'234',],'sdf'=>['type'=>'asdf','serverName'=>'fasdf','mt4CheckHost'=>'asdffasd','mt4CheckPort'=>'',],],
+    'demoServerName' => null,
 
-
+    'servers'=>[
+        '0'=>
+            ['serverName'=>'live_1','type'=>'live','mt4CheckHost'=>'192.168.15.10','mt4CheckPort'=>'443',],
+        '1'=>
+            ['serverName'=>'demo_1','type'=>'demo','mt4CheckHost'=>'192.168.15.10','mt4CheckPort'=>'443',],
+    ],
 
     'liveServerId'=>0,
     'demoServerId'=>1,
@@ -46,7 +51,7 @@ return [
     'facebookLoginIdentifier' => '905239722928440',
     'facebookLoginApp_id' => '905239722928440',
     'facebookLoginSecret' => '8dfda7399b0793451f6dcc49370dadf6',
-    'EnableFacebookRegister'=>true,
+    'EnableFacebookRegister'=>false,
     'facebookLoginScopes' => ['email'],
 
     'googleCallback' => 'http://www.fxwebkit.com/client/google-callback-login',
@@ -61,7 +66,7 @@ return [
     'linkedinProvider' => 'linkedin',
     'linkedinDriver' => 'LinkedIn',
     'linkedinIdentifier' => '77pt0cs5p0duu6',
-    'EnableLinkedinRegister'=>true,
+    'EnableLinkedinRegister'=>false,
     'linkedinSecret' => 'ddVzvRTG0Nmkyy6u',
 
     'key' => 'fgh',
@@ -119,8 +124,8 @@ return [
     ]
     ,
     'htmlToPdfPath'=>'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe',
-    'demoAccountHost'=>'85.25.207.30',
-    'demoAccountPort'=>'443',
+    'demoAccountHost'=>null,
+    'demoAccountPort'=>null,
 
     'emailTemplates'=>[
     'additionalAccount'=>'Additional Account',

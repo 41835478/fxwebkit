@@ -28,10 +28,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="white-box">
-
                         @include('admin.partials.messages')
-
-
                         @if (count($oResults[0]))
                             <div class="stat-panel no-margin-b">
                                 <div class="stat-row">

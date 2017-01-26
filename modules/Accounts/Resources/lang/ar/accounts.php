@@ -135,7 +135,7 @@
 'showMt4ChangePassword'=>'اظهار تغيير كلمة السر لميتا4',
 'showMt4Transfer'=>'اظهار تحويل ليمتا4',
 'denyLiveAccount'=>'عدم السماح لسحاب حقيقي',
-'liveDemo'=>'حقيقي/تجريبي',
+'server'=>'الخادم',
 'demo'=>'تجريبي',
 'live'=>'حقيقي',
 'is_client'=>'اظهار الوحدة للعميل',

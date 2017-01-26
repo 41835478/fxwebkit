@@ -605,6 +605,7 @@ class ReportsController extends Controller
         $oGroups = $this->oMt4Group->getAllGroups();
         $sSort = (isset($oRequest->sort))? $oRequest->sort:'ASC';
         $sOrder = (isset($oRequest->order))? $oRequest->order:'login';
+        $serverTypes = $this->oMt4Trade->getServerTypes();
         $aGroups = [];
         $oResults = null;
         $aFilterParams = [
@@ -618,6 +619,7 @@ class ReportsController extends Controller
             'group' => '',
             'sort' => $sSort,
             'order' => $sOrder,
+            'server_id'=>''
         ];
 
         foreach ($oGroups as $oGroup) {
@@ -633,15 +635,19 @@ class ReportsController extends Controller
             $aFilterParams['to_date'] = $oRequest->to_date;
             $aFilterParams['all_groups'] = ($oRequest->has('all_groups') ? true : false);
             $aFilterParams['group'] = $oRequest->group;
+            $aFilterParams['server_id'] = $oRequest->server_id;
         }
 
-
-            $oResults = $this->oMt4Trade->getDailyReportByFilters($aFilterParams, false, $sOrder, $sSort);
+        $chartData=[];$chartXLine=[];
+        list($oResults,$chartData,$chartXLine)  = $this->oMt4Trade->getDailyReportByFilters($aFilterParams, false, $sOrder, $sSort);
 
 
         return view('reports::dailyReport')
             ->with('aGroups', $aGroups)
             ->with('oResults', $oResults)
+            ->with('chartData', $chartData)
+            ->with('chartXLine', $chartXLine)
+            ->with('serverTypes',$serverTypes)
             ->with('aFilterParams', $aFilterParams);
     }
 
