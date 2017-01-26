@@ -26,14 +26,7 @@ return [
     'liveServerName' => null,
     'mt4CheckDemoHost' => null,
     'mt4CheckDemoPort' => null,
-    'demoServerName' => null,
-
-    'servers'=>[
-        '0'=>
-            ['serverName'=>'live_1','type'=>'live','mt4CheckHost'=>'192.168.15.10','mt4CheckPort'=>'443',],
-        '1'=>
-            ['serverName'=>'demo_1','type'=>'demo','mt4CheckHost'=>'192.168.15.10','mt4CheckPort'=>'443',],
-    ],
+    'demoServerName' => null,'servers'=>['0'=>['serverName'=>'live_1','type'=>'live','mt4CheckHost'=>'192.168.15.10','mt4CheckPort'=>'443',],'1'=>['serverName'=>'demo_1','type'=>'demo','mt4CheckHost'=>'192.168.15.10','mt4CheckPort'=>'443',],],
 
     'liveServerId'=>0,
     'demoServerId'=>1,
