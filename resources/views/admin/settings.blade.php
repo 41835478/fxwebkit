@@ -62,9 +62,7 @@
                                                                 {!! Form::text('servers['.$server_id.'][serverName]',$server['serverName'],['class'=>'form-control']) !!}
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="row">
 
                                                         <div class="col-sm-3">
                                                             <div class="form-group no-margin-hr">
@@ -501,17 +499,16 @@
 
             var serverHtml = '<div class="row">' +
 
-
-                    '<div class="col-sm-3">' +
-                    '<div class="form-group no-margin-hr">' +
-                    '<label class="control-label">{{ trans('general.type') }}</label>' +
-                    '<input name="servers[' + server_id + '][type]" class="form-control" value="' + server_type + '">' +
-                    '</div>' +
-                    '</div>' +
-                    '<div class="col-sm-3">' +
+                    '<div class="col-sm-10">' +
                     '<div class="form-group no-margin-hr">' +
                     '<label class="control-label">{{ trans('general.name ') }}</label>' +
                     '<input name="servers[' + server_id + '][serverName]" class="form-control" value="' + server_name + '">' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="col-sm-3">' +
+                    '<div class="form-group no-margin-hr">' +
+                    '<label class="control-label">{{ trans('general.Type') }}</label>' +
+                    '<input name="servers[' + server_id + '][type]" class="form-control" value="' + server_type + '">' +
                     '</div>' +
                     '</div>' +
                     '<div class="col-sm-3">' +
@@ -520,14 +517,14 @@
                     '<input name="servers[' + server_id + '][mt4CheckHost]" class="form-control" value="' + server_mt4CheckHost + '">' +
                     '</div>' +
                     '</div>' +
-                    '<div class="col-sm-1">' +
+                    '<div class="col-sm-3">' +
                     '<div class="form-group no-margin-hr">' +
                     '<label class="control-label">{{ trans('general.mt4CheckPort') }}</label>' +
                     '<input name="servers[' + server_id + '][mt4CheckPort]" class="form-control" value="' + server_mt4CheckPort + '">' +
                     ' </div>' +
                     '</div>' +
-                    '<div class="col-sm-2">' +
-                    '<div class="form-group no-margin-hr">  <button name="delete"  class="form-control" onClick="$(this).parent().parent().parent().remove();" type="button">Delete</button> </div>' +
+                    '<div class="col-sm-1">' +
+                    '<div class="form-group no-margin-hr" style="margin-top: 27px">  <button name="delete"  class="btn btn-danger pull-right btn-flat" onClick="$(this).parent().parent().parent().remove();" type="button">Delete</button> </div>' +
                     '</div>' +
                     '</div>';
 
